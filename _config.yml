@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: Seek Another Land
+subtitle: 'A Land of Nobody'
+description: '卸下所有的伪装'
 keywords:
-author: John Doe
-language: en
+author:  Nobody
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://Bit-Part-Young.github.io/hexo-butterfly-demo
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -101,4 +101,7 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: '' 
+  # type: git
+  # repository: git@github.com:Bit-Part-Young/hexo-butterfly-demo.git
+  # branch: gh-pages
