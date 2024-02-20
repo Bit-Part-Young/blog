@@ -1,0 +1,282 @@
+---
+title: GitHub 使用
+top: false
+pin: false
+cover: false
+toc: true
+mathjax: true
+math: true
+summary: GitHub 使用
+tags:
+  - Github
+categories:
+  - 科研工具
+date: 2023-10-30 09:00:00
+abbrlink: "5928"
+password:
+---
+
+# GitHub
+
+## 介绍
+
+全球最大的代码托管平台
+
+提供免费的静态网站托管服务 GitHub Pages
+
+团队协作开发平台：有完善的协作功能 (Fork, Issue, Pull Request) 等功能
+
+GitHub 每个仓库的总体积限制是 1GB（Gitee 是 500MB），每个仓库中每个 release 的最大文件体积限制是 2GB（Gitee 是 1GB）；release 数量没有明确的限制；对于普通用户，仓库（Repo 代码 + release 文件）的总体积限制为 100 GB
+
+
+---
+
+### 参考资料
+
+>[GitHub 简易指南 - OrangeX4's Blog](https://orangex4.cool/post/github-tutorials-for-beginner/)
+
+lec2：Git/GitHub 基础介绍
+>[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
+
+>[GitHub - tiimgreen/github-cheat-sheet: A list of cool features of Git and GitHub.](https://github.com/tiimgreen/github-cheat-sheet)
+
+>[GitHub - jasineri/gitartwork: Gitartwork on user's contribution graph](https://github.com/jasineri/gitartwork)
+
+
+
+---
+
+## 使用
+
+### Repo 基本使用
+
+Code 页面
+
+![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638623.png)
+
+---
+
+Issues 页面
+
+![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638624.png)
+
+---
+
+Pull requests 页面（简称 PR）
+
+![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638625.png)
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081114184.png)
+
+
+Pull Requests 流程:
+
+- Fork 该 Repo；
+- git clone fork 的 Repo 到本地，进行代码修改并提交，会出现提交的 commit 相对原 Repo 的前后关系；
+- 点击 "Contribute"，提 一个 Pull Request 给原来的 Repo；
+- 点击 "Sync fork"，同步原 Repo 最新代码。
+
+---
+
+
+改变 Repo 公开，隐藏的属性：
+该 Repo 的 Settings - Danger Zone
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081130359.png)
+
+---
+
+
+设置自己的 activity 为 private：
+Settings - Public profile - Contributions & activity
+
+
+![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638621.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081150607.png)
+
+
+---
+
+### alert 语法
+
+>[basic-writing-and-formatting-syntax.md](https://github.com/github/docs/blob/main/content/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax.md)
+
+>和 Obsidian 中的 Admonition 插件的 alert 语法一样
+
+```text
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081122804.png)
+
+
+
+---
+
+### 自定义 profile
+
+>[GitHub - jstrieb/github-stats](https://github.com/jstrieb/github-stats)
+
+>[GitHub - anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
+
+>[GitHub - lowlighter/metrics](https://github.com/lowlighter/metrics)
+
+
+优秀 github profile 参考
+>[GitHub - TonyCrane/TonyCrane](https://github.com/TonyCrane/TonyCrane)
+
+>[sudoskys (Jasmine) · GitHub](https://github.com/sudoskys)
+
+
+标准 readme 文件
+>[GitHub - RichardLitt/standard-readme: A standard style for README files](https://github.com/RichardLitt/standard-readme)
+
+
+---
+
+### shield.io
+
+数据牌
+
+>[GitHub - badges/shields](https://github.com/badges/shields)
+
+
+---
+
+Python 相关
+
+```text
+[![PyPi](https://img.shields.io/pypi/v/spt?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/spt/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/spt?logo=pypi&logoColor=white&color=blue&label=PyPI%20downloads)](https://pypi.org/project/spt)
+[![Requires Python 3.6+](https://img.shields.io/badge/Python-3.6+-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)
+```
+
+```text
+[![GitHub](https://img.shields.io/github/license/jzhang-github/PyFunction)](https://github.com/jzhang-github/PyFunction/blob/main/LICENSE)
+
+[![Pypi](https://img.shields.io/pypi/v/zjpf.svg)](https://pypi.org/project/zjpf/)
+
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/zjpf)](https://pypi.org/project/zjpf/)
+
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/zjpf)](https://pypi.org/project/zjpf/)
+```
+
+---
+
+Repo 相关
+
+```html
+<div align="center">
+<h1>Data Structures & Algorithms for Coding Interview</h1>
+<p align="center">
+<a href=" ">  
+< img alt="Stars" src="https://img.shields.io/github/stars/SamirPaulb/DSAlgo"> 
+< img alt="Forks" src="https://img.shields.io/github/forks/SamirPaulb/DSAlgo"> 
+< img alt="Size" src="https://img.shields.io/github/repo-size/SamirPaulb/DSAlgo"> 
+< img alt="Hits" src="https://hitsofcode.com/github/SamirPaulb/DSAlgo?branch=main">
+< img alt="language" src="https://user-images.githubusercontent.com/77569653/227633223-43014974-ac8f-4cf9-8605-93d08cb2d5fd.svg">
+</a >
+</p >
+```
+
+
+---
+
+一些编程语言及排版语言的 shields logo
+>[README.md](https://github.com/frostming/marko/blob/master/README.md?plain=1)
+
+```text
+### Skills
+#### Programming language
+![Python](https://img.shields.io/badge/-Python-3776ab?style=flat-square&logo=python&logoColor=fff)
+![Shell](https://img.shields.io/badge/-Shell-4eaa25?style=flat-square&logo=gnu%20bash&logoColor=fff)
+![C++](https://img.shields.io/badge/-C%2b%2b-00599c?style=flat-square&logo=C%2b%2b&logoColor=fff)
+![Fortran](https://img.shields.io/badge/-Fortran-734f96?style=flat-square&logo=fortran&logoColor=fff)
+![Julia](https://img.shields.io/badge/-Julia-9558b2?style=flat-square&logo=julia&logoColor=fff)
+
+#### Markup language
+- ![LaTeX](https://img.shields.io/badge/-LaTeX-008080?style=flat-square&logo=latex&logoColor=fff)
+- typst
+
+
+#### 其他
+![C](https://img.shields.io/badge/-C-a8b9cc?style=flat-square&logo=C&logoColor=fff)
+![HTML5](https://img.shields.io/badge/-HTML5-e34f26?style=flat-square&logo=HTML5&logoColor=fff)
+![CSS3](https://img.shields.io/badge/-CSS3-1572b6?style=flat-square&logo=CSS3&labelColor=1572b6)
+![JavaScript](https://img.shields.io/badge/-JavaScript-f7df1e?style=flat-square&logo=JavaScript&labelColor=f7df1e&logoColor=000)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=Node.js&logoColor=fff)
+```
+
+>"4eaa25" 表示颜色的十六进制代码
+
+---
+
+github CI 状态
+>[GitHub Workflow Status (with event) | Shields.io](https://shields.io/badges/git-hub-workflow-status-with-event)
+
+>badge 的名称是 yml 文件中的 name 键对应的值
+
+```text
+# repo 需要 public
+[![CI Status](https://github.com/materialsproject/pymatgen/actions/workflows/test.yml/badge.svg)](https://github.com/materialsproject/pymatgen/actions/workflows/test.yml)
+```
+
+
+---
+
+### GitHub Actions
+
+>[github自动化 | 我是谁](https://yuhldr.github.io/posts/dabdcea.html)
+
+>[使用 Github Action 自动部署 | 安知鱼](https://blog.anheyu.com/posts/asdx.html)
+
+>[GitHub Actions 入门教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
+
+
+
+GitHub Actions 可以有多个 `.yml` 文件
+
+
+同步到 gitee 的 GitHub Actions
+>[gitee.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/gitee.yml)
+
+GitHub 自动发布 release
+>[release.yml](https://github.com/frostming/marko/blob/master/.github/workflows/release.yml)
+
+
+
+---
+
+### 其他
+
+github star history
+>[GitHub Star History](https://star-history.com/)
+
+```text
+< img alt="Star History" loading="lazy"  src="https://api.star-history.com/svg?repos=SamirPaulb/DSAlgo&type=Date">
+```
+
+---
+
+contribution 可视化
+>[GitHub - yoshi389111/github-profile-3d-contrib: This GitHub Action creates a GitHub contribution calendar on a 3D profile image.](https://github.com/yoshi389111/github-profile-3d-contrib)
+
+>[Leticia-maria/.github/workflows/profile-3d.yml at main · Leticia-maria/Leticia-maria · GitHub](https://github.com/Leticia-maria/Leticia-maria/blob/main/.github/workflows/profile-3d.yml)
+
+github contribution 贪吃蛇
+>[github-contribution-grid-snake.yml](https://github.com/hotoo/hotoo/blob/main/.github/workflows/github-contribution-grid-snake.yml)
