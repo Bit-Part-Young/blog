@@ -1,4 +1,0 @@
-[submodule "butterfly"]
-	path = themes/butterfly
-	url = git@github.com:erryc127/hexo-theme-butterfly.git
-	branch = master
