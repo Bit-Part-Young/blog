@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 从 Obsidian md 文档中更新 hexo-demo 的 notes md 文档
+# 从 Obsidian md 文档中更新 hexo-butterfly-demo 的 notes md 文档
 
-repo_path=$HOME/scripts/hexo-demo
-post_md_path=${repo_path}/source/_posts
+repo_path="$HOME/scripts/sites/hexo-butterfly-demo"
+post_md_path="${repo_path}/source/_posts"
 
 obsd_md_path="${HOME}/scripts/obsidian-md"
 if [[ $HOSTNAME =~ "DESKTOP" ]]; then
