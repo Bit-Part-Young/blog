@@ -12,7 +12,7 @@ tags:
 categories:
   - Linux
 date: 2023-12-15 14:45:00
-abbrlink: "8586"
+abbrlink: 8586
 password:
 ---
 
@@ -108,15 +108,14 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 三指拖移文件/文件夹/窗口：系统设置 - 辅助功能 - 指针控制 - 触控板选项 - 拖移样式 - 三指拖移
 - 切换全屏显示的程序：四指左右轻扫
 - 调度中心：四指上下轻扫（比 `command + tab` 要简便一些）
+- 返回桌面：四指向外扩展
 
 
 ---
 
 #### 快捷键
 
->[macOS常用快捷键.md](https://github.com/itcharge/macOS-Tips/blob/main/02%20-%20macOS%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.md)
-
->[Mac 键盘快捷键 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/HT201236)
+快捷键：[macOS常用快捷键.md](https://github.com/itcharge/macOS-Tips/blob/main/02%20-%20macOS%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.md)、[Mac 键盘快捷键 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/HT201236)
 
 - `command + Space` - 聚焦搜索（没有 Alfred 的 `option + Space` 好用）
 - `Space` - 预览功能
@@ -125,6 +124,9 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - `command + ⬆️/⬇️` - 返回上一层文件夹；进入文件夹
 - `command + shift + G` 打开“前往文件夹” 窗口
 - 打开 Alfred，输入 `Restart`、`Sleep`、`Shut down` 实现重启、睡眠、关机
+- 返回桌面 - `command + F3`
+
+注：无 Windows 的 `Win + X` 等效快捷键
 
 
 ---

@@ -20,7 +20,9 @@ password:
 
 ## 介绍
 
->[由此开始 - Obsidian 中文帮助 - Obsidian Publish](https://publish.obsidian.md/help-zh/)
+本地笔记管理软件。
+
+参考资料：[由此开始 - Obsidian 中文帮助 - Obsidian Publish](https://publish.obsidian.md/help-zh/)
 
 
 

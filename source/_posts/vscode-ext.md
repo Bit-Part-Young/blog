@@ -171,6 +171,7 @@ password:
 - GitLens：增强 Git 使用
 - WakaTime：统计编程项目 Codinig 数据
 - TabOut：跳出括号（函数、列表、字典和字符串等）。
+- LaTeX Workshop：实时编译 LaTeX，有字数统计功能
 - Typst preview：预览 typst 文件。
 - Markdown All in One：markdown 语法高亮，自动补全，**可生成目录，添加/更新章节序号**；[VSCode插件生成编号、目录、文件目录树](https://github.com/lc-1203/k8s-practice/blob/main/06-Tools%26Tips/Markdown/VSCode%E6%8F%92%E4%BB%B6%E7%94%9F%E6%88%90%E7%BC%96%E5%8F%B7%E3%80%81%E7%9B%AE%E5%BD%95%E3%80%81%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%A0%91.md)；暂无很好的 “ 中英文混排添加空格 ” 格式化的插件；会使用 Obsidian 中的 Linter 插件，可将 markdown 内容复制到 Obsidian 中进行格式化。
 - Markdownlint：markdown 语法风格格式化。

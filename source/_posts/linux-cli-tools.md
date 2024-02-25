@@ -30,11 +30,7 @@ password:
 - 源码安装与编译
 
 
----
-
-### 参考资料
-
->[GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
+参考资料：[GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
 
 
 
@@ -44,11 +40,9 @@ password:
 
 ### zsh
 
-zsh 系列插件：[GitHub - unixorn/awesome-zsh-plugins: A collection of ZSH frameworks, plugins, themes and tutorials.](https://github.com/unixorn/awesome-zsh-plugins)
-
-管理 zsh 配置：[ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
-
-管理 bash 配置：[oh-my-bash](https://github.com/ohmybash/oh-my-bash)（没 ohmyzsh 好用）
+- zsh 系列插件：[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
+- 管理 zsh 配置：[ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
+- 管理 bash 配置：[oh-my-bash](https://github.com/ohmybash/oh-my-bash)（没 ohmyzsh 好用）
 
 
 ---
@@ -128,13 +122,9 @@ zsh-completions
 
 #### Windows 端安装配置 zsh
 
-两种方式：WSL+zsh，git bash+zsh
->[Windows高效开发环境配置（一） | 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)
+两种方式：WSL+zsh，git bash+zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
 
-windows terminal 以及 vscode 本地设置默认终端为 git bash
->[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
-
->[在 Windows 中使用 Bash shell | 北辞](https://northword.cn/code/bash-for-windows/)
+windows terminal 以及 vscode 本地设置默认终端为 git bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
 
 ---
 
@@ -158,7 +148,7 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 ```
 
 - 安装、配置 ohmyzsh
-- 修改 Windows Terminal 的 settings.json 内容
+- 修改 Windows Terminal 的 `settings.json` 内容
 
 ```json
 {
@@ -189,8 +179,9 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 
 #### 源码编译
 
-服务器及超算平台需源码编译 zsh
->[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
+服务器及超算平台需源码编译 zsh：[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
+
+---
 
 - 编译 ncurses
 

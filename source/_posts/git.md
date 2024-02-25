@@ -300,6 +300,7 @@ git rm --cached file
 
 
 >[.gitmodules](https://github.com/yujincheng08/ZJU-UGCourse/blob/master/.gitmodules)
+
 ```bash
 [submodule "simplex"] # 子模块名称
 	path = simplex # 子模块在 repo 中的相对路径
@@ -323,8 +324,8 @@ git submodule add https://github.com/username/reop.git
 
 凭证存储
 - 默认所有都不缓存。 每一次连接都会询问用户名和密码。
-- "cache" 模式会将凭证存放在内存中一段时间。 密码永远不会被存储在磁盘中，并且在 15 分钟后从内存中清除。
-- "store" 模式可以接受一个 `--file <path>` 参数，可以自定义存放密码的文件路径（默认是 `~/.git-credentials` ）
+- “cache” 模式会将凭证存放在内存中一段时间。 密码永远不会被存储在磁盘中，并且在 15 分钟后从内存中清除。
+- “store” 模式可以接受一个 `--file <path>` 参数，可以自定义存放密码的文件路径（默认是 `~/.git-credentials` ）
 
 ```bash
 git config --global credential.helper cache
@@ -732,11 +733,14 @@ git show v1.0.0
 # 查看提交日志
 git log
 
-# 以一行的形式显示提交日志,并显示缩短的 commit id
+# 以一行的形式显示提交日志，commit_id 为 8 个字符
 git log --oneline
+# 完整的 commit_id
+git log --pretty=oneline
 
-# 显示倒数第几条log
-git log -num
+# 显示倒数第几条 log
+git log -n N
+git log HEAD~1 --oneline
 
 # 查看含有 "update" 关键字的提交日志
 git log --grep=update
@@ -745,6 +749,7 @@ git log --grep=update
 git reflog
 
 # 较为美观的 git log 输出样式 参考 zsh git alias
+git log --oneline --graph --stat
 git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
 ```
 
@@ -1099,7 +1104,7 @@ git checkout origin/main -- <file> <folder>
 
 ### 下载单个文件
 
-打开文件，点击 "Raw"，用 `wget` 下载，示例：
+打开文件，点击 “Raw”，用 `wget` 下载，示例：
 
 ```bash
 # gitee

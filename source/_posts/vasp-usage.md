@@ -384,7 +384,7 @@ INCAR 参数名称写错，VASP 会忽略，不影响
 
 ##### SYSTEM
 
-"title string"，对体系及要执行的计算进行注释；默认值为 "unknown system"。
+“title string”，对体系及要执行的计算进行注释；默认值为 “unknown system”。
 
 
 
@@ -1280,3 +1280,12 @@ DFT+U：计算能带
 ---
 
 网络版的 vasp.5.4.4 没什么问题（VASP3 个版本都能编译成功）
+
+
+---
+
+VASP 相关脚本
+
+>[GitHub - tamaswells/VASP\_script: Useful scripts for VASP](https://github.com/tamaswells/VASP_script)
+
+- 检查 OUTCAR 文件中 T·S 项的数值是否小于 0.001eV，以检查 SIGMA 值是否设置合理：[VASP\_script/sigma.sh at master · tamaswells/VASP\_script · GitHub](https://github.com/tamaswells/VASP_script/blob/master/sigma.sh)
