@@ -88,12 +88,34 @@ cover:
   # left/right/both
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
-  default_cover:
-    - https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png
-    - https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg2.png
-    - https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg3.png
   # default_cover:
+  #   - https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg.png
+  #   - https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg2.png
+  #   - https://jsd.012700.xyz/gh/jerryc127/CDN@latest/cover/default_bg3.png
+  default_cover:
     # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+    - /img/cover/spider0.jpg
+    - /img/cover/spider1.jpg
+    - /img/cover/spider2.jpg
+    - /img/cover/spider3.png
+    - /img/cover/spider4.png
+    - /img/cover/spider5.png
+    - /img/cover/spider6.png
+    - /img/cover/spider7.png
+    - /img/cover/spider8.png
+    - /img/cover/spider9.png
+    - /img/cover/spider10.png
+    - /img/cover/spider11.png
+    - /img/cover/spider12.png
+    - /img/cover/spider13.png
+    - /img/cover/spider14.png
+    - /img/cover/spider15.png
+    - /img/cover/spider16.png
+    - /img/cover/spider17.png
+    - /img/cover/spider18.png
+    - /img/cover/spider19.png
+    - /img/cover/spider20.jpg
+    - /img/cover/spider21.jpg
     # - https://img.pterclub.com/images/2022/08/26/spider0.jpg
     # - https://img.pterclub.com/images/2022/08/26/spider1.jpg
     # - https://img.pterclub.com/images/2022/08/26/spider2.jpg
