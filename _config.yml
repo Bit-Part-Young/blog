@@ -99,6 +99,7 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: butterfly
 
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
@@ -106,3 +107,32 @@ deploy:
   type: git
   repository: git@github.com:Bit-Part-Young/hexo-butterfly-demo.git
   branch: gh-pages
+
+
+# Local search
+# search:
+#   path: search.xml
+#   field: site
+#   content: true
+#   template: ./search.xml
+
+plugins:
+  - hexo-algoliasearch
+
+
+# Algolia search
+algolia:
+  appId: "ZXNTCRC3PO"
+  apiKey: "a5f3117962ccbe55efc1e0033646e1e1"
+  adminApiKey: "d713ed9d9bb0b0d8d07505f7273bdcee"
+  chunkSize: 5000
+  indexName: "hexo-sites"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink:strip:truncate,0,500
+    - photos
+    - slug
+    - tags
+    - title:strip:truncate,0,500

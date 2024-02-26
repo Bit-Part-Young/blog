@@ -9,6 +9,7 @@ nav:
 
 # Menu 目錄
 menu:
+  # 搜索: /search/ || fas fa-search
   首页: / || fas fa-home
   时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
@@ -361,13 +362,18 @@ katex:
 
 # Algolia search
 algolia_search:
-  enable: false
+  enable: true  # false true
   hits:
-    per_page: 6
+    per_page: 10
+  labels:
+    input_placeholder: Search for Posts
+    hits_empty: "我们没有找到任何搜索结果: ${query}"
+    hits_stats: "找到${hits}条结果（用时${time} ms）"
+
 
 # Local search
 local_search:
-  enable: false
+  enable: false  # false true
   # Preload the search data when the page loads.
   preload: false
   # Show top n results per article, show all results by setting to -1
@@ -409,7 +415,7 @@ comments:
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: false
+  lazyload: true # false
   count: false # Display comment count in post's top_img
   card_post_count: false # Display comment count in Home Page
 
@@ -869,13 +875,13 @@ instantpage: false
 # https://github.com/vinta/pangu.js
 # Insert a space between Chinese character and English character (中英文之間添加空格)
 pangu:
-  enable: false
+  enable: true  # true false
   field: site # site/post
 
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: false
+  enable: true # false
   field: site # site/post
   placeholder:
   blur: false
