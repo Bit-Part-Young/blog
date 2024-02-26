@@ -1,6 +1,5 @@
 {
   "name": "hexo-buttery-demo",
-  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "hexo generate",
@@ -14,6 +13,7 @@
   "dependencies": {
     "hexo": "^7.0.0",
     "hexo-abbrlink": "^2.2.1",
+    "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^3.0.0",
