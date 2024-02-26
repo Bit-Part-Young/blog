@@ -53,31 +53,31 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img:
+index_img: /img/banner/0.jpg
 
 # If the banner of page not setting, it will show the top_img
-default_top_img:
+default_top_img: /img/banner/1.jpg
 
 # The banner image of archive page
-archive_img:
+archive_img: /img/banner/2.jpg
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
-tag_img:
+tag_img: /img/banner/3.jpg
 
 # The banner image of tag page
 # format:
 #  - tag name: xxxxx
-tag_per_img:
+tag_per_img: /img/banner/4.jpg
 
 # If the banner of category page not setting, it will show the top_img
 # note: category page, not categories page (子分類頁面的 top_img)
-category_img:
+category_img: /img/banner/5.jpg
 
 # The banner image of category page
 # format:
 #  - category name: xxxxx
-category_per_img:
+category_per_img: /img/banner/6.jpg
 
 cover:
   # display the cover or not (是否顯示文章封面)
@@ -98,7 +98,7 @@ error_img:
 
 # A simple 404 page
 error_404:
-  enable: false
+  enable: true  # false
   subtitle: 'Page Not Found'
   background: https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
 
@@ -128,12 +128,12 @@ index_post_content:
 # anchor
 anchor:
   # when you scroll, the URL will update according to header id.
-  auto_update: false
+  auto_update: true  # false
   # Click the headline to scroll and update the anchor
   click_to_scroll: false
 
 # figcaption (圖片描述文字)
-photofigcaption: false
+photofigcaption: true  # false
 
 # copy settings
 # copyright: Add the copyright information after copied content (複製的內容後面加上版權信息)
