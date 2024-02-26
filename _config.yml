@@ -46,14 +46,14 @@ relative_link: false
 future: true
 syntax_highlighter: highlight.js
 highlight:
-  line_number: true
+  line_number: false  # true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
 prismjs:
   preprocess: true
-  line_number: true
+  line_number: false  # true
   tab_replace: ''
 
 # Home page setting
@@ -131,8 +131,8 @@ algolia:
     - content:strip:truncate,0,500
     - excerpt:strip
     - gallery
-    - permalink:strip:truncate,0,500
+    - permalink
     - photos
     - slug
     - tags
-    - title:strip:truncate,0,500
+    - title
