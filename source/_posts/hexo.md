@@ -57,6 +57,8 @@ git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/bu
 
 # 安装主题依赖
 npm i hexo-theme-butterfly --save
+
+# 将 CNAME 文件放入 source 目录
 ```
 
 ---
@@ -181,13 +183,13 @@ deploy:
 
 >[hexo 使用记录 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/tools/hexo/)
 
-- hexo-generator-index/archive/category/tag：初始化 hexo 项目会自动安装；生成主页 / 归档 / 分类 / 标签文件夹
+- hexo-generator-index/archive/category/tag：**初始化 hexo 项目会自动安装**；生成主页 / 归档 / 分类 / 标签文件夹
 
 - hexo-abbrlink：生成短链接，而非 post 中的 md 文件名
 
 ```yml
 # permalink: :year/:month/:day/:title/
-permalink: posts/:abbrlink.html  # 此处可以自己设置，也可以直接使用 :/abbrlink
+permalink: posts/:abbrlink.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -216,7 +218,9 @@ feed:
 top: true
 ```
 
-- hexo-generator-search/searchdb：搜索设置
+- hexo-algoliasearch 或 hexo-algolia：algolia 搜索；更美观（hexo butterfy，docusaurus 支持，mkdocs 将支持）
+
+- hexo-generator-search/searchdb：本地搜索设置
 
 - [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文文章网页。
 
@@ -234,30 +238,36 @@ MEI2024154794, Yang2022
 
 ---
 
-## Hexo 博客搭建相关问题
+## 主题相关设置
 
-### 已解决
+### butterfly
+
+- menu（分类、标签、存档；友链、关于、音乐、视频、相册等暂无必要）
+- 网站 logo、个人头像、social 相关信息
+- 代码
+- 目录
+- banner 图片
+- 文章封面（butterfly 无法生成，带解决）
+- 评论系统
+- 搜索
+- 页面加载效果
+- post 元信息（分类、标签、时间、字数统计、需阅读时间等）
+- 侧边栏（butterfly）
+- Footer
+- 内容复制时、文章底部版权相关信息
+- 图片懒加载
+- 相册（matery 和 butterfly；暂无必要）
+- 右下角功能按钮（深/浅色切换，直达页面顶部等功能）
+- 添加音乐、视频页面（音乐可全局吸底）
+
+
+---
+
+### matery
 
 - [x] 首页设置的音乐播放功能；文章内部音乐播放设置功能；如何设置单独页面音乐播放
-- [x] 如何插入视频
-- [x] 代码高亮问题
-- [x] 具体文章中目录
-- [x] 文章字数统计未显示
-- [x] 网站头像和 logo
-- [x] 发布文章后，github page 页面更新不生效
-- [x] 部署过程需耗费一定的时间（慢则一两分钟左右）
-- [x] 博客源代码所在的 repo 可设置成 private，`username.github.io` repo 需设置成 public（免费用户只能把 github page 设置成 public，否则部署的 github page 及其绑定的域名均会无法打开）
-- [x] 添加看板娘；多媒体的音乐和相册二级菜单；首页 banner 图片个性化（看板娘没必要）
-- [x] 友情链接设置（大师兄网、自己的公众号等）
-- [x] 在博客文章中添加音乐和视频
-- [x] 网站 logo 再找些合适的图片
-- [x] 直达评论按钮
+- [x] 博客源代码所在的 repo 可设置成 private，（免费用户只能把 github page 设置成 public，否则部署的 github page 及其绑定的域名均会无法打开）
 - [x] 单独视频页面效果如何制作（和单独相册页面类似，但简单一些；如何放入多个视频？）
-- [x] 代码内容折叠功能
-- [x] 在有评论的地方添加直达评论按钮
-- [x] 去掉 banner 的滤镜
-- [x] 去掉首页推荐文章的滚动
-- [x] 添加动态标题
 - [x] 离开博客标签页，出现可爱字体
 - [x] 屏蔽网页源码（单纯的屏蔽鼠标右键和键盘事件；慎重添加）
 
@@ -266,14 +276,7 @@ MEI2024154794, Yang2022
 	- valine 无人维护更新
 	- 使用 gitalk 遇到的一些问题：其他人登录评论系统会出现 “ 网络错误 ”；所需要的权限过多
 
-- [x] 绑定域名 DNS：[如何搭建自己的个人网站（上） - Zhang Yi](http://codewithzhangyi.com/2018/04/19/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%EF%BC%88%E4%B8%8A%EF%BC%89/)、[如何搭建自己的个人网站（下） - Zhang Yi](http://codewithzhangyi.com/2018/04/20/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%EF%BC%88%E4%B8%8B%EF%BC%89/) 解决方法：适当修改 github 的 ip，等待几天，看 Enforce HTTPS 选项是否可以勾选
 
-![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307211853528.png)
-
-
-- [x] 修改博客文章的底部链接需要
-
-![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307211854998.png)
 
 - [x] `hexo d` 后，CNAME 文件会被删除 [hexo部署后，CNAME会被自动删除，怎么办？ - 知乎](https://www.zhihu.com/question/28814437)：将需要上传至 github 的内容放在 source 目录，例如 CNAME、favicon.ico、images 等
 
@@ -309,18 +312,15 @@ MEI2024154794, Yang2022
 </div>
 ```
 
-- [x] 文章生成永久链接
-- [x] 暗黑模式切换
-- [x] latex 公式代码渲染，闪现正常，之后立马出现 “math processing error”：220826 零点，公式渲染正常（可能与 matery.css 的内容格式有关，在白天转黑夜的代码前面插入了直达评论的代码后，恢复正常，疑惑）
 - [x] 修改滚动条：在 `themes/Matery/source/css/matery.css` 添加代码
 - [x] 添加 loading-page（加载动画）[Matery 添加加载动画 | 斯莫笔记](https://small-rose.github.io/posts/7496029d.html)
-- [x] 添加导航页（里面的相关链接待修改）
+- [x] 添加导航页（里面的相关链接待修改；必要性不大）
 - [x] 添加标签外挂（其他框架可能无法使用） [小弋の生活馆全样式预览 | 小弋の生活馆](https://lovelijunyi.gitee.io/posts/c898.html)
 
 
 ---
 
-### 待解决
+**待解决**
 
 - [ ] 博客底部的文章链接出现 2 个 hexo-demo，暂无法解决
 - [ ] CDN 加速
@@ -334,10 +334,4 @@ MEI2024154794, Yang2022
 - [ ] 测试 404 页面（404 页面未起作用）
 - [ ] 换装、对话的看板娘（有些复杂）[GitHub - stevenjoezhang/live2d-widget: 把萌萌哒的看板娘抱回家 (ノ≧∇≦)ノ | Live2D widget for web platform](https://github.com/stevenjoezhang/live2d-widget)
 - [ ] 为 Hexo 博客中的 Markdown 添加卡片式链接支持 [为 Hexo 博客中的 Markdown 添加卡片式链接支持 - OrangeX4's Blog](https://orangex4.cool/post/hexo-link-card/)
-- [ ] 图片懒加载 [Site Unreachable](https://yafine-blog.cn/posts/fc0.html)
-- [ ] Hexo 博客新建文章自动打开编辑器 [Site Unreachable](https://yafine-blog.cn/posts/d17e.html)
 - [ ] “ 关于 ” 页面添加简历 [GitHub - godweiyang/hexo-theme-sungod: 一款定制化的Hexo博客主题](https://github.com/godweiyang/hexo-theme-sungod)、[韦阳的博客](https://godweiyang.com/)
-- [ ] “ 大师兄 ” 网站的主题形式：Hexo NexT 移植而来的 Jekyll 主题
-- [ ] 博客底部的 “ 订阅博文 ”
-
-![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307211854121.png)

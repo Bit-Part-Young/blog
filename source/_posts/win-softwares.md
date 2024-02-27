@@ -20,18 +20,19 @@ password:
 
 ## 自带邮件关联教育邮箱
 
-网页版交大邮箱界面不是很美观，可使用 Windows 邮件关联教育邮箱。
+- 网页版交大邮箱界面不是很美观，可使用 Windows 邮件关联教育邮箱。
 
-管理账户 - 添加账户 - 高级设置 - Internet 电子邮件 - 传入、传出电子邮件服务器填 `mail.sjtu.edu.cn`，账户类型选择 `IMAP4` - 登录
+- 管理账户 - 添加账户 - 高级设置 - Internet 电子邮件 - 传入、传出电子邮件服务器填 `mail.sjtu.edu.cn`，账户类型选择 `IMAP4` - 登录
 
-qq 邮箱设置：[qq 邮箱 SMTP/IMAP 服务](https://wx.mail.qq.com/list/readtemplate?name=app_intro.html#/agreement/authorizationCode)
+- qq 邮箱设置：[qq 邮箱 SMTP/IMAP 服务](https://wx.mail.qq.com/list/readtemplate?name=app_intro.html#/agreement/authorizationCode)
+
 
 
 ---
 
 ## Windows Terminal
 
-新版本 Windows 会自带；比 cmd 和 powershell 美观，可通过 oh-my-posh 美化；可直接连接已安装的 WSL。
+新版本 Windows 会自带；比 powershell 和 cmd 美观，可通过 oh-my-posh 美化；可直接连接已安装的 WSL。
 
 ---
 
@@ -100,7 +101,7 @@ Set-PSReadLineKeyHandler -Key Ctrl+z -Function Undo
 
 >[Scoop](https://scoop.sh/)
 
->[Windows | Scoop软件包管理神器 | 新壳记](https://www.cdnxin.top/post/scoop/)
+>[Windows - Scoop软件包管理神器 | 新壳记](https://www.cdnxin.top/post/scoop/)
 
 >[GitHub - duzyn/scoop-cn: 中国用户能用的 Scoop 应用库，每日同步 Scoop 的官方库，加速应用的下载速度](https://github.com/duzyn/scoop-cn#)
 
@@ -147,12 +148,6 @@ scoop uninstall scoop
 ```
 
 
----
-
-## Snipaste
-
-截图软件，可以截图、**贴图**、标注；可以获取颜色的 rgb 值等。
-
 
 ---
 
@@ -162,44 +157,21 @@ scoop uninstall scoop
 - 可实现文献、文献中的批注云同步（需找到合适的同步盘软件，如坚果云，InfiniCLOUD 等，推荐使用后者）；
 - 插件生态很好，比 EndNote 好用很多。
 
+- zotero 文献存储路径修改（默认 C 盘）：[Zotero更改储存路径&迁移文件 - 知乎](https://zhuanlan.zhihu.com/p/478035708)
 
-zotero 文献存储路径修改（默认 C 盘）
->[Zotero更改储存路径&迁移文件 - 知乎](https://zhuanlan.zhihu.com/p/478035708)
-
-
-- 文献云同步：通过 WebDAV，主要有 infini-cloud 和坚果云
->[如何在Zotero中设置webdav连接到坚果云？ | 坚果云帮助中心](https://help.jianguoyun.com/?p=3168)
->[Zotero × Logseq | 有意栽花花满枝](https://blog.hjroyal.top/posts/tools/2023-04-zotero_logseq/)
+- 文献云同步：通过 WebDAV，主要有 infini-cloud 和坚果云：[如何在Zotero中设置webdav连接到坚果云？ - 坚果云帮助中心](https://help.jianguoyun.com/?p=3168)、[Zotero × Logseq - 有意栽花花满枝](https://blog.hjroyal.top/posts/tools/2023-04-zotero_logseq/)
 
 ```text
 toi.teracloud.jp/dav
 dav.jianguoyun.com/dav
 ```
 
-
-- zotero 插件
->[plugins [Zotero Documentation]](https://www.zotero.org/support/plugins)
->[文献管理软件Zotero常用插件安装及配置使用\_zotero插件\_qq\_43309940的博客-CSDN博客](https://blog.csdn.net/qq_43309940/article/details/117126357)
-
+- zotero 插件：[plugins [Zotero Documentation]](https://www.zotero.org/support/plugins)、[文献管理软件Zotero常用插件安装及配置使用\_zotero插件\_qq\_43309940的博客-CSDN博客](https://blog.csdn.net/qq_43309940/article/details/117126357)
 
 - Zotero style 插件安装后会导致软件很卡
 
+- **将 Zotero 中导入的文献按添加时间进行排序**：文献库界面右上方，附件（” 链接 “ 图标），添加 ” 添加时间 “；或者添加导入文献具体日期的文献库分类
 
-- **将 Zotero 中导入的文献按添加时间进行排序**：文献库界面右上方，附件（" 链接 " 图标），添加 " 添加时间 "；或者添加导入文献具体日期的文献库分类
-
-
----
-
-## Listary
-
-一款实用的文件搜索、程序启动工具（与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`）。
-
-
----
-
-## Obsidian
-
-本地笔记管理软件，比 Notion、Typora 好用。
 
 
 ---
@@ -213,12 +185,9 @@ dav.jianguoyun.com/dav
 - task list 没有快捷键
 
 
-备份（不好用，且复杂）
->[GitHub - LoneKingCode/notion-backup: notion python自动备份脚本，提交到git，可指定工作空间，Automatic Notion workspace backup to git and local machine.](https://github.com/LoneKingCode/notion-backup)
+备份（不好用，且复杂）：[GitHub - LoneKingCode/notion-backup: notion python自动备份脚本，提交到git，可指定工作空间，Automatic Notion workspace backup to git and local machine.](https://github.com/LoneKingCode/notion-backup)
 
-
-使用 notion 的 Authorization
->[Authorization](https://developers.notion.com/docs/authorization)
+使用 notion 的 Authorization：[Authorization](https://developers.notion.com/docs/authorization)
 
 
 ---
@@ -262,13 +231,10 @@ notion2md --download --unzipped -n 每日任务栏 -p ~/tmp/folder -u [[]]
 
 ### md2notion
 
-md 转成 notion（在 notion 的页面中生成子页面）
->[GitHub - Cobertos/md2notion: A better Notion.so Markdown importer](https://github.com/Cobertos/md2notion)
+md 转成 notion（在 notion 的页面中生成子页面）：[GitHub - Cobertos/md2notion: A better Notion.so Markdown importer](https://github.com/Cobertos/md2notion)
 
 
-`pip install md2notion` 会出现 `Invalid input` 报错
-
-解决方法：[HTTPError - Invalid Input · Issue #40 · Cobertos/md2notion · GitHub](https://github.com/Cobertos/md2notion/issues/40)
+`pip install md2notion` 出现 `Invalid input` 报错解决方法：[HTTPError - Invalid Input · Issue #40 · Cobertos/md2notion · GitHub](https://github.com/Cobertos/md2notion/issues/40)
 
 ```bash
 pip install notion-cobertos-fork
@@ -321,103 +287,32 @@ markdown 语法笔记软件；新版本收费，建议安装旧版本或者破�
 
 ---
 
-## Quicklook
+## 其他
 
-快速预览文件的工具，按空格键即可实现预览且可以复制文件内容（类似于 Mac 的空格键；有插件可实现预览 office 套件文件，但效果不是很好）。
+- Listary：一款实用的文件搜索、程序启动工具（与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`）。
+- MobaXterm：远程服务器连接工具；可自动识别已安装的 WSL。
+- WinSCP：远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些。
+- Obsidian：本地笔记管理软件，比 Notion、Typora 好用。
+- MongoDB Compass：MongoDB 数据库的管理工具。
+- Snipaste：截图软件，可以截图、**贴图**、标注；可以获取颜色的 rgb 值等。
+- PicGo：图床工具。
+	- 相关设置：github 图床设置；开启时间戳重命名；禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
 
+- Notepad++：文本编辑器；直接关闭软件不会删除未保存的内容，可用做临时记录（最新版本的 Windows 的记事本也可以）。
+	- 自动换行设置：” 视图 “—勾选 ” 自动换行 “
+	- 文件每行末尾显示 `CRLF`：” 视图 “ -- ” 显示符号 “ -- 取消勾选 ” 显示行尾符 “。
+	- 该软件开发者涉及辱华，建议使用其他替代工具
 
----
-
-## Notepad++
-
-文本编辑器；直接关闭软件不会删除未保存的内容，可用做临时记录（最新版本的 Windows 的记事本也可以）。
-
->该软件开发者涉及辱华，建议使用其他替代工具
-
-
-- 自动换行设置：" 视图 "—勾选 " 自动换行 "
-- 文件每行末尾显示 `CRLF`：" 视图 " -- " 显示符号 " -- 取消勾选 " 显示行尾符 "。
-
-
----
-
-## Mobaxterm
-
-远程服务器连接工具；可自动识别已安装的 WSL。
-
-
----
-
-## MongoDB Compass
-
-MongoDB 数据库的管理工具。
-
-
----
-
-## WinSCP
-
-远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些。
-
-
----
-
-## Internet Download Manager
-
-简称 IDM，下载工具，可嗅探到网页中任何可下载的东西（如文件、视频、音频等）并自动分类归档。
-
----
-
-一些配置：
-
-- 选项 - 常规设置 - 接管以下浏览器，仅 chrome 和 firefox（取消勾选 edge，因其会经常提示下载更新包）
-- 选项 - 文件类型 - 以下站点不自动下载
+- Internet Download Manager：简称 IDM，下载工具，可嗅探到网页中任何可下载的东西（如文件、视频、音频等）并自动分类归档。一些配置：
+	- 选项 - 常规设置 - 接管以下浏览器，仅 chrome 和 firefox（取消勾选 edge，因其会经常提示下载更新包）
+	- 选项 - 文件类型 - 以下站点不自动下载
 
 ```text
 pdf.sciencedirectassets.com pubs.acs.org journals.aps.org onlinelibrary.wiley.com
 ```
 
-
----
-
-## PicGo
-
-图床工具。
-
----
-
-相关设置：
-
-- github 图床设置
-- 开启时间戳重命名
-- 禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
-
-
----
-
-## Geek Uninstaller
-
-软件卸载工具，能清除软件的注册表，卸载较为彻底。
-
-
----
-
-## TreeSize Free
-
-磁盘管理工具，有利于查看哪些文件占用较大体积进行删除。
-
-
----
-
-## Mathpix
-
-LaTeX OCR 识别；使用教育邮箱，可增加 Mathpix 使用次数；支持临时邮箱
-
-
----
-
-## Potplayer
-
-媒体播放器。
-
->[基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
+- Geek Uninstaller：软件卸载工具，能清除软件的注册表，卸载较为彻底。
+- TreeSize Free：磁盘管理工具，有利于查看哪些文件占用较大体积进行删除。
+- Mathpix：LaTeX OCR 识别；使用教育邮箱，可增加 Mathpix 使用次数；支持临时邮箱
+- Potplayer：媒体播放器；[基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
+- Quicklook：快速预览文件的工具，按空格键即可实现预览且可以复制文件内容（类似于 Mac 的空格键；有插件可实现预览 office 套件文件，但效果不是很好）。
