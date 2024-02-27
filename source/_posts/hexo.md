@@ -20,8 +20,8 @@ password:
 
 - 官网：[Hexo](https://hexo.io/)
 
-- 主题：[matery](https://github.com/blinkfox/hexo-theme-matery)、[butterfly](https://github.com/jerryc127/hexo-theme-butterfly)、[icarus](https://github.com/ppoffice/hexo-theme-icarus)、[volantis](https://github.com/volantis-x/hexo-theme-volantis/)、[fluido](https://github.com/fluid-dev/hexo-theme-fluid)、[stun](https://github.com/liuyib/hexo-theme-stun)
-	- 下载主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白）
+- 主题：[butterfly](https://github.com/jerryc127/hexo-theme-butterfly)、[icarus](https://github.com/ppoffice/hexo-theme-icarus)、[volantis](https://github.com/volantis-x/hexo-theme-volantis/)、[fluido](https://github.com/fluid-dev/hexo-theme-fluid)、[stun](https://github.com/liuyib/hexo-theme-stun)、[matery](https://github.com/blinkfox/hexo-theme-matery)
+	- 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
 
 - 具体实例
 	- stun 主题具体实例：[OrangeX4's Blog](https://orangex4.cool/)
@@ -114,7 +114,7 @@ hexo d  # hexo deploy; npm run deploy
 hexo g -d
 
 # 清除缓存文件 db.json 和静态文件 public/
-hexo clean
+hexo clean  # hexo cl
 ```
 
 
