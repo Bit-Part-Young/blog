@@ -258,7 +258,7 @@ aside:
       link: https://github.com/Bit-Part-Young
   card_announcement:
     enable: true
-    content: Welcome to SLY's Blog!
+    content: Welcome to Nobody's Blog!
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
