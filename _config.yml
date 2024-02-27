@@ -13,7 +13,8 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://seekanotherland.xyz/hexo-butterfly-demo
+url: https://seekanotherland.xyz/hexo-demo
+# url: https://seekanotherland.xyz/hexo-butterfly-demo
 # permalink: :year/:month/:day/:title/
 permalink: posts/:abbrlink.html  # 此处可以自己设置，也可以直接使用 :/abbrlink
 permalink_defaults:
@@ -105,7 +106,8 @@ theme: butterfly
 deploy:
   # type: '' 
   type: git
-  repository: git@github.com:Bit-Part-Young/hexo-butterfly-demo.git
+  repository: git@github.com:Bit-Part-Young/hexo-demo.git
+  # repository: git@github.com:Bit-Part-Young/hexo-butterfly-demo.git
   branch: gh-pages
 
 
