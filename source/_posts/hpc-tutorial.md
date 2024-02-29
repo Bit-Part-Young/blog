@@ -1,12 +1,12 @@
 ---
-title: HPC & Master & Manager Tutorial
+title: 服务器、超算使用教程
 top: true
 pin: true
 cover: false
 toc: true
 mathjax: true
 math: true
-summary: HPC & Master & Manager Tutorial
+summary: 服务器、超算使用教程
 tags:
   - HPC
   - 服务器
@@ -17,24 +17,11 @@ abbrlink: 13796
 password:
 ---
 
-# HPC & Master & Manager Tutorial
+# 服务器、超算使用教程
 
-## 服务器&超算 登录
+## 服务器、超算介绍
 
->[通过 SSH 登录集群 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/login/sshlogin.html)
-
-### manager 介绍
-
-- linux 系统版本：Ubuntu 16.04；
-- 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
-- PBS 任务调度系统；
-- intel 套件：2015 版本（应该）；
-- CPU：共 12 个节点（node1~11+manager；部分节点已坏），共 100 核。
-
-
----
-
-### master 介绍
+### master
 
 - linux 系统版本：Ubuntu 22.04；
 - 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
@@ -95,7 +82,18 @@ vmd....................To visualize md trajectories
 
 ---
 
-### 超算介绍
+### manager
+
+- linux 系统版本：Ubuntu 16.04；
+- 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
+- PBS 任务调度系统；
+- intel 套件：2015 版本（应该）；
+- CPU：共 12 个节点（node1~11+manager；部分节点已坏），共 100 核。
+
+
+---
+
+### 超算
 
 - linux 系统版本：Centos 7.7.1908(pi) 8.3.2011(思源一号)；
 - 无 root 权限；无法使用 yum 命令安装软件程序；
@@ -129,9 +127,14 @@ $HOME/opt/VASP/VASP_PSP
 >Pi 上的 VASP 赝势与思源和 manager 上的有些不同，相比之下，前面的不全。
 
 
+
 ---
 
+## 服务器、超算登录
+
 ### SSH 登录
+
+>[通过 SSH 登录集群 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/login/sshlogin.html)
 
 manager
 ```bash
@@ -168,19 +171,20 @@ ssh username@armlogin.hpc.sjtu.edu.cn
 
 ---
 
-### SSH 免密登录
+### 终端 SSH 免密登录
 
-无需输入用户名和密码即可登录，还可以作为服务器的别名来简化使用。免密登录需建立从远程主机（集群的登录节点）到本地主机的 SSH 信任关系。建立信任关系后，双方将通过 SSH 密钥对进行身份验证。
+- 无需输入用户名和密码即可登录，还可以作为服务器的别名来简化使用。免密登录需建立从远程主机（集群的登录节点）到本地主机的 SSH 信任关系。建立信任关系后，双方将通过 SSH 密钥对进行身份验证。
 
-在本地主机上生成的 SSH 密钥对，输入以下命令，**持续 Enter 即可**；将在 `~/.ssh`（或 `C:\User\username\.ssh`） 路径下生成密钥对文件 `id_rsa` 和 `id_rsa.pub`；将 `id_rsa.pub` 的内容（注意字符之间只有一个空格，复制后需注意）添加到远程主机的 `~/.ssh/authorized_keys` 文件中。
+- 在本地主机上生成的 SSH 密钥对，输入以下命令，**持续 Enter 即可**；将在 `~/.ssh`（或 `C:\User\username\.ssh`） 路径下生成密钥对文件 `id_rsa` 和 `id_rsa.pub`；将 `id_rsa.pub` 的内容（注意字符之间只有一个空格，复制后需注意）添加到远程主机的 `~/.ssh/authorized_keys` 文件中。
 
 ```bash
 ssh-keygen -t rsa
 ```
 
->密钥对生成方式有 ssh-keygen 和 putty（ppk 格式，WinSCP 软件密钥验证需该格式），其中后者可通过 Mobaxterm 软件中 tool 工具中的 MobaKeyGen 来生成（在空白处乱按加快生成速度；将生成的公钥保存成 file.pub，私钥保存成 file.ppk）。
+- 密钥对生成方式有 ssh-keygen 和 putty（ppk 格式，WinSCP 软件密钥验证需该格式），其中后者可通过 Mobaxterm 软件中 tool 工具中的 MobaKeyGen 来生成（在空白处乱按加快生成速度；将生成的公钥保存成 file.pub，私钥保存成 file.ppk）。
 
-设置服务器别名：在 `~/.ssh/config`（或 `C:\User\username\.ssh\config`）设置：
+- 设置服务器别名：在 `~/.ssh/config`（或 `C:\User\username\.ssh\config`）设置：
+
 ```bash
 Host alias
     HostName 
@@ -189,8 +193,8 @@ Host alias
     IdentityFile 
 ```
 
-
 具体示例：
+
 ```bash
 Host Manager
     HostName 202.120.55.11
@@ -217,8 +221,8 @@ Host SiYuan
     IdentityFile ~/.ssh/id_rsa
 ```
 
-
 之后，只需输入以下内容即可登录：
+
 ```bash
 ssh Manager
 
@@ -232,9 +236,9 @@ ssh SiYuan
 
 ### 客户端免密登录
 
-主要使用 MobaXterm；其他：Tabby（学校有定制版） 等。
+- 常用软件：MobaXterm、Tabby（学校有定制版） 等。
 
-免密登录方式：将 id_rsa 私钥文件所在路径添加到 Use private key 选项中（Bookmark settings 选项可以将默认的 Session name 改成自己想要的别名）。
+- 免密登录方式：将 id_rsa 私钥文件所在路径添加到 Use private key 选项中（Bookmark settings 选项可以将默认的 Session name 改成自己想要的别名）。
 
 ![MobaXterm 免密登录](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/test-2023-06-04-17-43-41.png)
 
@@ -243,17 +247,17 @@ ssh SiYuan
 
 ### VSCode 免密登录
 
-安装 **Remote Development** 扩展，如上面的 `~/.ssh/config` 内容已设置好，会自动识别设置好的主机名（**config 文件所在路径可自定义**）。
+- 安装 **Remote Development** 扩展，如上面的 `~/.ssh/config` 内容已设置好，会自动识别设置好的主机名（**config 文件所在路径可自定义**）。
 
-vscode 远程连接 manager（机子较老，10 余年历史） ，有时会导致其负载过高而崩溃，不建议长时间连接；vscode 远程连接 master（2023 年 5 月配置）暂无相关问题。
+- vscode 远程连接 manager（机子较老，10 余年历史） ，有时会导致其负载过高而崩溃，不建议长时间连接；vscode 远程连接 master（2023 年 5 月配置）暂无相关问题。
 
-在超算上使用 python 插件中的 pylance 语言服务器，会时不时出现 pylance 崩溃的问题（以及使用 jupyter notebook，pi 在这方面比思源更稳定一些），因为超算的登录节点资源有限，建议将 pylance 换成 jedi（功能不及 pylance），会稍微稳定些；建议不在超算平台上使用 jupyter notebook。master 暂无相关问题。
+- 在超算上使用 python 插件中的 pylance 语言服务器，会时不时出现 pylance 崩溃的问题（以及使用 jupyter notebook，pi 在这方面比思源更稳定一些），因为超算的登录节点资源有限，建议将 pylance 换成 jedi（功能不及 pylance），会稍微稳定些；建议不在超算平台上使用 jupyter notebook。master 暂无相关问题。
 
 
 
 ---
 
-## 任务准备&提交&检查
+## 任务准备、提交、检查
 
 ### Slurm 任务调度系统
 
@@ -281,11 +285,13 @@ vscode 远程连接 manager（机子较老，10 余年历史） ，有时会导�
 
 
 - 作业提交
+
 ```bash
 sbatch job.slurm
 ```
 
 - 查看作业参数
+
 ```bash
 scontrol show job
 
@@ -314,7 +320,7 @@ manager 为此作业调度系统。
 常用命令：`qsub` - 提交作业；`qdel` - 取消作业
 
 
-vasp 任务提交命令
+VASP 任务提交命令
 ```bash
 submit -nc -n 8 vasp
 
@@ -322,19 +328,17 @@ submit -n 8 vasp
 ```
 
 
-lammps 任务提交命令
+LAMMPS 任务提交命令
 ```bash
 submit -nc -n 8 lmp -in in.file
 
 submit -n 8 lmp -in in.file
 ```
 
+- `submit` 命令是孔老师写的一个 PBS 任务提交脚本。
+- `-nc` 参数的含义是不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**。
+- 上述命令会自动生成对应的 `PBS.batch` 脚本；**当提交的任务出错时，并进行修改后，可以使用 `qsub PBS.batch` 命令提交任务。**
 
->`submit` 命令是孔老师写的一个 PBS 任务提交脚本。
->
->`-nc` 参数的含义是不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**。
->
->上述命令会自动生成对应的 `PBS.batch` 脚本；**当提交的任务出错时，并进行修改后，可以使用 `qsub PBS.batch` 命令提交任务。**
 
 ---
 
@@ -369,6 +373,8 @@ alias | grep ^q
 
 ### 超算队列介绍
 
+>[快速上手 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/quickstart/index.html)
+
 - 超算队列内存情况
 
 ```text
@@ -399,8 +405,7 @@ GPU 作业请至 dgx2 队列或思源一号a100队列；
 **大内存作业可选择 huge 或 192c6t 两种队列**。
 ```
 
->[快速上手 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/quickstart/index.html)
-
+---
 
 - **192c6t 和 huge 大内存队列，核数有一定要求，且排队时间较长**
 
@@ -452,7 +457,7 @@ module purge            # 清除所有已加载软件模块
 module show [MODULE]    # 列出该模块的信息，如路径、环境变量等
 ```
 
-**module load 相关软件模块的 lib 和 include 路径方法：**
+**查看 module load 相关软件模块的 lib 和 include 路径方法：**
 
 `module load boost` 相关版本后，使用 `module show boost` 命令可以查到 `boost` 的 `lib` 库位置，然后使用命令 `grep -rn "libboost_python" /path/to/lib/*` 检索相应的库文件
 
@@ -462,7 +467,7 @@ module show [MODULE]    # 列出该模块的信息，如路径、环境变量等
 
 >[数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
 
-思源一号克隆 github repo（或 wget 下载远程文件） 速度慢或无法进行；pi 则正常。
+思源一号克隆 Github repo（或 wget 下载远程文件） 速度慢或无法进行；pi 则正常。
 
 解决方案：在计算节点上运行（有时也还是不稳定）或使用 [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD) 油猴插件，选择合适的 URL 进行克隆。
 
@@ -533,7 +538,7 @@ proxy.hpc.sjtu.edu.cn:3004
 
 ---
 
-### 任务提交脚本示例
+### 任务提交示例
 
 >以下任务提交脚本代码使用的思源一号中的 64c512g 队列；超算中有许多不同版本的程序，可根据自身需求 `module load` 相应版本的程序
 
@@ -580,7 +585,7 @@ mpirun vasp_std
 
 ---
 
-自己编译的 VASP 版本
+本地编译的 VASP 版本
 ```bash
 #!/bin/bash
 
@@ -641,7 +646,7 @@ mpirun lmp -i in.test
 
 ---
 
-超算 pi 新 CPU 队列 LAMMPS 任务提交脚本示例
+超算 Pi 新 CPU 队列 LAMMPS 任务提交脚本示例
 ```bash
 #!/bin/bash
 
@@ -657,7 +662,6 @@ module load lammps/20230802-oneapi-2021.4.0
 
 mpirun lmp -in in.test
 ```
-
 
 
 ---
@@ -676,11 +680,12 @@ mpirun lmp -in in.test
 
 module purge
 
-conda activate virtual_name
-# source path/activate virtual_name
+conda activate <ENV_NAME>
+# source path/activate <ENV_NAME>
 
 python test.py
 ```
+
 
 ---
 
@@ -714,7 +719,7 @@ bash test.sh
 
 ---
 
-### 其他
+### 相关问题
 
 - [x] `mpirun` 和 `srun` 的区别是什么？intel 编译套件？
 
@@ -1363,20 +1368,17 @@ bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \\
 fire.o lanczos.o neb.o qm.o opt.o \\
 ```
 
-- VASP 部分
-
-编译 VASP
->[Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
+- VASP 部分：同前面部分
 
 
 ---
 
 ### phonopy
 
->[Welcome to phonopy — Phonopy v.2.20.0](https://phonopy.github.io/phonopy/)
+- 计算声子谱；官网：[Welcome to phonopy — Phonopy v.2.20.0](https://phonopy.github.io/phonopy/)
 
-phonopy：计算声子谱
 
+安装
 ```bash
 conda install -c conda-forge phonopy
 ```
@@ -1386,14 +1388,14 @@ conda install -c conda-forge phonopy
 
 ### sqsgen
 
->安装：[How to install sqsgen? — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/installation_guide.html)
->
->命令行使用：[CLI reference — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/cli_interface.html)
->
->多亚点阵 sqsgen 生成示例：[Advanced topics — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/advanced_topics.html)
+- 安装：[How to install sqsgen? — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/installation_guide.html)
+- 命令行使用：[CLI reference — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/cli_interface.html)
+- 多亚点阵 sqsgen 生成示例：[Advanced topics — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/advanced_topics.html)
 
+---
 
-sqsgen：sqs 生成程序
+sqs 生成程序
+
 - 目标函数为 WC 参数；
 - 生成速度相比 ATAT 及 ICET 相关模块要快，功能也更多；
 - 10000 个原子构型的 sqs 生成速度在 2min 以内；
@@ -1401,26 +1403,31 @@ sqsgen：sqs 生成程序
 - 浓度用具体的原子数目表示，比百分比形式更方便
 - 有 OpenMP 和 OpenMP+MPI 两种版本
 
+---
 
 conda 版本（OpenMP 版本）
+
 ```bash
 conda create --name sqsgen python=3
 
 conda install -c conda-forge sqsgenerator
 
-# 安装构型文件导出格式所需的package
+# 导出构型文件需要以下 package
 pip install pymatgen ase
 ```
 
+---
 
 编译版本（OpenMP+MPI）
+
 ```bash
 conda create --name sqsgen -c conda-forge boost boost-cpp cmake gxx_linux-64 libgomp numpy pip python=3
 
-git clone <https://github.com/dgehringer/sqsgenerator.git>
+git clone https://github.com/dgehringer/sqsgenerator.git
 ```
 
 - OpenMP 版本
+
 ```bash
 conda activate sqsgen
 cd sqsgenerator
@@ -1433,6 +1440,7 @@ pip install .
 ```
 
 - OpenMP+MPI 版本
+
 ```bash
 conda activate sqsgen
 cd sqsgenerator

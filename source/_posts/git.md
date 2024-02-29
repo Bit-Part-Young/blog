@@ -761,13 +761,21 @@ git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(b
 ```bash
 git diff file
 
-# 获取文件更改情况（个数，增加、删除行数）
+# 查看工作区文件改动统计（个数，增加、删除行数）
 git diff --stat
+git diff --stat file
 
-# 查看暂存区文件的改动
-git diff --staged
-# 查看暂存区文件的改动（忽略空行）
-git diff --staged --word-diff
+# 查看两次提交之间的差异
+git diff <commit_id_1> <commit_id_2> --stat
+
+# 查看特定提交的所有改动统计
+git show <commit_id> --stat
+
+# 查看暂存区文件的改动统计
+# staged cached 同义词
+# --word-diff 忽略空行
+git diff --staged --stat
+git diff --cached --stat
 ```
 
 ---
