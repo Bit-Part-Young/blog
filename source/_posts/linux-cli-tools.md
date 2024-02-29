@@ -40,6 +40,8 @@ password:
 
 ### zsh
 
+- 功能：命令自动补全、高亮、建议；简化 git 命令；`x` 解压任意格式压缩文件；`z` 路径快速跳转等）
+- master、manager 上没有 zsh；Pi 和思源一号有 zsh，版本较老；
 - zsh 系列插件：[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
 - 管理 zsh 配置：[ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 - 管理 bash 配置：[oh-my-bash](https://github.com/ohmybash/oh-my-bash)（没 ohmyzsh 好用）
@@ -246,3 +248,7 @@ export SHELL=`which zsh`
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
 - neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
 - 其他小工具： cowsay、figlet、sl、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix、asciiquarium
+
+---
+
+ripgrep 过滤搜索：`-g` 参数

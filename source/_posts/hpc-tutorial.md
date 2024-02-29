@@ -849,22 +849,12 @@ srun -p small -n 1 --pty /bin/bash
 
 ### posconv、NumNei
 
-posconv：构型文件格式转换（POSCAR xyz pos lammpstrj 等）
-
-NumNei：计算 BCC、FCC 和金刚石结构的第 N 近邻原子距离
-
----
-
-#### 编译
-
-- 编译器选择：gfortran 或 ifort（gfortran 已足够；ifort 性能可能更好些）
-- gfortran：课题组服务器及超算中含 gfortran（如超算中的 `gcc/11.2.0`）
-- ifort：课题组服务器及超算中含 ifort（如超算中的 `intel-oneapi-compilers/2021.4.0`）
-
-
----
-
-#### 功能
+- posconv：构型文件格式转换（POSCAR xyz pos lammpstrj 等）
+- NumNei：计算 BCC、FCC 和金刚石结构的第 N 近邻原子距离
+ - 编译
+	- 编译器选择：gfortran 或 ifort（gfortran 已足够；ifort 性能可能更好些）
+	- gfortran：课题组服务器及超算中含 gfortran（如超算中的 `gcc/11.2.0`）
+	- ifort：课题组服务器及超算中含 ifort（如超算中的 `intel-oneapi-compilers/2021.4.0`）
 
 ```bash
                                         POSCONVERT
@@ -896,13 +886,8 @@ NumNei：计算 BCC、FCC 和金刚石结构的第 N 近邻原子距离
 
 ### latgen
 
-latgen：构型生成程序，包括 BCC、FCC、HCP、diamond、含点缺陷、置换固溶体、表面等构型。
-
----
-
-#### 编译
-
-依赖 voro++
+- 构型生成程序，包括 BCC、FCC、HCP、diamond、含点缺陷、置换固溶体、表面等构型。
+- 编译依赖 voro++
 
 ---
 
@@ -914,11 +899,8 @@ wget https://math.lbl.gov/voro++/download/dir/voro++-0.4.6.tar.gz
 tar -xzvf voro++-0.4.6.tar.gz
 
 cd voro++-0.4.6.tar.gz
-```
 
-修改 config.mk 文件中的 `PREFIX` 选项，编译安装
-
-```bash
+# 修改 config.mk 的 PREFIX 选项
 PREFIX=${HOME}/src/voro++
 
 make && make install
@@ -926,7 +908,7 @@ make && make install
 
 ---
 
-编译器可选择 icc；修改 latgen 中的 Makefile 文件内容（`INC`：voro++ 的头文件路径； `LIB`：库路径），编译
+编译器可选择 icc；修改 latgen 中的 Makefile 文件内容（`INC`：voro++ 的头文件路径； `LIB`：库路径）
 
 ```bash
 VoroINC = -I${HOME}/src/voro++/include/voro++
@@ -938,93 +920,9 @@ VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
 
 ### dumpana
 
-dumpana：lammps dump 文件后处理程序。可以计算
-- CSRO
-- RDF、PDF、g(r) （径向分布函数）
-- 扩散系数
-- …
-
----
-
-#### 编译
-
-依赖 voro++ 和 gsl（C 数值计算库）
-
->dumpana、latgen、posconv 和 vaspkit 等命令行程序都可以通过 `latgen < inp.script`，使其不用每次交互输入参数，节约时间（重要！！！）。
-
----
-
-- gsl 编译
-
-```bash
-wget https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz
-
-./configure --prefix=${HOME}/src/gsl
-
-make && make install
-```
-
-将 gsl 的 `lib` 路径添加到 `LD_LIBRARY_PATH`
-
-```bash
-export LD_LIBRARY_PATH=$HOME/src/gsl/lib:${LD_LIBRARY_PATH}
-```
-
----
-
-- master 编译
-
-修改 Makefile 文件内容（voro++、gsl 的 `INC` 和 `LIB`），编译
-
-```bash
-VoroINC = -I${HOME}/src/voro++/include/voro++
-VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
-
-GslINC  = -I${HOME}/src/gsl/include
-GslLIB  = -L${HOME}/src/gsl/lib -lgsl -lgslcblas
-```
-
-注：master 上有 voro++、gsl
-
-```bash
-VoroINC = -I/opt/libs/voro/include/voro++
-VoroLIB = -L/opt/libs/voro/lib -lvoro++
-
-GslINC  = -I/opt/libs/gsl/include
-GslLIB  = -L/opt/libs/gsl/lib -lgsl -lgslcblas
-```
-
-
-
----
-
-- 思源一号超算编译
-
-```bash
-git clone https://github.com/lingtikong/dumpana.git
-
-module purge
-
-module load gsl/2.7.1-intel-2021.4.0
-module load intel-oneapi-compilers/2021.4.0
-
-# 编译器选择 icc
-# 可只修改 Makefile 文件的 voro++ 内容，gsl 不用修改
-
-make
-```
-
-设置 gsl 相关的动态链接库文件的软链接
-
-```bash
-ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7gmwz4mpn2csc7paszwv5h2wk/lib/libgsl.so.27 ~/lib/
-ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7gmwz4mpn2csc7paszwv5h2wk/lib/libgslcblas.so.0 ~/lib/
-```
-
-
----
-
-#### 功能
+- LAMMPS dump 文件后处理程序。可以计算：CSRO；RDF、PDF、g(r) （径向分布函数）；扩散系数等
+- dumpana、latgen、posconv 和 vaspkit 等程序都可以通过 `latgen < inp.script` 命令，使其不用每次交互输入参数，节约时间（**重要！！！**）。
+- 编译依赖 voro++ 和 gsl（C 数值计算库）
 
 ```bash
 Code to analyse the atom style dump files of lammps. Functions available:
@@ -1048,22 +946,77 @@ Usage:
     dumpana [options] [file [file2]]
 ```
 
+---
+
+- gsl 编译
+
+```bash
+wget https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz
+
+./configure --prefix=${HOME}/src/gsl
+
+make && make install
+
+# 将 gsl 的 lib 路径添加到 LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/src/gsl/lib:${LD_LIBRARY_PATH}
+```
+
+---
+
+- master 平台编译
+
+修改 Makefile 文件内容（voro++、gsl 的 `INC` 和 `LIB`），编译
+
+```bash
+VoroINC = -I${HOME}/src/voro++/include/voro++
+VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
+
+GslINC  = -I${HOME}/src/gsl/include
+GslLIB  = -L${HOME}/src/gsl/lib -lgsl -lgslcblas
+
+# master 上有 voro++、gsl；可不用修改
+VoroINC = -I/opt/libs/voro/include/voro++
+VoroLIB = -L/opt/libs/voro/lib -lvoro++
+
+GslINC  = -I/opt/libs/gsl/include
+GslLIB  = -L/opt/libs/gsl/lib -lgsl -lgslcblas
+```
+
+---
+
+- 思源一号平台编译
+
+```bash
+git clone https://github.com/lingtikong/dumpana.git
+
+module purge
+module load gsl/2.7.1-intel-2021.4.0
+module load intel-oneapi-compilers/2021.4.0
+
+# 编译器选择 icc
+# 修改 Makefile 文件的 voro++ 内容，gsl 可不用修改
+
+make
+```
+
+若使用时报错，设置 gsl 相关的动态链接库文件的软链接
+
+```bash
+ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7gmwz4mpn2csc7paszwv5h2wk/lib/libgsl.so.27 ~/lib/
+ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7gmwz4mpn2csc7paszwv5h2wk/lib/libgslcblas.so.0 ~/lib/
+```
+
 
 ---
 
 ### Atomsk
 
->[Atomsk - Download](https://atomsk.univ-lille.fr/dl.php)
-
->[Atomsk - Install - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/install.html)
-
-
-Atomsk：结构建模程序
-- 同 latgen 相比，可生成孪晶、晶界、位错等构型，功能相对更多一些
+- 结构建模程序；同 latgen 相比，可生成孪晶、晶界、位错等更多复杂构型
+- 下载：[Atomsk - Download](https://atomsk.univ-lille.fr/dl.php)；安装：[Atomsk - Install - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/install.html)
 
 ---
 
-#### 编译
+**编译**
 
 - 可执行版本（最简单方式）：
 
@@ -1079,7 +1032,7 @@ ln -s atomsk ~/bin
 
 ---
 
-- 手动编译：
+- 源码编译：
 
 依赖 blas 和 lapack 库（manager/master/超算上没有这两个库，需自己编译；编译 lapack 需要先编译 blas；**intel 套件有相关库**）
 
@@ -1182,7 +1135,6 @@ git clone https://github.com/pierrehirel/atomsk.git
 cd atomsk/src
 
 module purge
-
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
@@ -1197,18 +1149,11 @@ ln -s /dssg/opt/icelake/linux-centos8-icelake/gcc-8.5.0/intel-oneapi-compilers-2
 ```
 
 
-
 ---
 
 ### VASP5.4.4
 
-思源一号超算平台编译
-
->[Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
-
->[VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)
-
->[VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
+参考：[Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)、[VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)、[VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
 
 VASP5.4.4 源代码目录结构：
@@ -1238,16 +1183,13 @@ vasp.X.X.X (root directory)
 
 安装步骤：
 
->manager 的 vasp.5.4.4 目录在 `/opt` 下，master 的在 `/opt/software` 下；将其复制到自己的目录下打包，上传至超算平台）
+>VASP5.4.4 安装包：manager: `/opt`，master: `/opt/software`；将其复制到自己的用户目录下打包压缩，上传至超算平台）
 
 ```bash
-# pi 申请计算节点
-srun -p small -n 4 --pty /bin/bash
-# siyuan 申请计算节点
-srun -p 64c512g -n 4 --pty /bin/bash
+# 申请计算节点
 
+# 导入 oneapi 套件
 module purge
-
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
@@ -1258,9 +1200,8 @@ rm bin/*
 
 cp arch/makefile.include.linux_intel makefile.include
 
-make
-# make all
-# 约耗时 20-30 分钟
+# 编译；耗时 20-30 分钟
+make  # make all
 ```
 
 - 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
@@ -1297,13 +1238,10 @@ VASP6.3.0 源代码目录结构：
 >master 的 vasp.6.3.0 目录在 `/opt/software` 下；将其复制到自己的目录下打包，上传至超算平台）
 
 ```bash
-# pi 申请计算节点
-srun -p small -n 1 --pty /bin/bash
-# siyuan 申请计算节点
-srun -p 64c512g -n 1 --pty /bin/bash
+# 申请计算节点
 
+# 导入 oneapi 套件；hdf5
 module purge
-
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
@@ -1357,61 +1295,29 @@ wget https://download.lammps.org/tars/lammps-2Aug2023.tar.gz
 tar -xzvf lammps-2Aug2023.tar.gz
 cd lammps-2Aug2023
 
-# 在超算上编译
+# 导入 oneapi 套件
 module purge
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 
-# 创建 build 路径
+# 编译配置
 mkdir build-oneapi && cd build-oneapi
 cmake -C ../cmake/presets/oneapi.cmake ../cmake
 
-mkdir build-basic && cd build-basic
-cmake -C ../cmake/presets/oneapi.cmake ../cmake
-
-make -j
+# 编译
+make
 ```
-
-
----
-
-### zsh
-
-zsh：优于 bash
-
-- manager 上没有 zsh；Pi 和思源一号有 zsh，不过版本不是很新；
-- 通过 oh-my-zsh 扩展，可实现更多功能（命令自动补全、高亮、建议；许多简化 git 命令；`x` 命令解压任意格式压缩文件；`z` 命令实现任意路径快速跳转等）
 
 
 ---
 
 ### vaspkit
 
-#### 介绍
-
->[Overview — VASPKIT 1.4 documentation](https://vaspkit.com/)
-
-vaspkit：VASP 后处理工具
-
-- 根据计算任务自动生成 ICNAR，自定义 KPOINTS 和 POSCAR；输入文件检验
-- 结构对称性分析；力学性质；能带；态密度；费米面分析等
-
----
-
-#### 安装
-
-```bash
-wget https://sourceforge.net/projects/vaspkit/files/Binaries/vaspkit.1.4.1.linux.x64.tar.gz/download -O vaspkit.1.4.1.linux.x64.tar.gz
-
-tar -xzvf vaspkit.1.4.1.linux.x64.tar.gz
-
-cd vaspkit.1.4.1.linux.x64
-
-cp how_to_set_environment_variables ~/.vaspkit
-```
-
-在 `~/.vaspkit` 中配置 `PBE_PATH`、`VASPKIT_UTILITIES_PATH` 和 `PYTHON_BIN`（可选）；将 `vaspkit/bin/` 的路径添加到 PATH 中
+- VASP 预、后处理工具；[Overview — VASPKIT 1.5 documentation](https://vaspkit.com/)
+- 预处理：不同计算任务的输入文件生成与检验；结构对称性分析等
+- 后处理：力学性质；能带；态密度；费米面分析等
+- 安装：在 [vaspkit - Binaries](https://sourceforge.net/projects/vaspkit/files/Binaries/) 中下载 vaspkit 最新版本，解压，设置环境变量（`cp how_to_set_environment_variables ~/.vaspkit`）；设置 `PBE_PATH`、`VASPKIT_UTILITIES_PATH` 和 `PYTHON_BIN`（可选）参数；对可执行文件设置软链接
 
 
 ---
@@ -1419,7 +1325,7 @@ cp how_to_set_environment_variables ~/.vaspkit
 ### VTST + VASP
 
 >[VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
->
+
 >[Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)
 
 VTST+VASP：嵌入过渡态理论版本的 VASP；计算过渡态
@@ -1601,7 +1507,7 @@ make install
 
 ## 交我算常见问题总结
 
-以下是使用 " 交我算 " 过程中可能遇到的常见问题总结：
+以下是使用 “ 交我算 ” 过程中可能遇到的常见问题总结：
 
 ---
 
@@ -1617,7 +1523,7 @@ make install
 
 **致谢模版**
 
-1. " 交我算 " 用户在发布科研成果或论文时，应标注 " 本论文的计算结果得到了上海交通大学交我算平台的支持和帮助 "（The computations in this paper were run on the π 2.0 (or Siyuan Mark-I) cluster supported by the Center for High Performance Computing at Shanghai Jiao Tong University）. 论文发表后，欢迎将见刊论文通过邮件发送到 hpc@sjtu.edu.cn。
+1. “ 交我算 ” 用户在发布科研成果或论文时，应标注 “ 本论文的计算结果得到了上海交通大学交我算平台的支持和帮助 “（The computations in this paper were run on the π 2.0 (or Siyuan Mark-I) cluster supported by the Center for High Performance Computing at Shanghai Jiao Tong University）. 论文发表后，欢迎将见刊论文通过邮件发送到 hpc@sjtu.edu.cn。
 
 ---
 

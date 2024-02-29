@@ -281,7 +281,7 @@ markdown 语法笔记软件；新版本收费，建议安装旧版本或者破�
 
 - 快捷键重映射（如将默认的行内代码快捷键 Ctrl + Shift +\` 重映射成 `Ctrl + Q`）：[Typora 快捷键设置\_typora快捷键设置为正文-CSDN博客](https://blog.csdn.net/oneby1314/article/details/111030417)
 
-- 插件：[GitHub - obgnail/typora\_plugin: Typora plugin. feature enhancement tool | Typora 插件，功能增强工具](https://github.com/obgnail/typora_plugin)
+- 插件：[GitHub - obgnail/typora\_plugin: Typora plugin. feature enhancement tool - Typora 插件，功能增强工具](https://github.com/obgnail/typora_plugin)
 
 
 
