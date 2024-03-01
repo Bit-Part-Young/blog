@@ -42,6 +42,10 @@ git filter-branch
 Untracked 未追踪的
 
 
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011046838.png)
+
+
+
 
 Git LFS 是一个开源的 Git 扩展，用于管理大型文件，例如音频样本、视频、数据集和图形。它通过在 Git 内部使用文本指针，同时将文件内容存储在像 GitHub.com 或 GitHub Enterprise 这样的远程服务器上，来替换大型文件。
 
@@ -759,8 +763,6 @@ git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(b
 ### diff
 
 ```bash
-git diff file
-
 # 查看工作区文件改动统计（个数，增加、删除行数）
 git diff --stat
 git diff --stat file
@@ -770,6 +772,7 @@ git diff <commit_id_1> <commit_id_2> --stat
 
 # 查看特定提交的所有改动统计
 git show <commit_id> --stat
+git diff-tree <commit_id> --stat
 
 # 查看暂存区文件的改动统计
 # staged cached 同义词

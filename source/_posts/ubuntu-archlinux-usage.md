@@ -536,6 +536,7 @@ rclone mount jbox: /home/yangsl/jbox --vfs-cache-mode=minimal
 
 #### 字体安装
 
+- 系统字体路径：`/usr/share/fonts`；个人用户字体路径：`~/.fonts` 或 `~/.local/share/fonts`（较新版本）
 - 中文字体：[得意黑](https://github.com/atelier-anchor/smiley-sans)
 - 英文字体： [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)（主要下载 Meslo 或 Hack）
 
@@ -651,7 +652,7 @@ xxx    ALL=(ALL:ALL) ALL
 
 ### 安装
 
-WIP…
+archinstall：安装过程会有引导；已集成到安装镜像中，无需额外安装
 
 
 ---

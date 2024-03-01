@@ -79,6 +79,36 @@ vmd....................To visualize md trajectories
 
 >`/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中。
 
+---
+
+GPU 信息及资源占用率查看：`nvidia-smi`
+
+![GPU 信息及资源占用率](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202402291942207.png)
+
+输出信息解读：两个 GPU 都在高负载运行（GPU 利用率 100%，温度分别为 77 摄氏度和 72 摄氏度），并且接近其功率上限。GPU 上的内存几乎被完全利用，表明运行的进程（主要是 python）正在积极使用 GPU 资源。
+
+- **NVIDIA-SMI 版本和驱动版本**：显示 `nvidia-smi` 工具的版本为 525.116.04，NVIDIA 驱动版本也是 525.116.04，CUDA 版本是 12.0。这对于确保软件兼容性是重要的信息。
+
+- **GPU 列表**：
+    - **GPU 0 和 GPU 1**：系统中有两个 NVIDIA GeForce 系列的 GPU。具体型号没有完全显示，但可以看出系统识别到两块 GPU 卡。
+    - **Persistence-M**：显示 GPU 的持久模式是否开启，这里都是关闭（Off）的。
+    - **Bus-Id**：显示 GPU 在系统总线上的唯一标识符，可以用于特定应用配置。
+    - **Disp.A**：显示是否用作显示输出，这里都是关闭（Off）的。
+    - **Volatile Uncorr. ECC**：显示易失性未校正的 ECC（错误校正码）错误，这里显示为 N/A（不适用），可能是因为 GPU 不支持 ECC 或未启用。
+    - **Fan**：GPU 风扇速度，以百分比表示。
+    - **Temp**：GPU 温度，单位是摄氏度。
+    - **Perf**：性能状态，P2 表示当前在一种性能状态。
+    - **Pwr:Usage/Cap**：当前功率使用量和功率上限，单位是瓦特。
+    - **Memory-Usage**：GPU 内存使用情况，包括当前使用量和总量，单位是 MiB。
+    - **GPU-Util**：GPU 使用率，以百分比表示。
+    - **Compute M.**：计算模式，默认是 Default。
+
+- **进程**：列出了在每个 GPU 上运行的进程，包括：
+    - **PID**：进程 ID。
+    - **Type**：进程类型，G 表示图形，C 表示计算。
+    - **Process name**：进程名称。
+    - **GPU Memory Usage**：进程使用的 GPU 内存量。
+
 
 ---
 

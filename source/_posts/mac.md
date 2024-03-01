@@ -102,7 +102,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 三指拖移文件/文件夹/窗口：系统设置 - 辅助功能 - 指针控制 - 触控板选项 - 拖移样式 - 三指拖移
 - 切换全屏显示的程序：四指左右轻扫
 - 调度中心：四指上下轻扫（比 `command + tab` 要简便一些）
-- 返回桌面：四指向外扩展
+- 返回桌面：四指向外扩展；可设置**触发角**，使光标移动到屏幕右下角时返回桌面
 
 
 ---
@@ -127,7 +127,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 ### 软件/程序安装及设置
 
->网络上下载的程序包安装到 Mac 上，需将包（`*.app`）移动到 applications 里
+>网络上下载的程序包安装到 Mac 上，需将包（`*.app`）移动到 applications 里；卸载：直接将其移到废纸篓
 
 - 软件包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：Alfred 5
@@ -140,7 +140,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 压缩文件解压工具：The Unarchiver
 - 媒体播放器：IINA（开源）、Infuse（apple store 付费）
 - 笔记管理：Obsidian、Typora
-- 图床：PicGo
+- 图床：PicList（基于 PicGo 开发）、PicGo
 - 文献管理：Zotero
 - 构型可视化：VESTA、OVITO
 - 邮件服务：Mailspring 或 Mac 自带邮件
@@ -148,11 +148,11 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 文本翻译：Bob（社区版免费，翻译引擎需自己设置；app store 版本需收费）
 - 垃圾清理：Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）、CleanMyMac X（完整版本需收费）
 - 系统资源监控：RunCat
-- 快捷键提示：flykey
-- 切换窗口：alt-tab
-- 鼠标：mos
+- 快捷键提示：FlyKey
+- 切换窗口：AltTab
+- 鼠标：Mos
 - 输入法切换：自动切换输入法 Lite 版
-- pdf 查看、编辑：updf
+- pdf 查看、编辑：UPDF
 - 窗口管理：Rectangle
 - 其他：微信等
 
@@ -222,6 +222,8 @@ wget 安装（可能较耗时）
 
 >[PowerShell with Oh My Posh as Default Shell on macOS - Half-Blood Programmer](https://halfblood.pro/powershell-on-macos/)
 
+方法一：
+
 ```bash
 # nerd font 字体
 brew tap homebrew/cask-fonts
@@ -240,6 +242,8 @@ brew install font-smiley-sans
 # 用户
 ~/Library/Fonts
 ```
+
+方法二：手动下载字体，双击安装字体
 
 
 ---

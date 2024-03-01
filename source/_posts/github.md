@@ -50,9 +50,12 @@ lec2：Git/GitHub 基础介绍
 
 ### Repo 基本使用
 
-Code 页面
+Repo 页面
 
-![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638623.png)
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011048507.png)
+
+
+
 
 ---
 
@@ -74,8 +77,8 @@ Pull Requests 流程:
 
 - Fork 该 Repo；
 - git clone fork 的 Repo 到本地，进行代码修改并提交，会出现提交的 commit 相对原 Repo 的前后关系；
-- 点击 "Contribute"，提 一个 Pull Request 给原来的 Repo；
-- 点击 "Sync fork"，同步原 Repo 最新代码。
+- 点击 “Contribute”，提 一个 Pull Request 给原来的 Repo；
+- 点击 “Sync fork”，同步原 Repo 最新代码。
 
 ---
 
@@ -95,6 +98,13 @@ Settings - Public profile - Contributions & activity
 ![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638621.png)
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081150607.png)
+
+
+
+Github Pages
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011049337.png)
+
 
 
 ---
@@ -222,7 +232,7 @@ Repo 相关
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=Node.js&logoColor=fff)
 ```
 
->"4eaa25" 表示颜色的十六进制代码
+>“4eaa25” 表示颜色的十六进制代码
 
 ---
 
