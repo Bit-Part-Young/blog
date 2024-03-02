@@ -21,7 +21,7 @@ password: d93f517bc1345a0d8ff992410aca5dbc35f2e88087cdc5d9edb0c6d77d8a4c1a
 
 ## 介绍
 
-Vienna Ab-initio Simulation Package (VASP)
+- VASP 全称：Vienna Ab-initio Simulation Package
 
 
 
@@ -60,57 +60,10 @@ Heyd–Scuseria–Ernzerhof 泛函 (HSE06)：更精确，处理电子和光学�
 - VASP Tutorial：[Category:Tutorials - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Tutorials)
 - VASP Examples：[Category:Examples - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Examples)
 
-
-
-
 ---
-
-## 安装
-
-### GNU 套件编译 VASP
-
-WIP…
-
-
----
-
-### Intel oneapi 套件编译 VASP
-
-intel oneapi 套件卸载
-
->[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)
-
-
-intel oneapi 套件暂不支持 ArchLinux
-
-
-
----
-
-## 使用
-
-内含 VASP 计算相关的案例
->[GitHub - hello-arun/tutorials: Tutorials of codes such as VASP, Quantum Espresso and Lammps](https://github.com/hello-arun/Tutorial-for-kids)
-
-
-
-VASP 计算流程：
-
->[VASP的计算流程 | Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
-
-
- - NCORE: 指定单个轨道计算所使用的核数量
- - NPAR: 指定同时并行处理的能带数
- - KPAR: 指定同时并行处理的 K 点数量
-
-
----
-
-### 输入文件
 
 输入文件及参数介绍
 >[GitHub - bzkarimi/VASP: Practical guide on how to use VASP](https://github.com/bzkarimi/VASP)
-
 
 
 VASP 中计算电子基态的算法
@@ -131,12 +84,53 @@ phonon dispersion 计算
 
 分子动力学计算
 >[Molecular dynamics calculations - Vaspwiki](https://www.vasp.at/wiki/index.php/Molecular_dynamics_calculations)
+
 >[Molecular dynamics - Tutorial - Vaspwiki](https://www.vasp.at/wiki/index.php/Molecular_dynamics_-_Tutorial)
 
 
 GW 计算
 >[Practical guide to GW calculations - Vaspwiki](https://www.vasp.at/wiki/index.php/Practical_guide_to_GW_calculations)
+
 >[GW approximation](https://www.vasp.at/tutorials/latest/gw/)
+
+
+内含 VASP 计算相关的案例
+>[GitHub - hello-arun/tutorials: Tutorials of codes such as VASP, Quantum Espresso and Lammps](https://github.com/hello-arun/Tutorial-for-kids)
+
+
+
+VASP 计算流程：
+
+>[VASP的计算流程 | Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
+
+
+ - NCORE: 指定单个轨道计算所使用的核数量
+ - NPAR: 指定同时并行处理的能带数
+ - KPAR: 指定同时并行处理的 K 点数量
+
+
+---
+
+## VASP 编译
+
+### Intel oneAPI 套件编译
+
+- Intel oneAPI 套件卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)
+- Intel oneAPI 套件暂不支持 Arch Linux
+
+
+---
+
+### GNU 套件编译
+
+WIP…
+
+
+---
+
+## 使用
+
+### 输入文件
 
 ---
 
@@ -210,9 +204,9 @@ direct
 
 #### POTCAR
 
-赝势文件；包含计算体系中每个元素种类的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
+- 赝势文件；包含计算体系中每个元素种类的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 
-VRHFIN 该元素赝势的价电子排布
+- VRHFIN：该元素赝势的价电子排布
 
 ```bash
 cat POTCAR.1 POTCAR.2 > POTCAR
@@ -228,7 +222,7 @@ grep ENMAX POTCAR
 ```
 
 
-示例
+POTCAR 示例
 ```text
   PAW_PBE Cu 22Jun2005
    11.0000000000000

@@ -41,9 +41,9 @@ password:
 - FireWorks：设计、管理、执行 workflow
 
 >[Home | pymatgen](https://pymatgen.org/)
->
+
 >[Home | custodian](http://materialsproject.github.io/custodian/)
->
+
 >[FireWorks 2.0.3 documentation](https://materialsproject.github.io/fireworks/)
 
 
@@ -100,8 +100,7 @@ ImportError: cannot import name 'MaxForceErrorHandler' from 'custodian.vasp.hand
 
 ### 配置文件
 
-atomate 标准 config 配置文件
->[standard\_config](https://github.com/hackingmaterials/atomate/tree/main/atomate/vasp/examples/standard_config)
+atomate 标准 config 配置文件：[standard\_config](https://github.com/hackingmaterials/atomate/tree/main/atomate/vasp/examples/standard_config)
 
 
 atomate 配置文件目录结构（目录名任意）
@@ -237,7 +236,7 @@ fi
 - 配置 pymatgen：使其找到赝势路径及调用 material project 网站的 API
 
 赝势目录结构：
-```javascript
+```text
 pseudopotentials
 ├── POT_GGA_PAW_PBE
 │   ├── POTCAR.Ac.gz
@@ -254,7 +253,6 @@ pseudopotentials
     ├── POTCAR.Ac_s.gz
     ├── POTCAR.Ag.gz
     └── ...
-
 ```
 
 ---
@@ -523,7 +521,7 @@ dict_keys(
 )
 ```
 
->"calcs_reversed" key 对应的值（还需添加 `[0]`）含大部分同级下的 keys 的值信息
+>“calcs_reversed” key 对应的值（还需添加 `[0]`）含大部分同级下的 keys 的值信息
 
 ```json
 dict_keys(

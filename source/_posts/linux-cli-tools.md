@@ -40,7 +40,7 @@ password:
 
 ### zsh
 
-- 功能：命令自动补全、高亮、建议；简化 git 命令；`x` 解压任意格式压缩文件；`z` 路径快速跳转等）
+- 提升终端使用体验。功能：命令自动补全、高亮、建议；简化 git 命令，git 状态可视化；`x` 解压任意格式压缩文件；`z` 路径快速跳转等）
 - master、manager 上没有 zsh；Pi 和思源一号有 zsh，版本较老；
 - zsh 系列插件：[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
 - 管理 zsh 配置：[ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)

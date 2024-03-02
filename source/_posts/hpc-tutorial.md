@@ -10,6 +10,7 @@ summary: 服务器、超算使用教程
 tags:
   - HPC
   - 服务器
+  - 课题组
 categories:
   - 科研工具
 date: 2023-06-04 18:30:30
@@ -26,8 +27,8 @@ password:
 - linux 系统版本：Ubuntu 22.04；
 - 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
 - Slurm 任务调度系统；
-- CPU：共 64 核；2 块 RTX 3090 GPU，显存 24G；调用 GPU 时只能一整块调用，显存自动分配；cpu 信息查看：`cat /proc/cpuinfo`。
-- intel 套件：intel-oneapi 2022.1.0 版本；
+- CPU：共 64 核；2 块 RTX 3090 GPU，显存 24G；调用 GPU 时只能一整块调用，显存自动分配；CPU 信息查看：`cat /proc/cpuinfo`。
+- oneAPI 套件：Intel-oneAPI 2022.1.0 版本；
 - 总内存 512G；内存信息查看：`free -h` 或 `cat /proc/meminfo`；
 - 较大体积的数据（master 本地或超算上的）可以放到 `${HOME}/storage` 中
 
@@ -140,17 +141,16 @@ GPU 信息及资源占用率查看：`nvidia-smi`
 VASP 赝势文件位置
 
 ```bash
-# manager
-/opt/.vasp_pot
-
 # master
 /work/backup/.vasp_pot/
 
-# 以下不具有参考性，以自己的超算用户目录为准
-# 思源一号 mseklt 用户目录
+# manager
+/opt/.vasp_pot
+
+# 思源一号 mseklt
 $HOME/.sjtu_mgi/.vasp.pot
 
-# Pi mseklt 用户目录
+# Pi mseklt
 $HOME/opt/VASP/VASP_PSP
 ```
 
@@ -1353,6 +1353,15 @@ make
 - 预处理：不同计算任务的输入文件生成与检验；结构对称性分析等
 - 后处理：力学性质；能带；态密度；费米面分析等
 - 安装：在 [vaspkit - Binaries](https://sourceforge.net/projects/vaspkit/files/Binaries/) 中下载 vaspkit 最新版本，解压，设置环境变量（`cp how_to_set_environment_variables ~/.vaspkit`）；设置 `PBE_PATH`、`VASPKIT_UTILITIES_PATH` 和 `PYTHON_BIN`（可选）参数；对可执行文件设置软链接
+- 赝势：可拷贝 master 或 manager 上的赝势上传到超算自己的用户目录下；赝势格式如下：
+
+```text
+pseudopotentials
+├── lda_paw
+│   ├── Ag
+│   │   ├── POTCAR
+│   │   └── PSCTR
+```
 
 
 ---

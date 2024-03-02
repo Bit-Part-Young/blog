@@ -187,8 +187,6 @@ brew outdated
 brew upgrade
 brew upgrade <package>
 
-# Homebrew-cask 管理桌面程序
-
 # 忽视依赖关系卸载
 brew uninstall --ignore-dependencies gcc
 
@@ -209,6 +207,9 @@ brew cleanup --prune=all
 brew pin <package>
 # 取消锁定
 brew unpin <package>
+
+# 取消 Homebrew 对 homebrew/core 仓库的关注
+brew untap homebrew/core
 ```
 
 
