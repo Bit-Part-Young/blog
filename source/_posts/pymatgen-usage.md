@@ -10,6 +10,7 @@ tags:
   - python
 categories:
   - 科研工具
+abbrlink: "12496"
 password:
 ---
 

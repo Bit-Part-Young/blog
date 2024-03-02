@@ -240,6 +240,11 @@ MEI2024154794, Yang2022
 
 ## 主题相关设置
 
+- butterfly 主题文章置顶 front-matter 参数：`sticky`，数值越大，置顶优先级越大
+- matery 主题文章置顶 front-matter 参数：`top`，数值为 `true` 或 `false`
+
+---
+
 ### butterfly
 
 - menu（分类、标签、存档；友链、关于、音乐、视频、相册等暂无必要）

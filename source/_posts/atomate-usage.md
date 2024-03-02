@@ -14,7 +14,8 @@ categories:
   - 科研工具
 date: 2023-06-18 18:30:30
 abbrlink: 12073
-password:
+password: 
+sticky: "99"
 ---
 
 # atomate 安装与使用
