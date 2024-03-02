@@ -88,30 +88,29 @@ cover:
   # left/right/both
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
-  default_cover: /img/cover/spider0.jpg
-    # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
-    # - /img/cover/spider0.jpg
-    # - /img/cover/spider1.jpg
-    # - /img/cover/spider2.jpg
-    # - /img/cover/spider3.png
-    # - /img/cover/spider4.png
-    # - /img/cover/spider5.png
-    # - /img/cover/spider6.png
-    # - /img/cover/spider7.png
-    # - /img/cover/spider8.png
-    # - /img/cover/spider9.png
-    # - /img/cover/spider10.png
-    # - /img/cover/spider11.png
-    # - /img/cover/spider12.png
-    # - /img/cover/spider13.png
-    # - /img/cover/spider14.png
-    # - /img/cover/spider15.png
-    # - /img/cover/spider16.png
-    # - /img/cover/spider17.png
-    # - /img/cover/spider18.png
-    # - /img/cover/spider19.png
-    # - /img/cover/spider20.jpg
-    # - /img/cover/spider21.jpg
+  default_cover: 
+    - /img/cover/spider0.jpg
+    - /img/cover/spider1.jpg
+    - /img/cover/spider2.jpg
+    - /img/cover/spider3.png
+    - /img/cover/spider4.png
+    - /img/cover/spider5.png
+    - /img/cover/spider6.png
+    - /img/cover/spider7.png
+    - /img/cover/spider8.png
+    - /img/cover/spider9.png
+    - /img/cover/spider10.png
+    - /img/cover/spider11.png
+    - /img/cover/spider12.png
+    - /img/cover/spider13.png
+    - /img/cover/spider14.png
+    - /img/cover/spider15.png
+    - /img/cover/spider16.png
+    - /img/cover/spider17.png
+    - /img/cover/spider18.png
+    - /img/cover/spider19.png
+    - /img/cover/spider20.jpg
+    - /img/cover/spider21.jpg
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -144,7 +143,7 @@ post_meta:
 # 3: auto_excerpt (default)
 # false: do not show the article introduction
 index_post_content:
-  method: 3
+  method: 1
   length: 500 # if you set method to 2 or 3, the length need to config
 
 # anchor
