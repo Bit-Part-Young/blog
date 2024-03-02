@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: VSCode 常用插件
+description: VSCode 常用插件
 tags:
   - VSCode
   - 编程

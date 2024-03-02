@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: 期刊订阅
+description: 期刊订阅
 tags:
   - 期刊订阅
 categories:

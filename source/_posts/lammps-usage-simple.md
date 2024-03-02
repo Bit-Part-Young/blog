@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: LAMMPS 安装与使用
+description: LAMMPS 安装与使用
 tags:
   - LAMMPS
   - 分子动力学

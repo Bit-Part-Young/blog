@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: Git 使用
+description: Git 使用
 tags:
   - Git
   - 版本控制

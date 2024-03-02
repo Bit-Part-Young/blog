@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: PyXtal 安装与使用
+description: PyXtal 安装与使用
 tags:
   - 模型构建
   - PyXtal

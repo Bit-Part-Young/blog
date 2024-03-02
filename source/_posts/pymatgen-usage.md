@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: pymatgen安装与使用
+description: pymatgen安装与使用
 tags:
   - pymatgen
   - python

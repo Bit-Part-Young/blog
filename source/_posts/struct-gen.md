@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: 结构建模
+description: 结构建模
 tags:
   - 结构建模
   - pymatgen

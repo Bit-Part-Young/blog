@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: 浏览器常用插件
+description: 浏览器常用插件
 tags:
   - Chrome
   - 油猴

@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: Obsidian 使用
+description: Obsidian 使用
 tags:
   - obsidian
 categories:

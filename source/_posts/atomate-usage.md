@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: atomate 安装与使用
+description: atomate 安装与使用
 tags:
   - 高通量
   - atomate

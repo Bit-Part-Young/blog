@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: Hexo 博客框架
+description: Hexo 博客框架
 tags:
   - Hexo
 categories:

@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: Miniconda3 安装与使用
+description: Miniconda3 安装与使用
 tags:
   - Miniconda3
   - Python

@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: 分子动力学原理
+description: 分子动力学原理
 tags:
   - 计算模拟
   - 分子动力学

@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: 给 pdf 生成目录
+description: 给 pdf 生成目录
 tags:
   - pdf
 categories:

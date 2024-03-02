@@ -8,6 +8,7 @@ toc: true
 mathjax: true
 math: true
 summary: 服务器、超算使用教程
+description: 服务器、超算使用教程
 tags:
   - HPC
   - 服务器

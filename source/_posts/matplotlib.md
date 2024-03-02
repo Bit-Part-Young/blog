@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: Matplotlib
+description: Matplotlib
 tags:
   - Matplotlib
   - Python

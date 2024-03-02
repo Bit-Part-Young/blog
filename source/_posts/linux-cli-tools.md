@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: Linux 命令行工具
+description: Linux 命令行工具
 tags:
   - CLI
 categories:

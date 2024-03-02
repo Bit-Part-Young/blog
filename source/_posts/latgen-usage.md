@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: latgen 安装与使用
+description: latgen 安装与使用
 tags:
   - 结构建模
   - latgen

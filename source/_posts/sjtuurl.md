@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: 交大常用网址汇总
+description: 交大常用网址汇总
 tags:
   - 研究生
 categories: 

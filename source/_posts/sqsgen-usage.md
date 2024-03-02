@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: sqsgen 安装与使用
+description: sqsgen 安装与使用
 tags:
   - sqsgen
 categories:

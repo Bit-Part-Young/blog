@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: DFT 原理
+description: DFT 原理
 tags:
   - 计算模拟
   - DFT

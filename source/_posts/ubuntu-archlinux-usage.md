@@ -7,13 +7,14 @@ toc: true
 mathjax: true
 math: true
 summary: Ubuntu、Arch Linux 使用
+description: Ubuntu、Arch Linux 使用
 tags:
   - Ubuntu
   - ArchLinux
 categories:
   - Linux
 date: 2023-09-18 16:50:00
-abbrlink: "14224"
+abbrlink: 14224
 password:
 ---
 

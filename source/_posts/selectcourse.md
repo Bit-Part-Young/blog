@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: 交大材料学院研究生课程选课指北
+description: 交大材料学院研究生课程选课指北
 tags:
   - 研究生
 categories: 

@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: Python 基础
+description: Python 基础
 tags:
   - Python
 categories:

@@ -7,6 +7,7 @@ toc: true
 mathjax: true
 math: true
 summary: VASP 安装与使用
+description: VASP 安装与使用
 tags:
   - VASP
   - 第一性原理

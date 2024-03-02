@@ -5,6 +5,7 @@ cover:
 toc: true
 mathjax: true
 summary: 课题组论文发表统计
+description: 课题组论文发表统计
 tags:
   - 论文
 categories:

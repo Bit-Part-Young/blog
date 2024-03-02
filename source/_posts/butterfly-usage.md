@@ -4,7 +4,7 @@ top: false
 cover: 
 toc: true
 mathjax: true
-summery: butterfly 主题使用
+summary: butterfly 主题使用
 description: butterfly 主题使用
 tags:
   - butterfly
