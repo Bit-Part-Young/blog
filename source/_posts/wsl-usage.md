@@ -2,7 +2,7 @@
 title: WSL 安装与使用
 top: false
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

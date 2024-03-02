@@ -2,7 +2,7 @@
 title: VSCode 常用插件
 top: false
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

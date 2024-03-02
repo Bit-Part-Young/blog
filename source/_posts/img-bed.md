@@ -2,7 +2,7 @@
 title: Github 图床搭建
 top: false
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

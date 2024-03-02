@@ -1,7 +1,7 @@
 ---
 title: 交大材料学院研究生课程选课指北
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: 交大材料学院研究生课程选课指北

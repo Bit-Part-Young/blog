@@ -1,7 +1,7 @@
 ---
 title: ASE 使用
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: ASE 使用

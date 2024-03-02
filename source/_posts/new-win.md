@@ -2,7 +2,7 @@
 title: Win 新机使用
 top: false
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

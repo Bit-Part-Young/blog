@@ -2,7 +2,7 @@
 title: Linux 命令行工具
 top: false
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

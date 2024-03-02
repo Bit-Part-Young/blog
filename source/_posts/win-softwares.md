@@ -2,7 +2,7 @@
 title: Windows 常用软件
 top: false
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

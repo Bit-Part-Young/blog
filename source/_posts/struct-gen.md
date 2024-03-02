@@ -1,7 +1,7 @@
 ---
 title: 结构建模
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: 结构建模

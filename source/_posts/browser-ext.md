@@ -2,7 +2,7 @@
 title: 浏览器常用插件
 top: false
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

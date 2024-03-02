@@ -1,7 +1,7 @@
 ---
 title: Hexo 博客框架
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: Hexo 博客框架

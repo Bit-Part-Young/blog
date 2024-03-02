@@ -1,7 +1,7 @@
 ---
 title: latgen 安装与使用
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: latgen 安装与使用

@@ -1,7 +1,7 @@
 ---
 title: 课题组论文发表统计
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: 课题组论文发表统计

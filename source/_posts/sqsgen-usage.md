@@ -2,7 +2,7 @@
 title: sqsgen 安装与使用
 top: true
 pin: true
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

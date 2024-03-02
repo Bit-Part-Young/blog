@@ -3,7 +3,7 @@ title: 服务器、超算使用教程
 top: true
 pin: true
 sticky: "100"
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

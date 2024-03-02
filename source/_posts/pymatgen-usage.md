@@ -1,7 +1,7 @@
 ---
 title: pymatgen安装与使用
 top: true
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: pymatgen安装与使用

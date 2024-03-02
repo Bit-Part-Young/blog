@@ -1,7 +1,7 @@
 ---
 title: 分子动力学原理
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: 分子动力学原理

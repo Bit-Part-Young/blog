@@ -1,7 +1,7 @@
 ---
 title: 给 pdf 生成目录
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: 给 pdf 生成目录

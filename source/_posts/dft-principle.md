@@ -1,7 +1,7 @@
 ---
 title: DFT 原理
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: DFT 原理

@@ -2,7 +2,7 @@
 title: 课题组服务器修理
 top: true
 pin: false
-cover: false
+cover:
 toc: true
 mathjax: true
 math: true

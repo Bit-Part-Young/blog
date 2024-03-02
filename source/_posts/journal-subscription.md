@@ -1,7 +1,7 @@
 ---
 title: 期刊订阅
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: 期刊订阅

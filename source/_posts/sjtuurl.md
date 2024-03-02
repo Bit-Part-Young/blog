@@ -1,7 +1,7 @@
 ---
 title: 交大常用网址汇总
 top: false
-cover: false
+cover:
 toc: true
 mathjax: true
 summary: 交大常用网址汇总
