@@ -534,7 +534,7 @@ echo "a b c d" | xargs -n 2 echo
 
 #### tee
 
-`tee`: 从标准输入读取数据并重定向到标准输出和文件（仍会输出到屏幕上；可用于 vasp 和 lammps 的提交命令，见 " 拾梦的星星 "）
+`tee`: 从标准输入读取数据并重定向到标准输出和文件（仍会输出到屏幕上；可用于 vasp 和 lammps 的提交命令，见 “ 拾梦的星星 “）
 ```python
 echo linux | tee -a file
 ```

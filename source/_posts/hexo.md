@@ -253,7 +253,7 @@ MEI2024154794, Yang2022
 - 代码
 - 目录
 - banner 图片
-- 文章封面（butterfly 无法生成，带解决）
+- 文章封面（front-matter 中 cover 选项不填参数）
 - 评论系统
 - 搜索
 - 页面加载效果

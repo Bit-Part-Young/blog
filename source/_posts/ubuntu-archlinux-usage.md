@@ -549,8 +549,7 @@ sudo cp <font>.otf /usr/share/fonts/opentype
 # 或
 sudo cp *.ttf /usr/share/fonts
 
-# 更新字体缓存
-# 执行命令后需重启生效
+# 更新字体缓存 或 直接重新登录生效
 sudo fc-cache -f -v
 
 # 查看字体
