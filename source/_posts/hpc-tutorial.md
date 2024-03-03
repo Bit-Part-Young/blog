@@ -1332,18 +1332,27 @@ wget https://download.lammps.org/tars/lammps-2Aug2023.tar.gz
 tar -xzvf lammps-2Aug2023.tar.gz
 cd lammps-2Aug2023
 
-# 导入 oneapi 套件
+# 导入 oneAPI 套件
 module purge
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 
 # 编译配置
-mkdir build-oneapi && cd build-oneapi
-cmake -C ../cmake/presets/oneapi.cmake ../cmake
+mkdir build && cd build
+# C++ 等编译器均为 GNU套件的
+cmake -C ../cmake/presets/most.cmake ../cmake
+
+# oneapi 可 可替换成 intel
+# oneapi IntelLLVM C++ 编译器为 intel oneapi 的 icpx
+# intel Intel C++ 编译器为 intel oneapi 的 icpc
+cmake \
+    -C ../cmake/presets/most.cmake \
+    -C ../cmake/presets/oneapi.cmake \
+    ../cmake
 
 # 编译
-make
+make  # cmake --build .
 ```
 
 
@@ -1368,7 +1377,7 @@ pseudopotentials
 
 ---
 
-### VTST + VASP
+### VASP + VTST
 
 >[VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
 

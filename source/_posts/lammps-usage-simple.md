@@ -30,6 +30,7 @@ LAMMPS 手册：[LAMMPS Documentation (2 Aug 2023 version) — LAMMPS documentat
 
 教程：[LAMMPS教程](https://mp.weixin.qq.com/s/y80KyKUvI-46S7VGcuO5gQ)
 
+所有版本：[LAMMPS Source Download Repository](https://download.lammps.org/tars/index.html)
 
 
 ---
