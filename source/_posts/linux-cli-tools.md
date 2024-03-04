@@ -182,7 +182,7 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 
 #### 源码编译
 
-服务器及超算平台需源码编译 zsh：[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
+服务器及超算平台需源码编译 zsh：zsh 编译依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
 
 ---
 
@@ -203,7 +203,7 @@ make -j && make install
 ```bash
 wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/download -O zsh-5.9.tar.xz --no-check-certificate
 
-./configure --prefix="${HOME}/local" \ CPPFLAGS="-I${HOME}/local/include" \ LDFLAGS="-L${HOME}/local/lib"
+./configure --prefix="${HOME}/local" CPPFLAGS="-I${HOME}/local/include" LDFLAGS="-L${HOME}/local/lib"
 
 make -j && make install
 ```

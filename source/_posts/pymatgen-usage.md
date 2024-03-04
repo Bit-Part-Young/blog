@@ -1,11 +1,11 @@
 ---
-title: pymatgen安装与使用
-top: true
-cover:
+title: pymatgen 安装与使用
+top: false
+cover: 
 toc: true
 mathjax: true
-summary: pymatgen安装与使用
-description: pymatgen安装与使用
+summary: pymatgen 安装与使用
+description: pymatgen 安装与使用
 tags:
   - pymatgen
   - python
@@ -15,7 +15,9 @@ abbrlink: "12496"
 password:
 ---
 
-# 介绍
+# pymatgen 安装与使用
+
+## 介绍
 
 material project workshop
 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)

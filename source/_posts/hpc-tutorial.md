@@ -461,7 +461,7 @@ module show [MODULE]    # 列出该模块的信息，如路径、环境变量等
 
 - 超算代理相关设置：[常见问题 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/faq.html#id1)
 
-思源一号克隆 Github repo（或 wget 下载远程文件） 速度慢或无法进行；pi 则正常。
+思源一号克隆 Github repo（或 wget 下载网络文件） 速度慢或无法进行；Pi 则正常。
 
 解决方案：在计算节点上运行（有时也还是不稳定）或使用 [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD) 油猴插件，选择合适的 URL 进行克隆。
 
