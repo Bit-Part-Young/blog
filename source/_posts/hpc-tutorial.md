@@ -26,17 +26,18 @@ password:
 
 ### master
 
-- linux 系统版本：Ubuntu 22.04；
+- Linux 系统版本：Ubuntu 22.04；
 - 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
 - Slurm 任务调度系统；
 - CPU：共 64 核；2 块 RTX 3090 GPU，显存 24G；调用 GPU 时只能一整块调用，显存自动分配；CPU 信息查看：`cat /proc/cpuinfo`。
 - oneAPI 套件：Intel-oneAPI 2022.1.0 版本；
 - 总内存 512G；内存信息查看：`free -h` 或 `cat /proc/meminfo`；
 - 较大体积的数据（master 本地或超算上的）可以放到 `${HOME}/storage` 中
+- `/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中。
 
 ---
 
-master 上已安装的程序/软件（`cat /opt/bin/README` 查看）
+- master 上已安装的程序/软件：`cat /opt/bin/README` 查看
 
 ```text
 # Code                 Function
@@ -80,11 +81,9 @@ viscal.................To calculate shear viscosity based on Green-Kubo method
 vmd....................To visualize md trajectories
 ```
 
->`/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中。
-
 ---
 
-GPU 信息及资源占用率查看：`nvidia-smi`
+- GPU 信息及资源占用率查看：`nvidia-smi`
 
 ![GPU 信息及资源占用率](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202402291942207.png)
 
@@ -117,30 +116,33 @@ GPU 信息及资源占用率查看：`nvidia-smi`
 
 ### manager
 
-- linux 系统版本：Ubuntu 16.04；
+- Linux 系统版本：Ubuntu 16.04；
 - 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
 - PBS 任务调度系统；
-- intel 套件：2015 版本（应该）；
-- CPU：共 12 个节点（node1~11+manager；部分节点已坏），共 100 核。
+- Intel 套件：Composer XE 2015；
+- CPU：共 12 个节点（node1~11 + manager；部分节点已坏），共 100 核。
 
 
 ---
 
 ### 超算
 
-- linux 系统版本：Centos 7.7.1908(pi) 8.3.2011(思源一号)；
+- Linux 系统版本：Centos 7.7.1908（Pi） 8.3.2011（思源一号）；
 - 无 root 权限；无法使用 yum 命令安装软件程序；
 - Slurm 任务调度系统；
 - Pi、ARM、思源一号提交的任务在任一平台都可以看到；
-- Pi 和 ARM 用的是相同的用户目录；
-- Pi 的一些基础程序的版本比思源一号旧许多。
-- 超算中的核有内存配比限制
+- Pi 和 ARM 用户目录相同；
+- Pi 的一些基础程序的版本比思源一号旧许多；
+- 超算中的 CPU 核有内存配比限制；
+- 超算的 GPU 队列很难排到；
+- sylogin1 登录节点占用率较高，比其他（2-5）卡，是超算断开连接，vim 使用卡顿的可能原因之一。超算的登录节点为随机分配，应尽量避免登录到 sylogin1。
 
->sylogin1 占用率高，比其他登录节点（2-5）卡，是超算断开连接，vim 使用卡顿的可能原因之一。思源的登录节点为随机分配，应尽量避免登录到 sylogin1。
 
 ---
 
-VASP 赝势文件位置
+### VASP 赝势目录路径
+
+- Pi mseklt 用户目录中的 VASP 赝势与思源和 manager 上的有些不同，相比之下，前者不全。
 
 ```bash
 # master
@@ -156,8 +158,6 @@ $HOME/.sjtu_mgi/.vasp.pot
 $HOME/opt/VASP/VASP_PSP
 ```
 
->Pi 上的 VASP 赝势与思源和 manager 上的有些不同，相比之下，前面的不全。
-
 
 
 ---
@@ -166,39 +166,28 @@ $HOME/opt/VASP/VASP_PSP
 
 ### SSH 登录
 
->[通过 SSH 登录集群 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/login/sshlogin.html)
+- [通过 SSH 登录集群 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/login/sshlogin.html)
+- 超算平台的 SSH 端口均为默认值 22；`-p 22` 可省略。
 
-manager
 ```bash
+# manager
 ssh username@202.120.55.11 -p 312
-```
 
-master
-```bash
+# master
 ssh username@202.120.55.11 -p 313
-```
 
-思源一号
-```bash
+# 思源一号
 ssh username@sylogin.hpc.sjtu.edu.cn
-```
 
-Pi（cpu 队列）
-```bash
+# Pi（cpu 队列）
 ssh username@pilogin.hpc.sjtu.edu.cn
-```
 
-Pi（centos 队列）
-```bash
+# Pi（centos 队列）
 ssh username@oldlogin.hpc.sjtu.edu.cn
-```
 
-ARM
-```bash
+# ARM
 ssh username@armlogin.hpc.sjtu.edu.cn
 ```
-
-注：超算平台的 SSH 端口均为默认值 22；因此 `-p 22` 可省略。
 
 
 ---
@@ -215,7 +204,7 @@ ssh-keygen -t rsa
 
 - 密钥对生成方式有 ssh-keygen 和 putty（ppk 格式，WinSCP 软件密钥验证需该格式），其中后者可通过 Mobaxterm 软件中 tool 工具中的 MobaKeyGen 来生成（在空白处乱按加快生成速度；将生成的公钥保存成 file.pub，私钥保存成 file.ppk）。
 
-- 设置服务器别名：在 `~/.ssh/config`（或 `C:\User\username\.ssh\config`）设置：
+- 设置服务器别名：编辑或创建 `~/.ssh/config`（或 `C:\User\username\.ssh\config
 
 ```bash
 Host alias
@@ -253,7 +242,7 @@ Host SiYuan
     IdentityFile ~/.ssh/id_rsa
 ```
 
-之后，只需输入以下内容即可登录：
+设置完成后，只需输入以下内容即可实现服务器、超算 SSH 登录：
 
 ```bash
 ssh Manager
@@ -270,7 +259,7 @@ ssh SiYuan
 
 - 常用软件：MobaXterm、Tabby（学校有定制版） 等。
 
-- 免密登录方式：将 id_rsa 私钥文件所在路径添加到 Use private key 选项中（Bookmark settings 选项可以将默认的 Session name 改成自己想要的别名）。
+- 免密登录操作：将 `id_rsa` 私钥文件所在路径添加到 Use private key 选项中（Bookmark settings 选项可以将默认的 Session name 改成自己想要的别名）。
 
 ![MobaXterm 免密登录](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/test-2023-06-04-17-43-41.png)
 
@@ -281,9 +270,9 @@ ssh SiYuan
 
 - 安装 **Remote Development** 扩展，如上面的 `~/.ssh/config` 内容已设置好，会自动识别设置好的主机名（**config 文件所在路径可自定义**）。
 
-- vscode 远程连接 manager（机子较老，10 余年历史） ，有时会导致其负载过高而崩溃，不建议长时间连接；vscode 远程连接 master（2023 年 5 月配置）暂无相关问题。
+- VSCode 远程连接 manager（机子较老，10 余年历史） ，有时会导致其负载过高而崩溃，不建议长时间连接；vscode 远程连接 master（2023 年 5 月配置）暂无相关问题。
 
-- 在超算上使用 python 插件中的 pylance 语言服务器，会时不时出现 pylance 崩溃的问题（以及使用 jupyter notebook，pi 在这方面比思源更稳定一些），因为超算的登录节点资源有限，建议将 pylance 换成 jedi（功能不及 pylance），会稍微稳定些；建议不在超算平台上使用 jupyter notebook。master 暂无相关问题。
+- 在超算上使用 python 插件中的 pylance 语言服务器（LSP）以及 jupyter 插件，常会出现 pylance 崩溃的问题（Pi 稍微稳定些），因为超算的登录节点资源有限，建议将 pylance 换成 jedi（功能不及 pylance），会稍微稳定些；建议不在超算平台上使用 jupyter notebook。master 暂无相关问题。
 
 
 
@@ -296,10 +285,10 @@ ssh SiYuan
 >[Slurm 作业调度系统 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/slurm.html)
 
 - 常用命令：
-	- `sbatch` - 作业提交
-	- `squeue` - 查看排队作业状态
-	- `scancel` - 删除作业
-	- `scontrol` - 查看作业参数
+	- `sbatch` - 任务提交
+	- `squeue` - 查看排队任务状态
+	- `scancel` - 删除任务
+	- `scontrol` - 查看任务参数
 	- `sinfo` - 查看集群状态
 
 - 节点状态：
@@ -316,89 +305,66 @@ ssh SiYuan
 	- `CD` - 已完成
 
 
-- 作业提交
-
 ```bash
+# 提交任务
 sbatch job.slurm
-```
 
-- 查看作业参数
-
-```bash
+# 查看作业参数
 scontrol show job
-
 scontrol show job JOB_ID
-```
-
-参数包括：
-```bash
+# 参数包括
 UserId|WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime
-```
 
-
-查看特定队列特定状态的节点
-```bash
+# 查看特定队列特定状态的节点：
 sinfo --partition=64c512g -N | grep 'drain'
 ```
-
 
 
 ---
 
 ### PBS 任务调度系统
 
-manager 为此作业调度系统。
+- manager 为此作业调度系统。
+- 常用命令：`qsub` - 提交任务；`qdel` - 取消任务
+- `submit` 命令是孔老师写的一个 PBS 任务提交脚本。
+- `-nc` 参数含义：不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**。
+- 提交任务命令会自动生成对应的 `PBS.batch` 脚本；当提交的任务出错时，修改 `PBS.batch` 脚本内容，之后可使用 `qsub PBS.batch` 命令提交任务。
 
-常用命令：`qsub` - 提交作业；`qdel` - 取消作业
-
-
-VASP 任务提交命令
 ```bash
+# VASP 任务提交命令
 submit -nc -n 8 vasp
-
 submit -n 8 vasp
-```
 
-
-LAMMPS 任务提交命令
-```bash
+# LAMMPS 任务提交命令
 submit -nc -n 8 lmp -in in.file
-
 submit -n 8 lmp -in in.file
 ```
 
-- `submit` 命令是孔老师写的一个 PBS 任务提交脚本。
-- `-nc` 参数的含义是不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**。
-- 上述命令会自动生成对应的 `PBS.batch` 脚本；**当提交的任务出错时，并进行修改后，可以使用 `qsub PBS.batch` 命令提交任务。**
-
-
 ---
 
-**manager 中与 PBS 相关的一些 alias 设置**
+manager 中与 PBS 相关的一些 alias 设置
 
-q 相关命令均由 qstat 延伸：
 ```bash
+# 查看 q 相关命令 alias
+alias | grep ^q
+
+# q 相关命令均由 qstat 延伸
 alias q='qstat -u yangsl'
 alias qq='pestat'
 alias qa='qstat -a'
 alias qn='qstat -u yangsl|wc -l|awk '\\''{if ($1>0) print "Number of jobs by yangsl: " $1-5; else print "Number of jobs by yangsl: 0"}'\\'';qstat -a|wc -l|awk '\\''{print "Number of jobs by all: " $1-5}'\\'''
 ```
 
-查看方法：
-```bash
-alias | grep ^q
-```
-
-- `q` - 查看自己任务的状态；
 - `qstat` - 查看所有任务的状态；
+- `q` - 查看自己任务的状态；
 - `qa` - 查看所有任务的状态（比 qstat 显示的信息更多一些）；
 - `qq` - 查看计算节点的状态（`excl` - 正在运行；`free` - 空闲；`down` - 出现故障）；
 - `run` - 查看自己任务的结果输出路径和信息；
 - `qn` - 查看自己提交任务的数量和 manager 目前已提交的任务总数；
-- `ssh node02` - 连接计算节点；任务到了截止时间后程序会终止，只会输出 `error` 和 `out` 文件，可以通过 `ssh node` 节点到计算该任务的节点中去，在 `scratch` 文件夹中可以找到该任务计算的结果；
+- `ssh node02` - 连接计算节点；任务到了截止时间后程序会终止，只会输出 `error` 和 `out` 文件，可以通过 `ssh node` 节点到计算该任务的节点中去，在 `scratch` 目录中可以找到该任务计算的结果；
 - 计算时间：
-    - `Elap Time` 为**实际时间**（小时: 分）；`Req'd Time` 为**截止计算时间**（240 小时）；
-    - `Time Use` 为**实际时间 * 节点数。**
+    - `Elap Time` 为实际时间（小时: 分）；`Req'd Time` 为截止计算时间（240 小时）；
+    - `Time Use` 为实际时间 \* 节点数。
 
 
 ---
@@ -476,9 +442,7 @@ GPU 价格：2 元/卡/小时（dgx2队列 V100 GPU）
 
 ---
 
-- 超算软件模块使用
-
->[软件模块使用方法 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/module.html)
+- 超算软件模块使用：[软件模块使用方法 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/module.html)
 
 ```bash
 module avail/av         # 查看超算预部署软件模块
@@ -489,15 +453,13 @@ module purge            # 清除所有已加载软件模块
 module show [MODULE]    # 列出该模块的信息，如路径、环境变量等
 ```
 
-**查看 module load 相关软件模块的 lib 和 include 路径方法：**
+查看 module load 相关软件模块的 lib 和 include 路径方法：
 
-`module load boost` 相关版本后，使用 `module show boost` 命令可以查到 `boost` 的 `lib` 库位置，然后使用命令 `grep -rn "libboost_python" /path/to/lib/*` 检索相应的库文件
+`module load boost` 相关版本后，使用 `module show boost` 命令可以查到 `boost` 的 `lib` 库位置，使用 `grep -rn "libboost_python" /path/to/lib/*` 命令检索相应的库文件
 
 ---
 
-- 超算代理相关设置
-
->[数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
+- 超算代理相关设置：[常见问题 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/faq.html#id1)
 
 思源一号克隆 Github repo（或 wget 下载远程文件） 速度慢或无法进行；pi 则正常。
 
@@ -505,8 +467,8 @@ module show [MODULE]    # 列出该模块的信息，如路径、环境变量等
 
 计算节点是通过 proxy 节点代理进行网络访问的，因此一些软件需要特定的代理设置。需要找到软件的配置文件，修改软件的代理设置。
 
-查看代理：
 ```bash
+# 查看代理
 echo $http_proxy $https_proxy $no_proxy
 ```
 
@@ -595,7 +557,8 @@ SBATCH 相关参数
 
 #### VASP
 
-module load 超算中的 VASP
+- module load 的 VASP
+
 ```bash
 #!/bin/bash
 
@@ -617,7 +580,8 @@ mpirun vasp_std
 
 ---
 
-本地编译的 VASP 版本
+- 本地编译的 VASP
+
 ```bash
 #!/bin/bash
 
@@ -639,7 +603,7 @@ ulimit -s unlimited
 export OMP_NUM_THREADS=1
 export I_MPI_ADJUST_REDUCE=3
 
-mpirun $HOME/bin/vasp_std
+mpirun ${HOME}/bin/vasp_std
 ```
 
 
@@ -658,6 +622,8 @@ export I_MPI_ADJUST_REDUCE=3
 ---
 
 #### LAMMPS
+
+- 思源一号 LAMMPS
 
 ```bash
 #!/bin/bash
@@ -678,7 +644,8 @@ mpirun lmp -i in.test
 
 ---
 
-超算 Pi 新 CPU 队列 LAMMPS 任务提交脚本示例
+- 超算 Pi 新 CPU 队列 LAMMPS
+
 ```bash
 #!/bin/bash
 
@@ -690,6 +657,7 @@ mpirun lmp -i in.test
 #SBATCH -e %j.err
 
 module purge
+
 module load lammps/20230802-oneapi-2021.4.0
 
 mpirun lmp -in in.test
@@ -743,7 +711,7 @@ bash test.sh
 
 ### 任务状态检查
 
-任务提交后，会出现 `jobid.err` 和 `jobid.out` 文件：
+任务提交后，会生成 `jobid.err` 和 `jobid.out` 文件：
 
 - `err` 文件为空（大小为 0），表示提交的任务未出错；
 - `err` 文件不为空（大小不为 0），表示提交的任务出错；需查看 `err` 文件中的出错提示，进行修改。
@@ -753,9 +721,7 @@ bash test.sh
 
 ### 相关问题
 
-- [x] `mpirun` 和 `srun` 的区别是什么？intel 编译套件？
-
->[srun和mpirun的区别](http://bbs.keinsci.com/thread-23497-1-1.html)
+- [x] `mpirun` 和 `srun` 的区别是什么？intel 编译套件？[srun和mpirun的区别](http://bbs.keinsci.com/thread-23497-1-1.html)
 
 - srun 是 slurm 作业调度系统的一个命令，mpirun 是 mpi（实现形式有 openmpi，mpich，intel mpi 等）的一个命令，两者在效率方面是无法直接比较的。
 - 当你用 slurm 作业调度系统的时候，你可以通过 srun 提交作业，提交的作业如果是 mpi 并行的，那么它会去调用相应的 mpirun 来运行作业，这两个就是这样一个关系
@@ -769,15 +735,13 @@ bash test.sh
 
 >[数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
 
-超算中进行数据传输一般在 data 节点上进行。超算传输节点：
+超算进行数据传输一般在 data 节点上进行。超算传输节点：
 
-- Pi
 ```bash
+# Pi
 data.hpc.sjtu.edu.cn
-```
 
-- 思源一号
-```bash
+# 思源一号
 sydata.hpc.sjtu.edu.cn
 ```
 
@@ -788,24 +752,27 @@ sydata.hpc.sjtu.edu.cn
 
 主要使用 scp 和 rsync 两个命令：
 
-- scp（Secure Copy）是一种安全的文件传输协议，它使用 SSH（Secure Shell）协议来加密和传输文件。SCP 允许你将文件从一个系统复制到另一个系统，也可以在本地系统和远程系统之间传输文件。它提供了对远程系统的安全访问，并使用类似于 cp（复制）命令的语法来指定源文件和目标位置。
-- rsync 可以通过检测源和目标文件之间的差异，仅传输发生更改的部分，从而在网络带宽和传输时间上提供更好的性能。
+- scp：Secure Copy，是一种安全的文件传输协议，它使用 SSH（Secure Shell）协议来加密和传输文件。SCP 允许你将文件从一个系统复制到另一个系统，也可以在本地系统和远程系统之间传输文件。它提供了对远程系统的安全访问，并使用类似于 cp（复制）命令的语法来指定源文件和目标位置。
+- rsync：可以通过检测源和目标文件之间的差异，仅传输发生更改的部分，从而在网络带宽和传输时间上提供更好的性能。
 
 ---
 
 - scp: `scp -r src_path dest_path`
+
 ```bash
-# 将manager的数据上传到master上
+# 将 manager 的数据上传到 master 上
 scp -r 1.manager yangsl@master:/home/yangsl/test
 
-# 将master的数据下载到manager上
+# 将 master 的数据下载到 manager 上
 scp -r yangsl@master:/home/yangsl/test/1.master .
 
 scp -r mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/tests/1.sy .
+
 scp -r 1.manager mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/tests
 ```
 
 - rsync: `rsync -avu src_path dest_path`
+
 ```bash
 # 将manager的数据上传到master上
 rsync -avu 1.manager yangsl@master:/home/yangsl/test
@@ -817,7 +784,8 @@ rsync -avu mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/t
 rsync -avu 1.manager mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/tests
 ```
 
-**注：rsync 的部分参数介绍：**
+注：rsync 的部分参数介绍：
+
 - `a, --archive` - 归档模式。保持文件属性和目录结构，并递归地复制子目录。这是最常用的 rsync 选项，相当于 `rlptgoD`。
 - `r, --recursive` - 递归地复制目录和子目录。
 - `l, --links` - 处理符号链接。保持符号链接的属性。
@@ -841,7 +809,7 @@ rsync -avu 1.manager mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/msekl
 
 ### 客户端
 
-主要使用 WinSCP；免密登录方式如下：
+软件主要使用 WinSCP；免密登录操作见下图：
 
 ![WinSCP 免密登录](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/test-2023-06-04-17-42-44.png)
 
@@ -850,9 +818,8 @@ rsync -avu 1.manager mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/msekl
 
 ### manager 与超算间的数据传输
 
-upload 与 download 脚本
+上传与下载：upload 与 download 脚本
 
-上传与下载：
 - manager 与 Pi：`upload -s P` 或将 `P` 改成 `H` 或 `h`
 - manager 与思源一号：将 `P` 改成 `s`
 - `which upload` 或 `which download`，**查看其可执行文件位置与源码内容**
@@ -871,7 +838,7 @@ download -s s siyuan/path manager/path
 
 ## 程序编译/安装
 
-**注：在超算上编译程序，由于登录节点资源有限，需在计算节点上进行，需申请临时计算节点（一个核即可）**。
+- 在超算上编译程序，由于登录节点资源有限，需在计算节点上进行，需申请临时计算节点（一个核即可）。
 
 ```bash
 # 思源一号
@@ -1450,8 +1417,8 @@ sqs 生成程序
 - 生成速度相比 ATAT 及 ICET 相关模块要快，功能也更多；
 - 10000 个原子构型的 sqs 生成速度在 2min 以内；
 - 可事先估计生成 sqs 结构所耗费时间；可计算 WC 参数等；
-- 浓度用具体的原子数目表示，比百分比形式更方便
-- 有 OpenMP 和 OpenMP+MPI 两种版本
+- 浓度用具体的原子数目表示，比百分比形式更方便；
+- 有 OpenMP 和 OpenMP+MPI 两种版本。
 
 ---
 
@@ -1509,11 +1476,12 @@ pip install .
 
 ### texlive
 
-- 思源一号中的 texlive 版本为 2018；pi 为 2013；manager 为 2015；master 未安装；无法安装 package
-- 可自定义安装路径
+- 思源一号中的 texlive 版本为 2018；pi 为 2013；manager 为 2015；master 未安装；无 root 权限，无法安装 package；
+- 可自定义安装路径；
+- texlive 不同版本需要安装的 packages 数目：medium 约 1395 项；full 约 4543 项。
 
 ```bash
-# 自定义安装路径 添加环境变量
+# 添加 自定义安装路径 环境变量
 export TEXLIVE_INSTALL_PREFIX=$HOME/src/texlive
 export TEXLIVE_INSTALL_TEXDIR=$HOME/src/texlive/2023
 
@@ -1521,16 +1489,16 @@ export TEXLIVE_INSTALL_TEXDIR=$HOME/src/texlive/2023
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzvf nstall-tl-unx.tar.gz
 cd install-tl-*
-perl ./install-tl --scheme=full  # 或 medium small
-# perl ./install-tl --scheme=full --no-interaction # 不进行交互
+# medium 或 small
+perl ./install-tl --scheme=full
+# 不进行交互
+# perl ./install-tl --scheme=full --no-interaction 
 
 # 安装完成后，再添加环境变量
 export MANPATH=$HOME/src/texlive/2023/texmf-dist/doc/man
 export INFOPATH=$HOME/src/texlive/2023/texmf-dist/doc/info
 export PATH=$HOME/src/texlive/2023/bin/x86_64-linux:$PATH
 ```
-
->texlive 不同版本需要安装的 packages 数目：medium 约 1395 项；full 约 4543 项。
 
 
 ---
@@ -1542,7 +1510,7 @@ WIP…
 
 ---
 
-### 源代码编译
+### 源码编译
 
 >[linux源码编译安装软件原理 - 人生的哲理 - 博客园](https://www.cnblogs.com/renshengdezheli/p/13954234.html)
 
@@ -1572,9 +1540,7 @@ make install
 **充值/费率**
 
 1. 计费系统 (HPC 账号和密码登陆)：[https://account.hpc.sjtu.edu.cn](https://account.hpc.sjtu.edu.cn)
-
 2. 充值方法：[https://net.sjtu.edu.cn/info/1244/2392.htm](https://net.sjtu.edu.cn/info/1244/2392.htm)
-
 3. 费率问题：请用交大邮箱发送至 hpc@stju.edu.cn 咨询
 
 ---
@@ -1588,11 +1554,8 @@ make install
 **登录问题**
 
 1. 连不上集群： [https://docs.hpc.sjtu.edu.cn/faq/index.html#id6](https://docs.hpc.sjtu.edu.cn/faq/index.html#id6)
-
 2. 登录常掉线：[https://docs.hpc.sjtu.edu.cn/login/index.html#id10](https://docs.hpc.sjtu.edu.cn/login/index.html#id10)
-
 3. HPC studio 登录问题：[https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error](https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error)
-
 4. Jupyter、Rstudio 连接提示需要输入密码：[https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio](https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio)
 
 ---
@@ -1600,9 +1563,7 @@ make install
 **排队问题**
 
 1. status 监控系统：[https://status.hpc.sjtu.edu.cn](https://status.hpc.sjtu.edu.cn)，该系统包含各队列上线节点数、排队数、作业数等信息
-
 2. π集群排队问题：思源一号可用 CPU/GPU 资源更多，欢迎使用思源一号。
-
 3. 通过 squeue 查看作业，NODELIST(REASON) 为 resources/priority 表示正常排队，AssocGrpNodeLimit 表示欠费。
 
 ---
@@ -1610,9 +1571,7 @@ make install
 **作业问题**
 
 1. 报错作业咨询，请将用户名、作业 ID、路径、作业脚本名邮件发至 [hpc@sjtu.edu.cn](mailto:hpc@sjtu.edu.cn)。
-
 2. NodeFail：计算节点故障导致作业运行失败，重新提交作业即可，失败作业的机时系统会自动返还。
-
 3. 运行程序时提示缺少 xxx.so 文件或者显示任务被 kill：如果是在登录节点出现该报错，请申请计算节点再做尝试。
 
 ---
@@ -1620,7 +1579,6 @@ make install
 **软件安装问题**
 
 1. 如何在集群上安装软件：[https://docs.hpc.sjtu.edu.cn/faq/index.html#id16](https://docs.hpc.sjtu.edu.cn/faq/index.html#id16)
-
 2. 商业软件问题：[https://docs.hpc.sjtu.edu.cn/faq/index.html#id17](https://docs.hpc.sjtu.edu.cn/faq/index.html#id17)
 
 ---

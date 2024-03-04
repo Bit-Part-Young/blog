@@ -26,16 +26,20 @@ password:
 
 - 具体实例
 	- stun 主题具体实例：[OrangeX4's Blog](https://orangex4.cool/)
+	- butterfly 主题具体实例：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)
 
 - 参考资料
 	- [Hexo 入门](https://blog.17lai.site/posts/40300608/#Hexo%E5%85%A5%E9%97%A8%E7%AF%87)
 	- [matery主题基本设置](https://blog.17lai.site/posts/40300608/#Hexo%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%AF%87)
+	- [基于 Hexo 从零开始搭建个人博客系列 - 唐志远](https://fe32.top/articles/hexo1600/)
 
 
 
 ---
 
 ## 使用
+
+### 快速搭建
 
 - 快速搭建
 
@@ -53,8 +57,8 @@ mkdir hexo-project & cd hexo-project & hexo init
 npm i
 
 # 安装主题
+# 非 butterfly，建议将 theme 中的 .git 删除
 git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
-# 建议将 theme 中的 .git 删除
 
 # 安装主题依赖
 npm i hexo-theme-butterfly --save
@@ -125,6 +129,18 @@ hexo clean  # hexo cl
 
 ### 部署
 
+ - 设置 `_config.yml` 中 `deploy` 选项（需安装 hexo-deployer-git 插件）
+
+```yaml
+deploy:
+  type: git
+  # repo public private 都可以
+  repository: git@github.com:username/repo.git
+  branch: main
+```
+
+---
+
 - Github Actions
 
 ```yaml
@@ -162,19 +178,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-```
-
-
----
-
- - 设置 `_config.yml` 中 `deploy` 选项（需安装 hexo-deployer-git 插件）
-
-```yaml
-deploy:
-  type: git
-  # repo public private 都可以
-  repository: git@github.com:username/repo.git
-  branch: main
 ```
 
 

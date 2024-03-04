@@ -209,9 +209,7 @@ buffer 相关
 
 ---
 
-### 个人 `~/.vimrc` 文件设置
-
->[.vimrc · Falling Slowly/dotfiles](https://gitee.com/yangsl306/dotfiles/blob/main/.vimrc)
+- 个人 `~/.vimrc` 文件设置：[.vimrc · Falling Slowly/dotfiles](https://gitee.com/yangsl306/dotfiles/blob/main/.vimrc)
 
 - 相对行号、高亮
 - 缩进设置
@@ -225,122 +223,26 @@ buffer 相关
 
 ---
 
-### vim 插件
+### Vim 插件
 
 - vim 插件推荐：[Great VIM Plugins in 2023 | hacking C++](https://hackingcpp.com/dev/vim_plugins.html)
+- [markdown-preview.nvim:](https://github.com/iamcco/markdown-preview.nvim)：预览 md 文件插件
 
-预览 md 文件插件
->[GitHub - iamcco/markdown-preview.nvim: markdown preview plugin for (neo)vim](https://github.com/iamcco/markdown-preview.nvim)
+- [plug](https://github.com/junegunn/vim-plug)：插件管理器；相关命令：
+    - `:PlugInstall` - 安装插件；`:PlugClean` - 卸载插件；`:PlugUpdate` - 更新插件
 
+- [airline](https://github.com/vim-airline/vim-airline.git)：状态栏美化；[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes.git)
+- [surround](https://github.com/tpope/vim-surround.git)
+- [nerdtree](https://github.com/preservim/nerdtree.git)：目录树；
+- [solarized8](https://github.com/lifepillar/vim-solarized8.git)：theme 美化
+- [easymotion](https://github.com/easymotion/vim-easymotion.git)：快速移动
+- [fzf.](https://github.com/junegunn/fzf.vim.git)：模糊搜索
+- [ale](https://github.com/dense-analysis/ale.git)：异步代码检查和修复
+- [coc.nvim](https://github.com/neoclide/coc.nvim)：提供代码自动补全、语法检查和语言服务器支持
+- [ultisnips](https://github.com/SirVer/ultisnips)：代码片段（snippets）
+- [lammps.vim](https://github.com/tommason14/lammps.vim.git)：LAMMPS 输入参数高亮
+- [vasp.vim](https://github.com/Lattay/vasp.vim.git)：VASP 输入文件参数高亮
 
----
-
-
-
-- [plug](https://github.com/junegunn/vim-plug)：插件管理器
-
-
-相关命令：
-- `:PlugInstall` - 安装插件；`:PlugClean` - 卸载插件；`:PlugUpdate` - 更新插件
-
-
----
-
-#### airline
-
->[GitHub - vim-airline/vim-airline: lean & mean status/tabline for vim that's light as air](https://github.com/vim-airline/vim-airline.git)
-
->[GitHub - vim-airline/vim-airline-themes: A collection of themes for vim-airline](https://github.com/vim-airline/vim-airline-themes.git)
-
-状态栏美化
-
-
----
-
-#### surround
-
->[GitHub - tpope/vim-surround: surround.vim: Delete/change/add parentheses/quotes/XML-tags/much more with ease](https://github.com/tpope/vim-surround.git)
-
-
----
-
-#### nerdtree
-
->[GitHub - preservim/nerdtree: A tree explorer plugin for vim.](https://github.com/preservim/nerdtree.git)
-
-目录树
-
-
----
-
-#### solarized8
-
->[GitHub - lifepillar/vim-solarized8: Optimized Solarized colorschemes. Best served with true-color terminals!](https://github.com/lifepillar/vim-solarized8.git)
-
-theme 美化
-
-
----
-
-#### easymotion
-
->[GitHub - easymotion/vim-easymotion](https://github.com/easymotion/vim-easymotion.git)
-
-快速移动
-
-
----
-
-#### fzf.vim
-
->[GitHub - junegunn/fzf.vim: fzf vim](https://github.com/junegunn/fzf.vim.git)
-
-模糊搜索
-
-
----
-
-#### ale
-
->[GitHub - dense-analysis/ale](https://github.com/dense-analysis/ale.git)
-
-异步代码检查和修复插件
-
-
----
-
-#### coc.vim
-
->[GitHub - neoclide/coc.nvim](https://github.com/neoclide/coc.nvim)
-
-提供代码自动补全、语法检查和语言服务器支持
-
-
----
-
-#### ultisnips
-
->[GitHub - SirVer/ultisnips](https://github.com/SirVer/ultisnips)
-
-代码片段（snippet）插件
-
-
----
-
-#### lammps.vim
-
->[GitHub - tommason14/lammps.vim](https://github.com/tommason14/lammps.vim.git)
-
-LAMMPS 输入参数高亮
-
-
----
-
-#### vasp.vim
-
->[GitHub - Lattay/vasp.vim: A Vim/Neovim syntax plugin for VASP's input files](https://github.com/Lattay/vasp.vim.git)
-
-VASP 输入文件参数高亮
 
 
 ---
@@ -376,7 +278,3 @@ make install
 ### 设置
 
 >[GitHub - bryant-video/neovim-tutorial](https://github.com/bryant-video/neovim-tutorial)
-
-
-
----

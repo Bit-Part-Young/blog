@@ -128,6 +128,8 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 ### 软件/程序安装及设置
 
+>[🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
+
 >网络上下载的程序包安装到 Mac 上，需将包（`*.app`）移动到 applications 里；卸载：直接将其移到废纸篓
 
 - 软件包安装、管理工具：Homebrew
@@ -397,6 +399,7 @@ sudo xattr -d com.apple.quarantine "/Applications/PicGo.app"
 
 ### 其他
 
+- Mac 终端模拟器（Terminal、iTerm）ssh 连接远程服务器，打开 GUI 程序：[Enable X11 forward for ssh to load images from remote server on MacOS Mojave · GitHub](https://gist.github.com/fengyuentau/7c43c06fb563752b6947affaf4677f2a)
 - 文件创建 Mac 无法直接创建文件（可通过终端 `touch` 命令或安装 “超级右键”软件），只能创建文件夹
 - Apple ID 相关问题：此 Apple ID 尚未在 app store 使用（弹出“检查”窗口时，会出现要求完善支付方式信息内容；macOS 11 在检查这步一直无法弹出后面的内容，将版本更新至最新无此问题）
 - 蓝牙耳机连接：长按 Redmi Airdots3 Pro 耳机盒的开关机键；将 Bose qc45 电源键推至右侧一段时间
