@@ -21,7 +21,7 @@ password:
 
 - 官网：[Hexo](https://hexo.io/)
 
-- 主题：[butterfly](https://github.com/jerryc127/hexo-theme-butterfly)、[icarus](https://github.com/ppoffice/hexo-theme-icarus)、[volantis](https://github.com/volantis-x/hexo-theme-volantis/)、[fluido](https://github.com/fluid-dev/hexo-theme-fluid)、[stun](https://github.com/liuyib/hexo-theme-stun)、[matery](https://github.com/blinkfox/hexo-theme-matery)
+- 主题：[butterfly](https://github.com/jerryc127/hexo-theme-butterfly)、[icarus](https://github.com/ppoffice/hexo-theme-icarus)、[volantis](https://github.com/volantis-x/hexo-theme-volantis/)、[fluido](https://github.com/fluid-dev/hexo-theme-fluid)、[stun](https://github.com/liuyib/hexo-theme-stun)、[matery](https://github.com/blinkfox/hexo-theme-matery)、[maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
 	- 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
 
 - 具体实例
@@ -33,6 +33,8 @@ password:
 	- [matery主题基本设置](https://blog.17lai.site/posts/40300608/#Hexo%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%AF%87)
 	- [基于 Hexo 从零开始搭建个人博客系列 - 唐志远](https://fe32.top/articles/hexo1600/)
 
+
+- [ ] hexo 如何使链接标题为 - 连接，而非 |
 
 
 ---

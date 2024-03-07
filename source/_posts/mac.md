@@ -43,7 +43,7 @@ Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富…
 - Mac 中的大部分程序的**设置快捷键**都是 `command + ,`
 - 正常的鼠标接入 Mac，滚轮控制的上下滚动与 Windows 是相反的
 - macOS 对大小写不敏感，Linux 和 Windows 对大小写敏感
-- [修改用户名](https://support.apple.com/zh-cn/102547)
+- [修改用户名](https://support.apple.com/zh-cn/102547)：需创建另一个用户，登录该用户，在其系统设置中修改原用户名
 - [删除用户](https://support.apple.com/zh-cn/guide/mac-help/mchlp1557/mac)
 - [Apple ID 申请](https://support.apple.com/zh-cn/108647)
 - 英文大小写转换：点按「中/英」键即可切换中英文；切换成大写，长按两秒「中英」键，直至亮灯；按住 shift 键的同时输入字母

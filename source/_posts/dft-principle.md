@@ -20,6 +20,10 @@ password:
 
 参考资料：
 
+
+[\[自制课程\] 密度泛函理论（DFT）速训班\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1fZ421h7dp)
+
+
 《计算材料学》华中科技大学 配套资源
 >[materialssimulation.com/book](http://www.materialssimulation.com/book)
 

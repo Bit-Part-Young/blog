@@ -50,17 +50,80 @@ password:
 
 ---
 
-#### Linux 端安装配置 zsh
+#### 安装
+
+- Ubuntu: `sudo apt install zsh`
+- Arch Linux: `sudo pacman -S zsh`
+
+---
+
+- 源码编译：适用于服务器及超算平台；zsh 编译依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
+
+编译 ncurses
 
 ```bash
-############ 安装 zsh ############
-# Ubuntu
-sudo apt install zsh
-# Arch Linux
-sudo pacman -S zsh
+wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certificate
+
+./configure --prefix=${HOME}/local CXXFLAGS="-fPIC" CFLAGS="-fPIC"
+
+make -j && make install
+```
+
+---
+
+编译 zsh
+
+```bash
+wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/download -O zsh-5.9.tar.xz --no-check-certificate
+
+./configure --prefix="${HOME}/local" CPPFLAGS="-I${HOME}/local/include" LDFLAGS="-L${HOME}/local/lib"
+
+make -j && make install
+```
+
+---
+
+设置 zsh 为默认 shell：；无 root 权限：
+
+```bash
+# 有 root 权限
+chsh -s /bin/zsh
+
+# 无 root 权限 在 ~/.bashrc_profile 添加以下内容（不建议）
+export PATH=$HOME/bin:$PATH
+export SHELL=`which zsh`
+[ -f "$SHELL" ] && exec "$SHELL" -l
+```
+
+---
+
+- Windows：
+	- 两种方式：WSL+zsh，git bash+zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
+	- Windows Terminal 以及 VSCode 本地设置默认终端为 git bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
+
+下载 zsh 包；复制 `etc/`、`usr/` 到 Git 安装目录中；打开 Git Bash，执行命令 `zsh`；设置 zsh 为默认 shell，在 `.bashrc` 添加：
+
+```bash
+wget https://mirror.msys2.org/msys/x86_64/zsh-5.9-2-x86_64.pkg.tar.zst
+
+tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
+```
+
+```bash
+ # Enable zsh
+ if [ -t 1 ]; then
+    exec zsh
+ fi
+```
 
 
-############ 安装 ohmyzsh ############
+---
+
+#### 配置
+
+- 安装 ohmyzsh
+
+```bash
 # gitee 源
 # via curl
 sh -c "$(curl -fsSL https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh)"
@@ -72,11 +135,11 @@ sh -c "$(wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # via wget
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
+- 插件下载：zsh-completions（自动补全）、zsh-syntax-highlighting（高亮）、zsh-autosuggestions（建议）、powerlevel10k（主题）
 
-############ 插件下载 ############
-# 自动补全、高亮、建议：zsh-completions、zsh-syntax-highlighting、zsh-autosuggestions；
-# 主题下载：powerlevel10k
+```bash
 # github 源
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
@@ -90,17 +153,19 @@ git clone https://gitee.com/yuhldr/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-com
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 
 
-############ 备份 ~/.zshrc（如果有）############
-cp ~/.zshrc ~/.zshrc.bak
+############ ############
 
-############ 更新 ohmyzsh ############
-omz update
 
-############ 配置 powerlevel10k ############
-p10k configure
+############  ############
+
+
+############  ############
+
 ```
 
->下载安装好 ohmyzsh 和 powerlevel10k 后，重新登录，会进入配置 powerlevel10k 的交互，按照指示自定义设置即可。
+- 备份 ~/.zshrc（如果有）：`cp ~/.zshrc ~/.zshrc.bak`；更新 ohmyzsh：omz update；配置 powerlevel10k：p10k configure
+
+- 下载安装好 ohmyzsh 和 powerlevel10k 后，重新登录，会进入配置 powerlevel10k 的交互，按照指示自定义设置即可。
 
 
 ---
@@ -124,31 +189,6 @@ zsh-completions
 ---
 
 #### Windows 端安装配置 zsh
-
-两种方式：WSL+zsh，git bash+zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
-
-windows terminal 以及 vscode 本地设置默认终端为 git bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
-
----
-
-- 下载 zsh 包
-
-```bash
-wget https://mirror.msys2.org/msys/x86_64/zsh-5.9-2-x86_64.pkg.tar.zst
-
-tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
-```
-
-- 复制 `etc/`、`usr/` 到 Git 安装目录中
-- 打开 Git Bash，执行命令 `zsh`
-- 设置 zsh 为默认 shell，在 `.bashrc` 添加
-
-```bash
- # Enable zsh
- if [ -t 1 ]; then
-    exec zsh
- fi
-```
 
 - 安装、配置 ohmyzsh
 - 修改 Windows Terminal 的 `settings.json` 内容
@@ -177,46 +217,6 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 }
 ```
 
-
----
-
-#### 源码编译
-
-服务器及超算平台需源码编译 zsh：zsh 编译依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
-
----
-
-- 编译 ncurses
-
-```bash
-wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certificate
-
-./configure --prefix=${HOME}/local CXXFLAGS="-fPIC" CFLAGS="-fPIC"
-
-make -j && make install
-```
-
----
-
-- 编译 zsh
-
-```bash
-wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/download -O zsh-5.9.tar.xz --no-check-certificate
-
-./configure --prefix="${HOME}/local" CPPFLAGS="-I${HOME}/local/include" LDFLAGS="-L${HOME}/local/lib"
-
-make -j && make install
-```
-
----
-
-- 设置 zsh 为默认 shell：有 root 权限：`chsh -s /bin/zsh`；无 root 权限：在 `~/.bashrc_profile` 添加以下内容（不建议）
-
-```bash
-export PATH=$HOME/bin:$PATH
-export SHELL=`which zsh`
-[ -f "$SHELL" ] && exec "$SHELL" -l
-```
 
 
 ---

@@ -972,9 +972,12 @@ sudo pacman -S protobuf
 
 ### Intel oneAPI
 
->[https://blog.csdn.net/weixin_42487488/article/details/115066980](https://blog.csdn.net/weixin_42487488/article/details/115066980)
+- 参考：[安装 Intel® oneAPI Base Toolkit 和 Intel® oneAPI HPC](https://blog.csdn.net/weixin_42487488/article/details/115066980)
+- Intel-oneAPI 中的 BLAS 和 LAPACK 库路径：`intel/oneapi/mkl/<version>/lib/intel64`
+- Intel oneAPI 在官网只能下载最新版本；官网未对 Ubuntu23.04 进行测试；旧版下载：[Intel](https://get.hpc.dev/vault/intel/?sort=name&order=desc)
+- Intel-oneAPI 2024 版开始没有了 icc 和 icpc
 
-Intel® oneAPI Base Toolkit 2024 版包含的东西
+- Intel® oneAPI Base Toolkit 2024 版包含的东西
 
 ```text
 Intel® oneAPI Collective Communications Library
@@ -993,7 +996,7 @@ Intel® VTune™ Profiler
 Optional: Intel® FPGA Add-on for oneAPI Base Toolkit
 ```
 
-Intel® oneAPI HPC Toolkit 2024 版包含的东西
+- Intel® oneAPI HPC Toolkit 2024 版包含的东西
 
 ```text
 # 缺少 C++ Compiler Classic
@@ -1004,10 +1007,9 @@ Intel® MPI Library
 Intel® Trace Analyzer and Collector
 ```
 
-
 ---
 
-安装 Intel® oneAPI Base Toolkit 和 Intel® oneAPI HPC Toolkit（先安 Base，再安 HPC）
+- 安装 Intel® oneAPI Base Toolkit 和 Intel® oneAPI HPC Toolkit（先 Base，后 HPC）
 
 ```bash
 # 下载 Offline 安装版本
@@ -1021,7 +1023,7 @@ sudo sh ./l_HPCKit_p_XXX_offline.sh
 source /opt/intel/oneapi/setvars.sh intel64
 ```
 
-检查
+- 检查
 
 ```bash
 icc -v
@@ -1036,8 +1038,6 @@ icpx -v
 
 ---
 
-- Intel oneAPI 在官网只能下载最新版本；官网未对 Ubuntu23.04 进行测试；旧版下载：[intel](https://get.hpc.dev/vault/intel/?sort=name&order=desc)
-- Intel-oneAPI 2024 版开始没有了 icc 和 icpc
 - VASP 5.4.4 和 6.3.0 版本编译用到的编译器是 icc icpc mpiifort
 - Intel oneAPI 卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)
 

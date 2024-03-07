@@ -557,7 +557,7 @@ SBATCH 相关参数
 
 #### VASP
 
-- module load 的 VASP
+- 思源一号 VASP
 
 ```bash
 #!/bin/bash
@@ -572,6 +572,7 @@ SBATCH 相关参数
 module purge
 
 module load vasp/5.4.4-intel-2021.4.0
+# module load vasp/6.2.1-intel-2021.4.0-cuda-11.5.0
 
 ulimit -s unlimited
 
@@ -594,6 +595,7 @@ mpirun vasp_std
 
 module purge
 
+# 导入 oneAPI 套件
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
@@ -713,8 +715,18 @@ bash test.sh
 
 任务提交后，会生成 `jobid.err` 和 `jobid.out` 文件：
 
-- `err` 文件为空（大小为 0），表示提交的任务未出错；
-- `err` 文件不为空（大小不为 0），表示提交的任务出错；需查看 `err` 文件中的出错提示，进行修改。
+- `err` 文件为空（大部分情况下），表示提交的任务未出错
+- `err` 文件不为空，表示提交的任务出错；需查看 `err` 文件中的出错提示，进行修改
+- 若 `err`、`out` 文件出现以下内容，大概率为超算平台出现故障，请与相关负责人联系
+
+```text
+# err 文件内容
+/tmp/slurmd/jobid/slurm_script: line 24: mpirun: command not found
+
+# out 文件内容
+couldn't read file "/usr/share/Modules/libexec/modulecmd.tcl": no such file or directory
+```
+
 
 
 ---
@@ -1304,13 +1316,15 @@ module purge
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
+# 建议再导入该 oneAPI 模块
+module load intel-oneapi-tbb/2021.4.0
 
 # 编译配置
 mkdir build && cd build
 # C++ 等编译器均为 GNU套件的
 cmake -C ../cmake/presets/most.cmake ../cmake
 
-# oneapi 可 可替换成 intel
+# oneapi 可替换成 intel
 # oneapi IntelLLVM C++ 编译器为 intel oneapi 的 icpx
 # intel Intel C++ 编译器为 intel oneapi 的 icpc
 cmake \

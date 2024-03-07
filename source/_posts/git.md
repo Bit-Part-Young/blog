@@ -34,6 +34,15 @@ git ls-tree --full-tree -r --name-only HEAD
 git filter-branch
 ```
 
+```bash
+# 可以线性化提交历史
+git rebase --root
+```
+
+[线性化提交历史 | Argvchs の小窝](https://argvchs.github.io/2023/02/26/linearize-commit-history/)
+
+- [x] git 如何忽略空行的变化（忽略的话，对同步会不利，不建议）
+
 
 ---
 
@@ -659,10 +668,13 @@ git status --short --branch
 # 撤销整个暂存区的 add 操作
 git reset
 
+# 撤回最后一次 commit 保留代码修改
+git reset HEAD~
+# --hard 不保留代码修改
+git reset HEAD~ --hard
+
 # 撤销指定文件 add 操作
 git reset <file>
-
-git reset --hard
 
 # 退回到指定的 commit hash 值所在版本
 git reset --hard <commit_hash>
@@ -706,25 +718,28 @@ git tag v1.0.0
 # 新建带注释标签
 git tag -a v1.0.0 -m 'Nb-Si projects scripts until on 20230723'
 
-# 推送标签到orgin源上
+# push 标签
 git push origin v1.0.0
-
-# 将本地所有的标签都推送到远程仓库
+# push 所有标签
 git push origin --tags
 
-# 删除标签
+# 删除本地标签
 git tag -d v0.0.1
 
 # 删除远程标签
 git push origin :refs/tags/v0.0.1
+# 删除所有远程标签
+git push origin --delete $(git tag -l)
 
-# 获取远程所有内容包括标签
+# pull 远程所有内容包括标签
 git pull --all
 
+# 列出标签
+git tag -l
 # 列出标签及其注释
 git tag -ln
 
-# 查看具体某个标签信息
+# 查看具体标签信息
 git show v1.0.0
 ```
 

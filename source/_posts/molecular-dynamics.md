@@ -25,6 +25,8 @@ molecular dynamics 叫分子运动学更合适
 
 >[Notes on MD hands-on session of MSE6701H-CHN - CodiMD](https://notes.sjtu.edu.cn/s/ULArhqGqt)
 
+C++/Python 实现 MD（待测试）
+[GitHub - GiovanniBussi/simplemd: A simple Lennard-Jones molecular dynamics software](https://github.com/GiovanniBussi/simplemd)
 
 参考资料：
 
