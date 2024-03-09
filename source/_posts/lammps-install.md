@@ -1,11 +1,11 @@
 ---
-title: LAMMPS 安装与使用
+title: LAMMPS 安装
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
-summary: LAMMPS 安装与使用
-description: LAMMPS 安装与使用
+summary: LAMMPS 安装
+description: LAMMPS 安装
 tags:
   - LAMMPS
   - 分子动力学
@@ -16,42 +16,37 @@ abbrlink: "58117"
 password:
 ---
 
-# LAMMPS 安装与使用
+# LAMMPS 安装
 
-## 介绍
-
----
-
-### 参考资料
-
-LAMMPS 官网：[LAMMPS Molecular Dynamics Simulator](https://www.lammps.org)
-
-LAMMPS 手册：[LAMMPS Documentation (2 Aug 2023 version) — LAMMPS documentation](https://docs.lammps.org/Manual.html)
-
-教程：[LAMMPS教程](https://mp.weixin.qq.com/s/y80KyKUvI-46S7VGcuO5gQ)
-
-所有版本：[LAMMPS Source Download Repository](https://download.lammps.org/tars/index.html)
-
+LAMMPS 所有版本：[LAMMPS Source Download Repository](https://download.lammps.org/tars/index.html)
 
 ---
 
-## 安装
+### cmake 编译
 
-使用 cmake 编译（超算平台）
+适用于较新版本的 LAMMPS
+
+most.cmake 安装的 package 数目：64
+all_on.cmake 安装的 package 数目：92
+oneapi.cmake 和 intel.cmake 不会安装 package
+
 ```bash
 wget https://download.lammps.org/tars/lammps-2Aug2023.tar.gz
 tar -xzvf lammps-2Aug2023.tar.gz
 cd lammps-2Aug2023
 
+# 导入 oneAPI 套件
 module purge
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
-# pi 上建议再 load 以下模块
+# 建议再导入该 oneAPI 模块
+module load intel-oneapi-tbb/2021.4.0
+# Pi 上建议再 load 以下模块
 module load gcc/11.2.0
 module load cmake/3.26.3-gcc-11.2.0
 
-# 创建 build 路径并编译
+# 创建 build 路径并配置编译选项
 # 只含 一些基础的 packages
 mkdir build-basic && cd build-basic
 cmake -C ../cmake/presets/basic.cmake ../cmake
@@ -68,6 +63,8 @@ make
 
 示例
 ```bash
+-- Enabled packages: <None>
+
 -- Enabled packages: KSPACE;MANYBODY;MOLECULE;RIGID
 
 -- Enabled packages: AMOEBA;ASPHERE;BOCS;BODY;BPM;BROWNIAN;CG-DNA;CG-SPICA;CLASS2;COLLOID;COLVARS;CORESHELL;DIELECTRIC;DIFFRACTION;DIPOLE;DPD-BASIC;DPD-MESO;DPD-REACT;DPD-SMOOTH;DRUDE;EFF;EXTRA-COMPUTE;EXTRA-DUMP;EXTRA-FIX;EXTRA-MOLECULE;EXTRA-PAIR;FEP;GRANULAR;INTEL;INTERLAYER;KSPACE;MANIFOLD;MANYBODY;MC;MEAM;MESONT;MGPT;MISC;ML-IAP;ML-POD;ML-RANN;ML-SNAP;MOFFF;MOLECULE;OPENMP;OPT;ORIENT;PERI;PHONON;PLUGIN;POEMS;PTM;QEQ;QTB;REACTION;REAXFF;REPLICA;RIGID;SHOCK;SMTBQ;SPH;SPIN;SRD;TALLY;UEF;YAFF
@@ -81,9 +78,125 @@ lmp -h
 ```
 
 
+
+取消使用 JPEG 选项：`-D WITH_JPEG=off`（cmake 配置编译选项时会自动检查）
+>[8.6.1. Using CMake with LAMMPS — LAMMPS documentation](https://docs.lammps.org/Howto_cmake.html)
+
+
+
+
+---
+
+### make 编译
+
+进入 src 目录
+
+```bash
+# 查看 make 所有选项
+make
+
+make clean-all
+
+make yes-<package>
+
+make package-update
+
+# 编译串行版本
+make serial
+# 编译并行版本
+make mpi
+```
+
+### MC2 LAMMPS 版本编译
+
+- LAMMPS 版本：22Aug2018
+- gibbs_multireplica.ccp 和 gibbs_multireplica.h 需要用到 LAPACK，使用 `make intel_cpu` 命令，由于 master、超算无 libjpeg 库，因此需修改/注释 Makefile.intel_cpu（文件路径：`MAKE/OPTION`） 中的 jpeg 相关选项（共 4 处）
+
+```bash
+wget https://download.lammps.org/tars/lammps-22Aug2018.tar.gz
+
+# 修改/注释 jpeg 相关选项
+LMP_INC =   -DLAMMPS_GZIP
+# LMP_INC = -DLAMMPS_GZIP -DLAMMPS_JPEG
+
+# JPG_INC =
+# JPG_PATH =
+# JPG_LIB = -ljpeg
+```
+
+```bash
+# 检查是否已安装 libjpeg
+dpkg -l | grep -i 'libjpeg'  # Ubuntu
+rpm -qa | grep -i 'libjpeg'  # Centos
+yum list installed | grep -i 'libjpeg'  # Centos
+
+# 安装 libjpeg
+sudo apt install libjpeg-dev
+
+# 导入 oneAPI 套件
+module purge
+module load intel-oneapi-compilers/2021.4.0
+module load intel-oneapi-mpi/2021.4.0
+module load intel-oneapi-mkl/2021.4.0
+# 未导入该模块会报错
+module load intel-oneapi-tbb/2021.4.0
+
+cd src/
+
+# 第一次编译
+make clean-all
+make yes-misc
+make yes-user-misc
+make yes-user-meamc
+make yes-mc
+make yes-replica
+make yes-manybody
+make package-update
+make intel_cpu
+
+# 复制 gibbs_multireplica.ccp 及头文件到 USER-MISC 目录
+
+# 第二次编译
+make package-update
+make intel_cpu
+```
+
+
+---
+
+相关报错
+
+- `make mpi` 编译报错：对 `dgelsd_`（LAPACK 里的东西 ） 未定义的引用；改用 `make intel_cpu`
+
+```text
+/usr/bin/ld: gibbs_multireplica.o: in function `LAMMPS_NS::GibbsMultiReplica::inverse(double*, double*, double*, double)':
+/home/yangsl/src/lammps-22Aug18-MC2/src/Obj_mpi/../gibbs_multireplica.cpp:2871: undefined reference to `dgelsd_'
+/usr/bin/ld: /home/yangsl/src/lammps-22Aug18-MC2/src/Obj_mpi/../gibbs_multireplica.cpp:2876: undefined reference to `dgelsd_'
+collect2: error: ld returned 1 exit status
+```
+
+---
+
+- 没有 libjpeg 库：修改/注释 Makefile.intel_cpu 中的 JPEG 相关选项（共 4 处）
+
+```text
+../image.cpp(32): catastrophic error: cannot open source file "jpeglib.h"
+  #include "jpeglib.h"
+                      ^
+
+compilation aborted for ../image.cpp (code 4)
+```
+
+```text
+ld: cannot find -ljpeg: No such file or directory
+```
+
+
 ---
 
 ### Mac 安装 LAMMPS GUI
+
+限制较多，不推荐
 
 ```text
 LAMMPS and LAMMPS GUI universal binaries for macOS (arm64/x86_64)
