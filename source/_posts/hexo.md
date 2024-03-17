@@ -111,6 +111,8 @@ npm i hexo-theme-butterfly --save
 hexo g  # hexo generate; npm run build
 # 监视文件变动
 hexo g --watch
+# debug
+hexo g --debug
 
 # 实时预览
 hexo s  # hexo server; npm run server

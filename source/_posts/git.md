@@ -44,6 +44,13 @@ git rebase --root
 - [x] git 如何忽略空行的变化（忽略的话，对同步会不利，不建议）
 
 
+```bash
+# 查看文件每行最后一次的提交相关信息
+git blame [options] <file>
+```
+
+
+
 ---
 
 ### 相关概念
@@ -76,6 +83,8 @@ git lfs track "*.pdf -maxsize=100M"
 ---
 
 ### 参考资料
+
+>[Git Commands - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Git/Commands/)
 
 lec2：Git/GitHub 基础介绍
 >[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)

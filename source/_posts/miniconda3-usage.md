@@ -393,7 +393,7 @@ pip install -U numpy
 
 ### 用 venv 创建虚拟环境
 
-使用 `venv` 创建轻量级 " 虚拟环境 "
+使用 `venv` 创建轻量级 “ 虚拟环境 ”
 
 ```bash
 # 创建虚拟环境

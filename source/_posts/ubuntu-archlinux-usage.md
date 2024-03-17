@@ -43,7 +43,12 @@ password:
 
 #### 换源
 
-Ubuntu 软件源镜像：[ubuntu - 清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+- 修改软件源以加速 package 下载
+- 镜像源文件:
+	- Debian/Ubuntu - `/etc/apt/sources.list`；Ubuntu 软件源镜像：[ubuntu - 清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+	- Fedora/RHEL/CentOS - `/etc/yum.repos.d/` 或 `/etc/dnf/dnf.conf`
+	- Arch Linux - `/etc/pacman.d/mirrorlist`
+
 
 ```bash
 # 备份
@@ -282,8 +287,6 @@ InputMethod=
 
 #### package 安装
 
->[Install Linux apps using the Snap Store | Snapcraft](https://snapcraft.io/store)
-
 - apt 方式
 
 ```bash
@@ -291,14 +294,13 @@ sudo apt install <package>
 
 # 卸载 libreoffice
 sudo apt remove libreoffice-common
-# 卸载 firefox 
-# Linux 中原生的 firefox 不完整
+# 卸载 firefox Linux 中原生的 firefox 不完整
 sudo apt remove firefox
 ```
 
 ---
 
-- snap 方式
+- snap 方式：[Install Linux apps using the Snap Store | Snapcraft](https://snapcraft.io/store)
 
 ```bash
 sudo snap install <package>
@@ -314,7 +316,7 @@ sudo snap remove <package>
 
 ---
 
-- deb 方式
+- deb 方式：`.deb` 是 Ubuntu 和 Debian 的程序包格式； `.rpm` 是 Red Hat 等的程序包格式
 
 ```bash
 sudo apt install ./<package>.deb
@@ -323,8 +325,6 @@ sudo dpkg -i <package>
 # 删除 package
 sudo apt remove <package>
 ```
-
->`.deb` 是 Ubuntu 和 Debian 的程序包格式； `.rpm` 是 Red Hat 等的程序包格式
 
 ---
 
@@ -339,16 +339,14 @@ chmod +x <package>.AppImage
 rm <package>.AppImage
 ```
 
-可能会出现以下报错内容
-
+可能会出现以下报错内容：
 ```bash
 dlopen(): error loading libfuse.so.2 
 AppImages require FUSE to run. 
 You might still be able to extract the contents of this AppImage
 ```
 
-解决方法
-
+解决方法：
 ```bash
 sudo apt update
 sudo apt install libfuse2
@@ -361,9 +359,10 @@ sudo apt install libfuse2
 
 >[Ubuntu apt-get彻底卸载软件包\_apt卸载包\_享学IT的博客-CSDN博客](https://blog.csdn.net/get_set/article/details/51276609)
 
-`apt-cache` - 搜索、查看和管理 package 缓存
 
 ```bash
+apt-cache  # 搜索、查看和管理 package 缓存
+
 # 卸载 package 及删除其配置文件
 sudo apt --purge remove <package>
 sudo apt purge <package>
@@ -616,11 +615,9 @@ ifconfig
 
 ### 相关问题
 
-- 用户无 sudo 权限
-
-问题：`xxx is not in the sudoers file`
-
-解决方法：切换到 root 用户，修改 `/etc/sudoers` 内容
+- 用户无 sudo 权限：
+	- 问题：`xxx is not in the sudoers file`
+	- 解决方法：切换到 root 用户，修改 `/etc/sudoers` 内容
 
 ```bash
 # User privilege specification
@@ -629,9 +626,13 @@ root    ALL=(ALL:ALL) ALL
 xxx    ALL=(ALL:ALL) ALL
 ```
 
----
-
 - Ubuntu KDE 关闭开机时的虚拟键盘：[KDE Plasma, virtual keyboard on login - Ask Ubuntu](https://askubuntu.com/questions/1445190/kde-plasma-virtual-keyboard-on-login)
+
+- 双系统 Win 比 Ubuntu 慢 8 小时：[怎样解决Windows10时间快和Ubuntu时间差问题？ - 知乎](https://www.zhihu.com/question/46525639)
+
+```bash
+timedatectl set-local-rtc 1
+```
 
 - [ ] 触控板，如何右键？
 

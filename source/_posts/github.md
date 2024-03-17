@@ -29,6 +29,7 @@ password:
 
 GitHub 每个仓库的总体积限制是 1GB（Gitee 是 500MB），每个仓库中每个 release 的最大文件体积限制是 2GB（Gitee 是 1GB）；release 数量没有明确的限制；对于普通用户，仓库（Repo 代码 + release 文件）的总体积限制为 100 GB
 
+- [x] 之前留言过的 Github issue，仍会收到后续通知， 如何关闭（在 Github 个人主页的 Notifications 处关闭）
 
 ---
 

@@ -136,13 +136,14 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 文件搜索、程序启动工具：Alfred 5
 - VPN 网络代理：ClashX
 - 代码编辑器：vscode-insiders（**vscode-insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
-- 终端工具：使用 iTerm
-- 远程服务器连接工具：Termius
+- 终端工具： iTerm、Tabby、Termius
 - 数据同步：交大云盘
 - 浏览器： Chrome
 - 压缩文件解压工具：The Unarchiver
 - 媒体播放器：IINA（开源）、Infuse（apple store 付费）
-- 笔记管理：Obsidian、Typora
+- Markdown 笔记管理：Obsidian、Typora
+- 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
+- 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
 - 图床：PicList（基于 PicGo 开发）、PicGo
 - 文献管理：Zotero
 - 构型可视化：VESTA、OVITO
@@ -174,6 +175,9 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 # 查找包
 brew search <package>
 
+# 显示安装包相关信息（是否安装、依赖等）
+brew info <package>
+
 # 安装
 brew install <package>
 
@@ -182,6 +186,9 @@ brew uninstall <package>
 
 # 显示已安装的包
 brew list
+
+# 诊断
+brew doctor
 
 # 显示可以升级的包
 brew outdated
@@ -192,9 +199,6 @@ brew upgrade <package>
 
 # 忽视依赖关系卸载
 brew uninstall --ignore-dependencies gcc
-
-# 显示安装包、文件数量，和总占用空间
-brew info
 
 # 查看已安装的包的依赖，树形显示
 brew deps --installed --tree
@@ -335,15 +339,31 @@ clang: error: unsupported option '-fopenmp'
 make: *** [atom.o] Error 1
 ```
 
-- Homebrew 安装的 voro++ 在编译 latgen 时会出问题，建议源码编译
-- brew 安装的 gsl 编译 dumpana 出现以下报错（源码编译也有）
+- dumpana 编译出现以下报错（应该是架构不兼容的原因）
 
 ```bash
-spherical.cpp:4:10: fatal error: gsl/gsl_sf_coupling.h: No such file or directory
-    4 | #include "gsl/gsl_sf_coupling.h"
-      |          ^~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make: *** [spherical.o] Error 1
+Undefined symbols for architecture arm64:
+  "__ZN4voro16voronoicell_base10face_areasERSt6vectorIdSaIdEE", referenced from:
+      __ZN8DumpAtom11Direct_VoroEPdP7__sFILES2_S2_ in atom.o
+      __ZN8DumpAtom11Radica_VoroEPdP7__sFILES2_S2_ in atom.o
+  "__ZN4voro16voronoicell_base13face_verticesERSt6vectorIiSaIiEE", referenced from:
+      __ZN8DumpAtom10RefineEdgeEiPN4voro20voronoicell_neighborEPidP7__sFILE in atom.o
+  "__ZN4voro16voronoicell_base15face_freq_tableERSt6vectorIiSaIiEE", referenced from:
+      __ZN8DumpAtom11Direct_VoroEPdP7__sFILES2_S2_ in atom.o
+      __ZN8DumpAtom11Radica_VoroEPdP7__sFILES2_S2_ in atom.o
+  "__ZN4voro16voronoicell_base8verticesERSt6vectorIdSaIdEE", referenced from:
+      __ZN8DumpAtom10RefineEdgeEiPN4voro20voronoicell_neighborEPidP7__sFILE in atom.o
+  "__ZN4voro16voronoicell_base8verticesEdddRSt6vectorIdSaIdEE", referenced from:
+      __ZN6Driver15OutputVoroCellsEv in output.o
+  "__ZN4voro20voronoicell_neighbor9neighborsERSt6vectorIiSaIiEE", referenced from:
+      __ZN8DumpAtom11Direct_VoroEPdP7__sFILES2_S2_ in atom.o
+      __ZN8DumpAtom11Radica_VoroEPdP7__sFILES2_S2_ in atom.o
+  "__ZNSt20bad_array_new_lengthC1Ev", referenced from:
+      __ZSt28__throw_bad_array_new_lengthB7v160006v in libvoro++.a(cell.o)
+      __ZSt28__throw_bad_array_new_lengthB7v160006v in libvoro++.a(unitcell.o)
+ld: symbol(s) not found for architecture arm64
+collect2: error: ld returned 1 exit status
+make: *** [dumpana] Error 1
 ```
 
 

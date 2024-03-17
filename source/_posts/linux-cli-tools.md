@@ -57,7 +57,7 @@ password:
 
 ---
 
-- 源码编译：适用于服务器及超算平台；zsh 编译依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
+- 源码编译：依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
 
 编译 ncurses
 
@@ -125,45 +125,31 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 
 ```bash
 # gitee 源
-# via curl
-sh -c "$(curl -fsSL https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh)"
-# via wget
-sh -c "$(wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -)"
+sh -c "$(curl -fsSL https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh)"  # via curl
+sh -c "$(wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -)"  # via wget
 
 # github 源
-# via curl
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# via wget
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  # via curl
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  # via wget
 ```
 
 - 插件下载：zsh-completions（自动补全）、zsh-syntax-highlighting（高亮）、zsh-autosuggestions（建议）、powerlevel10k（主题）
 
 ```bash
 # github 源
-git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
+git clone --depth=1 https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 
 # gitee 源
-git clone https://gitee.com/yuhldr/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
-git clone https://gitee.com/yuhldr/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
-git clone https://gitee.com/yuhldr/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
+git clone --depth=1 https://gitee.com/yuhldr/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
+git clone --depth=1 https://gitee.com/yuhldr/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
+git clone --depth=1 https://gitee.com/yuhldr/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
-
-
-############ ############
-
-
-############  ############
-
-
-############  ############
-
 ```
 
-- 备份 ~/.zshrc（如果有）：`cp ~/.zshrc ~/.zshrc.bak`；更新 ohmyzsh：omz update；配置 powerlevel10k：p10k configure
+- 备份 ~/.zshrc（如果有）：`cp ~/.zshrc ~/.zshrc.bak`；更新 ohmyzsh：`omz update`；配置 powerlevel10k：`p10k configure`
 
 - 下载安装好 ohmyzsh 和 powerlevel10k 后，重新登录，会进入配置 powerlevel10k 的交互，按照指示自定义设置即可。
 
@@ -218,13 +204,12 @@ zsh-completions
 ```
 
 
-
 ---
 
 #### 相关问题
 
 - zsh 中的 `[nyae]` 的含义：[What does nyae mean in Zsh? - Stack Overflow](https://stackoverflow.com/questions/800182/what-does-nyae-mean-in-zsh)
-- zsh 安装后，可能会出现 `Home / End` 失灵问题，使用对应的快捷键：`Home = Ctrl + A`，`End = Ctrl + E`。
+- zsh 安装后，`Home / End` 键可能会失效，对应快捷键：`Home = Ctrl + A`，`End = Ctrl + E`。
 
 
 ---
@@ -232,10 +217,11 @@ zsh-completions
 ### 其他终端工具
 
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载二进制文件，x86_64-unknown-linux-gnu 版本）、[exa](https://github.com/ogham/exa)
-- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（可执行命令为 `rg`）
+- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（可执行命令为 `rg`）；过滤搜索：`-g`
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
+- 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)
 - 终端 markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
 - git 相关：[lazygit](https://github.com/jesseduffield/lazygit)
 - 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)
@@ -249,7 +235,3 @@ zsh-completions
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
 - neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
 - 其他小工具： cowsay、figlet、sl、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix、asciiquarium
-
----
-
-ripgrep 过滤搜索：`-g` 参数

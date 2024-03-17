@@ -63,77 +63,6 @@ Linux 内核与发行版之间的关系与区别
 
 ---
 
-**镜像源的设置与管理**
-
-修改软件源以加速 package 下载
-
-镜像源文件:
-
-- Debian/Ubuntu - `/etc/apt/sources.list` 。
-- Fedora/RHEL/CentOS - `/etc/yum.repos.d/` 或 `/etc/dnf/dnf.conf` 。
-- Arch Linux - `/etc/pacman.d/mirrorlist` 。
-
-
-镜像源文件内容示例（Ubuntu）
-```bash
-# 默认的 Ubuntu 仓库
-deb http://us.archive.ubuntu.com/ubuntu/ focal main restricted
-deb http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted
-deb http://us.archive.ubuntu.com/ubuntu/ focal universe
-deb http://us.archive.ubuntu.com/ubuntu/ focal-updates universe
-deb http://us.archive.ubuntu.com/ubuntu/ focal multiverse
-deb http://us.archive.ubuntu.com/ubuntu/ focal-updates multiverse
-deb http://us.archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
-  
-# 安全更新
-deb http://security.ubuntu.com/ubuntu focal-security main restricted
-deb http://security.ubuntu.com/ubuntu focal-security universe
-deb http://security.ubuntu.com/ubuntu focal-security multiverse
-
-# 可选：添加第三方软件仓库
-# deb http://example.com/ubuntu focal main
-  ```
-
-**修改方式**：将 `us.archive.ubuntu.com` 和 `security.ubuntu.com` 等地址替换镜像源地址，如 `mirrors.tuna.tsinghua.edu.cn`。
-
-
----
-
-**软件包管理**
-
-- Debian/Ubuntu - `apt` 或 `dpkg`。
-- Fedora/RHEL/CentOS - `yum` 或 `dnf`。
-- Arch Linux - `pacman`。
-
-```bash
-# 更新 package 列表
-sudo apt update
-# 升级 packages
-sudo apt upgrade
-# 安装 package
-sudo apt install <package>
-# 卸载 package
-sudo apt remove <package>
-# 清理缓存
-sudo apt clean
-
-# yum/dnf
-sudo yum check-update
-sudo yum upgrade
-sudo yum install <package>
-sudo yum remove <package>
-sudo yum clean all
-
-# 更新 package 列表并升级所有 pakcages
-sudo pacman -Syu
-sudo pacman -S <package>
-sudo pacman -R <package>
-sudo pacman -Sc
-```
-
-
----
-
 **SSH 配置**
 
 - 用户配置：`~/.ssh/config`
@@ -213,32 +142,38 @@ export PATH=$HOME/bin:$PATH
 
 >[Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
 
+>[Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
+
+- `man` - 查看命令帮助
+- `echo` - 打印字符串
+- `pwd` - 显示当前路径
+- `cd` - 切换目录
+- `ls` - 列出目录内容
+- `cat` - 打印文件内容
+- `head` & `tail` - 打印文件首尾内容
+- `less` - 逐页显示文件内容
+- `touch` - 创建文件/修改文件时间属性
+- `mkdir` - 创建目录；创建多级目录：`mkdir -p 1/2/3/4`
+- `mv` - 移动/重命名
+- `cp` - 复制
+- `rm` - 删除
+- `>`、`>>` - 标准输出流重定向
+- `<` - 标准输入流重定向
+- `2>`、`2>>` - 标准错误流重定向
+- `|` - 管道符
+- `rmdir` - 删除空目录
+- `tac` - 从最后一行显示文件内容
+
+- `cut` - 剪切命令
+
+
 注：简单命令直接列出来
 
 ```bash
-# This file lists some Linux commands that should be mastered.
-# For details, please check:
-#     https://www.hostinger.com/tutorials/linux-commands
-#     https://www.runoob.com/linux/linux-command-manual.html
-
 Basic:
-      ls
-      pwd
-      man
       which
-      cd
-      rm
-      cp
-      mv
-      cat
       more
-      less
-      mkdir
-      rmdir
-      touch
       grep
-      head
-      tail
       diff
       tar
       chmod
@@ -246,7 +181,6 @@ Basic:
       wget
       top
       history
-      echo
       uname
       hostname
       
@@ -268,39 +202,22 @@ Advanced:
 
 bash 快捷键
 ```bash
-##-----光标移动-----##
-crtl + A           # 光标移动到命令首（常用）
-crtl + E           # 光标移动到命令尾（常用）
-alt + B 或 ctrl + ←  # 光标向左移动一个单词
-alt + F 或 ctrl + →  # 光标向右移动一个单词
-crtl + B           # 光标向左移动一个字符
-crtl + F           # 光标向右移动一个字符
-
-##-----复制、粘贴、剪切与删除-----##
-Ctrl + Shift + C   # 复制；终端下
-Ctrl + Shift + V   # 粘贴；终端下
-Ctrl + Insert      # 复制；控制台下
-Shift + Insert     # 粘贴；控制台下
-crtl + U           # 删除光标前面的文字 （还有剪切功能）
-crtl + K           # 删除光标后面的文字 （还有剪切功能）
-crtl + Y           # 粘贴Ctrl+U或ctrl+K剪切的内容到光标前
-Ctrl + H           # 删除光标左方位置的字符
-Ctrl + D           # 删除光标右方位置的字符
-crtl + W           # 删除光标左方的单词（常用）
-alt + D            # 删除光标右方的单词（常用）
-
-##-----其他-----##
-crtl + _           # 回复之前的状态；撤销操作
-crtl + R           # 搜索之前打过的命令
-crtl + G           # 退出历史搜索模式
-crtl + ↓           # 跳到最底部
-crtl + L           # 清屏（不算清除内容） 
+Crtl + A              # 光标移动到命令首
+Crtl + E              # 光标移动到命令尾
+Alt + B / Ctrl + ←    # 光标向左移动一个单词
+Alt + F / Ctrl + →    # 光标向右移动一个单词
+Crtl + W              # 删除光标左方的单词
+Alt + D               # 删除光标右方的单词
+Crtl + R           # 搜索之前输入过的命令
+Crtl + _           # 回复之前的状态；撤销操作
+Crtl + G           # 退出历史搜索模式
+Crtl + ↓           # 跳到最底部
+Crtl + L           # 清屏（不算清除内容） 
 !!                 # 执行上一条命令
 ```
 
 
 
-man 查看命令帮助
 
 ```bash
 clear # 这个命令并非真正清空，只是把内容全部向上滚，让它们消失在视野中
@@ -308,14 +225,6 @@ reset # 这个命令是真正的清空
 ```
 
 
-
-```bash
-# 创建多级目录
-mkdir -p 1/2/3/4
-```
-
-
-cut 剪切命令
 
 
 dirname basename
@@ -328,10 +237,6 @@ ${file##.*}  # 删掉最后一个.及其右边的字符串
 ```
 
 
-
-rmdir 删除空目录
-
-tac 从最后一行显示文件内容
 
 nl 显示行号
 ```bash

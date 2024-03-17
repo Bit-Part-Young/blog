@@ -181,6 +181,8 @@ pip install pytest
 
 
 
+`db.select(sort)` 中的 `sort` 为 含 key 的 str，含 `-` 时，降序
+
 ---
 
 ## 常用模块
@@ -201,7 +203,7 @@ from ase.formula import Formula
 ats: Atoms
 # 化学式
 conf_symbol = ats.get_chemical_formula()
-# 成分
+# 成分 {'Al': 5, 'Ti': 1}
 struct_composition = Formula(conf_symbol).count()
 # 原子数
 natom = len(ats)

@@ -8,9 +8,9 @@ summary: pymatgen 安装与使用
 description: pymatgen 安装与使用
 tags:
   - pymatgen
-  - python
 categories:
   - 科研工具
+date: 2023-10-18 09:00:00
 abbrlink: "12496"
 password:
 ---
@@ -19,14 +19,12 @@ password:
 
 ## 介绍
 
-material project workshop
-2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
+material project workshop:
 
-2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
-
-2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
-
-2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
+- 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
+- 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
+- 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
+- 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
 
 
 
@@ -40,6 +38,18 @@ material project workshop
 
 mp-api：mp 的新 api；[https://docs.materialsproject.org/downloading-data/using-the-api/getting-started](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
 
+```bash
+pip install mp_api
+```
+
+
+结构相似度
+```python
+from pymatgen.analysis.structure_matcher import StructureMatcher
+
+sm = StructureMatcher()
+sm.fit(structure1, structure2)
+```
 
 
 pymatgen.io.vasp.outputs Outcar 类有 read_neb() 函数

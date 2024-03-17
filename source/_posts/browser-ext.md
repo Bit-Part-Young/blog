@@ -31,6 +31,7 @@ password:
 
 - 使用 Vim 快捷键浏览网页；[vimium的日常](https://coffee1993.github.io/2016/03/16/vimium%E7%9A%84%E6%97%A5%E5%B8%B8/)
 - 快捷键
+	- `?`：快捷键帮助
 	- `j`、`k` : 上下移动
 	- `J`、`K` (`shift + J`、`shitf + J`)： 上下移动标签页
 	- `x` : 关闭当前页面

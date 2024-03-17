@@ -56,7 +56,6 @@ mkdir build-most && cd build-most
 cmake -C ../cmake/presets/most.cmake ../cmake
 
 make
-# make -j 4
 ```
 
 >cmake 配置好 Makefile 文件之后，查看输出到屏幕的 `-- Enabled packages` 参数进行检验

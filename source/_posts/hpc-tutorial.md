@@ -315,8 +315,8 @@ scontrol show job JOB_ID
 # 参数包括
 UserId|WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime
 
-# 查看特定队列特定状态的节点：
-sinfo --partition=64c512g -N | grep 'drain'
+# 查看特定队列
+sinfo --partition=64c512g
 ```
 
 
@@ -857,7 +857,7 @@ download -s s siyuan/path manager/path
 srun -p 64c512g -n 1 --pty /bin/bash
 
 # Pi
-srun -p small -n 1 --pty /bin/bash
+srun -p cpu -n 1 --pty /bin/bash
 ```
 
 
