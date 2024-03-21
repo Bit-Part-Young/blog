@@ -43,12 +43,14 @@ Miniconda3： Python 环境管理工具，轻量级 Anaconda 发行版；与完�
 wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 # macOS
+brew install miniconda
+# or
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
 
 bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
-按 `Enter` 键、输入 `yes`；自定义设置 Miniconda3 安装路径，如：`~/src/miniconda3`。快结束安装时，会提示 `Do you wish the installer to initialize Miniconda3` 是否 `conda initialize`，输入 `yes`，其会在 `~/.bashrc` 或 `~/.zshrc` 添加以下内容，以后每次登录可直接使用 `conda`。
+- 按 `Enter` 键、输入 `yes`；自定义设置 Miniconda3 安装路径，如：`~/src/miniconda3`。快结束安装时，会提示 `Do you wish the installer to initialize Miniconda3` 是否 `conda initialize`，输入 `yes`，其会在 `~/.bashrc` 或 `~/.zshrc` 添加以下内容，以后每次登录可直接使用 `conda`。
 
 ```bash
 # >>> conda initialize >>>
@@ -68,14 +70,13 @@ unset __conda_setup
 
 ```
 
-安装完成后，登录会默认激活 base 环境，可通过以下命令取消（建议取消）
+- 安装完成后，登录会默认激活 base 环境，可通过以下命令取消（建议取消）。
 
 ```bash
 conda config --set auto_activate_base false
 ```
 
-
-超算平台可直接 `module load miniconda`，再 `conda init bash`，会在 `~/.bashrc` 中添加上面的 `conda initialize` 内容。
+- 超算平台可直接 `module load miniconda`，运行 `conda init bash` 会在 `~/.bashrc` 中添加 `conda initialize` 内容。
 
 
 ---
@@ -83,15 +84,12 @@ conda config --set auto_activate_base false
 ### 换源
 
 - conda 换源
-
-conda 默认使用官方源（conda-forge）进行 package 安装和更新，但经常下载速度较慢。可以通过更换国内镜像源（如 [清华镜像源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)）加速下载。
-
->有些 package 及其最新版本只能通过官方源安装（如 compilers），因此有时需留意某些 package 的安装要求。
+	- conda 默认使用官方源（conda-forge）进行 package 安装和更新，但经常下载速度较慢。可以通过更换国内镜像源（如 [清华镜像源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)）加速下载。
+	- 有些 package 及其最新版本只能通过官方源安装（如 compilers），因此有时需留意某些 package 的安装要求。
 
 ---
 
 备份 `~/.condarc`，在 `~/.condarc` 中添加以下内容：
-
 ```shell
 channels:
   - defaults
@@ -110,51 +108,31 @@ custom_channels:
   simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 ```
 
-
-查看 conda 相关设置
-
+conda 设置相关命令：
 ```bash
+# 查看 conda 相关设置
 conda config --show
-
 conda config --show-sources
+conda clean -i  # 清除索引缓存
 
-# 清除索引缓存
-conda clean -i
-```
-
-
-conda 设置（命令行形式）
-```bash
-# 获取指定配置项
+# 获取指定配置
 conda config --set key value
-# 添加配置项
-conda config --add key value
-# 移除配置项
-conda config --remove key value
-# 添加conda的源地址
-conda config --add channels <CHANNELNAME>
-# 移除conda的源地址
-conda config --remove channels <CHANNELNAME>
+conda config --add key value  # 添加
+conda config --remove key value  # 移除
+conda config --add channels <CHANNELNAME>  # 添加 conda 源
+conda config --remove channels <CHANNELNAME>  # 移除
 ```
 
 
 ---
 
-- pip 换源
-
->[pypi 清华镜像源](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)
-
-临时使用：
-
-```bash
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
-```
-
----
-
-设为默认：
+- pip 换源：[pypi 清华镜像源](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)
 
 ```bash 
+# 临时使用
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
+
+# 设为默认
 python -m pip install -U pip
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
@@ -164,7 +142,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### 卸载
 
-`rm -rf miniconda3`，将 `~/.bashrc` 或 `~/.zshrc` 中的 `conda initialize` 语句删除或注释，`source` 或重新登录使其生效。
+- `rm -rf miniconda3`，将 `~/.bashrc` 或 `~/.zshrc` 中的 `conda initialize` 语句删除或注释，`source` 或重新登录使其生效。
 
 
 
@@ -174,7 +152,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### conda 环境变量
 
->写 shell 或 Python 相关脚本时可能会用到以下 conda 环境变量
+写 shell 或 Python 相关脚本时可能会用到以下 conda 环境变量：
 
 | 环境变量 | 说明 |
 |:------------:|:------------:|
@@ -274,7 +252,7 @@ conda remove -n <ENVNAME> --all
 - 安装 package
 
 ```bash
-conda install numpy
+conda install <package>
 ```
 
 - 列出已安装 package
@@ -286,13 +264,13 @@ conda list
 - 查看具体 package 信息
 
 ```bash
-conda list numpy
+conda list <package>
 ```
 
 - 更新 package
 
 ```bash
-conda update numpy
+conda update <package>
 ```
 
 - 搜索可用 package
@@ -318,7 +296,7 @@ conda rename -n <ENVNAME> <NEWENVNAME>
 - 从已有环境克隆新环境
 
 ```bash
-conda create --clone <ENVNAME> -n <NEWENVNAME>
+conda create --clone <ENVNAME> -n <NEW_ENVNAME>
 ```
 
 
@@ -328,17 +306,18 @@ conda create --clone <ENVNAME> -n <NEWENVNAME>
 
 - 安装 package
 
-从 PyPI 安装
 ```bash
-pip install numpy
-```
+# PyPI 安装
+pip install <package>
+# 更新 package
+pip install -U <package>
 
-本地安装
-```bash
+# 本地安装
 pip install git+url
 pip install .
-pip install -e .
 pip install -r requirements.txt
+# editable mode
+pip install -e .
 python setup.py install
 python pip install ".[test]"
 
@@ -348,13 +327,11 @@ cd sparselm
 pip install .
 ```
 
-- 常用 packages
+- 常用 packages：多个 packages 一行命令安装可能出现报错，建议单个安装
 
 ```bash
 pip install pymatgen ase pyxtal scikit-learn ipython ipykernel tldr
 ```
-
->多个 packages 一行命令安装可能最后会报错，建议单个安装
 
 - 列出已安装 packages
 
@@ -362,10 +339,10 @@ pip install pymatgen ase pyxtal scikit-learn ipython ipykernel tldr
 pip freeze
 ```
 
-- 查看具体 package 信息
+- 查看具体 package 信息：该 `pip` 命令比 `conda list <package>` 命令更详细，可以查看 package 的版本、安装路径、依赖关系等信息
 
 ```bash
-pip show numpy
+pip show <package>
 
 # 示例
 Name: scikit-learn
@@ -380,33 +357,43 @@ Requires: joblib, numpy, scipy, threadpoolctl
 Required-by:
 ```
 
->该 `pip` 命令比 `conda list numpy` 命令更详细，可以查看 package 的版本、安装路径、依赖关系等信息。
-
-- 更新 package
-
-```bash
-pip install -U numpy
-```
-
 
 ---
 
 ### 用 venv 创建虚拟环境
 
-使用 `venv` 创建轻量级 “ 虚拟环境 ”
+- 使用 `venv` 创建轻量级 “虚拟环境”
+- VSCode 的 Python 插件无法直接识别由 `venv` 生成的虚拟环境，需手动输入解释器路径
 
 ```bash
-# 创建虚拟环境
-python -m venv venv
-
-# 激活
-source venv/bin/activate
-
-# 退出
-deactivate
+python -m venv venv  # 创建
+source venv/bin/activate  # 激活
+deactivate  # 退出
 ```
 
->VSCode 的 Python 插件无法直接识别由 venv 生成的虚拟环境，需手动输入解释器路径
+
+---
+
+### uv
+
+- 快速安装 Python package：[GitHub - astral-sh/uv: An extremely fast Python package installer and resolver, written in Rust.](https://github.com/astral-sh/uv)
+
+- 安装
+
+```bash
+# Linux macOS
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+- 使用
+
+```bash
+uv venv  # 创建虚拟环境 .venv/
+source .venv/bin/activate   # 激活
+
+# 安装 package；与 pip 基本一致
+uv pip install <package>
+```
 
 
 
@@ -426,7 +413,7 @@ deactivate
 conda activate ~/src/deepmd-kit
 
 # 添加符号链接
-ln -s ~/src/deepmd-kit ~/src/miniconda3/envs/<env_name>
+ln -s path/to/project path/to/miniconda3/envs/<env_name>
 
 conda activate <env_name>
 ```

@@ -38,7 +38,12 @@ WIP…
 
 官方 Doc：[Typst Documentation](https://typst.app/docs)
 
-很有用：[Typst 中文用户使用体验 | OrangeX4's Blog](https://orangex4.cool/post/typst-for-chinese/)、[About - Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
+很有用：
+
+- [Typst 中文用户使用体验 | OrangeX4's Blog](https://orangex4.cool/post/typst-for-chinese/)
+- [About - Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
+
+>[GitHub - OrangeX4/typst-talk: 并不复杂的 Typst 讲座 Typst is Simple](https://github.com/OrangeX4/typst-talk)
 
 >[GitHub - typst-doc-cn/tutorial: Typst中文教程](https://github.com/typst-doc-cn/tutorial)
 

@@ -49,6 +49,12 @@ brew install latexdiff
 波浪线：\~{}
 ```
 
+TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
+
+overleaf 的项目源码可以 push 到 Github 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
+
+
+
 ---
 
 ### 模板

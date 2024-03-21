@@ -22,22 +22,9 @@ password:
 
 ## 介绍
 
-WIP…
-
----
-
-### 参考资料
-
-精美科研绘图例子
->[Veusz 2D Examples](https://veusz.github.io/examples/)
-
-
-官方 cheatsheet
->[Matplotlib cheatsheets — Visualization with Python](https://matplotlib.org/cheatsheets/)
-
-
-matplotlib tutorial
->[GitHub - rougier/matplotlib-tutorial: Matplotlib tutorial for beginner](https://github.com/rougier/matplotlib-tutorial)
+- [官方 cheatsheet](https://matplotlib.org/cheatsheets/)
+- matplotlib tutorial：[GitHub - rougier/matplotlib-tutorial: Matplotlib tutorial for beginner](https://github.com/rougier/matplotlib-tutorial)
+- 精美科研绘图示例：[Veusz 2D Examples](https://veusz.github.io/examples/)
 
 
 
@@ -45,35 +32,29 @@ matplotlib tutorial
 
 ## 使用
 
-基本绘图
+- 函数式绘图：调用 `matplotlib.pyplot` 中的函数来创建图形，如 `plot()` 等；绘制子图较麻烦
 
-
-函数式绘图
 ```python
+import matplotlib.pyplot as plt
+import numpy as np
 
+x = np.linspace(0, 2 * np.pi, 100)
+y = np.sin(x)
+
+plt.plot(x, y, label="$y=\sin(x)$")
+
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+
+plt.show()
+
+# plt.savefig("sin.png")
 ```
-
-
-缺点：绘制子图时较麻烦
-
 
 ---
 
-对象式绘图
-
-优点：可直接操作子图
-
-
-`ax.set()` 函数
->[matplotlib.axes.Axes.set — Matplotlib 3.8.2 documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
-
-图例：`ax.legend()`
-
-`ncols` - 图例排布列数
-`loc` - 图例位置
-
-
-
+- 对象式绘图：通过显式创建 Figure 和 Axes 对象来创建绘图区域，然后在其上调用相应的方法绘制各种图形元素；绘制子图方便
 
 ```python
 import matplotlib.pyplot as plt
@@ -88,36 +69,80 @@ ax.plot(x, y, label="$y=\sin(x)$")
 
 ax.set_xlabel("x")
 ax.set_ylabel("y")
-# or
-ax.set(xlabel="x", ylabel="y")
 ax.legend()
 
-fig.savefig("sin.png")
-```
+plt.show()
 
+# fig.savefig("sin.png")
+```
 
 ---
 
+- 子图绘制
 
-marker 的 edgecolor 设置为黑色较美观
->[sci作图 | 计算材料学](https://ywwang0.github.io/2020/10/07/sci%E4%BD%9C%E5%9B%BE/)
 ```python
-plt.plot(
-    d,
-    r2te_rf,
-    "^",
-    ls="solid",
-    lw=1,
-    markeredgecolor="black",
-    markersize=8,
-    label="Test dataset(5 cases)",
-)
-```
+# 方式 1
+fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8, 6))
+# 方式 2
+fig, axs = plt.subplots(nrows=1, ncols=2)
 
+# 将 axs 扁平化，有利于 for 循环代码编写
+for i, ax in enumerate(axs.flat):
+	...
+```
 
 ---
 
-3d 绘图
+- 双 Y 轴
+
+```python
+ax1.plot(...)
+
+ax2 = ax.twinx()
+ax2.plot(...)
+
+# 解决双 Y 轴图列重叠问题
+lines, labels = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax2.legend(lines + lines2, labels + labels2)
+```
+
+---
+
+- 误差棒图
+
+```python
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [2, 3, 2, 4, 2]
+yerr = [[0.5, 1, 0.5, 1, 0.5], [1, 2, 1, 2, 1]]  # 下、上误差；需为正值
+yerr = [0.5, 1, 0.5, 1, 0.5]  # 上下误差一样
+
+fig, ax = plt.subplots()
+
+ax.errorbar(x, y, yerr=yerr, fmt="o", linewidth=1, capsize=6)
+
+ax.set(xlabel="X", ylabel="Y", title="Error Bar Example")
+
+plt.show()
+```
+
+---
+
+- colorbar 绘制
+
+```python
+scatter = ax.scatter(x, y, c=colors, cmap="bwr")
+
+cbar = fig.colorbar(scatter, ax=ax)
+cbar.set_label("colorbar label")
+```
+
+---
+
+- 3d 绘图
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
@@ -134,114 +159,15 @@ ax.scatter(x, y, z, c="b", marker="o", label="3d plot")
 
 ax.set(xlabel="X", ylabel="Y", zlabel="Z")
 ax.legend()
+
+plt.show()
 ```
-
-
 
 ---
 
-```python
-# f-string 对于在图中添加需要 LaTeX 格式的 text 效果不是很好，改用 str.replace()
-ax.text(3.0, 1.5, r"RMSE=cha$\,·\,10^{-5}$ Pa$\,·\,$s".replace("cha", str(score_rmse)))
-```
+- Times New Roman 字体问题：Linux 默认没有该字体，可将该字体拷贝到 `~/.fonts` 或 `~/.local/share/fonts`
 
-
----
-
-子图
-```python
-fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8, 6))
-
-# or
-fig, axs = plt.subplots(nrows=1, ncols=2)
-
-# 将 axs 扁平化，有利于 for 循环代码编写
-for i, ax in enumerate(axs.flat):
-	pass
-```
-
-
-```python
-# 调整子图之间的间距
-fig.subplots_adjust(hspace=0.0, wspace=0.0)
-
-# 将 Y 轴的刻度及 label 放到右边
-ax.yaxis.tick_right()
-ax.yaxis.set_label_position("right")
-```
-
-
----
-
-双 Y 轴
-```python
-ax.plot(...)
-
-ax2 = ax.twinx()
-ax2.plot(...)
-
-# 解决双 Y 轴图列重叠
-lines, labels = ax.get_legend_handles_labels()
-lines2, labels2 = ax2.get_legend_handles_labels()
-ax2.legend(lines + lines2, labels + labels2)
-```
-
-```python
-# 让axes及整体的figure呈现正方形
-ax.set_aspect("equal", adjustable="box")
-```
-
-
----
-
-误差棒图
-```python
-import matplotlib.pyplot as plt
-
-x = [1, 2, 3, 4, 5]
-y = [2, 3, 2, 4, 2]
-yerr = [[0.5, 1, 0.5, 1, 0.5], [1, 2, 1, 2, 1]]  # 下 上误差；需为正值
-yerr = [0.5, 1, 0.5, 1, 0.5]  # 上下误差一样
-
-fig, ax = plt.subplots()
-
-ax.errorbar(x, y, yerr=yerr, fmt="o", linewidth=1, capsize=6)
-
-ax.set(xlabel="X", ylabel="Y", title="Error Bar Example")
-
-fig.savefig("1.png")
-```
-
-
----
-
-设置 minor_tick
-```python
-# 设置 x 轴的 minor tick
-ax.set_xticks(range(0, 10, 1), minor=True)
-```
-
-
----
-
-x 轴 label 变成字符串
-```python
-ax.set_xticks()
-```
-
-
----
-
-参数设置
-
-
-matplotlib 的 Times New Roman 字体问题
->[Linux下Matplotlib画图New Times Roman字体设置 - 知乎](https://zhuanlan.zhihu.com/p/581869132)
->[Linux Matplotlib 安装 Times New Roman 字体 | Siaimes's blog](https://blog.siaimes.me/2021/12/09/p60.html)
-
-
-临时使用中文字体
->[Matplotlib学习笔记.md](https://github.com/LiuQixuan/PythonLearningNote/blob/master/Matplotlib%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+- 临时使用中文字体：[Matplotlib学习笔记.md](https://github.com/LiuQixuan/PythonLearningNote/blob/master/Matplotlib%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
 
 ```python
 import matplotlib
@@ -255,22 +181,87 @@ plt.ylabel("y 轴", fontproperties = zh_font)
 plt.legend(props={"family": "SimHei"})
 ```
 
+---
 
-
+- 较美观的点线图：[sci作图 - 计算材料学](https://ywwang0.github.io/2020/10/07/sci%E4%BD%9C%E5%9B%BE/)
 
 ```python
-plt.rcParams["axes.unicode_minus"] = False # 用来正常显示负号
+ax.plot(
+    x,
+    y,
+    "^",
+    ls="solid",
+    lw=1,
+    markeredgecolor="black",
+    markersize=8,
+    label="...",
+)
 ```
 
+---
 
-`matplotlibrc`：matplotlib 库的配置文件；路径：
+- `ax.set()` 函数：[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
+
+```python
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+# or
+ax.set(xlabel="x", ylabel="y")
+```
+
+- 图例：`ax.legend(ncols, loc, …)`；
+	- `ncols` - 图例排布列数
+	- `loc` - 图例位置
+
+- label 不在图例上显示：`label="_nolegend_"`
+
+- 手绘风格：[XKCD](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
+
+- 其他
+
+```python
+# x 轴 label 变成字符串
+ax.set_xticks()
+
+# 设置 x 轴的次刻度 minor tick
+ax.set_xticks(range(0, 10, 1), minor=True)
+
+# f-string 对于在图中添加需要 LaTeX 格式的 text 效果不是很好，改用 str.replace()
+ax.text(3.0, 1.5, r"RMSE=cha$\,·\,10^{-5}$ Pa$\,·\,$s".replace("cha", str(score_rmse)))
+
+# 调整子图之间的间距
+fig.subplots_adjust(hspace=0.0, wspace=0.0)
+
+# 将 Y 轴的刻度及 label 放到右边
+ax.yaxis.tick_right()
+ax.yaxis.set_label_position("right")
+
+# 设置 y 轴数值刻度间隔
+from matplotlib.ticker import MultipleLocator
+
+ax.yaxis.set_major_locator(MultipleLocator(0.01))
+
+# 让 figure 呈正方形
+ax.set_aspect("equal", adjustable="box")
+
+# 正常显示负号
+plt.rcParams["axes.unicode_minus"] = False
+```
+
+---
+
+- 查看 matplotlib 相关配置文件路径：
+	- [matplotlibrc](https://matplotlib.org/stable/users/explain/customizing.html#the-matplotlibrc-file)：matplotlib 库的配置文件（`matplotlib/mpl-data/matplotlibrc`）
+	- 字体路径：`matplotlib/mpl-data/mpl-data/fonts/ttf`
+	- 缓存路径：`~/.cache/matplotlib`
+
 ```python
 import matplotlib
 
 # matplotlib/mpl-data/matplotlibrc
 matplotlib.matplotlib_fname()
 
-# matplotlib/mpl-data/ 
+# matplotlib/mpl-data/
 # 该目录含字体所在路径：mpl-data/fonts/ttf
 matplotlib.get_data_path()
 
@@ -278,21 +269,10 @@ matplotlib.get_data_path()
 matplotlib.get_cachedir()
 ```
 
+---
 
-`matplotlibrc` 文件
->[Customizing Matplotlib with style sheets and rcParams — Matplotlib 3.8.0 documentation](https://matplotlib.org/stable/users/explain/customizing.html)
+- 查看 matplotlib 中的所有 rcParams
 
-
-
->[Bar chart with gradients — Matplotlib 3.8.0 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/gradient_bar.html#sphx-glr-gallery-lines-bars-and-markers-gradient-bar-py)
->
->[Multicolored lines — Matplotlib 3.8.0 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/multicolored_line.html#sphx-glr-gallery-lines-bars-and-markers-multicolored-line-py)
->
->[XKCD — Matplotlib 3.8.0 documentation](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
-
-
-
-matplotlib 中的所有 rcParams
 ```python
 import matplotlib.pyplot as plt
 

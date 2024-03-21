@@ -31,6 +31,7 @@ Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富…
 - [GitHub - serhii-londar/open-source-mac-os-apps: 🚀 Awesome list of open source applications for macOS. https://t.me/s/opensourcemacosapps](https://github.com/serhii-londar/open-source-mac-os-apps)
 - [GitHub - itcharge/macOS-Tips: macOS 系统的使用技巧介绍、常用软件推荐、效率工具推荐。](https://github.com/itcharge/macOS-Tips)
 - [大洋的朝九晚十的个人空间-大洋的朝九晚十个人主页-哔哩哔哩视频](https://space.bilibili.com/33734786)
+- [GitHub - macdao/ocds-guide-to-setting-up-mac: OCD's Guide to Setting up Mac](https://github.com/macdao/ocds-guide-to-setting-up-mac)
 
 
 ---
@@ -165,36 +166,23 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### Homebrew 使用
 
-大部分命令行工具及开源程序都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）。
+大部分开源命令行工具、程序和 GUI 程序（cask）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）。
 
 加速安装 Homebrew：[安装和使用 Homebrew｜韬秧道](https://blog.tauyoung.top/article/Homebrew/)
 
 相关命令：[Homebrew 备忘清单 &  homebrew cheatsheet &  Quick Reference](https://quickref.me/zh-CN/docs/homebrew.html)
 
 ```bash
-# 查找包
-brew search <package>
-
+brew install <package>  # 安装
+brew install --cask <package>  # 安装 GUI 程序
+brew uninstall <package>  # 卸载
+brew search <package>  # 查找
 # 显示安装包相关信息（是否安装、依赖等）
 brew info <package>
-
-# 安装
-brew install <package>
-
-# 卸载
-brew uninstall <package>
-
-# 显示已安装的包
-brew list
-
-# 诊断
-brew doctor
-
-# 显示可以升级的包
-brew outdated
-
-# 升级
-brew upgrade
+brew list  # 显示已安装的包
+brew doctor  # 诊断
+brew outdated   # 显示可以升级的包
+brew upgrade  # 升级
 brew upgrade <package>
 
 # 忽视依赖关系卸载
@@ -210,30 +198,21 @@ brew cleanup
 # 删除缓存
 brew cleanup --prune=all
 
-# 锁定包
-brew pin <package>
-# 取消锁定
-brew unpin <package>
+brew pin <package>  # 锁定包
+brew unpin <package>  # 取消锁定
 
 # 取消 Homebrew 对 homebrew/core 仓库的关注
 brew untap homebrew/core
 ```
 
-
 ---
 
-wget 安装（可能较耗时）
+#### 字体安装
 
----
-
- 字体安装
-
->[PowerShell with Oh My Posh as Default Shell on macOS - Half-Blood Programmer](https://halfblood.pro/powershell-on-macos/)
-
-方法一：
+方法一：[PowerShell with Oh My Posh as Default Shell on macOS - Half-Blood Programmer](https://halfblood.pro/powershell-on-macos/)
 
 ```bash
-# nerd font 字体
+# nerd font
 brew tap homebrew/cask-fonts
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-hack-nerd-font
@@ -241,14 +220,12 @@ brew install --cask font-hack-nerd-font
 # 可用 nerd font
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
 
-# 得意黑字体
+# 得意黑
 brew install font-smiley-sans
 
 # Mac 字体路径
-# 系统
-/Library/Fonts
-# 用户
-~/Library/Fonts
+/Library/Fonts  # 系统
+~/Library/Fonts  # 用户
 ```
 
 方法二：手动下载字体，双击安装字体
@@ -300,13 +277,32 @@ IINA 相关快捷键：
 #### MacTeX 安装与卸载
 
 - 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
-- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)；卸载 GUI，直接将 TeX 移入废纸篓；卸载 TeX Distribution；卸载 Ghostscript
+- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)；卸载 GUI，直接将 TeX 移入废纸篓；卸载 TeX Distribution；卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
 ```bash
 sudo rm -rf /Library/TeX
 sudo rm -rf /usr/local/texlive
 ```
 
+
+---
+
+#### Rime 输入法引擎 + 雾凇拼音
+
+- 参考：[RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
+
+
+```bash
+# 安装 Rime 鼠须管 输入法引擎
+brew install --cask squirrel
+
+# 安装配置管理工具
+git clone --depth=1 https://github.com/rime/plum
+cd plum
+
+# 安装 雾凇拼音
+bash rime-install iDvel/rime-ice:others/recipes/full
+```
 
 
 ---

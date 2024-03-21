@@ -493,7 +493,7 @@ Settings - Developer settings - Personal access tokens - Tokens(classic)
 
 ```bash
 # clone 深度
-git clone --depth 1 url
+git clone --depth 1 <url>
 
 # clone 多个分支
 git clone -b <branch1> -b <branch2> <url>
@@ -548,12 +548,16 @@ git config --list --show-origin
 
 ```bash
 git add file
+
+git add --patch  # 交互式
 ```
 
 
 ---
 
 ### commit
+
+>[创建没有任何改动的提交](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%94%B9%E5%8A%A8%E7%9A%84%E6%8F%90%E4%BA%A4)
 
 ```bash
 # 根据当前时间进行 commit
@@ -565,8 +569,6 @@ git commit --amend --no-edit -m "xxx"
 # 创建没有任何改动的提交
 git commit -m "empty" --allow-empty
 ```
-
->[创建没有任何改动的提交](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%94%B9%E5%8A%A8%E7%9A%84%E6%8F%90%E4%BA%A4)
 
 
 ---
@@ -584,6 +586,8 @@ git push
 
 ```bash
 git pull
+
+git pull --rebase
 ```
 
 
@@ -824,6 +828,7 @@ git diff --cached --stat
 ```bash
 # 将当前修改暂存到 stash 栈中
 git stash
+git stash push -- file  # 指定单个文件
 
 # 显示 stash 中的所有暂存
 git stash list
@@ -1120,6 +1125,8 @@ git remote prune origin
 
 >[如何使用 Git 只克隆部分文件 | 猎人杂货铺](https://hunterx.xyz/git-sparse-checkout.html#more)
 
+- `git sparse-checkout` - 可实现只克隆或检出指定文件夹，不下载所有内容
+- `--filter=blob:none` - 只获取元数据，不下载原始数据部分
 
 ```bash
 # 方式 1 速度更快
@@ -1131,9 +1138,6 @@ git clone --filter=blob:none --no-checkout <repo>
 git checkout origin/main -- <file> <folder>
 ```
 
->`git sparse-checkout` - 可实现只克隆或检出指定文件夹，不下载所有内容
-
->`--filter=blob:none` - 只获取元数据，不下载原始数据部分
 
 
 ---
@@ -1162,12 +1166,15 @@ wget https://gist.githubusercontent.com/user/GIST_ID/raw/filename -O filename
 
 >[git-命令自定义别名](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#git-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%AB%E5%90%8D)
 
+- 方式 1
+
 ```bash
-# 设置之后直接使用 git ls
+# git ls
 git config --global alias.ls "log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
 
-或在 `~/.gitconfig` 添加如下内容
+- 方式 2：在 `~/.gitconfig` 添加如下内容
+
 ```bash
 [alias]
   co = checkout
@@ -1183,12 +1190,9 @@ git config --global alias.ls "log --no-merges --color --graph --date=format:'%Y-
 
 ### GitHub 加速下载
 
->[Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD)
-
-安装 GitHub 增强插件
+安装 GitHub 增强插件：[Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD)
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401082135895.png)
-
 
 
 ---
@@ -1197,15 +1201,21 @@ git config --global alias.ls "log --no-merges --color --graph --date=format:'%Y-
 
 gitmoji-cli：git commit 时使用 emoji
 >[GitHub - carloscuesta/gitmoji-cli: A gitmoji interactive command line tool for using emojis on commits. 💻](https://github.com/carloscuesta/gitmoji-cli)
+
 >[gitmoji 速查表 - Git 重学指南](https://git-remake.wybxc.cc/%E9%99%84%E5%BD%95/gitmoji-%E9%80%9F%E6%9F%A5%E8%A1%A8.html)
 
 
 ---
 
-### 查看两个星期内的改动
+### 其他
 
 ```bash
+# 查看两个星期内的改动
 git whatchanged --since='2 weeks ago'
+
+# git 统计当天的提交数
+git rev-list --count --since=@{0:00} --before=@{23:59:59} HEAD
+git log --since="midnight" --until="now" --pretty=oneline | wc -l
 ```
 
 
