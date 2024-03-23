@@ -251,7 +251,7 @@ nl -b a file # 表示不论是否为空行，也同样列出行号
 ```bash
 history  # 返回所有的执行命令及其序号
 !! 执行最后一次的命令
-!number  # 执行第n个命令
+!n  # 执行第 n 个命令
 ```
 
 
@@ -259,57 +259,44 @@ history  # 返回所有的执行命令及其序号
 
 #### tar
 
-- 打包命令（和其他压缩程序（如 gzip bzip2 等）一起实现打包 + 压缩/解压缩）
+- 打包命令，不是压缩/解压缩命令（和其他压缩程序如 gzip、bzip2 等一起实现压缩/解压缩功能）
+- `x`：从归档中提取文件；`c`：创建归档；`-f`：指定归档文件名称
+- `z`：tar.gz 格式；`j`：tar.bz2 格式；`J`：tar.xz 格式；`--zstd`：tar.zst 格式
+- 不同压缩格式的文件体积大小：`tar.gz` > `tar.bz2` > `tar.xz`
 
-- `tar` 不是压缩/解压缩命令！打包和压缩是两个不同的概念；Linux 中很多压缩程序只能针对一个文件进行压缩，要压缩一大堆文件时，需先打成一个包（tar 命令），然后再用压缩程序进行压缩（如 gzip bzip2 等）
+---
 
+其他参数：
 
-不同压缩格式的文件体积大小：`.tar.gz` > `.tar.bz2` > `.tar.xz`
-```bash
-# .tar.gz格式
-tar -xzvf file.tar.gz
-# .tar.bz2格式
-tar -xjvf file.tar.bz2
-# .tar.xz格式
-tar -xJvf file.tar.xz
-# .tar.zst格式
-tar --zstd -xvf file.tar.zst
+- `-v` - 显示详细信息
+- `-t` - 显示归档文件中的内容，而非提取文件
+- `-C` - 指定路径
+- `--exclude` - 排除指定文件或目录
+- `--remove-files` - 删除原始文件，谨慎使用
 
-# 压缩
-tar -czvf ${fn}.tar.gz ${fn}
+---
 
-# 指定目录
-tar -xvf archive.tar -C /path/to/destination
-
-# 排除指定文件
-tar -cvf archive.tar --exclude=exclude_file file1 file2
-```
-
-
-- `-c` - 创建新的归档（ `.tar`）文件
-- `-x` - 从归档文件中提取文件
-- `-v` - 启用 verbose 模式，显示详细的操作信息
-- `-f` - 指定归档文件名称
-- `-t` - 列出归档文件中的内容，而不是提取文件
-- `-z` - gzip 压缩（`.tar.gz`）
-- `-j` - bzip2 压缩（ `.tar.bz2`）
-- `-C` - 指定解压缩文件的目标目录
-- `--exclude` - 排除指定文件或目录，不包含在归档中
-- `--remove-files` - 在创建归档后删除原始文件，谨慎使用
-
+示例：
 
 ```bash
-# 对于 .gz 结尾的文件
-gzip -d all.gz
+tar -xzvf file.tar.gz  # tar.gz 格式
+tar --zstd -xvf file.tar.zst  # tar.zst 格式
+
+tar -czvf ${fn}.tar.gz ${fn}  # 压缩
+
+# 指定解压缩路径
+tar -xzvf archive.tar.gz -C /path/destination
+
+# 排除指定文件压缩
+tar -czvf archive.tar.gz --exclude=exclude_file file1 file2
+
+gzip -d all.gz  # 解压 .gz 文件
 gunzip all.gz
 
-# 对于.zip
-# linux 下提供了 zip 和 unzip 程序
-unzip all.zip
+unzip all.zip  # 解压 .zip 文件
 
-# 查看压缩文件
-zcat # 可以查看.gz文件内容
-bzcat # 可以直接查看.bz2文件
+zcat  # 查看 .gz 文件
+bzcat  # 查看 .bz2 文件
 ```
 
 
@@ -317,10 +304,10 @@ bzcat # 可以直接查看.bz2文件
 
 #### ln
 
-`ln`: 给文件/目录设置软/字符链接（**需绝对路径**）
+给文件/目录设置软/字符链接（**需绝对路径**）
 
 ```bash
-ln -s src des
+ln -s path/src path/des
 ```
 
 
@@ -328,7 +315,7 @@ ln -s src des
 
 #### du
 
-`du`: 查看文件/目录大小
+查看文件/目录大小
 
 ```bash
 du -sh file/folder
@@ -342,7 +329,10 @@ du -sh file/folder | sort -h
 
 #### dirs
 
-`dirs`: 显示目录堆栈，按照最近访问的目录排序（oh-my-zsh 插件有关 dirs 的命令是 `d`）。
+显示目录堆栈，按照最近访问的目录排序（ohmyzsh 插件有关 dirs 的命令是 `d`）。
+
+参数：
+
 - `-l` - 展开 `~`
 - `-p` - 每个目录按行显示
 - `-v` - 每个目录按行显示并进行编号
@@ -353,7 +343,10 @@ du -sh file/folder | sort -h
 
 #### curl
 
-`curl`: 利用 URL 规则在命令行下工作的文件传输工具。常用参数：
+- 利用 URL 规则在命令行下工作的文件传输工具。
+
+常用参数：
+
 - `-o` 或 `--output` - 将下载的内容保存为指定的文件。
 - `-O` 或 `--remote-name` - 将下载的文件保存为远程文件的名称。
 - `--progress` - 显示进度条。
@@ -374,16 +367,17 @@ curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/instal
 
 #### wget
 
-`wget`: 从网络下载文件。常用参数：
-- `-P` 或 `--directory-prefix` - 指定下载文件的保存目录。
-- `-O` 或 `--output-document` - 将下载的文件保存为指定的文件名。
+从网络下载文件。常用参数：
+
+- `-P` - 指定下载文件的保存目录
+- `-O` - 将下载的文件保存为指定的文件名
 
 示例：
+
 ```bash
 wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O install.sh
 
-# `wget -O -` 的含义是将下载的内容输出到标准输出，而不是将其保存为文件
-wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -
+# wget -O - 将下载的内容输出到标准输出，而非将其保存为文件
 ```
 
 
@@ -391,7 +385,12 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -
 
 #### find
 
-`find` - 查找文件。常用参数：
+- 查找文件。
+
+---
+
+常用参数：
+
 - `-name` - 按照文件名查找
 - `-iname` - 按照文件名查找，忽略大小写
 - `-type` - 文件类型；`f` - 普通文件，`d` - 目录，`l` - 软链接
@@ -403,34 +402,35 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -
 - `-exec` - 执行指令
 - `-ok` - 执行指令，但需确认
 
-示例：
-```bash
-# 将找到的含_下划线的py脚本，并将其换成连字符-打印输出
-fes=$(find . -maxdepth -type f -name "*_*.py");for f in ${fes};do echo ${f//_/-}; done
-
-# 查找当前目录及子目录下所有以.txt和.pdf结尾的文件
-find . -type f -name "*.txt" -o -name "*.pdf"
-
-find . -type f -name "*.tar.gz" -exec rm {} +
-```
-
-
 与另外两个命令对比：
 - `whereis`：查找程序的二进制文件、源代码文件和 man 手册路径
 - `locate`：通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
+
+示例：
+
+```bash
+# 查找 txt 或 pdf 文件
+find . -type f -name "*.txt" -or -name "*.pdf"
+
+# 查找 tar.gz 文件并删除
+find . -type f -name "*.tar.gz" -exec rm {} +
+
+# 找到含下划线的 python 脚本，并将其换成连字符输出
+fes=$(find . -maxdepth 2 -type f -name "*_*.py"); for f in ${fes}; do echo ${f//_/-}; done
+```
 
 
 ---
 
 #### xargs
 
-`xargs`: 参数转化器，将输入数据转换为命令行参数并执行命令。常用于将管道或标准输入 (stdin) 的数据转换为命令的参数。
+- 参数转化器，将输入数据转换为命令行参数并执行命令。常用于将管道或标准输入 (stdin) 的数据转换为命令的参数。
 
 ```bash
-# 将find输出转为rm参数删除
+# 将 find 找到的文件删除
 find . -name *.tmp | xargs rm -f
 
-# 将输入转为多个参数执行命令
+# 每行 3 个输出
 echo "a b c d" | xargs -n 2 echo
 ```
 
@@ -439,7 +439,8 @@ echo "a b c d" | xargs -n 2 echo
 
 #### tee
 
-`tee`: 从标准输入读取数据并重定向到标准输出和文件（仍会输出到屏幕上；可用于 vasp 和 lammps 的提交命令，见 “ 拾梦的星星 “）
+- 从标准输入读取数据并重定向到标准输出和文件（仍会输出到屏幕上；可用于 vasp 和 lammps 的提交命令，见 “ 拾梦的星星 “）
+
 ```python
 echo linux | tee -a file
 ```
@@ -541,21 +542,72 @@ sed -n 4p file # 打印file中的第4行
 
 #### awk
 
-```bash
-# 打印奇数行
-awk 'NR % 2 == 1' file
+- 文本处理命令行工具
+- 将输入数据视为记录，每个记录又被进一步划分为字段
+- 默认分隔符为空格（可以为多个空格），指定分隔符（`-F:`）
+- awk 程序由模式和动作组成（可以没有模式）
+- `-v var=` 定义变量
+
+---
+
+awk 中的变量
+
+- `$0`：所有字段
+- `$n`：第 n 个字段
+- `NR`：记录行号
+- `NF`：记录字段数（列数）
+- `FNR`：记录文件数
+
+---
+
+awk 中的模式
+
+- `BEGIN`：在 awk 开始读取输入数据流之前执行一些初始化操作
+- `END`：在 awk 读取完输入数据流之后执行一些最终操作
+
+```awk
+BEGIN {
+   // code
+}
+
+END {
+   // code
+}
 ```
 
-awk 进行列拼接两个文本（空格为分隔符）
-```bash
-awk 'FNR==NR{a[NR]=$0;next}{print a[FNR],$0}' file1.txt file2.txt > concat.txt
-```
+---
 
+常用功能 awk 命令实现
 
 ```bash
--v 定义变量
-```
+awk '{print NR, $0}' file  # 输出文件内容并显示行号 
 
+awk 'END {print NR}' file  # 统计行数
+
+awk '{ nf = nf + NF } END { print nf }' file  # 返回行列数乘积
+
+awk '$3 == 0' file  # 输出第三列为 0 的行
+
+awk 'NR % 2 == 1' file  # 打印奇数行
+
+awk '{print $NF}' file  # 输出最后一列
+
+# 输出最后一行
+awk 'END { print $0 }' file
+awk '{ last = $0 } END { print last }' file
+
+# 将第 2 列输出成一行
+awk '{printf "%s ", $2}' file
+awk '{ names = names $2 " " } END { print names }' file
+
+awk '{printf "%s", $0} END {print ""}' file  # 将所有行输出成 1 行
+
+awk '{ temp = $1; $1 = $2; $2 = temp; print }' file  # 第 1、2 列交换
+
+awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}'  # 逆向排列
+
+awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # 列拼接文件
+```
 
 
 ---
