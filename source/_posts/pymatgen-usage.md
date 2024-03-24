@@ -55,12 +55,10 @@ sm.fit(structure1, structure2)
 pymatgen.io.vasp.outputs Outcar 类有 read_neb() 函数
 
 
-- [ ] pymatgen tool（不是很好用）
->[GitHub - haidi-ustc/maptools: A open source program for materials simulation data process, which is mainly based on Pymatgen code](https://github.com/haidi-ustc/maptools)
+- [ ] pymatgen tool（不是很好用）：[GitHub - haidi-ustc/maptools: A open source program for materials simulation data process, which is mainly based on Pymatgen code](https://github.com/haidi-ustc/maptools)
 
 
-解析 VASP 输出文件目录
->[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
+解析 VASP 输出文件目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
 
 ```python
 from atomate.vasp.drones import VaspDrone
@@ -77,7 +75,7 @@ print(task_doc.keys())
 ```python
 from pymatgen.io.vasp.sets import MPStaticSet
 
-# from_prev_calc为静态方法
+# from_prev_calc 为静态方法
 static_set = MPStaticSet.from_prev_calc("./VASP_Al16Cr10_example/")
 
 print(static_set.incar)
@@ -454,7 +452,7 @@ structures = transmuter.transformed_structures
 
 API：[http://pymatgen.org/modules.html](http://pymatgen.org/modules.html)
 
->[](https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/%E5%8C%85%E5%92%8C%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84.ipynb)[https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/包和模块结构.ipynb](https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/%E5%8C%85%E5%92%8C%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84.ipynb)
+>[ug-materials-simulation/pymatgen/包和模块结构.ipynb at master · xiangzhouzhang/ug-materials-simulation · GitHub](https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/%E5%8C%85%E5%92%8C%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84.ipynb)
 
 包 (package,subpackage) 是目录 (文件夹), 模块 (module,submodule) 是文件; import 既可以导入包和子包, 也可以导入模块和子模块;
 
@@ -629,14 +627,6 @@ pymatgen.transformations.transformation_abc
 
 ### structure
 
-```python
-from pymatgen.core.periodic_table import Element
-
-ele = Element("Nb")
-ele.is_metal
-```
-
-
 ---
 
 ### surface
@@ -661,57 +651,15 @@ pymatgen 表面生成无法指定具体的层数
 
 ### composition
 
->[module-pymatgen.core.composition](https://pymatgen.org/pymatgen.core.html#module-pymatgen.core.composition)
-
-```python
-from pymatgen.core.composition import Composition
-
-# 获取化学式的成分（dict形式）
-comp = Composition("LiFePO4")
-comp.as_dict()
-# output
-# {'Li': 1.0, 'Fe': 1.0, 'P': 1.0, 'O': 4.0}
-```
-
-
-
 ---
 
 ### periodic_table
-
-pymatgen 查看元素的价电子排布
-```python
-from pymatgen.core.periodic_table import Element
-
-
-element_list = ['B','Al','Si','Y','Ti','Zr','Hf','V','Nb','Cr','Mo','Fe','Co','Ni']
-for element in element_list:
-    ele_struc = Element(f"{element}").electronic_structure
-    print(f"{element}, {ele_struc}")
-```
-
-
 
 ---
 
 ## pymatgen.io.ase
 
-[pymatgen.io.ase.AseAtomsAdaptor](https://pymatgen.org/pymatgen.io.html#pymatgen.io.ase.AseAtomsAdaptor)
-
 `AseAtomsAdaptor` 将 ase 中的 `atoms` 类与 pymatgen 中的 `Structure` 类互相转换
-
-
-```python
-from ase.build import bulk
-from pymatgen.io.ase import AseAtomsAdaptor
-from pymatgen.core.structure import Structure
-
-atoms = bulk("Si", "diamond", a=5.44)
-struct = AseAtomsAdaptor.get_structure(atoms)
-
-struct = Structure.from_prototype(prototype="diamond", species=["Si"], a=5.44)
-atoms = AseAtomsAdaptor.get_atoms(struct)
-```
 
 
 
