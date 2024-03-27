@@ -131,12 +131,22 @@ plt.show()
 ---
 
 - colorbar 绘制
+	- colormap：从蓝到红渐变：`coolwarm`、`jet`、`bwr`
 
 ```python
-scatter = ax.scatter(x, y, c=colors, cmap="bwr")
-
-cbar = fig.colorbar(scatter, ax=ax)
+# 将 colorbar 放在图片右侧
+scatter_ax = ax.scatter(x, y, c=colors, cmap="bwr")
+cbar = fig.colorbar(scatter_ax, ax=ax)
 cbar.set_label("colorbar label")
+
+
+# 将 colorbar 水平放置并嵌在图中右下角
+fig, ax = plt.subplots(figsize=(8, 8))
+scatter_ax = ax.scatter(x, y, c=colors, cmap="bwr")
+# colorbar 位置；[x, y, width, height] 比例
+cbar_ax = ax.inset_axes([0.3, 0.05, 0.5, 0.05])
+# colorbar 水平放置
+fig.colorbar(scatter_ax, cax=cbar_ax, orientation="horizontal")
 ```
 
 ---
@@ -187,14 +197,14 @@ plt.legend(props={"family": "SimHei"})
 
 ```python
 ax.plot(
-    x,
-    y,
-    "^",
-    ls="solid",
-    lw=1,
-    markeredgecolor="black",
-    markersize=8,
-    label="...",
+    x,
+    y,
+    "^",
+    ls="solid",
+    lw=1,
+    markeredgecolor="black",
+    markersize=8,
+    label="...",
 )
 ```
 

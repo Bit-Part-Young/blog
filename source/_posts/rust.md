@@ -77,16 +77,15 @@ rustc *.rs
 cargo 相关命令
 
 ```bash
-# 安装 package
-cargo install <package>
-# --locked 确保安装时依赖项的版本与在 Cargo.lock 文件中锁定的版本完全一致
+cargo install <package>  # 安装 package
+cargo install <package> --force  # 若有新版本，覆盖旧版本
+# --locked 确保安装时依赖项的版本与在 Cargo.lock 文件中的版本完全一致
 cargo install --locked <package>
-# 若有新版本，覆盖旧版本
-cargo install <package> --force
+
 
 cargo add <lib>
 
-rustup update
+rustup update  # 更新 Rust 工具链
 ```
 
 

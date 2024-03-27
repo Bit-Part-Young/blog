@@ -222,6 +222,7 @@ zsh-completions
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
 - 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)
+- 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
 - 终端 markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
 - git 相关：[lazygit](https://github.com/jesseduffield/lazygit)
 - 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)

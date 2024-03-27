@@ -766,10 +766,12 @@ git show v1.0.0
 # 查看提交日志
 git log
 
-# 以一行的形式显示提交日志，commit_id 为 8 个字符
+# 以一行的形式显示提交日志，commit id 为 8 个字符
 git log --oneline
-# 完整的 commit_id
+# 完整的 commit id
 git log --pretty=oneline
+
+git log --pretty=%B  # 获取 commit message 内容
 
 # 显示倒数第几条 log
 git log -n N

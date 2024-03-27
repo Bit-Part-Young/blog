@@ -21,6 +21,10 @@ password:
 
 ## 介绍
 
+本地 overleaf 程序：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
+
+texlive 2024 版本已有 sjtutex 包
+
 LaTeX 实现审阅效果：latexdiff（texlive 自带）
 
 使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`

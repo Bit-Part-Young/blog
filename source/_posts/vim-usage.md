@@ -228,13 +228,17 @@ buffer 相关
 - vim 插件推荐：[Great VIM Plugins in 2023 | hacking C++](https://hackingcpp.com/dev/vim_plugins.html)
 - [markdown-preview.nvim:](https://github.com/iamcco/markdown-preview.nvim)：预览 md 文件插件
 
-- [plug](https://github.com/junegunn/vim-plug)：插件管理器；相关命令：
-    - `:PlugInstall` - 安装插件；`:PlugClean` - 卸载插件；`:PlugUpdate` - 更新插件
+- [plug](https://github.com/junegunn/vim-plug)：插件管理器；
+	- 相关命令：`:PlugInstall` - 安装插件；`:PlugClean` - 卸载插件；`:PlugUpdate` - 更新插件
 
 - [airline](https://github.com/vim-airline/vim-airline.git)：状态栏美化；[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes.git)
 - [surround](https://github.com/tpope/vim-surround.git)
 - [nerdtree](https://github.com/preservim/nerdtree.git)：目录树；
 - [solarized8](https://github.com/lifepillar/vim-solarized8.git)：theme 美化
+
+- [nerdcommenter](https://github.com/preservim/nerdcommenter)：代码注释；
+	- 相关命令：`[count]<leader>cc` 注释当前行；`[count]<leader>cc` 取消注释当前行
+
 - [easymotion](https://github.com/easymotion/vim-easymotion.git)：快速移动
 - [fzf.](https://github.com/junegunn/fzf.vim.git)：模糊搜索
 - [ale](https://github.com/dense-analysis/ale.git)：异步代码检查和修复

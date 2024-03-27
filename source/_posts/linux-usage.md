@@ -609,6 +609,12 @@ awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}'  # �
 awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # 列拼接文件
 ```
 
+#### 其他命令
+
+```bash
+kill -9 PID  # 发送强制终止信号给进程
+```
+
 
 ---
 
