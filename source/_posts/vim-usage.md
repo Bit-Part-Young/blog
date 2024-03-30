@@ -26,6 +26,9 @@ password:
 >[GitHub - yyq123/learn-vim](https://github.com/yyq123/learn-vim)
 
 
+vim `:10m3` 将第 10 行剪切并粘贴到第 3 行下方
+vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移一个 Tab 距离
+
 
 ---
 

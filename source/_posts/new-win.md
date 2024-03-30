@@ -103,57 +103,35 @@ WIP…
 
 ## 其他
 
-- 默认桌面、视频、照片、音乐目录路径迁移出 C 盘
+- 将默认桌面、视频、照片、音乐目录路径迁移出 C 盘
 - 浏览器下载路径迁移出 C 盘
 - 关闭小组件、任务视图：设置 - 个性化 - 任务栏项
-- 任务栏中的搜索图标过长：设置 - 个性化 - 任务栏项，搜索，” 选择仅 “ 搜索 ” 图标 “
+- 任务栏中的搜索图标过长：设置 - 个性化 - 任务栏项，搜索，选择仅 “ 搜索 ” 图标
 - 关闭资源管理器最近使用的文件：设置 - 个性化 - 开始
 - 关闭资源管理器常用文件夹：打开资源管理器 - 主文件夹 - 点击三个点图标，选项 - 常规，隐私，取消勾选“显示常用文件夹”和“最近使用的文件”
 - 关闭搜索中的文字热门搜索
-- 删除桌面的回收站图标
+- 删除桌面回收站图标
 - 关闭 xbox 开机自启动：[专治疑难系列 - 解决win11中xbox开机自启问题\_Passerby\_Wang的博客-CSDN博客](https://blog.csdn.net/Passerby_Wang/article/details/129836176)
+- 外接键盘 Windows 键失效：有些键盘（如联想薄膜键盘）右上角有 Windows 锁定键，可以切换 Windows 键的开启和关闭
 
-
----
-
-### win11 右键默认显示更多选项
-
->[有没有什么办法可以让win11右键默认显示更多选项？ - 知乎](https://www.zhihu.com/question/480356710)
-
-- powershell 管理员运行以下命令
+- win11 右键默认显示更多选项：[有没有什么办法可以让win11右键默认显示更多选项？ - 知乎](https://www.zhihu.com/question/480356710)
 
 ```powershell
+# powershell 管理员运行
 # win10 右键
 reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve 
 
 # 恢复 win11 右键
 reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /va /f
-```
 
-- cmd 管理员运行以下命令，重启资源管理器：
-
-```cmd
+# cmd 管理员运行 重启资源管理器：
 taskkill /f /im explorer.exe & start explorer.exe
 ```
 
+- Win11 息屏断网：控制面板 - 网络和 Internet - 网络和共享中心 - 更改适配器设置 - 选中网络，属性，配置，电源管理，取消勾选“允许计算机关闭设备以节约电源”；[更新win11以后，休眠模式下断网，怎么改？ - 知乎](https://www.zhihu.com/question/498326700)
 
----
+- 删除 2345 王牌输入法：`win + R`，输入 `regedit`，搜索以下内容并删除；[如何彻底删除2345输入法？ - 知乎](https://www.zhihu.com/question/37679187)
 
-### Win11 息屏断网
-
->[更新win11以后，休眠模式下断网，怎么改？ - 知乎](https://www.zhihu.com/question/498326700)
-
-控制面板 - 网络和 Internet - 网络和共享中心 - 更改适配器设置 - 选中网络，属性，配置，电源管理，取消勾选 ” 允许计算机关闭设备以节约电源 “
-
-
----
-
-### 删除 2345 王牌输入法
-
->[如何彻底删除2345输入法？ - 知乎](https://www.zhihu.com/question/37679187)
-
-`win + R`，输入 `regedit`，搜索以下内容并删除
-
-```bash
+```text
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046D02}\LanguageProfile\0x00000804\{89E1D5C2-A068-44B6-B820-F8406C8A4706}
 ```

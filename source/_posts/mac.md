@@ -133,6 +133,10 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 >网络上下载的程序包安装到 Mac 上，需将包（`*.app`）移动到 applications 里；卸载：直接将其移到废纸篓
 
+---
+
+#### 软件/程序推荐
+
 - 软件包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：Alfred 5
 - VPN 网络代理：ClashX
@@ -141,25 +145,27 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 数据同步：交大云盘
 - 浏览器： Chrome
 - 压缩文件解压工具：The Unarchiver
-- 媒体播放器：IINA（开源）、Infuse（apple store 付费）
+- 媒体播放器：IINA（免费）、Infuse（付费）
 - Markdown 笔记管理：Obsidian、Typora
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
 - 图床：PicList（基于 PicGo 开发）、PicGo
 - 文献管理：Zotero
 - 构型可视化：VESTA、OVITO
-- 邮件服务：Mailspring 或 Mac 自带邮件
-- 截图：Snipaste（可通过 brew 安装）
-- 文本翻译：Bob（社区版免费，翻译引擎需自己设置；app store 版本需收费）
-- 垃圾清理：Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）、CleanMyMac X（完整版本需收费）
+- 邮件服务：Mailspring 或 Mac 自带邮件程序
+- 截图：Snipaste
+- 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
+- 垃圾清理：CleanMyMac X（完整版本需收费；有破解版）、Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
 - 系统资源监控：RunCat
-- 快捷键提示：FlyKey
+- 快捷键提示：FlyKey、CheatSheet
 - 切换窗口：AltTab
 - 鼠标：Mos
 - 输入法切换：自动切换输入法 Lite 版
 - pdf 查看、编辑：UPDF
-- 窗口管理：Rectangle
+- 窗口管理：Rectangle、Loop
+- macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
 - 其他：微信等
+
 
 
 ---

@@ -335,10 +335,9 @@ WIP…
 
 ### ase.io
 
-文件读入、写出
-
-ase 中可识别的文件格式（部分文件格式只有 `read` 或 `write` 相关的一个函数）
->[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+- 文件读入、写出
+- ase 中可识别的文件格式（部分格式只有 `read` 或 `write` 一个函数）：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+- 可以读取 gz 格式压缩文件，如 OUTCAR.gz
 
 ---
 
@@ -404,14 +403,12 @@ write_lammps_data(
 ```
 
 
-lammps atom type 如何进行指定排序？
-`write_lammps_data()` 的 `specorder` 参数
+lammps atom type 指定排序：`write_lammps_data()` 的 `specorder` 参数
 
 
 ---
 
-VASP OUTCAR 文件转换为 extxyz 文件 代码示例
->[Convert VASP OUTCAR to extxyz file for NequIP input · GitHub](https://gist.github.com/simonbatzner/c2b05d38789b67f6fe5d3c75a4f2223d)
+VASP OUTCAR 文件转换为 extxyz 格式代码示例：[Convert VASP OUTCAR to extxyz file for NequIP input · GitHub](https://gist.github.com/simonbatzner/c2b05d38789b67f6fe5d3c75a4f2223d)
 
 ```python
 """可获取 OUTCAR 中的所有离子步构型的原子位置、能量、受力、应力等信息"""
@@ -428,33 +425,13 @@ write(filename=extxyz_fn, images=all_confs, format="extxyz", append=True)
 ```
 
 
----
+`extxyz.py` 源代码相关 warning：
 
-ASE Atoms object 与 pymatgen Structure object 互相转换 示例代码
-
-```python
-
-from ase.build import bulk
-from pymatgen.core.structure import Structure
-from pymatgen.io.ase import AseAtomsAdaptor
-
-atoms = bulk("Fe", "bcc", a=2.83, cubic=True)
-structure = AseAtomsAdaptor.get_structure(atoms)
-
-print("ASE Atoms object transfer to pymatgen Structure object:\n")
-print(atoms)
-print("---" * 20)
-print(structure)
-print("\n" + "---" * 20 + "\n")
-
-print("pymatgen Structure object transfer to ASE Atoms object :\n")
-structure_pmg = Structure.from_prototype(prototype="fcc", species=["Al"], a=4.05)
-structure_ase = AseAtomsAdaptor.get_atoms(structure_pmg)
-
-print(structure_pmg)
-print("---" * 20)
-print(structure_ase)
+```bash
+/home/yangsl/src/miniconda3/envs/base_ysl/lib/python3.11/site-packages/ase/io/extxyz.py:1000: UserWarning: write_xyz() overwriting array "forces" present in atoms.arrays with stored results from calculator
+  warnings.warn('write_xyz() overwriting array "{0}" present '
 ```
+
 
 
 ---

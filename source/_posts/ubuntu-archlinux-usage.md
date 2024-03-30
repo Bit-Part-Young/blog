@@ -233,9 +233,14 @@ GNOME 桌面扩展推荐：
 
 >[首页 - KDE 社区](https://kde.org/zh-cn/)
 
-- GNOME 使用 GDM3 显示管理器；KDE 使用 SDDM (Simple Desktop Display Manager) 显示管理器。
-- GNOME 主要使用 GTK 构建 GUI 工具，KDE 使用 Qt
-- KDE 默认终端 Konsole，默认文本编辑器 Kate
+>[KDE美化及常用设置 - pipci - 博客园](https://www.cnblogs.com/pipci/p/14862648.html)
+
+>[KDE常用桌面插件总结 - pipci - 博客园](https://www.cnblogs.com/pipci/p/14861412.html)
+
+- GNOME 与 KDE 的区别：
+	- GNOME 使用 GDM3 显示管理器；KDE 使用 SDDM (Simple Desktop Display Manager) 显示管理器
+	- GNOME 主要使用 GTK 构建 GUI 工具，KDE 使用 Qt
+	- KDE 默认终端 Konsole，默认文本编辑器 Kate
 
 ```bash
 sudo apt install kde-plasma-desktop

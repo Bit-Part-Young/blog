@@ -23,7 +23,11 @@ password:
 
 本地 overleaf 程序：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
 
+VSCode LaTeX Utilities 插件
+
 texlive 2024 版本已有 sjtutex 包
+
+- [ ] latex 如何在每个章节最后生成参考文献？
 
 LaTeX 实现审阅效果：latexdiff（texlive 自带）
 

@@ -271,6 +271,74 @@ GitHub 自动发布 release
 >[release.yml](https://github.com/frostming/marko/blob/master/.github/workflows/release.yml)
 
 
+---
+
+### GitHub CLI
+
+>[GitHub - cli/cli: GitHub’s official command line tool](https://github.com/cli/cli)
+
+- 安装
+
+```bash
+sudo apt install gh  # Ubuntu
+
+sudo pacman -S github-cli  # Arch Linux
+
+brew install gh  # Mac
+
+conda install gh --channel conda-forge  # Conda
+```
+
+- 源码编译安装
+
+```bash
+# 安装 golang
+curl -sS https://webi.sh/golang | sh
+
+git clone https://github.com/cli/cli.git gh-cli
+cd gh-cli
+
+make install prefix=$HOME/src/gh
+
+ln -s ~/src/gh/bin/gh ~/bin
+```
+
+- 验证登录：按照提示进行
+
+```bash
+gh auth login
+```
+
+- 创建 release 并上传文件：file 格式可以是压缩文件，`pdf`，`md` 等，`txt` 不行
+
+```bash
+gh release create v0.0.1  # 创建 release
+
+gh release upload v0.0.1 file  # 上传附加文件
+
+gh release list  # 列出 releases
+```
+
+- 创建 issue
+
+```bash
+gh issue create --title "gh issue test" --body "create an issue by gh"
+```
+
+- Github Copilot CLI 使用
+
+```bash
+# 安装
+gh extension install github/gh-copilot
+
+gh copilot explain  # 解释
+gh copilot suggest  # 建议
+
+# 设置别名 ghcs 和 ghce
+echo 'eval "$(gh copilot alias -- zsh)"' >> ~/.zshrc
+```
+
+
 
 ---
 

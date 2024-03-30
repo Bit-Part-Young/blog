@@ -120,9 +120,9 @@ lec2：Git/GitHub 基础介绍
 
 ### 基本使用
 
-- 注册 gitee 或 github 账户
-- 配置 gitee 或 github 的 SSH（id_rsa.gitee、id_rsa.github）
-- 配置 git（.gitconfig）
+- 注册 gitee 或 Github 账户
+- 配置 gitee 或 Github 的 SSH（`id_rsa.gitee`、`id_rsa.github`、`id_rsa.gitlab`）
+- 配置 git（`.gitconfig`）
 
 ---
 
@@ -141,7 +141,7 @@ git remote add origin git@github.com:username/repo.git
 git remote add origin git@gitee.com:username/repo.git
 # git remote add origin https://gitee.com/username/repo.git
 
-git push -u origin main
+git push -u origin
 ```
 
 ---
@@ -213,13 +213,15 @@ git push -f origin shend_dev
 
 ---
 
-### 配置文件
+### 特殊文件
 
-#### `.gitconfig`
+#### 配置文件：.gitconfig
 
-git 配置文件。
+- 路径：
+	- Linux - `~/.gitconfig`
+	- windows: `git\etc\gitconfig`
 
-`.gitconfig` 路径：windows - `git\etc\gitconfig`； linux - `~/.gitconfig`
+- 内容示例：
 
 ```bash
 [user]
@@ -240,19 +242,17 @@ git 配置文件。
 
 ---
 
-#### `.gitignore`
+#### 忽略文件：.gitignore
 
-忽略文件；可在 repo 根目录及其子目录创建多个 `.gitignore` 文件
+- 可在 repo 根目录及其子目录创建多个 `.gitignore` 文件
+- 常用 `.gitignore` 模板：[GitHub - github/gitignore: A collection of useful .gitignore templates](https://github.com/github/gitignore)
+- 若在 `.gitignore` 添加忽略文件后不起作用，可使用如下命令：
 
-
-若在 `.gitignore` 添加忽略文件后不起作用，可使用如下命令：
 ```bash
 git rm --cached file
 ```
 
 
-不同编程语言的 `.gitignore` 模板
->[GitHub - github/gitignore: A collection of useful .gitignore templates](https://github.com/github/gitignore)
 
 
 ---
@@ -477,12 +477,10 @@ Settings - Developer settings - Personal access tokens - Tokens(classic)
 
 ---
 
-### gitee 与 github、gitlab 之间互相同步
+### Gitee 与 Github、Gitlab 之间互相同步
 
-**gitee 可以直接从 github 和 gitlab 中导入 repo**
-
->[仓库镜像管理（Gitee<->Github 双向同步） | Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)
->[Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
+- Gitee 可以直接从 Github 和 Gitlab 中导入 repo
+- 参考：[仓库镜像管理（Gitee<->Github 双向同步） | Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)、[Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
 
 
 ---
@@ -491,15 +489,14 @@ Settings - Developer settings - Personal access tokens - Tokens(classic)
 
 ### clone
 
-```bash
-# clone 深度
-git clone --depth 1 <url>
+- 提交数量增加，提交过大文件，会使得 `.git/object` 体积增加，可通过 `--depth` 选项来进行浅克隆
 
-# clone 多个分支
-git clone -b <branch1> -b <branch2> <url>
+```bash
+git clone --depth 1 <url>  # 只 clone 最新的一次提交
+
+git clone -b <branch1> -b <branch2> <url>  # clone 多个分支
 ```
 
->提交数量增加，提交过大文件，会使得 `.git/object` 体积增加，可通过 `--depth` 选项来进行浅克隆
 
 ---
 
@@ -549,7 +546,9 @@ git config --list --show-origin
 ```bash
 git add file
 
-git add --patch  # 交互式
+git add --patch  # 或 -p；对于所有的修改依次进行添加确认
+
+git add -i  # 交互式
 ```
 
 
@@ -564,10 +563,10 @@ git add --patch  # 交互式
 git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
 
 # 修改 commit 信息
-git commit --amend --no-edit -m "xxx"
+git commit --amend --no-edit -m 'xxx'
 
 # 创建没有任何改动的提交
-git commit -m "empty" --allow-empty
+git commit -m 'empty' --allow-empty
 ```
 
 
@@ -598,21 +597,16 @@ git pull --rebase
 ```bash
 git branch 
 
-# 查看所有分支（本地+远程分支）
-git branch -a
-
-# 查看远程分支
-git branch -r
+git branch -a  # 查看所有分支（本地 + 远程）
+git branch -r  # 查看远程分支
 
 git brach -u
 
 git branch -m
 
-# 删除本地分支前，会提醒是否进行分支的合并
-git branch -d <branch_name>
-
-# 强制删除本地分支
-git branch -D <branch_name>
+# 删除本地分支
+git branch -d <BranchName>  # 删除前会提醒是否进行分支合并
+git branch -D <BranchName>  # 强制
 
 # 列出当前仓库中所有分支的信息，包括每个分支的名称、关联的远程分支、远程分支的提交和本地分支的提交
 git branch -vv
@@ -627,17 +621,12 @@ git branch -vv
 ### checkout
 
 ```bash
-# 切换到新分支
-git checkout <branch_name>
-
-# 创建并进入新分支
-git checkout -b <branch_name>
-
-# 迅速切换到上一个分支
-git checkout -
+git checkout <BranchName>  # 切换到新分支
+git checkout -b <BranchName>  # 创建并进入新分支
+git checkout -  # 迅速切换到上一个分支
 
 # 关联分支
-git checkout -b <branch_name> origin/<branch_name>  
+git checkout -b <BranchName> origin/<BranchName>  
 ```
 
 
@@ -651,7 +640,7 @@ git remote prune origin
 # 不实际删除
 git remote prune origin --dry-run
 
-# 查看远程 repo 的所有分支
+# 查看远程 repo 所有分支
 git remote show origin
 
 # 列出远程仓库的引用（分支和标签）
@@ -828,11 +817,11 @@ git diff --cached --stat
 ---
 
 ```bash
-# 将当前修改暂存到 stash 栈中
-git stash
+git stash  # 将当前修改暂存到 stash 栈中
+git stash -u  # 包括新增 untracked 文件
 git stash push -- file  # 指定单个文件
 
-# 显示 stash 中的所有暂存
+# 列出所有 stash
 git stash list
 
 # 恢复 stash 中的最近一次暂存，并从 stash 栈中删除
@@ -841,17 +830,18 @@ git stash pop
 # 恢复 stash 中的最近一次暂存，但不从 stash 栈中删除
 git stash apply
 
-# 恢复特定的 stash
+# 查看特定 stash 内容
+git stash show stash@{n}
+git stash show stash@{n} -p
+
+# 恢复特定 stash
 git stash apply stash@{n}
 
-# 删除 特定的 stash
+# 删除特定 stash
 git stash drop stash@{n}
 
-# 清空 stash 中的所有暂存
+# 清空 stash
 git stash clear
-
-# 包括 untracked 的文件
-git stash -u
 
 # 从 stash 中创建一个新的分支
 git stash branch <branch> 
@@ -1230,72 +1220,6 @@ git log --since="midnight" --until="now" --pretty=oneline | wc -l
 Create a new release - Choose a tag，之后填写相关信息，必要时附加文件
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081713870.png)
-
-
----
-
-#### 通过 GitHub CLI
-
->[GitHub - cli/cli: GitHub’s official command line tool](https://github.com/cli/cli)
-
-- 安装
-
-```bash
-# Ubuntu
-sudo apt update
-sudo apt install gh
-
-# Arch Linux
-sudo pacman -S github-cli
-
-# Mac
-brew install gh
-
-# Conda
-conda install gh --channel conda-forge
-```
-
-- 手动编译安装
-
-```bash
-# 安装 golang
-curl -sS https://webi.sh/golang | sh
-
-git clone https://github.com/cli/cli.git gh-cli
-cd gh-cli
-
-make install prefix=$HOME/src/gh
-
-ln -s ~/src/gh/bin/gh ~/bin
-```
-
-- 验证登录 按照提示进行
-
-```bash
-gh auth login
-```
-
-- 创建 release 并上传文件
-
-```bash
-# 创建 release
-gh release create v0.0.1
-
-# 上传附加文件
-gh release upload v0.0.1 file
-
-# 列出 releases
-gh release list
-
-```
-
->file 格式可以是压缩文件，`pdf`，`md` 等，`txt` 不行
-
-- 创建 issue
-
-```bash
-gh issue create --title "gh issue test" --body "create an issue by gh"
-```
 
 
 ---

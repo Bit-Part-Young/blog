@@ -397,7 +397,26 @@ MONGOSH 使用
 ---
 
 
+
+
+
+```python
+# 获取满足 query projection 条件的所有 documents
+results = atomate_db.collection.find(query, projection)
+
+# 获取满足 query projection 条件的一条 document
+result = atomate_db.collection.find_one(query, projection)
+```
+
+
+
+
+
+---
+
+
 mongodb 中的 atomate documet 数据无法直接全部写入到 json 文件中
+
 - 其 key 和 dict 涉及到 str 均使用单引号；
 - json 文件不识别 bool 变量？
 

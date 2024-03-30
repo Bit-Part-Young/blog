@@ -1581,3 +1581,19 @@ twine check dist/*
 ```bash
 twine upload dist/*
 ```
+
+
+---
+
+## jupyter notebook
+
+jupyter notebook 中运行 bash 命令：
+
+- 使用感叹号（`!`）作为前缀
+- 使用 `%%bash` 魔术命令
+
+---
+
+在 py 脚本中的代码前添加 `# %%`，可以像 Jupyter notebook 一样运行一段代码；添加 `# %% [markdown]`，可编写 markdown
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401291949924.png)

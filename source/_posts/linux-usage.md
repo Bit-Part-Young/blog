@@ -48,18 +48,37 @@ bash 速查表
 
 ### 基本使用
 
-**查看系统信息**
+#### 系统信息查看
 
-- `lsb_release -a` - 显示 LSB 版本信息。
-- `uname -r` - 显示内核版本。
-- `uname -a` - 查看完整的内核版本信息
-- `hostnamectl` - 显示系统信息，包括主机名、操作系统、内核等。
-- 其他 - 如 `cat /proc/version`、`cat /etc/os-release`、`cat /etc/lsb-release`、`cat /etc/issue` 等
+- 系统信息
+
+```bash
+lsb_release -a  # 显示 LSB 版本信息
+uname -r        # 显示内核版本
+uname -a        # 查看完整的内核版本信息
+hostnamectl     # 显示系统信息，包括主机名、操作系统、内核等
+cat /proc/version
+cat /etc/os-release
+cat /etc/lsb-release
+cat /etc/issue
+```
 
 
-Linux 内核与发行版之间的关系与区别
->[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
+Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
 
+- 资源查看
+
+```bash
+lscpu  # 查看 CPU 信息
+lsmem  # 查看内存信息
+lspci  # 查看 PCI 设备信息
+
+intel_gpu_top  # intel 集显
+
+free -gh  # 以 GB 单位显示内存使用情况
+vmstat -S M  # 以 MB 单位显示虚拟内存使用情况
+htop  # 显示系统资源；增强版 top
+```
 
 ---
 
@@ -82,12 +101,12 @@ Linux 内核与发行版之间的关系与区别
 
 ---
 
-**图片查看**：`eog` 或 `display`
+图片查看：`eog` 或 `display`
 
 
 ---
 
-**登录 shell 与非登录 shell**
+登录 shell 与非登录 shell
 
 - 登录 shell：物理登录到系统上（如在登录界面输入用户名和密码）或远程登录（如 SSH）
 - 非登录 shell：打开新终端窗口或启动新 shell（如输入 `bash` 命令）
@@ -95,13 +114,13 @@ Linux 内核与发行版之间的关系与区别
 
 ---
 
-**查看环境变量**（`PATH`）
+查看环境变量（`PATH`）
 
 ```bash
 echo $PATH
 ```
 
-**添加环境变量**
+添加环境变量
 
 ```bash
 # 方式 1
@@ -148,13 +167,13 @@ export PATH=$HOME/bin:$PATH
 - `echo` - 打印字符串
 - `pwd` - 显示当前路径
 - `cd` - 切换目录
-- `ls` - 列出目录内容
+- `ls` - 列出目录内容；`-a` 与 `-A` 的区别，后者表示 almost-all，不列出 `.` 和 `..`
 - `cat` - 打印文件内容
-- `head` & `tail` - 打印文件首尾内容
+- `head` & `tail` - 打印文件首尾内容，默认 10 行
 - `less` - 逐页显示文件内容
 - `touch` - 创建文件/修改文件时间属性
 - `mkdir` - 创建目录；创建多级目录：`mkdir -p 1/2/3/4`
-- `mv` - 移动/重命名
+- `mv` - 移动/重命名；建议在~/.bashrc 或~/.zshrc 中设置 `alias mv="mv -v"`
 - `cp` - 复制
 - `rm` - 删除
 - `>`、`>>` - 标准输出流重定向
@@ -163,6 +182,8 @@ export PATH=$HOME/bin:$PATH
 - `|` - 管道符
 - `rmdir` - 删除空目录
 - `tac` - 从最后一行显示文件内容
+- `diff` - 查看文件差异
+- `which` - 查看可执行命令所在路径
 
 - `cut` - 剪切命令
 
@@ -171,11 +192,7 @@ export PATH=$HOME/bin:$PATH
 
 ```bash
 Basic:
-      which
       more
-      grep
-      diff
-      tar
       chmod
       chown
       wget
@@ -185,22 +202,18 @@ Basic:
       hostname
       
 Advanced:
-      vi
-      awk
       seq
-      sed
       scp
       zip
       time
-      kill
       unzip
       nohup
 
 ```
 
 
+终端快捷键
 
-bash 快捷键
 ```bash
 Crtl + A              # 光标移动到命令首
 Crtl + E              # 光标移动到命令尾
@@ -208,18 +221,17 @@ Alt + B / Ctrl + ←    # 光标向左移动一个单词
 Alt + F / Ctrl + →    # 光标向右移动一个单词
 Crtl + W              # 删除光标左方的单词
 Alt + D               # 删除光标右方的单词
-Crtl + R           # 搜索之前输入过的命令
-Crtl + _           # 回复之前的状态；撤销操作
-Crtl + G           # 退出历史搜索模式
-Crtl + ↓           # 跳到最底部
-Crtl + L           # 清屏（不算清除内容） 
-!!                 # 执行上一条命令
+Crtl + R              # 搜索之前输入过的命令
+Crtl + G              # 退出历史搜索模式
+Crtl + ↓              # 跳转至底部
+Crtl + L              # 将底部内容移至最上方
 ```
 
 
 
 
 ```bash
+!!                 # 执行上一条命令
 clear # 这个命令并非真正清空，只是把内容全部向上滚，让它们消失在视野中
 reset # 这个命令是真正的清空
 ```
@@ -260,19 +272,22 @@ history  # 返回所有的执行命令及其序号
 #### tar
 
 - 打包命令，不是压缩/解压缩命令（和其他压缩程序如 gzip、bzip2 等一起实现压缩/解压缩功能）
-- `x`：从归档中提取文件；`c`：创建归档；`-f`：指定归档文件名称
-- `z`：tar.gz 格式；`j`：tar.bz2 格式；`J`：tar.xz 格式；`--zstd`：tar.zst 格式
 - 不同压缩格式的文件体积大小：`tar.gz` > `tar.bz2` > `tar.xz`
 
----
 
-其他参数：
+参数：
 
-- `-v` - 显示详细信息
-- `-t` - 显示归档文件中的内容，而非提取文件
-- `-C` - 指定路径
-- `--exclude` - 排除指定文件或目录
-- `--remove-files` - 删除原始文件，谨慎使用
+```bash
+-c             # 创建归档
+-x             # 从归档中提取文件
+-v             # 显示详细信息
+-f             # 指定归档文件名称
+-z             # tar.gz 格式，-j tar.bz2 格式，-J tar.xz 格式，--zstd tar.zst 格式
+-t             # 显示归档文件中的内容，而非提取文件
+-C             # 指定路径
+--exclude      # 排除指定文件或目录
+--remove-files # 删除原始文件，谨慎使用
+```
 
 ---
 
@@ -287,7 +302,7 @@ tar -czvf ${fn}.tar.gz ${fn}  # 压缩
 # 指定解压缩路径
 tar -xzvf archive.tar.gz -C /path/destination
 
-# 排除指定文件压缩
+# 排除指定文件
 tar -czvf archive.tar.gz --exclude=exclude_file file1 file2
 
 gzip -d all.gz  # 解压 .gz 文件
@@ -319,9 +334,7 @@ ln -s path/src path/des
 
 ```bash
 du -sh file/folder
-
-# 按大小排序
-du -sh file/folder | sort -h
+du -sh file/folder | sort -h  # 按大小排序
 ```
 
 
@@ -333,10 +346,12 @@ du -sh file/folder | sort -h
 
 参数：
 
-- `-l` - 展开 `~`
-- `-p` - 每个目录按行显示
-- `-v` - 每个目录按行显示并进行编号
-- `-c` - 清空目录堆栈
+```bash
+-l             # 展开 ~
+-p             # 每个目录按行显示
+-v             # 每个目录按行显示并进行编号
+-c             # 清空目录堆栈
+```
 
 
 ---
@@ -347,15 +362,17 @@ du -sh file/folder | sort -h
 
 常用参数：
 
-- `-o` 或 `--output` - 将下载的内容保存为指定的文件。
-- `-O` 或 `--remote-name` - 将下载的文件保存为远程文件的名称。
-- `--progress` - 显示进度条。
-- `-L` 或 `--location` - 跟随重定向，如果服务器返回重定向响应，`curl` 将自动请求新的 URL。
-- `-C` 或 `--continue-at` - 在下载中断的情况下，继续下载而不是重新开始，通常与 `-o` 参数一起使用。
-- `-s` 或 `--silent` - 安静模式，减少输出信息，只显示错误信息。
-- `-I` 或 `--head` - 仅获取远程文件的头部信息，而不下载实际内容。
-- `-f` 或 `--fail` - 请求发生错误时，使命令返回一个非零的退出状态码，表示请求失败。
-- `-S` 或 `--show-error` - 在发生错误时显示错误信息，这些错误信息通常被 `curl` 默认隐藏。
+```bash
+-o             # 指定保存文件名
+-O             # 保存文件名与远程文件相同
+--progress     # 显示进度条
+-L             # 跟随重定向，如果服务器返回重定向响应，将自动请求新的 URL
+-C             # 在下载中断的情况下，继续下载而不是重新开始，通常与 -o 参数一起使用
+-s             # 安静模式，减少输出信息，只显示错误信息
+-I             # 仅获取远程文件的头部信息，而不下载实际内容
+-f             # 请求发生错误时，返回非零的退出状态码，表示请求失败
+-S             # 在发生错误时显示错误信息
+```
 
 示例：
 ```bash
@@ -367,10 +384,14 @@ curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/instal
 
 #### wget
 
-从网络下载文件。常用参数：
+从网络下载文件。
 
-- `-P` - 指定下载文件的保存目录
-- `-O` - 将下载的文件保存为指定的文件名
+参数：
+
+```bash
+-P             # 指定保存目录
+-O             # 指定保存文件名
+```
 
 示例：
 
@@ -385,26 +406,25 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 
 #### find
 
-- 查找文件。
+- 查找文件
+- 与另外两个命令对比：
+	- `whereis`：查找程序的二进制文件、源代码文件和 man 手册路径
+	- `locate`：通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
 
----
+- 常用参数：
 
-常用参数：
-
-- `-name` - 按照文件名查找
-- `-iname` - 按照文件名查找，忽略大小写
-- `-type` - 文件类型；`f` - 普通文件，`d` - 目录，`l` - 软链接
-- `-maxdepth` - 目录最大深度
-- `-mindepth` - 目录最小深度
-- `-size` - 文件大小
-- `-regex` - 正则表达式匹配
-- `-iregex` - 正则表达式匹配，忽略大小写
-- `-exec` - 执行指令
-- `-ok` - 执行指令，但需确认
-
-与另外两个命令对比：
-- `whereis`：查找程序的二进制文件、源代码文件和 man 手册路径
-- `locate`：通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
+```bash
+-name          # 按照文件名查找
+-iname         # 按照文件名查找，忽略大小写
+-type          # 文件类型；f 普通文件，d 目录，l 软链接
+-maxdepth      # 目录最大深度
+-mindepth      # 目录最小深度
+-size          # 文件大小
+-regex         # 正则表达式匹配
+-iregex        # 正则表达式匹配，忽略大小写
+-exec          # 执行指令
+-ok            # 执行指令，但需确认
+```
 
 示例：
 
@@ -461,22 +481,23 @@ paste -d' ' file1 file2  # 以空格为间隔符来进行列合并文件
 
 #### sed
 
-sed 命令中引入变量
->[https://blog.csdn.net/qq_35445255/article/details/113750720](https://blog.csdn.net/qq_35445255/article/details/113750720)
+```bash
+-i             # 会修改文件内容
+```
+
+sed 引入变量：[sed引入变量的几种方法\_sed传入变量-CSDN博客](https://blog.csdn.net/qq_35445255/article/details/113750720)
 
 ```bash
-# 双引号情况（常用）
-sed -i "2s/node_base/$i/"  /etc/libvirt/qemu/$i.xml
+# 方法 1
+sed -i "2s/subs/$i/" file
 
-# 单引号情况  先单引号，然后双引号
-sed -i '2s/node_base/'"$i"'/' /etc/libvirt/qemu/$i.xml
+#  方式 2
+sed -i '2s/subs/'"$i"'/' file
 ```
 
 
 ```bash
 sed [-nefr] [动作]
-
--i # 直接修改读取的文件内容，而不是屏幕输出
 
 动作  [n1[,n2]]function
 function
@@ -523,8 +544,8 @@ sed -i '2a ENCUT = 400 \
 > NSW = 0' INCAR
 
 # 显示第几行
-sed -n 4,8p file # 打印file中的4-8行
-sed -n 4p file # 打印file中的第4行
+sed -n 4,8p file  # 打印file中的4-8行
+sed -n 4p file  # 打印file中的第4行
 ```
 
 
@@ -533,8 +554,20 @@ sed -n 4p file # 打印file中的第4行
 
 #### grep
 
+文本搜索工具
+
 ```bash
--i 忽略大小写
+-i             # 忽略字符大小写
+-E             # 使用扩展正则表达式
+-I             # 跳过二进制文件 等同于 --binary-files=without-match
+--exclude-dir  # 排除目录
+--exclude      # 排除文件
+-r             # 递归
+-n             # 显示行号
+-h             # 在匹配内容前标示文件名
+-H             # 在匹配内容前不标示文件名
+-l             # 列出匹配内容前所属文件名
+-L             # 列出无匹配内容的文件名
 ```
 
 
@@ -567,11 +600,11 @@ awk 中的模式
 
 ```awk
 BEGIN {
-   // code
+   command
 }
 
 END {
-   // code
+   command
 }
 ```
 
@@ -580,17 +613,17 @@ END {
 常用功能 awk 命令实现
 
 ```bash
-awk '{print NR, $0}' file  # 输出文件内容并显示行号 
+awk '{ print NR, $0 }' file  # 输出文件内容并显示行号 
 
-awk 'END {print NR}' file  # 统计行数
+awk 'END { print NR }' file  # 统计行数
 
-awk '{ nf = nf + NF } END { print nf }' file  # 返回行列数乘积
+awk '{ nf = nf + NF } END { print nf }' file  # 返回总字段数
 
 awk '$3 == 0' file  # 输出第三列为 0 的行
 
 awk 'NR % 2 == 1' file  # 打印奇数行
 
-awk '{print $NF}' file  # 输出最后一列
+awk '{ print $NF }' file  # 输出最后一列
 
 # 输出最后一行
 awk 'END { print $0 }' file
@@ -609,11 +642,31 @@ awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}'  # �
 awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # 列拼接文件
 ```
 
+
+---
+
 #### 其他命令
 
 ```bash
 kill -9 PID  # 发送强制终止信号给进程
 ```
+
+- column：将文本输入格式化成多列输出
+
+```bash
+column -s, -t data.csv  # 指定分隔符格式化（表格形式）输出
+```
+
+- 文件行数统计
+
+```bash
+grep -c '' file
+awk 'END { print NR }' file
+wc -l file
+sed -n '$=' file
+```
+
+
 
 
 ---
@@ -652,24 +705,19 @@ kill -9 PID  # 发送强制终止信号给进程
 
 ### 其他
 
-bash tab 补全忽略大小写
->[linux下，按tab补全时，忽略大小写的配置\_linux命令行终端设置tab补全文件名或路径不区分大小写-CSDN博客](https://blog.csdn.net/lianshaohua/article/details/108710098)
+终端 Tab 补全忽略大小写：[linux下，按tab补全时，忽略大小写的配置\_linux命令行终端设置tab补全文件名或路径不区分大小写-CSDN博客](https://blog.csdn.net/lianshaohua/article/details/108710098)
 
 
-alias 使用参数：以定义函数的方式进行
->[https://forsworns.github.io/zh/blogs/20190919/](https://forsworns.github.io/zh/blogs/20190919/)
+alias 使用参数：以定义函数的方式进行：[https://forsworns.github.io/zh/blogs/20190919/](https://forsworns.github.io/zh/blogs/20190919/)
 
 ```bash
 alias ipynb2md="py2md(){jupyter nbconvert --to markdown $1}; py2md"
 ```
 
 
-
-
 zsh 与 bash 之间的一些区别：
 
-在 zsh 中，数组的索引是从 1 开始的，而 bash 是从 0 开始的
->[https://www.51cto.com/article/740743.html](https://www.51cto.com/article/740743.html)
+- zsh 数组索引从 1 开始， bash 从 0 开始
 
 
 
@@ -690,47 +738,13 @@ fi
 一般来说，头文件通常位于 **`/usr/include`** 或 **`/usr/local/include`** 目录中，而库文件通常位于 **`/usr/lib`** 或 **`/usr/local/lib`** 目录中。请注意，库文件可能会有不同的后缀，例如 `.so` 动态库 `.a` 静态库。
 
 
-
 crysinfo 程序（孔老师程序）
 6a 选项 查看 Assign Wyckoff letter（等同位点）
 
 
-
-
-
-configure、 make、 make install 相关区别
->[https://zhuanlan.zhihu.com/p/77813702](https://zhuanlan.zhihu.com/p/77813702)
+configure、 make、 make install 相关区别：[configure、 make、 make install 背后的原理(翻译) - 知乎](https://zhuanlan.zhihu.com/p/77813702)
 
 linux configure `--prefix` 的作用是：编译的时候用来指定程序存放路径
 
-若不指定 `--prefix`，则可执行文件默认放在 `/usr/local/bin`；库文件默认放在 `/usr/local/lib`；配置文件默认放在 `/usr/local/etc`；其它的资源文件放在 `/usr/local/share`，比较乱
 
->[https://blog.csdn.net/xiaojin21cen/article/details/90600284](https://blog.csdn.net/xiaojin21cen/article/details/90600284)
-
-
----
-
-openmpi 编译
->[https://docs.open-mpi.org/en/v5.0.x/installing-open-mpi/quickstart.html](https://docs.open-mpi.org/en/v5.0.x/installing-open-mpi/quickstart.html)
-
-
-```python
-# 编译
-wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.5.tar.bz2
-
-tar xf openmpi-4.1.5.tar.bz2
-cd openmpi-4.1.5.tar.bz2
-./configure --prefix=$HOME/yangsl/src/openmpi
-make -j 4 all && make install
-
-# 添加PATH和LD_LIBRARY_PATH
-export PATH=$HOME/yangsl/src/openmpi/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/yangsl/src/openmpi/lib
-```
-
-
-
-openmpi 编译、安装并配置好后，安装 mpi4py
-```python
-pip install mpi4py
-```
+>[linux configure 的 --prefix 参数的作用-CSDN博客](https://blog.csdn.net/xiaojin21cen/article/details/90600284)

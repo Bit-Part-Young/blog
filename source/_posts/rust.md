@@ -88,6 +88,7 @@ cargo add <lib>
 rustup update  # 更新 Rust 工具链
 ```
 
+cargo 缓存管理工具：cargo-cache
 
 ---
 

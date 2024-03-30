@@ -37,7 +37,7 @@ password:
 
 ---
 
-## 常用终端工具
+## 常用命令行工具
 
 ### zsh
 
@@ -214,14 +214,45 @@ zsh-completions
 
 ---
 
-### 其他终端工具
+### 数据处理相关命令行工具
 
-- 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载二进制文件，x86_64-unknown-linux-gnu 版本）、[exa](https://github.com/ogham/exa)
-- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（可执行命令为 `rg`）；过滤搜索：`-g`
+- csv 命令行工具：csvkit（Python）
+
+```bash
+in2csv data.xlsx | csvlook  # excel 表格转 csv 表格查看
+
+csvlook data.csv | head  # 以表格形式查看
+
+csvcut -n data.csv  # 查看列名
+csvscut -c 1,2,3 data.csv   # 查看特定列数据 1 2 3 也可以是具体列名
+
+csvstat --count data.csv  # 统计行数
+csvstat file.csv  # 统计所有列的情况
+csvstat -c 1,2,3 data.csv  # 统计特定列
+```
+
+---
+
+- josn 命令行工具：jq、[jnv](https://github.com/ynqa/jnv)（交互式）
+
+```bash
+cat data.json | jq .  # 输出 json 文件内容
+
+cat data.json | jq '.user.name'  # 获取特定键值
+```
+
+
+---
+
+### 其他命令行工具
+
+- 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
+- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
+	- 过滤搜索：`-g`
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
-- 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)
+- 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
 - 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
 - 终端 markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
 - git 相关：[lazygit](https://github.com/jesseduffield/lazygit)

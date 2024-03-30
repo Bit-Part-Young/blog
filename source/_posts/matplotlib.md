@@ -78,6 +78,31 @@ plt.show()
 
 ---
 
+- 常用绘图形式
+
+```python
+# 点线图
+ax.plot(x, y, ...)
+
+
+# 散点图
+ax.scatter(x, y, s, c, cmap, ...)
+
+s               # marker size；float 或 array-like
+c               # marker colors；array-like 或 color list；该参数可与 colorbar 一起使用
+cmap            # colormap
+
+
+# 直方图
+ax.hist(x, bins, histtype, edgecolor, ...)
+
+bins            # 将 x 范围等分成 bins 份
+edgecolor       # 边缘颜色
+```
+
+
+---
+
 - 子图绘制
 
 ```python
@@ -86,7 +111,7 @@ fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8, 6))
 # 方式 2
 fig, axs = plt.subplots(nrows=1, ncols=2)
 
-# 将 axs 扁平化，有利于 for 循环代码编写
+# axs 扁平化，利于 for 循环
 for i, ax in enumerate(axs.flat):
 	...
 ```
@@ -136,7 +161,7 @@ plt.show()
 ```python
 # 将 colorbar 放在图片右侧
 scatter_ax = ax.scatter(x, y, c=colors, cmap="bwr")
-cbar = fig.colorbar(scatter_ax, ax=ax)
+cbar = fig.colorbar(scatter_ax, ax=ax)  # 第二个参数名为 ax
 cbar.set_label("colorbar label")
 
 
@@ -146,6 +171,7 @@ scatter_ax = ax.scatter(x, y, c=colors, cmap="bwr")
 # colorbar 位置；[x, y, width, height] 比例
 cbar_ax = ax.inset_axes([0.3, 0.05, 0.5, 0.05])
 # colorbar 水平放置
+# 第二个参数名为 cax
 fig.colorbar(scatter_ax, cax=cbar_ax, orientation="horizontal")
 ```
 
@@ -210,7 +236,14 @@ ax.plot(
 
 ---
 
-- `ax.set()` 函数：[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
+- `ax.set()` 函数：设置轴属性，可接受多种参数；[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
+	- `xlim` / `ylim`: x、y 轴范围
+	- `xlabel` / `ylabel`: x、y 轴标签
+	- `title`: 图表标题
+	- `xticks` / `yticks`: x、y 轴刻度
+	- `xticklabels` / `yticklabels`: x、y 轴刻度标签
+	- `xscale` / `yscale`: x、y 轴缩放（'linear', 'log', 'symlog', 'logit' 等）
+	- `facecolor`: 轴背景颜色
 
 ```python
 ax.set_xlabel("x")
@@ -218,6 +251,8 @@ ax.set_ylabel("y")
 # or
 ax.set(xlabel="x", ylabel="y")
 ```
+
+---
 
 - 图例：`ax.legend(ncols, loc, …)`；
 	- `ncols` - 图例排布列数
