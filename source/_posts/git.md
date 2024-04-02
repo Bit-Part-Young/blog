@@ -264,19 +264,10 @@ git rm --cached file
 
 >[.gitattributes](https://github.com/esemble/simpy/blob/master/.gitattributes)
 
-```text
+```bash
 # Auto detect text files and perform LF normalization
 # 指示 Git 自动检测文本文件，并在处理它们时执行 LF（Line Feed）规范化操作
 * text=auto
-
-# Custom for Visual Studio
-# 自定义一些与 Visual Studio 相关的文件的差异显示和合并策略
-*.cs     diff=csharp
-*.sln    merge=union
-*.csproj merge=union
-*.vbproj merge=union
-*.fsproj merge=union
-*.dbproj merge=union
 
 # Standard to msysgit
 # 配置一些特定文件类型的差异（diff）显示策略，特别是针对 MSYSGit（旧版Git for Windows）
@@ -296,21 +287,28 @@ git rm --cached file
 
 - `* text=auto` 的设置会让 Git 尝试自动检测文件类型，将其标记为文本文件，并在需要时执行 LF 规范化（一种处理换行符的方式，通常用于确保在不同操作系统上的文本文件中的行尾都使用相同的行尾字符），以确保文件在版本控制系统中的一致性。这是一种非常常见的设置，特别是在跨平台开发中。
 - `astextplain` 是一种 Git 的差异显示策略，它会尝试将二进制文件（如 Word 文档、PDF、RTF 等）视为文本文件，以便更好地显示差异。这对于希望查看这些二进制文件的差异时可能非常有用，**但请注意，它并不会将这些文件真正地转换为文本文件，只是尝试以文本方式进行显示**。
-- `*.cs diff=csharp` - 对扩展名为 `.cs` 的文件使用 `csharp` 差异显示策略。这意味着 Git 会尝试以 C# 代码的方式来显示这些文件的差异。
-- `union` 合并策略通常用于合并文本文件，它会尝试合并两个不同的版本，并在可能的情况下保留双方的更改。
 
 
->[.gitattributes](https://github.com/TonyCrane/note/blob/master/.gitattributes)
+---
 
-```text
+检测 GitHub repo 中代码文件的所属编程语言
+
+md 示例：[md - .gitattributes](https://github.com/TonyCrane/note/blob/master/.gitattributes)
+
+- Linguist - GitHub 工具，检测和标识存储库中的代码文件及其编程语言
+
+
+```bash
 *.md linguist-documentation=false linguist-detectable=true
+*.md linguist-language=Markdown
 ```
 
->由 ChatGPT 生成
+```bash
+linguist-documentation=false  # 不将文件统计为文档类型
+linguist-detectable=true      # 开启检测
+linguist-language=...         # 记为 ... 编程语言
+```
 
-- Linguist - GitHub 中的一种工具，用于自动检测和标识存储库中的代码文件以及其编程语言
-- `linguist-documentation=false` - 告诉 Linguist 不要将扩展名为 `.md` 的 文件统计为 documentation(文档) 类型的文件。
-- `linguist-detectable=true` - 告诉 Linguist 要将扩展名为 `.md` 的 Markdown 文件标记为可以检测的（detectable）。这表示 Linguist 会尝试检测这些文件的编程语言。虽然 Markdown 通常不是编程语言，但这个规则会让 Linguist 识别它以查找任何可能的代码片段。
 
 
 ---
@@ -346,6 +344,7 @@ git submodule add https://github.com/username/reop.git
 非标准 git 配置文件。
 
 凭证存储
+
 - 默认所有都不缓存。 每一次连接都会询问用户名和密码。
 - “cache” 模式会将凭证存放在内存中一段时间。 密码永远不会被存储在磁盘中，并且在 15 分钟后从内存中清除。
 - “store” 模式可以接受一个 `--file <path>` 参数，可以自定义存放密码的文件路径（默认是 `~/.git-credentials` ）
@@ -361,20 +360,22 @@ git config --global credential.helper 'store --file ~/.my-credentials'
 
 ### 多账号 ssh 配置
 
-多账号 ssh 配置作用：
-- 多账号管理：通过配置 config 文件，可以方便地管理访问多个仓库时使用的不同账号；
-- 通过 ssh 协议，可以免密访问、克隆远程仓库，以及 git 操作（clone、pull 和 push 等）。
+>[配置同时使用 Gitlab、Github、Gitee(码云) 共存的开发环境 - 简书](https://www.jianshu.com/p/68578d52470c)
 
+- 多账号 ssh 配置作用：
+	- 多账号管理：通过配置 config 文件，可以方便地管理访问多个仓库时使用的不同账号
+	- 通过 ssh 协议，免密访问、克隆远程仓库，及 git 操作
 
-生成密钥，将 `id_rsa.gitee.pub` 和 `id_rsa.github.pub` 文件中的内容添加到 github 和 gitee 中的 SSH keys（SSH 公钥）中；
+- 生成密钥，将 `id_rsa.gitee.pub` 和 `id_rsa.github.pub` 文件中的内容添加到 Github 和 Gitee 中的 SSH keys（SSH 公钥）中
+
 ```bash
 ssh-keygen -t rsa -f ~/.ssh/id_rsa.gitee -C "XXX@email.com"
 
 ssh-keygen -t rsa -f ~/.ssh/id_rsa.github -C "XXX@email.com"
 ```
 
+- `~/.ssh/config` 文件配置
 
-`~/.ssh/config` 文件配置
 ```bash
 # github
 Host github.com
@@ -398,8 +399,8 @@ Host gitlab.com
     IdentityFile ~/.ssh/id_rsa.gitlab
 ```
 
+- 测试
 
-测试
 ```bash
 ssh -T git@github.com
 
@@ -408,8 +409,8 @@ ssh -T git@gitee.com
 ssh -T git@gitlab.com
 ```
 
+- 若返回信息，则配置成功
 
-若返回信息，则配置成功
 ```text
 Hi XXX! You've successfully authenticated, but GitHub does not provide shell access.
 
@@ -418,16 +419,13 @@ Hi XXX! You've successfully authenticated, but GITEE.COM does not provide shell 
 Welcome to GitLab, XXX!
 ```
 
-
-**注：**
-- 超算平台中的登陆节点禁止对外的 ssh，无法使用 git 交互环境，建议在 pc 本地或者实验室工作站（manager 和 master）使用。
-- 超算平台进行以上设置会出现以下报错：
+- **注意事项**：
+	- `~/.ssh/config` 文件出现 `Bad owner or permissions` 错误的解决办法：文件权限问题，设置 config 文件权限为 `600`
+	- 超算平台中的登陆节点禁止对外的 ssh，无法使用 git 交互环境，建议在本地或者实验室工作站（manager 和 master）使用；超算平台进行以上设置会出现以下报错：
 
 ```bash
 ssh: connect to host github.com port 22: Network is unreachable
 ```
-
-- `~/.ssh/config` 文件出现 `Bad owner or permissions` 错误的解决办法：文件权限位问题，设置 config 文件权限为 `600` （chmod 命令）。
 
 
 ---
@@ -439,14 +437,14 @@ ssh: connect to host github.com port 22: Network is unreachable
 在该 repo 目录中的 `.git/config` 文件找到 `[remote "origin"]` 选项，将 URL 后的 https 地址改成 ssh 形式或带 token 的地址
 
 ```bash
-# 原
+# https 形式
 url = https://github.com/user/repo.git
 
-# ssh形式
+# ssh 形式
 url = git@gitee.com:user/repo.git
 url = git@github.com:user/repo.git
 
-# 带token形式
+# https + token 形式
 url = https://user:token@github.com/user/repo.git
 url = https://user:token@gitee.com/user/repo.git
 ```
@@ -480,7 +478,7 @@ Settings - Developer settings - Personal access tokens - Tokens(classic)
 ### Gitee 与 Github、Gitlab 之间互相同步
 
 - Gitee 可以直接从 Github 和 Gitlab 中导入 repo
-- 参考：[仓库镜像管理（Gitee<->Github 双向同步） | Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)、[Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
+- 参考：[仓库镜像管理（Gitee<->Github 双向同步） - Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)、[Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
 
 
 ---
@@ -595,24 +593,23 @@ git pull --rebase
 ### branch
 
 ```bash
-git branch 
-
-git branch -a  # 查看所有分支（本地 + 远程）
+git branch  # 查看本地分支
 git branch -r  # 查看远程分支
+git branch -a  # 查看所有分支（本地 + 远程）
 
-git brach -u
+git brach -u <upstream>  # 设置本地分支与远程分支之间的追踪关系
+git brach -u origin/main  # 示例；之后的 pull push 无需再指定 origin/main
 
-git branch -m
+git branch -m <NewBranchName>  # 重命名为新分支
 
 # 删除本地分支
 git branch -d <BranchName>  # 删除前会提醒是否进行分支合并
 git branch -D <BranchName>  # 强制
 
-# 列出当前仓库中所有分支的信息，包括每个分支的名称、关联的远程分支、远程分支的提交和本地分支的提交
+# 列出 repo 所有分支信息（分支名称 + 关联的远程分支 + commit 信息）
 git branch -vv
-
 # 示例
-* master f6423c9 [origin/master] update
+* master 8b700ba [origin/master] vault backup: 2024-04-01 19:11:49
 ```
 
 
@@ -626,7 +623,7 @@ git checkout -b <BranchName>  # 创建并进入新分支
 git checkout -  # 迅速切换到上一个分支
 
 # 关联分支
-git checkout -b <BranchName> origin/<BranchName>  
+git checkout -b <BranchName> origin/<RemoteBranchName>  
 ```
 
 
@@ -1202,12 +1199,24 @@ gitmoji-cli：git commit 时使用 emoji
 ### 其他
 
 ```bash
-# 查看两个星期内的改动
+# 查看两星期内的改动
 git whatchanged --since='2 weeks ago'
 
-# git 统计当天的提交数
+
+# 统计当天的提交数
+# 方式 1
 git rev-list --count --since=@{0:00} --before=@{23:59:59} HEAD
-git log --since="midnight" --until="now" --pretty=oneline | wc -l
+# 方式 2
+git log --since='midnight' --until='now' --pretty=oneline | wc -l
+
+
+# 只保留最新的一次提交以减小 repo 体积
+git checkout --orphan <NewBranchName> <last-commit-hash>  # 基于最后的 commit 创建新分支
+git commit -m 'new init' # 提交
+git branch -D main   # 删除分支
+git branch -m main   # 新分支重命名为 main 主分支
+git push origin main --force  # 强制 push
+
 ```
 
 

@@ -191,7 +191,8 @@ pip install pytest
 
 >[The Atoms object — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#module-ase.atoms)
 
-- attribute -
+- 属性 -
+- 方法
 - `get_XXX()` method -
 - `set_XXX()` method -
 
@@ -215,59 +216,35 @@ nele = len(set(ats.get_chemical_symbols()))
 Atoms object 常用 method 和 attribute 示例代码
 
 ```python
-from ase.io import read
 
-struct_fn = "Nb5Si3_alpha.vasp"
-struct = read(filename=struct_fn, format="vasp")
-
-print("Total number of atoms:")
 print(len(struct))
 print(struct.get_global_number_of_atoms())
-print("---" * 25)
 
-print("Atomic symbols:")
 print(list(struct.symbols))
 print(struct.get_chemical_symbols())
-print("---" * 25)
 
-print("Chemical formula:")
 print(struct.symbols)
 print(struct.get_chemical_formula())
-print("---" * 25)
 
-print("Atomic numbers:")
 print(struct.numbers)
 print(struct.get_atomic_numbers())
-print("---" * 25)
 
-print("Structure cell:")
 print(struct.cell)
 print(struct.get_cell())
-print("---" * 25)
 
-print("Structure cell parameters:")
 print(struct.cell.cellpar())
 # deprecated 写法
 # print(struct.get_cell_lengths_and_angles())
-print("---" * 25)
 
-print("Structure volume:")
 print(struct.get_volume())
-print("---" * 25)
 
-print("Structure mass:")
 print(struct.get_masses())
-print("---" * 25)
 
-print("Structure positions:")
 print(struct.positions)
 print(struct.get_positions())
-print("---" * 25)
 
-print("Structure pbc condition:")
 print(struct.pbc)
 print(struct.get_pbc())
-print("---" * 25)
 
 print(struct.todict())
 ```
@@ -281,24 +258,19 @@ print(struct.todict())
 
 >[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
 
+
 简单 bulk 模型构建 示例代码
 
 ```python
 from ase.build import bulk
-from ase.io import write
 
 # 原胞
-primCell = bulk(name="Al", crystalstructure="fcc", a=4.05)
+primCell = bulk("Al", "fcc", a=4.05)
 # 单胞
-unitCell = bulk(name="Al", crystalstructure="fcc", a=4.05, cubic=True)
+unitCell = bulk("Al", "fcc", a=4.05, cubic=True)
 # 超胞
 superCell = unitCell * (2, 2, 2)
-# 构型原子数
-print(len(primCell))
-print(superCell.get_global_number_of_atoms())
 
-# 保存成 VASP 格式文件
-write(filename="Al222.vasp", images=superCell, format="vasp", direct=True)
 ```
 
 ---
@@ -306,22 +278,8 @@ write(filename="Al222.vasp", images=superCell, format="vasp", direct=True)
 简单 bulk 模型的表面构建 示例代码
 
 ```python
-
+# WIP
 ```
-
-
----
-
-将 ASE 生成的 bulk 的原胞形式转换成单胞
-```python
-from spglib import standardize_cell
-
-lattice, positions, numbers = standardize_cell(cell=Atoms, to_primitive=False)
-# lattice返回的是三个基矢的np.array格式
-
-lattice_constant = lattice[0][0]
-```
-
 
 ---
 
@@ -346,8 +304,7 @@ WIP…
 ```python
 from ase.io import read, write
 
-struct = ...
-write(filename=struct, images=..., format=...)
+write(filename=..., images=..., format=...)
 ```
 
 ---
@@ -357,20 +314,20 @@ write(filename=struct, images=..., format=...)
 ```python
 # LAMMPS data 格式
 from ase.io.lammpsdata import read_lammps_data, write_lammps_data
+
 # vasp 格式
 from ase.io.vasp import read_vasp, write_vasp
-# material studio xsd 格式
-from ase.io.xsd import read_xsd, write_xsd
+
 # VASP 输出文件格式
 from ase.io.vasp import read_vasp_out
 
-struct = ...
-write_vasp(filename=..., atoms=struct)
+# material studio xsd 格式
+from ase.io.xsd import read_xsd, write_xsd
 ```
 
 ---
 
-ASE io 模块 文件格式转换 示例代码
+ase io 模块 文件格式转换 示例代码
 
 ```python
 from ase.io import read, write

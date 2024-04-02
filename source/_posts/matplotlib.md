@@ -89,7 +89,7 @@ ax.plot(x, y, ...)
 ax.scatter(x, y, s, c, cmap, ...)
 
 s               # marker size；float 或 array-like
-c               # marker colors；array-like 或 color list；该参数可与 colorbar 一起使用
+c               # marker colors；array-like 或 color list；该参数可结合 colorbar 使用
 cmap            # colormap
 
 
@@ -261,6 +261,11 @@ ax.set(xlabel="x", ylabel="y")
 - label 不在图例上显示：`label="_nolegend_"`
 
 - 手绘风格：[XKCD](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
+
+- matplotlib joint 绘制
+	- [seaborn.JointGrid — seaborn 0.12.2 documentation](https://seaborn.pydata.org/generated/seaborn.JointGrid.html)
+	- [seaborn.jointplot — seaborn 0.12.2 documentation](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
+	- [Scatter plot with histograms — Matplotlib 3.7.2 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_hist.html)
 
 - 其他
 

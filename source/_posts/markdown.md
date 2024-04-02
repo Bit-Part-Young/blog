@@ -64,10 +64,10 @@ lec3：Markdown 语法及应用
 
 图片插入
 
-```markdown
-![图片描述](图片位置)
+图片描述可以为空；图片位置可以是路径，也可以是 URL
 
-![](图片位置)
+```text
+![图片描述](图片位置)
 
 <img src="图片位置" alt="图片描述" 
     style="..."/>
@@ -77,6 +77,17 @@ lec3：Markdown 语法及应用
 
 
 插入链接
+
+
+---
+
+脚注
+
+```text
+这是脚注[^1]
+
+[^1]: 脚注 1
+```
 
 
 
@@ -255,7 +266,6 @@ Markdown 中带圆圈的数字编号，没有相应语法，直接复制粘贴�
 ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩
 ```
 
-markdown 自定义图片大小
->[markdown中插入图片怎么定义图片的大小或比例？ - 知乎](https://www.zhihu.com/question/23378396)
+markdown 自定义图片大小：[markdown中插入图片怎么定义图片的大小或比例？ - 知乎](https://www.zhihu.com/question/23378396)
 
 markdown 图片并排

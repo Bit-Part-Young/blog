@@ -2,6 +2,7 @@
 title: typst 使用
 top: false
 pin: false
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -11,9 +12,8 @@ tags:
   - typst
 categories:
   - 排版语言
-abbrlink: 33761
 date: 2023-10-29 10:30:00
-cover:
+abbrlink: "33761"
 password:
 ---
 

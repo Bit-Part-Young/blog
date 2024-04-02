@@ -2,6 +2,7 @@
 title: LaTeX 使用
 top: false
 pin: false
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -11,9 +12,8 @@ tags:
   - LaTeX
 categories:
   - 排版语言
-abbrlink: 11930
 date: 2023-09-30 20:40:00
-cover:
+abbrlink: "11930"
 password:
 ---
 

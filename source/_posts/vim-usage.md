@@ -2,6 +2,7 @@
 title: Vim 使用
 top: false
 pin: false
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -11,9 +12,8 @@ tags:
   - Vim
 categories:
   - Linux
-abbrlink: 7494
 date: 2023-11-27 20:44:00
-cover:
+abbrlink: "7494"
 password:
 ---
 
