@@ -22,6 +22,13 @@ password:
 
 ## 开箱验机
 
+参考：
+
+- [【建议收藏】新笔记本到手验机指南，小白买笔记本不再担心翻车！ 2023版\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1DX4y1n72y/?spm_id_from=333.788.top_right_bar_window_history.content.click&vd_source=aebed606e85dc126ebe030ffeb93a8e8)
+- [【拯救者R9000P2023 7945HX】验机抽奖：特等奖\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV18P411D7JD/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=aebed606e85dc126ebe030ffeb93a8e8)
+
+---
+
 笔记本开箱验机：
 
 - 检查外包装是否有已拆除的痕迹
@@ -32,9 +39,11 @@ password:
 	- 电脑开机时间
 	- 磁盘通电、使用时间
 
->[【建议收藏】新笔记本到手验机指南，小白买笔记本不再担心翻车！ 2023版\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1DX4y1n72y/?spm_id_from=333.788.top_right_bar_window_history.content.click&vd_source=aebed606e85dc126ebe030ffeb93a8e8)
+---
 
->[【拯救者R9000P2023 7945HX】验机抽奖：特等奖\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV18P411D7JD/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=aebed606e85dc126ebe030ffeb93a8e8)
+联想拯救者主机编号：PF4E7GG8；[驱动列表](https://newsupport.lenovo.com.cn/driveList.html?fromsource=driveList&selname=PF4E7GG8)
+
+联想工具箱：[GitHub - BartoszCichecki/LenovoLegionToolkit: Lightweight Lenovo Vantage and Hotkeys replacement for Lenovo Legion laptops.](https://github.com/BartoszCichecki/LenovoLegionToolkit/)
 
 
 
@@ -51,7 +60,7 @@ password:
 - 笔记管理：Obsidian、Typora（破解版）
 - 远程服务器连接：MobaXterm
 - 代码编辑器：VSCode-insiders、VSCode
-- 终端：Windows Terminal（新版本 Windows 会自带）
+- 终端：Windows Terminal（Windows 11 会自带）
 - 浏览器：Chrome
 - 文献管理：Zotero
 - 远程文件传输：WinSCP
@@ -89,6 +98,15 @@ password:
 - 截图：Snipaste
 - 系统资源监控：RunCat
 - 网速监控：TrafficMonitor
+- 字体
+
+```powershell
+scoop bucket add nerd-fonts
+
+scoop install Meslo-NF
+scoop install LXGWWenKai   # 霞鹜文楷
+scoop install smiley-sans  # 得意黑
+```
 
 
 ---

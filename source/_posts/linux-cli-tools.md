@@ -140,6 +140,9 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 git clone --depth=1 https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
+git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/fast-syntax-highlighting && \
+git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM}/plugins/zsh-vi-mode && \
+git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM}/plugins/you-should-use && \
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 
 # gitee 源
@@ -246,9 +249,12 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 ### 其他命令行工具
 
+>ripgrep、lsd、sd、bat、git-delta 等均可通过 cargo 安装
+
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
 - 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
 	- 过滤搜索：`-g`
+- 替代 `sed`：[sd](https://github.com/chmln/sd)
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)
 - 替代 `ps`：[procs](https://github.com/dalance/procs)

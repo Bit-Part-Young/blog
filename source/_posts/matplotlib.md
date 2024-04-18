@@ -27,6 +27,48 @@ password:
 - 精美科研绘图示例：[Veusz 2D Examples](https://veusz.github.io/examples/)
 
 
+matplotlib 图中的所有元素
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404091019401.png)
+
+
+
+```python
+# 新字体使用时，rebuild font cache list，防止没有检测到
+import matplotlib.font_manager
+
+matplotlib.font_manager._rebuild()
+```
+
+
+
+```python
+# 使用 TEX 引擎
+plt.rcParams["text.usetex"] = True
+```
+
+```python
+plt.rcParams["mathtext.fontset"]
+```
+
+数学字体（默认为 `dejavusans`）：[Writing mathematical expressions — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/users/explain/text/mathtext.html)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404091028106.png)
+
+
+---
+
+>[matplotlib.style — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/api/style_api.html)
+
+>[Style sheets reference — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html)
+
+```python
+plt.style.available
+
+plt.style.use()
+```
+
+
 
 ---
 
@@ -236,16 +278,17 @@ ax.plot(
 
 ---
 
-- `ax.set()` 函数：设置轴属性，可接受多种参数；[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
-	- `xlim` / `ylim`: x、y 轴范围
-	- `xlabel` / `ylabel`: x、y 轴标签
-	- `title`: 图表标题
-	- `xticks` / `yticks`: x、y 轴刻度
-	- `xticklabels` / `yticklabels`: x、y 轴刻度标签
-	- `xscale` / `yscale`: x、y 轴缩放（'linear', 'log', 'symlog', 'logit' 等）
-	- `facecolor`: 轴背景颜色
+- `ax.set()` ：设置轴属性，可接受多种参数；[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
 
 ```python
+xlim/ylim                    # x、y 轴范围
+xlabel/ylabel                # x、y 轴标签
+title                        # 图标题
+xticks/yticks               # x、y 轴刻度
+xticklabels/yticklabels      # x、y 轴刻度标签
+xscale/yscale                # x、y 轴比例
+facecolor                    # 轴背景颜色
+
 ax.set_xlabel("x")
 ax.set_ylabel("y")
 # or
@@ -254,18 +297,31 @@ ax.set(xlabel="x", ylabel="y")
 
 ---
 
-- 图例：`ax.legend(ncols, loc, …)`；
-	- `ncols` - 图例排布列数
-	- `loc` - 图例位置
+- `ax.legend()` 图例
 
-- label 不在图例上显示：`label="_nolegend_"`
+```python
+# label 不在图例上显示
+ax.plot(x, y, label="_nolegend_")
 
-- 手绘风格：[XKCD](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
+# 图例
+ax.legend(ncols, loc, bbox_to_anchor, ...)
+
+ncols               # 图例排布列数
+loc                 # 图例位置
+bbox_to_anchor      # 2-tuple floats，(x, y)；x≥1.0 时，图例在外面
+```
+
+---
+
+- 手绘风格：需安装 xkcd-script font（但还是会提示找不到相关字体）；[XKCD](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
 
 - matplotlib joint 绘制
+	- [standard-layout-2.py - scientific-visualization-book](https://github.com/rougier/scientific-visualization-book/blob/master/code/layout/standard-layout-2.py)
 	- [seaborn.JointGrid — seaborn 0.12.2 documentation](https://seaborn.pydata.org/generated/seaborn.JointGrid.html)
 	- [seaborn.jointplot — seaborn 0.12.2 documentation](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
 	- [Scatter plot with histograms — Matplotlib 3.7.2 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_hist.html)
+
+---
 
 - 其他
 
@@ -286,10 +342,11 @@ fig.subplots_adjust(hspace=0.0, wspace=0.0)
 ax.yaxis.tick_right()
 ax.yaxis.set_label_position("right")
 
-# 设置 y 轴数值刻度间隔
+# 设置 x/y 轴主、次刻度间隔
 from matplotlib.ticker import MultipleLocator
 
-ax.yaxis.set_major_locator(MultipleLocator(0.01))
+ax.xaxis.set_major_locator(MultipleLocator(0.2))
+ax.xaxis.set_minor_locator(MultipleLocator(0.1))
 
 # 让 figure 呈正方形
 ax.set_aspect("equal", adjustable="box")
@@ -321,14 +378,42 @@ matplotlib.get_cachedir()
 
 ---
 
-- 查看 matplotlib 中的所有 rcParams
+- 查看默认颜色循环
 
 ```python
 import matplotlib.pyplot as plt
 
+plt.rcParams["axes.prop_cycle"].by_key()["color"]
+
+prop_cycle_list = [
+    "#1f77b4",
+    "#ff7f0e",
+    "#2ca02c",
+    "#d62728",
+    "#9467bd",
+    "#8c564b",
+    "#e377c2",
+    "#7f7f7f",
+    "#bcbd22",
+    "#17becf",
+]
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404091017405.png)
+
+
+
+---
+
+- 查看 matplotlib 中的所有 [rcParams](https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.rcParams)
+
+```python
+# 方式 1
+import matplotlib.pyplot as plt
+
 plt.rcParams.keys()
 
-# or
+# 方式 2
 import matplotlib
 
 matplotlib.rc_params()

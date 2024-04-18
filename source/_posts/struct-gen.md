@@ -71,6 +71,57 @@ BIOVIA\Materials Studio 19.1\share\Resources\Quantum\Castep\Potentials
 
 - [ ] D019 结构（Ti3Al）原子位点，mp 与 latgen 两者有区别（和 hcp 类似的问题）
 
+---
+
+
+
+用 Material Studio 构建相对复杂结构模型
+
+- 晶体结构（crystal structure）
+- 空间群（space group / space number）
+- 点阵参数 （lattice parameter）
+- 原子位置（**Wyckoff position(?)** / atomic position 例如单胞中所有原子的位置）
+
+![Untitled](%E6%AF%8F%E5%91%A8%E4%BB%BB%E5%8A%A1%E6%A0%8F/Untitled%2021.png)
+
+>教程：[https://www.youtube.com/watch?v=IMvzznBhEns](https://www.youtube.com/watch?v=IMvzznBhEns)
+
+构建相对复杂结构模型的一些方法：
+
+- 在 mp、aflow、Springer Materials 等数据库网站上找
+
+>[https://materials.springer.com/](https://materials.springer.com/)
+
+- 找文献中描述该结构的相关结构信息，若提到 protype structure（原型结构），可以在数据库中找原型结构，再将晶格常数和原子进行替换，替换为要建的结构
+
+pymatgen 可以建复杂结构的表面和界面
+
+VASP 构建晶界：Aimsgb 程序
+
+>Aimsgb: An algorithm and open-source python library to generate periodic grain boundary structures: [https://doi.org/10.1016/j.commatsci.2018.08.029](https://doi.org/10.1016/j.commatsci.2018.08.029)
+
+>[https://github.com/ksyang2013/aimsgb](https://github.com/ksyang2013/aimsgb)
+
+α2 相
+
+晶体结构：D019
+
+空间群：P63/mmc
+
+有序 B2/β相
+
+空间群：Pm-3m(3 的上面有横线) CsCl 原型结构
+
+O 相
+
+晶体结构：三元有序 orthorhombic
+
+空间群：\*Cmcm\*, oC16
+
+
+
+
+---
 
 
 晶体学库
@@ -350,8 +401,10 @@ atomsk POSCAR -orthogonal-cell -sort species pack vasp
 ```
 
 >[crystallography - How to transform lattice in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/7263/how-to-transform-lattice-in-vesta)
+
 >[Atomsk - Tutorial - VASP](https://atomsk.univ-lille.fr/tutorial_vasp.php)
 
+>里面的示意图可供参考：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)）
 
 广义层错
 >[Atomsk - Tutorial - Stacking fault](https://atomsk.univ-lille.fr/tutorial_stackingfault.php)

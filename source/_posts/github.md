@@ -31,6 +31,20 @@ GitHub 每个仓库的总体积限制是 1GB（Gitee 是 500MB），每个仓库
 
 - [x] 之前留言过的 Github issue，仍会收到后续通知， 如何关闭（在 Github 个人主页的 Notifications 处关闭）
 
+
+GitHub README 生成 TOC
+>[GitHub - ekalinin/github-markdown-toc: Easy TOC creation for GitHub README.md](https://github.com/ekalinin/github-markdown-toc)
+
+>[GitHub - ekalinin/github-markdown-toc.go: Easy TOC creation for GitHub README.md (in go)](https://github.com/ekalinin/github-markdown-toc.go)
+
+
+skill 图标
+>[GitHub - tandpfun/skill-icons: Showcase your skills on your Github readme or resumé with ease ✨](https://github.com/tandpfun/skill-icons)
+
+
+用 GitHub Actions 实现 github 与 gitee 之间同步：[GitHub - Yikun/hub-mirror-action: 一个Github Action，用于在Github和Gitee之间同步代码。Action for mirroring repos between Hubs (like Github and Gitee).](https://github.com/Yikun/hub-mirror-action)
+
+
 ---
 
 ### 参考资料

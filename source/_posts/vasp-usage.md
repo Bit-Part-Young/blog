@@ -55,7 +55,7 @@ Heyd–Scuseria–Ernzerhof 泛函 (HSE06)：更精确，处理电子和光学�
 - VASP KPOINTS：[KPOINTS - Vaspwiki](https://www.vasp.at/wiki/index.php/KPOINTS)
 - VASP 赝势推荐：[Available PAW potentials - Vaspwiki](https://www.vasp.at/wiki/index.php/Available_PAW_potentials#Recommended_potentials_for_DFT_calculations)
 - VASP 输出文件：[Category:Output files - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Output_files)
-- VASPKIT Features: [Features — VASPKIT 1.4 documentation](https://vaspkit.com/features.html)
+- VASPKIT Features: [Features — VASPKIT 1.5 documentation](https://vaspkit.com/features.html)
 - VASP Manual：[The VASP Manual - Vaspwiki](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
 - VASP Categories：[Categories - Vaspwiki](https://www.vasp.at/wiki/index.php/Special:Categories)
 - VASP Tutorial：[Category:Tutorials - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Tutorials)
@@ -108,23 +108,6 @@ VASP 计算流程：
  - NCORE: 指定单个轨道计算所使用的核数量
  - NPAR: 指定同时并行处理的能带数
  - KPAR: 指定同时并行处理的 K 点数量
-
-
----
-
-## VASP 编译
-
-### Intel oneAPI 套件编译
-
-- Intel oneAPI 套件卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)
-- Intel oneAPI 套件暂不支持 Arch Linux
-
-
----
-
-### GNU 套件编译
-
-WIP…
 
 
 ---

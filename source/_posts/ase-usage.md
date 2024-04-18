@@ -22,7 +22,7 @@ password:
 atomic simulation environment (ASE)
 
 
-ipython 按 tab 键可查看有哪些可用 method 或 attributes
+ipython 按 tab 键可补全可用 method 或 attributes
 在函数或 method 后添加?可以查看其 docstring
 
 示例
@@ -30,60 +30,11 @@ ipython 按 tab 键可查看有哪些可用 method 或 attributes
 In [1]: from ase.build import bulk
 
 In [2]: bulk?
-Signature:
-bulk(
-    name,
-    crystalstructure=None,
-    a=None,
-    b=None,
-    c=None,
-    *,
-    alpha=None,
-    covera=None,
-    u=None,
-    orthorhombic=False,
-    cubic=False,
-    basis=None,
-)
-Docstring:
-Creating bulk systems.
-
-Crystal structure and lattice constant(s) will be guessed if not
-provided.
-
-name: str
-    Chemical symbol or symbols as in 'MgO' or 'NaCl'.
-crystalstructure: str
-    Must be one of sc, fcc, bcc, tetragonal, bct, hcp, rhombohedral,
-    orthorhombic, mlc, diamond, zincblende, rocksalt, cesiumchloride,
-    fluorite or wurtzite.
-a: float
-    Lattice constant.
-b: float
-    Lattice constant.  If only a and b is given, b will be interpreted
-    as c instead.
-c: float
-    Lattice constant.
-alpha: float
-    Angle in degrees for rhombohedral lattice.
-covera: float
-    c/a ratio used for hcp.  Default is ideal ratio: sqrt(8/3).
-u: float
-    Internal coordinate for Wurtzite structure.
-orthorhombic: bool
-    Construct orthorhombic unit cell instead of primitive cell
-    which is the default.
-cubic: bool
-    Construct cubic unit cell if possible.
-File:      ~/src/miniconda3/envs/base_ysl/lib/python3.11/site-packages/ase/build/bulk.py
-Type:      function
-
 ```
 
 
 nglview，可用在 jupyter notebook 中查看生成的构型
 ```bash
-# 安装
 pip install nglview
 ```
 
@@ -103,14 +54,17 @@ view(structure, viewer="ngl")
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401201143207.png)
 
 
+```python
+# ase rdf 计算
+from ase.geometry.analysis import Analysis
 
-```bash
-# 列出 ASE 可识别的构型文件格式
-ase info --formats
-
-# 列出 ASE 的 calculators 以及是否被安装
-ase info --calculators
+ana = Analysis(images=...)
+rdf = ana.get_rdf()
 ```
+
+
+ase 缺陷计算 寻找最优的超胞形状
+>[Tools for defect calculations — ASE documentation](https://wiki.fysik.dtu.dk/ase/tutorials/defects/defects.html#supercell-creation)
 
 
 ---
@@ -161,7 +115,6 @@ ase 对称性 tutorial
 >[Calculation of elastic properties of crystals — Elastic v5.1.0 documentation](https://elastic.readthedocs.io/en/stable/)
 
 
-
 ---
 
 ## 安装
@@ -175,7 +128,7 @@ pip install ase
 ```bash
 ase test
 
-# 需要安装 pytest package
+# 需安装 pytest
 pip install pytest
 ```
 
@@ -213,43 +166,6 @@ nele = len(set(ats.get_chemical_symbols()))
 ```
 
 
-Atoms object 常用 method 和 attribute 示例代码
-
-```python
-
-print(len(struct))
-print(struct.get_global_number_of_atoms())
-
-print(list(struct.symbols))
-print(struct.get_chemical_symbols())
-
-print(struct.symbols)
-print(struct.get_chemical_formula())
-
-print(struct.numbers)
-print(struct.get_atomic_numbers())
-
-print(struct.cell)
-print(struct.get_cell())
-
-print(struct.cell.cellpar())
-# deprecated 写法
-# print(struct.get_cell_lengths_and_angles())
-
-print(struct.get_volume())
-
-print(struct.get_masses())
-
-print(struct.positions)
-print(struct.get_positions())
-
-print(struct.pbc)
-print(struct.get_pbc())
-
-print(struct.todict())
-```
-
-
 ---
 
 ### ase.build
@@ -270,7 +186,6 @@ primCell = bulk("Al", "fcc", a=4.05)
 unitCell = bulk("Al", "fcc", a=4.05, cubic=True)
 # 超胞
 superCell = unitCell * (2, 2, 2)
-
 ```
 
 ---
@@ -325,62 +240,6 @@ from ase.io.vasp import read_vasp_out
 from ase.io.xsd import read_xsd, write_xsd
 ```
 
----
-
-ase io 模块 文件格式转换 示例代码
-
-```python
-from ase.io import read, write
-from ase.io.extxyz import write_xyz
-from ase.io.lammpsdata import write_lammps_data
-from ase.io.vasp import read_vasp, write_vasp
-
-struct_fn = "Nb5Si3_alpha.vasp"
-struct = read(filename=struct_fn, format="vasp")
-
-output_vasp_fn = "POSCAR"
-write_vasp(filename=output_vasp_fn, atoms=struct, direct=True, sort=True)
-
-output_xyz_fn = "Nb5Si3_alpha.xyz"
-output_extxyz_fn = "Nb5Si3_alpha_ext.xyz"
-write(filename=output_xyz_fn, images=struct, format="xyz")
-write(filename=output_extxyz_fn, images=struct, format="extxyz")
-write_xyz(fileobj=output_extxyz_fn, images=struct)
-
-ele_list = ["Nb", "Si"]
-output_lammps_data_fn = "Nb5Si3_alpha.lammps-data"
-write_lammps_data(
-    file=output_lammps_data_fn,
-    atoms=struct,
-	# 指定 atom type 顺序
-	specorder=ele_list,
-    units="metal",
-    atom_style="atomic",
-)
-```
-
-
-lammps atom type 指定排序：`write_lammps_data()` 的 `specorder` 参数
-
-
----
-
-VASP OUTCAR 文件转换为 extxyz 格式代码示例：[Convert VASP OUTCAR to extxyz file for NequIP input · GitHub](https://gist.github.com/simonbatzner/c2b05d38789b67f6fe5d3c75a4f2223d)
-
-```python
-"""可获取 OUTCAR 中的所有离子步构型的原子位置、能量、受力、应力等信息"""
-
-from ase.io import read, write
-
-vasp_out_fn = "./OUTCAR"
-extxyz_fn = "outcar.xyz"
-
-all_confs = read(filename=vasp_out_fn, format="vasp-out", index=":")
-print(len(all_confs))
-
-write(filename=extxyz_fn, images=all_confs, format="extxyz", append=True)
-```
-
 
 `extxyz.py` 源代码相关 warning：
 
@@ -398,7 +257,18 @@ write(filename=extxyz_fn, images=all_confs, format="extxyz", append=True)
 获取平衡体积，能量和体模量
 
 ```python
-EquationOfState
+from ase.eos import EquationOfState
+from ase.units import kJ
+
+# murnaghan birch vinet
+eos = EquationOfState(volumes, energies, eos="birchmurnaghan")
+v0, e0, B = eos.fit()
+print(f"v0 = {v0:.3f}")
+print(f"e0 = {e0:.3f}")
+print(f"B = {B / kJ * 1.0e24:.1f} GPa") 
+
+ax = eos.plot()
+ax.set_title(label=None)
 ```
 
 
@@ -407,13 +277,15 @@ EquationOfState
 
 ### ase.db
 
-脚本形式（常用）
-
 ```python
 from ase.db import connect
+from ase.db.row import AtomsRow
 
 db_fn = "..."
 db = connect(db_fn)
+
+# 给 db 添加元数据
+db.metadata = {...}
 
 # 获取 db 文件里的结构数目
 print(len(db))
@@ -423,7 +295,7 @@ print(db.count("vasp_calc=Yes"))
 
 # 筛选 id<=5 的所有结构
 # selection 可以是 id 或其他 AtomsRow 中的 key
-# 注：中间不能有空格
+# 注：字符与符号之间不能有空格
 for row in db.select("id<=5"):
 	...
 
@@ -456,32 +328,46 @@ for row in db.select("id<=10"):
     db_output.write(atoms=atoms, key_value_pairs=key_value_pairs, data=data)
 ```
 
-```python
-from ase.db.row import AtomsRow
-```
-
-
 
 ---
 
-命令行形式（个人不常用）
+### ase cli tool
 
-```shell
-ase build -h
+>[Command line tool — ASE documentation](https://wiki.fysik.dtu.dk/ase/cmdline.html)
 
-# 构建单个元素的 json 文件
-ase build -x fcc Ag
+开启 ase 补全（zsh 不行）
 
-# 转换成 db 数据库
-ase convert Ag.json Pd.json database.db
-
-# 查看 db 数据库
-ase db database.db
-# 查看某个元素的内容
-ase db database.db Ag
-# 查看某个元素的全部信息
-ase db database.db Ag -l
+```bash
+ase completion >> ~/.bashrc
 ```
+
+
+```bash
+# 列出 ase 可识别的构型文件格式
+ase info --formats
+# 列出 ase 的 calculators 以及是否被安装
+ase info --calculators
+
+# 构型转换
+ase convert -i vasp -o extxyz -f -v POSCAR structure.xyz
+```
+
+```bash
+# 查看 db 文件内容 推荐
+ase db test.db
+
+-L N                         # 只显示前 N 行
+--offset N                   # 跳过前 N 行
+--show-keys                  # 显示所有 keys
+--show-values key1,key2,...  # 显示 key 的值；value为数值时，只显示首尾值，如 energy_pa: [-9.18438289..-5.855563642]
+```
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202404111050491.png)
+
+
+
+
 
 ---
 

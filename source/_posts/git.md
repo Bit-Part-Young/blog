@@ -618,9 +618,9 @@ git branch -vv
 ### checkout
 
 ```bash
-git checkout <BranchName>  # 切换到新分支
+git checkout <BranchName>     # 切换分支
 git checkout -b <BranchName>  # 创建并进入新分支
-git checkout -  # 迅速切换到上一个分支
+git checkout -                # 迅速切换到上一个分支
 
 # 关联分支
 git checkout -b <BranchName> origin/<RemoteBranchName>  
@@ -1066,6 +1066,22 @@ gswm='git switch $(git_main_branch)'
 
 ## 其他用法
 
+- 提交空文件夹：在空文件夹中创建 `.gitkeep` 文件
+
+- 删除本地及对应的远程分支
+
+```bash
+# 删除本地分支
+git branch -D <local-branch>
+
+# 删除远程分支
+git push origin :<remote-branch>
+git push origin --delete <remote-branch>
+
+# 删除远程分支已经不存在而本地还保留的跟踪记录
+git remote prune origin
+```
+
 ### push 到多个远程 repo
 
 >[git-tips#文件推向3个git库](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
@@ -1084,38 +1100,12 @@ git remote set-url --delete origin git@github.com:username/repo.git
 
 >可用此方法替代 gitee 与 github 之间互相同步的设置
 
----
-
-### 删除本地及对应的远程分支
-
-```bash
-# 删除本地分支
-git branch -D <local-branch>
-
-# 删除远程分支
-git push origin :<remote-branch>
-git push origin --delete <remote-branch>
-
-# 删除远程分支已经不存在而本地还保留的跟踪记录
-git remote prune origin
-```
-
 
 ---
 
-### 提交空文件夹
-
-在空文件夹中创建 `.gitkeep` 文件。
-
-
----
-
-### git clone 部分内容
-
->[如何使用 Git 只克隆部分文件 | 猎人杂货铺](https://hunterx.xyz/git-sparse-checkout.html#more)
-
-- `git sparse-checkout` - 可实现只克隆或检出指定文件夹，不下载所有内容
-- `--filter=blob:none` - 只获取元数据，不下载原始数据部分
+- git clone 部分内容：[如何使用 Git 只克隆部分文件 | 猎人杂货铺](https://hunterx.xyz/git-sparse-checkout.html#more)
+	- `git sparse-checkout` - 可实现只克隆或检出指定文件夹，不下载所有内容
+	- `--filter=blob:none` - 只获取元数据，不下载原始数据部分
 
 ```bash
 # 方式 1 速度更快
@@ -1127,13 +1117,9 @@ git clone --filter=blob:none --no-checkout <repo>
 git checkout origin/main -- <file> <folder>
 ```
 
-
-
 ---
 
-### 下载单个文件
-
-打开文件，点击 “Raw”，用 `wget` 下载，示例：
+- 下载单个文件：打开文件，点击 “Raw”，用 `wget` 下载，示例：
 
 ```bash
 # gitee
@@ -1149,44 +1135,30 @@ wget https://gist.githubusercontent.com/user/GIST_ID/raw/filename -O filename
 
 ---
 
-### git 自定义别名
-
->[查看历史 - Git 重学指南](https://git-remake.wybxc.cc/%E5%82%A8%E5%AD%98%E5%BA%93/%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2.html)
-
->[git-命令自定义别名](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#git-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%AB%E5%90%8D)
-
-- 方式 1
+- git 自定义别名：[查看历史 - Git 重学指南](https://git-remake.wybxc.cc/%E5%82%A8%E5%AD%98%E5%BA%93/%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2.html)、[git-命令自定义别名](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#git-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%AB%E5%90%8D)
 
 ```bash
-# git ls
-git config --global alias.ls "log --no-merges --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# 方式 1 git push
+git config --global alias.p "push"
 ```
 
-- 方式 2：在 `~/.gitconfig` 添加如下内容
-
 ```bash
+# 直接在 ~/.gitconfig 添加
 [alias]
-  co = checkout
-  cm = commit
   p = push
-  tags = tag -l
-  branches = branch -a
-  remotes = remote -v
 ```
 
 
 ---
 
-### GitHub 加速下载
-
-安装 GitHub 增强插件：[Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD)
+- GitHub 加速下载：安装 GitHub 增强插件：[Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD)
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401082135895.png)
 
 
 ---
 
-### 规范式 commit
+- 规范式 commit
 
 gitmoji-cli：git commit 时使用 emoji
 >[GitHub - carloscuesta/gitmoji-cli: A gitmoji interactive command line tool for using emojis on commits. 💻](https://github.com/carloscuesta/gitmoji-cli)
@@ -1196,7 +1168,7 @@ gitmoji-cli：git commit 时使用 emoji
 
 ---
 
-### 其他
+- 其他
 
 ```bash
 # 查看两星期内的改动
@@ -1216,31 +1188,23 @@ git commit -m 'new init' # 提交
 git branch -D main   # 删除分支
 git branch -m main   # 新分支重命名为 main 主分支
 git push origin main --force  # 强制 push
-
 ```
 
 
 ---
 
-### 创建发行版（Releases）
-
-#### 手动
-
-Create a new release - Choose a tag，之后填写相关信息，必要时附加文件
+- 创建 Releases：Create a new release - Choose a tag，之后填写相关信息，必要时上传附件
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081713870.png)
 
 
 ---
 
-### 新建空分支
+- 新建空分支：GitHub 中的 gh-pages 分支为特殊分支，可与主分支无关联（push 时会自动启用 Github Actions），**其他命名的分支暂无法实现与主分支无关联**；[git - Create empty branch on GitHub - Stack Overflow](https://stackoverflow.com/questions/34100048/create-empty-branch-on-github)
 
-github 中的 `gh-pages` 分支为特殊分支，可与主分支无关联（push 时会自动启用 Github Actions），**其他命名的分支暂无法实现与主分支无关联**
-
->[git - Create empty branch on GitHub - Stack Overflow](https://stackoverflow.com/questions/34100048/create-empty-branch-on-github)
 ```bash
 git switch --orphan <new branch> 
-git commit --allow-empty -m "Initial commit on orphan branch" 
+git commit --allow-empty -m "init" 
 git push -u origin <new branch>
 ```
 
@@ -1250,9 +1214,8 @@ git push -u origin <new branch>
 
 ## 相关问题
 
-- github 和 gitee 中的 md 文档无法渲染 `\begin{}` 等 LaTeX 命令
+- github 和 gitee 中的 md 文档无法渲染 `\begin{}` 等 复杂 LaTeX 公式命令
 - github 可以渲染 Front-Matter，gitee 和 typora 暂不行，但会将其包裹起来
 
----
 
 >[坑：ssh: connect to host github.com port 22: Connection refused - 知乎](https://zhuanlan.zhihu.com/p/521340971)

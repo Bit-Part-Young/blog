@@ -26,14 +26,15 @@ password:
 
 ### master
 
-- Linux 系统版本：Ubuntu 22.04；
-- 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
-- Slurm 任务调度系统；
-- CPU：共 64 核；2 块 RTX 3090 GPU，显存 24G；调用 GPU 时只能一整块调用，显存自动分配；CPU 信息查看：`cat /proc/cpuinfo`。
-- oneAPI 套件：Intel-oneAPI 2022.1.0 版本；
-- 总内存 512G；内存信息查看：`free -h` 或 `cat /proc/meminfo`；
-- 较大体积的数据（master 本地或超算上的）可以放到 `${HOME}/storage` 中
-- `/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中。
+- Linux 系统：Ubuntu 22.04，内核：5.19.0-43-generic
+- root 权限：无 ；无法使用 apt、apt-get、dpkg、snap 命令安装程序
+- 任务调度系统：Slurm
+- CPU：Intel Xeon Platinum 8369B，共 64 核；CPU 信息查看：`cat /proc/cpuinfo`
+- GPU：2 $\times$ 24G RTX 3090；调用 GPU 时只能一整块调用，显存自动分配；GPU 信息、使用情况查看：`nvidia-smi`
+- Intel 套件：Intel-oneAPI 2022.1.0
+- 内存：共 512G；内存信息查看：`cat /proc/meminfo`；内存使用情况查看：`free -h`
+- 数据存储：较大体积的数据（master 本地或超算上的）可以放到 `${HOME}/storage`
+- `/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中
 
 ---
 
@@ -83,7 +84,15 @@ vmd....................To visualize md trajectories
 
 ---
 
-- GPU 信息及资源占用率查看：`nvidia-smi`
+- GPU 信息及使用情况查看：`nvidia-smi`、`gpustat`；[gpustat - Python](https://github.com/wookayin/gpustat)
+
+```bash
+# 持续查看 GPU 使用情况
+watch -d2 nvidia-smi
+
+gpustat -i 2
+```
+
 
 ![GPU 信息及资源占用率](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202402291942207.png)
 
@@ -116,26 +125,27 @@ vmd....................To visualize md trajectories
 
 ### manager
 
-- Linux 系统版本：Ubuntu 16.04；
-- 无 root 权限；无法使用 apt、apt-get、dpkg、snap 命令安装软件程序；
-- PBS 任务调度系统；
-- Intel 套件：Composer XE 2015；
-- CPU：共 12 个节点（node1~11 + manager；部分节点已坏），共 100 核。
+- Linux 系统：Ubuntu 16.04；内核：4.15.0-120-generic
+- root 权限：无 ；无法使用 apt、apt-get、dpkg、snap 命令安装程序
+- 任务调度系统：PBS
+- CPU：Intel Xeon E5520、Intel Xeon E5630（node 9）、Intel Xeon E5-2620（node 11）；共 100 核，共 12 个节点（node1~11 + manager；其中 node2，6，7，8 经常 down）
+- GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理任务）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）
+- 内存：登录、manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G；内存使用情况查看：`free -h`
+- Intel 套件：Composer XE 2015
 
 
 ---
 
 ### 超算
 
-- Linux 系统版本：Centos 7.7.1908（Pi） 8.3.2011（思源一号）；
-- 无 root 权限；无法使用 yum 命令安装软件程序；
-- Slurm 任务调度系统；
-- Pi、ARM、思源一号提交的任务在任一平台都可以看到；
-- Pi 和 ARM 用户目录相同；
-- Pi 的一些基础程序的版本比思源一号旧许多；
-- 超算中的 CPU 核有内存配比限制；
-- 超算的 GPU 队列很难排到；
-- sylogin1 登录节点占用率较高，比其他（2-5）卡，是超算断开连接，vim 使用卡顿的可能原因之一。超算的登录节点为随机分配，应尽量避免登录到 sylogin1。
+- Linux 系统：Centos 7.7.1908（Pi）； 8.3.2011（思源一号）
+- root 权限：无；无法使用 yum 命令安装软件程序
+- 任务调度系统：Slurm；Pi、ARM、思源一号提交的任务在任一平台都可以看到
+- CPU、内存：超算中的 CPU 核有内存配比限制
+- GPU：超算的 GPU 队列很难排到
+- 程序/软件：Pi 的一些基础程序的版本比思源一号旧许多；查看：`module av`
+- Pi 和 ARM 用户目录相同
+- sylogin1 登录节点占用率较高，比其他（2-5）卡，是超算断开连接，vim 使用卡顿的可能原因之一；超算的登录节点为随机分配，应尽量避免登录到 sylogin1
 
 
 ---
@@ -145,17 +155,13 @@ vmd....................To visualize md trajectories
 - Pi mseklt 用户目录中的 VASP 赝势与思源和 manager 上的有些不同，相比之下，前者不全。
 
 ```bash
-# master
-/work/backup/.vasp_pot/
+/work/backup/.vasp_pot/    # master
 
-# manager
-/opt/.vasp_pot
+/opt/.vasp_pot             # manager
 
-# 思源一号 mseklt
-$HOME/.sjtu_mgi/.vasp.pot
+$HOME/.sjtu_mgi/.vasp.pot  # 思源一号 mseklt
 
-# Pi mseklt
-$HOME/opt/VASP/VASP_PSP
+$HOME/opt/VASP/VASP_PSP    # Pi mseklt
 ```
 
 
@@ -167,7 +173,7 @@ $HOME/opt/VASP/VASP_PSP
 ### SSH 登录
 
 - [通过 SSH 登录集群 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/login/sshlogin.html)
-- 超算平台的 SSH 端口均为默认值 22；`-p 22` 可省略。
+- 超算平台的 SSH 端口均为默认值 22，`-p 22` 可省略
 
 ```bash
 # manager
@@ -1167,12 +1173,20 @@ ln -s /dssg/opt/icelake/linux-centos8-icelake/gcc-8.5.0/intel-oneapi-compilers-2
 
 ---
 
-### VASP5.4.4
+### VASP.5.4.4
 
-参考：[Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)、[VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)、[VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
+- 参考：
+	- [Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
+	- [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)、
+	- [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
-
-VASP5.4.4 源代码目录结构：
+- VASP.5.4.4 源代码目录结构：
+	- `arch`：针对不同架构的 Makefile 模板，如 `makefile.include.linux_intel`
+	- `bin`：编译后的可执行程序文件目录
+	- `build`：编译时自动复制 src 目录内源码后执行编译的目录
+	- `src`：源码目录
+	- `lib`：库目录，对应以前的 vasp.lib 目录
+	- `CUDA`：GPU CUDA 代码目录
 
 ```text
 vasp.X.X.X (root directory)
@@ -1186,24 +1200,15 @@ vasp.X.X.X (root directory)
                                        lib    parser   CUDA
 ```
 
-目录含义：
-
-- `arch`：针对不同架构的 Makefile 模板，如 `makefile.include.linux_intel`
-- `bin`：编译后的可执行程序文件目录
-- `build`：编译时自动复制 src 目录内源码后执行编译的目录
-- `src`：源码目录
-- `lib`：库目录，对应以前的 vasp.lib 目录
-- `CUDA`：GPU CUDA 代码目录
-
 ---
 
-安装步骤：
-
->VASP5.4.4 安装包：manager: `/opt`，master: `/opt/software`；将其复制到自己的用户目录下打包压缩，上传至超算平台）
+- 安装步骤：
+	- VASP.5.4.4 安装包：manager: `/opt`，master: `/opt/software`；将其拷贝到自己的用户目录下打包压缩，上传至超算平台）
+	- 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
+	- `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功；
+	- 将 `vasp_std` 设置软链接
 
 ```bash
-# 申请计算节点
-
 # 导入 oneapi 套件
 module purge
 module load intel-oneapi-compilers/2021.4.0
@@ -1220,20 +1225,14 @@ cp arch/makefile.include.linux_intel makefile.include
 make  # make all
 ```
 
-- 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
-- `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 三种版本的可执行文件，则表示编译成功；
-- 将 `vasp_std` 设置软链接
-
 
 ---
 
-### VASP6.3.0 + HDF5
+### VASP.6.3.0 + HDF5
 
-思源一号超算平台编译
+- 参考：[Installing VASP.6.X.X - VASP Wiki](https://www.vasp.at/wiki/index.php/Installing_VASP.6.X.X)
 
->[Installing VASP.6.X.X - VASP Wiki](https://www.vasp.at/wiki/index.php/Installing_VASP.6.X.X)
-
-VASP6.3.0 源代码目录结构：
+- VASP.6.3.0 源代码目录结构：
 
 ```text
                   vasp.x.x.x (root directory)
@@ -1249,13 +1248,9 @@ VASP6.3.0 源代码目录结构：
 
 ---
 
-安装步骤：
-
->master 的 vasp.6.3.0 目录在 `/opt/software` 下；将其复制到自己的目录下打包，上传至超算平台）
+- 安装步骤：master 的 vasp.6.3.0 安装包在 `/opt/software` 下；将其拷贝到自己的目录下打包，上传至超算平台）
 
 ```bash
-# 申请计算节点
-
 # 导入 oneapi 套件；hdf5
 module purge
 module load intel-oneapi-compilers/2021.4.0
@@ -1267,7 +1262,7 @@ module load hdf5/1.12.2-intel-2021.4.0
 module show hdf5/1.12.2-intel-2021.4.0
 
 cp arch/makefile.include.intel makefile.include
-# 删除 MKLROOT    ?= 后的内容
+# 删除 MKLROOT    ?= 后的内容 此步可忽略
 # 将 HDF5_ROOT  ?= 后的内容替换为 hdf5 的安装路径
 
 make
@@ -1283,19 +1278,11 @@ error while loading shared libraries: libhdf5_fortran.so.102: cannot open shared
 
 原因：缺少 `libhdf5_fortran.so.102` 动态链接库，其实 module load 的 `hdf5/1.12.2-intel-2021.4.0` 有该动态链接库，不过版本更新一些，为 `libhdf5_fortran.so.200`
 
-解决方法：
-
-- 将 `libhdf5_fortran.so.200` 软链接为 `libhdf5_fortran.so.102`
+解决方法：将 `libhdf5_fortran.so.200` 软链接为 `libhdf5_fortran.so.102`；将 `~/lib` 写入到 `LD_LIBRARY_PATH`
 
 ```bash
-mkdir ~/lib
-
 ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/hdf5-1.12.2-nxwmp3tddhreojgbib25ldc7wusvzf3m/lib/libhdf5_fortran.so.200 ~/lib/libhdf5_fortran.so.102
-```
 
-- 将 `~/lib` 写入到 `LD_LIBRARY_PATH`
-
-```bash
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/lib
 ```
 
@@ -1344,7 +1331,17 @@ make  # cmake --build .
 - VASP 预、后处理工具；[Overview — VASPKIT 1.5 documentation](https://vaspkit.com/)
 - 预处理：不同计算任务的输入文件生成与检验；结构对称性分析等
 - 后处理：力学性质；能带；态密度；费米面分析等
-- 安装：在 [vaspkit - Binaries](https://sourceforge.net/projects/vaspkit/files/Binaries/) 中下载 vaspkit 最新版本，解压，设置环境变量（`cp how_to_set_environment_variables ~/.vaspkit`）；设置 `PBE_PATH`、`VASPKIT_UTILITIES_PATH` 和 `PYTHON_BIN`（可选）参数；对可执行文件设置软链接
+- 安装：在 [vaspkit - Binaries](https://sourceforge.net/projects/vaspkit/files/Binaries/) 中下载 vaspkit 最新版本，解压，拷贝配置文件，对可执行文件设置软链接
+
+```bash
+cp how_to_set_environment_variables ~/.vaspkit
+
+# 修改以下参数
+PBE_PATH
+VASPKIT_UTILITIES_PATH
+PYTHON_BIN  # 可选
+```
+
 - 赝势：可拷贝 master 或 manager 上的赝势上传到超算自己的用户目录下；赝势格式如下：
 
 ```text
@@ -1353,6 +1350,51 @@ pseudopotentials
 │   ├── Ag
 │   │   ├── POTCAR
 │   │   └── PSCTR
+```
+
+- 使用教程：[Tutorials — VASPKIT 1.5 documentation](https://vaspkit.com/tutorials.html#quick-start)
+
+```bash
+vaspkit -help
+
+vaspkit < cmd.in  # 推荐此命令
+
+echo -e "102\n2\n0.04\n" | vaspkit
+```
+
+- vaspkit.1.5.0.Mac.Intel 版本可以在 Mac M1 上运行
+
+
+---
+
+### HDF5
+
+- 安装步骤：
+
+```bash
+wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_14_3/src/hdf5-1.14.3.tar.gz
+
+# 配置 intel 版本
+./configure --enable-parallel --enable-fortran --enable-cxx --enable-unsupported \
+		    CC=mpiicc FC=mpiifort CXX=mpiicpc \
+		    --prefix=${HOME}/local/hdf5
+
+make
+make install
+```
+
+未添加 `--enable-parallel` 参数会出现以下报错：
+
+```bash
+configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use --enable-unsupported to override this error.
+```
+
+```bash
+# 显示 HDF5 的编译和配置详细信息
+h5cc -showconfig  # 或 h5c++ h5pcc
+
+# 显示用于编译 HDF5 的编译器命令行，包括链接的库和编译器标志
+h5cc -show
 ```
 
 

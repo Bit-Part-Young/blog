@@ -119,7 +119,9 @@ password:
 
 ---
 
-- 外观：推荐使用 `Blut Topaz`、`Border`（较卡顿）主题。`Blut Topaz` 主题效果图：
+- 外观：推荐使用 Blut Topaz、Border、[AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) 主题（后两者会出现卡顿情况）
+- AnuPpuccin 使用 css：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入“设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
+- Blut Topaz 主题效果图：
 
 ![vault-screenshot.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202312120853566.png)
 

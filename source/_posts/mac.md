@@ -111,7 +111,9 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### 快捷键
 
-快捷键：[macOS常用快捷键.md](https://github.com/itcharge/macOS-Tips/blob/main/02%20-%20macOS%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.md)、[Mac 键盘快捷键 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/HT201236)
+参考：[macOS常用快捷键.md](https://github.com/itcharge/macOS-Tips/blob/main/02%20-%20macOS%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.md)、[Mac 键盘快捷键 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/HT201236)
+
+快捷键：
 
 - `command + Space` - 聚焦搜索（没有 Alfred 的 `option + Space` 好用）
 - `Space` - 预览功能
@@ -123,6 +125,20 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 返回桌面 - `command + F3`
 
 注：无 Windows 的 `Win + X` 等效快捷键
+
+
+---
+
+#### 其他
+
+查看 Macbook Air M1 中的 GPU：
+
+- 系统设置 - 通用 - 系统报告 - 图形卡/显示器
+- 运行以下命令
+
+```bash
+system_profiler SPDisplaysDataType
+```
 
 
 ---
@@ -140,6 +156,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 软件包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：Alfred 5
 - VPN 网络代理：ClashX
+- 系统资源监控：RunCat、[stats](https://github.com/exelban/stats)
 - 代码编辑器：vscode-insiders（**vscode-insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
 - 终端工具： iTerm、Tabby、Termius
 - 数据同步：交大云盘
@@ -156,11 +173,10 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 截图：Snipaste
 - 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
 - 垃圾清理：CleanMyMac X（完整版本需收费；有破解版）、Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
-- 系统资源监控：RunCat
 - 快捷键提示：FlyKey、CheatSheet
 - 切换窗口：AltTab
 - 鼠标：Mos
-- 输入法切换：自动切换输入法 Lite 版
+- 输入法切换：自动切换输入法 Lite 版、[Input Source Pro - 自动切换输入法加上适时的提示，让每一次输入都游刃有余](https://inputsource.pro/zh-CN)
 - pdf 查看、编辑：UPDF
 - 窗口管理：Rectangle、Loop
 - macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
@@ -215,7 +231,11 @@ brew untap homebrew/core
 
 #### 字体安装
 
-方法一：[PowerShell with Oh My Posh as Default Shell on macOS - Half-Blood Programmer](https://halfblood.pro/powershell-on-macos/)
+方法一：手动下载字体，双击安装字体
+
+方法二：brew 命令行安装
+
+>中文字体：[霞鹜文楷](https://github.com/lxgw/LxgwWenKai)、[得意黑](https://github.com/atelier-anchor/smiley-sans)
 
 ```bash
 # nerd font
@@ -226,15 +246,14 @@ brew install --cask font-hack-nerd-font
 # 可用 nerd font
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
 
-# 得意黑
-brew install font-smiley-sans
+# 中文字体
+brew install font-smiley-sans  # 得意黑
+brew install font-lxgw-wenkai  # 霞鹜文楷
 
 # Mac 字体路径
 /Library/Fonts  # 系统
 ~/Library/Fonts  # 用户
 ```
-
-方法二：手动下载字体，双击安装字体
 
 
 ---
@@ -297,7 +316,6 @@ sudo rm -rf /usr/local/texlive
 
 - 参考：[RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
 
-
 ```bash
 # 安装 Rime 鼠须管 输入法引擎
 brew install --cask squirrel
@@ -308,6 +326,43 @@ cd plum
 
 # 安装 雾凇拼音
 bash rime-install iDvel/rime-ice:others/recipes/full
+```
+
+可修改的配置文件路径：
+```bash
+/Users/XXX/Library/Rime/squirrel.yaml
+/Users/XXX/Library/Rime/default.yaml
+```
+
+macOS 修改应用的默认 ascii_mode（个人更倾向修改成默认英文）：`squirrel.yaml`
+```yaml
+# 可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
+app_options:
+  com.apple.Spotlight:
+    ascii_mode: true  # 开启默认英文
+  com.microsoft.VSCodeInsiders:
+    ascii_mode: true
+  md.obsidian:
+    ascii_mode: false
+    ascii_punct: false
+  com.googlecode.iterm2:
+    ascii_mode: true
+    ascii_punct: false
+  com.google.Chrome:
+    ascii_mode: true
+    ascii_punct: false
+  com.runningwithcrayons.Alfred:
+    ascii_mode: true
+
+style:
+  horizontal: true
+```
+
+修改候选词个数：`default.yaml`
+```yaml
+# 菜单
+menu:
+  page_size: 9  # 候选词个数
 ```
 
 
@@ -327,7 +382,7 @@ bash rime-install iDvel/rime-ice:others/recipes/full
 
 - macOS 版本不同，Homobrew 之前安装的程序有可能会出现不兼容的情况
 - Miniconda3 安装：需要与芯片类型（如 M1）适配
-- Mac 的 gcc 和 g++ 编译器 默认是 clang 的；建议安装 gcc 套件
+- Mac 的 gcc 和 g++ 编译器 默认是 clang 的；建议安装 gcc 套件，并设置软链接
 
 ```bash
 ln -s /opt/homebrew/bin/g++-13 ~/bin/g++
@@ -341,7 +396,7 @@ clang: error: unsupported option '-fopenmp'
 make: *** [atom.o] Error 1
 ```
 
-- dumpana 编译出现以下报错（应该是架构不兼容的原因）
+- dumpana 编译出现以下报错（应该是不兼容 arm64 架构的原因）
 
 ```bash
 Undefined symbols for architecture arm64:

@@ -659,8 +659,17 @@ pymatgen 表面生成无法指定具体的层数
 
 ## pymatgen.io.ase
 
-`AseAtomsAdaptor` 将 ase 中的 `atoms` 类与 pymatgen 中的 `Structure` 类互相转换
+`AseAtomsAdaptor`：将 ase 中的 `atoms` 类与 pymatgen 中的 `Structure` 类互相转换
 
+```python
+from pymatgen.io.ase import AseAtomsAdaptor
+
+# atoms 转 Structure
+AseAtomsAdaptor.get_structure()
+
+# Structure 转 atoms
+AseAtomsAdaptor.get_atoms()
+```
 
 
 ---

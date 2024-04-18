@@ -482,7 +482,7 @@ wget https://picgo-release.molunerfinn.com/2.4.0-beta.6/picgo_2.4.0-beta.6_amd64
 
 sudo snap install --dangerous picgo_2.4.0-beta.6_amd64.snap
 
-# 或直接 snap 安装
+# 或 snap 安装
 ```
 
 
@@ -546,20 +546,15 @@ rclone mount jbox: /home/yangsl/jbox --vfs-cache-mode=minimal
 - 英文字体： [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)（主要下载 Meslo 或 Hack）
 
 ```bash
-# ttf 字体
-sudo cp <font>.ttf /usr/share/fonts/truetype
-# otf 字体
-sudo cp <font>.otf /usr/share/fonts/opentype
-# 或
+sudo cp <font>.ttf /usr/share/fonts/truetype  # ttf 字体
+sudo cp <font>.otf /usr/share/fonts/opentype  # otf 字体
 sudo cp *.ttf /usr/share/fonts
 
-# 更新字体缓存 或 直接重新登录生效
+# 更新字体缓存 或 重新登录 生效
 sudo fc-cache -f -v
 
-# 查看字体
-fc-list
-# 查看中文字体
-fc-list :lang=zh
+fc-list  # 查看字体
+fc-list :lang=zh  # 查看中文字体
 ```
 
 
@@ -598,8 +593,9 @@ cat /etc/shells
 
 # 查看当前 shell
 echo $0
+echo $SHELL
 
-# 默认 shell 设置
+# 设置默认 shell 
 chsh -s /bin/zsh
 sudo chsh -s /usr/bin/zsh root
 
@@ -611,7 +607,6 @@ sudo apt install net-tools
 
 # 查看 ip 地址 Linux/macOS
 ifconfig
-
 ```
 
 
@@ -779,9 +774,7 @@ sudo pacman -Rcns plasma
 sudo apt install tree
 ```
 
----
-
-手动编译
+源码编译
 
 ```bash
 # 可能会连接不上
@@ -874,18 +867,13 @@ ARM 交叉编译工具
 
 ```bash
 sudo apt install libgsl-dev
-# 头文件及库文件路径
-# /usr/include/gsl
-# /usr/lib/x86_64-linux-gnu
+# 头文件及库文件路径 /usr/include/gsl /usr/lib/x86_64-linux-gnu
 
 sudo pacman -S gsl
-# /usr/include/gsl
-# /usr/lib
+# 头文件及库文件路径 /usr/include/gsl /usr/lib
 ```
 
----
-
-手动编译
+源码编译
 
 ```bash
 wget https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz
@@ -900,32 +888,30 @@ make && make install
 
 ### voro++
 
+无 root 权限时，需修改 `config.mk` 文件中的 `PREFIX` 内容 `PREFIX=${HOME}/src/voro++`，再编译安装
+
 ```bash
-# Ubuntu 需手动编译
+# Ubuntu 需源码编译
 wget https://math.lbl.gov/voro++/download/dir/voro++-0.4.6.tar.gz
 
 tar -xzvf voro++-0.4.6.tar.gz
-cd voro++-0. 4.6
+cd voro++-0.4.6
 
 make && sudo make install
-# /usr/local/include/voro++
-# /usr/local/lib
+# 头文件及库文件路径 /usr/local/include/voro++ /usr/local/lib
 
-yay -S voro++
-# /usr/include/voro++
-# /usr/lib
+yay -S voro++  # Arch Linux
+# 头文件及库文件路径 /usr/include/voro++ /usr/lib
 ```
 
->无 root 权限时，需修改 `config.mk` 文件中的 `PREFIX` 内容 `PREFIX=${HOME}/src/voro++`，再编译安装
 
 
 ---
 
-### OpenMPI
+### Open MPI
 
 ```bash
-sudo apt install openmpi-bin
-sudo apt install libopenmpi-dev
+sudo apt install openmpi-bin libopenmpi-dev
 
 sudo pacman -S openmpi
 ```
@@ -1050,6 +1036,29 @@ icpx -v
 ```bash
 cd /opt/intel/oneapi/installer
 sudo ./installer
+```
+
+
+---
+
+### 其他
+
+- 安装 tcsh（csh 通常作为 tcsh 的链接或别名；tcsh 是 C Shell 的增强版）
+
+```bash
+sudo apt install tcsh
+```
+
+- 查看图片：imagemagick 和 eog
+
+```bash
+sudo apt install imagemagick
+sudo apt install eog
+
+display figure
+identify figure  # 显示图片信息
+
+eog figure
 ```
 
 

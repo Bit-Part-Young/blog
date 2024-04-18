@@ -23,6 +23,34 @@ password:
 
 WIP…
 
+
+
+```bash
+# 在 .bashrc .zshrc 中 创建与函数功能等同的 alias
+cha='WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime|BatchHost|Partition'
+
+showjob() {
+    scontrol show job "$1" | grep -E "$cha"
+}
+
+alias showjob='showjob'
+```
+
+
+[starship](https://github.com/starship/starship): 美观、可自定义的 shell prompt（与 ohmyzsh 的主题不兼容）
+
+```bash
+# 安装
+brew install starship  # macOS
+
+# 配置
+eval "$(starship init zsh)"  # zsh
+```
+
+
+
+
+
 ---
 
 ### 参考资料
@@ -163,11 +191,13 @@ export PATH=$HOME/bin:$PATH
 
 >[Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
 
+#### 基本命令
+
 - `man` - 查看命令帮助
 - `echo` - 打印字符串
 - `pwd` - 显示当前路径
 - `cd` - 切换目录
-- `ls` - 列出目录内容；`-a` 与 `-A` 的区别，后者表示 almost-all，不列出 `.` 和 `..`
+- `ls` - 列出目录内容；`-a` 与 `-A` 的区别，后者表示 almost all，不列出 `.` 和 `..`
 - `cat` - 打印文件内容
 - `head` & `tail` - 打印文件首尾内容，默认 10 行
 - `less` - 逐页显示文件内容
@@ -208,7 +238,6 @@ Advanced:
       time
       unzip
       nohup
-
 ```
 
 
@@ -323,34 +352,10 @@ bzcat  # 查看 .bz2 文件
 
 ```bash
 ln -s path/src path/des
-```
 
-
----
-
-#### du
-
-查看文件/目录大小
-
-```bash
-du -sh file/folder
-du -sh file/folder | sort -h  # 按大小排序
-```
-
-
----
-
-#### dirs
-
-显示目录堆栈，按照最近访问的目录排序（ohmyzsh 插件有关 dirs 的命令是 `d`）。
-
-参数：
-
-```bash
--l             # 展开 ~
--p             # 每个目录按行显示
--v             # 每个目录按行显示并进行编号
--c             # 清空目录堆栈
+# -f force 创建新链接前删除与之同名的文件或链接
+# 在当前目录创建与目标文件同名的符号链接
+ln -s -f .tmux/.tmux.conf
 ```
 
 
@@ -442,43 +447,6 @@ fes=$(find . -maxdepth 2 -type f -name "*_*.py"); for f in ${fes}; do echo ${f//
 
 ---
 
-#### xargs
-
-- 参数转化器，将输入数据转换为命令行参数并执行命令。常用于将管道或标准输入 (stdin) 的数据转换为命令的参数。
-
-```bash
-# 将 find 找到的文件删除
-find . -name *.tmp | xargs rm -f
-
-# 每行 3 个输出
-echo "a b c d" | xargs -n 2 echo
-```
-
-
----
-
-#### tee
-
-- 从标准输入读取数据并重定向到标准输出和文件（仍会输出到屏幕上；可用于 vasp 和 lammps 的提交命令，见 “ 拾梦的星星 “）
-
-```python
-echo linux | tee -a file
-```
-
----
-
-#### paste
-
-`paste`: 可以用来进行多个（csv）文件之间的列合并
-
-```bash
-paste -d' ' file1 file2  # 以空格为间隔符来进行列合并文件
-```
-
-
-
----
-
 #### sed
 
 ```bash
@@ -516,7 +484,7 @@ sed '3s/0.01/0.02/g' INCAR
 sed -i '3s/0.01/0.02/g' INCAR 
 
 # 指定文件中的行数，输出其内容
-sed -n '1,4p' ../ex01_O_atom/OUTCAR
+sed -n '1,4p' file
 
 # 在文件最后一行添加内容
 sed -i '$aENCUT = 400' INCAR  # 最后一行下方添加 ENCUT = 400
@@ -559,6 +527,7 @@ sed -n 4p file  # 打印file中的第4行
 ```bash
 -i             # 忽略字符大小写
 -E             # 使用扩展正则表达式
+-v             # 反向匹配 即输出不匹配指定模式的行
 -I             # 跳过二进制文件 等同于 --binary-files=without-match
 --exclude-dir  # 排除目录
 --exclude      # 排除文件
@@ -647,6 +616,59 @@ awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # �
 
 #### 其他命令
 
+- du：查看文件/目录大小
+
+```bash
+du -sh file/folder
+du -sh file/folder | sort -h  # 按大小排序
+```
+
+---
+
+- dirs：显示目录堆栈，按照最近访问的目录排序（ohmyzsh 有关 dirs 的 alias 是 `d`）；常用参数：
+
+```bash
+-l             # 展开 ~
+-p             # 每个目录按行显示
+-v             # 每个目录按行显示并进行编号
+-c             # 清空目录堆栈
+```
+
+- xargs：参数转化器，将输入数据转换为命令行参数并执行命令。常用于将管道或标准输入 (stdin) 的数据转换为命令的参数。
+
+```bash
+# 将 find 找到的文件删除
+find . -name *.tmp | xargs rm -f
+
+# 每行 3 个输出
+echo "a b c d" | xargs -n 2 echo
+```
+
+
+- tee：从标准输入读取数据并重定向到标准输出和文件（仍会输出到屏幕上；可用于 vasp 和 lammps 的提交命令，见 “ 拾梦的星星 “）
+
+```python
+echo linux | tee -a file
+```
+
+- nohup：全称 “no hang up”。允许在用户注销或者断开终端连接之后，仍然运行后台的程序（或直接在命令后添加 &，使程序进入后台运行）
+
+```bash
+nohup command &
+nohup command > output.log &
+```
+
+---
+
+- paste: 可以用来进行多个（csv）文件之间的列合并
+
+```bash
+paste -d' ' file1 file2  # 以空格为间隔符来进行列合并文件
+```
+
+
+- kill：杀死进程
+
 ```bash
 kill -9 PID  # 发送强制终止信号给进程
 ```
@@ -665,6 +687,90 @@ awk 'END { print NR }' file
 wc -l file
 sed -n '$=' file
 ```
+
+- 其他
+
+```bash
+ls -1 | grep -v 'IECT*'  # ls 不列出特定的文件/目录
+
+tail -n +2 file  # 从第二行开始输出内容
+
+ldd --version  # 查看 GLIBC 版本
+```
+
+
+---
+
+### tmux
+
+tmux 配置：[GitHub - gpakosz/.tmux: 🇫🇷 Oh my tmux! My self-contained, pretty & versatile tmux configuration made with ❤️](https://github.com/gpakosz/.tmux)
+
+>[Tmux 配置：打造最适合自己的终端复用工具 - zuorn - 博客园](https://www.cnblogs.com/zuoruining/p/11074367.html)
+
+>[Tmux 使用教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/10/tmux.html)
+
+>[tmux + oh-my-tmux使用指北](https://ixjx.github.io/2020-04-14/tmux-+-oh-my-tmux%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/)
+
+
+```bash
+# 安装在 ~
+cd ~
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+```
+
+
+将终端和会话分离
+
+后台服务 (server)，会话 (session)，窗口 (window)，窗格 (pane)
+一个 session 可以包含多个 window，一个 window 可以被分割成多个 pane
+
+
+安装
+```bash
+brew install tmux  # macOS
+
+sudo apt install tmux  # Ubuntu
+```
+
+session 相关命令
+
+```bash
+tmux -V  # 查看版本
+
+tmux source-file ~/.tmux.conf  # 刷新配置
+
+tmux new -s <session-name>  # 新建 session，默认从 0 开始
+
+tmux detach  # 分离 session
+
+tmux ls  # tmux list-sessions 查看所有 sessions
+
+tmux a  # tmux attach 重新连接 session
+tmux attach -t <session-name>
+
+tmux kill-session -t <session-name>  # kill
+
+tmux switchc -t <session-name>  # 切换
+
+tmux rename-session -t 0 <new-name>  # 重命名
+```
+
+
+默认前缀键：`Ctrl + b`，oh-my-tmux 添加了 `Ctrl + a`（如何将其取消或换成别的）
+
+快捷键
+
+```bash
+prefix + s       # 可视化 session
+
+
+# 分屏相关
+prefix + %       # 
+prefix + "       # 
+```
+
 
 
 
