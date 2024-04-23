@@ -1397,61 +1397,104 @@ h5cc -showconfig  # 或 h5c++ h5pcc
 h5cc -show
 ```
 
+---
+
+- 使用
+	- HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
+	- Pandas 的 read_hdf() 不太好用
+
+```bash
+h5ls data.h5     # 显示 Group 列表
+
+# vaspout.h5 示例
+input                    Group
+intermediate             Group
+original                 Group
+results                  Group
+version                  Group
+
+h5dump data.h5   # 输出文件的详细结构和内容
+```
+
+
 
 ---
 
 ### VASP + VTST
 
->[VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
+VASP + VTST：嵌入过渡态理论版本的 VASP，计算过渡态
 
->[Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)
+参考：[Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)、[VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
 
-VTST+VASP：嵌入过渡态理论版本的 VASP；计算过渡态
+---
 
-- VTST 部分
+安装步骤：
 
-下载 vtstcode-197.tgz 和 vtstscripts.tgz：
+- 下载 VTST Code 和 VTST Scripts：[Download — Transition State Tools for VASP](https://theory.cm.utexas.edu/vtsttools/download.html)
+
+- 修改 `src/main.F` 源码：
+
 ```bash
-wget <http://theory.cm.utexas.edu/code/vtstcode-197.tgz>
-wget <http://theory.cm.utexas.edu/code/vtstscripts.tgz>
-```
-
-修改 VASP src 目录下的 main.F 文件：
-```bash
+# 替换前
 CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
      LATT_CUR%A,LATT_CUR%B,IO%IU6)
-```
 
-替换成：
-```bash
-# 添加了"TSIF,"
+# 替换后；添加了 TSIF,
 CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
      TSIF,LATT_CUR%A,LATT_CUR%B,IO%IU6)
+
+# vasp.6.2 及以后，还需进行以下替换
+# 替换前
+IF (LCHAIN) CALL chain_init( T_INFO, IO)
+# 替换后
+CALL chain_init( T_INFO, IO)
 ```
 
-备份 src 目录下的 chain.F 文件；复制 vtstcode-197/vtstcode5 目录下的所有文件到 src 目录中：
+- 备份 `src/chain.F`；复制 vtstcode-XXX 中对应 VASP 版本（如 vtstcode5、vtstcode6.3；vtstcode6.3 中多了 `ml_pyamff.F` 文件和 `pyamff_fortran/` 目录）的目录下的所有文件到 `src/`：
+
 ```bash
 cp src/chain.F src/chain.F-org
-cp vtstcode-197/vtstcode5/* src/
+
+cp vtstcode-XXX/vtstcodeXXX/* src/
 ```
 
-修改 src/.objects 文件，在 chain.o 前添加如下内容：
+- 修改 `src/.objects` 源码，在 `chain.o` 所在行前添加：
+
 ```bash
-bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \\
-fire.o lanczos.o neb.o qm.o opt.o \\
+# vtstcode5 和 vtstcode6.1
+bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
+fire.o lanczos.o neb.o qm.o opt.o \
+
+# vtstcode6.3
+bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
+fire.o lanczos.o neb.o qm.o \
+pyamff_fortran/*.o ml_pyamff.o \
+opt.o\
 ```
 
-- VASP 部分：同前面部分
+- 使用 vtstcode6.3，还需修改 `src/makefile` 源码：
+
+```bash
+# 替换前
+LIB= lib parser
+dependencies: sources
+
+# 替换后
+LIB= lib parser pyamff_fortran
+dependencies: sources libs
+```
+
+- 编译：`make` 或 `make std`
 
 
 ---
 
 ### phonopy
 
-- 计算声子谱；官网：[Welcome to phonopy — Phonopy v.2.20.0](https://phonopy.github.io/phonopy/)
-
+- [phonopy](https://phonopy.github.io/phonopy/)：计算声子谱
 
 安装
+
 ```bash
 conda install -c conda-forge phonopy
 ```

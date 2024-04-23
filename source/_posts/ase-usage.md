@@ -22,6 +22,15 @@ password:
 atomic simulation environment (ASE)
 
 
+```python
+from ase.atoms import Atoms
+from ase.calculators.singlepoint import SinglePointCalculator
+
+results={"energy": -7.0}
+atoms.calc = SinglePointCalculator(atoms, **results)
+atoms.get_potential_energy()
+```
+
 ipython 按 tab 键可补全可用 method 或 attributes
 在函数或 method 后添加?可以查看其 docstring
 
@@ -31,27 +40,6 @@ In [1]: from ase.build import bulk
 
 In [2]: bulk?
 ```
-
-
-nglview，可用在 jupyter notebook 中查看生成的构型
-```bash
-pip install nglview
-```
-
-
-```python
-from ase.visualize import view
-from ase.io import read
-
-structure_fn = "XXX.vasp"
-structure = read(structure_fn, format="vasp")
-
-view(structure, viewer="ngl")
-```
-
-效果图：
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401201143207.png)
 
 
 ```python
@@ -71,8 +59,8 @@ ase 缺陷计算 寻找最优的超胞形状
 
 ### 参考资料
 
+ase 教程（内容较详细）
 >[ASE tutorials](https://ase-workshop-2023.github.io/tutorial/)
-
 
 >[GitHub - PythonFZ/ase\_md\_example](https://github.com/PythonFZ/ase_md_example)
 
@@ -103,9 +91,7 @@ ase.lattice 有生成 graphene 和 graphite modules
 >[Bravais lattices — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/lattice.html)
 
 
-ase 对称性 tutorial
->[Crystal symmetry and spglib | ase-tutorial-symmetry](https://ajjackson.github.io/ase-tutorial-symmetry/)
-
+ase symmetry 教程（内容一般）
 >[GitHub - ajjackson/ase-tutorial-symmetry: Tutorial notebook for symmetry features in ASE](https://github.com/ajjackson/ase-tutorial-symmetry)
 
 
@@ -113,6 +99,76 @@ ase 对称性 tutorial
 >[GitHub - jochym/Elastic: A module for ASE for elastic constants calculation.](https://github.com/jochym/Elastic)
 
 >[Calculation of elastic properties of crystals — Elastic v5.1.0 documentation](https://elastic.readthedocs.io/en/stable/)
+
+---
+
+
+```python
+from ase.cell import Cell
+
+# cell 参数转换成 cell matrix
+cell = Cell.fromcellpar([3.31, 3.31, 3.31, 90, 90, 90])
+cell[:]
+```
+
+---
+
+构型可视化
+
+```python
+# 方式 1
+from ase.visualize.plot import plot_atoms
+
+plot_atoms(atoms)
+
+# 方式 2
+from ase.visualize import view
+
+view(atoms, viewer="ngl")
+```
+
+nglview，可在 jupyter notebook 中可视化构型
+```bash
+pip install nglview
+```
+
+
+nglview 效果图：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401201143207.png)
+
+---
+
+crystal 构建
+
+```python
+# 方式 1；最简单
+from ase.build import bulk
+
+# 方式 2
+from ase.atoms import Atoms
+
+# 方式 3
+from ase.spacegroup import crystal
+```
+
+
+```python
+from ase.spacegroup import Spacegroup
+
+spg = Spacegroup(152)
+
+# 查看等同原子坐标
+spg.equivalent_sites([0.4673, 0, 0.3333])
+```
+
+
+超胞
+
+```python
+# 方式 1
+supercell = atoms * (2, 2, 2)
+```
 
 
 ---
@@ -208,8 +264,8 @@ WIP…
 
 ### ase.io
 
-- 文件读入、写出
-- ase 中可识别的文件格式（部分格式只有 `read` 或 `write` 一个函数）：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+- 构型格式文件读入、写出
+- 函数 `read()` 可自动识别文件格式；ase 中可识别的文件格式（部分格式只有 `read` 或 `write` 一个函数）：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
 - 可以读取 gz 格式压缩文件，如 OUTCAR.gz
 
 ---

@@ -376,7 +376,7 @@ deactivate  # 退出
 
 ### uv
 
-- 快速安装 Python package：[GitHub - astral-sh/uv: An extremely fast Python package installer and resolver, written in Rust.](https://github.com/astral-sh/uv)
+- [uv](https://github.com/astral-sh/uv)：快速安装 Python package
 
 - 安装
 
@@ -390,6 +390,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```bash
 uv venv  # 创建虚拟环境 .venv/
 source .venv/bin/activate   # 激活
+deactivate  # 取消
 
 # 安装 package；与 pip 基本一致
 uv pip install <package>

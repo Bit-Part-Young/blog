@@ -273,6 +273,7 @@ github CI 状态
 
 >[GitHub Actions 入门教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 
+>[GitHub Actions工作流自动化的入门核心\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1aT421y7Ar/)
 
 
 GitHub Actions 可以有多个 `.yml` 文件

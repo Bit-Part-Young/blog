@@ -203,7 +203,10 @@ plt.show()
 ```python
 # 将 colorbar 放在图片右侧
 scatter_ax = ax.scatter(x, y, c=colors, cmap="bwr")
-cbar = fig.colorbar(scatter_ax, ax=ax)  # 第二个参数名为 ax
+cbar = fig.colorbar(
+    scatter_ax,
+    ax=ax,  # 第二个参数名为 ax
+)
 cbar.set_label("colorbar label")
 
 
@@ -213,8 +216,11 @@ scatter_ax = ax.scatter(x, y, c=colors, cmap="bwr")
 # colorbar 位置；[x, y, width, height] 比例
 cbar_ax = ax.inset_axes([0.3, 0.05, 0.5, 0.05])
 # colorbar 水平放置
-# 第二个参数名为 cax
-fig.colorbar(scatter_ax, cax=cbar_ax, orientation="horizontal")
+fig.colorbar(
+    scatter_ax,
+    cax=cbar_ax,  # 第二个参数名为 cax
+    orientation="horizontal",
+)
 ```
 
 ---
@@ -313,13 +319,17 @@ bbox_to_anchor      # 2-tuple floats，(x, y)；x≥1.0 时，图例在外面
 
 ---
 
-- 手绘风格：需安装 xkcd-script font（但还是会提示找不到相关字体）；[XKCD](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
+- matplotlib joint 绘制（上、右两侧分别是 x, y 的直方图）
+	- [scientific-visualization-book/code/layout/standard-layout-2.py at master · rougier/scientific-visualization-book · GitHub](https://github.com/rougier/scientific-visualization-book/blob/master/code/layout/standard-layout-2.py)
+	- [seaborn.JointGrid — seaborn 0.13.2 documentation](https://seaborn.pydata.org/generated/seaborn.JointGrid.html)
+	- [seaborn.jointplot — seaborn 0.13.2 documentation](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
+	- [Scatter plot with histograms — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_hist.html)
 
-- matplotlib joint 绘制
-	- [standard-layout-2.py - scientific-visualization-book](https://github.com/rougier/scientific-visualization-book/blob/master/code/layout/standard-layout-2.py)
-	- [seaborn.JointGrid — seaborn 0.12.2 documentation](https://seaborn.pydata.org/generated/seaborn.JointGrid.html)
-	- [seaborn.jointplot — seaborn 0.12.2 documentation](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
-	- [Scatter plot with histograms — Matplotlib 3.7.2 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_hist.html)
+
+- 热图 heatmap / 关联图绘制：`plt.matshow()`，`seaborn.heatmap()`
+- 饼状关联图绘制：[biokit/notebooks/viz/corrplot.ipynb at master · biokit/biokit · GitHub](https://github.com/biokit/biokit/blob/master/notebooks/viz/corrplot.ipynb)
+- 手绘风格（无必要）：需安装 xkcd-script font（但还是会提示找不到相关字体）；[XKCD](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
+
 
 ---
 

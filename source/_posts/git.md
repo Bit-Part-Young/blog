@@ -632,16 +632,12 @@ git checkout -b <BranchName> origin/<RemoteBranchName>
 ### remote
 
 ```bash
+git remote show origin  # 查看远程 repo 所有分支
+git ls-remote origin    # 列出远程仓库的引用（分支和标签）
+
 # 使本地的跟踪分支列表与远程保持一致，删除远程分支已经不存在而本地还保留的跟踪记录
 git remote prune origin
-# 不实际删除
-git remote prune origin --dry-run
-
-# 查看远程 repo 所有分支
-git remote show origin
-
-# 列出远程仓库的引用（分支和标签）
-git ls-remote origin
+git remote prune origin --dry-run  # 不实际删除
 
 # 
 git remote rm origin
@@ -705,41 +701,27 @@ GIT_EDITOR=vim git merge tmp
 ### tag
 
 ```bash
-# 查看本地标签
-git tag
-
-# 查看远程标签
-git ls-remote --tags origin
+# 查看标签
+git tag  # 本地
+git ls-remote --tags origin  # 远程
+git tag -l  # 列出标签
+git tag -ln  # 列出标签及其注释
+git show v1.0.0  # 查看具体标签信息
 
 # 新建标签
 git tag v1.0.0
-
-# 新建带注释标签
-git tag -a v1.0.0 -m 'Nb-Si projects scripts until on 20230723'
+git tag -a v1.0.0 -m 'content'  # 带注释
 
 # push 标签
 git push origin v1.0.0
-# push 所有标签
-git push origin --tags
+git push origin --tags  # 所有标签
 
-# 删除本地标签
-git tag -d v0.0.1
+# 删除标签
+git tag -d v0.0.1  # 本地
+git push origin :refs/tags/v0.0.1  # 远程
+git push origin --delete $(git tag -l)  # 所有远程标签
 
-# 删除远程标签
-git push origin :refs/tags/v0.0.1
-# 删除所有远程标签
-git push origin --delete $(git tag -l)
-
-# pull 远程所有内容包括标签
-git pull --all
-
-# 列出标签
-git tag -l
-# 列出标签及其注释
-git tag -ln
-
-# 查看具体标签信息
-git show v1.0.0
+git pull --all  # pull 远程所有内容包括标签
 ```
 
 
@@ -749,29 +731,18 @@ git show v1.0.0
 
 日志 log
 ```bash
-# 查看提交日志
-git log
+git log           # 查看提交日志
+git reflog        # 查看所有分支的所有操作记录
 
-# 以一行的形式显示提交日志，commit id 为 8 个字符
-git log --oneline
-# 完整的 commit id
-git log --pretty=oneline
-
-git log --pretty=%B  # 获取 commit message 内容
-
-# 显示倒数第几条 log
-git log -n N
-git log HEAD~1 --oneline
-
-# 查看含有 "update" 关键字的提交日志
-git log --grep=update
-
-# 查看所有分支的所有操作记录
-git reflog
-
-# 较为美观的 git log 输出样式 参考 zsh git alias
-git log --oneline --graph --stat
-git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
+-p                # --patch；显示每次提交引入的代码改动
+--oneline         # 一行显示；commit id 8 个字符
+--pretty=oneline  # 一行显示；完整 commit id
+--pretty=%B       # 只显示 commit message
+--pretty=%H       # 只显示 commit hash
+-n N / HEAD~N     # 显示最新的前 N 条提交记录
+--grep=pattern    # 查看给定 pattern 的提交记录
+--oneline --graph --stat  # 较为简洁美观的 git log 输出样式
+--graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat  # 参考 zsh git alias
 ```
 
 

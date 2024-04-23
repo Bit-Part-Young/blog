@@ -72,8 +72,11 @@ WIP…
 
 VSCode 插件：
 
-- typst-lsp，具有语言服务器 + 代码格式化等功能
+- typst-lsp，具有语言服务器 + 代码格式化（不再继承）等功能
 - typst-preview：实时编译预览
+
+
+[GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)
 
 
 - [ ] 暂无法指定图片路径，图片无法是链接的形式
@@ -129,12 +132,12 @@ typst update
 
 已在官网上的 packages（官网：[Packages – Typst Documentation](https://typst.app/docs/packages/)），可直接通过以下的形式导入，编译时，会自动下载所需的 packages
 
-```typst
+```rust
 #import "@preview/tablex:0.0.6": tablex, hlinex
 ```
 
 不在官网上的，需下载其 typ 源代码，以相对路径形式导入（或者等待其被官方接受）
-```typst
+```rust
 #import "mdtable.typ": mdtable
 ```
 
@@ -156,14 +159,14 @@ typst update
 ---
 
 目录
-```typ
+```rust
 #outline()
 ```
 
 
 图片插入及引用
 
-```typ
+```rust
 #figure(
    image("badge_sjtu.png"),
    caption: [
@@ -171,13 +174,14 @@ typst update
    ],
 ) <badge_sjtu>
 
-引用图片 @badge_sjtu
+// 图片引用
+@badge_sjtu
 ```
 
 ---
 
 文本
-```typ
+```rust
 普通文本 
 _下划线_
 ```
@@ -187,7 +191,7 @@ _下划线_
 
 
 标题
-```typ
+```rust
 = 一级标题
 == 二级标题
 ```
@@ -196,7 +200,7 @@ _下划线_
 ---
 
 有序列表
-```typ
+```rust
 #set enum(numbering: "a)")
 
 + item 1
@@ -206,7 +210,7 @@ _下划线_
 
 
 无序列表
-```typ
+```rust
 Normal list.
 - Text
 - Math
@@ -229,7 +233,7 @@ Function call.
 ---
 
 超链接
-```typ
+```rust
 #show link: underline
 
 https://example.com \
@@ -243,7 +247,7 @@ https://example.com \
 ---
 
 线条
-```typ
+```rust
 #line()
 ```
 
@@ -253,14 +257,30 @@ https://example.com \
 
 
 数学公式
-```typ
-行内公式 $Q = rho A v + C$
 
-行间公式
+- 数学公式设置：等式：`#set math.equation()`；矩阵：`#set math.mat()`
+- 与 LaTeX 不同，希腊字母前不需加 `\`
+- 分数：`1/2` 或 `frac(a, b)`
+- root 根：平方根：`sqrt(2)`，非平方根：`root(N, x)`
+- 分隔符匹配：分隔符大小与内容保持一致，类似 LaTeX 中的 `\left`、`\right`；`lr()`、`mid()`、`abs()`、`ceil()`、`floor()`、`round()`、`norm()`
+- 矩阵：`mat()`
+- 上、下划线：`underline()`、`overline()`、`underbrace()`、`overbrace()`
 
-$ 7.32 beta + sum_(i=0)^nabla Q_i / 2 $
+```rust
+// 数学公式编号，在引用的编号之前添加 supplement 内容
+#set math.equation(numbering: "(1)", supplement: [Eq.])
 
+// 行内公式 
+$Q = rho A v + C$
+
+// 行间公式
+$ 7.32 beta + sum_(i=0)^nabla Q_i / 2 $ <eq1>
+
+// 公式引用
+@eq1
 ```
+
+
 
 
 ---
@@ -278,7 +298,7 @@ Set 规则中常用的一些函数的列表：
 - [`document`](https://typst-doc-cn.github.io/docs/reference/meta/document/) 用于设置 PDF 输出中包含的元数据，例如标题和作者
 
 
-```typ
+```rust
 #set text(font: "")
 ```
 
@@ -291,16 +311,25 @@ Show 规则
 ---
 
 
-文献及引用
+参考文献及引用
 
-```typ
-文献引用@ZHU2023119062
+
+
+```rust
+// 方式 1
+@ZHU2023119062
+
+// 方式 2
+#cite(<ZHU2023119062>) \ 
+#cite(label("ZHU2023119062"))
 
 #bibliography(
   "refs.bib",
   title: "参考文献",
   style: "gb-7714-2015-numeric",
-  )
+  // style: "american-physics-society",
+  // style: "nature",
+)
 ```
 
 
