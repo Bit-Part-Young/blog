@@ -711,6 +711,10 @@ tmux 配置：[GitHub - gpakosz/.tmux: 🇫🇷 Oh my tmux! My self-contained, p
 
 >[tmux + oh-my-tmux使用指北](https://ixjx.github.io/2020-04-14/tmux-+-oh-my-tmux%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/)
 
+tmux session 管理：
+- [GitHub - tmux-python/tmuxp: 🖥️ Session manager for tmux, build on libtmux.](https://github.com/tmux-python/tmuxp)
+- [GitHub - tmuxinator/tmuxinator: Manage complex tmux sessions easily](https://github.com/tmuxinator/tmuxinator)
+
 
 ```bash
 # 安装在 ~

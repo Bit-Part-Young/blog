@@ -31,16 +31,6 @@ atoms.calc = SinglePointCalculator(atoms, **results)
 atoms.get_potential_energy()
 ```
 
-ipython 按 tab 键可补全可用 method 或 attributes
-在函数或 method 后添加?可以查看其 docstring
-
-示例
-```bash
-In [1]: from ase.build import bulk
-
-In [2]: bulk?
-```
-
 
 ```python
 # ase rdf 计算
@@ -62,6 +52,7 @@ ase 缺陷计算 寻找最优的超胞形状
 ase 教程（内容较详细）
 >[ASE tutorials](https://ase-workshop-2023.github.io/tutorial/)
 
+ase 进行 md 计算 package
 >[GitHub - PythonFZ/ase\_md\_example](https://github.com/PythonFZ/ase_md_example)
 
 
@@ -198,7 +189,19 @@ pip install pytest
 
 ### ase.atoms
 
->[The Atoms object — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#module-ase.atoms)
+[array methods of Atoms objects](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#working-with-the-array-methods-of-atoms-objects)
+
+Atom 和 Atoms 是 ASE 的两个基本 Object， Atoms 由 Atom 构成。
+本质上 Atoms 是 Atom 的 list，可以使用标序的方式来查看 Atom
+
+
+需添加 calculator 才能使用的 methods：[Adding a calculator](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#adding-a-calculator)
+
+```python
+get_potential_energy()
+get_forces()
+get_stress()
+```
 
 - 属性 -
 - 方法
@@ -210,15 +213,18 @@ pip install pytest
 from ase.atoms import Atoms
 from ase.formula import Formula
 
-ats: Atoms
+atoms: Atoms
 # 化学式
-conf_symbol = ats.get_chemical_formula()
+conf_symbol = atoms.get_chemical_formula()
 # 成分 {'Al': 5, 'Ti': 1}
 struct_composition = Formula(conf_symbol).count()
 # 原子数
-natom = len(ats)
+natom = len(atoms)
 # 元素数
-nele = len(set(ats.get_chemical_symbols()))
+nele = len(set(atoms.get_chemical_symbols()))
+
+
+atoms.copy()  # 拷贝
 ```
 
 
@@ -238,7 +244,7 @@ from ase.build import bulk
 
 # 原胞
 primCell = bulk("Al", "fcc", a=4.05)
-# 单胞
+# 单胞 cubic=True
 unitCell = bulk("Al", "fcc", a=4.05, cubic=True)
 # 超胞
 superCell = unitCell * (2, 2, 2)
@@ -246,17 +252,13 @@ superCell = unitCell * (2, 2, 2)
 
 ---
 
-简单 bulk 模型的表面构建 示例代码
-
-```python
-# WIP
-```
-
----
-
 #### surface
 
-WIP…
+```python
+from ase.build import surface
+```
+
+简单 bulk 模型的表面构建 示例代码
 
 
 

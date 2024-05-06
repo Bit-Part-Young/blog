@@ -22,6 +22,8 @@ password:
 
 ## 介绍
 
+>[图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
+
 分布式版本控制工具。
 
 ```bash

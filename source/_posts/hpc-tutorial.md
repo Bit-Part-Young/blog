@@ -869,49 +869,46 @@ srun -p cpu -n 1 --pty /bin/bash
 
 ---
 
-### posconv、NumNei
+### 源码编译
 
-- posconv：构型文件格式转换（POSCAR xyz pos lammpstrj 等）
-- NumNei：计算 BCC、FCC 和金刚石结构的第 N 近邻原子距离
- - 编译
-	- 编译器选择：gfortran 或 ifort（gfortran 已足够；ifort 性能可能更好些）
-	- gfortran：课题组服务器及超算中含 gfortran（如超算中的 `gcc/11.2.0`）
-	- ifort：课题组服务器及超算中含 ifort（如超算中的 `intel-oneapi-compilers/2021.4.0`）
+>[linux源码编译安装软件原理 - 人生的哲理 - 博客园](https://www.cnblogs.com/renshengdezheli/p/13954234.html)
+
+编译前，需理解 Makefile 文件中的命令含义！
 
 ```bash
-                                        POSCONVERT
-                                   2023-06-16  17:15:45
+# 自定义安装路径
+./configure --prefix=
 
-          Program to convert atomic configuration files
+# 编译
+make
 
-          =======================  Input Configuration   =======================
-          Please select input configuration format:
-               1. VASP POSCAR;
-               2. PWSCF POSITION CARD;
-               3. xyz file;
-               4. groF and/or MSS format;
-               5. BGF (ReaxFF);
-               6. ReaxFF save file;
-               7. MS Car file;
-               8. LAMMPS full;
-               9. LAMMPS dump atom;
-              10. Siesta STRUCT_IN;
-              11. Abinit/BigDFT xyz;
-              12. MS RES file;
-              13. ARTn;
-               0. Exit.
-          Your choice [3]:
+# 安装
+make install
 ```
 
+
+
+---
+
+### posconv、NumNei
+
+- posconv：构型文件格式转换（POSCAR xyz lammpstrj 等）
+- NumNei：计算 BCC、FCC 和金刚石结构的第 N 近邻原子距离
+ - 编译：编译器可选择 gfortran 或 ifort（gfortran 已足够；ifort 性能可能更好些）
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291005269.png)
 
 ---
 
 ### latgen
 
 - 构型生成程序，包括 BCC、FCC、HCP、diamond、含点缺陷、置换固溶体、表面等构型。
-- 编译依赖 voro++
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006009.png)
 
 ---
+
+编译：依赖 voro++；编译器可选择 gcc 或 icc
 
 - voro++ 编译
 
@@ -928,9 +925,7 @@ PREFIX=${HOME}/src/voro++
 make && make install
 ```
 
----
-
-编译器可选择 icc；修改 latgen 中的 Makefile 文件内容（`INC`：voro++ 的头文件路径； `LIB`：库路径）
+- 修改 latgen 中的 Makefile 文件内容（`INC`：voro++ 的头文件路径； `LIB`：库路径）
 
 ```bash
 VoroINC = -I${HOME}/src/voro++/include/voro++
@@ -944,31 +939,12 @@ VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
 
 - LAMMPS dump 文件后处理程序。可以计算：CSRO；RDF、PDF、g(r) （径向分布函数）；扩散系数等
 - dumpana、latgen、posconv 和 vaspkit 等程序都可以通过 `latgen < inp.script` 命令，使其不用每次交互输入参数，节约时间（**重要！！！**）。
-- 编译依赖 voro++ 和 gsl（C 数值计算库）
 
-```bash
-Code to analyse the atom style dump files of lammps. Functions available:
---------------------------------------------------------------------------------
-  1. Voronoi diagram analysis;         |  11. Output selected frames;
-  2. Chemical Short Range Order;       |  12. Average over frames;
-  3. Honeycutt-Andersen bond index;    |  13. Pair correlation function;
-  4. Common Neighbor/Centro-symmetry;  |  14. Static structure factor;
-  5. Prepare for FEFF9;                |  15. Bond length/angles;
-  6. Voronoi cluster connectivity;     |  16. Spatial distribution of atoms;
-  7. Output selected atoms/clusters;   |  17. Radial distribution of atoms;
-  8. Output bgf format with property;  |  18. RMSD between frames;
-  9. Local order parameter Ql, qlql;   |  19. Bhatia-Thornton structure factor;
- 10. Configurational entropy of mixing;|  20. MSD for selected atoms;
----------------------------------------+----------------------------------------
- 21. Heredity of atomic clusters;      |  31. Count # selected atoms vs time;
- 22. Pair correlation for atomic prop; |  32. Unwrap PBC bonded atoms;
---------------------------------------------------------------------------------
-
-Usage:
-    dumpana [options] [file [file2]]
-```
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006937.png)
 
 ---
+
+编译：编译依赖 voro++ 和 gsl（C 数值计算库）；编译器可选择 gcc 或 icc
 
 - gsl 编译
 
@@ -1034,13 +1010,12 @@ ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7g
 ### Atomsk
 
 - 结构建模程序；同 latgen 相比，可生成孪晶、晶界、位错等更多复杂构型
-- 下载：[Atomsk - Download](https://atomsk.univ-lille.fr/dl.php)；安装：[Atomsk - Install - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/install.html)
 
 ---
 
-**编译**
+**安装：**[Atomsk - Install - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/install.html)
 
-- 可执行版本（最简单方式）：
+- 下载二进制版本（最简单方式）：[Download Atomsk](https://atomsk.univ-lille.fr/dl.php)
 
 ```bash
 wget https://atomsk.univ-lille.fr/code/atomsk_b0.13.1_Linux-amd64.tar.gz
@@ -1056,7 +1031,7 @@ ln -s atomsk ~/bin
 
 - 源码编译：
 
-依赖 blas 和 lapack 库（manager/master/超算上没有这两个库，需自己编译；编译 lapack 需要先编译 blas；**intel 套件有相关库**）
+依赖 blas 和 lapack 库（manager/master/超算上没有这两个库，需自己源码编译；编译 lapack 需要先编译 blas；**intel 套件有相关库**）
 
 编译 blas 和 lapack 步骤以及压缩包：
 >[apt - How to build and link BLAS and LAPACK libraries by hand for use on cluster? - Ask Ubuntu](https://askubuntu.com/questions/1270161/how-to-build-and-link-blas-and-lapack-libraries-by-hand-for-use-on-cluster)
@@ -1122,7 +1097,6 @@ make atomsk
 make install
 ```
 
-
 编译成功：
 
 ```text
@@ -1133,38 +1107,25 @@ make install
           sudo make install
 ```
 
-
 ---
 
-- master 编译 ifort 版本
+- 编译 ifort 版本：`make -f Makefile.ifort atomsk`
 
 ```bash
-git clone https://github.com/pierrehirel/atomsk.git
-
-cd atomsk/src
-
-make -f Makefile.ifort atomsk
-```
-
-
----
-
-- 思源一号超算编译 ifort 版本
-
-```bash
-git clone https://github.com/pierrehirel/atomsk.git
-
-cd atomsk/src
-
+# 导入 oneapi 套件
 module purge
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 
+git clone https://github.com/pierrehirel/atomsk.git
+
+cd atomsk/src
+
 make -f Makefile.ifort atomsk
 ```
 
-设置 `libiomp5.so` 文件的软链接或者使用前 `module load intel-oneapi-compilers/2021.4.0`
+超算（思源一号）使用 atomsk 时，需设置 `libiomp5.so` 文件的软链接或者使用前 `module load intel-oneapi-compilers/2021.4.0`
 
 ```bash
 ln -s /dssg/opt/icelake/linux-centos8-icelake/gcc-8.5.0/intel-oneapi-compilers-2021.4.0-rszhbg2vjwqqeddqqdryjwxromenbfmr/compiler/2021.4.0/linux/compiler/lib/intel64_lin/libiomp5.so ~/lib/libiomp5.so
@@ -1228,6 +1189,58 @@ make  # make all
 
 ---
 
+### HDF5
+
+- 安装步骤：
+
+```bash
+wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_14_3/src/hdf5-1.14.3.tar.gz
+
+# 配置 intel 版本
+./configure --enable-parallel --enable-fortran --enable-cxx --enable-unsupported \
+		    CC=mpiicc FC=mpiifort CXX=mpiicpc \
+		    --prefix=${HOME}/local/hdf5
+
+make
+make install
+```
+
+未添加 `--enable-parallel` 参数会出现以下报错：
+
+```bash
+configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use --enable-unsupported to override this error.
+```
+
+```bash
+# 显示 HDF5 的编译和配置详细信息
+h5cc -showconfig  # 或 h5c++ h5pcc
+
+# 显示用于编译 HDF5 的编译器命令行，包括链接的库和编译器标志
+h5cc -show
+```
+
+---
+
+- 使用
+	- HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
+	- Pandas 的 read_hdf() 不太好用
+
+```bash
+h5ls data.h5     # 显示 Group 列表
+
+# vaspout.h5 示例
+input                    Group
+intermediate             Group
+original                 Group
+results                  Group
+version                  Group
+
+h5dump data.h5   # 输出文件的详细结构和内容
+```
+
+
+---
+
 ### VASP.6.3.0 + HDF5
 
 - 参考：[Installing VASP.6.X.X - VASP Wiki](https://www.vasp.at/wiki/index.php/Installing_VASP.6.X.X)
@@ -1263,12 +1276,11 @@ module show hdf5/1.12.2-intel-2021.4.0
 
 cp arch/makefile.include.intel makefile.include
 # 删除 MKLROOT    ?= 后的内容 此步可忽略
-# 将 HDF5_ROOT  ?= 后的内容替换为 hdf5 的安装路径
+# 取消 HDF5 相关行注释，将 HDF5_ROOT  ?= 后的内容替换为 hdf5 的安装路径
 
-make
+make  # 或 make all, make std
 ```
 
----
 
 可能会出现以下报错：
 
@@ -1285,6 +1297,75 @@ ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/hdf5-1.12.2-nxwmp3t
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/lib
 ```
+
+
+---
+
+### VASP + VTST
+
+VASP + VTST：在 VASP 添加过渡态计算功能
+
+参考：[Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)、[VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
+
+---
+
+安装步骤：
+
+- 下载 VTST Code 和 VTST Scripts：[Download — Transition State Tools for VASP](https://theory.cm.utexas.edu/vtsttools/download.html)
+
+- 修改 `src/main.F` 源码：
+
+```bash
+# 替换前
+CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
+     LATT_CUR%A,LATT_CUR%B,IO%IU6)
+
+# 替换后；添加了 TSIF,
+CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
+     TSIF,LATT_CUR%A,LATT_CUR%B,IO%IU6)
+
+# vasp.6.2 及以后，还需进行以下替换
+# 替换前
+IF (LCHAIN) CALL chain_init( T_INFO, IO)
+# 替换后
+CALL chain_init( T_INFO, IO)
+```
+
+- 备份 `src/chain.F`；复制 vtstcode-XXX 中对应 VASP 版本（如 vtstcode5、vtstcode6.3；vtstcode6.3 中多了 `ml_pyamff.F` 文件和 `pyamff_fortran/` 目录）的目录下的所有文件到 `src/`：
+
+```bash
+cp src/chain.F src/chain.F-org
+
+cp vtstcode-XXX/vtstcodeXXX/* src/
+```
+
+- 修改 `src/.objects` 源码，在 `chain.o` 所在行前添加：
+
+```bash
+# vtstcode5 和 vtstcode6.1
+bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
+fire.o lanczos.o neb.o qm.o opt.o \
+
+# vtstcode6.3
+bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
+fire.o lanczos.o neb.o qm.o \
+pyamff_fortran/*.o ml_pyamff.o \
+opt.o\
+```
+
+- 使用 vtstcode6.3，还需修改 `src/makefile` 源码：
+
+```bash
+# 替换前
+LIB= lib parser
+dependencies: sources
+
+# 替换后
+LIB= lib parser pyamff_fortran
+dependencies: sources libs
+```
+
+- 编译：同 VASP 编译步骤
 
 
 ---
@@ -1363,128 +1444,6 @@ echo -e "102\n2\n0.04\n" | vaspkit
 ```
 
 - vaspkit.1.5.0.Mac.Intel 版本可以在 Mac M1 上运行
-
-
----
-
-### HDF5
-
-- 安装步骤：
-
-```bash
-wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_14_3/src/hdf5-1.14.3.tar.gz
-
-# 配置 intel 版本
-./configure --enable-parallel --enable-fortran --enable-cxx --enable-unsupported \
-		    CC=mpiicc FC=mpiifort CXX=mpiicpc \
-		    --prefix=${HOME}/local/hdf5
-
-make
-make install
-```
-
-未添加 `--enable-parallel` 参数会出现以下报错：
-
-```bash
-configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use --enable-unsupported to override this error.
-```
-
-```bash
-# 显示 HDF5 的编译和配置详细信息
-h5cc -showconfig  # 或 h5c++ h5pcc
-
-# 显示用于编译 HDF5 的编译器命令行，包括链接的库和编译器标志
-h5cc -show
-```
-
----
-
-- 使用
-	- HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
-	- Pandas 的 read_hdf() 不太好用
-
-```bash
-h5ls data.h5     # 显示 Group 列表
-
-# vaspout.h5 示例
-input                    Group
-intermediate             Group
-original                 Group
-results                  Group
-version                  Group
-
-h5dump data.h5   # 输出文件的详细结构和内容
-```
-
-
-
----
-
-### VASP + VTST
-
-VASP + VTST：嵌入过渡态理论版本的 VASP，计算过渡态
-
-参考：[Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)、[VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
-
----
-
-安装步骤：
-
-- 下载 VTST Code 和 VTST Scripts：[Download — Transition State Tools for VASP](https://theory.cm.utexas.edu/vtsttools/download.html)
-
-- 修改 `src/main.F` 源码：
-
-```bash
-# 替换前
-CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
-     LATT_CUR%A,LATT_CUR%B,IO%IU6)
-
-# 替换后；添加了 TSIF,
-CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
-     TSIF,LATT_CUR%A,LATT_CUR%B,IO%IU6)
-
-# vasp.6.2 及以后，还需进行以下替换
-# 替换前
-IF (LCHAIN) CALL chain_init( T_INFO, IO)
-# 替换后
-CALL chain_init( T_INFO, IO)
-```
-
-- 备份 `src/chain.F`；复制 vtstcode-XXX 中对应 VASP 版本（如 vtstcode5、vtstcode6.3；vtstcode6.3 中多了 `ml_pyamff.F` 文件和 `pyamff_fortran/` 目录）的目录下的所有文件到 `src/`：
-
-```bash
-cp src/chain.F src/chain.F-org
-
-cp vtstcode-XXX/vtstcodeXXX/* src/
-```
-
-- 修改 `src/.objects` 源码，在 `chain.o` 所在行前添加：
-
-```bash
-# vtstcode5 和 vtstcode6.1
-bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
-fire.o lanczos.o neb.o qm.o opt.o \
-
-# vtstcode6.3
-bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
-fire.o lanczos.o neb.o qm.o \
-pyamff_fortran/*.o ml_pyamff.o \
-opt.o\
-```
-
-- 使用 vtstcode6.3，还需修改 `src/makefile` 源码：
-
-```bash
-# 替换前
-LIB= lib parser
-dependencies: sources
-
-# 替换后
-LIB= lib parser pyamff_fortran
-dependencies: sources libs
-```
-
-- 编译：`make` 或 `make std`
 
 
 ---
@@ -1575,8 +1534,8 @@ pip install .
 
 ### texlive
 
-- 思源一号中的 texlive 版本为 2018；pi 为 2013；manager 为 2015；master 未安装；无 root 权限，无法安装 package；
-- 可自定义安装路径；
+- texlive 版本：思源一号 2018；pi 2013；manager 2015；master 未安装；无 root 权限，无法安装 package
+- 可自定义安装路径
 - texlive 不同版本需要安装的 packages 数目：medium 约 1395 项；full 约 4543 项。
 
 ```bash
@@ -1605,26 +1564,6 @@ export PATH=$HOME/src/texlive/2023/bin/x86_64-linux:$PATH
 ### ATAT
 
 WIP…
-
-
----
-
-### 源码编译
-
->[linux源码编译安装软件原理 - 人生的哲理 - 博客园](https://www.cnblogs.com/renshengdezheli/p/13954234.html)
-
-编译前，需理解 Makefile 文件中的命令含义！
-
-```bash
-# 自定义安装路径
-./configure --prefix=
-
-# 编译
-make
-
-# 安装
-make install
-```
 
 
 

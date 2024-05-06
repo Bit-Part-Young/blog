@@ -262,6 +262,74 @@ github CI 状态
 [![CI Status](https://github.com/materialsproject/pymatgen/actions/workflows/test.yml/badge.svg)](https://github.com/materialsproject/pymatgen/actions/workflows/test.yml)
 ```
 
+---
+
+### pre-commit
+
+[pre-commit](https://pre-commit.com/)：用于管理和维护 git 钩子的框架。允许配置多种钩子，这些钩子会在代码提交到仓库之前自动运行，以检查代码风格、格式化代码、检查语法错误（可用于 Python Markdown Shell 等）等。配置文件：.pre-commit-config.yaml
+
+
+```bash
+# 安装 pre-commit
+pip install -U pre-commit
+
+# 安装钩子
+pre-commit install
+
+# 手动运行钩子
+pre-commit run
+pre-commit run --all-files
+```
+
+
+格式：
+```yaml
+repos:
+  - repo:  # 钩子 repo url
+    rev:  # 版本
+    hooks:  # 列出要使用的具体钩子
+      - id:  # 钩子唯一标识
+	    args:  # 可选 传递给钩子的额外参数
+		language_version: # 编程语言版本 如 python3.11
+```
+
+
+示例：[.pre-commit-config.yaml](https://github.com/CederGroupHub/smol/blob/main/.pre-commit-config.yaml)
+
+```yaml
+exclude: '.git|.tox'
+default_stages: [commit]
+fail_fast: true
+
+repos:
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 24.4.2
+    hooks:
+      - id: black  # black-jupyter
+        # language_version: python3.11
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.2
+    hooks:
+	  # Run the linter.
+      - id: ruff
+        args: [ --fix ]
+        types_or: [ python, pyi, jupyter ]
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [ python, pyi, jupyter ]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+    - id: isort
+      name: isort (python)
+      args:
+      - --profile=black
+```
+
+
+
 
 ---
 

@@ -38,21 +38,7 @@ password:
 
 - 整体所有选项
 
-```text
-======================================================================
-Please select the lattice type of your system:
- 1. FCC/Diamond;               |  4. A3B;
- 2. BCC;                       |  5. A2B;
- 3. HCP/Graphene;              |  6. AB & ABXn;
--------------------------------+--------------------------------------
- 7. User defined;              |  8. Multi-layer.
--------------------------------+--------------------------------------
- 9. Xtal with interstitials;   | 10. Polycrystals;
--------------------------------+--------------------------------------
- 0. Exit.
-----------------------------------------------------------------------
-Your choice [1]:
-```
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006009.png)
 
 ---
 

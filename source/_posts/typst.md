@@ -31,6 +31,8 @@ WIP…
 - [首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
 
 
+[Typst 符号 General Symbols](https://typst.app/docs/reference/symbols/sym/)
+
 
 ---
 
@@ -76,7 +78,10 @@ VSCode 插件：
 - typst-preview：实时编译预览
 
 
-[GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)
+代码格式化：
+- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果一般）
+- [GitHub - Enter-tainer/typstyle: Beautiful and reliable typst code formatter](https://github.com/Enter-tainer/typstyle)
+- [GitHub - antonWetzel/prettypst: Formatter for Typst](https://github.com/antonWetzel/prettypst)
 
 
 - [ ] 暂无法指定图片路径，图片无法是链接的形式
@@ -258,8 +263,9 @@ https://example.com \
 
 数学公式
 
+- 公式中的文本：若涉及到 typst 中的关键字，可以用 `""` 包裹文本
 - 数学公式设置：等式：`#set math.equation()`；矩阵：`#set math.mat()`
-- 与 LaTeX 不同，希腊字母前不需加 `\`
+- 与 LaTeX 不同，symbols 前不需加 `\`
 - 分数：`1/2` 或 `frac(a, b)`
 - root 根：平方根：`sqrt(2)`，非平方根：`root(N, x)`
 - 分隔符匹配：分隔符大小与内容保持一致，类似 LaTeX 中的 `\left`、`\right`；`lr()`、`mid()`、`abs()`、`ceil()`、`floor()`、`round()`、`norm()`

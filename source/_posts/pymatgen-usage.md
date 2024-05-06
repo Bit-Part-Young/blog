@@ -655,6 +655,14 @@ pymatgen 表面生成无法指定具体的层数
 
 ### periodic_table
 
+```python
+# 元素周期表 TUI 绘制
+from pymatgen.core.periodic_table import Element
+
+Element.print_periodic_table()
+```
+
+
 ---
 
 ## pymatgen.io.ase

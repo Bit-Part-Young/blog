@@ -1005,7 +1005,6 @@ Intel® Trace Analyzer and Collector
 
 ```bash
 # 下载 Offline 安装版本
-wget ...
 
 # 默认安装到 /opt/intel；无 sudo，则默认安装到 ~/intel
 sudo sh ./l_BaseKit_p_XXX_offline.sh
@@ -1030,7 +1029,7 @@ icpx -v
 
 ---
 
-- VASP 5.4.4 和 6.3.0 版本编译用到的编译器是 icc icpc mpiifort
+- VASP.5.4.4 和 6.3.0 版本编译用到的编译器是 icc icpc mpiifort
 - Intel oneAPI 卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)
 
 ```bash

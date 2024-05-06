@@ -16,6 +16,7 @@ date: 2024-03-20 15:00:00
 abbrlink: 32015
 password:
 ---
+
 # ATAT 使用
 
 ## 介绍
@@ -55,7 +56,7 @@ tar -xzvf atat3_48.tar.gz
 mv atat atat-348
 ```
 
-- 修改 makefile 中的 `BINDIR`，`make mpi` 可以修改 `MPICXX`
+- 修改 makefile 中的 `BINDIR`，`make mpi` 可以修改 `MPICXX`（`MPICXX=mpiicc` 会报错）
 
 ```bash
 BINDIR=$(PWD)/bin/

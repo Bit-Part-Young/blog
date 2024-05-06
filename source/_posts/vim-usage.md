@@ -256,23 +256,18 @@ buffer 相关
 
 ## neovim
 
-### 安装
+安装
 
->直接安装 release，超算平台和服务器均正常（无需编译 source，pi 上编译失败）
-
+- 安装二进制版本
 
 ```bash
-wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-
-tar -xvzf nvim-linux64.tar.gz
-
-cd nvim-linux64/bin
-
-ln -s ~/src/nvim-linux64/bin/nvim ~/bin
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 ```
 
+- 包管理安装（Ubuntu apt 安装的版本较老，不建议此方式）
 
-编译
+- 源码编译
+
 ```bash
 make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/src/neovim"
 
@@ -282,6 +277,6 @@ make install
 
 ---
 
-### 设置
+设置
 
 >[GitHub - bryant-video/neovim-tutorial](https://github.com/bryant-video/neovim-tutorial)
