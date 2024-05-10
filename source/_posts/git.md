@@ -24,6 +24,8 @@ password:
 
 >[图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
 
+>[GitHub - twtrubiks/Git-Tutorials: Git-Tutorials GIT基本使用教學:memo:](https://github.com/twtrubiks/Git-Tutorials)
+
 分布式版本控制工具。
 
 ```bash
@@ -454,16 +456,15 @@ url = https://user:token@gitee.com/user/repo.git
 
 ---
 
-### github 需要用到 token 的地方
+### GitHub Token
 
-github 从 2021 年开始不再支持输入账号和密码的形式进行验证，密码改为 token（gitee 仍是账号和密码验证）。
+GitHub 从 2021 年开始不再支持输入账号和密码的形式进行验证，密码改为 Token（Gitee 验证仍是账号和密码）。
 
 - git 操作（push）
 - 图床
 - 与 gitee 进行 repo 同步
 
-具体设置：
-Settings - Developer settings - Personal access tokens - Tokens(classic)
+具体设置：Settings - Developer settings - Personal access tokens - Tokens(classic)
 
 ---
 
@@ -477,9 +478,9 @@ Settings - Developer settings - Personal access tokens - Tokens(classic)
 
 ---
 
-### Gitee 与 Github、Gitlab 之间互相同步
+### Gitee 与 GitHub、Gitlab 之间互相同步
 
-- Gitee 可以直接从 Github 和 Gitlab 中导入 repo
+- Gitee 可以直接从 GitHub 和 Gitlab 中导入 repo
 - 参考：[仓库镜像管理（Gitee<->Github 双向同步） - Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)、[Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
 
 
@@ -492,7 +493,7 @@ Settings - Developer settings - Personal access tokens - Tokens(classic)
 - 提交数量增加，提交过大文件，会使得 `.git/object` 体积增加，可通过 `--depth` 选项来进行浅克隆
 
 ```bash
-git clone --depth 1 <url>  # 只 clone 最新的一次提交
+git clone --depth 1 <url>  # 只 clone 最新提交
 
 git clone -b <branch1> -b <branch2> <url>  # clone 多个分支
 ```
@@ -775,16 +776,9 @@ git diff --cached --stat
 
 ### stash
 
-用于临时保存当前工作目录和暂存区的未提交更改，从而获得一个干净的工作状态。这个功能在需要快速切换任务或分支时特别有用，因为它允许保存当前进度而不必进行提交，然后在适当的时候再恢复这些更改。
+- 用于临时保存暂存区的未提交更改，返回工作区。
+- 暂存项（stashes）遵循栈结构，即最近暂存的更改会被放置在栈的顶部（索引为 0）；stash 编号为 `stash@{N}`，N=0 表示栈顶，即最近一次的暂存。
 
----
-
-暂存项（stashes）是按照它们被创建的时间顺序排序的，遵循一个栈的结构（后进先出）。这意味着最近暂存的更改会被放置在栈的顶部（索引为 0），而之前的暂存项则按照它们被添加的顺序依次排列。
-
-- `stash@{0}`: 这代表着栈顶的暂存项，即最近一次的暂存。
-- `stash@{1}`: 这是紧随其后的暂存项，即倒数第二次的暂存。
-
----
 
 ```bash
 git stash  # 将当前修改暂存到 stash 栈中
@@ -800,9 +794,7 @@ git stash pop
 # 恢复 stash 中的最近一次暂存，但不从 stash 栈中删除
 git stash apply
 
-# 查看特定 stash 内容
-git stash show stash@{n}
-git stash show stash@{n} -p
+git stash show -p   # 查看 stash 修改内容
 
 # 恢复特定 stash
 git stash apply stash@{n}
@@ -1147,13 +1139,11 @@ gitmoji-cli：git commit 时使用 emoji
 # 查看两星期内的改动
 git whatchanged --since='2 weeks ago'
 
-
 # 统计当天的提交数
 # 方式 1
 git rev-list --count --since=@{0:00} --before=@{23:59:59} HEAD
 # 方式 2
 git log --since='midnight' --until='now' --pretty=oneline | wc -l
-
 
 # 只保留最新的一次提交以减小 repo 体积
 git checkout --orphan <NewBranchName> <last-commit-hash>  # 基于最后的 commit 创建新分支
@@ -1161,6 +1151,9 @@ git commit -m 'new init' # 提交
 git branch -D main   # 删除分支
 git branch -m main   # 新分支重命名为 main 主分支
 git push origin main --force  # 强制 push
+
+# 列出所有提交对象
+git rev-list --objects --all
 ```
 
 

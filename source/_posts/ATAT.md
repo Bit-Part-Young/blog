@@ -1,8 +1,8 @@
 ---
 title: ATAT 安装与使用
-top: true
-pin: true
-cover:
+top: false
+pin: false
+cover: 
 toc: true
 mathjax: true
 math: true

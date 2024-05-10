@@ -21,41 +21,29 @@ password:
 
 ## 介绍
 
-WIP…
+Typst 是一门用于文档排版的标记语言。
 
+Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建简单，详细使用体验，参见：[Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
 
-相关问题：
-
-- [ ] 段落缩进问题：
-- [Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
-- [首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
-
-
-[Typst 符号 General Symbols](https://typst.app/docs/reference/symbols/sym/)
 
 
 ---
 
 ### 参考资料
 
-官方 Doc：[Typst Documentation](https://typst.app/docs)
+- 官方 Doc：[Typst Documentation](https://typst.app/docs)
 
-很有用：
-
-- [Typst 中文用户使用体验 | OrangeX4's Blog](https://orangex4.cool/post/typst-for-chinese/)
-- [About - Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
-
->[GitHub - OrangeX4/typst-talk: 并不复杂的 Typst 讲座 Typst is Simple](https://github.com/OrangeX4/typst-talk)
-
->[GitHub - typst-doc-cn/tutorial: Typst中文教程](https://github.com/typst-doc-cn/tutorial)
-
->[GitHub - qjcg/awesome-typst: Awesome Typst Links](https://github.com/qjcg/awesome-typst)
+- 实用：
+	- [Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
+	- Typst 示例：[Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
+	- [GitHub - OrangeX4/typst-talk: 并不复杂的 Typst 讲座 Typst is Simple](https://github.com/OrangeX4/typst-talk)
+	- [GitHub - typst-doc-cn/tutorial: Typst中文教程](https://github.com/typst-doc-cn/tutorial)
+	- [GitHub - qjcg/awesome-typst: Awesome Typst Links](https://github.com/qjcg/awesome-typst)
+	- [GitHub - typst-cn/awesome-typst-cn: Awesome Typst 列表中文版](https://github.com/typst-cn/awesome-typst-cn)
 
 >[LaTeX 用户指南 – Typst 中文文档](https://typst-doc-cn.github.io/docs/guides/guide-for-latex-users/)
 
 >[Typst 中文社区](https://typst.cn/#/)
-
->[GitHub - typst-cn/awesome-typst-cn: Awesome Typst 列表中文版](https://github.com/typst-cn/awesome-typst-cn)
 
 
 
@@ -63,6 +51,7 @@ WIP…
 
 ## 安装
 
+- 在线版本：[Web - Typst](https://typst.app/)
 - 下载 [预构建二进制文件](https://github.com/typst/typst/releases)（pre-built binaries）
 - 不同 Linux 发行版 + macOS(`brew install typst`) + Win(`scoop install main/typst`)
 
@@ -72,31 +61,27 @@ WIP…
 
 ## 使用
 
-VSCode 插件：
+### 实用工具
 
-- typst-lsp，具有语言服务器 + 代码格式化（不再继承）等功能
-- typst-preview：实时编译预览
-
-
-代码格式化：
-- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果一般）
-- [GitHub - Enter-tainer/typstyle: Beautiful and reliable typst code formatter](https://github.com/Enter-tainer/typstyle)
-- [GitHub - antonWetzel/prettypst: Formatter for Typst](https://github.com/antonWetzel/prettypst)
-
-
-- [ ] 暂无法指定图片路径，图片无法是链接的形式
+- VSCode 插件：
+	- typst-lsp，具有语言服务器 + 代码格式化（不再继承）等功能
+	- typst-preview：实时编译预览
+- 代码格式化：
+	- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果一般）
+	- [GitHub - Enter-tainer/typstyle: Beautiful and reliable typst code formatter](https://github.com/Enter-tainer/typstyle)
+	- [GitHub - antonWetzel/prettypst: Formatter for Typst](https://github.com/antonWetzel/prettypst)
 
 
 ---
 
-### 相关命令
+### 命令行
 
 ```bash
 # 编译
-typst compile file.typ  # typst c file.typ
+typst compile file.typ  # compile 可简写成 c
 
 # 跟踪文档实时编译
-typst watch file.typ    # typst w file.typ
+typst watch file.typ    # watch 可简写成 c
 
 # 指定字体搜索路径
 typst compile file.typ --font-path path/to/fonts
@@ -107,6 +92,9 @@ typst fonts --font-path path/to/fonts
 # 设置字体环境变量
 TYPST_FONT_PATHS=path/to/fonts typst fonts
 
+# 指定 project 路径
+typst compile file.typ --root ..
+
 # 更新版本
 typst update
 ```
@@ -114,13 +102,7 @@ typst update
 
 ---
 
-基础语法概览：[Syntax – Typst Documentation](https://typst.app/docs/reference/syntax/)
-
-
----
-
 函数定义及使用
-
 
 
 ---
@@ -133,135 +115,211 @@ typst update
 
 ---
 
-### 模块导入
+### 基础
 
-已在官网上的 packages（官网：[Packages – Typst Documentation](https://typst.app/docs/packages/)），可直接通过以下的形式导入，编译时，会自动下载所需的 packages
+- 基础语法概览：[Syntax – Typst Documentation](https://typst.app/docs/reference/syntax/)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405081110856.png)
+
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405081110728.png)
+
+
+三种语法模式：标记、数学和脚本
+
+Typst 为常用文档元素内置了语法标记，大多只是对应函数的快捷表达方式
+
+**标记模式**：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405081112457.png)
+
+
+---
+
+**数学模式**：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405081113305.png)
+
+---
+
+**脚本模式**：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405081114713.png)
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405081114195.png)
+
+
+---
+
+- 图片插入及引用
 
 ```rust
-#import "@preview/tablex:0.0.6": tablex, hlinex
+// 图片引用
+@fig
+
+#figure(
+   image("fig.png"),
+   caption: [ Caption ],
+) <fig>
 ```
 
-不在官网上的，需下载其 typ 源代码，以相对路径形式导入（或者等待其被官方接受）
+
 ```rust
-#import "mdtable.typ": mdtable
+// 多图排列
+#figure(
+  grid(
+    columns: 2,
+    row-gutter: 2mm,
+    column-gutter: 1mm,
+    image("assets/Nb5Si3_1.png"), image("assets/Nb5Si3_1.png"), 
+    image("assets/Nb5Si3_3.png"), image("assets/Nb5Si3_4.png"), 
+  ),
+  caption: "Caption"
+) <Nb5Si3_plot>
 ```
-
-
-推荐 package：
-
-- outline 目录设置：outrageous
-- 绘图（类似 LaTeX 中的 PGF/TikZ）：cetz
-- box 盒子（类似 LaTeX 中的 colorbox）：showybox
-- math 数学：physica
-- table 表格：tablex、tablem
-- code 代码：codly
-- note 做笔记：drafting
-- word count 字数统计：wordometer
-- 图片排版：wrap-it（环绕效果）
 
 
 
 ---
 
-目录
+- [ ] 强调和加粗对中文字体不起作用？
+- 有序列表无法使用 markdown 的 `1. ` 格式
+
+- 换行与转义（Escaping）：使用 `\`
+
+- 目录
+
 ```rust
 #outline()
 ```
 
-
-图片插入及引用
+- 注释
 
 ```rust
-#figure(
-   image("badge_sjtu.png"),
-   caption: [
-    上海交通大学校徽
-   ],
-) <badge_sjtu>
+// 单行注释
 
-// 图片引用
-@badge_sjtu
+/*
+多行注释
+多行注释
+*/
 ```
 
----
+- 代码块：和 markdown 一样，编程语言改成 `typ`
 
-文本
-```rust
-普通文本 
-_下划线_
-```
+- 线条
 
-
----
-
-
-标题
-```rust
-= 一级标题
-== 二级标题
-```
-
-
----
-
-有序列表
-```rust
-#set enum(numbering: "a)")
-
-+ item 1
-+ item 2
-+ item 3
-```
-
-
-无序列表
-```rust
-Normal list.
-- Text
-- Math
-- Layout
-- ...
-
-Multiple lines.
-- This list item spans multiple
-  lines because it is indented.
-
-Function call.
-#list(
-  [Foundations],
-  [Calculate],
-  [Construct],
-  [Data Loading],
-)
-```
-
----
-
-超链接
-```rust
-#show link: underline
-
-https://example.com \
-
-#link("https://example.com") \
-#link("https://example.com")[
-  See example.com
-]
-```
-
----
-
-线条
 ```rust
 #line()
 ```
 
+- 盒子
 
+```rust
+box()
+```
+
+- 参考文献及引用
+
+```rust
+// 方式 1
+@ZHU2023119062
+
+// 方式 2
+#cite(<ZHU2023119062>) \
+#cite(label("ZHU2023119062"))
+
+#bibliography(
+  "refs.bib",
+  title: "参考文献",
+  style: "gb-7714-2015-numeric",
+  // style: "american-physics-society",
+  // style: "nature",
+)
+```
+
+- 字体
+
+```rust
+// reference: https://github.com/lucifer1004/pkuthss-typst/blob/main/template.typ
+#let 字号 = (
+  初号: 42pt,
+  小初: 36pt,
+  一号: 26pt,
+  小一: 24pt,
+  二号: 22pt,
+  小二: 18pt,
+  三号: 16pt,
+  小三: 15pt,
+  四号: 14pt,
+  中四: 13pt,
+  小四: 12pt,
+  五号: 10.5pt,
+  小五: 9pt,
+  六号: 7.5pt,
+  小六: 6.5pt,
+  七号: 5.5pt,
+  小七: 5pt,
+)
+
+#let 字体 = (
+  仿宋: ("Times New Roman", "FangSong"),
+  宋体: ("Times New Roman", "SimSun"),
+  黑体: ("Times New Roman", "SimHei"),
+  楷体: ("Times New Roman", "KaiTi"),
+  代码: ("New Computer Modern Mono", "Times New Roman", "SimSun"),
+  得意黑: ("Smiley Sans",),
+)
+
+
+// https://github.com/OrangeX4/Chinese-Resume-in-Typst/blob/main/template.typ
+#let font = (
+  main: "IBM Plex Serif",
+  mono: "IBM Plex Mono",
+  cjk: "Noto Serif CJK SC",
+)
+
+set text(font: (font.main, font.cjk), size: 10pt, lang: "zh")
+```
+
+
+```rust
+h()
+v()
+
+// 水平或垂直排列内容和间距
+stack()
+
+//网格
+grid()
+
+// 段落
+par()
+
+// 容器
+block()
+
+// 表格
+table()
+
+pagebreak()
+
+// 文本对齐
+align()
+
+// 页面
+page()
+
+rect()
+
+// 当天日期
+#datetime.today().display("[year]年[month]月[day]日")
+```
 
 ---
 
-
-数学公式
+### 数学公式
 
 - 公式中的文本：若涉及到 typst 中的关键字，可以用 `""` 包裹文本
 - 数学公式设置：等式：`#set math.equation()`；矩阵：`#set math.mat()`
@@ -269,31 +327,56 @@ https://example.com \
 - 分数：`1/2` 或 `frac(a, b)`
 - root 根：平方根：`sqrt(2)`，非平方根：`root(N, x)`
 - 分隔符匹配：分隔符大小与内容保持一致，类似 LaTeX 中的 `\left`、`\right`；`lr()`、`mid()`、`abs()`、`ceil()`、`floor()`、`round()`、`norm()`
-- 矩阵：`mat()`
+- 向量：`vec()`，矩阵：`mat()`
+- 箭头：`arrow()`
 - 上、下划线：`underline()`、`overline()`、`underbrace()`、`overbrace()`
+- [Typst 符号 General Symbols](https://typst.app/docs/reference/symbols/sym/)
 
 ```rust
+// 设置数学公式字体
+#show math.equation: set text(font: "Times New Roman")
+
 // 数学公式编号，在引用的编号之前添加 supplement 内容
 #set math.equation(numbering: "(1)", supplement: [Eq.])
 
-// 行内公式 
+// 行内公式 公式与 $$ 之间无空格
 $Q = rho A v + C$
 
-// 行间公式
+// 行间公式 公式与 $$ 之间有空格 <eq1> 公式标签
 $ 7.32 beta + sum_(i=0)^nabla Q_i / 2 $ <eq1>
 
 // 公式引用
 @eq1
-```
 
+// 分隔符匹配
+$
+abs(a + b), norm(a + b), floor(a + b), ceil(a + b), round(a + b)
+$
+
+// 向量
+$
+vec(a, b, c) + vec(1, 2, 3) = vec(a + 1, b + 2, c + 3)
+$
+
+// 矩阵
+$
+mat(
+    1, 2, ..., 10;
+    2, 2, ..., 10;
+    dots.v, dots.v, dots.down, dots.v;
+    10, 10, ..., 10; // `;` in the end is optional
+)
+$
+```
 
 
 
 ---
 
-Set 规则
+### Set 规则
 
-输入 `set` 关键字编写 Set 规则，后面跟随着你要设置属性的函数的名称， 并在括号中输入你需要的新默认参数列表
+Set 规则可以设置样式，为函数设置参数默认值
+
 
 Set 规则中常用的一些函数的列表：
 
@@ -311,33 +394,13 @@ Set 规则中常用的一些函数的列表：
 
 ---
 
-Show 规则
+### Show 规则
 
-
----
-
-
-参考文献及引用
-
-
+Show 规则用于全局替换
 
 ```rust
-// 方式 1
-@ZHU2023119062
-
-// 方式 2
-#cite(<ZHU2023119062>) \ 
-#cite(label("ZHU2023119062"))
-
-#bibliography(
-  "refs.bib",
-  title: "参考文献",
-  style: "gb-7714-2015-numeric",
-  // style: "american-physics-society",
-  // style: "nature",
-)
+#show
 ```
-
 
 ---
 
@@ -347,17 +410,47 @@ Show 规则
 内容块：Content block
 
 
-
-
-
 ---
 
 ### 函数
 
-```typst
+```rust
 #let function(args) = {}
 ```
 
+
+---
+
+### 包管理
+
+- 包可以是 package，也可以是 template
+- 已在官网上的 [packages](https://typst.app/universe)，以 `#import "@preview/pkg:1.0.0"` 格式导入，编译时会自动下载和自动导入 packages
+
+```rust
+#import "@preview/tablex:0.0.6": tablex, hlinex
+```
+
+- 未在官网上的，需下载模块源码，以相对路径形式导入（或等待其被官方接受）
+
+```rust
+#import "mdtable.typ": mdtable
+```
+
+---
+
+#### 推荐 packages
+
+- outline 目录：outrageous
+- 绘图（类似 LaTeX 中的 PGF/TikZ）：cetz
+- box 盒子（类似 LaTeX 中的 colorbox）：showybox
+- math 数学：physica
+- table 表格：tablex、tablem
+- code 代码：codly
+- note 做笔记：drafting
+- word count 字数统计：wordometer
+- 图片排版：wrap-it（环绕效果）
+- checklist：cheq
+- 在 Typst 中使用 LaTeX 公式：MiTeX
 
 
 
@@ -368,9 +461,10 @@ Show 规则
 - 简历 CV
 	- [GitHub - gaoachao/uniquecv-typst: A simple resume template written in Typst](https://github.com/gaoachao/uniquecv-typst)
 	- [GitHub - OrangeX4/Chinese-Resume-in-Typst: 使用 Typst 编写的中文简历, 语法简洁, 样式美观, 开箱即用, 可选是否显示照片](https://github.com/OrangeX4/Chinese-Resume-in-Typst)
-	- [GitHub - memset0/my-resume](https://github.com/memset0/my-resume)（repo 变成 private）
+	- [GitHub - memset0/my-resume](https://github.com/memset0/my-resume)（repo 现为 private 状态）
 
-- 将 typst 内容渲染成网页：[GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
+- 将 typst 内容渲染成网页：
+	- [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
 
 - 作业模板
 	- [GitHub - gRox167/typst-assignment-template](https://github.com/gRox167/typst-assignment-template)
@@ -380,5 +474,81 @@ Show 规则
 	- [GitHub - lucifer1004/pkuthss-typst: Typst template for dissertations in Peking University (PKU).](https://github.com/lucifer1004/pkuthss-typst)
 	- [GitHub - nju-lug/nju-thesis-typst: 南京大学学位论文 Typst 模板 nju-thesis-typst](https://github.com/nju-lug/nju-thesis-typst)
 	- [GitHub - howardlau1999/sysu-thesis-typst: 中山大学学位论文 Typst 模板](https://github.com/howardlau1999/sysu-thesis-typst)
+	- [简易上海交通大学学位论文 Typst 模板](https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF)
 
-- typst 文档编译 Github Actions：[build.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/build.yml)、[GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
+- typst 文档编译 Github Actions：
+	- [build.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/build.yml)
+	- [GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
+
+
+
+---
+
+## 相关问题
+
+- [x] 标题后首段无法正确缩进：
+>[Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
+
+>[首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
+
+```rust
+#set par(
+  first-line-indent: 2em,
+  justify: true,
+)
+
+// 解决标题后首段无法正确缩进问题
+// 在标题后面添加空白段 使得首段不再是首段
+#show heading: it => {
+  it
+  par(leading: 1.5em)[#text(size:0.0em)[#h(0.0em)]]
+}
+```
+
+- [ ] 上述方法会出现：列表后的首个段落无法正常缩进
+
+
+---
+
+- [x] 中文目录设置
+
+```rust
+#import "@preview/outrageous:0.1.0"
+
+// 目录设置
+#let ChineseOutline() = {
+  set align(center)
+  set text(font: 字体.宋体, size: 字号.小四)
+  set page(numbering: "I")
+  counter(page).update(1)
+  set par(
+    justify: true,
+    first-line-indent: 2em,
+  )
+
+  // 一级目录字体、间距设置
+  show outline.entry.where(
+    level: 1
+  ): it => {
+    set text(size: 字号.中四)
+    v(2pt)
+    strong(it)
+  }
+
+  // outrageous 目录设置
+  show outline.entry: outrageous.show-entry.with(
+    ..outrageous.presets.typst,
+    fill: (none, auto),
+  )
+
+  outline(
+    title: text("目录"), 
+    indent: 1em,
+  )
+
+  pagebreak(weak: true)
+
+}
+```
+
+- [ ] typst 中暂无 latexdiff 替代工具
