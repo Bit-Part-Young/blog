@@ -21,6 +21,14 @@ password:
 
 ## 介绍
 
+ipython： 按 tab 键可补全可用 method 或 attributes；在函数或 method 后添加 `?` 可以查看其 docstring
+
+在 jupyter notebook 中使用 Python 时，在函数或 method 后添加 `??` 可以查看其 docstring
+
+[GitHub - gto76/python-cheatsheet: Comprehensive Python Cheatsheet](https://github.com/gto76/python-cheatsheet)
+
+---
+
 什么是 python
 - 解释性的脚本语言：通过解释器来直接运行，不需要编译链接成二进制文件
 - 动态类型语言：类型在运行时确定，不需要通过代码明文规定

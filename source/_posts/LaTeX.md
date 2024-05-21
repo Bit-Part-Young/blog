@@ -73,9 +73,11 @@ overleaf 的项目源码可以 push 到 Github 中，pull 到 overleaf，实现�
 写论文模板
 >[GitHub - ElegantLaTeX/ElegantPaper: Elegant LaTeX Template for Working Papers](https://github.com/ElegantLaTeX/ElegantPaper)
 
->[GitHub - sjtug/SJTUBeamer: 上海交通大学 Beamer 模版 | Beamer template for Shanghai Jiao Tong University](https://github.com/sjtug/SJTUBeamer)
+>[GitHub - ElegantLaTeX/ElegantBook: Elegant LaTeX Template for Books](https://github.com/ElegantLaTeX/ElegantBook)
 
->[GitHub - sjtug/SJTUThesis: 上海交通大学 LaTeX 论文模板 | Shanghai Jiao Tong University LaTeX Thesis Template](https://github.com/sjtug/SJTUThesis)
+>[上海交通大学 Beamer 模版](https://github.com/sjtug/SJTUBeamer)
+
+>[上海交通大学 LaTeX 论文模板](https://github.com/sjtug/SJTUThesis)
 
 ---
 
@@ -97,6 +99,12 @@ markdown 宏包
 
 >[GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
 
+
+去除超链接、交叉引用中的方框
+[hyperref - Remove ugly borders around clickable cross-references and hyperlinks - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks)
+
+
+[LaTeX 入门与进阶](https://latex.lierhua.top/zh/)
 
 
 
@@ -152,10 +160,11 @@ LaTeX OCR
 
 ## texlive 安装
 
+>[GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
+
 ### Linux 端
 
-CTAN 镜像
->[CTAN | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/CTAN/)
+CTAN 镜像：[CTAN - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CTAN/)
 
 ```bash
 # 设置自定义安装路径 添加环境变量

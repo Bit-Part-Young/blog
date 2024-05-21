@@ -23,7 +23,8 @@ password:
 
 WIP…
 
-
+命令行艺术
+[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
 
 ```bash
 # 在 .bashrc .zshrc 中 创建与函数功能等同的 alias

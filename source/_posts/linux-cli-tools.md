@@ -23,15 +23,19 @@ password:
 
 命令行工具安装方式：
 
-- Linux 端：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）；
-- Windows 端：scoop、winget 等；
+- Linux 端：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）
+- Windows 端：scoop、winget 等
 - Mac 端：brew；
-- 程序端：Python（pip conda）、Rust（cargo）、Nodejs（npm）；
-- [webinstall.dev](https://webinstall.dev/) 网站（后三者可以在无 root 权限情况下安装）；
-- 源码安装与编译
+- 程序端：Python（pip、conda），Rust（cargo），Nodejs（npm、yarn）
+- 从 [webinstall.dev](https://webinstall.dev/) 网站安装（后三者可以在无 root 权限情况下安装）
+- 源码编译安装
 
+---
 
-参考资料：[GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
+参考资料：
+
+- [命令行常用工具的替代品 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2022/01/cli-alternative-tools.html)
+- [GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
 
 
 
@@ -41,8 +45,10 @@ password:
 
 ### zsh
 
-- 提升终端使用体验。功能：命令自动补全、高亮、建议；简化 git 命令，git 状态可视化；`x` 解压任意格式压缩文件；`z` 路径快速跳转等）
-- master、manager 上没有 zsh；Pi 和思源一号有 zsh，版本较老；
+- 提升终端使用体验
+	- 插件丰富：可实现命令自动补全、高亮、建议；`x` 解压任意格式压缩文件；`z` 路径快速跳转等
+	- 丰富的 git 命令 alias，git 状态可视化
+- master、manager 上没有 zsh；Pi 和思源一号有 zsh，但版本较老
 - zsh 系列插件：[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
 - 管理 zsh 配置：[ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 - 管理 bash 配置：[oh-my-bash](https://github.com/ohmybash/oh-my-bash)（没 ohmyzsh 好用）
@@ -52,10 +58,13 @@ password:
 
 #### 安装
 
-- Ubuntu: `sudo apt install zsh`
-- Arch Linux: `sudo pacman -S zsh`
+- Package Managers
 
----
+```bash
+sudo apt install zsh  # Ubuntu
+sudo pacman -S zsh    # Arch Linux
+brew install zsh      # macOS
+```
 
 - 源码编译：依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
 
@@ -249,27 +258,59 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 ### 其他命令行工具
 
->ripgrep、lsd、sd、bat、git-delta 等均可通过 cargo 安装
+>ripgrep、lsd、sd、bat、git-delta、gitui 等均可通过 cargo 安装
 
+- `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
 - 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
 	- 过滤搜索：`-g`
 - 替代 `sed`：[sd](https://github.com/chmln/sd)
-- 替代 `cat`：[bat](https://github.com/sharkdp/bat)
+- 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
 - 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
 - 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
 - 终端 markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
-- git 相关：[lazygit](https://github.com/jesseduffield/lazygit)
-- 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)
+- git 相关：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)
+- 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
 - 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)
 - 文件对比：[difftastic](https://github.com/Wilfred/difftastic)
 - 文件搜索：[fzf](https://github.com/junegunn/fzf)
-- 文件管理：[yazi](https://github.com/sxyazi/yazi)、[ranger](https://github.com/ranger/ranger)
+- 统计代码文件行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
+- 终端文件管理器：[yazi](https://github.com/sxyazi/yazi)、[superfile](https://github.com/MHNightCat/superfile)、[ranger](https://github.com/ranger/ranger)
 - 快速查看常用命令的使用实例：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）
 - 富文本：[rich](https://github.com/textualize/rich)
 - 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
 - neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
 - 其他小工具： cowsay、figlet、sl、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix、asciiquarium
+
+
+fzf 进阶用法
+>[fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
+
+>[Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
+
+```bash
+# 搜索整个 apt package；回车安装
+apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse \ --preview-window=right:70%:wrap \ --preview 'apt-cache show {1}' | xargs -r sudo apt install -y
+
+# 用 bat 作为 previewer
+fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
+```
+
+```bash
+# mcfly
+brew install mcfly
+
+curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly
+
+eval "$(mcfly init zsh)"
+
+
+# fastfetch
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+sudo apt update
+
+sudo apt install fastfetch
+```

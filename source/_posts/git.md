@@ -829,11 +829,22 @@ git rm -r --cached folder
 
 ---
 
-### oh-my-zsh 中 git 命令相关 alias
+### git 命令自定义别名
 
-查看 - `alias | grep 'git'`
+- [git-命令自定义别名](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#git-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%AB%E5%90%8D)
+- [查看历史 - Git 重学指南](https://git-remake.wybxc.cc/%E5%82%A8%E5%AD%98%E5%BA%93/%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2.html)
+- [GitHub - GitAlias/gitalias: Git alias commands for faster easier version control](https://github.com/GitAlias/gitalias)
 
----
+```bash
+# 方式 1 命令行终端设置
+git config --global alias.p 'push'
+
+# 方式 2 直接在 ~/.gitconfig 添加
+[alias]
+  p = push
+```
+
+- oh-my-zsh 中 git 命令相关 alias：查看 - `alias | grep 'git subcommand'`
 
 ```bash
 # git add 相关
@@ -861,7 +872,6 @@ gcs='git commit --gpg-sign'
 gcsm='git commit --signoff --message'
 gcss='git commit --gpg-sign --signoff'
 gcssm='git commit --gpg-sign --signoff --message'
-gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
 
 
 # git push 相关
@@ -1099,19 +1109,6 @@ wget https://gist.githubusercontent.com/user/GIST_ID/raw/filename -O filename
 
 
 ---
-
-- git 自定义别名：[查看历史 - Git 重学指南](https://git-remake.wybxc.cc/%E5%82%A8%E5%AD%98%E5%BA%93/%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2.html)、[git-命令自定义别名](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#git-%E5%91%BD%E4%BB%A4%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%AB%E5%90%8D)
-
-```bash
-# 方式 1 git push
-git config --global alias.p "push"
-```
-
-```bash
-# 直接在 ~/.gitconfig 添加
-[alias]
-  p = push
-```
 
 
 ---

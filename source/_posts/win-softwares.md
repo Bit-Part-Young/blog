@@ -270,11 +270,12 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 
 markdown 语法笔记软件；新版本收费，建议安装旧版本或者破解版。
 
----
 
 - 破解版：[GitHub - markyin0707/typora-activation: Typora最新的激活方案，三步即激活.（😊实时更新中/👩‍🎓学生党必备，有条件支持正版的请不要点开🔞🈲️）。Activate Typora](https://github.com/markyin0707/typora-activation)
 
-- Theme：[GitHub - Soanguy/typora-theme-autumnus: Typora theme for 中文](https://github.com/Soanguy/typora-theme-autumnus)
+- Theme：
+	- [GitHub - Soanguy/typora-theme-autumnus: Typora theme for 中文](https://github.com/Soanguy/typora-theme-autumnus)
+	- [GitHub - Keldos-Li/typora-latex-theme: 将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.](https://github.com/Keldos-Li/typora-latex-theme)
 
 - 侧边栏大纲视图允许折叠和展开：[Typora强烈推荐的两个设置\_typora如何变成双窗口-CSDN博客](https://blog.csdn.net/haojie_duan/article/details/113747929)
 

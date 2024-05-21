@@ -21,12 +21,25 @@ password:
 
 ## 介绍
 
+微信 Win 端没有深色模式，macOS 有深色模式
+
+[yabai](https://github.com/koekeishiya/yabai)：macOS 窗口平铺管理软件
+使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
+
+mac 窗口管理器
+>[GitHub - ianyh/Amethyst: Automatic tiling window manager for macOS à la xmonad.](https://github.com/ianyh/Amethyst)
+
+Mac Dash 软件：编程语言 API 查看工具，需收费
+
+---
+
 Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富…
 
 
 参考资料：
 
 - [Mac：终极配置教程 - BLOG](https://44maker.github.io/wiki/Mac/index.html)
+- [GitHub - maoxiaoke/setup-a-mac-for-frontend-dev: How I setup a Mac, with lots of productivity tools, step-by-step guide](https://github.com/maoxiaoke/setup-a-mac-for-frontend-dev)
 - [awesome-mac](https://github.com/jaywcjlove/awesome-mac)
 - [GitHub - nikitavoloboev/my-mac: Apps/tools I use on macOS](https://github.com/nikitavoloboev/my-mac)
 - [GitHub - serhii-londar/open-source-mac-os-apps: 🚀 Awesome list of open source applications for macOS. https://t.me/s/opensourcemacosapps](https://github.com/serhii-londar/open-source-mac-os-apps)

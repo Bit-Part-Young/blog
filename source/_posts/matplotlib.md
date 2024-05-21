@@ -22,6 +22,17 @@ password:
 
 ## 介绍
 
+matplotlib mplstyle 写法
+
+```python
+# 查看下两者区别
+ax = plt.subplot()
+
+fig, ax = plt.subplots()
+```
+
+---
+
 - [官方 cheatsheet](https://matplotlib.org/cheatsheets/)
 - matplotlib tutorial：[GitHub - rougier/matplotlib-tutorial: Matplotlib tutorial for beginner](https://github.com/rougier/matplotlib-tutorial)
 - 精美科研绘图示例：[Veusz 2D Examples](https://veusz.github.io/examples/)
@@ -73,6 +84,8 @@ plt.style.use()
 ---
 
 ## 使用
+
+### 基本
 
 - 函数式绘图：调用 `matplotlib.pyplot` 中的函数来创建图形，如 `plot()` 等；绘制子图较麻烦
 
@@ -140,27 +153,59 @@ ax.hist(x, bins, histtype, edgecolor, ...)
 
 bins            # 将 x 范围等分成 bins 份
 edgecolor       # 边缘颜色
+
+
+# 水平线
+ax.axhline()  
+
+
+# 二维直方图
+ax.hist2d()
 ```
 
 
 ---
 
-- 子图绘制
+### 子图绘制
+
+- 方式 1
 
 ```python
-# 方式 1
 fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8, 6))
-# 方式 2
+```
+
+- 方式 2
+
+```python
 fig, axs = plt.subplots(nrows=1, ncols=2)
 
-# axs 扁平化，利于 for 循环
+# 调整子图之间的间距
+fig.subplots_adjust(hspace=0.0, wspace=0.0)
+
+# axs = axs.flatten()
+# axs 数组扁平化，利于 for 循环
 for i, ax in enumerate(axs.flat):
 	...
+
+    # 第二列的 y 轴坐标刻度不显示
+     if i % 2 == 1:
+         ax.yaxis.set_tick_params(labelleft=False)
+
+# 设置整个子图的 x y 轴标签；y x 参数调整标签与坐标轴的距离
+fig.supxlabel("x", y=0.05)
+fig.supylabel("y", x=0.01)
+
+# 添加整个子图的图例 在图外面
+handles, labels = ax.get_legend_handles_labels()
+fig.legend(handles, labels, bbox_to_anchor=(1.1, 0.1))
 ```
+
+>[matplotlib.figure — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.FigureBase.supxlabel)
+
 
 ---
 
-- 双 Y 轴
+### 双 Y 轴
 
 ```python
 ax1.plot(...)
@@ -197,8 +242,9 @@ plt.show()
 
 ---
 
-- colorbar 绘制
-	- colormap：从蓝到红渐变：`coolwarm`、`jet`、`bwr`
+### colorbar 绘制
+
+- colormap：从蓝到红渐变：`coolwarm`、`jet`、`bwr`
 
 ```python
 # 将 colorbar 放在图片右侧
@@ -225,7 +271,7 @@ fig.colorbar(
 
 ---
 
-- 3d 绘图
+### 3d 绘图
 
 ```python
 import matplotlib.pyplot as plt
@@ -249,24 +295,6 @@ plt.show()
 
 ---
 
-- Times New Roman 字体问题：Linux 默认没有该字体，可将该字体拷贝到 `~/.fonts` 或 `~/.local/share/fonts`
-
-- 临时使用中文字体：[Matplotlib学习笔记.md](https://github.com/LiuQixuan/PythonLearningNote/blob/master/Matplotlib%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
-
-```python
-import matplotlib
-import matplotlib.pyplot as plt
-
-zh_font = matplotlib.font_manager.FontProperties(fname="./SimHei.ttf")
-
-plt.xlabel("x 轴", fontproperties = zh_font)
-plt.ylabel("y 轴", fontproperties = zh_font)
-
-plt.legend(props={"family": "SimHei"})
-```
-
----
-
 - 较美观的点线图：[sci作图 - 计算材料学](https://ywwang0.github.io/2020/10/07/sci%E4%BD%9C%E5%9B%BE/)
 
 ```python
@@ -283,6 +311,8 @@ ax.plot(
 ```
 
 ---
+
+### 设置
 
 - `ax.set()` ：设置轴属性，可接受多种参数；[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
 
@@ -303,7 +333,9 @@ ax.set(xlabel="x", ylabel="y")
 
 ---
 
-- `ax.legend()` 图例
+#### 图例
+
+`ax.legend()`
 
 ```python
 # label 不在图例上显示
@@ -314,8 +346,33 @@ ax.legend(ncols, loc, bbox_to_anchor, ...)
 
 ncols               # 图例排布列数
 loc                 # 图例位置
+frameonalpha        # 图例边框背景透明度
 bbox_to_anchor      # 2-tuple floats，(x, y)；x≥1.0 时，图例在外面
 ```
+
+有将两个图例 label 放在一行的示例：[Legend Demo — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/text_labels_and_annotations/legend_demo.html)
+
+---
+
+#### 字体
+
+- Times New Roman 字体问题：Linux 默认没有该字体，可将该字体拷贝到 `~/.fonts` 或 `~/.local/share/fonts`
+
+- 临时使用中文字体：[Matplotlib学习笔记.md](https://github.com/LiuQixuan/PythonLearningNote/blob/master/Matplotlib%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
+
+```python
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
+
+zh_font = FontProperties(fname="./SimHei.ttf")
+
+plt.xlabel("x 轴", fontproperties = zh_font)
+plt.ylabel("y 轴", fontproperties = zh_font)
+
+plt.legend(props={"family": "SimHei"})
+```
+
 
 ---
 
@@ -327,7 +384,7 @@ bbox_to_anchor      # 2-tuple floats，(x, y)；x≥1.0 时，图例在外面
 
 
 - 热图 heatmap / 关联图绘制：`plt.matshow()`，`seaborn.heatmap()`
-- 饼状关联图绘制：[biokit/notebooks/viz/corrplot.ipynb at master · biokit/biokit · GitHub](https://github.com/biokit/biokit/blob/master/notebooks/viz/corrplot.ipynb)
+- 饼状关联图绘制（Origin 可以绘制）：[biokit/notebooks/viz/corrplot.ipynb at master · biokit/biokit · GitHub](https://github.com/biokit/biokit/blob/master/notebooks/viz/corrplot.ipynb)
 - 手绘风格（无必要）：需安装 xkcd-script font（但还是会提示找不到相关字体）；[XKCD](https://matplotlib.org/stable/gallery/showcase/xkcd.html#sphx-glr-gallery-showcase-xkcd-py)
 
 
@@ -345,8 +402,6 @@ ax.set_xticks(range(0, 10, 1), minor=True)
 # f-string 对于在图中添加需要 LaTeX 格式的 text 效果不是很好，改用 str.replace()
 ax.text(3.0, 1.5, r"RMSE=cha$\,·\,10^{-5}$ Pa$\,·\,$s".replace("cha", str(score_rmse)))
 
-# 调整子图之间的间距
-fig.subplots_adjust(hspace=0.0, wspace=0.0)
 
 # 将 Y 轴的刻度及 label 放到右边
 ax.yaxis.tick_right()
@@ -363,14 +418,18 @@ ax.set_aspect("equal", adjustable="box")
 
 # 正常显示负号
 plt.rcParams["axes.unicode_minus"] = False
+
+ax.texts  # 获取文本
+ax.texts[0].set_fontsize()
 ```
 
 ---
 
-- 查看 matplotlib 相关配置文件路径：
-	- [matplotlibrc](https://matplotlib.org/stable/users/explain/customizing.html#the-matplotlibrc-file)：matplotlib 库的配置文件（`matplotlib/mpl-data/matplotlibrc`）
-	- 字体路径：`matplotlib/mpl-data/mpl-data/fonts/ttf`
-	- 缓存路径：`~/.cache/matplotlib`
+#### 配置文件路径
+
+- [matplotlibrc](https://matplotlib.org/stable/users/explain/customizing.html#the-matplotlibrc-file)：matplotlib 库的配置文件（`matplotlib/mpl-data/matplotlibrc`）
+- 字体路径：`matplotlib/mpl-data/mpl-data/fonts/ttf`
+- 缓存路径：`~/.cache/matplotlib`
 
 ```python
 import matplotlib
@@ -379,7 +438,7 @@ import matplotlib
 matplotlib.matplotlib_fname()
 
 # matplotlib/mpl-data/
-# 该目录含字体所在路径：mpl-data/fonts/ttf
+# 字体所在路径：mpl-data/fonts/ttf
 matplotlib.get_data_path()
 
 # matplotlib 缓存路径 ~/.cache/matplotlib
@@ -388,13 +447,14 @@ matplotlib.get_cachedir()
 
 ---
 
-- 查看默认颜色循环
+#### 颜色循环
 
 ```python
 import matplotlib.pyplot as plt
 
 plt.rcParams["axes.prop_cycle"].by_key()["color"]
 
+# 默认颜色循环
 prop_cycle_list = [
     "#1f77b4",
     "#ff7f0e",
@@ -415,7 +475,9 @@ prop_cycle_list = [
 
 ---
 
-- 查看 matplotlib 中的所有 [rcParams](https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.rcParams)
+#### rcParams
+
+matplotlib [rcParams](https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.rcParams)
 
 ```python
 # 方式 1
@@ -431,6 +493,7 @@ matplotlib.rc_params()
 
 
 ```python
+# rcParams 所有参数
 KeysView(RcParams({'_internal.classic_mode': False,
           'agg.path.chunksize': 0,
           'animation.bitrate': -1,

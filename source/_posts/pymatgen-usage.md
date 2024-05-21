@@ -19,6 +19,20 @@ password:
 
 ## 介绍
 
+```python
+# 待了解
+get_wigner_seitz_cell()
+
+read_neb()
+
+MITNEBSet class
+```
+
+
+---
+
+### 参考资料
+
 material project workshop:
 
 - 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
@@ -249,26 +263,19 @@ def automatic_density_by_vol(structure: Structure, kppvol: int, force_gamma: boo
 
 # 安装
 
->[https://pymatgen.org/installation.html](https://pymatgen.org/installation.html)
+- 参考：[https://pymatgen.org/installation.html](https://pymatgen.org/installation.html)
 
+- 安装
 
-稳定版本
 ```bash
-pip install pymatgen
-```
-
-开发版本
-```bash
+pip install pymatgen  # 稳定版本
+# 开发版本
 pip install -U git+https://github.com/materialsproject/pymatgen
 ```
 
-pymatgen 插件和外部工具
+- pymatgen 插件和外部工具：[https://pymatgen.org/addons](https://pymatgen.org/addons)
 
->[https://pymatgen.org/addons](https://pymatgen.org/addons)
-
-change log（代码 bug 修改，新功能添加等，可以关注）
-
->[https://pymatgen.org/change_log.html](https://pymatgen.org/change_log.html)
+- change log（代码 bug 修改，新功能添加等，可以关注）：[https://pymatgen.org/change_log.html](https://pymatgen.org/change_log.html)
 
 POTCAR 设置
 
@@ -292,7 +299,7 @@ from pymatgen import MPRester  # now "from pymatgen.ext.matproj ..."
 
 ---
 
-# 使用
+## 使用
 
 当你探索代码时，你可能会注意到许多对象都有一个 as_dict 方法和一个 from_dict 静态方法的实现。对于大多数非基本的对象，我们将 pymatgen 设计成可以很容易地保存对象以供以后使用。虽然 python 确实提供了 pickling 功能，但 pickle 在代码修改方面往往是非常脆弱的。Pymatgen 的 as_dict 提供了一种以更稳健的方式保存你的工作的方法，它还有一个额外的好处就是更容易阅读。dict 表示法对于将这类对象输入某些数据库，如 MongoDb，也特别有用。这个 as_dict 规范是在 monty 库中提供的，monty 库是由 pymatgen 产生的一个通用 python 补充库。
 
@@ -621,15 +628,15 @@ pymatgen.transformations.transformation_abc
 
 ---
 
-# 常用模块
+## 常用模块
 
-## pymatgen.core
+### pymatgen.core
 
-### structure
+#### structure
 
 ---
 
-### surface
+#### surface
 
 pymatgen 表面生成无法指定具体的层数
 >[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
@@ -649,11 +656,16 @@ pymatgen 表面生成无法指定具体的层数
 
 ---
 
-### composition
+#### composition
+
+```python
+from pymatgen.core.composition import Composition
+```
+
 
 ---
 
-### periodic_table
+#### periodic_table
 
 ```python
 # 元素周期表 TUI 绘制
@@ -665,7 +677,7 @@ Element.print_periodic_table()
 
 ---
 
-## pymatgen.io.ase
+### pymatgen.io.ase
 
 `AseAtomsAdaptor`：将 ase 中的 `atoms` 类与 pymatgen 中的 `Structure` 类互相转换
 
@@ -682,7 +694,24 @@ AseAtomsAdaptor.get_atoms()
 
 ---
 
-## pymatgen.io.vasp.inputs
+### pymatgen.io.vasp.help
+
+查看 VASP 参数 help
+
+```python
+from pymatgen.io.vasp.help import VaspDoc
+
+# 静态方法
+VaspDoc.get_incar_tags()
+VaspDoc.get_help("IBRION")
+
+# 需初始化
+VaspDoc().print_help("IBRION")
+# 展示 HTML 格式内容
+VaspDoc().print_jupyter_help("IBRION")
+```
+
+### pymatgen.io.vasp.inputs
 
 `pymatgen/io.vasp/inputs.py`
 
@@ -707,7 +736,7 @@ write_file(filename)
 
 ---
 
-### Incar
+#### Incar
 
 在解析 INCAR 文件时，得到的字典的键和值都是字符串，需要对 INCAR 中不同参数的键的值的类型进行正确的转换，因此定义了 `proc_val()` 函数。
 
@@ -715,28 +744,28 @@ write_file(filename)
 
 ---
 
-### Kpoints
+#### Kpoints
 
 WIP…
 
 
 ---
 
-### Poscar
+#### Poscar
 
 WIP…
 
 
 ---
 
-### Potcar
+#### Potcar
 
 读取和写入 POTCAR 文件的 object，由 PotcarSingle object 的列表组成
 
 
 ---
 
-### PotcarSingle
+#### PotcarSingle
 
 单个 POTCAR object
 
@@ -744,11 +773,11 @@ WIP…
 
 ---
 
-## pymatgen.io.vasp.sets
+### pymatgen.io.vasp.sets
 
 `pymatgen/io.vasp/sets.py`
 
-### MPRelaxSet
+#### MPRelaxSet
 
 `pymatgen/io.vasp/MPRelaxSet.yaml`
 ```yaml
@@ -971,7 +1000,7 @@ INCAR:
 
 ---
 
-### MPStaticSet
+#### MPStaticSet
 
 WIP…
 
@@ -979,7 +1008,7 @@ WIP…
 
 ---
 
-## pymatgen.io.vasp.outputs
+### pymatgen.io.vasp.outputs
 
 >[pymatgen.io.vasp package — pymatgen 2023.10.4 documentation](https://pymatgen.org/pymatgen.io.vasp.html)
 
@@ -991,21 +1020,21 @@ WIP…
 
 ---
 
-### Outcar
+#### Outcar
 
 WIP…
 
 
 ---
 
-### Oszicar
+#### Oszicar
 
 WIP…
 
 
 ---
 
-### Vasprun
+#### Vasprun
 
 WIP…
 
@@ -1013,9 +1042,9 @@ WIP…
 
 ---
 
-## pymatgen.analysis
+### pymatgen.analysis
 
-### eos
+#### eos
 
 类：`BirchMurnaghan`、`Birch`、`Murnaghan`、`PourierTarantola`、`Vinet` 等
 
@@ -1052,7 +1081,7 @@ eos.plot()
 
 ---
 
-### interface
+#### interface
 
 ```python
 from pymatgen.analysis.interfaces.coherent_interfaces import CoherentInterfaceBuilder
@@ -1078,12 +1107,46 @@ from pymatgen.analysis.interfaces.zsl import ZSLGenerator
 
 >[Working with Surfaces and Interfaces - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/03_heterointerfaces/Main%20Lesson/)
 
+---
+
+#### phase_diagram
+
+- 无法直接使用 `pymatgen.entries` 中的 `Entry` 类初始化，会报错，`energy` 参数为 `ABC` 抽象类型（Doc 有提及），而是用 `pymatgen.analysis.phase_diagram` 中的 PDEntry 类初始化
+- label 字体大小无法调节：[How control fontsize in PDPlotter? - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-control-fontsize-in-pdplotter/36715)
+
+```python
+# 绘制相图 convex hull
+from pymatgen.analysis.phase_diagram import PDEntry, PhaseDiagram
+from pymatgen.core.composition import Composition
+
+entry = PDEntry(composition=, energy=)
+
+entries = [entry, entry, ...]
+
+phasediagram = PhaseDiagram(entries)
+
+# 输出稳定相
+print(phasediagram)
+
+# 输出稳定相及其对应能量
+print(phasediagram.stable_entries)
+
+# label 字体大小无法修改 可能会导致有重叠
+ax = phasediagram.get_plot(
+	backend="matplotlib",
+	show_unstable=False,
+	# label_stable=False,  # 不显示 label
+	)
+
+ax.figure.savefig("XXX.png")
+```
+
 
 ---
 
-## pymatgen.symmetry.analyzer
+### pymatgen.symmetry.analyzer
 
-### SpacegroupAnalyzer
+#### SpacegroupAnalyzer
 
 寻找构型中的等同原子
 ```python
@@ -1108,9 +1171,9 @@ print(equivalent_atom)
 
 ---
 
-## pymatgen.transformations
+### pymatgen.transformations
 
-### standard_transformations
+#### standard_transformations
 
 WIP…
 
@@ -1118,7 +1181,7 @@ WIP…
 
 ---
 
-## pymatgen.phonon
+### pymatgen.phonon
 
 >[https://pymatgen.org/pymatgen.phonon.html](https://pymatgen.org/pymatgen.phonon.html)
 
@@ -1126,28 +1189,24 @@ WIP…
 
 ---
 
-## API
+### API
 
-pymatgen 新 API
->[Materials Project - API](https://materialsproject.org/api)
->
->[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
+- 调用 MP API 获取 MP 数据
+- pymatgen 新 API：[Materials Project - API](https://materialsproject.org/api)、[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
+- 安装
 
-
-安装
 ```bash
 pip install mp-api
 pip install mpcontribs-client
 ```
 
+- 使用
 
 ```python
-# old
-from pymatgen.ext.matproj import MPRester
-# new
-from mp_api.client import MPRester
+from pymatgen.ext.matproj import MPRester  # old
+from mp_api.client import MPRester         # new
 
-# Get the structure from the Materials Project
+# 从 MP 获取结构
 with MPRester("api-key") as mpr:
     struct = mpr.get_structure_by_material_id("mp-149")
 ```
@@ -1160,17 +1219,8 @@ with MPRester("api-key") as mpr:
 
 
 
----
-
-### pymatgen.ext.matproj
-
-调用 MP API 获取 MP 数据
-
-[Usage - pymatgen 2022.5.19 documentation](https://pymatgen.org/usage.html?highlight=materials%20project#pymatgen-matproj-rest-integration-with-the-materials-project-rest-api)
-
 模块具体用法
 
-[pymatgen.ext.matproj module - pymatgen 2022.5.19 documentation](https://pymatgen.org/pymatgen.ext.matproj.html?highlight=pymatgen%20matproj%20rest)
 
 `get_download_info()`：获取来自 NoMaD repository 的裸 VASP 输出文件链接
 

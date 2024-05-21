@@ -1,15 +1,15 @@
 ---
-title: typst 使用
+title: Typst 使用
 top: false
 pin: false
 cover: 
 toc: true
 mathjax: true
 math: true
-summary: typst 使用
-description: typst 使用
+summary: Typst 使用
+description: Typst 使用
 tags:
-  - typst
+  - Typst
 categories:
   - 排版语言
 date: 2023-10-29 10:30:00
@@ -17,7 +17,7 @@ abbrlink: "33761"
 password:
 ---
 
-# typst 使用
+# Typst 使用
 
 ## 介绍
 
@@ -26,6 +26,20 @@ Typst 是一门用于文档排版的标记语言。
 Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建简单，详细使用体验，参见：[Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
 
 
+```rust
+// 页脚设置
+// 方式 1
+#set page(numbering: "1/1")
+
+// 方式 2
+#set page(
+  footer: context {
+    set align(center)
+    set text(9pt)
+    counter(page).display()
+  }
+)
+```
 
 ---
 
@@ -153,11 +167,12 @@ Typst 为常用文档元素内置了语法标记，大多只是对应函数的�
 
 ---
 
-- 图片插入及引用
+- 图片插入及引用：figure 及 image 函数
+	- image 函数支持的图片格式：png、jpg、gif、svg，不支持 tiff
+	- 不支持根目录的绝对路径？
 
 ```rust
-// 图片引用
-@fig
+@fig  // 图片引用
 
 #figure(
    image("fig.png"),
@@ -184,7 +199,7 @@ Typst 为常用文档元素内置了语法标记，大多只是对应函数的�
 
 ---
 
-- [ ] 强调和加粗对中文字体不起作用？
+- [x] 强调和加粗对中文字体不起作用（可使用 cuti 包）
 - 有序列表无法使用 markdown 的 `1. ` 格式
 
 - 换行与转义（Escaping）：使用 `\`
@@ -206,19 +221,7 @@ Typst 为常用文档元素内置了语法标记，大多只是对应函数的�
 */
 ```
 
-- 代码块：和 markdown 一样，编程语言改成 `typ`
-
-- 线条
-
-```rust
-#line()
-```
-
-- 盒子
-
-```rust
-box()
-```
+- 内联代码与代码块：和 markdown 一样，编程语言改成 `typ`
 
 - 参考文献及引用
 
@@ -228,6 +231,7 @@ box()
 
 // 方式 2
 #cite(<ZHU2023119062>) \
+#cite(<ZHU2023119062>, form: "prose") \
 #cite(label("ZHU2023119062"))
 
 #bibliography(
@@ -238,6 +242,15 @@ box()
   // style: "nature",
 )
 ```
+
+- 参考文献 style 推荐：
+	- `gb-7714-2015-numeric`（**暂无自定义不显示参考文献特定内容，如 doi 的功能，BibTeX 可以**）
+	- `american-physics-society`
+	- `nature`
+	- `ieee`
+	- `american-chemical-society`
+
+---
 
 - 字体
 
@@ -283,6 +296,23 @@ box()
 set text(font: (font.main, font.cjk), size: 10pt, lang: "zh")
 ```
 
+字体 stroke 指字体的描边，含描边颜色、宽度、线条样式和透明度
+
+TeX Gyre Termes：基于 Times Roman 的衬线字体，Noto Serif CJK SC：专为简体中文设计的衬线字体
+
+1em：quad，相对单位；定义为当前字体大小的宽度；常用场景：缩进，段落、表格间距
+
+1ex：相对单位，等于当前字体中小写字母 `x` 的高度；常用于垂直方向上的间距调整
+
+1pt：point，绝对单位；在 TeX 系统中，1pt = 1/72.27 英寸（大约 0.35146 毫米）；常用场景：字体大小，精确间距，线条和边框
+
+Word 中的字符度量单位：1 磅值 = 1/72 in = 1bp = 1.00375 pt
+
+>[浅谈LaTeX与Word度量单位对应关系\_letex和word页边距转换-CSDN博客](https://blog.csdn.net/Null_0_lluN/article/details/107097236)
+
+
+
+---
 
 ```rust
 h()
@@ -312,10 +342,42 @@ align()
 page()
 
 rect()
+// 线条
+#line()
+
+// 盒子
+box()
+```
+
+---
+
+- 用法
+
+```rust
 
 // 当天日期
 #datetime.today().display("[year]年[month]月[day]日")
+
+// reference: https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF
+#set par(
+  justify: true,
+  first-line-indent: 2em,  // 首行缩进
+  leading: 20pt,   // 行距 20 磅
+)
+
+#show par: set block(spacing: 20pt) // 段间距 20 磅
+
+#set text(
+  // 正文小四号字，英文用 Times Roman，中文用宋体
+  size: 12pt,
+  font: (
+    "TeX Gyre Termes", 
+    "Noto Serif CJK SC",
+  ),
+  lang: "zh"
+)
 ```
+
 
 ---
 
@@ -332,9 +394,14 @@ rect()
 - 上、下划线：`underline()`、`overline()`、`underbrace()`、`overbrace()`
 - [Typst 符号 General Symbols](https://typst.app/docs/reference/symbols/sym/)
 
+- 数学字体中的替换字体：[Variants Functions – Typst Documentation](https://typst.app/docs/reference/math/variants/)
+
+
 ```rust
-// 设置数学公式字体
+// 设置 math 字体
 #show math.equation: set text(font: "Times New Roman")
+// 设置 code 字体
+#show raw: set text(font: "Fira Code")
 
 // 数学公式编号，在引用的编号之前添加 supplement 内容
 #set math.equation(numbering: "(1)", supplement: [Eq.])
@@ -451,6 +518,7 @@ Show 规则用于全局替换
 - 图片排版：wrap-it（环绕效果）
 - checklist：cheq
 - 在 Typst 中使用 LaTeX 公式：MiTeX
+- 中文伪粗体、伪斜体：cuti
 
 
 
@@ -552,3 +620,22 @@ Show 规则用于全局替换
 ```
 
 - [ ] typst 中暂无 latexdiff 替代工具
+
+- [x] mac 中的 VSCode typst preview 无法处理相对路径情况 `#import "../template.typ": *`，会报错（应该是 bug，已修复）；windows 上的正常
+
+- [ ] 自己电脑的中文字体在 Typst 已是加粗 bold 状态，如何恢复 regular
+
+[GitHub - csimide/cuti: Cuti: A simple typst package simulates fake bold / fake italic characters. | Cuti：在 typst 中便捷使用伪粗体/伪斜体](https://github.com/csimide/cuti)
+
+[Fake text weight and style (synthesized bold and italic) · Issue #394 · typst/typst · GitHub](https://github.com/typst/typst/issues/394)
+
+[Skew transform · Issue #2749 · typst/typst · GitHub](https://github.com/typst/typst/issues/2749)
+
+[Emphasis does not work for Chinese · Issue #725 · typst/typst · GitHub](https://github.com/typst/typst/issues/725)
+
+[lexer change: Allow emphasis in CJK text without spaces by peng1999 · Pull Request #2648 · typst/typst · GitHub](https://github.com/typst/typst/pull/2648)
+
+---
+
+
+- [ ] 生成的 pdf 如何也有对应的编号（暂无法实现）：[Include numbering in PDF bookmark · Issue #2416 · typst/typst · GitHub](https://github.com/typst/typst/issues/2416)

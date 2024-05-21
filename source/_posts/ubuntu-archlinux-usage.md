@@ -65,7 +65,7 @@ sudo apt update && sudo apt upgrade
 
 #### 安装显卡驱动
 
-Additional Drivers - Additional Drivers - 选择其中一个 NVIDIA driver
+Softwares & Update - Additional Drivers - Additional Drivers - 选择其中一个 NVIDIA driver
 
 
 ---
