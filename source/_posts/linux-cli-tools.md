@@ -260,6 +260,7 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 >ripgrep、lsd、sd、bat、git-delta、gitui 等均可通过 cargo 安装
 
+- 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
 - 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
@@ -278,7 +279,6 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 文件搜索：[fzf](https://github.com/junegunn/fzf)
 - 统计代码文件行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
 - 终端文件管理器：[yazi](https://github.com/sxyazi/yazi)、[superfile](https://github.com/MHNightCat/superfile)、[ranger](https://github.com/ranger/ranger)
-- 快速查看常用命令的使用实例：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）
 - 富文本：[rich](https://github.com/textualize/rich)
 - 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
@@ -314,3 +314,13 @@ sudo apt update
 
 sudo apt install fastfetch
 ```
+
+---
+
+终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)
+
+[GitHub - theryangeary/choose: A human-friendly and fast alternative to cut and (sometimes) awk](https://github.com/theryangeary/choose)
+
+[GitHub - imsnif/bandwhich: Terminal bandwidth utilization tool](https://github.com/imsnif/bandwhich)
+
+[GitHub - context-labs/mactop: mactop - Apple Silicon Monitor Top written in pure Golang! Under 1,000 lines of code.](https://github.com/context-labs/mactop)

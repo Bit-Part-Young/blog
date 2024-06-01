@@ -56,16 +56,13 @@ eval "$(starship init zsh)"  # zsh
 
 ### 参考资料
 
-Shell 基础及 CLI 工具推荐
->[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
+Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
 
 >[GitHub - linuxhitchhiker/THGLG: The Hitchhiker's Guide to the Linux : Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
 
-bash 速查表
->[https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
+bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
 
-不借助 bash 中已有命令实现众多功能
->[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
+不借助 bash 中已有命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
 
 >[GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
 
@@ -188,7 +185,7 @@ export PATH=$HOME/bin:$PATH
 
 ### 常用命令
 
->[Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
+- [Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
 
 >[Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
 
@@ -527,13 +524,18 @@ sed -n 4p file  # 打印file中的第4行
 
 ```bash
 -i             # 忽略字符大小写
+-n             # 显示行号
+-c             # 统计匹配的行数
+-A N           # N 数字；输出匹配行及之后 N 行
+-B N           # N 数字；输出匹配行及之前 N 行
+-C N           # N 数字；输出匹配行及之前后各 N 行
 -E             # 使用扩展正则表达式
+-o             # 只输出匹配到的部分
 -v             # 反向匹配 即输出不匹配指定模式的行
 -I             # 跳过二进制文件 等同于 --binary-files=without-match
 --exclude-dir  # 排除目录
 --exclude      # 排除文件
 -r             # 递归
--n             # 显示行号
 -h             # 在匹配内容前标示文件名
 -H             # 在匹配内容前不标示文件名
 -l             # 列出匹配内容前所属文件名

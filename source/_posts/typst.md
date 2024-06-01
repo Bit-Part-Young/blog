@@ -78,10 +78,10 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 ### 实用工具
 
 - VSCode 插件：
-	- typst-lsp，具有语言服务器 + 代码格式化（不再继承）等功能
+	- typst-lsp：具有语言服务器 + 代码格式化（不再继承）等功能
 	- typst-preview：实时编译预览
 - 代码格式化：
-	- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果一般）
+	- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果感觉一般）
 	- [GitHub - Enter-tainer/typstyle: Beautiful and reliable typst code formatter](https://github.com/Enter-tainer/typstyle)
 	- [GitHub - antonWetzel/prettypst: Formatter for Typst](https://github.com/antonWetzel/prettypst)
 
@@ -314,9 +314,30 @@ Word 中的字符度量单位：1 磅值 = 1/72 in = 1bp = 1.00375 pt
 
 ---
 
+对齐 `align` 函数
+可选参数值：start、end、left、right、center、top、horizon、bottom
+可以使用两个参数值，用 `+`
+
 ```rust
-h()
-v()
+#set align(center + horizon)  // 在表格中，位于单元格中心位置
+```
+
+
+direction
+
+```text
+ltr: Left to right.
+rtl: Right to left.
+ttb: Top to bottom.
+btt: Bottom to top.
+```
+
+
+
+```rust
+fr // 分数
+h() // 水平间距
+v() // 垂直间距
 
 // 水平或垂直排列内容和间距
 stack()
@@ -519,7 +540,7 @@ Show 规则用于全局替换
 - checklist：cheq
 - 在 Typst 中使用 LaTeX 公式：MiTeX
 - 中文伪粗体、伪斜体：cuti
-
+- presentation 制作：[touying](https://github.com/touying-typ/touying)、[polylux](https://github.com/andreasKroepelin/polylux)
 
 
 ---

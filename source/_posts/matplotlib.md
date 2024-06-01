@@ -25,10 +25,22 @@ password:
 matplotlib mplstyle 写法
 
 ```python
+from matplotlib.axes import Axes
+
+ax: Axes
+
+fig = plt.figure()
+ax = fig.subplots()
+
 # 查看下两者区别
 ax = plt.subplot()
 
 fig, ax = plt.subplots()
+
+ax = fig.add_subplot()  # 返回 Axes object
+
+# 填充
+ax.fill_between()
 ```
 
 ---
@@ -447,7 +459,16 @@ matplotlib.get_cachedir()
 
 ---
 
-#### 颜色循环
+#### 配色
+
+[scripts/scripts/python/color.py at master · yh-phys/scripts · GitHub](https://github.com/yh-phys/scripts/blob/master/scripts/python/color.py)
+
+[审稿人也会爱的配色\~科研配色收藏第9期 - 知乎](https://zhuanlan.zhihu.com/p/698897001)
+
+```python
+"#4F4FFE"
+"#CE3D32"
+```
 
 ```python
 import matplotlib.pyplot as plt

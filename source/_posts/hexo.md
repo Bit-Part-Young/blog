@@ -230,7 +230,8 @@ top: true
 
 - hexo-generator-search/searchdb：本地搜索设置
 
-- [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文文章网页。
+- [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文统计与信息展示网页。
+	- 在页面添加论文核心图片，在 bib 文件中的对应条目下添加 `image` 参数
 
 ```markdown
 <!-- 单个论文 -->

@@ -57,13 +57,13 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 
 - 个人使用切换规则：
 
-| 域名                    | 代理方式 |
-| ----------------------- | -------- |
-| `*openai.com`           | 代理     |
-| `*bing.com`             | 代理     |
-| `claude.ai`             | 代理     |
-| `www.torrentleech.org`  | 代理     |
-| `www.em*ium.is`         | 代理     |
+| 域名                      | 代理方式 |
+| ----------------------- | ---- |
+| `*openai.com`           | 代理   |
+| `*bing.com`             | 代理   |
+| `claude.ai`             | 代理   |
+| `www.torrentleech.org`  | 代理   |
+| `www.em*ium.is`         | 代理   |
 | `pubs.acs.org`          | 直接连接 |
 | `pubs.aip.org`          | 直接连接 |
 | `www.sciencedirect.com` | 直接连接 |

@@ -41,6 +41,11 @@ GitHub 每个仓库的总体积限制是 1GB（Gitee 是 500MB），每个仓库
 生成 changelog
 [GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
 
+GitHub 命令行形式的 dashboard
+[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
+
+[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
+
 
 
 GitHub README 生成 TOC

@@ -172,7 +172,7 @@ system_profiler SPDisplaysDataType
 - VPN 网络代理：ClashX
 - 系统资源监控：RunCat、[stats](https://github.com/exelban/stats)
 - 代码编辑器：vscode-insiders（**vscode-insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
-- 终端工具： iTerm、Tabby、Termius
+- 终端工具： iTerm（最实用）、Tabby、Termius、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
 - 数据同步：交大云盘
 - 浏览器： Chrome
 - 压缩文件解压工具：The Unarchiver

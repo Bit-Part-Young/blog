@@ -280,9 +280,6 @@ twisted grain boundary 晶界面垂直于旋转轴
 寻找晶界
 
 
-
-
-
 ---
 
 ## 碳纳米管
@@ -417,11 +414,14 @@ atomsk POSCAR -orthogonal-cell -sort species pack vasp
 
 ### Material Studio 2019 安装
 
->需联网安装
+**注意**：
 
->安装路径及 license 文件路径不要有中文
+- 需联网安装
+- 安装路径及 license 文件路径不要有中文
 
-- 打开 “MS2019\\安装文件\\BIOVIA Materials Studio 2019.msi” 或 “setup.exe” 文件，按照提示进行正常安装，直到安装完成。
+---
+
+- 打开 “BIOVIA Materials Studio 2019.msi” 或 “setup.exe” 文件，按照提示进行正常安装，直到安装完成。
 
 - 安装成功后，以笔记本方式打开 “MS2019\\激活文件\\msi.lic”，将计算机名复制到许可文件中替换 “this_host”，然后保存即可。
 

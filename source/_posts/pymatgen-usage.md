@@ -19,81 +19,28 @@ password:
 
 ## 介绍
 
-```python
-# 待了解
-get_wigner_seitz_cell()
+- 用于表示 Element、Site、Molecule、Structure 的高度灵活的类。
+- 文件输入/输出支持广泛，如 VASP、ABINIT、CIF、Gaussian、XYZ 等（主要依靠 Open Babel 包）。
+- 强大的分析工具，包括生成相图、Pourbaix 图、扩散分析、反应等。
+- 电子结构分析，如态密度和能带结构。
+- 集成 Materials Project REST API、Crystallography Open Database 等其他外部数据源
 
-read_neb()
-
-MITNEBSet class
-```
-
+代码文档详细
 
 ---
 
 ### 参考资料
 
-material project workshop:
+- pymatgen 实例代码：[GitHub - materialsvirtuallab/matgenb: Jupyter notebooks demonstrating the utilization of open-source codes for the study of materials science.](https://github.com/materialsvirtuallab/matgenb)
+- [Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)（该网址包含了 pymatgen 在材料相关计算中用的具体参数及其说明：如，截断能为 520eV 是由元素周期表所有元素中最大截断能的 1.3 倍得到的）
 
-- 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
-- 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
-- 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
-- 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
-
-
-
-该网址包含了 pymatgen 在材料相关计算中用的具体参数及其说明：如，截断能为 520eV 是由元素周期表所有元素中最大截断能的 1.3 倍得到的
->[Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)
+- material project workshop:
+	- 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
+	- 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
+	- 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
+	- 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
 
 
-
-复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
-
-
-mp-api：mp 的新 api；[https://docs.materialsproject.org/downloading-data/using-the-api/getting-started](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
-
-```bash
-pip install mp_api
-```
-
-
-结构相似度
-```python
-from pymatgen.analysis.structure_matcher import StructureMatcher
-
-sm = StructureMatcher()
-sm.fit(structure1, structure2)
-```
-
-
-pymatgen.io.vasp.outputs Outcar 类有 read_neb() 函数
-
-
-- [ ] pymatgen tool（不是很好用）：[GitHub - haidi-ustc/maptools: A open source program for materials simulation data process, which is mainly based on Pymatgen code](https://github.com/haidi-ustc/maptools)
-
-
-解析 VASP 输出文件目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
-
-```python
-from atomate.vasp.drones import VaspDrone
-
-drone = VaspDrone()
-task_doc = drone.assimilate(path="./example_VASP_Al16Cr10")
-
-print(task_doc.keys())
-```
-
-
-
-基于之间的 VASP 计算目录中生成静态计算输入文件
-```python
-from pymatgen.io.vasp.sets import MPStaticSet
-
-# from_prev_calc 为静态方法
-static_set = MPStaticSet.from_prev_calc("./VASP_Al16Cr10_example/")
-
-print(static_set.incar)
-```
 
 
 
@@ -110,26 +57,29 @@ workshop2020 中对 DFT 的介绍：
 
 
 
-
-
-
 - [x] pymatgen structure 如何通过 structure 来生成 potcar？
 解决方法：通过 Poscar 类得到 structure 的元素种类，之后与 PBE 泛函的元素进行比对，之后用 Potcar 类写入 POTCAR（生成新的之前需删掉原来的 POTCAR 文件）
 
 
-Structure 类相关属性和方法
-```python
-remove_species()
-replace_species()
+XRD 绘制：
+- [Pymatgen XRD Plot - Stack Overflow](https://stackoverflow.com/questions/53439514/pymatgen-xrd-plot)
+- [How to get the hkl or hkil indices from calculated xrd pattern - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-to-get-the-hkl-or-hkil-indices-from-calculated-xrd-pattern/45920)
 
-num_sites 
-formula 
-compsition
+```python
+from pymatgen.analysis.diffraction.xrd import XRDCalculator
+
+c = XRDCalculator()
+
+c.get_plot(structure)
+
+# 获取衍射花样
+c.get_pattern(structure)
+c.get_pattern(structure).hkls
+c.get_pattern(structure).d_hkls
 ```
 
 
-
-
+pymatgen 电子结构相关分析很多都是建立在 vasprun.xml 文件中提取数据之上的（与 vaspkit 有不同）
 
 
 MPStaticSet 有设置 EDIFF 10-4
@@ -157,131 +107,35 @@ PeriodicSite: Zr (-0.0000, 1.8672, 1.2920) [0.3333, 0.6667, 0.2500]
 
 FCC、六方和面心正交晶体结构只能用Gamma网格
 
-Kpoints.automatic_density_by_vol() reciprocal_density Kpoints.automatic_density() grid_density Kpoints.automatic() length
-
-MPRelaxSet继承的DictSet类，DictSet类继承的VaspInputSet类 MPRelaxSet中的K点生成方式是Kpoints.automatic_density_by_vol() ISMEAR=-5 SIGMA=0.05 io/vasp/MPRelaxSet.yaml KPOINTS: reciprocal_density: 64
-
-MPMetalRelaxSet中的K点生成方式是Kpoints.automatic_density_by_vol()；
-
-ISMEAR=1 SIGMA=0.2 相关参数是在MPRelaxSet.yaml的基础上修改的
-
-class MPMetalRelaxSet(MPRelaxSet): 
-""" 
-Implementation of VaspInputSet utilizing parameters in the public Materials Project, but with tuning for metals. Key things are a denser k point density, and a 
-"""
 ```
 
 
-
-
-```python
-CONFIG = _load_yaml_config("MPRelaxSet")
-
-def __init__(self, structure: Structure, **kwargs):
-    """
-    :param structure: Structure
-    :param kwargs: Same as those supported by DictSet.
-    """
-    super().__init__(structure, **kwargs)
-    self._config_dict["INCAR"].update({"ISMEAR": 1, "SIGMA": 0.2})
-    self._config_dict["KPOINTS"].update({"reciprocal_density": 200})
-    self.kwargs = kwargs
-
-
-
-
-
-def automatic_density(structure: Structure, kppa: float, force_gamma: bool = False):
-    """
-    Returns an automatic Kpoint object based on a structure and a kpoint
-    density. Uses Gamma centered meshes for hexagonal cells and
-    Monkhorst-Pack grids otherwise.
-
-    Algorithm:
-        Uses a simple approach scaling the number of divisions along each
-        reciprocal lattice vector proportional to its length.
-
-    Args:
-        structure (Structure): Input structure
-        kppa (float): Grid density
-        force_gamma (bool): Force a gamma centered mesh (default is to
-            use gamma only for hexagonal cells or odd meshes)
-
-    Returns:
-        Kpoints
-    """
-    comment = f"pymatgen with grid density = {kppa:.0f} / number of atoms"
-    if math.fabs((math.floor(kppa ** (1 / 3) + 0.5)) ** 3 - kppa) < 1:
-        kppa += kppa * 0.01
-    latt = structure.lattice
-    lengths = latt.abc
-    ngrid = kppa / structure.num_sites
-    mult = (ngrid * lengths[0] * lengths[1] * lengths[2]) ** (1 / 3)
-
-    num_div = [int(math.floor(max(mult / length, 1))) for length in lengths]
-
-    is_hexagonal = latt.is_hexagonal()
-
-    has_odd = any(i % 2 == 1 for i in num_div)
-    if has_odd or is_hexagonal or force_gamma:
-        style = Kpoints.supported_modes.Gamma
-    else:
-        style = Kpoints.supported_modes.Monkhorst
-
-    return Kpoints(comment, 0, style, [num_div], (0, 0, 0))
-
-
-
-
-
-
-def automatic_density_by_vol(structure: Structure, kppvol: int, force_gamma: bool = False):
-    """
-    Returns an automatic Kpoint object based on a structure and a kpoint
-    density per inverse Angstrom^3 of reciprocal cell.
-
-    Algorithm:
-        Same as automatic_density()
-
-    Args:
-        structure (Structure): Input structure
-        kppvol (int): Grid density per Angstrom^(-3) of reciprocal cell
-        force_gamma (bool): Force a gamma centered mesh
-
-    Returns:
-        Kpoints
-    """
-    vol = structure.lattice.reciprocal_lattice.volume
-    kppa = kppvol * vol * structure.num_sites
-    return Kpoints.automatic_density(structure, kppa, force_gamma=force_gamma)
-
-```
 
 
 
 ---
 
-# 安装
+## 安装
 
 - 参考：[https://pymatgen.org/installation.html](https://pymatgen.org/installation.html)
 
-- 安装
+- 安装：
 
 ```bash
-pip install pymatgen  # 稳定版本
+# 稳定版本
+pip install -U pymatgen
 # 开发版本
 pip install -U git+https://github.com/materialsproject/pymatgen
 ```
 
-- pymatgen 插件和外部工具：[https://pymatgen.org/addons](https://pymatgen.org/addons)
+- POTCAR 设置
 
-- change log（代码 bug 修改，新功能添加等，可以关注）：[https://pymatgen.org/change_log.html](https://pymatgen.org/change_log.html)
+- [change log](https://pymatgen.org/change_log.html)（代码 bug 修复，新功能添加等，可以关注）
 
-POTCAR 设置
+- [pymatgen 插件和外部工具](https://pymatgen.org/addons)
 
-兼容性
 
-需对进行 `from pymatgen import <something>` 修改（v2022.0.0 版本开始）
+- 兼容性：需对进行 `from pymatgen import <something>` 修改（v2022.0.0 版本开始）
 
 ```python
 from pymatgen import Composition  # now "from pymatgen.core.composition import Composition"
@@ -301,6 +155,131 @@ from pymatgen import MPRester  # now "from pymatgen.ext.matproj ..."
 
 ## 使用
 
+使用：[https://pymatgen.org/usage.html](https://pymatgen.org/usage.html)
+
+---
+
+### CLI
+
+>不是太好用，建议直接写脚本
+
+所有子命令：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282023900.png)
+
+
+所有子命令的 help：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282037019.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282037724.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282038651.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282039179.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282039484.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282041689.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282040573.png)
+
+
+```bash
+pmg sub-command -h  # 查看子命令帮助
+
+# 分析当前路径，会将生成的数据打包压缩成文件
+pmg analyze .
+
+# -f 单个文件；--filenames 可多个文件
+# 查看结构空间群信息
+pmg structure -s 0.00001 -f POSCAR
+
+# 构型文件转换，功能有限
+# Supported formats include POSCAR/CONTCAR, CIF, CSSR, etc.
+pmg structure --convert --filenames POSCAR *.cif
+
+
+# 可视化构型；需安装 vtk 包；会报错，不建议
+pmg view POSCAR
+```
+
+
+---
+
+### structure 创建、保存、分析与变化操作
+
+```python
+from pymatgen.core.composition import Composition
+from pymatgen.core.lattice import Lattice
+from pymatgen.core.structure import Structure
+from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
+
+# 结构创建
+lattice = Lattice.cubic(4.2)
+
+# 标准方法
+structure = Structure(
+    lattice,
+    ["Cs", "Cl"],
+    ...[[0, 0, 0], [0.5, 0.5, 0.5]],
+)
+
+# 利用空间群对称性创建结构
+structure = Structure.from_spacegroup(
+    "Fm-3m",
+    Lattice.cubic(3),
+    ["Li", "O"],
+    [[0.25, 0.25, 0.25], [0, 0, 0]],
+
+
+# 保存成其他文件格式
+# 不提供 filename 参数，返回 string
+structure.to(fmt="poscar")
+# 只提供 filename 参数，会自动识别其格式
+structure.to(filename="POSCAR") 
+structure.to(filename="CsCl.cif")
+
+# 从 str 或文件中读取结构
+structure = Structure.from_str(open("CsCl.cif").read(), fmt="cif") 
+structure = Structure.from_file("CsCl.cif")
+
+# 改变位点元素种类
+structure[1] = "F"
+
+# 改变位点元素种类和坐标
+structure[1] = "Cl", [0.51, 0.51, 0.51]
+
+# 元素替换
+structure["Cs"] = "K"
+
+# 生成无序结构
+structure["K"] = "K0.5Na0.5"
+
+# structure 类似 list，支持大部分的 list 方法
+# reverse, append, extend, pop, index, count
+structure.reverse()
+structure.append("F", [0.9, 0.9, 0.9])
+```
+
+修改 Structures：`pymatgen.transformations`
+
+分析 Structures：`pymatgen.analysis.structure_matcher`
+
+```python
+# Make a supercell
+structure.make_supercell([2, 2, 2])
+
+# Get a primitive version of the Structure
+structure.get_primitive_structure()
+
+# Interpolate between two structures to get 10 structures (typically for NEB calculations.)
+structure.interpolate(another_structure, nimages=10)
+```
+
+
+---
+
 当你探索代码时，你可能会注意到许多对象都有一个 as_dict 方法和一个 from_dict 静态方法的实现。对于大多数非基本的对象，我们将 pymatgen 设计成可以很容易地保存对象以供以后使用。虽然 python 确实提供了 pickling 功能，但 pickle 在代码修改方面往往是非常脆弱的。Pymatgen 的 as_dict 提供了一种以更稳健的方式保存你的工作的方法，它还有一个额外的好处就是更容易阅读。dict 表示法对于将这类对象输入某些数据库，如 MongoDb，也特别有用。这个 as_dict 规范是在 monty 库中提供的，monty 库是由 pymatgen 产生的一个通用 python 补充库。
 
 ```python
@@ -316,40 +295,7 @@ with open('structure.json') as file:
 
 你可以在 PyYAML 包中用 yaml 代替上述任何 json 命令来创建一个 yaml 文件。这两种选择之间有一定的权衡。作为一种格式，JSON 的效率更高，读写速度极快，但可读性却很差。YAML 在解析方面要慢一个数量级甚至更多，但更适合人类阅读。
 
-手动生成 Structures
-
-```python
-from pymatgen.core.lattice import Lattice
-from pymatgen.core.structure import Structure, Molecule
-
-coords = [[0, 0, 0], [0.75,0.5,0.75]]
-lattice = Lattice.from_parameters(a=3.84, b=3.84, c=3.84, alpha=120,
-                                  beta=90, gamma=60)
-# Si
-struct = Structure(lattice, ["Si", "Si"], coords)
-
-coords = [[0.000000, 0.000000, 0.000000],
-          [0.000000, 0.000000, 1.089000],
-          [1.026719, 0.000000, -0.363000],
-          [-0.513360, -0.889165, -0.363000],
-          [-0.513360, 0.889165, -0.363000]]
-# 甲烷
-methane = Molecule(["C", "H", "H", "H", "H"], coords)
-```
-
-写入/写出结构/分子
-
-```python
-# Read a POSCAR and write to a CIF.
-structure = Structure.from_file("POSCAR")
-structure.to(filename="CsCl.cif")
-
-# Read an xyz file and write to a Gaussian Input file.
-methane = Molecule.from_file("methane.xyz")
-methane.to(filename="methane.gjf")
-```
-
-为了更精细地控制使用哪个解析，你可以指定特定的 io 包。例如，要从一个 cif 创建一个结构：
+更精细地控制从文件读取解析结构，可以使用特定的 io 包。这些包也提供了导出文件格式的方法。
 
 ```python
 from pymatgen.io.cif import CifParser
@@ -375,255 +321,60 @@ gau = GaussianInput(xyz.molecule,
 gau.write_file('methane.inp')
 ```
 
-可以对 Structures 做的事
 
-修改 Structures：`pymatgen.transformations`
+---
 
-分析 Structures：`pymatgen.analysis.structure_matcher`
+### Entry
 
-```python
-# Change the specie at site position 1 to a fluorine atom.
-structure[1] = "F"
-molecule[1] = "F"
+除了核心的 Element、Site、Structure object 外，pymatgen 中的大多数分析（创建相图）都是通过 Entry object 进行的。Entry 的最基本形式是包含一个计算的能量和一个构型成分（可包含其他输入或计算数据）。大多数情况下 `pymatgen. entries.computed_entries` 中定义的 `ComputedEntry` 或 `ComputedStructureEntry` 对象。
 
-# Change species and coordinates (fractional assumed for Structures,
-# Cartesian for Molecules)
-structure[1] = "Cl", [0.51, 0.51, 0.51]
-molecule[1] = "F", [1.34, 2, 3]
+### 计算输入输出管理
 
-# Structure/Molecule also supports typical list-like operators,
-# such as reverse, extend, pop, index, count.
-structure.reverse()
-molecule.reverse()
+pymatgen.io 模块包含了一些类，以方便编写计算软件的输入文件和解析输出文件，主要是 VASP。
 
-structure.append("F", [0.9, 0.9, 0.9])
-molecule.append("F", [2.1, 3,.2 4.3])
-```
+输入管理的核心类是 `InputSet`。 `InputSet` object 包含计算输入文件所需的所有数据。具体来说，`write_input()` 方法，可将所有文件写到指定位置。InputGenerator 类可以看作是完成特定计算任务的 recipe，而 InputSet 则包含这些 recipes 以应用于特定体系或结构。
 
-```python
-# Make a supercell
-structure.make_supercell([2, 2, 2])
+也可以使用 `InputSet.from_directory()` 从计算目录中构建 pymatgen InputSet。
 
-# Get a primitive version of the Structure
-structure.get_primitive_structure()
+许多解析输出文件的类继承自 InputFile，其提供了一个读写文件的标准接口。
 
-# Interpolate between two structures to get 10 structures (typically for NEB calculations.)
-structure.interpolate(another_structure, nimages=10)
-```
+---
 
-除了核心的 Element, Site and Structure 对象外，pymatgen 中的大多数分析（例如，创建相图）都是通过 Entry 对象进行的。一个条目的最基本形式是包含一个计算能量和一个成分，并可以选择包含其他输入或计算数据。在大多数情况下，你将使用 pymatgen. entries.computed_entries 中定义的 ComputedEntry 或 ComputedStructureEntry 对象。ComputedEntry 对象可以通过手动解析计算数据计算，或者使用 pymatgen.apps.borg 包来创建。
+### 变换操作
 
-[pymatgen.io](http://pymatgen.io) - 管理计算输入和输出
+简单的变换操作：如添加和删除位点，替换结构中的元素，到更高级的一对多的转换。
 
-pymatgen.io 模块包含了一些类，以方便编写输入文件和解析各种计算代码的输出文件，包括 VASP、Q-Chem、LAMMPS、CP2K、AbInit 等等。
-
-管理输入的核心类是 `InputSet`。一个 `InputSet` 对象包含为一个计算写一个或多个输入文件所需的所有数据。具体来说，每个 InputSet 都有一个 `write_input()` 方法，可以将所有必要的文件写到你指定的位置。还有 InputGenerator 类，它产生的 InputSet 具有针对特定计算类型的设置（例如，结构弛豫）。你可以把 InputGenerator 类看作是完成特定计算任务的 “ 配方 “，而 InputSet 则包含应用于特定系统或结构的这些配方。
-
-你也可以使用 InputSet.from_directory() 从一个包含计算输入的目录中构建一个 pymatgen InputSet。
-
-许多代码还包含用于将输出文件解析为 pymatgen 对象的类，这些类继承自 InputFile，它提供了一个读写单个文件的标准接口。
-
-pymatgen.transformations 包是用于对结构进行转换的标准包。目前已经支持许多转换，从简单的转换，如添加和删除位点，替换结构中的物种，到更高级的一对多的转换，如使用静电能量准则从结构中部分删除某个物种的一部分。转换类遵循一个严格的 API。一个典型的用法如下：
+典型用法：
 
 ```python
 from pymatgen.io.cif import CifParser
 from pymatgen.transformations.standard_transformations import RemoveSpecieTransformations
 
-# Read in a LiFePO4 structure from a cif.
-parser = CifParser('LiFePO4.cif')
-struct = parser.get_structures()[0]
+structure = ...
 
-t = RemoveSpeciesTransformation(["Li"])
-modified_structure = t.apply_transformation(struct)
-```
+t = RemoveSpeciesTransformation(["X"])
 
-pymatgen.alchemy 包是一个用于进行高通量（HT）结构转化的框架。例如，它允许用户定义一系列应用于一组结构的转换，在此过程中产生新的结构。该框架还被设计成对所有在结构上进行的改变进行适当的记录，并具有无限的撤销功能。主要的类是：
-
-```python
-from pymatgen.alchemy.transmuters import CifTransmuter
-from pymatgen.transformations.standard_transformations import SubstitutionTransformation, RemoveSpeciesTransformation
-
-trans = []
-trans.append(SubstitutionTransformation({"Fe":"Mn"}))
-trans.append(RemoveSpecieTransformation(["Lu"]))
-transmuter = CifTransmuter.from_filenames(["MultiStructure.cif"], trans)
-structures = transmuter.transformed_structures
+modified_structure = t.apply_transformation(structture)
 ```
 
 
 ---
 
-使用：[https://pymatgen.org/usage.html](https://pymatgen.org/usage.html)
-
-模块索引：[http://pymatgen.org/genindex.html](http://pymatgen.org/genindex.html)
-
-API：[http://pymatgen.org/modules.html](http://pymatgen.org/modules.html)
-
 >[ug-materials-simulation/pymatgen/包和模块结构.ipynb at master · xiangzhouzhang/ug-materials-simulation · GitHub](https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/%E5%8C%85%E5%92%8C%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84.ipynb)
 
-包 (package,subpackage) 是目录 (文件夹), 模块 (module,submodule) 是文件; import 既可以导入包和子包, 也可以导入模块和子模块;
+包 (package、subpackage) 是目录, 模块 (module、submodule) 是文件; import 既可以导入包和子包, 也可以导入模块和子模块;
 
-想要查看一个包的完整结构 (层次) 有些繁琐, 此处只查看到二级包 (二级目录) 或与二级包并列的模块, 二级包及与其并列的模块都可以由 import 语句 (有两个点), 同称为包的二级结构; 由于结构上的一致性, 将子包 (目录) 及与其并列的模块 (文件) 等视为一种东西;
 
 如何学习模块中的函数或者类:
 
 语法 (一句话概括, 参数及参数类型, 返回值及返回值类型); 包含的方法或属性; 继承的基类 应用示例;
 
-```text
-filters.py 为二级模块
-
-pymatgen/alchemy
-├── filters.py
-├── __init__.py
-├── materials.py
-├── __pycache__
-└── transmuters.py
-
-abinit 为二级包
-
-pymatgen/io
-├── abinit
-├── adf.py
-├── ase.py
-├── atat.py
-├── babel.py
-├── cif.py
-├── common.py
-├── core.py
-├── cp2k
-├── cssr.py
-├── exciting
-├── feff
-├── fiesta.py
-├── gaussian.py
-├── jarvis.py
-├── lammps
-├── lmto.py
-├── lobster
-├── nwchem.py
-├── packmol.py
-├── phonopy.py
-├── prismatic.py
-├── pwscf.py
-├── __pycache__
-├── qchem
-├── res.py
-├── shengbte.py
-├── template.py
-├── vasp
-├── wannier90.py
-├── xcrysden.py
-├── xr.py
-├── xtb
-├── xyz.py
-└── zeopp.py
-```
 
 
 
 pymatgen 典型工作流
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202310231537005.png)
-
-
-
-
-常用 package 和 module
-
-pymatgen.analysis
-
-```python
-# package
-pymatgen.analysis.elasticity
-
-# module
-pymatgen.analysis.eos
-```
-
-pymatgen.core
-
-core package 包含构建晶体模型时的基础概念, ex.晶格, 分子, 位点, 元素周期表等
-
-```python
-# module
-pymatgen.core.structure
-pymatgen.core.lattice
-pymatgen.core.sites
-pymatgen.core.surface
-pymatgen.core.periodic_table
-pymatgen.core.composition
-pymatgen.core.units
-pymatgen.core.tensors
-```
-
-pymatgen.ext
-
-```python
-# module
-pymatgen.ext.matproj
-```
-
-[pymatgen.io](http://pymatgen.io)
-
-pymatgen.io.lammps
-
-```python
-# module
-pymatgen.io.lammps.data
-pymatgen.io.lammps.inputs
-pymatgen.io.lammps.output
-pymatgen.io.lammps.utils module
-```
-
-pymatgen.io.vasp
-
-```python
-# module
-pymatgen.io.vasp.inputs
-pymatgen.io.vasp.outputs
-pymatgen.io.vasp.sets
-```
-
-```python
-# module
-pymatgen.io.ase
-pymatgen.io.atat
-pymatgen.io.phonopy
-```
-
-pymatgen.phonon
-
-```python
-# module
-pymatgen.phonon.bandstructure
-pymatgen.phonon.dos
-pymatgen.phonon.plotter
-```
-
-pymatgen.symmetry
-
-symmetry 包是关于对称性的包:
-
-```python
-# module
-pymatgen.symmetry.analyzer
-pymatgen.symmetry.bandstructure
-pymatgen.symmetry.groups
-pymatgen.symmetry.maggroups
-pymatgen.symmetry.settings
-pymatgen.symmetry.structure
-```
-
-pymatgen.transformations
-
-```python
-#  module
-pymatgen.transformations.advanced_transformations
-pymatgen.transformations.defect_transformations
-pymatgen.transformations.site_transformations
-pymatgen.transformations.standard_transformations
-pymatgen.transformations.transformation_abc
-```
 
 
 ---
@@ -633,6 +384,17 @@ pymatgen.transformations.transformation_abc
 ### pymatgen.core
 
 #### structure
+
+Structure 类相关属性和方法
+```python
+remove_species()
+replace_species()
+
+num_sites 
+formula 
+compsition
+```
+
 
 ---
 
@@ -674,6 +436,11 @@ from pymatgen.core.periodic_table import Element
 Element.print_periodic_table()
 ```
 
+#### sites
+
+---
+
+#### units
 
 ---
 
@@ -691,6 +458,13 @@ AseAtomsAdaptor.get_structure()
 AseAtomsAdaptor.get_atoms()
 ```
 
+#### pymatgen.io.atat
+
+只有 Mcsqs 类
+
+---
+
+#### from pymatgen.io.phonopy
 
 ---
 
@@ -746,7 +520,11 @@ write_file(filename)
 
 #### Kpoints
 
-WIP…
+automatic() length
+automatic_density() grid_density
+automatic_density_by_vol() reciprocal_density
+
+
 
 
 ---
@@ -1002,15 +780,37 @@ INCAR:
 
 #### MPStaticSet
 
-WIP…
+基于之前的 VASP 计算目录中生成静态计算输入文件
+```python
+from pymatgen.io.vasp.sets import MPStaticSet
+
+# from_prev_calc 为静态方法
+static_set = MPStaticSet.from_prev_calc("./VASP_Al16Cr10_example/")
+
+print(static_set.incar)
+```
+
+
+```text
+
+
+MPRelaxSet继承的DictSet类，DictSet类继承的VaspInputSet类 MPRelaxSet中的K点生成方式是Kpoints.automatic_density_by_vol() ISMEAR=-5 SIGMA=0.05 io/vasp/MPRelaxSet.yaml KPOINTS: reciprocal_density: 64
+
+MPMetalRelaxSet中的K点生成方式是Kpoints.automatic_density_by_vol()；
+
+ISMEAR=1 SIGMA=0.2 相关参数是在MPRelaxSet.yaml的基础上修改的
+
+class MPMetalRelaxSet(MPRelaxSet): 
+""" 
+Implementation of VaspInputSet utilizing parameters in the public Materials Project, but with tuning for metals. Key things are a denser k point density, and a 
+"""
+```
 
 
 
 ---
 
 ### pymatgen.io.vasp.outputs
-
->[pymatgen.io.vasp package — pymatgen 2023.10.4 documentation](https://pymatgen.org/pymatgen.io.vasp.html)
 
 读取、执行、写 VASP 的输出文件
 
@@ -1022,8 +822,9 @@ WIP…
 
 #### Outcar
 
-WIP…
-
+```python
+read_neb()
+```
 
 ---
 
@@ -1043,6 +844,16 @@ WIP…
 ---
 
 ### pymatgen.analysis
+
+结构相似度
+```python
+from pymatgen.analysis.structure_matcher import StructureMatcher
+
+sm = StructureMatcher()
+sm.fit(structure1, structure2)
+```
+
+---
 
 #### eos
 
@@ -1131,6 +942,9 @@ print(phasediagram)
 # 输出稳定相及其对应能量
 print(phasediagram.stable_entries)
 
+# 获取特定构型成分分解成哪些稳定相及其比例
+phasediagram.get_decomposition()
+
 # label 字体大小无法修改 可能会导致有重叠
 ax = phasediagram.get_plot(
 	backend="matplotlib",
@@ -1196,8 +1010,7 @@ WIP…
 - 安装
 
 ```bash
-pip install mp-api
-pip install mpcontribs-client
+pip install mp_api
 ```
 
 - 使用
@@ -1228,7 +1041,29 @@ with MPRester("api-key") as mpr:
 
 - [ ] 如何通过 API 获得 equation of state 和晶界能
 
-- [ ] Pymatgen 一些实例代码
+---
+
+```python
+# 待了解
+get_wigner_seitz_cell()
+
+read_neb()
+
+MITNEBSet class
+```
 
 
->[https://github.com/materialsvirtuallab/matgenb](https://github.com/materialsvirtuallab/matgenb)
+复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
+
+
+
+解析 VASP 计算目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
+
+```python
+from atomate.vasp.drones import VaspDrone
+
+drone = VaspDrone()
+task_doc = drone.assimilate(path="./example_VASP_Al16Cr10")
+
+print(task_doc.keys())
+```

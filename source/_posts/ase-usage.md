@@ -21,6 +21,13 @@ password:
 
 atomic simulation environment (ASE)
 
+**ase 网站中的代码源码参数及注释与安装的 python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准**
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292017026.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292018624.png)
+
+
 
 ```python
 from ase.atoms import Atoms
@@ -43,6 +50,21 @@ rdf = ana.get_rdf()
 
 ase 缺陷计算 寻找最优的超胞形状
 >[Tools for defect calculations — ASE documentation](https://wiki.fysik.dtu.dk/ase/tutorials/defects/defects.html#supercell-creation)
+
+
+```python
+# 添加真空层
+from ase.build import add_vacuum
+
+# 优化器
+from ase.optimize.lbfgs import LBFGS
+
+# 振动分析
+from ase.vibrations import Vibrations
+
+from ase.data import atomic_numbers
+```
+
 
 
 ---
@@ -270,6 +292,9 @@ from ase.build import surface
 - 函数 `read()` 可自动识别文件格式；ase 中可识别的文件格式（部分格式只有 `read` 或 `write` 一个函数）：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
 - 可以读取 gz 格式压缩文件，如 OUTCAR.gz
 
+[lammps的结构文件转其他格式 - 知乎](https://zhuanlan.zhihu.com/p/390968120)
+
+
 ---
 
 写法一：在 `write()` 函数中的 `format` 参数指定文件格式
@@ -434,7 +459,7 @@ ase db test.db
 >[VASP — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/vasp.html)
 
 ```python
-ase.calculators.vasp.Vasp
+from ase.calculators.vasp import Vasp
 ```
 
 在 Pi 中用 ASE 的 VASP 的 Calculator

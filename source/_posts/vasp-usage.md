@@ -46,6 +46,7 @@ Heyd–Scuseria–Ernzerhof 泛函 (HSE06)：更精确，处理电子和光学�
 非自洽计算：特殊 K 点
 
 
+
 ---
 
 ### 参考资料
@@ -55,11 +56,11 @@ Heyd–Scuseria–Ernzerhof 泛函 (HSE06)：更精确，处理电子和光学�
 - VASP KPOINTS：[KPOINTS - Vaspwiki](https://www.vasp.at/wiki/index.php/KPOINTS)
 - VASP 赝势推荐：[Available PAW potentials - Vaspwiki](https://www.vasp.at/wiki/index.php/Available_PAW_potentials#Recommended_potentials_for_DFT_calculations)
 - VASP 输出文件：[Category:Output files - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Output_files)
-- VASPKIT Features: [Features — VASPKIT 1.5 documentation](https://vaspkit.com/features.html)
 - VASP Manual：[The VASP Manual - Vaspwiki](https://www.vasp.at/wiki/index.php/The_VASP_Manual)
 - VASP Categories：[Categories - Vaspwiki](https://www.vasp.at/wiki/index.php/Special:Categories)
-- VASP Tutorial：[Category:Tutorials - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Tutorials)
+- VASP Tutorial：[Category:Tutorials - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Tutorials)、[Tutorials](https://www.vasp.at/tutorials/latest/)
 - VASP Examples：[Category:Examples - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Examples)
+
 
 ---
 
@@ -100,9 +101,7 @@ GW 计算
 
 
 
-VASP 计算流程：
-
->[VASP的计算流程 | Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
+VASP 计算流程：[VASP的计算流程 | Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
 
 
  - NCORE: 指定单个轨道计算所使用的核数量
@@ -113,6 +112,75 @@ VASP 计算流程：
 ---
 
 ## 使用
+
+### 算例
+
+内含表面能、层间距变化计算公式：[Ni 100 surface relaxation - VASP Wiki](https://www.vasp.at/wiki/index.php/Ni_100_surface_relaxation)
+
+石墨堆叠方向层间距确定：
+- GGA level 的半局域（semilocal）DFT 低估了长程色散相互作用，导致石墨晶格在堆叠方向上的错误高估：8.84Å（PBE）对 6.71Å（exp）。
+- 使用 Tchatchenko and Scheffler 方法（添加 IVDW 和 LVDW_EWALD 参数）考虑范德华力相互作用（van der Waals interactions）进行纠正
+
+NiO：反铁磁
+
+Ni(100) 表面的 DOS 计算，没有先进行 SCF 计算？
+Ni(100) 表面的能带结构计算，K-path 是 reziprok 方式，非 Line-Mode，vaspkit 和 pymatgen 无法获取数据，只能使用 p4vasp？
+
+Ni(111) 表面高精度单点能计算（截断能提高；用以计算吸附能、功函数（添加 LVHAR 参数））：[Ni 111 surface high precision - VASP Wiki](https://www.vasp.at/wiki/index.php/Ni_111_surface_high_precision)
+
+>[Ex49 功函数（work function）的计算（一） | Learn VASP The Hard Way](https://www.bigbrosci.com/2018/09/03/ex49/)
+
+
+VASP 官网算例中的部分 POSCAR 文件中没有元素符号行（第 6 行，不影响）
+
+- [ ] 振动频率计算的意义？NFREE 参数，振动 mode？
+>[表面吸附分子的振动自由能计算 - 知乎](https://zhuanlan.zhihu.com/p/397862258)
+
+
+```text
+# 用的是哪个泛函？
+   TITEL  = PAW Ni
+   TITEL  = PAW C
+   TITEL  = PAW O
+```
+
+
+- [ ] K 点网格某方向数值为奇数，$\Gamma$ 中心？
+>[VASP K点问题 - 知乎](https://zhuanlan.zhihu.com/p/397873103)
+
+>[晶体高对称点 - 知乎](https://zhuanlan.zhihu.com/p/423772139)
+
+
+Si 熔化 AIMD 计算：[Liquid Si - Standard MD - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Standard_MD)
+
+只有 1 个 K 点，可以用 vasp_gam 来运行，加快运行速度
+
+Pair correlation function 数据保存在 PCDAT 文件中
+
+
+Si 结晶 AIMD 计算（扩散系数及 PCF）：[Liquid Si - Freezing - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Freezing)
+
+>[利用分子动力学轨迹计算粒子运动的均方位移和扩散系数 - 知乎](https://zhuanlan.zhihu.com/p/542642528)
+
+```bash
+#!/bin/bash
+
+for i in 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000; do
+    # awk 的作用是什么
+    awk <PCDAT.$i >pair.$i ' NR==8 {pcskal=$1} NR==9 {pcfein=$1} NR>=10036 {line=line+1; print (line-0.5)*pcfein/pcskal,$1} '
+done
+
+gnuplot -e "set terminal jpeg; set key left; set xlabel 'r (Ang)'; set ylabel 'PCF'; set style data lines; plot 'pair.2000','pair.1400','pair.800' " > pair.jpg
+```
+
+
+---
+
+
+- [ ] DOS 计算过程中 ISMEAR=0 和 -5 的差别是什么
+[Part 2: More silicon](https://www.vasp.at/tutorials/latest/bulk/part2/)
+
+---
 
 ### 输入文件
 
@@ -141,7 +209,7 @@ Direct
 
 - 第 1 行：注释行（Comment line）；可以对体系进行描述，也可以空着
 - 第 2-5 行：缩放因子和基矢（Scaling factor and lattice）；只要与体系的晶格常数符合即可
-- 第 6-7 行：元素种类及数目（Ion species and numbers）；**元素种类的顺序需与 POTCAR 文件中的一致**；
+- 第 6-7 行：元素种类（optional，这行可以没有）及数目（Ion species and numbers）；**元素种类的顺序需与 POTCAR 文件中的一致**；
 - 第 8-N 行：原子坐标信息（Ion positions）；Direct（首字母大小写以及只写 D 均可）表示分数坐标，Cartesian（同上）表示笛卡尔坐标（如果第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定）
 - 原子坐标信息之后是原子的初始速度信息
 
@@ -421,6 +489,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### SIGMA
 
+默认值：0.2
 展宽宽度（单位：eV）
 对于金属，默认 SIGMA=0.2，但通常 SIGMA=0.05 就能满足要求
 
@@ -584,9 +653,9 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### ISTART
 
-初始化轨道；是否读取 WAVECAR 文件
+初始化轨道；确定是否读取 WAVECAR 文件
 
-- 0，1（如果 WAVECAR 文件存在）
+默认值：1（如果 WAVECAR 文件存在）否则 0
 
 ---
 
@@ -725,23 +794,38 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 
 相关数据提取
-```bash
-
+```text
 reached required accuracy - stopping structural energy minimisation
 ```
 
 
 ```bash
-# 原子数
-nat=`grep 'NIONS' OUTCAR | tail -1 | awk '{print $12}'`
+
+# 构型原子数
+natoms=$(sed -n '7p' POSCAR | awk '{ for(i=1; i<=NF; i++) a+=$i; print a} ')
+natoms=$(grep 'NIONS' OUTCAR | tail -1 | awk '{print $12}')
+
 # 平均原子体积
-vol=`grep ' volume of cell' OUTCAR | tail -1 | awk -v n=${nat} '{print $5/n}'`
+vol=$(grep 'volume of cell' OUTCAR | tail -1 | awk -v n=${natoms} '{print $5/n}')
+
 # 平均原子能量
-eng=`grep 'free  energy' OUTCAR | awk -v n=${nat} '{print $5/n}'`
-# 磁矩
-mag=`grep 'mag=' OSZICAR | awk '{print $10}'`
+eng=$(grep 'free  energy' OUTCAR | tail -1 | awk -v n=${natoms} '{print $5/n}')
+
+# 磁矩 需设置 ISPIN=2
+mag=$(grep 'mag=' OSZICAR | awk '{print $10}')
+
 # 耗时
-sec=`grep 'Total CPU time used' OUTCAR | awk '{print $6}'`
+sec=$(grep 'Total CPU time used' OUTCAR | awk '{print $6}')
+
+# 电子步能量
+# 'energy without' 'free energy' 之间只有一个空格
+grep 'free energy' OUTCAR
+grep  'energy without entropy' OUTCAR
+
+# 离子步能量
+# 'energy  without' 'free  energy' 之间有两个空格
+grep 'free  energy' OUTCAR
+grep  'energy  without entropy' OUTCAR
 ```
 
 

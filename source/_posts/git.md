@@ -22,10 +22,6 @@ password:
 
 ## 介绍
 
->[图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
-
->[GitHub - twtrubiks/Git-Tutorials: Git-Tutorials GIT基本使用教學:memo:](https://github.com/twtrubiks/Git-Tutorials)
-
 分布式版本控制工具。
 
 ```bash
@@ -88,10 +84,15 @@ git lfs track "*.pdf -maxsize=100M"
 
 ### 参考资料
 
+>[图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
+
+- 可视化 git 学习：[GitHub - pcottle/learnGitBranching: An interactive git visualization and tutorial. Aspiring students of git can use this app to educate and challenge themselves towards mastery of git!](https://github.com/pcottle/learnGitBranching)
+
+>[GitHub - twtrubiks/Git-Tutorials: Git-Tutorials GIT基本使用教學:memo:](https://github.com/twtrubiks/Git-Tutorials)
+
 >[Git Commands - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Git/Commands/)
 
-lec2：Git/GitHub 基础介绍
->[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
+- Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
 
 >[Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
 
@@ -784,6 +785,7 @@ git diff --cached --stat
 git stash  # 将当前修改暂存到 stash 栈中
 git stash -u  # 包括新增 untracked 文件
 git stash push -- file  # 指定单个文件
+git stash save ''  # 添加备注
 
 # 列出所有 stash
 git stash list
