@@ -51,12 +51,12 @@ password:
 
 #### 优点
 
-- 插件丰富；
-- 支持 vim 及其配置文件设置，个人较中意；
-- 目录在右侧栏，相比 notion 在最上面更有利于快速跳转；
-- 支持 Front Matter，更利于博客同步；
-- 支持分屏（快捷键自定义设置：上下分屏：`Alt+Shift+V`；左右分屏：`Alt+Shift+S`；
-- 有幻灯片演示功能（添加 `---` 横线；效果一般）；
+- 插件丰富
+- 支持 vim 及其配置文件设置，个人较中意
+- 目录在右侧栏，相比 notion 在最上面更有利于快速跳转
+- 支持 Front Matter，更利于博客同步
+- 支持分屏（快捷键自定义设置：上下分屏：`Alt+Shift+V`；左右分屏：`Alt+Shift+S`
+- 有幻灯片演示功能（添加 `---` 横线；效果一般）
 
 ---
 
@@ -71,7 +71,7 @@ password:
 ## 使用
 
 - Obsidian 软件配置模板：[obsidian-config: Obsidian configuration template.](https://gitee.com/yangsl306/obsidian-config)
-- 字体设置：可设置界面字体、正文字体和代码字体
+- 字体设置：可分别设置界面字体、正文字体和代码字体
 
 - 基本快捷键：
 
@@ -97,7 +97,7 @@ password:
 
 #### PC 端之间
 
-- Obsidian + Git 插件 + Gitee/Github 仓库 + Github 图床（图片自动上传并转成图链），即可实现笔记云同步。
+- Obsidian + Git 插件 + Gitee/GitHub 仓库 + GitHub 图床（图片自动上传并转成图链），即可实现笔记云同步。
 - Obsidian 也可换成 Typora，但个人喜欢 Obsidian 中的 vim 功能。
 
 
@@ -106,7 +106,7 @@ password:
 #### 手机 - PC 端之间
 
 - [实测好用！Obsidian 免费同步Infini Cloud （WebDave） - 知乎](https://zhuanlan.zhihu.com/p/654370814)
-- 手机端个人主要随时记录想法或看到的一些有用链接，仅这些内容需要同步，不需要太多的插件。可通过 Obsidian + Remotely Save（WebDav Infini Cloud）插件实现。
+- 手机端个人主要随时记录想法或看到的一些有用链接，仅这些内容需要同步，不需要太多的插件。可通过 Obsidian + Remotely Save（WebDav Infini Cloud）插件实现
 - Remotely Save 无版本回退功能，建议等两端同步好之后，再对文档进行修改，**否则有数据丢失的风险**
 
 ---
@@ -156,7 +156,7 @@ https://toi.teracloud.jp/dav/
 - Image Auto Upload Plugin：借助 PicGo/PicList 实现图片自动上传并转成图链。
 - Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式。
 - floating toc：目录浮动体；[GitHub - PKM-er/obsidian-floating-toc-plugin](https://github.com/cumany/obsidian-floating-toc-plugin)。
-- Admonitions：和 Github 中的 alert 语法一样。
+- Admonitions：和 GitHub 中的 alert 语法一样。
 
 ```text
 > [!NOTE]

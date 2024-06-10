@@ -1,13 +1,13 @@
 ---
-title: Github 图床搭建
+title: GitHub 图床搭建
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
-summary: Github 图床搭建
-description: Github 图床搭建
+summary: GitHub 图床搭建
+description: GitHub 图床搭建
 tags:
   - 图床
 categories:
@@ -17,7 +17,7 @@ abbrlink: 7877
 password:
 ---
 
-# Github 图床搭建
+# GitHub 图床搭建
 
 ## 介绍
 
@@ -33,8 +33,11 @@ password:
 
 >[使用Github+picGo搭建图床，保姆级教程来了 - 知乎](https://zhuanlan.zhihu.com/p/489236769)
 
-- 在 Github 上创建存储上传图片的 repo（**该 repo 状态需是公开状态**），并生成 token，用于 PicGo 访问 Github；下载 PicGo 软件，配置 Github 图床：设定仓库名、分支名、Token、存储路径、自定义域名（可以是 CDN 加速形式的 URL；`https://cdn.jsdelivr.net/gh/username/repo`）
-- PicGo 其他设置：快捷键（禁用 `Ctrl + P`）；自定义链接格式 `$fileName-$date$extName`（无效果？）；打开“时间戳重命名”
+- 在 GitHub 上创建存储上传图片的 repo（**该 repo 状态需是公开状态**），并生成 token，用于 PicGo 访问 GitHub；下载 PicGo 软件，配置 GitHub 图床：设定仓库名、分支名、Token、存储路径、自定义域名（可以是 CDN 加速形式的 URL：`https://cdn.jsdelivr.net/gh/username/repo`）
+- PicGo 其他设置：
+	- 快捷键（禁用 `Ctrl + P`）
+	- 自定义链接格式 `$fileName-$date$extName`（无效果？）
+	- 打开“时间戳重命名”
 
 
 
@@ -48,7 +51,6 @@ password:
 	- `Ctrl + Alt + U` - 从剪贴板上传图像
 	- `Ctrl + Alt + E` - 从资源管理器上传图像
 	- `Ctrl + Alt + O` - 从输入框上传图像
-
 
 ```json
 {
@@ -69,5 +71,5 @@ password:
 
 ## 相关问题
 
-- Github Token 过期：`StatusCodeError: 401`；更新 Token；[PicGo+GitHub图床配置&常见错误 - Eighty Percent](http://b.aksy.space/study-notes/514.html)
+- GitHub Token 过期：`StatusCodeError: 401`；更新 Token；[PicGo+GitHub图床配置&常见错误 - Eighty Percent](http://b.aksy.space/study-notes/514.html)
 - [SM.MS](https://sm.ms/) 网址失效（另一个常用的图床）；备用网址：[smms.app](https://smms.app)；[Bug SM.MS域名被墙，Picgo无法上传 · Issue #963 · Molunerfinn/PicGo · GitHub](https://github.com/Molunerfinn/PicGo/issues/963)

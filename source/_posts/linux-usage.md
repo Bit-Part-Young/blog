@@ -67,6 +67,8 @@ bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheats
 >[GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
 
 
+中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)
+
 
 ---
 

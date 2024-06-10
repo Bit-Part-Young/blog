@@ -19,14 +19,19 @@ password:
 
 ## 介绍
 
-atomic simulation environment (ASE)
+- [atomic simulation environment (ASE)](https://wiki.fysik.dtu.dk/ase)：一系列用于设置、操作、运行、可视化及分析原子模拟的工具和 Python 模块
 
-**ase 网站中的代码源码参数及注释与安装的 python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准**
+- ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与**核心** `Atoms` object 和 ASE 中的许多可用算法一起使用。
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202406022047963.png)
+
+- [ASE 版本 Release notes](https://wiki.fysik.dtu.dk/ase/releasenotes.html)：查看版本更新细节
+
+- 注：**ase 网站中的代码源码参数及注释与安装的 python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准**
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292017026.png)
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292018624.png)
-
 
 
 ```python
@@ -43,8 +48,8 @@ atoms.get_potential_energy()
 # ase rdf 计算
 from ase.geometry.analysis import Analysis
 
-ana = Analysis(images=...)
-rdf = ana.get_rdf()
+# 添加 element 参数，可计算 partial rdf；默认计算 full rdf
+rdf = Analysis(images=...).get_rdf()
 ```
 
 
@@ -59,12 +64,35 @@ from ase.build import add_vacuum
 # 优化器
 from ase.optimize.lbfgs import LBFGS
 
+from ase.optimize import QuasiNewton
+
+from ase.constraints import FixAtoms
+
 # 振动分析
 from ase.vibrations import Vibrations
 
 from ase.data import atomic_numbers
+
+from ase.md.verlet import VelocityVerlet
+
+from ase.units import fs
+
+# 获取布拉维点阵
+atoms.cell.get_bravais_lattice()
+
+
+# 简易元素周期表绘制
+# reference: https://wiki.fysik.dtu.dk/ase/gallery/gallery.html
+from ase.utils.ptable import ptable
+
+atoms = ptable()
+atoms.write("ptable.png")
 ```
 
+
+interface 构建（较简单情况）：[Interface building - Manipulating atoms — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/manipulating_atoms/manipulating_atoms.html#interface-building)
+
+DOS、能带、EOS 计算：[Crystals and band structure — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut04_bulk/bulk.html)
 
 
 ---
@@ -113,8 +141,22 @@ ase symmetry 教程（内容一般）
 
 >[Calculation of elastic properties of crystals — Elastic v5.1.0 documentation](https://elastic.readthedocs.io/en/stable/)
 
+
+
 ---
 
+## 安装
+
+```bash
+pip install ase  # 安装
+
+ase test         # 测试；需安装 pytest
+```
+
+
+---
+
+## 常用模块
 
 ```python
 from ase.cell import Cell
@@ -165,7 +207,6 @@ from ase.atoms import Atoms
 from ase.spacegroup import crystal
 ```
 
-
 ```python
 from ase.spacegroup import Spacegroup
 
@@ -175,39 +216,102 @@ spg = Spacegroup(152)
 spg.equivalent_sites([0.4673, 0, 0.3333])
 ```
 
-
 超胞
-
 ```python
 # 方式 1
 supercell = atoms * (2, 2, 2)
 ```
 
 
----
-
-## 安装
-
-安装
-```bash
-pip install ase
-```
-
-测试
-```bash
-ase test
-
-# 需安装 pytest
-pip install pytest
-```
-
-
-
 `db.select(sort)` 中的 `sort` 为 含 key 的 str，含 `-` 时，降序
 
+
+ase neb 方法：[Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
+
+ase 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/phasediagram/phasediagram.html)
+
+
+```python
+atoms = ...
+# 删除 H 原子
+del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
+
+from ase.build import sort
+
+# 按照 chemical symbols 排序生成新的 Atoms object
+sort(atoms)
+
+# 生成 slab 模型
+atoms.center(vacuum=40, axis=2)
+
+
+# 固定原子
+from ase.constraints import FixAtoms
+
+atoms = ...
+# 按照原子类型或 z 轴坐标进行固定
+c = FixAtoms(mask=atoms.symbols == 'Cu')
+c = FixAtoms(mask=atoms.positions[:, 2] < 1.0)
+atoms.set_constraint(c)
+```
+
+[Atomic Simulation Environment (ASE) 基础用法](https://zhuanlan.zhihu.com/p/446086740)
+
+
+```python
+# 执行 eos 计算，拟合体模量 B
+from ase.eos import calculate_eos
+from ase.units import kJ
+from ase.atoms import Atoms
+
+calc = ...
+atoms: Atoms = ...
+atoms.calc = calc
+eos = calculate_eos(atoms, trajectory="XXX.traj")
+v, e, B = eos.fit()
+print(B / kJ * 1.0e24, "GPa")
+```
+
+
 ---
 
-## 常用模块
+### CLI
+
+>[Command line tool — ASE documentation](https://wiki.fysik.dtu.dk/ase/cmdline.html)
+
+开启 ase 补全（适用 bash，zsh 不行）
+
+```bash
+ase completion >> ~/.bashrc
+```
+
+```bash
+# 列出 ase 可识别的构型文件格式
+ase info --formats
+# 列出 ase 的 calculators 以及是否被安装
+# 3.22.1 与 3.23.0 版本的输出格式有区别
+ase info --calculators
+
+# 构型转换
+ase convert -i vasp -o xyz -f -v POSCAR structure.xyz
+```
+
+```bash
+# 查看 db 文件内容 推荐
+ase db test.db
+
+-L N                         # 只显示前 N 行
+--offset N                   # 跳过前 N 行
+--show-keys                  # 显示所有 keys
+--show-values key1,key2,...  # 显示 key 的值；value为数值时，只显示首尾值，如 energy_pa: [-9.18438289..-5.855563642]
+```
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202404111050491.png)
+
+
+
+---
 
 ### ase.atoms
 
@@ -247,6 +351,17 @@ nele = len(set(atoms.get_chemical_symbols()))
 
 
 atoms.copy()  # 拷贝
+
+# 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
+atoms.wrap()
+
+# wrap 参数默认为 True
+get_scaled_positions()
+# wrap 参数默认为 False
+get_positions()
+
+get_distance()    # 两原子间的距离
+get_distances()   # 第 i 个原子与给定原子列表间的距离
 ```
 
 
@@ -364,17 +479,17 @@ ax.set_title(label=None)
 from ase.db import connect
 from ase.db.row import AtomsRow
 
-db_fn = "..."
+db_fn = ...
 db = connect(db_fn)
 
 # 给 db 添加元数据
 db.metadata = {...}
 
-# 获取 db 文件里的结构数目
-print(len(db))
-print(db.count())
-# 添加 selection
-print(db.count("vasp_calc=Yes"))
+# 获取 db 文件中存储的结构数目
+len(db)
+db.count()
+# 添加 selection 筛选条件
+db.count("vasp_calc=Yes")
 
 # 筛选 id<=5 的所有结构
 # selection 可以是 id 或其他 AtomsRow 中的 key
@@ -414,53 +529,85 @@ for row in db.select("id<=10"):
 
 ---
 
-### ase cli tool
+### ase.calculators
 
->[Command line tool — ASE documentation](https://wiki.fysik.dtu.dk/ase/cmdline.html)
+effective medium theory (EMT)
 
-开启 ase 补全（zsh 不行）
+```python
+from gpaw import GPAW
+from ase.calculators.emt import EMT
 
+atoms = ...
+calc = GPAW(mode='lcao', basis='dzp', txt='gpaw.txt')
+atoms.calc = calc
+
+opt = BFGS(atoms, trajectory='opt.traj')
+opt.run(fmax=0.05)
+```
+
+#### VASP
+
+>[VASP — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/vasp.html)
+
+
+设置 VASP 执行命令和赝势路径
 ```bash
-ase completion >> ~/.bashrc
+export ASE_VASP_COMMAND="mpirun path/vasp_std"
+export VASP_PP_PATH=path/pp_path
+```
+
+或者在脚本中添加如下命令以设置相关环境变量
+```python
+import os
+
+os.environ["ASE_VASP_COMMAND"] = ...
+os.environ["VASP_PP_PATH"] = ...
+```
+
+ASE VASP Calculator 赝势不同泛涵目录命名
+```bash
+LDA:  $VASP_PP_PATH/potpaw/
+PBE:  $VASP_PP_PATH/potpaw_PBE/
+PW91: $VASP_PP_PATH/potpaw_GGA/
+
+# 查找元素 POTCAR 示例：potpaw_PBE/N/POTCAR
 ```
 
 
-```bash
-# 列出 ase 可识别的构型文件格式
-ase info --formats
-# 列出 ase 的 calculators 以及是否被安装
-ase info --calculators
+```python
+from ase.calculators.vasp import Vasp
 
-# 构型转换
-ase convert -i vasp -o extxyz -f -v POSCAR structure.xyz
+calc = Vasp(
+    istart=0,
+    icharg=2,
+    encut=400,
+    ismear=1,
+    sigma=0.2,
+    lreal="Auto",
+    kpts=[5, 5, 5],
+    ivdw=12,
+    ediff=1e-05,
+    lwave=False,
+    lcharg=False,
+)
 ```
-
-```bash
-# 查看 db 文件内容 推荐
-ase db test.db
-
--L N                         # 只显示前 N 行
---offset N                   # 跳过前 N 行
---show-keys                  # 显示所有 keys
---show-values key1,key2,...  # 显示 key 的值；value为数值时，只显示首尾值，如 energy_pa: [-9.18438289..-5.855563642]
-```
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202404111050491.png)
-
-
-
 
 
 ---
 
-### ase.calculators
-
->[VASP — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/vasp.html)
+#### LAMMPS
 
 ```python
-from ase.calculators.vasp import Vasp
+from ase.calculators.lammpsrun import LAMMPS
+
+parameters = {
+    "pair_style": "meam/c",
+    "pair_coeff": ["* * library.meam Au Au.meam Au"],
+}
+files = ["library.meam", "Au.meam"]
+calc = LAMMPS(parameters=parameters, files=files)
 ```
+
 
 在 Pi 中用 ASE 的 VASP 的 Calculator
 

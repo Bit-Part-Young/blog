@@ -23,6 +23,9 @@ password:
 
 本地 overleaf 程序：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
 
+LaTeX 斜线表头 package（diagbox）：[CTAN: Package diagbox](https://ctan.org/pkg/diagbox/)
+
+
 VSCode LaTeX Utilities 插件
 
 texlive 2024 版本已有 sjtutex 包
@@ -44,6 +47,7 @@ brew install latexdiff
 
 ```
 
+LaTeX 中文写作：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
 
 
 ```latex

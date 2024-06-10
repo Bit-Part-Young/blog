@@ -25,10 +25,13 @@ sticky: "99"
 
 - 官网：[atomate (Materials Science Workflows) — atomate 1.0.3 documentation](https://atomate.org/)
 - 高通量计算（主要 VASP）工具；主要在队列系统（超算平台 Slurm PBS）上运行；自动生成、保存作业运行过程中的所有记录（输入文件、输出文件、数据提取、错误信息等）；
-- 数据保存到数据库（mongodb）中，易于获取、查询、分析；
-- 提供了许多性质计算（弛豫、静态、弹性常数、能带、EOS、体模量、NEB）的标准 workflow，只需提供晶体结构（POSCAR），即可进行高通量计算；标准的 workflow 可以进行自定义修改；
+- 数据保存到数据库（Mongodb）中，易于获取、查询、分析；
+- 提供了许多性质计算（静态、弛豫、弹性常数、能带、EOS、体模量、NEB）的标准 workflow，只需提供晶体结构（POSCAR），即可进行高通量计算；标准的 workflow 可以进行自定义修改；
 - 可以自定义设计新的性质计算 workflow。
 
+firetask 细节会在提交后生成的 `*submit*` 文本文件中查看
+
+custodian 默认的纠错次数上限为 5
 
 
 ---
@@ -36,9 +39,9 @@ sticky: "99"
 ## 安装
 
 - atomate 安装：[Installing atomate — atomate 1.0.3 documentation](https://atomate.org/installation.html)
-- **必要条件**：VASP 计算软件与 mongodb 数据库账号。
+- **必要条件**：VASP 计算软件与 Mongodb 数据库账号。
 - [pymatgen](https://pymatgen.org/)：输入文件生成，输出文件的数据提取与分析
-- [custodian](http://materialsproject.github.io/custodian/)：运行模拟代码（VASP），执行错误检查与纠正
+- [custodian](http://materialsproject.github.io/custodian/)：运行计算代码（VASP），执行错误检查与纠正
 - [FireWorks](https://materialsproject.github.io/fireworks/)：设计、管理、执行 workflow
 
 
@@ -176,6 +179,11 @@ rocket_launch: rlaunch -c <INSTALL_DIR>/config rapidfire
 
 ```yaml
 CONFIG_FILE_DIR: <INSTALL_DIR>/config
+
+# 该参数对应设置应该是在 fireworks 包中的
+# fireworks/scripts/qlaunch_run.py 约第 242 行
+# 队列更新间隔
+QUEUE_UPDATE_INTERVAL: 5
 ```
 
 需将其路径添加到 PATH 中：
@@ -277,7 +285,7 @@ UnboundLocalError: cannot access local variable 'lp' where it is not associated 
 
 ---
 
-- 不生成 VASP 计算输入文件，只生成.err .out（空文件）和 FW_submit.script 文件，job 处于不断提交 -kill- 再提交的循环
+- 不生成 VASP 计算输入文件，只生成.err .out（空文件）和 FW_submit.script 文件，job 处于不断提交 - kill - 再提交的循环
 	- 解决方法：**这是自己遇到过的一个特殊情况**。自己安装过 `zsh`，且将 `zsh` 加入到 `~/.bash_profile` 中使登录服务器便切换到 zsh，最终导致上述问题出现（发现的原因是该问题出现后只有这个新变量因素）。将 `~/.bash_profile` 中与 `zsh` 相关的内容注释掉，问题可得到解决。
 
 
@@ -291,6 +299,13 @@ UnboundLocalError: cannot access local variable 'lp' where it is not associated 
 - `lpad`：管理 launchpad
 
 ```bash
+-i            # ID
+-s            # state READY/WAITING/COMPLETED/FIZZLED/RUNNING
+              # DEFUSED 该 firework 不运行
+-m            # max
+-t            # table
+-d            # all 会显示 firework 之间的关联
+
 # 查看 fireworks 报告
 lpad report
 
@@ -320,7 +335,7 @@ lpad defuse_wflows -s READY/WAITING  # defuse workflow
 lpad delete_wflows  # delete workflow  两者区别是什么？
 
 # 以下两个命令不推荐使用
-# 重设lpad，所有lpad中的fireworks都会被删除
+# 重设lpad，所有 lpad 中的 fireworks 都会被删除
 lpad reset
 
 # 初始化，一般不用？

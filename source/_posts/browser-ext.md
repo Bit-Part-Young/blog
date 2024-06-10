@@ -22,7 +22,7 @@ password:
 
 ## Chrome 插件
 
-浏览器中的插件可以设置在隐私窗口中使用（firefox 会自动提示，chrome 和 edge 需手动设置）
+浏览器中的插件可以设置在隐私窗口中使用（Firefox 会自动提示，Chrome 和 Edge 需手动设置）
 
 
 ---
@@ -70,7 +70,7 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 
 ---
 
-### 其他 Chrome 插件
+### 其他插件
 
 - Adblock Plus：广告拦截；[GitHub - sbwml/halflife-list: ABP/ublock 广告过滤规则（每周一早上9点更新）](https://github.com/sbwml/halflife-list)
 - Zotero Connector：保存网页中的文献到 Zotero 中。
@@ -106,3 +106,8 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 - AC baidu 重定向：去广告，优化排列等。
 - CSDN 广告过滤
 - 知乎增强：移除登录弹窗、屏蔽首页视频、默认收起回答、快捷收起回答/评论（左键两侧）等。
+
+```text
+# 知乎增强油猴插件自定义屏蔽关键词
+图片|照片|相册|笑话|搞笑|B站|女生|性别|电影|电视剧|视频|情感|游戏|微信|朋友圈
+```

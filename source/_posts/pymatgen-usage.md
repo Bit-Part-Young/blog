@@ -19,13 +19,12 @@ password:
 
 ## 介绍
 
-- 用于表示 Element、Site、Molecule、Structure 的高度灵活的类。
+- 用于表示 Element、Site、Structure、Molecule 的高度灵活的类。
 - 文件输入/输出支持广泛，如 VASP、ABINIT、CIF、Gaussian、XYZ 等（主要依靠 Open Babel 包）。
 - 强大的分析工具，包括生成相图、Pourbaix 图、扩散分析、反应等。
 - 电子结构分析，如态密度和能带结构。
 - 集成 Materials Project REST API、Crystallography Open Database 等其他外部数据源
-
-代码文档详细
+- 代码文档详细
 
 ---
 
@@ -43,50 +42,9 @@ password:
 
 
 
-
-workshop2020 中对 DFT 的介绍：
-
-- DFT is an atomistic method. This means it needs approximate positions of atoms and approximate lattice parameters to perform a calculation.
-
-- DFT is a first-principles method. This means that it uses a minimum of empirical information, so it can handle unusual systems well, including materials that have never been synthesized! It scales well to several hundred atoms, but beyond that other methods need to be used.
-
-- However, DFT does still need some form of correction. The particular type of DFT used in Materials Project (GGA/PBE) systematically under-binds materials, meaning that bond lengths (and hence lattice parameters) are systematically larger than expected by 1-2%. This also results in a systematic error in our formation energies, but we can fix this systematic error by fitting our calculated data to experimental formation enthalpies.
-
-- DFT is a ground-state, 0 K method. It can calculate ground state properties well such as bulk modulus, along with electronic structure information (the shape of your band structures, for example) but it is notably bad at calculating excited states including band gaps, and systematically under-estimates band gaps by a large margin. For this reason, any screening based on band gap has to include a large safety margin of ~0.5 eV.
-
-
-
-
 - [x] pymatgen structure 如何通过 structure 来生成 potcar？
 解决方法：通过 Poscar 类得到 structure 的元素种类，之后与 PBE 泛函的元素进行比对，之后用 Potcar 类写入 POTCAR（生成新的之前需删掉原来的 POTCAR 文件）
 
-
-XRD 绘制：
-- [Pymatgen XRD Plot - Stack Overflow](https://stackoverflow.com/questions/53439514/pymatgen-xrd-plot)
-- [How to get the hkl or hkil indices from calculated xrd pattern - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-to-get-the-hkl-or-hkil-indices-from-calculated-xrd-pattern/45920)
-
-```python
-from pymatgen.analysis.diffraction.xrd import XRDCalculator
-
-c = XRDCalculator()
-
-c.get_plot(structure)
-
-# 获取衍射花样
-c.get_pattern(structure)
-c.get_pattern(structure).hkls
-c.get_pattern(structure).d_hkls
-```
-
-
-pymatgen 电子结构相关分析很多都是建立在 vasprun.xml 文件中提取数据之上的（与 vaspkit 有不同）
-
-
-MPStaticSet 有设置 EDIFF 10-4
-
-没有 MPStaticSet.yaml
-
-reciprocal_density=100
 
 
 ```text
@@ -110,7 +68,7 @@ FCC、六方和面心正交晶体结构只能用Gamma网格
 ```
 
 
-
+`MSONable` 类：MSON（Monty JSON）； MSONable 对象必须实现 `as_dict()` 方法，该方法须返回可序列化为 JSON 的字典，且须支持无参数。静态方法 `from_dict()`，从 `as_dict()` 方法生成的字典中重建对象。`as_dict()` 方法应该包含 “@module” 和 “@class” 键，这将允许 MontyEncoder 动态反序列化该类。
 
 
 ---
@@ -199,7 +157,6 @@ pmg structure -s 0.00001 -f POSCAR
 # Supported formats include POSCAR/CONTCAR, CIF, CSSR, etc.
 pmg structure --convert --filenames POSCAR *.cif
 
-
 # 可视化构型；需安装 vtk 包；会报错，不建议
 pmg view POSCAR
 ```
@@ -280,7 +237,7 @@ structure.interpolate(another_structure, nimages=10)
 
 ---
 
-当你探索代码时，你可能会注意到许多对象都有一个 as_dict 方法和一个 from_dict 静态方法的实现。对于大多数非基本的对象，我们将 pymatgen 设计成可以很容易地保存对象以供以后使用。虽然 python 确实提供了 pickling 功能，但 pickle 在代码修改方面往往是非常脆弱的。Pymatgen 的 as_dict 提供了一种以更稳健的方式保存你的工作的方法，它还有一个额外的好处就是更容易阅读。dict 表示法对于将这类对象输入某些数据库，如 MongoDb，也特别有用。这个 as_dict 规范是在 monty 库中提供的，monty 库是由 pymatgen 产生的一个通用 python 补充库。
+pymatgen 的许多 object 都有 `as_dict()` 方法和 `from_dict()` 静态方法的实现。虽然 python 确实提供了 pickling 功能（实现对象序列化和反序列化的方式），但 pickle 在代码修改方面往往是非常脆弱的。`as_dict()` 提供了一种以更稳健的方式保存工作的方法，且更容易阅读。将 object 输入某些数据库，如 MongoDb，也特别有用。`as_dict()` 规范是由 monty 库（pymatgen 产生的一个通用 python 补充库）提供的。
 
 ```python
 with open('structure.json', 'w') as file:
@@ -293,7 +250,7 @@ with open('structure.json') as file:
     structure = Structure.from_dict(dct)
 ```
 
-你可以在 PyYAML 包中用 yaml 代替上述任何 json 命令来创建一个 yaml 文件。这两种选择之间有一定的权衡。作为一种格式，JSON 的效率更高，读写速度极快，但可读性却很差。YAML 在解析方面要慢一个数量级甚至更多，但更适合人类阅读。
+可使用 PyYAML 包的 yaml 代替上述任何 json 命令来创建 yaml 文件（JSON 格式效率高，读写速度快，但可读性差；YAML 解析速度慢，但更适合人类阅读）
 
 更精细地控制从文件读取解析结构，可以使用特定的 io 包。这些包也提供了导出文件格式的方法。
 
@@ -347,13 +304,14 @@ pymatgen.io 模块包含了一些类，以方便编写计算软件的输入文�
 典型用法：
 
 ```python
-from pymatgen.io.cif import CifParser
 from pymatgen.transformations.standard_transformations import RemoveSpecieTransformations
 
 structure = ...
 
+# 添加具体的变换操作
 t = RemoveSpeciesTransformation(["X"])
 
+# 施加变换操作到构型上
 modified_structure = t.apply_transformation(structture)
 ```
 
@@ -376,6 +334,37 @@ pymatgen 典型工作流
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202310231537005.png)
 
+---
+
+### 其他
+
+`Structure` 没有 `wrap()` 方法，ase 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
+
+```python
+# 待了解
+get_wigner_seitz_cell()
+
+read_neb()
+
+MITNEBSet class
+```
+
+
+复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
+
+
+
+解析 VASP 计算目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
+
+```python
+from atomate.vasp.drones import VaspDrone
+
+drone = VaspDrone()
+task_doc = drone.assimilate(path="./example_VASP_Al16Cr10")
+
+print(task_doc.keys())
+```
+
 
 ---
 
@@ -390,7 +379,7 @@ Structure 类相关属性和方法
 remove_species()
 replace_species()
 
-num_sites 
+num_sites   # 原子数
 formula 
 compsition
 ```
@@ -436,6 +425,9 @@ from pymatgen.core.periodic_table import Element
 Element.print_periodic_table()
 ```
 
+
+---
+
 #### sites
 
 ---
@@ -458,13 +450,13 @@ AseAtomsAdaptor.get_structure()
 AseAtomsAdaptor.get_atoms()
 ```
 
-#### pymatgen.io.atat
-
-只有 Mcsqs 类
 
 ---
 
-#### from pymatgen.io.phonopy
+### pymatgen.io.atat
+
+只有 Mcsqs 类
+
 
 ---
 
@@ -553,232 +545,26 @@ WIP…
 
 ### pymatgen.io.vasp.sets
 
-`pymatgen/io.vasp/sets.py`
+MPRelaxSet、MPStaticSet 等类均继承于 VaspInputSet，这些 InputSet 都有 `write_input()` 方法
 
-#### MPRelaxSet
-
-`pymatgen/io.vasp/MPRelaxSet.yaml`
-```yaml
-# Default VASP settings for calculations in the Materials Project.
-# Reasonably robust. Use this if you intend to combine your calculated data
-# with Materials Project data for analysis.
-PARENT: VASPIncarBase
-INCAR:
-  ALGO: FAST
-  EDIFF_PER_ATOM: 5.0e-05
-  ENCUT: 520
-  IBRION: 2
-  ISIF: 3
-  ISMEAR: -5
-  ISPIN: 2
-  LASPH: true
-  LDAU: true
-  LDAUJ:
-    F:
-      Co: 0
-      Cr: 0
-      Fe: 0
-      Mn: 0
-      Mo: 0
-      Ni: 0
-      V: 0
-      W: 0
-    O:
-      Co: 0
-      Cr: 0
-      Fe: 0
-      Mn: 0
-      Mo: 0
-      Ni: 0
-      V: 0
-      W: 0
-  LDAUL:
-    F:
-      Co: 2
-      Cr: 2
-      Fe: 2
-      Mn: 2
-      Mo: 2
-      Ni: 2
-      V: 2
-      W: 2
-    O:
-      Co: 2
-      Cr: 2
-      Fe: 2
-      Mn: 2
-      Mo: 2
-      Ni: 2
-      V: 2
-      W: 2
-  LDAUTYPE: 2
-  LDAUU:
-    F:
-      Co: 3.32
-      Cr: 3.7
-      Fe: 5.3
-      Mn: 3.9
-      Mo: 4.38
-      Ni: 6.2
-      V: 3.25
-      W: 6.2
-    O:
-      Co: 3.32
-      Cr: 3.7
-      Fe: 5.3
-      Mn: 3.9
-      Mo: 4.38
-      Ni: 6.2
-      V: 3.25
-      W: 6.2
-  LDAUPRINT: 1
-  LORBIT: 11
-  LREAL: AUTO
-  LWAVE: false
-  NELM: 100
-  NSW: 99
-  PREC: Accurate
-  SIGMA: 0.05
-KPOINTS:
-  reciprocal_density: 64
-POTCAR_FUNCTIONAL: PBE
-POTCAR:
-  Ac: Ac
-  Ag: Ag
-  Al: Al
-  Ar: Ar
-  As: As
-  Au: Au
-  B: B
-  Ba: Ba_sv
-  Be: Be_sv
-  Bi: Bi
-  Br: Br
-  C: C
-  Ca: Ca_sv
-  Cd: Cd
-  Ce: Ce
-  Cl: Cl
-  Co: Co
-  Cr: Cr_pv
-  Cs: Cs_sv
-  Cu: Cu_pv
-  Dy: Dy_3
-  Er: Er_3
-  Eu: Eu
-  F: F
-  Fe: Fe_pv
-  Ga: Ga_d
-  Gd: Gd
-  Ge: Ge_d
-  H: H
-  He: He
-  Hf: Hf_pv
-  Hg: Hg
-  Ho: Ho_3
-  I: I
-  In: In_d
-  Ir: Ir
-  K: K_sv
-  Kr: Kr
-  La: La
-  Li: Li_sv
-  Lu: Lu_3
-  Mg: Mg_pv
-  Mn: Mn_pv
-  Mo: Mo_pv
-  N: N
-  Na: Na_pv
-  Nb: Nb_pv
-  Nd: Nd_3
-  Ne: Ne
-  Ni: Ni_pv
-  Np: Np
-  O: O
-  Os: Os_pv
-  P: P
-  Pa: Pa
-  Pb: Pb_d
-  Pd: Pd
-  Pm: Pm_3
-  Pr: Pr_3
-  Pt: Pt
-  Pu: Pu
-  Rb: Rb_sv
-  Re: Re_pv
-  Rh: Rh_pv
-  Ru: Ru_pv
-  S: S
-  Sb: Sb
-  Sc: Sc_sv
-  Se: Se
-  Si: Si
-  Sm: Sm_3
-  Sn: Sn_d
-  Sr: Sr_sv
-  Ta: Ta_pv
-  Tb: Tb_3
-  Tc: Tc_pv
-  Te: Te
-  Th: Th
-  Ti: Ti_pv
-  Tl: Tl_d
-  Tm: Tm_3
-  U: U
-  V: V_pv
-  W: W_pv
-  Xe: Xe
-  Y: Y_sv
-  # 2023-05-02: change Yb_2 to Yb_3 if POTCAR_FUNCTIONAL=PBE_54 else issue warning if Yb present
-  # since Yb_3 didn't exist prior to PBE_54
-  # reason: Yb_2 gives incorrect thermodynamics for most systems with Yb3+
-  # https://github.com/materialsproject/pymatgen/issues/2968
-  Yb: Yb_2
-  Zn: Zn
-  Zr: Zr_sv
+```python
+write_input(output_dir=..., potcar_spec=True)
 ```
 
+`pymatgen/io/vasp/MPRelaxSet.yaml`：设置了默认的弛豫计算所有输入文件参数
 
-pymatgen/io/vasp/VASPIncarBase.yaml
-```yaml
-INCAR:
-  MAGMOM:
-    Ce: 5
-    Ce3+: 1
-    Co: 0.6
-    Co3+: 0.6
-    Co4+: 1
-    Cr: 5
-    Dy3+: 5
-    Er3+: 3
-    Eu: 10
-    Eu2+: 7
-    Eu3+: 6
-    Fe: 5
-    Gd3+: 7
-    Ho3+: 4
-    La3+: 0.6
-    Lu3+: 0.6
-    Mn: 5
-    Mn3+: 4
-    Mn4+: 3
-    Mo: 5
-    Nd3+: 3
-    Ni: 5
-    Pm3+: 4
-    Pr3+: 2
-    Sm3+: 5
-    Tb3+: 6
-    Tm3+: 2
-    V: 5
-    W: 5
-    Yb3+: 1
-```
+`pymatgen/io/vasp/VASPIncarBase.yaml`：设置了 INCAR 文件中的 MAGMOM 元素磁矩参数
 
 
 ---
 
-#### MPStaticSet
+
+MPStaticSet 有设置 EDIFF 10-4
+
+没有 MPStaticSet.yaml
+
+reciprocal_density=100
+
 
 基于之前的 VASP 计算目录中生成静态计算输入文件
 ```python
@@ -839,11 +625,30 @@ WIP…
 
 WIP…
 
+```python
+ionic_steps
+
+# 每个 ionic_step 所含的数据 dict key
+dict_keys(
+    [
+        "e_fr_energy",
+        "e_wo_entrp",
+        "e_0_energy",
+        "forces",
+        "stress",
+        "electronic_steps",
+        "structure",
+    ]
+)
+```
+
 
 
 ---
 
 ### pymatgen.analysis
+
+#### structure_matcher
 
 结构相似度
 ```python
@@ -860,12 +665,9 @@ sm.fit(structure1, structure2)
 类：`BirchMurnaghan`、`Birch`、`Murnaghan`、`PourierTarantola`、`Vinet` 等
 
 
-示例：
 ```python
 from pymatgen.analysis.eos import BirchMurnaghan
 import pandas as pd
-# from plot_params import set_plot_params
-
 
 # fcc Cu的原胞体积和能量数据
 # 体模量B实验值为140GPa
@@ -884,9 +686,7 @@ print(eos.b0_GPa)
 print(eos.v0)
 print(eos.results)
 
-set_plot_params()
 eos.plot()
-
 ```
 
 
@@ -917,6 +717,23 @@ from pymatgen.analysis.interfaces.zsl import ZSLGenerator
 
 
 >[Working with Surfaces and Interfaces - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/03_heterointerfaces/Main%20Lesson/)
+
+
+---
+
+#### elasticity
+
+```python
+
+```
+
+
+---
+
+#### electronic_structure
+
+pymatgen 电子结构相关分析很多都是建立在 vasprun.xml 文件中提取数据之上的（与 vaspkit 有不同）
+
 
 ---
 
@@ -954,6 +771,30 @@ ax = phasediagram.get_plot(
 
 ax.figure.savefig("XXX.png")
 ```
+
+
+---
+
+#### diffraction
+
+XRD 绘制：
+
+- [Pymatgen XRD Plot - Stack Overflow](https://stackoverflow.com/questions/53439514/pymatgen-xrd-plot)
+- [How to get the hkl or hkil indices from calculated xrd pattern - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-to-get-the-hkl-or-hkil-indices-from-calculated-xrd-pattern/45920)
+
+```python
+from pymatgen.analysis.diffraction.xrd import XRDCalculator
+
+c = XRDCalculator()
+
+c.get_plot(structure)
+
+# 获取衍射花样
+c.get_pattern(structure)
+c.get_pattern(structure).hkls
+c.get_pattern(structure).d_hkls
+```
+
 
 
 ---
@@ -1007,17 +848,29 @@ WIP…
 
 - 调用 MP API 获取 MP 数据
 - pymatgen 新 API：[Materials Project - API](https://materialsproject.org/api)、[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
+
 - 安装
 
 ```bash
-pip install mp_api
+pip install -U mp_api
 ```
 
 - 使用
 
 ```python
-from pymatgen.ext.matproj import MPRester  # old
-from mp_api.client import MPRester         # new
+# 新 API
+from mp_api.client import MPRester
+
+with MPRester("api-key") as mpr:
+    ...
+
+# 查看可获取内容的字段，这些字段可用做筛选 query data 的参数
+mpr.summary.available_fields
+```
+
+```python
+# 旧 API
+from pymatgen.ext.matproj import MPRester
 
 # 从 MP 获取结构
 with MPRester("api-key") as mpr:
@@ -1026,11 +879,12 @@ with MPRester("api-key") as mpr:
 
 使用旧 API 出现的 warning
 ```bash
-/home/yangsl/src/miniconda3/envs/atomate_env/lib/python3.11/site-packages/pymatgen/ext/matproj_legacy.py:166: UserWarning: You are using the legacy MPRester. This version of the MPRester will no longer be updated. To access the latest data with the new MPRester, obtain a new API key from https://materialsproject.org/api and consult the docs at https://docs.materialsproject.org/ for more information.
+***/lib/python3.11/site-packages/pymatgen/ext/matproj_legacy.py:166: UserWarning: You are using the legacy MPRester. This version of the MPRester will no longer be updated. To access the latest data with the new MPRester, obtain a new API key from https://materialsproject.org/api and consult the docs at https://docs.materialsproject.org/ for more information.
   warnings.warn(
 ```
 
 
+>[利用Materials Project的API下载结构文件](https://zhuanlan.zhihu.com/p/618452536)
 
 模块具体用法
 
@@ -1040,30 +894,3 @@ with MPRester("api-key") as mpr:
 `get_gb_data()`：获取晶界数据
 
 - [ ] 如何通过 API 获得 equation of state 和晶界能
-
----
-
-```python
-# 待了解
-get_wigner_seitz_cell()
-
-read_neb()
-
-MITNEBSet class
-```
-
-
-复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
-
-
-
-解析 VASP 计算目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
-
-```python
-from atomate.vasp.drones import VaspDrone
-
-drone = VaspDrone()
-task_doc = drone.assimilate(path="./example_VASP_Al16Cr10")
-
-print(task_doc.keys())
-```

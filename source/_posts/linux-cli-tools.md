@@ -184,6 +184,26 @@ zsh-completions
 ```
 
 
+```bash
+# bash 插件
+bash-git-prompt  # 效果还不错
+bash-language-server  # 有 Bash IDE 的 VSCode 插件
+bash-completion
+bash-snippets  # 有 cheat 等可执行命令
+
+# zsh 插件
+zsh-fast-syntax-highlighting
+zsh-you-should-use
+zsh-vi-mode  # Crtl + [ 进入 Normal mode
+zsh-lovers
+zsh-git-prompt
+```
+
+>[GitHub - magicmonty/bash-git-prompt: An informative and fancy bash prompt for Git users](https://github.com/magicmonty/bash-git-prompt)
+
+zsh tips tricks examples: [ZSH-LOVERS(1)](https://grml.org/zsh/zsh-lovers.html)
+
+
 ---
 
 #### Windows 端安装配置 zsh
@@ -258,13 +278,12 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 ### 其他命令行工具
 
->ripgrep、lsd、sd、bat、git-delta、gitui 等均可通过 cargo 安装
+>ripgrep、lsd、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
 
 - 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
 - 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
-	- 过滤搜索：`-g`
 - 替代 `sed`：[sd](https://github.com/chmln/sd)
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)
@@ -284,6 +303,13 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
 - neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
 - 其他小工具： cowsay、figlet、sl、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix、asciiquarium
+
+
+```bash
+# -g 过滤搜索
+rg 'content' -g '!docs/'  # 排除
+rg 'content' -g '*.py'    # 包含
+```
 
 
 fzf 进阶用法

@@ -25,6 +25,7 @@ Typst 是一门用于文档排版的标记语言。
 
 Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建简单，详细使用体验，参见：[Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
 
+目前的大语言模型都没有学习 Typst 内容
 
 ```rust
 // 页脚设置
@@ -40,6 +41,8 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
   }
 )
 ```
+
+
 
 ---
 
@@ -58,6 +61,8 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 >[LaTeX 用户指南 – Typst 中文文档](https://typst-doc-cn.github.io/docs/guides/guide-for-latex-users/)
 
 >[Typst 中文社区](https://typst.cn/#/)
+
+Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://github.com/typst/typst/discussions)
 
 
 
@@ -252,7 +257,7 @@ Typst 为常用文档元素内置了语法标记，大多只是对应函数的�
 
 ---
 
-- 字体
+### 字体
 
 ```rust
 // reference: https://github.com/lucifer1004/pkuthss-typst/blob/main/template.typ
@@ -310,6 +315,10 @@ Word 中的字符度量单位：1 磅值 = 1/72 in = 1bp = 1.00375 pt
 
 >[浅谈LaTeX与Word度量单位对应关系\_letex和word页边距转换-CSDN博客](https://blog.csdn.net/Null_0_lluN/article/details/107097236)
 
+
+smartquote（智能引号）：根据文本语言（英、德、法语等）自动选择适当的开闭引号形式
+
+smallcaps(small capitals)：小型大写字母的字体格式，小写字母以小号的大写字母形式显示，但与真正的大写字母相比，它们的尺寸稍微小一些；LaTeX 对应命令为 `\textsc{}`
 
 
 ---
@@ -541,6 +550,14 @@ Show 规则用于全局替换
 - 在 Typst 中使用 LaTeX 公式：MiTeX
 - 中文伪粗体、伪斜体：cuti
 - presentation 制作：[touying](https://github.com/touying-typ/touying)、[polylux](https://github.com/andreasKroepelin/polylux)
+- 升级 Typst package：[typst-upgrade](https://github.com/Coekjan/typst-upgrade)
+
+```bash
+cargo install typst-upgrade  # 安装
+
+typst-upgrade .              # 升级
+typst-upgrade -d .           # dry run
+```
 
 
 ---
