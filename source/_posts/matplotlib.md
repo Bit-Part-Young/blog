@@ -99,7 +99,7 @@ plt.style.use()
 
 ### 基本
 
-- 函数式绘图：调用 `matplotlib.pyplot` 中的函数来创建图形，如 `plot()` 等；绘制子图较麻烦
+- 函数式绘图（隐式）：调用 `matplotlib.pyplot` 中的函数来创建图形，如 `plot()` 等；绘制子图较麻烦
 
 ```python
 import matplotlib.pyplot as plt
@@ -121,7 +121,7 @@ plt.show()
 
 ---
 
-- 对象式绘图：通过显式创建 Figure 和 Axes 对象来创建绘图区域，然后在其上调用相应的方法绘制各种图形元素；绘制子图方便
+- 对象式绘图（显式）：通过显式创建 Figure 和 Axes 对象来创建绘图区域，然后在其上调用相应的方法绘制各种图形元素；绘制子图方便
 
 ```python
 import matplotlib.pyplot as plt

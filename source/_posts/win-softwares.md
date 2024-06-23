@@ -19,6 +19,11 @@ password:
 
 # Windows 常用软件
 
+[Windows实用软件推荐](https://blog.wfso.cn/archives/115/)
+
+
+---
+
 ## 自带邮件关联教育邮箱
 
 - 网页版交大邮箱界面不是很美观，可使用 Windows 邮件关联教育邮箱。

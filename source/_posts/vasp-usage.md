@@ -190,7 +190,7 @@ gnuplot -e "set terminal jpeg; set key left; set xlabel 'r (Ang)'; set ylabel 'P
 
 构型文件，需至少包含体系的几何信息（晶格常数、基矢、元素种类及其数目）和原子位置（以及分子动力学计算时原子的初始速度（不常用））；**生成 POSCAR 文件是 VASP 计算的起点**；可以手动生成，也可以从一些在线晶体学数据库（Material Project、aflow、icsd 等）中获取。
 
-POSCAR 第二行值如果为负数，表示体积
+第二行值如果为负数，表示体积
 
 例子：
 ```text
@@ -209,7 +209,7 @@ Direct
 
 - 第 1 行：注释行（Comment line）；可以对体系进行描述，也可以空着
 - 第 2-5 行：缩放因子和基矢（Scaling factor and lattice）；只要与体系的晶格常数符合即可
-- 第 6-7 行：元素种类（optional，这行可以没有）及数目（Ion species and numbers）；**元素种类的顺序需与 POTCAR 文件中的一致**；
+- 第 6-7 行：元素种类（optional，这行可以没有，VASP4 版本没有）及对应数目（Ion species and numbers）；**元素种类的顺序需与 POTCAR 文件中的一致**；
 - 第 8-N 行：原子坐标信息（Ion positions）；Direct（首字母大小写以及只写 D 均可）表示分数坐标，Cartesian（同上）表示笛卡尔坐标（如果第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定）
 - 原子坐标信息之后是原子的初始速度信息
 
@@ -665,7 +665,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 决定 VASP 处理对称性的方式
 
 
-- 1：若 VASP 用 USPPs 运行；3：如果 LHFCALC=.TRUE.；2：其他情况
+- 默认值：1：若 VASP 用 USPPs 运行；3：若 `LHFCALC=.TRUE.`；2：其他情况
 - 1 | 2 | 3：对称性打开；-1 | 0：对称性关闭；
 - 与 ISYM=1 相比，ISYM=2 采用了更高效、更节省内存的电荷密度对称化方法。这尤其降低了并行版本的内存需求。
 - 对于 ISYM=3，VASP 并不直接对称电荷密度。相反，电荷密度是通过对布里渊区不可还原部分 k 点处的轨道进行相关对称运算来构建的。当 LHFCALC=.TRUE 时使用这种对称方法。
@@ -709,7 +709,11 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### NWRITE
 
-决定往 OUTCAR 文件中写入多少内容；默认值为 2；4 只用于 debugging。
+决定往 OUTCAR 文件中写入多少内容
+
+- 可选值：0-4
+- 默认值：2；3 写入的内容最详细；4 只用于 debugging
+- 长时间的 MD 运行，建议 NWRITE 设置为 0 或 1；短时间运行设置为 2
 
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307162218175.png)

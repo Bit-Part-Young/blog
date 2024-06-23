@@ -406,12 +406,11 @@ WIP…
 
 - New connection - Advanced Connection Options - General: Connection String Scheme: mongodb: 填写 Host - Authentication: Authentication Method: Username/Password: 填写 Username、Password 和 Database，Authentication Mechanism 选择 Default
 
+- 修改连接的 connection 名称：“New Connection” 有编辑选项
 
 MONGOSH 使用
 
 ---
-
-
 
 
 
@@ -422,8 +421,6 @@ results = atomate_db.collection.find(query, projection)
 # 获取满足 query projection 条件的一条 document
 result = atomate_db.collection.find_one(query, projection)
 ```
-
-
 
 
 
@@ -557,7 +554,6 @@ dict_keys(
 ```
 
 
-
 ```json
 {
   // 课题组服务器只能填写纯数字的 host port 形式
@@ -590,3 +586,60 @@ Connection failed: 202.121.180.16:27017: [Errno 111] Connection refused, Timeout
 ```
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401091527481.png)
+
+
+---
+
+mongodb 中的每条数据称为 document，具体数据值通过字段查询（即 dict 中的 key 和 value），icet training 结构的 document 的所有字段
+
+```python
+dict_keys(['_id', 'dir_name', 'analysis', 'calcs_reversed', 'chemsys', 'completed_at', 'composition_reduced', 'composition_unit_cell', 'custodian', 'elements', 'formula_anonymous', 'formula_pretty', 'formula_reduced_abc', 'input', 'last_updated', 'nelements', 'nsites', 'orig_inputs', 'output', 'run_stats', 'schema', 'state', 'tags', 'task_id', 'task_label', 'transformations'])
+```
+
+`'input'` 的子字段：
+
+```python
+dict_keys(['structure', 'is_hubbard', 'hubbards', 'is_lasph', 'potcar_spec', 'xc_override', 'pseudo_potential', 'parameters', 'incar'])
+```
+
+`'orig_inputs'` 的子字段：
+
+```python
+dict_keys(['kpoints', 'poscar', 'incar', 'potcar'])
+```
+
+icet training 结构中的一些具体数据获取 代码写法：
+
+```python
+# 计算耗时
+result['run_stats']['overall']['Elapsed time (sec)']
+result['run_stats']['overall']['Total CPU time used (sec)']
+
+# 能量
+result['output']['energy']
+result['output']['energy_per_atom']
+
+# 每个firework计算过程中产生的所有文件所在的路径；需通过简单的正则表达式处理
+dir_name = result['dir_name'] 
+file_dir_path = (re.search('/dssg.*', dir_name)).group()
+
+# add_tags中添加的一些tag
+result['tags']['structure_id']
+result['tags']['structure_composition']
+result['tags']['structure_tag']
+
+# 原子数
+result['nsites']
+# 元素数
+result['nelements']
+# 构型体积
+volume = result['output']['structure']['lattice']['volume'])
+# 平均原子体积
+round(volume / result['nsites'], 15)
+# CONTCAR输出结构
+result['output']['structure']
+```
+
+在 mongodb compass 软件中通过字段筛选 document，子字段需添加 `.`，写法形式
+
+---

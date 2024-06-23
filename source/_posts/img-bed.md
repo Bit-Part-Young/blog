@@ -29,7 +29,7 @@ password:
 
 ## 搭建方式
 
-### Github + PicGo
+### GitHub + PicGo
 
 >[使用Github+picGo搭建图床，保姆级教程来了 - 知乎](https://zhuanlan.zhihu.com/p/489236769)
 

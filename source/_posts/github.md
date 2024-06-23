@@ -2,14 +2,14 @@
 title: GitHub 使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
 summary: GitHub 使用
 description: GitHub 使用
 tags:
-  - Github
+  - GitHub
 categories:
   - 科研工具
 date: 2023-10-30 09:00:00
@@ -170,23 +170,27 @@ Github Pages
 
 ---
 
-### 自定义 profile
+### 自定义 GitHub profile
 
->[GitHub - jstrieb/github-stats](https://github.com/jstrieb/github-stats)
+创建名为 username 的 repo，在 README.md 文档中添加内容即可形成 profile，可以添加 GitHub 统计信息以丰富并自定义 profile。
 
->[GitHub - anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
+可获取动态生成的 GitHub 统计信息的 repo：
 
->[GitHub - lowlighter/metrics](https://github.com/lowlighter/metrics)
+- [GitHub - anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
+- [GitHub - lowlighter/metrics](https://github.com/lowlighter/metrics)
+- [GitHub - jstrieb/github-stats](https://github.com/jstrieb/github-stats)
+
+使用 github-readme-stats repo 部署的 vercel app API 会有次数限制，且只能访问公开 repo 的相关数据，导致统计信息不全。因此更建议 fork 该 repo，部署自己的 vercel app API（可以访问私有 repo 数据，参见 [deploy-on-your-own](https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own)；添加 PAT_1 环境变量时，注意需点击 Save 保存）
+
+github-stats repo：使用 Github Acitons 生成 GitHub 统计信息卡片（生成速度较慢）；克隆该 repo，删除 `.git`，创建自己的 repo（非 fork），根据需要添加 EXCLUDED、EXCLUDED_LANGS 和 EXCLUDE_FORKED_REPOS secrets（创建这些 secrets 的方法：进入该 repo 的设置页面中的 “Secrets” 部分，创建新 secret）
+
+profile 参考：
+
+- [GitHub - TonyCrane/TonyCrane](https://github.com/TonyCrane/TonyCrane)
+- [sudoskys (Jasmine) · GitHub](https://github.com/sudoskys)
 
 
-优秀 github profile 参考
->[GitHub - TonyCrane/TonyCrane](https://github.com/TonyCrane/TonyCrane)
-
->[sudoskys (Jasmine) · GitHub](https://github.com/sudoskys)
-
-
-标准 readme 文件
->[GitHub - RichardLitt/standard-readme: A standard style for README files](https://github.com/RichardLitt/standard-readme)
+标准 README.md 文件写法：[GitHub - RichardLitt/standard-readme: A standard style for README files](https://github.com/RichardLitt/standard-readme)
 
 
 ---
@@ -368,6 +372,12 @@ GitHub Actions 可以有多个 `.yml` 文件
 
 GitHub 自动发布 release
 >[release.yml](https://github.com/frostming/marko/blob/master/.github/workflows/release.yml)
+
+
+以网页文件夹的形式分享文件，需 repo 状态为 public
+[GitHub - linyuxuanlin/File-host: 资源共享仓库](https://github.com/linyuxuanlin/File-host)
+
+网页文件夹（需在每个文件夹目录下创建 index.html 文件）：[GitHub - pranabdas/drive](https://github.com/pranabdas/drive)
 
 
 ---

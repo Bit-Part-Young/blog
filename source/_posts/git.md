@@ -49,6 +49,32 @@ git rebase --root
 git blame [options] <file>
 ```
 
+拷贝自水源
+```bash
+# 忽略本地文件系统的优化
+git clone --no-local
+
+# 把所有已跟踪的文件的修改添加到暂存区，无需 git add 命令
+# 不包括新文件或被删除的文件
+git commit -am 'message'
+
+# 修改最后一次提交，不改变提交信息
+git commit --amend --no-edit
+
+# 拉取时删除在远程仓库中已被删除的远程跟踪分支的引用
+git pull --prune
+
+# 合并两个没有共同历史的 Git 分支
+git merge --allow-unrelated-history
+
+# 所有的 reflog 记录将被标记为过期，并且在下一次垃圾回收时被清理
+# reflog 引用日志
+git reflog expire --expire=now --all
+
+# 遍历所有提交，将每个提交的提交者日期修改为作者日期
+# git filter-repo 需单独安装
+git filter-repo -f --commit-callback 'commit.committer_date = commit.author_date'
+```
 
 
 ---
@@ -738,6 +764,12 @@ git pull --all  # pull 远程所有内容包括标签
 git log           # 查看提交日志
 git reflog        # 查看所有分支的所有操作记录
 
+# 较为简洁美观的 git log 输出样式
+git log --oneline --graph --all
+git log --oneline --graph --stat  
+# 源于 zsh git alias
+git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
+
 -p                # --patch；显示每次提交引入的代码改动
 --oneline         # 一行显示；commit id 8 个字符
 --pretty=oneline  # 一行显示；完整 commit id
@@ -745,8 +777,6 @@ git reflog        # 查看所有分支的所有操作记录
 --pretty=%H       # 只显示 commit hash
 -n N / HEAD~N     # 显示最新的前 N 条提交记录
 --grep=pattern    # 查看给定 pattern 的提交记录
---oneline --graph --stat  # 较为简洁美观的 git log 输出样式
---graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat  # 参考 zsh git alias
 ```
 
 

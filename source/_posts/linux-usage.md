@@ -198,7 +198,7 @@ export PATH=$HOME/bin:$PATH
 - `pwd` - 显示当前路径
 - `cd` - 切换目录
 - `ls` - 列出目录内容；`-a` 与 `-A` 的区别，后者表示 almost all，不列出 `.` 和 `..`
-- `cat` - 打印文件内容
+- `cat` - 显示文件内容
 - `head` & `tail` - 打印文件首尾内容，默认 10 行
 - `less` - 逐页显示文件内容
 - `touch` - 创建文件/修改文件时间属性
@@ -449,73 +449,75 @@ fes=$(find . -maxdepth 2 -type f -name "*_*.py"); for f in ${fes}; do echo ${f//
 
 #### sed
 
+文本处理工具
+
 ```bash
--i             # 会修改文件内容
+# 命令格式
+sed [options] 'command' file(s)
+
+# 常用 options
+-i             # 直接修改文件内容，而不是输出到标准输出
+-n             # 只处理特定行，常与 p 命令一起使用
+-e             # 多个命令
+
+# 常用命令
+s              # 替换指定字符串
+d              # 删除行
+p              # 打印行
+a              # 在行后添加文本
+i              # 在行前插入文本
+c              # 替换行
 ```
+
+
+示例：
+
+```bash
+# 替换指定字符串
+sed 's/old/new/' file  # 只替换每行第一个匹配的
+sed 's/old/new/g' file  # 标志 g 全局替换
+sed 's/old/new/Ng' file  # 从第 N 处匹配开始替换
+
+# 定界符
+# / 在 sed 中作为定界符使用，可使用其他任意的定界符
+sed 's:old:new:g' file
+sed 's|old|new|g' file
+
+# 在行后添加文本
+sed '1a\content' file  # 在第 1 行添加内容
+sed -i '$a\content' file  # 在最后一行添加内容
+
+# 在行前插入文本
+sed '1i\content' file  # 在第 1 行前插入内容
+sed '/pattern/i\content' file  # 在匹配内容所在行前插入内容
+
+# 删除行
+sed '/cat/d' file  # 删除含 cat 的行
+sed '$d' file  # 删除最后一行
+sed 'N,Md' file  # 删除第 N-M 行
+sed '/^$/d' file  # 删除空白行
+
+# 打印行
+sed -n 4p file  # 打印第 4 行
+sed -n 4,8p file  # 打印第 4-8 行
+
+# 替换行
+sed '1c\content' file  # 替换第 1 行内容
+
+# 组合多个命令
+sed -e '1d' -e '/pattern/d' file  # 删除多行
+```
+
 
 sed 引入变量：[sed引入变量的几种方法\_sed传入变量-CSDN博客](https://blog.csdn.net/qq_35445255/article/details/113750720)
 
 ```bash
 # 方法 1
-sed -i "2s/subs/$i/" file
+sed "2s/subs/$i/" file
 
 #  方式 2
-sed -i '2s/subs/'"$i"'/' file
+sed '2s/subs/'"$i"'/' file
 ```
-
-
-```bash
-sed [-nefr] [动作]
-
-动作  [n1[,n2]]function
-function
-a  # 新增
-c  # 取代
-d  # 删除
-i  # 插入
-p  # 打印
-s  # 取代
-
-
-# 将INCAR文件中第3行的0.01字串替换为0.02，只会输出替换后的结果，不会更新INCAR文件
-sed '3s/0.01/0.02/g' INCAR 
-
-# 会更新INCAR文件（危险！注意备份）
-sed -i '3s/0.01/0.02/g' INCAR 
-
-# 指定文件中的行数，输出其内容
-sed -n '1,4p' file
-
-# 在文件最后一行添加内容
-sed -i '$aENCUT = 400' INCAR  # 最后一行下方添加 ENCUT = 400
-
-# 每行后面都添加内容
-sed -i 'aENCUT = 400' INCAR   # 每一行下方添加 ENCUT = 400
-
-sed 's/^1/Fe/g' test.xyz > out.xyz
-# ^1指以1开头的字符
-
-
-# 删除
-# 删除第N~M行
-sed -i 'N,Md' filename
-# 删除最后一行
-sed -i '$d' filename
-
-# 插入行
-# 在第二行后加上 ENCUT = 400这一行
-sed -i '2a ENCUT = 400' INCAR
-# 在第二行前加上 ENCUT = 400这一行
-sed -i '2i ENCUT = 400' INCAR
-# 插入多行，需要用 \ 
-sed -i '2a ENCUT = 400 \
-> NSW = 0' INCAR
-
-# 显示第几行
-sed -n 4,8p file  # 打印file中的4-8行
-sed -n 4p file  # 打印file中的第4行
-```
-
 
 
 ---
@@ -525,6 +527,7 @@ sed -n 4p file  # 打印file中的第4行
 文本搜索工具
 
 ```bash
+# 常用参数
 -i             # 忽略字符大小写
 -n             # 显示行号
 -c             # 统计匹配的行数
@@ -542,6 +545,7 @@ sed -n 4p file  # 打印file中的第4行
 -H             # 在匹配内容前不标示文件名
 -l             # 列出匹配内容前所属文件名
 -L             # 列出无匹配内容的文件名
+-m N           # 找到 N 行结果后停止查找，用来限制匹配行数
 ```
 
 
@@ -549,7 +553,8 @@ sed -n 4p file  # 打印file中的第4行
 
 #### awk
 
-- 文本处理命令行工具
+文本处理工具
+
 - 将输入数据视为记录，每个记录又被进一步划分为字段
 - 默认分隔符为空格（可以为多个空格），指定分隔符（`-F:`）
 - awk 程序由模式和动作组成（可以没有模式）
@@ -621,6 +626,18 @@ awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # �
 
 #### 其他命令
 
+- cat
+
+```bash
+cat -          # 读取标准输入
+# 将标准输入的内容和文件内容一并显示
+echo '#' | cat - test.log
+
+-n             # 附加行号
+-b             # 给非空行附加行号
+-s             # 压缩连续的空行到一行
+```
+
 - du：查看文件/目录大小
 
 ```bash
@@ -630,7 +647,8 @@ du -sh file/folder | sort -h  # 按大小排序
 
 ---
 
-- dirs：显示目录堆栈，按照最近访问的目录排序（ohmyzsh 有关 dirs 的 alias 是 `d`）；常用参数：
+- dirs：显示目录堆栈，按照最近访问的目录排序（ohmyzsh 有关 dirs 的 alias 是 `d`）
+常用参数：
 
 ```bash
 -l             # 展开 ~

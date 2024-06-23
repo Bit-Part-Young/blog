@@ -1456,6 +1456,7 @@ echo -e "102\n2\n0.04\n" | vaspkit
 
 ```bash
 conda install -c conda-forge phonopy
+pip install -U phonopy
 ```
 
 

@@ -100,6 +100,7 @@ pip install .
 ```
 
 **注**：
+
 - 与官方的编译教程相比，主要的区别为 CMAKE_CXX_COMPILER 选择所在 Linux 系统的默认加载的 g++，非 conda 版本的 g++（后者编译时在自己的机器上出错）。
 - 安装出错后，重新安装时，建议删除 sqsgenerator 目录下的新增文件 `sqsgenerator/core/include/version.hpp`。
 - python 版本也可以适当降低，如 3.9。
@@ -175,7 +176,7 @@ yaml 文件内容相关参数：
 
 ### sqs 生成耗费时间估计
 
-```
+```text
 sqsgen compute estimated-time sqs.yaml
 ```
 

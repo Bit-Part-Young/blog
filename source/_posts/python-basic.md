@@ -660,16 +660,31 @@ print(add(-5, 6, abs))
 ```
 
 
+函数中的可变参数和字典参数（参数传入机制），可增加代码的灵活性
+
+```python
+def func(*args):
+    pass
+
+def func(**kwargs):
+    pass
+
+# 以下两个函数参数传入效果等效
+func(*[1, 2, 3])  # 传入可迭代对象  
+func(1, 2, 3)  # 传入多个参数
+
+func(**{'dog': 1, 'cat': 2, 'fish': 3})  # 传入可迭代对象  
+func(dog=1, cat=2, fish=3)  # 传入多个参数
+```
+
 
 
 ---
 
 ### 类
 
-`dir`：查看类的（实例）所有的属性和方法；函数的所有参数
-```python
-dir(struc)
-```
+`dir()`：查看类的（实例）所有的属性和方法；函数的所有参数
+
 
 - 类可以看成包含一些**属性**和**方法**的框架
 - 根据类来创建对象 -> 实例化
@@ -682,19 +697,27 @@ dir(struc)
 ```python
 class ClassName():
     a = 1
+
     def __init__(self, arg1, arg2):
         self.arg1 = arg1
         self.arg2 = arg2
+
     def method(self):
         print(self.arg1, self.arg2, self.a)
+
+    @property
+
+    @staticmethod
+
+    @classmethod
 
 obj = ClassName(2, 3)
 obj.method() # 2 3 1
 print(obj.a, obj.arg1) # 1 2
 
-- 直接写在类中的是属性，也可以通过为 self.\<name> 赋值的形式创建属性
-- 用类似函数调用的形式实例化类，参数为 **init** 方法的参数
-- 直接通过 .\<method> .\<attribute> 的形式调用方法 / 获取属性
+# 直接写在类中的是属性，也可以通过为 self.\<name> 赋值的形式创建属性
+# 用类似函数调用的形式实例化类，参数为 **init** 方法的参数
+# 直接通过 .\<method> .\<attribute> 的形式调用方法 / 获取属性
 ```
 
 
@@ -936,7 +959,7 @@ python 自带了很多实用的模块（标准库）
 
 ---
 
-文档字符串
+文档字符串 docstring
 
 - 模块开头的三引号字符串
 - 类、函数定义下面的三引号字符串
@@ -972,35 +995,22 @@ class A():
 
 >[python环境下运行bash命令 | Jun's Blog](https://www.jun997.xyz/2022/03/19/e62b13aed44c.html)
 
-- 方式 1（使用简单）
 
 ```python
 import subprocess
 
-subprocess.run("tar -xzvf *.tar.gz > /dev/null 2>&1", shell=True)
-```
+subprocess.run(
+    "command",
+    # ["tar", "-xzvf", "*.tar.gz"]  # 将命令拆分为 list
+    shell=True,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.STDOUT,
+    text=True,
+    capture_output=True,
+)
 
->`sed` 命令用这种方式好像有些问题
-
----
-
-- 方式 2
-
-```python
-import subprocess
-
-shell_cmd = f"python copy_data.py 0 100"
-subprocess.run(["sed", "-i", f"s/^python.*/{shell_cmd}/g", "run_python.slurm"])
-subprocess.run(["sbatch", "run_python.slurm"])
-```
-
-注：通配符、重定向和错误处理在 `subprocess.run` 中不能直接使用
-
-```bash
-# ×
-subprocess.run(["tar", "-xzvf", "**.tar.gz", ">", "/dev/null", "2>&1"])
-# √
-subprocess.run(["tar", "-xzvf", "txt.tar.gz"],stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+# 输出命令执行结果
+result.stdout
 ```
 
 
@@ -1014,11 +1024,18 @@ subprocess.run(["tar", "-xzvf", "txt.tar.gz"],stdout=subprocess.DEVNULL, stderr=
 ```python
 import argparse
 
-parser = argparse.ArgumentParser(description="POSCAR file coordinates format conversion calling pymatgen.", epilog="Author: YSL.")
-parser.add_argument("-f", "--file", type=str, default="POSCAR", help="POSCAR file.")
+parser = argparse.ArgumentParser(
+    description="XXX",
+    epilog="XXX",
+)
+parser.add_argument(
+    "-f",
+    "--file",
+    type=str,
+    default=...,
+    help=...,
+)
 args = parser.parse_args()
-
-write_poscar(poscar_file=args.file)
 ```
 
 
@@ -1089,32 +1106,23 @@ if __name__ == "__main__":
 import os
 
 # 获取 用户根目录路径
-home_dir = os.path.expanduser("~")
-home_path = os.getenv("HOME")
+os.path.expanduser("~")
+os.getenv("HOME")
 
-# 若目录/文件不存在则创建
-os.path.exists(path) or os.mkdirs(path)
+os.path.exists()      # 检查路径是否存在
+os.mkdirs()           # 创建目录（单层级）
+os.makedirs()         # 创建多层级目录
+exist_ok=True         # 目录已存在时，命令不会报错
 
-# 获取文件路径的最后一个文件名
-os.path.basename(path)
+os.path.basename()    # 获取文件路径的最后一个文件名
+os.path.dirname()     # 获取路径的父目录名称
+os.environ["PATH"]    # 获取环境变量
+os.path.join()        # 合并路径
 
-# 获取路径的父目录名称
-os.path.dirname(path)
-
-# 获取环境变量的路径
-variable_path = os.environ["PATH"]
-
-# 合并路径
-os.path.join()
-
-# 创建多层级目录
-os.makedirs(exist_ok=True)
-
-os.chdir()
-
+os.listdir()          # 列出当前路径下的目录/文件
+os.chdir()            # 切换路径
 os.walk()
-
-os.getcwd()
+os.getcwd()           # 当前路径
 ```
 
 
@@ -1205,7 +1213,7 @@ comm.isend(data, dest=1, tag=11)
 
 ## 类型提示
 
-类型提示（type hints），提高代码的质量和可维护性
+类型提示（type hints），提高代码质量和可维护性
 
 - 基本 - `int`, `float`, `bool`, `str`
 - 容器 - `List`, `Tuple`, `Dict`, `Set`
@@ -1221,11 +1229,13 @@ comm.isend(data, dest=1, tag=11)
 from typing import List, Tuple, Dict, Set, Union, Literal
 import numpy as np
 
-input_array: np.ndarray
+arr: np.ndarray  # 无法指定其维数
 
 num: int = 5
 
 numbers: List[int] = [1, 2, 3]
+
+Dict[str, float]
 
 name: Optional[str] = None
 
@@ -1235,8 +1245,6 @@ def add_num(input: Union[int, str]):
 
 mode: Literal["r", "w", "x"] = "r"
 ```
-
->用 `np.ndarray` 做类型标注（无法指定其维数）
 
 
 ---
@@ -1275,13 +1283,10 @@ typeguard: python 类型检查
 
 ---
 
-## 代码风格格式化
+## 代码格式化
 
->[GitHub - PyCQA/isort: A Python utility / library to sort imports.](https://github.com/PyCQA/isort)
->
->[GitHub - psf/black: The uncompromising Python code formatter](https://github.com/psf/black)
->
->[GitHub - astral-sh/ruff: An extremely fast Python linter and code formatter, written in Rust.](https://github.com/astral-sh/ruff)
+- [isort:](https://github.com/PyCQA/isort): 给 import 进行排序
+- [black](https://github.com/psf/black)、[ruff](https://github.com/astral-sh/ruff)
 
 
 安装

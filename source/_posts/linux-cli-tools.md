@@ -290,6 +290,7 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
 - 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
 - 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
+- 文本编辑器：[helix](https://github.com/helix-editor/helix)
 - 终端 markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
 - git 相关：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)
 - 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
@@ -306,9 +307,14 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 
 ```bash
+# rg 使用
 # -g 过滤搜索
 rg 'content' -g '!docs/'  # 排除
 rg 'content' -g '*.py'    # 包含
+
+# eg 安装
+pip install -U eg
+brew install eg-examples
 ```
 
 

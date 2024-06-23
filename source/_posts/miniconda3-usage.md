@@ -381,7 +381,7 @@ deactivate  # 退出
 - 安装
 
 ```bash
-# Linux macOS
+# Linux macOS 安装/更新
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 

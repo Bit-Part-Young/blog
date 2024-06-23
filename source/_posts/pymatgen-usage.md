@@ -39,7 +39,87 @@ password:
 	- 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
 	- 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
 
+workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面
+workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
+
+MP 分子 DFT code 用的是 Q-Chem
+
+```python
+from monty.serialization import loadfn, dumpfn
+
+# 对 json/yaml/msgpack 等文件格式进行 serialization
+```
+
+
+```python
+import pymatgen.core
+import sys
+
+# 查看 pymatgen 版本
+pymatgen.core.__version__
+# 查看 pymatgen 安装路径
+pymatgen.core.__file__
+
+sys.version  # 查看 python 版本
+```
+
+Molecule 类的输入参数：`species` 和 `coords`，关键字参数有：`charge`、 `spin_multiplicity`、 `validate_proximity` 和 `site_properties`
+
+Structure 类还需指定 `lattice` 输入参数
+
+Molecule 类的 `coords` 参数值需是 Cartesian 坐标形式，Structure 类的可以是 Cartesian 和分数两种坐标形式
+
+```python
+# Molecule 本质上是 Site objects 的列表
+# Structure 本质上是 PeriodicSites objects 的列表
+# 可以像 list 一样操作 Molecule 和 Structure
+
+# Site object 属性
+coords
+specie
+
+# Element
+average_ionic_radius
+
+# Composition
+alphabetical_formula
+chemical_system
+
+# Structure
+volume
+frac_coords
+cart_coords
+symbol_set
+composition.items()
+lattice
+density
+num_sites
+composition.num_atoms
+center_of_mass  # 质心
+
+get_space_group_info()
+
+bcc_fe = Structure.from_spacegroup(
+    "Im-3m",
+    Lattice.cubic(2.8),
+    ["Fe"],
+    [[0, 0, 0]],
+)
+nacl = Structure.from_spacegroup(
+    "Fm-3m",
+    Lattice.cubic(5.692),
+    ["Na+", "Cl-"],
+    [[0, 0, 0], [0.5, 0.5, 0.5]],
+)
+
+from pymatgen.core.lattice import Lattice
+
+# lattice 构建
+Lattice([[5, 0, 0], [0, 5, 0], [0, 0, 5]])
+Lattice.from_parameters(5, 5, 5, 90, 90, 90)
+Lattice.cubic(5)
+```
 
 
 - [x] pymatgen structure 如何通过 structure 来生成 potcar？
@@ -211,6 +291,8 @@ structure[1] = "Cl", [0.51, 0.51, 0.51]
 structure["Cs"] = "K"
 
 # 生成无序结构
+# 部分占据的无序结构无法保存成 POSCAR
+# 与 SQS 是不同的概念
 structure["K"] = "K0.5Na0.5"
 
 # structure 类似 list，支持大部分的 list 方法
@@ -226,6 +308,7 @@ structure.append("F", [0.9, 0.9, 0.9])
 ```python
 # Make a supercell
 structure.make_supercell([2, 2, 2])
+structure * (2, 2, 2)
 
 # Get a primitive version of the Structure
 structure.get_primitive_structure()
@@ -411,6 +494,8 @@ pymatgen 表面生成无法指定具体的层数
 
 ```python
 from pymatgen.core.composition import Composition
+
+Composition("LiFePO4").as_dict()
 ```
 
 
@@ -419,10 +504,16 @@ from pymatgen.core.composition import Composition
 #### periodic_table
 
 ```python
-# 元素周期表 TUI 绘制
 from pymatgen.core.periodic_table import Element
 
+# 元素周期表 TUI 绘制
 Element.print_periodic_table()
+
+ele = Element("Nb")
+
+# 查看元素价电子排布
+ele.electronic_structure
+ele.is_metal
 ```
 
 
@@ -796,7 +887,6 @@ c.get_pattern(structure).d_hkls
 ```
 
 
-
 ---
 
 ### pymatgen.symmetry.analyzer
@@ -807,19 +897,12 @@ c.get_pattern(structure).d_hkls
 ```python
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
-
-# structure = Structure.from_file("POSCAR_Nb3Si")
-structure = Structure.from_file("POSCAR_Nb5Si3-alpha")
 sga = SpacegroupAnalyzer(structure)
-symmetrized_structure = sga.get_symmetrized_structure()
+
+# symmetrized_structure = sga.get_symmetrized_structure()
+
 symmetry_dataset = sga.get_symmetry_dataset()
-equivalent_atom = symmetry_dataset['equivalent_atoms']
-# [ 0  0  0  0  0  0  0  0  8  8  8  8  8  8  8  8 16 16 16 16 16 16 16 16 24 24 24 24 24 24 24 24] Nb3Si
-# [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 16 16 16 16 20 20 20 20 20 20 20 20 28 28 28 28] alpha-Nb5Si3
-# print(sga)
-# print(symmetrized_structure)
-# print(symmetry_dataset)
-print(equivalent_atom)
+symmetry_dataset['equivalent_atoms']
 ```
 
 
