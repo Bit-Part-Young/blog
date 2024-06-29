@@ -280,7 +280,7 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 >ripgrep、lsd、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
 
-- 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)
+- 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)、[navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
 - 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
@@ -307,6 +307,15 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 
 ```bash
+# 按需添加 cheatsheet git repo 以增加丰富性
+navi repo browse
+```
+
+
+```bash
+# 升级 fzf
+cd ~/.fzf && git pull && ./install
+
 # rg 使用
 # -g 过滤搜索
 rg 'content' -g '!docs/'  # 排除
@@ -319,9 +328,9 @@ brew install eg-examples
 
 
 fzf 进阶用法
->[fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
 
->[Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
+- [fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
+- [Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
 
 ```bash
 # 搜索整个 apt package；回车安装
@@ -356,3 +365,5 @@ sudo apt install fastfetch
 [GitHub - imsnif/bandwhich: Terminal bandwidth utilization tool](https://github.com/imsnif/bandwhich)
 
 [GitHub - context-labs/mactop: mactop - Apple Silicon Monitor Top written in pure Golang! Under 1,000 lines of code.](https://github.com/context-labs/mactop)
+
+安全替代 `rm` 的脚本：[trash.sh](https://github.com/qqAys/trash.sh)

@@ -99,7 +99,7 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401082135895.png)
 
-- GitHub 主页还原至原来的 feed：[Github Old Feed](https://greasyfork.org/zh-CN/scripts/474728)、[old-github-feed](https://github.com/Gerrit0/old-github-feed)
+- GitHub 主页还原至原来的 feed：[Github Old Feed](https://greasyfork.org/zh-CN/scripts/474728)（会无法显示 follow 的用户 fork 的 repo 动态）、[old-github-feed](https://github.com/Gerrit0/old-github-feed)
 - [沉浸式翻译](https://greasyfork.org/zh-CN/scripts/457196)
 - [KeepChatGPT](https://greasyfork.org/zh-CN/scripts/462804-keepchatgpt)：使网页版 ChatGPT 更稳定。
 - [链接助手](https://greasyfork.org/zh-CN/scripts/422773)：文本转链接；百度网盘密码自动填写

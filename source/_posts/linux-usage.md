@@ -624,6 +624,41 @@ awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # �
 
 ---
 
+#### 大括号处理字符串
+
+>[Bash笔记](https://zhuanlan.zhihu.com/p/524196855)
+
+大括号 `{}` 处理字符串：主要利用 Bash 的参数展开（parameter expansion）功能来实现
+
+```bash
+# 基于模式匹配进行字符串剪裁
+var="sample.bk.tar.gz"
+# 常用于删除字符串前缀
+${var#*.}       # 删除字符串开头部分，最短匹配；输出 "bk.tar.gz"
+${var##*.}      # 删除字符串开头部分，最长匹配；输出 "gz"
+# 常用于删除字符串后缀
+${var%.*}       # 删除字符串末尾部分，最短匹配；输出 "sample.bk.tar"
+${var%%.*}      # 删除字符串末尾部分，最长匹配；输出 "sample"
+
+# 按字符位置截取字符串
+${var:N:M}      # 从第 N 个位置开始，截取 M 个字符
+
+# 字符串替换
+${var/a/b}      # 把变量中的第一个 a 替换成 b
+${var//a/b}     # 把变量中的所有 a 替换成 b
+
+# 生成字符串列表
+echo beg{i,a,u}n  # 输出 begin began begun
+echo {0..5}       # 等价于 seq 0 5
+echo {00..8..2}   # 00 02 04 06 08
+
+#复制文件夹中的多个文件到当前路径；可结合通配符使用
+cp /path/{file1,file2,file3,file4} .
+```
+
+
+---
+
 #### 其他命令
 
 - cat

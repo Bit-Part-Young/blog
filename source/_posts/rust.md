@@ -34,6 +34,7 @@ WIP…
 - [Rust 程序设计语言 - Rust 程序设计语言 中文版](https://rustwiki.org/zh-CN/book/)
 - [Introduction - PyO3 user guide](https://pyo3.rs/)
 
+- [GitHub - mainmatter/100-exercises-to-learn-rust: A self-paced course to learn Rust, one exercise at a time.](https://github.com/mainmatter/100-exercises-to-learn-rust)
 
 ---
 

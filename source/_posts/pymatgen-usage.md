@@ -30,8 +30,10 @@ password:
 
 ### 参考资料
 
-- pymatgen 实例代码：[GitHub - materialsvirtuallab/matgenb: Jupyter notebooks demonstrating the utilization of open-source codes for the study of materials science.](https://github.com/materialsvirtuallab/matgenb)
+- pymatgen 实例代码：[GitHub - materialsvirtuallab/matgenb](https://github.com/materialsvirtuallab/matgenb)
 - [Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)（该网址包含了 pymatgen 在材料相关计算中用的具体参数及其说明：如，截断能为 520eV 是由元素周期表所有元素中最大截断能的 1.3 倍得到的）
+
+- [GitHub - computron/pymatgen\_tutorials: Tutorials for using the pymatgen library](https://github.com/computron/pymatgen_tutorials)
 
 - material project workshop:
 	- 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
@@ -43,7 +45,7 @@ workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和�
 workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 
-MP 分子 DFT code 用的是 Q-Chem
+MP 晶体 DFT code 用的是 VASP，分子用的是 Q-Chem
 
 ```python
 from monty.serialization import loadfn, dumpfn
@@ -75,10 +77,6 @@ Molecule 类的 `coords` 参数值需是 Cartesian 坐标形式，Structure 类�
 # Structure 本质上是 PeriodicSites objects 的列表
 # 可以像 list 一样操作 Molecule 和 Structure
 
-# Site object 属性
-coords
-specie
-
 # Element
 average_ionic_radius
 
@@ -86,19 +84,7 @@ average_ionic_radius
 alphabetical_formula
 chemical_system
 
-# Structure
-volume
-frac_coords
-cart_coords
-symbol_set
-composition.items()
-lattice
-density
-num_sites
-composition.num_atoms
-center_of_mass  # 质心
 
-get_space_group_info()
 
 bcc_fe = Structure.from_spacegroup(
     "Im-3m",
@@ -173,18 +159,30 @@ pip install -U git+https://github.com/materialsproject/pymatgen
 - [pymatgen 插件和外部工具](https://pymatgen.org/addons)
 
 
-- 兼容性：需对进行 `from pymatgen import <something>` 修改（v2022.0.0 版本开始）
+- 兼容性：需对进行 `from pymatgen import xxx` 修改（v2022.0.0 版本开始）
 
 ```python
-from pymatgen import Composition  # now "from pymatgen.core.composition import Composition"
-from pymatgen import Lattice  # now "from pymatgen.core.lattice import Lattice"
-from pymatgen import SymmOp  # now "from pymatgen.core.operations import SymmOp"
-from pymatgen import DummySpecie, DummySpecies, Element, Specie, Species  # now "from pymatgen.core.periodic_table ..."
-from pymatgen import PeriodicSite, Site  # now "from pymatgen.core.sites ..."
-from pymatgen import IMolecule, IStructure, Molecule, Structure  # now "from pymatgen.core.structure ..."
-from pymatgen import ArrayWithUnit, FloatWithUnit, Unit  # now "from pymatgen.core.units ..."
-from pymatgen import Orbital, Spin  # now "from pymatgen.electronic_structure.core ..."
-from pymatgen import MPRester  # now "from pymatgen.ext.matproj ..."
+# 原
+from pymatgen import IMolecule, IStructure, Molecule, Structure
+from pymatgen import PeriodicSite, Site
+from pymatgen import Composition
+from pymatgen import Lattice
+from pymatgen import DummySpecie, DummySpecies, Element, Specie, Species
+from pymatgen import SymmOp
+from pymatgen import ArrayWithUnit, FloatWithUnit, Unit
+from pymatgen import Orbital, Spin
+from pymatgen import MPRester
+
+# 新
+from pymatgen.core.structure ...
+from pymatgen.core.sites ...
+from pymatgen.core.composition import Composition
+from pymatgen.core.lattice import Lattice
+from pymatgen.core.periodic_table ...
+from pymatgen.core.operations import SymmOp
+from pymatgen.core.units ...
+from pymatgen.electronic_structure.core ...
+from pymatgen.ext.matproj ...
 ```
 
 
@@ -199,29 +197,7 @@ from pymatgen import MPRester  # now "from pymatgen.ext.matproj ..."
 
 ### CLI
 
->不是太好用，建议直接写脚本
-
-所有子命令：
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282023900.png)
-
-
-所有子命令的 help：
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282037019.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282037724.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282038651.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282039179.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282039484.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282041689.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405282040573.png)
-
+不是太好用，建议直接写脚本。
 
 ```bash
 pmg sub-command -h  # 查看子命令帮助
@@ -459,12 +435,24 @@ print(task_doc.keys())
 
 Structure 类相关属性和方法
 ```python
-remove_species()
-replace_species()
-
+# 属性
 num_sites   # 原子数
 formula 
 compsition
+volume
+frac_coords
+cart_coords
+symbol_set
+composition.items()
+composition.num_atoms
+lattice
+density
+center_of_mass  # 质心
+
+# 方法
+remove_species()
+replace_species()
+get_space_group_info()
 ```
 
 
@@ -520,6 +508,13 @@ ele.is_metal
 ---
 
 #### sites
+
+```python
+# 属性
+coords
+specie
+```
+
 
 ---
 
@@ -639,7 +634,11 @@ WIP…
 MPRelaxSet、MPStaticSet 等类均继承于 VaspInputSet，这些 InputSet 都有 `write_input()` 方法
 
 ```python
+# 方法
 write_input(output_dir=..., potcar_spec=True)
+
+# 属性
+config_dict  # config_dict["POTCAR"]["Mg"]
 ```
 
 `pymatgen/io/vasp/MPRelaxSet.yaml`：设置了默认的弛豫计算所有输入文件参数
@@ -689,18 +688,35 @@ Implementation of VaspInputSet utilizing parameters in the public Materials Proj
 
 ### pymatgen.io.vasp.outputs
 
-读取、执行、写 VASP 的输出文件
+读取并解析 VASP 的输出文件
 
-`pymatgen/io.vasp/outputs.py`
 
+pymatgen 的 Oszicar 类的 `final_energy` 属性选择的是 `E0`；Vasprun 类的 `final_energy` 属性选择的也是 `E0`
 
 
 ---
 
 #### Outcar
 
+Outcar 类能获取的较普适数据的属性和方法较少（主要是解析 Vasprun.xml 文件无法获取到的数据）
+
 ```python
 read_neb()
+
+read_pattern()
+read_table_pattern()
+```
+
+```python
+"""
+        drift (np.array): Total drift for each step in eV/Atom.
+        run_stats (dict): Various useful run stats as a dict including "System time (sec)", "Total CPU time used (sec)",
+            "Elapsed time (sec)", "Maximum memory used (kb)", "Average memory used (kb)", "User time (sec)", "cores".
+        is_stopped (bool): True if OUTCAR is from a stopped run (using STOPCAR, see VASP Manual).
+        final_energy (float): Final energy after extrapolation of sigma back to 0, i.e. energy(sigma->0).
+        final_energy_wo_entrp (float): Final energy before extrapolation of sigma, i.e. energy without entropy.
+        final_fr_energy (float): Final "free energy", i.e. free energy TOTEN.
+"""
 ```
 
 ---
@@ -893,18 +909,32 @@ c.get_pattern(structure).d_hkls
 
 #### SpacegroupAnalyzer
 
-寻找构型中的等同原子
 ```python
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 sga = SpacegroupAnalyzer(structure)
 
+# 查看 空间群与晶系之间的关系 源码
+sga.get_crystal_system()
+
 # symmetrized_structure = sga.get_symmetrized_structure()
 
+# 寻找构型中的等同原子
 symmetry_dataset = sga.get_symmetry_dataset()
 symmetry_dataset['equivalent_atoms']
 ```
 
+空间群与晶系之间的关系：[Space group - Wikipedia](https://en.wikipedia.org/wiki/Space_group)
+
+```text
+1-2: "triclinic"
+3-15: "monoclinic"
+16-74: "orthorhombic"
+75-143: "tetragonal"
+143-167: "trigonal"
+168-194: "hexagonal"
+195-230: "cubic"
+```
 
 
 ---

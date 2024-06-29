@@ -22,7 +22,7 @@ password:
 
 ## 介绍
 
-分布式版本控制工具。
+分布式版本控制系统。
 
 ```bash
 # 列出本地 repo 所有文件
@@ -81,8 +81,31 @@ git filter-repo -f --commit-callback 'commit.committer_date = commit.author_date
 
 ### 相关概念
 
-暂存区 stage
-Untracked 未追踪的
+暂存区（stage）：已经修改、等待后续提交的文件
+文件三个类别：未跟踪（Untracked）、已追踪（Tracked）、被忽略（Ignored）
+HEAD：当前工作区在提交历史中的**指针**
+detached HEAD：HEAD 指向某个历史提交，而不是某个“分支”
+
+
+```bash
+# 让当前文件夹变成 git 仓库（创建 .git 文件夹）
+git init
+# 创建一个新的文件夹并初始化为 git 仓库
+git init folder
+
+# 查看某个文件是否被忽略，以及匹配的规则
+git check-ignore -v file
+
+# 同时删除本地和版本库中的文件
+# 等价于 rm + git add
+git rm 
+# 将一个已暂存的新文件取消暂存
+git rm --cached
+
+# 重命名文件
+# 等价于 mv + git rm + git add
+git mv
+```
 
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011046838.png)
@@ -118,6 +141,7 @@ git lfs track "*.pdf -maxsize=100M"
 
 >[Git Commands - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Git/Commands/)
 
+- [git-flight-rules](https://github.com/k88hudson/git-flight-rules/blob/master/README_zh-CN.md)
 - Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
 
 >[Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
@@ -624,6 +648,7 @@ git pull --rebase
 
 ```bash
 git branch  # 查看本地分支
+git show-branch  # 更详细
 git branch -r  # 查看远程分支
 git branch -a  # 查看所有分支（本地 + 远程）
 
@@ -649,7 +674,7 @@ git branch -vv
 
 ```bash
 git checkout <BranchName>     # 切换分支
-git checkout -b <BranchName>  # 创建并进入新分支
+git checkout -b <BranchName>  # 创建并切换新分支
 git checkout -                # 迅速切换到上一个分支
 
 # 关联分支
@@ -731,6 +756,12 @@ GIT_EDITOR=vim git merge tmp
 ### tag
 
 ```bash
+# 版本号命名一般规范：v主版本号.次版本号.修订号[-预发布版本号]
+# 修订号：兼容修改，修正不正确的行为
+# 次版本号：添加新功能，但是保持兼容
+# 主版本号：不兼容的 API 修改；为 0 时表示还在开发阶段，不保证稳定性
+# 示例：v1.0.0 v1.0.0-beta
+
 # 查看标签
 git tag  # 本地
 git ls-remote --tags origin  # 远程
@@ -770,7 +801,9 @@ git log --oneline --graph --stat
 # 源于 zsh git alias
 git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
 
--p                # --patch；显示每次提交引入的代码改动
+-p                # --patch；显示详细修改内容
+--graph           # 显示分支结构
+--stat            # 
 --oneline         # 一行显示；commit id 8 个字符
 --pretty=oneline  # 一行显示；完整 commit id
 --pretty=%B       # 只显示 commit message
@@ -785,6 +818,13 @@ git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(b
 ### diff
 
 ```bash
+# 比较工作区和暂存区
+git diff
+# 比较工作区和分支
+git diff <BranchName>
+# 比较两个分支
+git diff <BranchName1> <BranchName2>
+
 # 查看工作区文件改动统计（个数，增加、删除行数）
 git diff --stat
 git diff --stat file
@@ -815,7 +855,7 @@ git diff --cached --stat
 git stash  # 将当前修改暂存到 stash 栈中
 git stash -u  # 包括新增 untracked 文件
 git stash push -- file  # 指定单个文件
-git stash save ''  # 添加备注
+git stash save 'message'  # 添加备注
 
 # 列出所有 stash
 git stash list

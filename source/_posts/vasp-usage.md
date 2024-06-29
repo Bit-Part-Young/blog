@@ -64,6 +64,9 @@ Heyd–Scuseria–Ernzerhof 泛函 (HSE06)：更精确，处理电子和光学�
 
 ---
 
+[VASP中POTCAR使用指南 | Jun's Blog](https://next.jun997.xyz/2022/04/14/ba8ff0b84c20.html)
+
+
 输入文件及参数介绍
 >[GitHub - bzkarimi/VASP: Practical guide on how to use VASP](https://github.com/bzkarimi/VASP)
 

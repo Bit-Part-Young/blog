@@ -190,8 +190,8 @@ system_profiler SPDisplaysDataType
 - 快捷键提示：FlyKey、CheatSheet
 - 切换窗口：AltTab
 - 鼠标：Mos
-- 输入法切换：自动切换输入法 Lite 版、[Input Source Pro - 自动切换输入法加上适时的提示，让每一次输入都游刃有余](https://inputsource.pro/zh-CN)
-- pdf 查看、编辑：UPDF
+- 输入法切换：自动切换输入法 Lite 版、[Input Source Pro](https://inputsource.pro/zh-CN)
+- pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
 - 窗口管理：Rectangle、Loop
 - macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
 - 其他：微信等
@@ -477,12 +477,25 @@ $ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool fal
 
 ### Mac 软件安装问题
 
-- 身份不明开发者：右键打开文件，非双击，弹出的窗口会有打开按钮；[Mac如何打开身份不明开发者的程序？ - 知乎](https://www.zhihu.com/question/52623818)
+- 身份不明开发者：按住 `Control` 键，点击 App，弹出的窗口会有打开按钮；[Mac如何打开身份不明开发者的程序？ - 知乎](https://www.zhihu.com/question/52623818)
 - [Apple 无法检查 App 是否包含恶意软件 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchleab3a043/mac)
 - PicGo 安装显示文件已损坏：[PicGo arm64文件已损坏](https://github.com/Molunerfinn/PicGo/issues/1055)
 
 ```bash
 sudo xattr -d com.apple.quarantine "/Applications/PicGo.app"
+```
+
+
+---
+
+### Beta 系统升级问题
+
+macOS beta 版本系统，brew 安装的程序升级时，会出现的无法识别 macOS 版本的问题
+
+```bash
+# 设置环境变量来强制 Homebrew 认为它在支持的 macOS 版本上运行
+export HOMEBREW_DEVELOPER=1
+export HOMEBREW_MACOS_VERSION=14.5
 ```
 
 

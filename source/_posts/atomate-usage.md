@@ -24,7 +24,7 @@ sticky: "99"
 ## 介绍
 
 - 官网：[atomate (Materials Science Workflows) — atomate 1.0.3 documentation](https://atomate.org/)
-- 高通量计算（主要 VASP）工具；主要在队列系统（超算平台 Slurm PBS）上运行；自动生成、保存作业运行过程中的所有记录（输入文件、输出文件、数据提取、错误信息等）；
+- 高通量计算（主要 VASP）工具；主要在队列系统（Slurm、PBS 等）上运行；自动生成、保存作业运行过程中的所有记录（输入文件、输出文件、数据提取、错误信息等）；
 - 数据保存到数据库（Mongodb）中，易于获取、查询、分析；
 - 提供了许多性质计算（静态、弛豫、弹性常数、能带、EOS、体模量、NEB）的标准 workflow，只需提供晶体结构（POSCAR），即可进行高通量计算；标准的 workflow 可以进行自定义修改；
 - 可以自定义设计新的性质计算 workflow。
@@ -32,6 +32,12 @@ sticky: "99"
 firetask 细节会在提交后生成的 `*submit*` 文本文件中查看
 
 custodian 默认的纠错次数上限为 5
+
+atomate workflow 的自定义设计代码主要由 FireWorks 包控制
+
+输入参数形成的输入文件代码主要由 pymatgen 包控制
+
+输出文件中的数据提取、绘图及其他高级分析主要由 pymatgen 包控制
 
 
 ---
@@ -238,7 +244,7 @@ pseudopotentials
     └── ...
 ```
 
-注：若 `<psp_dir>` 赝势根目录下没有 `POT_GGA_PAW_PBE` 名称的 PBE 赝势目录，可设置软链接：
+注：若 `<psp_dir>` 赝势目录下没有 `POT_GGA_PAW_PBE` 名称目录，可设置软链接：
 ```bash
 ln -s PBE_folder POT_GGA_PAW_PBE
 ```
@@ -248,45 +254,54 @@ ln -s PBE_folder POT_GGA_PAW_PBE
 
 ### 相关问题
 
-- 相关 yaml 配置文件中的 db.json 路径没有设置正确
-	- 解决方法：db.json 的文件路径需设置为绝对路径
+- 配置文件中的 db.json 路径没有设置正确
+
+解决方法：db.json 的文件路径需设置为绝对路径
 
 ```bash
 ValueError: Could not get next FW id! If you have not yet initialized the database, please do so by performing a database reset (e.g., lpad reset)
 ```
 
-
 ---
 
 - 赝势路径或赝势目录结构没有设置正确
-	- 解决方法：参照上节中赝势路径和赝势目录结构设置
+
+解决方法：参照上节中赝势路径和赝势目录结构设置
 
 ```bash
 OSError: You do not have the right POTCAR with functional PBE and label Nb_pv in your VASP_PSP_DIR. Paths tried: ['/home/xxx/src/POT/PAW_PBE/POT_GGA_PAW_PBE/POTCAR.Nb_pv', '/home/xxx/src/POT/PAW_PBE/POT_GGA_PAW_PBE/Nb_pv/POTCAR']
 ```
 
-
 ---
 
 - 没有创建 logs 目录
-	- 解决方法：创建 config 目录的同时创建 logs 目录
+
+解决方法：创建 config 目录的同时创建 logs 目录
 
 ```bash
-FileNotFoundError: [Errno 2] No such file or directory: '/dssg/home/acct-mseklt/mseklt/yangsl/atomate_nbsi/logs/launchpad-debug.log'
+FileNotFoundError: [Errno 2] No such file or directory: 'path/atomate/logs/launchpad-debug.log'
 
 During handling of the above exception, another exception occurred:
 
-  File "/dssg/home/acct-mseklt/mseklt/.conda/envs/atomate_nbsi/lib/python3.11/site-packages/fireworks/scripts/lpad_run.py", line 132, in get_lp
+  File "conda_path/envs/atomate_nbsi/lib/python3.11/site-packages/fireworks/scripts/lpad_run.py", line 132, in get_lp
     f"FireWorks was not able to connect to MongoDB at {lp.host}:{lp.port}. Is the server running? "
                                                        ^^
 UnboundLocalError: cannot access local variable 'lp' where it is not associated with a value
 ```
 
+---
+
+- 未添加 `FW_CONFIG_FILE` 环境变量
+
+```bash
+ValueError: Fireworks was not able to connect to MongoDB.
+```
 
 ---
 
 - 不生成 VASP 计算输入文件，只生成.err .out（空文件）和 FW_submit.script 文件，job 处于不断提交 - kill - 再提交的循环
-	- 解决方法：**这是自己遇到过的一个特殊情况**。自己安装过 `zsh`，且将 `zsh` 加入到 `~/.bash_profile` 中使登录服务器便切换到 zsh，最终导致上述问题出现（发现的原因是该问题出现后只有这个新变量因素）。将 `~/.bash_profile` 中与 `zsh` 相关的内容注释掉，问题可得到解决。
+
+解决方法：**这是自己遇到过的一个特殊情况**。自己安装过 `zsh`，且将 `zsh` 加入到 `~/.bash_profile` 中使登录服务器便切换到 zsh，最终导致上述问题出现（发现的原因是该问题出现后只有这个新变量因素）。将 `~/.bash_profile` 中与 `zsh` 相关的内容注释掉，问题可得到解决。
 
 
 
@@ -305,6 +320,8 @@ UnboundLocalError: cannot access local variable 'lp' where it is not associated 
 -m            # max
 -t            # table
 -d            # all 会显示 firework 之间的关联
+              # count 统计数目
+              # ids 统计 id
 
 # 查看 fireworks 报告
 lpad report
@@ -356,6 +373,23 @@ qlaunch (-r) rapidfire
 qlaunch rapidfire --nlaunches 5
 ```
 
+- `rlaunch`：直接在计算平台上运行
+
+```bash
+rlaunch rapidfire
+```
+
+若出现以下提示时，不会再提交作业
+
+```bash
+No jobs exist in the LaunchPad for submission to queue
+# 或
+No READY jobs detected
+```
+
+
+高通量正确计算完成时，custodian.json 文件无纠错
+
 
 ---
 
@@ -394,8 +428,30 @@ WIP…
 
 ### 弹性常数计算
 
-WIP…
+弹性常数计算时，部分 fw 成功，部分 fizzled，它会先根据成功的那部分数据进行拟合得到弹性数据，因此需检查所有 fw 是否都成功计算完成并检验结果是否合理；修改相关错误，重新提交 fizzled fw 后（之前错误生成的输入文件会进行更新），分析那步 fw 会处于 WAITING 状态，以进行更新
 
+
+自定义弹性常数计算 wf 保存到 db 中的 collection 的名字：
+
+```python
+# atomate/vasp/firetasks/parse_outputs.py 中的 ElasticTensorToDb 类（修改 "elasticity" 即可）
+db.db["elasticity"] 
+
+# 或 atomate/vasp/workflows/base/elastic.py 中的 get_wf_elastic_constant() 有涉及
+```
+
+
+---
+
+弹性常数计算 workflow 的 fw.name
+
+```python
+Ni-elastic structure optimization--78
+Ni-elastic deformation 0--77
+...
+Ni-elastic deformation 5--72
+Analyze Elastic Data--71
+```
 
 
 ---
@@ -413,15 +469,64 @@ MONGOSH 使用
 ---
 
 
-
 ```python
-# 获取满足 query projection 条件的所有 documents
-results = atomate_db.collection.find(query, projection)
+from atomate.vasp.database import VaspCalcDb
 
-# 获取满足 query projection 条件的一条 document
-result = atomate_db.collection.find_one(query, projection)
+db_json_fn = ...
+atomate_db = VaspCalcDb.from_db_file(db_json_fn)
+
+elasticity_collection = atomate_db.db["elasticity"]
+gibbs_collection = atomate_db.db['gibbs_tasks']
+
+# find() 可以使用 Projection Operators（以 $ 开头）
+query = {"task_label": "volume relaxation"}
+query = {"task_id": {"$gt": 18, "$lt": 44}}
+query = {"completed_at": {"$regex": "2022-08-05 *"}}
+
+# 0: 不提取数据；1: 提取数据 
+projection = {
+    "_id": 0,
+    "dir_name": 1,
+    "task_id": 1,
+    "completed_at": 1,
+    "state": 1,
+    "task_label": 1,
+    "formula_reduced_abc": 1,
+    "run_stats": 1,
+    "input": 1,
+    "output": 1,
+    "tags": 1,
+}
+
+# 统计 筛选的 documents 数目
+# 方式 1
+count = atomate_db.collection.count_documents(query)
+# 方式 2
+count = atomate_db.collection.aggregate([{"$match": query}, {"$count": "total"}])
+# 方式 3 不行？
+count = db.collection.find(query).count()   不行
+
+# 获取满足 query projection 条件的所有 documents
+documents = atomate_db.collection.find(query, projection)
+# 一条 document
+document = atomate_db.collection.find_one(query, projection)
 ```
 
+可用 Projection Operators ：[Query and Projection Operators - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors)
+
+find() manual：[db.collection.find() - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
+
+- `find()` 或 `find_one()` 返回的结果是 `pymongo.cursor` 对象，可以将其转化成 json 或 dataframe 的形式
+
+参考链接：[https://www.geeksforgeeks.org/convert-pymongo-cursor-to-json/](https://www.geeksforgeeks.org/convert-pymongo-cursor-to-json/)；[https://www.geeksforgeeks.org/convert-pymongo-cursor-to-dataframe](https://www.geeksforgeeks.org/convert-pymongo-cursor-to-dataframe)
+
+- 判断 `find()` 或 `find_one()` 返回的结果是否是空的
+
+参考链接：[https://www.geeksforgeeks.org/how-to-check-if-the-pymongo-cursor-is-empty](https://www.geeksforgeeks.org/how-to-check-if-the-pymongo-cursor-is-empty/?ref=lbp)
+
+统计 key 的个数：[https://stackoverflow.com/questions/12536592/mongodb-iterate-over-collection-by-key](https://stackoverflow.com/questions/12536592/mongodb-iterate-over-collection-by-key)
+
+>[https://github.com/hackingmaterials/atomate/issues/445](https://github.com/hackingmaterials/atomate/issues/445)
 
 
 ---
@@ -440,12 +545,11 @@ mongodb 中的 atomate documet 数据无法直接全部写入到 json 文件中
 
 mongodb 中的结构用以下方法获取较合适（将结构 dict 转成单独的 json 文件）
 ```python
-struct = Structure.from_dict()
+structure = Structure.from_dict()
 ```
 
 
-
-`gibbs_tasks` collection 中的 document 的 keys
+吉布斯自由能计算 wf 会生成 `gibbs_tasks` collection，其 document keys 如下
 ```python
 dict_keys(
     [
@@ -472,7 +576,7 @@ dict_keys(
 )
 ```
 
-弛豫 collection 中的 document 的 keys
+结构优化 wf 生成的 document keys 如下
 ```json
 dict_keys(
     [
@@ -506,7 +610,7 @@ dict_keys(
 )
 ```
 
->“calcs_reversed” key 对应的值（还需添加 `[0]`）含大部分同级下的 keys 的值信息
+`calcs_reversed` key 下（需添加 `[0]`）的 keys （含大部分同级下的 keys）
 
 ```json
 dict_keys(
@@ -534,7 +638,8 @@ dict_keys(
 ```
 
 
-弹性性质分析 elasticity collection 中的 document 的 keys
+弹性常数计算 wf 会生成弹性性质分析 `elasticity` collection，其 document keys 如下：
+
 ```json
 dict_keys(
     [
@@ -590,56 +695,47 @@ Connection failed: 202.121.180.16:27017: [Errno 111] Connection refused, Timeout
 
 ---
 
-mongodb 中的每条数据称为 document，具体数据值通过字段查询（即 dict 中的 key 和 value），icet training 结构的 document 的所有字段
+MongoDB 中存储的每条数据称为 document，具体数据值通过字段查询（即 dict 中的 key 和 value）
 
-```python
-dict_keys(['_id', 'dir_name', 'analysis', 'calcs_reversed', 'chemsys', 'completed_at', 'composition_reduced', 'composition_unit_cell', 'custodian', 'elements', 'formula_anonymous', 'formula_pretty', 'formula_reduced_abc', 'input', 'last_updated', 'nelements', 'nsites', 'orig_inputs', 'output', 'run_stats', 'schema', 'state', 'tags', 'task_id', 'task_label', 'transformations'])
+在 MongoDB Compass 软件中通过字段筛选 document，字段间通过 `.` 连接，示例
+
+```json
+{"tags.structure_id": "ICET-Training-No-00754"}
 ```
 
-`'input'` 的子字段：
+常用 keys：
 
 ```python
-dict_keys(['structure', 'is_hubbard', 'hubbards', 'is_lasph', 'potcar_spec', 'xc_override', 'pseudo_potential', 'parameters', 'incar'])
-```
-
-`'orig_inputs'` 的子字段：
-
-```python
-dict_keys(['kpoints', 'poscar', 'incar', 'potcar'])
-```
-
-icet training 结构中的一些具体数据获取 代码写法：
-
-```python
-# 计算耗时
-result['run_stats']['overall']['Elapsed time (sec)']
-result['run_stats']['overall']['Total CPU time used (sec)']
+# 输入构型
+document["input"]["structure"]
+# 输出构型
+document["output"]["structure"]
 
 # 能量
-result['output']['energy']
-result['output']['energy_per_atom']
+document["output"]["energy"]
+document["output"]["energy_per_atom"]
 
-# 每个firework计算过程中产生的所有文件所在的路径；需通过简单的正则表达式处理
-dir_name = result['dir_name'] 
-file_dir_path = (re.search('/dssg.*', dir_name)).group()
+# 计算耗时
+document["run_stats"]["overall"]["Elapsed time (sec)"]
+document["run_stats"]["overall"]["Total CPU time used (sec)"]
 
-# add_tags中添加的一些tag
-result['tags']['structure_id']
-result['tags']['structure_composition']
-result['tags']['structure_tag']
+# 每个 firework 计算目录路径；需通过简单的正则表达式处理
+dir_name = document["dir_name"]
+calc_path = (re.search("/dssg.*", dir_name)).group()
 
+# add_tags 中添加的一些 tag
+document["tags"]["XXX"]
+
+# 必要性不是很大
 # 原子数
-result['nsites']
+document["nsites"]
 # 元素数
-result['nelements']
+document["nelements"]
 # 构型体积
-volume = result['output']['structure']['lattice']['volume'])
+volume = document["output"]["structure"]["lattice"]["volume"]
 # 平均原子体积
-round(volume / result['nsites'], 15)
-# CONTCAR输出结构
-result['output']['structure']
+volume / document["nsites"]
 ```
 
-在 mongodb compass 软件中通过字段筛选 document，子字段需添加 `.`，写法形式
 
 ---

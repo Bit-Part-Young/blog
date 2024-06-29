@@ -105,6 +105,7 @@ password:
 
 #### 手机 - PC 端之间
 
+- Obsidian iPhone 端需用 iCloud 同步库
 - [实测好用！Obsidian 免费同步Infini Cloud （WebDave） - 知乎](https://zhuanlan.zhihu.com/p/654370814)
 - 手机端个人主要随时记录想法或看到的一些有用链接，仅这些内容需要同步，不需要太多的插件。可通过 Obsidian + Remotely Save（WebDav Infini Cloud）插件实现
 - Remotely Save 无版本回退功能，建议等两端同步好之后，再对文档进行修改，**否则有数据丢失的风险**

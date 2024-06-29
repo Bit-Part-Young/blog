@@ -106,6 +106,8 @@ ase 进行 md 计算 package
 >[GitHub - PythonFZ/ase\_md\_example](https://github.com/PythonFZ/ase_md_example)
 
 
+弹性张量相关，ASE 接口：[GitHub - jochym/Elastic: A module for ASE for elastic constants calculation.](https://github.com/jochym/Elastic)
+
 ase tutorial
 >[ASE\_tutorial.ipynb](https://github.com/chenggroup/new-comer-tutorial/blob/master/python/ase/ASE_tutorial.ipynb)
 

@@ -588,6 +588,10 @@ typst-upgrade -d .           # dry run
 	- [GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
 
 
+论文海报 poster：[Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
+
+用 typst 创建 online books：[GitHub - Myriad-Dreamin/shiroa: shiroa is a simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/shiroa)
+
 
 ---
 
@@ -678,3 +682,5 @@ typst-upgrade -d .           # dry run
 
 
 - [ ] 生成的 pdf 如何也有对应的编号（暂无法实现）：[Include numbering in PDF bookmark · Issue #2416 · typst/typst · GitHub](https://github.com/typst/typst/issues/2416)
+
+- [ ] Typst 如何让公式中的单个字符不斜体

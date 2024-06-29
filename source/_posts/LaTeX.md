@@ -25,6 +25,8 @@ password:
 
 LaTeX 斜线表头 package（diagbox）：[CTAN: Package diagbox](https://ctan.org/pkg/diagbox/)
 
+LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
+
 
 VSCode LaTeX Utilities 插件
 

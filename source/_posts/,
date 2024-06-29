@@ -1,0 +1,84 @@
+---
+title: atomsk 使用
+top: false
+cover: 
+toc: true
+mathjax: true
+summary: atomsk 使用
+description: atomsk 使用
+tags:
+  - atomsk
+  - 结构建模
+categories:
+  - 科研工具
+date: 2024-06-28 16:00:00
+abbrlink: 162806
+password:
+---
+
+# atomsk 使用
+
+- [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
+- atomsk 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
+- 层错构建：[Atomsk - Tutorial - Stacking fault](https://atomsk.univ-lille.fr/tutorial_stackingfault.php)
+- VESTA 中如何变换点阵（六方转正交）：[crystallography - How to transform lattice in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/7263/how-to-transform-lattice-in-vesta)
+- 六方胞的正交化（里面的示意图可供参考）：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)）
+- VESTA 可以读取原子位置分数占据的构型文件（可以导出 cif 格式）：[Atomsk - Tutorial - Importation of CIF files](https://atomsk.univ-lille.fr/tutorial_cif.php)
+- atomsk 中的 cfg 格式文件用 ovito 打开，VESTA 无法打开
+
+
+命令相关概念：
+
+- `options`：应用于体系的变换（transformations），用 `-` 区分。
+- `modes`：允许执行特定的操作，构造，分析或操纵多个数据文件（operations, constructions, analysis, manipulate），用 `--` 区分。
+
+
+---
+
+## 常用命令实例
+
+```bash
+# 构建晶体结构
+atomsk --create fcc 4.02 Al vasp
+
+# 构建不同晶体取向的构型
+# zsh [] 中括号需添加引号
+atomsk --create fcc 3.53 Ni -orient [1-10] [11-2] [111] vasp
+
+# 构建超胞
+atomsk Ni.cfg -duplicate 1 1 4 vasp
+
+# 原子 Z 轴坐标低于一定值，其 Z 轴被固定
+atomsk Ni.cfg -fix Z below 4.05 Z vasp
+
+# 线性插值；用于 NEB
+atomsk --interpolate initial.cfg final.cfg 7 cfg
+
+# 将六方胞变成正交胞
+atomsk POSCAR -orthogonal-cell -sort species pack vasp
+
+# 常用 options
+-orient             # 晶体取向
+-rmatom N           # 删除原子
+-rotate Z 45        # 旋转轴
+-orthogonal-cell    # 转变为正交胞
+-fractional         # 分数坐标；VASP 格式下
+-sort species pack  # 使相同元素在 POSCAR 中是连续的
+-fix Z              # 固定原子坐标轴；Z/all
+-substitute 1 Cu    # 原子类型替换成某种元素
+-wrap               # 将胞外原子施加 PBC 移至胞内
+
+# 常用 modes
+--create            # 构建晶体结构
+
+# 格式转换
+# 输出文件可以是具体的文件名，也可以是文件格式
+# 输出文件可以是多个
+# 写入 cif 文件时，总是假设空间群为 P1，写入所有原子位置
+atomsk XXX.cfg xyz  # xyz lammps vasp/pos cif
+# atomsk 支持的构型文件格式
+atsk abin bop bx cfg cel cif coo csv d12
+dat dd dlp fdf gin imd jems lmp mol
+pdb pos pw str vesta xmd xsf xv
+xyz exyz sxyz
+```

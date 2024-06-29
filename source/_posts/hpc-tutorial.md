@@ -1007,9 +1007,10 @@ ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7g
 
 ---
 
-### Atomsk
+### atomsk
 
-- 结构建模程序；同 latgen 相比，可生成孪晶、晶界、位错等更多复杂构型
+- 结构建模程序；同 latgen 相比，可生成孪晶、晶界、位错、层错等更多复杂构型
+- 示例丰富，文档详细
 
 ---
 
@@ -1017,23 +1018,11 @@ ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7g
 
 - 下载二进制版本（最简单方式）：[Download Atomsk](https://atomsk.univ-lille.fr/dl.php)
 
-```bash
-wget https://atomsk.univ-lille.fr/code/atomsk_b0.13.1_Linux-amd64.tar.gz
-
-tar -xzvf atomsk_b0.13.1_Linux-amd64.tar.gz
-
-cd atomsk_b0.13.1_Linux-amd64
-
-ln -s atomsk ~/bin
-```
-
----
-
 - 源码编译：
 
-依赖 blas 和 lapack 库（manager/master/超算上没有这两个库，需自己源码编译；编译 lapack 需要先编译 blas；**intel 套件有相关库**）
+依赖 BLAS 和 LAPACK 库（manager/master/超算上没有这两个库，需源码编译；LAPACK 依赖 BLAS；**intel 套件有相关库**）
 
-编译 blas 和 lapack 步骤以及压缩包：
+编译 BLAS 和 LAPACK 步骤以及压缩包：
 >[apt - How to build and link BLAS and LAPACK libraries by hand for use on cluster? - Ask Ubuntu](https://askubuntu.com/questions/1270161/how-to-build-and-link-blas-and-lapack-libraries-by-hand-for-use-on-cluster)
 
 >[LAPACK build and test guide - GNU Project](https://gcc.gnu.org/gcc-3.0/lapack-guide.html)
@@ -1047,13 +1036,9 @@ ln -s atomsk ~/bin
 export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
 ```
 
-- 编译 blas
+编译 BLAS
 
 ```bash
-tar -xzvf blas-3.8.0.tgz
-
-cd BLAS-3.8.0/
-
 make
 
 mv blas_LINUX.a libblas.a
@@ -1063,24 +1048,19 @@ cp *.a ~/lib
 
 ---
 
-- 编译 lapack
+编译 LAPACK
 
 ```bash
-tar -xzvf lapack-3.9.0.tar.gz
-
-cd lapack-3.9.0/
-
 cp make.inc.example make.inc
 
-# 这步花费时间会比较长
-make
+make  # 这步花费时间会比较长
 
 cp *.a ~/lib
 ```
 
 ---
 
-下载 Atomsk 源文件，进入 `src`，修改 Makefile 文件
+下载 atomsk 源代码，进入 `src`，修改 Makefile 文件
 
 ```bash
 LAPACK=-L$HOME/lib/ -llapack -lblas
@@ -1093,14 +1073,12 @@ CONFPATH=${INSTPATH}/etc
 ```bash
 make atomsk
 
-# 应该会出错，但没关系，这步非必需
-make install
+make install  # 应该会出错，但没关系，这步非必需
 ```
 
 编译成功：
 
 ```text
-
     \o/ Compilation was successful!
 
     <i> To install Atomsk system-wide, you may now run:
@@ -1109,7 +1087,7 @@ make install
 
 ---
 
-- 编译 ifort 版本：`make -f Makefile.ifort atomsk`
+- 编译 ifort 版本
 
 ```bash
 # 导入 oneapi 套件
@@ -1123,12 +1101,23 @@ git clone https://github.com/pierrehirel/atomsk.git
 cd atomsk/src
 
 make -f Makefile.ifort atomsk
+
+# 超算（思源一号）使用 atomsk 时
+# 需设置 libiomp5.so 文件的软链接
+# 或使用前 module load intel-oneapi-compilers/2021.4.0
+ln -s /dssg/opt/icelake/linux-centos8-icelake/gcc-8.5.0/intel-oneapi-compilers-2021.4.0-rszhbg2vjwqqeddqqdryjwxromenbfmr/compiler/2021.4.0/linux/compiler/lib/intel64_lin/libiomp5.so ~/lib/libiomp5.so
 ```
 
-超算（思源一号）使用 atomsk 时，需设置 `libiomp5.so` 文件的软链接或者使用前 `module load intel-oneapi-compilers/2021.4.0`
+---
+
+- macOS 编译 atomsk
 
 ```bash
-ln -s /dssg/opt/icelake/linux-centos8-icelake/gcc-8.5.0/intel-oneapi-compilers-2021.4.0-rszhbg2vjwqqeddqqdryjwxromenbfmr/compiler/2021.4.0/linux/compiler/lib/intel64_lin/libiomp5.so ~/lib/libiomp5.so
+# 需安装 LAPACK 和 OpenMP（非必需）
+# 修改 Makefile.macos 中的 LAPACK lib 路径
+# 并将 -lrefblas 改为 -lblas，最后编译
+make -f Makefile.macos atomsk
+make -j3 -f Makefile.macos atomsk
 ```
 
 
