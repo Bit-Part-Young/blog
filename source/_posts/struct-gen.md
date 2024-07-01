@@ -85,10 +85,6 @@ VESTA 相关：
 - 空间群（space group number）
 - 原子位置（Wyckoff position / atomic position）
 
-![Untitled](%E6%AF%8F%E5%91%A8%E4%BB%BB%E5%8A%A1%E6%A0%8F/Untitled%2021.png)
-
->截图来源：[https://www.youtube.com/watch?v=IMvzznBhEns](https://www.youtube.com/watch?v=IMvzznBhEns)
-
 
 ---
 

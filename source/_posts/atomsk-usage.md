@@ -25,7 +25,10 @@ password:
 - 六方胞的正交化（里面的示意图可供参考）：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)）
 - VESTA 可以读取原子位置分数占据的构型文件（可以导出 cif 格式）：[Atomsk - Tutorial - Importation of CIF files](https://atomsk.univ-lille.fr/tutorial_cif.php)
 - atomsk 中的 cfg 格式文件用 ovito 打开，VESTA 无法打开
+- 晶界构建（symmetric tilt、twist）：[Atomsk - Tutorial - Grain Boundaries](https://atomsk.univ-lille.fr/tutorial_grainboundaries.php)
+- 位错构建（刃、螺位错）：[Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)、[Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
 
+---
 
 命令相关概念：
 

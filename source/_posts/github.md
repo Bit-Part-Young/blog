@@ -13,7 +13,7 @@ tags:
 categories:
   - 科研工具
 date: 2023-10-30 09:00:00
-abbrlink: "5928"
+abbrlink: "592810"
 password:
 ---
 
@@ -21,64 +21,68 @@ password:
 
 ## 介绍
 
-- 全球最大的代码托管平台
+- 全球最大的代码托管平台，也是一个社区
+- 也可以托管 Gist 代码片段
 - 团队协作开发平台：有完善的协作功能 (Fork, Issue, Pull Request) 等功能
 - 提供免费的静态网站托管服务 GitHub Pages
 - GitHub 每个仓库的总体积限制是 1GB（Gitee 是 500MB），每个仓库中每个 release 的最大文件体积限制是 2GB（Gitee 是 1GB）；release 数量没有明确的限制；对于普通用户，仓库（Repo 代码 + release 文件）的总体积限制为 100 GB
-
-- [x] 之前留言过的 GitHub issue，仍会收到后续通知， 如何关闭（在 Github 个人主页的 Notifications 处关闭）
-
-gist 代码片段
-
----
-
-显示/自定义 GitHub 通知：
-- [GitHub - qiweiii/github-custom-notifier: Web Extension - Allows you to customize GitHub notifications](https://github.com/qiweiii/github-custom-notifier)
-- [Fetching Title#wex5](https://github.com/0x2E/GitStatus)
-
-生成 changelog
-[GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
-
-GitHub 命令行形式的 dashboard
-[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
-
-[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
-
-
-GitHub README 生成 TOC
->[GitHub - ekalinin/github-markdown-toc: Easy TOC creation for GitHub README.md](https://github.com/ekalinin/github-markdown-toc)
-
->[GitHub - ekalinin/github-markdown-toc.go: Easy TOC creation for GitHub README.md (in go)](https://github.com/ekalinin/github-markdown-toc.go)
-
-
-skill 图标
->[GitHub - tandpfun/skill-icons: Showcase your skills on your Github readme or resumé with ease ✨](https://github.com/tandpfun/skill-icons)
 
 
 ---
 
 ### 参考资料
 
->[GitHub 简易指南 - OrangeX4's Blog](https://orangex4.cool/post/github-tutorials-for-beginner/)
+- [GitHub 简易指南 - OrangeX4's Blog](https://orangex4.cool/post/github-tutorials-for-beginner/)
+- Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
+- [GitHub - tiimgreen/github-cheat-sheet: A list of cool features of Git and GitHub.](https://github.com/tiimgreen/github-cheat-sheet)
 
-Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
-
->[GitHub - tiimgreen/github-cheat-sheet: A list of cool features of Git and GitHub.](https://github.com/tiimgreen/github-cheat-sheet)
-
->[GitHub - jasineri/gitartwork: Gitartwork on user's contribution graph](https://github.com/jasineri/gitartwork)
-
-
-管理 GitHub Stars（以下两个项目均会获取 GitHub public data）
-
-- [GitHub - cfour-hi/gitstars: Github Starred Repositories Manager](https://github.com/cfour-hi/gitstars)
-- [GitHub - nieheyong/starflare: A web app helps you manage your GitHub stars simply and efficiently](https://github.com/nieheyong/starflare)
 
 
 ---
 
 ## 使用
 
-### Github 基本使用
+### 工具
+
+- 汉化插件：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
+- 命令行版本的 GitHub dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
+- 管理 GitHub Stars（以下两个项目均会获取 GitHub public data）
+	- [GitHub - cfour-hi/gitstars: Github Starred Repositories Manager](https://github.com/cfour-hi/gitstars)
+	- [GitHub - nieheyong/starflare: A web app helps you manage your GitHub stars simply and efficiently](https://github.com/nieheyong/starflare)
+- 显示/自定义 GitHub 通知：
+	- [GitHub - qiweiii/github-custom-notifier: Web Extension - Allows you to customize GitHub notifications](https://github.com/qiweiii/github-custom-notifier)
+	- [GitHub - 0x2E/GitStatus: Show GitHub notifications on menubar (macOS 13.0+)](https://github.com/0x2E/GitStatus)
+- 生成 changelog：[GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
+- skill 图标 icon：[GitHub - tandpfun/skill-icons: Showcase your skills on your Github readme or resumé with ease ✨](https://github.com/tandpfun/skill-icons)
+
+
+---
+
+### GitHub Markdown
+
+生成 TOC：
+
+- [GitHub - ekalinin/github-markdown-toc: Easy TOC creation for GitHub README.md](https://github.com/ekalinin/github-markdown-toc)
+- [GitHub - ekalinin/github-markdown-toc.go: Easy TOC creation for GitHub README.md (in go)](https://github.com/ekalinin/github-markdown-toc.go)
+
+---
+
+alert 语法
+
+```markdown
+> [!NOTE]
+> [!TIP]
+> [!IMPORTANT]
+> [!WARNING]
+> [!CAUTION]
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081122804.png)
+
+
+---
+
+### GitHub 基本使用
 
 Repo 页面
 
@@ -130,33 +134,10 @@ Pull Requests 流程:
 - GitHub 会为每个用户/组织分配一个二级域名 `username.github.io`
 - 可以创建一个名为 `username.github.io` 的 repo，会作为主页，通过 `username.github.io` 即可访问 repo 内存放的静态网页
 - 对于其他 repo，也可以开启 Pages 功能，通过 `username.github.io/repo_name` 访问，静态页面来源也需要指定
-
-Vercel 部署
-GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 5 个 repo
+- Vercel 部署：GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 5 个 repo
 
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011049337.png)
-
-
-
----
-
-### alert 语法
-
->[basic-writing-and-formatting-syntax.md](https://github.com/github/docs/blob/main/content/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax.md)
-
->和 Obsidian 中的 Admonition 插件的 alert 语法一样
-
-```text
-> [!NOTE]
-> [!TIP]
-> [!IMPORTANT]
-> [!WARNING]
-> [!CAUTION]
-```
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081122804.png)
-
 
 
 ---
@@ -195,123 +176,93 @@ GitHub star history：[GitHub Star History](https://star-history.com/)
 
 ---
 
-GitHub contribution 可视化
+GitHub contribution 可视化：
+
 - [GitHub - yoshi389111/github-profile-3d-contrib: This GitHub Action creates a GitHub contribution calendar on a 3D profile image.](https://github.com/yoshi389111/github-profile-3d-contrib)
 - [Leticia-maria/.github/workflows/profile-3d.yml at main · Leticia-maria/Leticia-maria · GitHub](https://github.com/Leticia-maria/Leticia-maria/blob/main/.github/workflows/profile-3d.yml)
 - 贪吃蛇（只能使用 public contributions，见 [Issue #88](https://github.com/Platane/snk/issues/88)）：[snk](https://github.com/Platane/snk)
 	- 实例：[github-contribution-grid-snake.yml](https://github.com/hotoo/hotoo/blob/main/.github/workflows/github-contribution-grid-snake.yml)
+- （未测试）[GitHub - jasineri/gitartwork: Gitartwork on user's contribution graph](https://github.com/jasineri/gitartwork)
 
 
 ---
 
-### shield.io
+### 徽章
 
-数据牌
+通常在 GitHub 的 README 文件或其他在线文档中显示以展示各种信息，如构建状态、测试覆盖率、包版本、许可证信息等。
 
->[GitHub - badges/shields](https://github.com/badges/shields)
+徽章相关 repo：
 
+- [GitHub - badges/shields](https://github.com/badges/shields)
+- [GitHub - inttter/md-badges: An extensive list of Shields.io badges.](https://github.com/inttter/md-badges)
 
 ---
 
-Python 相关
+Python 相关（使用 pypi）
 
-```text
-[![PyPi](https://img.shields.io/pypi/v/spt?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/spt/)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/spt?logo=pypi&logoColor=white&color=blue&label=PyPI%20downloads)](https://pypi.org/project/spt)
-[![Requires Python 3.6+](https://img.shields.io/badge/Python-3.6+-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)
+```markdown
+<!-- package 版本 -->
+![PyPi](https://img.shields.io/pypi/v/spt?logo=pypi&logoColor=white&label=PyPI)
+<!-- package 下载量 -->
+![PyPI Downloads](https://img.shields.io/pypi/dm/spt?logo=pypi&logoColor=white&color=blue&label=PyPI%20downloads)
+<!-- Python 版本 -->
+![Requires Python 3.6+](https://img.shields.io/badge/Python-3.6+-blue.svg?logo=python&logoColor=white)
+<!-- package wheel -->
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/spt)
 ```
 
-```text
+---
+
+GitHub Repo 相关（使用 github）
+
+```markdown
+<!-- star 数目 -->
+![GitHub Repo stars](https://img.shields.io/github/stars/Bit-Part-Young/spt)
+<!-- license 证书 -->
 [![GitHub](https://img.shields.io/github/license/jzhang-github/PyFunction)](https://github.com/jzhang-github/PyFunction/blob/main/LICENSE)
-
-[![Pypi](https://img.shields.io/pypi/v/zjpf.svg)](https://pypi.org/project/zjpf/)
-
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/zjpf)](https://pypi.org/project/zjpf/)
-
-[![PyPI - Wheel](https://img.shields.io/pypi/wheel/zjpf)](https://pypi.org/project/zjpf/)
+<!-- 点击量 -->
+![Hits-of-Code](https://hitsofcode.com/github/Bit-Part-Young/spt?branch=master)
+<!-- CI 状态 方式 1 -->
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Bit-Part-Young/github-stats/main.yml)
+<!-- 方式 2 -->
+![Generate Stats Images - passing](https://github.com/Bit-Part-Young/github-stats/actions/workflows/main.yml/badge.svg)
 ```
 
 ---
 
-Repo 相关
+编程语言 logo（使用 badge）
 
-```html
-<div align="center">
-<h1>Data Structures & Algorithms for Coding Interview</h1>
-<p align="center">
-<a href=" ">  
-< img alt="Stars" src="https://img.shields.io/github/stars/SamirPaulb/DSAlgo"> 
-< img alt="Forks" src="https://img.shields.io/github/forks/SamirPaulb/DSAlgo"> 
-< img alt="Size" src="https://img.shields.io/github/repo-size/SamirPaulb/DSAlgo"> 
-< img alt="Hits" src="https://hitsofcode.com/github/SamirPaulb/DSAlgo?branch=main">
-< img alt="language" src="https://user-images.githubusercontent.com/77569653/227633223-43014974-ac8f-4cf9-8605-93d08cb2d5fd.svg">
-</a >
-</p >
-```
-
-
----
-
-一些编程语言及排版语言的 shields logo
->[README.md](https://github.com/frostming/marko/blob/master/README.md?plain=1)
-
-```text
-### Skills
-#### Programming language
+```markdown
 ![Python](https://img.shields.io/badge/-Python-3776ab?style=flat-square&logo=python&logoColor=fff)
 ![Shell](https://img.shields.io/badge/-Shell-4eaa25?style=flat-square&logo=gnu%20bash&logoColor=fff)
 ![C++](https://img.shields.io/badge/-C%2b%2b-00599c?style=flat-square&logo=C%2b%2b&logoColor=fff)
 ![Fortran](https://img.shields.io/badge/-Fortran-734f96?style=flat-square&logo=fortran&logoColor=fff)
 ![Julia](https://img.shields.io/badge/-Julia-9558b2?style=flat-square&logo=julia&logoColor=fff)
-
-#### Markup language
-- ![LaTeX](https://img.shields.io/badge/-LaTeX-008080?style=flat-square&logo=latex&logoColor=fff)
-- typst
-
-
-#### 其他
-![C](https://img.shields.io/badge/-C-a8b9cc?style=flat-square&logo=C&logoColor=fff)
-![HTML5](https://img.shields.io/badge/-HTML5-e34f26?style=flat-square&logo=HTML5&logoColor=fff)
-![CSS3](https://img.shields.io/badge/-CSS3-1572b6?style=flat-square&logo=CSS3&labelColor=1572b6)
-![JavaScript](https://img.shields.io/badge/-JavaScript-f7df1e?style=flat-square&logo=JavaScript&labelColor=f7df1e&logoColor=000)
-![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=Node.js&logoColor=fff)
+![LaTeX](https://img.shields.io/badge/-LaTeX-008080?style=flat-square&logo=latex&logoColor=fff)
 ```
 
->“4eaa25” 表示颜色的十六进制代码
-
----
-
-github CI 状态
->[GitHub Workflow Status (with event) | Shields.io](https://shields.io/badges/git-hub-workflow-status-with-event)
-
->badge 的名称是 yml 文件中的 name 键对应的值
-
-```text
-# repo 需要 public
-[![CI Status](https://github.com/materialsproject/pymatgen/actions/workflows/test.yml/badge.svg)](https://github.com/materialsproject/pymatgen/actions/workflows/test.yml)
-```
 
 ---
 
 ### pre-commit
 
-[pre-commit](https://pre-commit.com/)：用于管理和维护 git 钩子的框架。允许配置多种钩子，这些钩子会在代码提交到仓库之前自动运行，以检查代码风格、格式化代码、检查语法错误（可用于 Python Markdown Shell 等）等。配置文件：.pre-commit-config.yaml
+[pre-commit](https://pre-commit.com/)：用于管理和维护 git 钩子的框架。允许配置多种钩子，这些钩子会在代码提交到仓库之前自动运行，以检查代码风格、格式化代码、检查语法错误（可用于 Python、Markdown、Shell）等。配置文件：.pre-commit-config.yaml
 
 
 ```bash
-# 安装 pre-commit
+# 安装
 pip install -U pre-commit
-
 # 安装钩子
 pre-commit install
-
 # 手动运行钩子
 pre-commit run
 pre-commit run --all-files
 ```
 
+---
 
 格式：
+
 ```yaml
 repos:
   - repo:  # 钩子 repo url
@@ -321,7 +272,6 @@ repos:
 	    args:  # 可选 传递给钩子的额外参数
 		language_version: # 编程语言版本 如 python3.11
 ```
-
 
 示例：[.pre-commit-config.yaml](https://github.com/CederGroupHub/smol/blob/main/.pre-commit-config.yaml)
 
@@ -356,8 +306,6 @@ repos:
       args:
       - --profile=black
 ```
-
-
 
 
 ---
@@ -452,4 +400,6 @@ echo 'eval "$(gh copilot alias -- zsh)"' >> ~/.zshrc
 
 ---
 
-### 其他
+## 相关问题
+
+- [x] 之前留言过的 GitHub issue，仍会收到后续通知， 如何关闭（在 GitHub 个人主页的 Notifications 处关闭）
