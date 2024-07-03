@@ -85,6 +85,8 @@ VESTA 相关：
 - 空间群（space group number）
 - 原子位置（Wyckoff position / atomic position）
 
+元素周期表里元素的晶体结构：[Periodic table (crystal structure) - Wikipedia](https://en.m.wikipedia.org/wiki/Periodic_table_(crystal_structure))
+
 
 ---
 

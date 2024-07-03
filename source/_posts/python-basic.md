@@ -27,6 +27,29 @@ ipython： 按 tab 键可补全可用 method 或 attributes；在函数或 metho
 
 [GitHub - gto76/python-cheatsheet: Comprehensive Python Cheatsheet](https://github.com/gto76/python-cheatsheet)
 
+终端 python 查看模块和函数帮助文档
+
+```python
+import numpy as np
+
+help(numpy)
+help(np)
+help(np.array)
+
+print(np.array.__doc__)
+```
+
+终端 python 查看模块和包的成员
+
+```python
+import numpy as np
+dir(np)
+
+print(np.__all__)
+```
+
+注：和 `dir()` 函数相比，`__all__` 变量在查看指定模块成员时，它不会显示模块中的特殊成员，同时还会根据成员的名称进行排序显示
+
 ---
 
 什么是 python
@@ -192,6 +215,17 @@ python -m venv venv
 
 python -m pip install <package>
 ```
+
+
+
+---
+
+## 工具
+
+- 将 python 的计算公式转换成 LaTeX（一般，只能是简单的公式）：[GitHub - connorferster/handcalcs](https://github.com/connorferster/handcalcs)
+- 打印 Python objects：[GitHub - gaogaotiantian/objprint](https://github.com/gaogaotiantian/objprint)
+- 将打印的内容以表格的形式呈现：[GitHub - astanin/python-tabulate](https://github.com/astanin/python-tabulate)
+
 
 
 ---

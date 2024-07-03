@@ -194,13 +194,14 @@ sqsgen run iteration sqs.yaml -di parameters -di objective -nm -e -f lammps-data
 sqsgen run iteration sqs.yaml -di parameters -di objective -nm -e -f vasp -c gz -w ase
 ```
 
-`sqsgen run iteration` 相关参数：
-`--dump-include, -di` - 导出输出的一些 dump 信息，包括 parameters, objective, timings；选择前两个即可；
-`--no-minimal, -nm` - 不只考虑最小目标函数下的构型（默认生成 10 个不同的构型）；
-`--export, -e` - 将输出结构导出；
-`--format, -f` - sqs 构型文件格式；
-`--compress, -c` - 将构型文件打包压缩；
-`--writer, -w` - 写出构型文件的后端（pymatgen 和 ase）。
+相关参数：
+
+- `--dump-include, -di` - 导出输出的一些 dump 信息，包括 parameters, objective, timings；选择前两个即可；
+- `--no-minimal, -nm` - 不只考虑最小目标函数下的构型（默认生成 10 个不同的构型）；
+- `--export, -e` - 将输出结构导出；
+- `--format, -f` - sqs 构型文件格式；
+- `--compress, -c` - 将构型文件打包压缩；
+- `--writer, -w` - 输出构型文件格式的后端（pymatgen 和 ase；ase 支持的格式比 pymatgen 多）。
 
 ---
 

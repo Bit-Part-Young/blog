@@ -136,6 +136,10 @@ FCC、六方和面心正交晶体结构只能用Gamma网格
 
 `MSONable` 类：MSON（Monty JSON）； MSONable 对象必须实现 `as_dict()` 方法，该方法须返回可序列化为 JSON 的字典，且须支持无参数。静态方法 `from_dict()`，从 `as_dict()` 方法生成的字典中重建对象。`as_dict()` 方法应该包含 “@module” 和 “@class” 键，这将允许 MontyEncoder 动态反序列化该类。
 
+pymatgen 支持的构型文件格式
+```python
+'prismatic', 'cssr', 'json', 'xsf', 'yaml', 'poscar', 'mcif', 'cif'
+```
 
 ---
 
@@ -541,7 +545,7 @@ AseAtomsAdaptor.get_atoms()
 
 ### pymatgen.io.atat
 
-只有 Mcsqs 类
+只有 Mcsqs 类（功能较一般）
 
 
 ---

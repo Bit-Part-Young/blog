@@ -53,7 +53,6 @@ password:
 	- [GitHub - qiweiii/github-custom-notifier: Web Extension - Allows you to customize GitHub notifications](https://github.com/qiweiii/github-custom-notifier)
 	- [GitHub - 0x2E/GitStatus: Show GitHub notifications on menubar (macOS 13.0+)](https://github.com/0x2E/GitStatus)
 - 生成 changelog：[GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
-- skill 图标 icon：[GitHub - tandpfun/skill-icons: Showcase your skills on your Github readme or resumé with ease ✨](https://github.com/tandpfun/skill-icons)
 
 
 ---
@@ -142,14 +141,16 @@ Pull Requests 流程:
 
 ---
 
-### 自定义 GitHub profile
+### GitHub 个人首页
 
-创建名为 username 的 repo，在 README.md 文档中添加内容即可创建 profile，可以添加 GitHub 统计信息以丰富并自定义 profile。
+>美化 GitHub profile 教程：[GitHub - rzashakeri/beautify-github-profile](https://github.com/rzashakeri/beautify-github-profile)
+
+创建名为 username 的 repo，在 README.md 文档中添加内容即可生成个人首页（profile），可以添加 GitHub 统计信息以丰富并自定义 profile。
 
 可获取动态生成的 GitHub 统计信息的 repo：
 
 - [GitHub - anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
-- [GitHub - lowlighter/metrics](https://github.com/lowlighter/metrics)（可以使用 GitHub Actions）
+- [GitHub - lowlighter/metrics](https://github.com/lowlighter/metrics)（形式丰富，可使用 GitHub Actions）
 - [GitHub - jstrieb/github-stats](https://github.com/jstrieb/github-stats)
 
 使用 github-readme-stats repo 部署的 vercel app API 会有次数限制，且只能访问公开 repo 的相关数据，导致统计信息不全。因此更建议 fork 该 repo，部署自己的 vercel app API（可以访问私有 repo 数据，参见 [deploy-on-your-own](https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own)；添加 PAT_1 环境变量时，注意需点击 Save 保存）
@@ -191,10 +192,12 @@ GitHub contribution 可视化：
 
 通常在 GitHub 的 README 文件或其他在线文档中显示以展示各种信息，如构建状态、测试覆盖率、包版本、许可证信息等。
 
-徽章相关 repo：
+徽章/ icon 相关 repo：
 
 - [GitHub - badges/shields](https://github.com/badges/shields)
 - [GitHub - inttter/md-badges: An extensive list of Shields.io badges.](https://github.com/inttter/md-badges)
+- [GitHub - ziadOUA/m3-Markdown-Badges: 🏅 A Material You inspired markdown badge collection.](https://github.com/ziadOUA/m3-Markdown-Badges)
+- skill 图标 icon：[GitHub - tandpfun/skill-icons: Showcase your skills on your Github readme or resumé with ease ✨](https://github.com/tandpfun/skill-icons)
 
 ---
 

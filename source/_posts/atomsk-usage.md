@@ -18,8 +18,9 @@ password:
 
 # atomsk 使用
 
-- [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
 - atomsk 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
+- [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
+- 查看所有的 options 和 modes 及其用法：[Documentioin - Atomsk](https://atomsk.univ-lille.fr/doc.php)
 - 层错构建：[Atomsk - Tutorial - Stacking fault](https://atomsk.univ-lille.fr/tutorial_stackingfault.php)
 - VESTA 中如何变换点阵（六方转正交）：[crystallography - How to transform lattice in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/7263/how-to-transform-lattice-in-vesta)
 - 六方胞的正交化（里面的示意图可供参考）：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)）
@@ -27,6 +28,7 @@ password:
 - atomsk 中的 cfg 格式文件用 ovito 打开，VESTA 无法打开
 - 晶界构建（symmetric tilt、twist）：[Atomsk - Tutorial - Grain Boundaries](https://atomsk.univ-lille.fr/tutorial_grainboundaries.php)
 - 位错构建（刃、螺位错）：[Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)、[Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
+
 
 ---
 
@@ -60,6 +62,10 @@ atomsk --interpolate initial.cfg final.cfg 7 cfg
 # 将六方胞变成正交胞
 atomsk POSCAR -orthogonal-cell -sort species pack vasp
 
+# 笛卡尔、分数坐标互相转换
+echo y | atomsk POSCAR vasp
+echo y | atomsk POSCAR -fractional vasp
+
 # 常用 options
 -orient             # 晶体取向
 -rmatom N           # 删除原子
@@ -70,6 +76,8 @@ atomsk POSCAR -orthogonal-cell -sort species pack vasp
 -fix Z              # 固定原子坐标轴；Z/all
 -substitute 1 Cu    # 原子类型替换成某种元素
 -wrap               # 将胞外原子施加 PBC 移至胞内
+-cell add 10 y      # 在 y 方向上增加 10 埃，原子位置不变；x y z 可分别写成 H1 H2 H3；作用相当于添加真空层
+-center 0/com       # 移动所有原子，使其质心在 box 中心；会使位于 box 边缘的原子位点稍微往胞里靠，和 ase Atoms 的 center方法效果不同
 
 # 常用 modes
 --create            # 构建晶体结构

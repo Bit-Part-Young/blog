@@ -25,16 +25,16 @@ WSL 的全称叫做：Windows Subsystem for Linux，即「适用于 Linux 的 Wi
 
 WSL 2 相比 WSL 1，Linux 内核是完整的，且支持 Docker。
 
+无法使用 KDE 和 GNOME 桌面
+
 
 ---
 
 ### 参考资料
 
-WSL 问题 Q&A：[关于适用于 Linux 的 Windows 子系统的常见问题解答 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/faq)
-
-WSL 开发指南：[Dev on Windows with WSL](https://dowww.spencerwoo.com/)
-
-WSL GUI 图形化窗口：[GUI 图形化窗口 | Dev on Windows with WSL](https://dowww.spencerwoo.com/4-advanced/4-1-gui.html#%E5%AE%89%E8%A3%85-xserver-for-windows)
+- WSL 问题 Q&A：[关于适用于 Linux 的 Windows 子系统的常见问题解答 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/faq)
+- WSL 开发指南：[Dev on Windows with WSL](https://dowww.spencerwoo.com/)
+- WSL GUI 图形化窗口：[GUI 图形化窗口 | Dev on Windows with WSL](https://dowww.spencerwoo.com/4-advanced/4-1-gui.html#%E5%AE%89%E8%A3%85-xserver-for-windows)
 
 
 

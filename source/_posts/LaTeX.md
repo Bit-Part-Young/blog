@@ -27,6 +27,7 @@ LaTeX 斜线表头 package（diagbox）：[CTAN: Package diagbox](https://ctan.o
 
 LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
+[常用 LaTeX 代码](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
 
 VSCode LaTeX Utilities 插件
 

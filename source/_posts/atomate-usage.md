@@ -322,6 +322,7 @@ ValueError: Fireworks was not able to connect to MongoDB.
 -d            # all 会显示 firework 之间的关联
               # count 统计数目
               # ids 统计 id
+			  # more 输出中的 _exception 字段会显示 custodian 的相关 warning 或报错
 
 # 查看 fireworks 报告
 lpad report

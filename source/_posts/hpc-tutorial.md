@@ -892,9 +892,11 @@ make install
 
 ### posconv、NumNei
 
-- posconv：构型文件格式转换（POSCAR xyz lammpstrj 等）
+- posconv：构型文件格式转换（POSCAR、xyz、LAMMPS atomic/dump、Material Studio 等）
 - NumNei：计算 BCC、FCC 和金刚石结构的第 N 近邻原子距离
- - 编译：编译器可选择 gfortran 或 ifort（gfortran 已足够；ifort 性能可能更好些）
+- 编译：编译器可选择 gfortran 或 ifort（gfortran 已足够；ifort 性能可能更好些）
+
+>posconv 的 LAMMPS dump 格式原子坐标为分数坐标，即为 xs, ys, zs
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291005269.png)
 
@@ -937,7 +939,7 @@ VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
 
 ### dumpana
 
-- LAMMPS dump 文件后处理程序。可以计算：CSRO；RDF、PDF、g(r) （径向分布函数）；扩散系数等
+- LAMMPS dump 文件后处理程序。可以计算：CSRO；RDF、PDF、g(r) （径向分布函数）；扩散系数；键长键角；混合构型熵；局域序参数等
 - dumpana、latgen、posconv 和 vaspkit 等程序都可以通过 `latgen < inp.script` 命令，使其不用每次交互输入参数，节约时间（**重要！！！**）。
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006937.png)
@@ -1425,9 +1427,11 @@ pseudopotentials
 - 使用教程：[Tutorials — VASPKIT 1.5 documentation](https://vaspkit.com/tutorials.html#quick-start)
 
 ```bash
-vaspkit -help
+vaspkit -help  # 查看帮助
 
-vaspkit < cmd.in  # 推荐此命令
+vaspkit # 进入交互模式
+
+vaspkit < XXX.in  # 推荐此命令，适用于批处理
 
 echo -e "102\n2\n0.04\n" | vaspkit
 ```

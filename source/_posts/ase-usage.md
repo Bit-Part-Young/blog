@@ -58,7 +58,7 @@ ase 缺陷计算 寻找最优的超胞形状
 
 
 ```python
-# 添加真空层
+# 添加真空层；单独使用该函数时，返回值为 None，即无效果
 from ase.build import add_vacuum
 
 # 优化器
@@ -234,18 +234,11 @@ ase 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — 
 
 
 ```python
-atoms = ...
-# 删除 H 原子
-del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
 
 from ase.build import sort
 
 # 按照 chemical symbols 排序生成新的 Atoms object
 sort(atoms)
-
-# 生成 slab 模型
-atoms.center(vacuum=40, axis=2)
-
 
 # 固定原子
 from ase.constraints import FixAtoms
@@ -342,25 +335,33 @@ from ase.atoms import Atoms
 from ase.formula import Formula
 
 atoms: Atoms
+
+# 常用属性和方法
 # 化学式
-conf_symbol = atoms.get_chemical_formula()
+formula = atoms.get_chemical_formula()
 # 成分 {'Al': 5, 'Ti': 1}
-struct_composition = Formula(conf_symbol).count()
+composition = Formula(formula).count()
 # 原子数
-natom = len(atoms)
-# 元素数
+natoms = len(atoms)
+# 元素种类数
 nele = len(set(atoms.get_chemical_symbols()))
 
+# 删除 H 原子
+del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
 
-atoms.copy()  # 拷贝
+# 生成 slab 模型；在指定轴两端各添加真空层 vacuum 数值并使原子位点居中
+center(vacuum=10.0, axis=2)
+
+copy()  # 拷贝
 
 # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
-atoms.wrap()
+wrap()
 
-# wrap 参数默认为 True
+# 分数坐标；wrap 参数默认为 True
 get_scaled_positions()
-# wrap 参数默认为 False
+# 笛卡尔坐标；wrap 参数默认为 False
 get_positions()
+positions
 
 get_distance()    # 两原子间的距离
 get_distances()   # 第 i 个原子与给定原子列表间的距离
