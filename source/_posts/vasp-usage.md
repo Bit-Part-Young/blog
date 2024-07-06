@@ -1110,9 +1110,37 @@ CHGCAR 文件内容：结构、电荷密度、augmentation occupancies
 
 #### DOSCAR、EIGENVAL
 
-态密度以及积分态密度
+DOSCAR：含态密度以及积分态密度
 
-每个 k 点的 Kohn-Sham 本征值
+前 6 行是 header；第 6 行前两个数据表示能量范围，第三个数据表示带数，它与 `INCAR` 中 `NEDOS` 参数值是相同的，第四个表示费米能
+
+```text
+Number of Ions (including empty spheres), Number of Ions, 0 (no partial DOS) or 1 (incl. partial DOS), NCDIJ (currently not used)
+Volume of the unit cell [Angst**3], length of the basis vectors (a,b,c [m]), POTIM[s]
+the initial Temperature TEBEG
+'CAR'
+the name of the system as given by SYSTEM in INCAR
+E(max), E(min), (the energy range in which the DOS is given), NEDOS,  E(fermi), 1.0000
+```
+
+从第 7 行开始（到第 `6+NEDOS` 行），每列的含义如下
+
+```bash
+# 不开启自旋
+energy     DOS     integrated DOS
+# 开启自旋
+energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
+```
+
+>[VASP输出文件内容结构解析(未完成) - Yu-Xuan Blog](https://yxli8023.github.io/2021/08/08/vasp-EIGENVAL.html)
+
+
+---
+
+EIGENVAL：每个 k 点的 Kohn-Sham 本征值
+
+
+对于弛豫，DOSCAR 通常是没用的
 
 
 ---
