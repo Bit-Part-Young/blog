@@ -92,6 +92,10 @@ VESTA 相关：
 
 ### 界面/异质结
 
+[Materials Studio 入门到精通【16】简单界面模型的建立 - 知乎](https://zhuanlan.zhihu.com/p/346859236)
+
+[如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
+
 在 latgen、VASPKIT 和 MS 中，称为 build layer
 
 

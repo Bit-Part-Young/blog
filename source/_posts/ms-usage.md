@@ -61,6 +61,8 @@ password:
 
 >[How to build and optimize crystal structure of a compound - Part 01 - Materials studio (CASTEP)](https://www.youtube.com/watch?v=IMvzznBhEns)
 
+[如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
+
 - 文件保存路径不要有中文
 - 出现很卡顿的情况
 	- 解决方法：tool - option - graphhics，勾选 disable graphic（取消硬件加速）

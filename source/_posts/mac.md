@@ -176,7 +176,7 @@ system_profiler SPDisplaysDataType
 - 数据同步：交大云盘
 - 浏览器： Chrome
 - 压缩文件解压工具：The Unarchiver
-- 媒体播放器：IINA（免费）、Infuse（付费）
+- 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
 - Markdown 笔记管理：Obsidian、Typora
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
@@ -257,7 +257,7 @@ brew tap homebrew/cask-fonts
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-hack-nerd-font
 
-# 可用 nerd font
+# 查看可用 nerd font
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
 
 # 中文字体
@@ -265,7 +265,7 @@ brew install font-smiley-sans  # 得意黑
 brew install font-lxgw-wenkai  # 霞鹜文楷
 
 # Mac 字体路径
-/Library/Fonts  # 系统
+/Library/Fonts   # 系统
 ~/Library/Fonts  # 用户
 ```
 
@@ -296,7 +296,6 @@ brew install font-lxgw-wenkai  # 霞鹜文楷
 - 连接本地终端：Hosts - TERMINAL
 
 ---
-
 
 iTerm 字体设置：Prefrences - profiles - text
 
@@ -395,7 +394,7 @@ menu:
 ### 编程相关
 
 - macOS 版本不同，Homobrew 之前安装的程序有可能会出现不兼容的情况
-- Miniconda3 安装：需要与芯片类型（如 M1）适配
+- Miniconda3 安装：版本需要与芯片类型（如 M1）适配
 - Mac 的 gcc 和 g++ 编译器 默认是 clang 的；建议安装 gcc 套件，并设置软链接
 
 ```bash
@@ -413,30 +412,10 @@ make: *** [atom.o] Error 1
 - dumpana 编译出现以下报错（应该是不兼容 arm64 架构的原因）
 
 ```bash
-Undefined symbols for architecture arm64:
-  "__ZN4voro16voronoicell_base10face_areasERSt6vectorIdSaIdEE", referenced from:
-      __ZN8DumpAtom11Direct_VoroEPdP7__sFILES2_S2_ in atom.o
-      __ZN8DumpAtom11Radica_VoroEPdP7__sFILES2_S2_ in atom.o
-  "__ZN4voro16voronoicell_base13face_verticesERSt6vectorIiSaIiEE", referenced from:
-      __ZN8DumpAtom10RefineEdgeEiPN4voro20voronoicell_neighborEPidP7__sFILE in atom.o
-  "__ZN4voro16voronoicell_base15face_freq_tableERSt6vectorIiSaIiEE", referenced from:
-      __ZN8DumpAtom11Direct_VoroEPdP7__sFILES2_S2_ in atom.o
-      __ZN8DumpAtom11Radica_VoroEPdP7__sFILES2_S2_ in atom.o
-  "__ZN4voro16voronoicell_base8verticesERSt6vectorIdSaIdEE", referenced from:
-      __ZN8DumpAtom10RefineEdgeEiPN4voro20voronoicell_neighborEPidP7__sFILE in atom.o
-  "__ZN4voro16voronoicell_base8verticesEdddRSt6vectorIdSaIdEE", referenced from:
-      __ZN6Driver15OutputVoroCellsEv in output.o
-  "__ZN4voro20voronoicell_neighbor9neighborsERSt6vectorIiSaIiEE", referenced from:
-      __ZN8DumpAtom11Direct_VoroEPdP7__sFILES2_S2_ in atom.o
-      __ZN8DumpAtom11Radica_VoroEPdP7__sFILES2_S2_ in atom.o
-  "__ZNSt20bad_array_new_lengthC1Ev", referenced from:
-      __ZSt28__throw_bad_array_new_lengthB7v160006v in libvoro++.a(cell.o)
-      __ZSt28__throw_bad_array_new_lengthB7v160006v in libvoro++.a(unitcell.o)
 ld: symbol(s) not found for architecture arm64
 collect2: error: ld returned 1 exit status
 make: *** [dumpana] Error 1
 ```
-
 
 
 
@@ -446,7 +425,7 @@ make: *** [dumpana] Error 1
 
 ### git 相关
 
-macOS 11 升级至最新时，git 出现以下报错：
+git 出现以下报错：
 
 ```bash
 xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
@@ -457,7 +436,7 @@ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools
 
 ---
 
-### vscode-insiders 相关
+### VSCode-Insiders 相关
 
 - 如何将 vscode-insiders 从 Downloads 放入到 Applications（可直接拖到侧边栏的 Applications 中）：[Moving VS Code Insiders ARM to programs "folder" on M1 mac makes it unable to start (crashes/exits immediately). Can only start from "downloads" folder · Issue #113751 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/113751)
 - 切换不同的实例窗口：双指点击 vscode 软件 logo，会显示不同窗口，选中其中一个
@@ -470,6 +449,19 @@ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools
 ```bash
 $ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
 $ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
+```
+
+
+---
+
+### coreutils 相关
+
+- `coreutils` (GNU Core Utilities) 包含了很多基本的文件、shell 和文本操作工具
+- macOS 中的一些命令的参数没有 Ubuntu 的全（如 `du`）
+- 通过在命令前加 `g` 来调用 GNU 版本的命令（如 `gdu`）
+
+```bash
+brew install coreutils
 ```
 
 

@@ -757,6 +757,9 @@ ls -1 | grep -v 'IECT*'  # ls 不列出特定的文件/目录
 tail -n +2 file  # 从第二行开始输出内容
 
 ldd --version  # 查看 GLIBC 版本
+
+# 统计字符串长度 c 可换成 m
+echo -n '123456' | wc -c
 ```
 
 

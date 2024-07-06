@@ -153,3 +153,7 @@ taskkill /f /im explorer.exe & start explorer.exe
 ```text
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046D02}\LanguageProfile\0x00000804\{89E1D5C2-A068-44B6-B820-F8406C8A4706}
 ```
+
+---
+
+- 旧电脑绕过 TPM 和 CPU 兼容性升级到 win11：下载 win11 的 iso、下载 [MediaCreationTool.bat](https://github.com/AveYo/MediaCreationTool.bat)，运行 Skip_TPM_Check_on_Dynamic_Update.cmd

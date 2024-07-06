@@ -332,7 +332,7 @@ ax.plot(
 xlim/ylim                    # x、y 轴范围
 xlabel/ylabel                # x、y 轴标签
 title                        # 图标题
-xticks/yticks               # x、y 轴刻度
+xticks/yticks                # x、y 轴刻度
 xticklabels/yticklabels      # x、y 轴刻度标签
 xscale/yscale                # x、y 轴比例
 facecolor                    # 轴背景颜色
@@ -874,3 +874,10 @@ KeysView(RcParams({'_internal.classic_mode': False,
           'ytick.minor.width': 0.6,
           'ytick.right': False}))
 ```
+
+
+---
+
+### 其他
+
+双 Y 轴 + brokenaxes 绘制（matplotlib 及 brokenaxes 实现效果一般，建议还是用 Origin）：[python - Matplotlib with brokenaxes package second Y-Axis - Stack Overflow](https://stackoverflow.com/questions/60026605/matplotlib-with-brokenaxes-package-second-y-axis)

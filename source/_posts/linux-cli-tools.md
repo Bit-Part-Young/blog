@@ -292,13 +292,13 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
 - 文本编辑器：[helix](https://github.com/helix-editor/helix)
 - 终端 markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
-- git 相关：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)
+- git 相关：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)、[onefetch](https://github.com/o2sh/onefetch)（展示本地 Git 仓库的项目详情和代码统计等内容）
 - 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
-- 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)
+- 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
 - 文件对比：[difftastic](https://github.com/Wilfred/difftastic)
 - 文件搜索：[fzf](https://github.com/junegunn/fzf)
 - 统计代码文件行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
-- 终端文件管理器：[yazi](https://github.com/sxyazi/yazi)、[superfile](https://github.com/MHNightCat/superfile)、[ranger](https://github.com/ranger/ranger)
+- 终端文件管理器：[yazi](https://github.com/sxyazi/yazi)、[superfile](https://github.com/MHNightCat/superfile)、[ranger](https://github.com/ranger/ranger)、[lf](https://github.com/gokcehan/lf)（效果一般）
 - 富文本：[rich](https://github.com/textualize/rich)
 - 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
@@ -307,6 +307,8 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 
 ```bash
+ncdu -o ncdu.txt  # 输出信息到文件中
+
 # 按需添加 cheatsheet git repo 以增加丰富性
 navi repo browse
 ```

@@ -113,20 +113,6 @@ git mv
 
 
 
-Git LFS 是一个开源的 Git 扩展，用于管理大型文件，例如音频样本、视频、数据集和图形。它通过在 Git 内部使用文本指针，同时将文件内容存储在像 GitHub.com 或 GitHub Enterprise 这样的远程服务器上，来替换大型文件。
-
-```bash
-sudo apt-get install git-lfs
-
-brew install git-lfs
-```
-
-
-会生成 .gitattributes 文件
-
-```bash
-git lfs track "*.pdf -maxsize=100M"
-```
 
 .git 结构
 
@@ -137,14 +123,14 @@ git lfs track "*.pdf -maxsize=100M"
 
 >[图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
 
-- 可视化 git 学习：[GitHub - pcottle/learnGitBranching: An interactive git visualization and tutorial. Aspiring students of git can use this app to educate and challenge themselves towards mastery of git!](https://github.com/pcottle/learnGitBranching)
+- 可视化 git 学习：[GitHub - pcottle/learnGitBranching](https://github.com/pcottle/learnGitBranching)
+- [git-flight-rules](https://github.com/k88hudson/git-flight-rules/blob/master/README_zh-CN.md)
+- Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
 
 >[GitHub - twtrubiks/Git-Tutorials: Git-Tutorials GIT基本使用教學:memo:](https://github.com/twtrubiks/Git-Tutorials)
 
 >[Git Commands - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Git/Commands/)
 
-- [git-flight-rules](https://github.com/k88hudson/git-flight-rules/blob/master/README_zh-CN.md)
-- Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
 
 >[Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
 
@@ -166,8 +152,7 @@ git lfs track "*.pdf -maxsize=100M"
 
 >[GitHub - k88hudson/git-flight-rules: Flight rules for git](https://github.com/k88hudson/git-flight-rules)
 
-以 SQL 的方式查询 repo 的 git 相关内容
->[Git Query language](https://amrdeveloper.github.io/GQL/)
+- 以 SQL 的方式查询 repo 的 git 相关内容：[Git Query language](https://amrdeveloper.github.io/GQL/)
 
 
 
@@ -177,8 +162,8 @@ git lfs track "*.pdf -maxsize=100M"
 
 ### 基本使用
 
-- 注册 gitee 或 Github 账户
-- 配置 gitee 或 Github 的 SSH（`id_rsa.gitee`、`id_rsa.github`、`id_rsa.gitlab`）
+- 注册 Gitee 或 GitHub 账户
+- 配置 Gitee 或 GitHub 的 SSH（`id_rsa.gitee`、`id_rsa.github`、`id_rsa.gitlab`）
 - 配置 git（`.gitconfig`）
 
 ---
@@ -187,18 +172,18 @@ git lfs track "*.pdf -maxsize=100M"
 
 ```bash
 git init
-git add README.md
+git add .
 git commit -m "first commit"
 
-# github
+# GitHub
 git remote add origin git@github.com:username/repo.git
 # git remote add origin https://github.com/username/repo.git
 
-# gitee
+# Gitee
 git remote add origin git@gitee.com:username/repo.git
 # git remote add origin https://gitee.com/username/repo.git
 
-git push -u origin
+git push -u origin main
 ```
 
 ---
@@ -303,31 +288,24 @@ git push -f origin shend_dev
 
 - 可在 repo 根目录及其子目录创建多个 `.gitignore` 文件
 - 常用 `.gitignore` 模板：[GitHub - github/gitignore: A collection of useful .gitignore templates](https://github.com/github/gitignore)
-- 若在 `.gitignore` 添加忽略文件后不起作用，可使用如下命令：
-
-```bash
-git rm --cached file
-```
-
-
 
 
 ---
 
 #### `.gitattributes`
 
-用于配置 Git 在处理不同类型文件时的行为
+用于配置 Git 在处理不同类型文件时的行为：定义行结束符（Line Endings）、指定语言统计等（linguist-language）
 
-
->[.gitattributes](https://github.com/esemble/simpy/blob/master/.gitattributes)
+示例 1：[.gitattributes](https://github.com/esemble/simpy/blob/master/.gitattributes)
+示例 2：[md - .gitattributes](https://github.com/TonyCrane/note/blob/master/.gitattributes)
 
 ```bash
-# Auto detect text files and perform LF normalization
-# 指示 Git 自动检测文本文件，并在处理它们时执行 LF（Line Feed）规范化操作
+# 自动检测文本文件，并执行 LF（Line Feed）规范化操作
 * text=auto
+*.txt eol=lf
 
-# Standard to msysgit
-# 配置一些特定文件类型的差异（diff）显示策略，特别是针对 MSYSGit（旧版Git for Windows）
+# 配置特定文件类型的差异（diff）显示策略
+# 并非将文件转换为文本文件，只是尝试以文本方式进行显示
 *.doc	 diff=astextplain
 *.DOC	 diff=astextplain
 *.docx diff=astextplain
@@ -338,57 +316,38 @@ git rm --cached file
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
-```
 
->ChatGPT 生成
-
-- `* text=auto` 的设置会让 Git 尝试自动检测文件类型，将其标记为文本文件，并在需要时执行 LF 规范化（一种处理换行符的方式，通常用于确保在不同操作系统上的文本文件中的行尾都使用相同的行尾字符），以确保文件在版本控制系统中的一致性。这是一种非常常见的设置，特别是在跨平台开发中。
-- `astextplain` 是一种 Git 的差异显示策略，它会尝试将二进制文件（如 Word 文档、PDF、RTF 等）视为文本文件，以便更好地显示差异。这对于希望查看这些二进制文件的差异时可能非常有用，**但请注意，它并不会将这些文件真正地转换为文本文件，只是尝试以文本方式进行显示**。
-
-
----
-
-检测 GitHub repo 中代码文件的所属编程语言
-
-md 示例：[md - .gitattributes](https://github.com/TonyCrane/note/blob/master/.gitattributes)
-
-- Linguist - GitHub 工具，检测和标识存储库中的代码文件及其编程语言
-
-
-```bash
 *.md linguist-documentation=false linguist-detectable=true
 *.md linguist-language=Markdown
-```
 
-```bash
 linguist-documentation=false  # 不将文件统计为文档类型
 linguist-detectable=true      # 开启检测
 linguist-language=...         # 记为 ... 编程语言
 ```
 
 
-
 ---
 
 #### `.gitmodules`
 
-定义子模块（submodule）的相关信息。子模块是一个独立的 Git 仓库，被包含在另一个 Git 仓库中，允许将一个 Git 仓库嵌套在另一个 Git 仓库中，以便在一个项目中使用其他项目的代码。
+配置 Git 子模块（submodule）的相关信息。子模块是一个独立的 Git 仓库，被包含在另一个 Git 仓库中，允许将一个 Git 仓库嵌套在另一个 Git 仓库中，以便在一个项目中使用其他项目的代码。
 
 `git submodule init`、`git submodule update` - 初始化和更新子模块
 
-
->[.gitmodules](https://github.com/yujincheng08/ZJU-UGCourse/blob/master/.gitmodules)
+示例 [.gitmodules](https://github.com/yujincheng08/ZJU-UGCourse/blob/master/.gitmodules)
 
 ```bash
-[submodule "simplex"] # 子模块名称
-	path = simplex # 子模块在 repo 中的相对路径
-	url = git@github.com:yao-zou/simplex.git # 子模块的远程 Git repo url
-	branch = master # 分支名
+[submodule "subrepo"] # 子模块名称
+	path = subrepo # 子模块在 repo 中的相对路径
+	url = git@github.com:user/subrepo.git # 子模块 url
+	branch = main # 分支名
 ```
 
 添加子模块
 ```bash
 git submodule add https://github.com/username/reop.git
+
+git submodule update --init --recursive
 ```
 
 
@@ -434,21 +393,21 @@ ssh-keygen -t rsa -f ~/.ssh/id_rsa.github -C "XXX@email.com"
 - `~/.ssh/config` 文件配置
 
 ```bash
-# github
+# GitHub
 Host github.com
     Port 22
     HostName github.com
     User git
     IdentityFile ~/.ssh/id_rsa.github
 
-# gitee
+# Gitee
 Host gitee.com
     Port 22
     HostName gitee.com
     User git
     IdentityFile ~/.ssh/id_rsa.gitee
 
-# gitlab
+# GitLab
 Host gitlab.com
     Port 22
     HostName gitlab.com
@@ -489,9 +448,9 @@ ssh: connect to host github.com port 22: Network is unreachable
 
 ### 将 repo 的 remote origin 由 https 改为 ssh 或 token 形式
 
-之后进行 push、pull 等操作时，将默认通过 SSH 协议,并使用 SSH keys 进行身份验证，不需要再输入用户名和密码。
+- 之后进行 push、pull 等操作时，将默认通过 SSH 协议，并使用 SSH keys 进行身份验证，不需再输入用户名和密码
 
-在该 repo 目录中的 `.git/config` 文件找到 `[remote "origin"]` 选项，将 URL 后的 https 地址改成 ssh 形式或带 token 的地址
+- 在该 repo 目录中的 `.git/config` 文件找到 `[remote "origin"]` 选项，将 URL 后的 https 地址改成 ssh 形式或带 token 的地址
 
 ```bash
 # https 形式
@@ -511,30 +470,67 @@ url = https://user:token@gitee.com/user/repo.git
 
 ### GitHub Token
 
-GitHub 从 2021 年开始不再支持输入账号和密码的形式进行验证，密码改为 Token（Gitee 验证仍是账号和密码）。
+- GitHub 从 2021 年开始不再支持输入账号和密码的形式进行验证，密码改为 Token（Gitee 验证仍是账号和密码）。
 
-- git 操作（push）
-- 图床
-- 与 gitee 进行 repo 同步
+- 具体设置：Settings - Developer settings - Personal access tokens - Tokens(classic)
 
-具体设置：Settings - Developer settings - Personal access tokens - Tokens(classic)
 
 ---
 
 ### 为 repo 创建 gh-pages 分支并 deploy
 
 一般通过第三方的 Github Actions repo
->[GitHub - peaceiris/actions-gh-pages: GitHub Actions for GitHub Pages 🚀 Deploy static files and publish your site easily. Static-Site-Generators-friendly.](https://github.com/peaceiris/actions-gh-pages)
 
->[GitHub Marketplace · Actions to improve your workflow · GitHub](https://github.com/marketplace?type=actions)
+- [GitHub Marketplace · Actions to improve your workflow · GitHub](https://github.com/marketplace?type=actions)
+- [GitHub - peaceiris/actions-gh-pages: GitHub Actions for GitHub Pages 🚀 Deploy static files and publish your site easily. Static-Site-Generators-friendly.](https://github.com/peaceiris/actions-gh-pages)
 
 
 ---
 
 ### Gitee 与 GitHub、GitLab 之间互相同步
 
-- Gitee 可以直接从 GitHub 和 Gitlab 中导入 repo
+- Gitee 可以直接从 GitHub 和 GitLab 中导入 repo
 - 参考：[仓库镜像管理（Gitee<->Github 双向同步） - Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)、[Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
+
+
+---
+
+### Git LFS
+
+Git LFS(Git Large File Storage) 是一个开源的 Git 扩展，用于管理大型文件（Gitee 只对付费企业开放；GitHub 的免费存储和带宽额度是 1GB/月，超过需升级）。它通过在 Git 内部使用文本指针，以减小 Git 仓库体积，加快仓库的克隆和拉取。
+
+```bash
+# 安装
+sudo apt-get install git-lfs # Ubuntu
+brew install git-lfs # macOS
+
+git lfs install # 初始化
+
+# 跟踪大文件 会生成 .gitattributes 文件
+git lfs track "*.pdf"
+
+git add .gitattributes
+git commit -m "add .gitattributes"
+
+# 查看当前已跟踪的 Git LFS File 类型
+git lfs track
+
+# 拉取 LFS 文件
+git lfs pull
+
+git lfs clone repo # 克隆
+
+# 列出当前已通过 LFS 跟踪的所有文件
+git lfs ls-files
+
+# 取消跟踪并删除
+git lfs untrack "*.pdf"
+git rm --cached "*.pdf"
+
+# 将历史文件迁移到 LFS
+git lfs migrate import --include="*.dmg" --everything
+git push --force # 强制推送
+```
 
 
 ---

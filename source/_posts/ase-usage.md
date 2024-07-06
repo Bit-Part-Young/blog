@@ -357,6 +357,8 @@ copy()  # 拷贝
 # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
 wrap()
 
+write()  # 写入构型格式文件
+
 # 分数坐标；wrap 参数默认为 True
 get_scaled_positions()
 # 笛卡尔坐标；wrap 参数默认为 False
