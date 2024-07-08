@@ -26,6 +26,20 @@ password:
 
 - [GitHub - weijie-chen/weijie-chen.github.io](https://github.com/weijie-chen/weijie-chen.github.io)、[Weijie Chen](https://weijie-chen.github.io/)
 - [Dr. Jinyang Zhang](https://kevinzjy.github.io/)
+- [Zhenchao Jin](https://charlespikachu.github.io/)（纯 html css）
+- 在线排版：[GitHub - mdnice/markdown-resume](https://github.com/mdnice/markdown-resume)
+
+- Jekyll 框架：
+	- [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)
+	- [GitHub - yaoyao-liu/minimal-light](https://github.com/yaoyao-liu/minimal-light/)
+	- minimal 主题相关示例：
+		- [GitHub - juliayang/juliayang.github.io](https://github.com/juliayang/juliayang.github.io)
+		- [Julia H. Yang - Computational materials scientist](https://juliayang.github.io/)
+		- [GitHub - yaoyao-liu/yaoyao-liu.github.io: My homepage's source code](https://github.com/yaoyao-liu/yaoyao-liu.github.io)
+		- [yaoyao-liu homepage](https://www.cs.jhu.edu/~yyliu/)（本人 CV 采用此框架及主题）
+	- [GitHub - RayeRen/acad-homepage.github.io](https://github.com/RayeRen/acad-homepage.github.io)，示例：[Yi Ren (任意) - Homepage](https://rayeren.github.io/)
+	- [GitHub - sharu725/online-cv](https://github.com/sharu725/online-cv)
+
 
 
 ---

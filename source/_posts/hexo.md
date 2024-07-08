@@ -32,17 +32,15 @@ password:
 	- 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
 	- butterfly 主题的预设功能比 matery 更丰富
 
-- 实例
+- 实例：
 	- stun 主题：[OrangeX4's Blog](https://orangex4.cool/)
 	- butterfly 主题：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)
 
-- 参考资料
+- 参考资料：
 	- [Hexo 入门](https://blog.17lai.site/posts/40300608/#Hexo%E5%85%A5%E9%97%A8%E7%AF%87)
 	- [matery主题基本设置](https://blog.17lai.site/posts/40300608/#Hexo%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%AF%87)
 	- [基于 Hexo 从零开始搭建个人博客系列 - 唐志远](https://fe32.top/articles/hexo1600/)
 
-
-- [ ] hexo 如何使链接标题为 - 连接，而非 |
 
 
 ---
@@ -149,7 +147,7 @@ deploy:
 
 ---
 
-- Github Actions
+- Github Actionsi：示例如下
 
 ```yaml
 name: Hexo deploy
