@@ -88,15 +88,18 @@ lmp -h
 
 ### make 编译
 
-进入 src 目录
-
 ```bash
+cd src
+
 # 查看 make 所有选项
 make
 
 make clean-all
 
 make yes-<package>
+
+make yes-all # install all packages
+make no-lib  # uninstall packages that require extra libraries
 
 make package-update
 
@@ -105,6 +108,9 @@ make serial
 # 编译并行版本
 make mpi
 ```
+
+
+---
 
 ### MC2 LAMMPS 版本编译
 
@@ -269,8 +275,3 @@ these steps:
    "lmp" and the other executables should work as expected.
 
 ```
-
-
----
-
-## 使用

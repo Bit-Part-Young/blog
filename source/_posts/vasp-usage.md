@@ -39,6 +39,14 @@ DFT-D3：vdW 相互作用修正
 
 Heyd–Scuseria–Ernzerhof 泛函 (HSE06)：更精确，处理电子和光学性质
 
++U
+
+```bash
+# LDAU 等参数
+LDAU
+LDAUU
+LDAUJ
+```
 
 
 
@@ -1133,6 +1141,9 @@ energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
 ```
 
 >[VASP输出文件内容结构解析(未完成) - Yu-Xuan Blog](https://yxli8023.github.io/2021/08/08/vasp-EIGENVAL.html)
+
+
+[如何分析态密度](https://zhuanlan.zhihu.com/p/671748151)
 
 
 ---

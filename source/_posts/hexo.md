@@ -21,12 +21,20 @@ password:
 
 - 官网：[Hexo](https://hexo.io/)
 
-- 主题：[butterfly](https://github.com/jerryc127/hexo-theme-butterfly)、[icarus](https://github.com/ppoffice/hexo-theme-icarus)、[volantis](https://github.com/volantis-x/hexo-theme-volantis/)、[fluido](https://github.com/fluid-dev/hexo-theme-fluid)、[stun](https://github.com/liuyib/hexo-theme-stun)、[matery](https://github.com/blinkfox/hexo-theme-matery)、[maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
+- 主题：
+	- [butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
+	- [matery](https://github.com/blinkfox/hexo-theme-matery)
+	- [icarus](https://github.com/ppoffice/hexo-theme-icarus)
+	- [volantis](https://github.com/volantis-x/hexo-theme-volantis/)
+	- [fluido](https://github.com/fluid-dev/hexo-theme-fluid)
+	- [stun](https://github.com/liuyib/hexo-theme-stun)
+	- [maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
 	- 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
+	- butterfly 主题的预设功能比 matery 更丰富
 
-- 具体实例
-	- stun 主题具体实例：[OrangeX4's Blog](https://orangex4.cool/)
-	- butterfly 主题具体实例：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)
+- 实例
+	- stun 主题：[OrangeX4's Blog](https://orangex4.cool/)
+	- butterfly 主题：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)
 
 - 参考资料
 	- [Hexo 入门](https://blog.17lai.site/posts/40300608/#Hexo%E5%85%A5%E9%97%A8%E7%AF%87)
@@ -43,17 +51,15 @@ password:
 
 ### 快速搭建
 
-- 快速搭建
+- 快速搭建（以 butterfly 主题为例）
 
 ```bash
 # 安装 hexo
 npm install -g hexo-cli
 
 # 初始化
-hexo init hexo-project
-cd hexo-project
-# 或
-mkdir hexo-project & cd hexo-project & hexo init
+hexo init hexo-project & cd $_  # 方式 1
+mkdir hexo-project & cd $_ & hexo init  # 方式 2
 
 # 安装依赖
 npm i
@@ -65,7 +71,7 @@ git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/bu
 # 安装主题依赖
 npm i hexo-theme-butterfly --save
 
-# 将 CNAME 文件放入 source 目录
+# 将 CNAME 文件放入 source 目录，以解析域名
 ```
 
 ---
@@ -84,7 +90,9 @@ npm i hexo-theme-butterfly --save
 ---
 
 
-- 配置文件：`_config.yml`、`themes/XXX/_config.yml`
+- 配置文件
+	- `_config.yml`
+	- `themes/XXX/_config.yml`
 
 - `_config.yml` 修改内容：
 	- `title`：网站标题
@@ -95,7 +103,7 @@ npm i hexo-theme-butterfly --save
 	- `language`：语言
 	- `timezone`：时区
 	- `url`：网址；`https://username.github.io/repo`（project page）
-	- `theme`：主题；hexo-theme-matery、butterfly 等
+	- `theme`：主题；butterfly、hexo-theme-matery 等
 
 - `_config.theme.yml` 修改内容：自定义修改
 
@@ -109,20 +117,16 @@ npm i hexo-theme-butterfly --save
 ```bash
 # 构建
 hexo g  # hexo generate; npm run build
-# 监视文件变动
-hexo g --watch
-# debug
-hexo g --debug
+hexo g --watch  # 监视文件变动
+hexo g --debug  # debug
 
 # 实时预览
 hexo s  # hexo server; npm run server
-# 更改端口
-hexo s -p 5000
+hexo s -p 5000  # 更改端口
 
 # 部署
 hexo d  # hexo deploy; npm run deploy
-# 构建后部署
-hexo g -d
+hexo g -d  # 构建后部署
 
 # 清除缓存文件 db.json 和静态文件 public/
 hexo clean  # hexo cl
@@ -162,10 +166,10 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js 18.x
+      - name: Use latest Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: latest
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
@@ -178,7 +182,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -230,18 +234,8 @@ top: true
 
 - hexo-generator-search/searchdb：本地搜索设置
 
-- [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文统计与信息展示网页。
-	- 在页面添加论文核心图片，在 bib 文件中的对应条目下添加 `image` 参数
-
-```markdown
-<!-- 单个论文 -->
-{% publications %}
-MEI2024154794, Yang2022
-{% endpublications %}
-
-<!-- 全部论文 -->
-{% publications_from_bib pub.bib %}
-```
+- [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文统计与信息展示网页（可单个、全部论文）。
+	- 在页面添加论文概要图片，在 bib 文件中的对应条目下添加 `image` 参数
 
 
 
@@ -256,21 +250,23 @@ MEI2024154794, Yang2022
 
 ### butterfly
 
-- menu（分类、标签、存档；友链、关于、音乐、视频、相册等暂无必要）
+>[Butterfly - A Simple and Card UI Design theme for Hexo](https://butterfly.js.org/)
+
+- 菜单栏 menu（分类、标签、存档；友链、关于、音乐、视频、相册等暂无必要）
 - 网站 logo、个人头像、social 相关信息
 - 代码
 - 目录
 - banner 图片
 - 文章封面（front-matter 中 cover 选项不填参数）
 - 评论系统
-- 搜索
+- 搜索系统
 - 页面加载效果
 - post 元信息（分类、标签、时间、字数统计、需阅读时间等）
 - 侧边栏（butterfly）
 - Footer
 - 内容复制时、文章底部版权相关信息
 - 图片懒加载
-- 相册（matery 和 butterfly；暂无必要）
+- 相册（暂无必要）
 - 右下角功能按钮（深/浅色切换，直达页面顶部等功能）
 - 添加音乐、视频页面（音乐可全局吸底）
 
@@ -279,8 +275,11 @@ MEI2024154794, Yang2022
 
 ### matery
 
+>[闪烁之狐](http://blinkfox.com/)
+
+已解决/实现：
+
 - [x] 首页设置的音乐播放功能；文章内部音乐播放设置功能；如何设置单独页面音乐播放
-- [x] 博客源代码所在的 repo 可设置成 private，（免费用户只能把 github page 设置成 public，否则部署的 github page 及其绑定的域名均会无法打开）
 - [x] 单独视频页面效果如何制作（和单独相册页面类似，但简单一些；如何放入多个视频？）
 - [x] 离开博客标签页，出现可爱字体
 - [x] 屏蔽网页源码（单纯的屏蔽鼠标右键和键盘事件；慎重添加）
@@ -290,9 +289,7 @@ MEI2024154794, Yang2022
 	- valine 无人维护更新
 	- 使用 gitalk 遇到的一些问题：其他人登录评论系统会出现 “ 网络错误 ”；所需要的权限过多
 
-
-
-- [x] `hexo d` 后，CNAME 文件会被删除 [hexo部署后，CNAME会被自动删除，怎么办？ - 知乎](https://www.zhihu.com/question/28814437)：将需要上传至 github 的内容放在 source 目录，例如 CNAME、favicon.ico、images 等
+- [x] `hexo d` 后，CNAME 文件会被删除 [hexo部署后，CNAME会被自动删除，怎么办？ - 知乎](https://www.zhihu.com/question/28814437)：将需要上传至 GitHub 的内容放在 source 目录，例如 CNAME、favicon.ico、images 等
 
 - [x] PC 端访问人数和访问量消失；手机端无看板娘，访问人数和访问量正常 [基于Hexo的matery主题搭建博客常见问题篇6 | 夜法之书](https://blog.17lai.site/posts/84b4059a/#busuanzi%E4%B8%8D%E8%92%9C%E5%AD%90%E8%AE%A1%E6%95%B0%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8%EF%BC%8C%E4%B8%80%E9%97%AA%E5%B0%B1%E6%B2%A1)
 
@@ -331,21 +328,22 @@ MEI2024154794, Yang2022
 - [x] 添加导航页（里面的相关链接待修改；必要性不大）
 - [x] 添加标签外挂（其他框架可能无法使用） [小弋の生活馆全样式预览 | 小弋の生活馆](https://lovelijunyi.gitee.io/posts/c898.html)
 
-
 ---
 
-**待解决**
+待解决/实现
 
 - [ ] 博客底部的文章链接出现 2 个 hexo-demo，暂无法解决
 - [ ] CDN 加速
-- [ ] 添加 github badge（添加代码的位置需自己调整，尽量恰当）
+- [ ] 添加 GitHub badge（添加代码的位置需自己调整，尽量恰当）
 - [ ] 添加思维导图渲染
-- [ ] markdown 的复选框在 hexo 博客中不可用
+- [ ] markdown 的复选框在 hexo 中无法正确渲染
 - [ ] 让博客支持通知功能
 - [ ] 豆瓣书单电影页面
 - [ ] 自定义主题字体
 - [ ] 相册的宽度和高度大小设置在 matery.css 文件中
 - [ ] 测试 404 页面（404 页面未起作用）
-- [ ] 换装、对话的看板娘（有些复杂）[GitHub - stevenjoezhang/live2d-widget: 把萌萌哒的看板娘抱回家 (ノ≧∇≦)ノ | Live2D widget for web platform](https://github.com/stevenjoezhang/live2d-widget)
+- [ ] 换装、对话的看板娘（有些复杂；暂无必要）[GitHub - stevenjoezhang/live2d-widget: 把萌萌哒的看板娘抱回家 (ノ≧∇≦)ノ | Live2D widget for web platform](https://github.com/stevenjoezhang/live2d-widget)
 - [ ] 为 Hexo 博客中的 Markdown 添加卡片式链接支持 [为 Hexo 博客中的 Markdown 添加卡片式链接支持 - OrangeX4's Blog](https://orangex4.cool/post/hexo-link-card/)
-- [ ] “ 关于 ” 页面添加简历 [GitHub - godweiyang/hexo-theme-sungod: 一款定制化的Hexo博客主题](https://github.com/godweiyang/hexo-theme-sungod)、[韦阳的博客](https://godweiyang.com/)
+- [ ] “关于” 页面添加简历
+	- [ ] [GitHub - godweiyang/hexo-theme-sungod: 一款定制化的Hexo博客主题](https://github.com/godweiyang/hexo-theme-sungod)
+	- [ ] [韦阳的博客](https://godweiyang.com/)
