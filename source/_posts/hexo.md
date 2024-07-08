@@ -11,7 +11,7 @@ tags:
 categories:
   - 博客
 date: 2023-10-21 09:00:00
-abbrlink: "40315"
+abbrlink: 40315
 password:
 ---
 

@@ -13,7 +13,7 @@ tags:
 categories:
   - 科研工具
 date: 2023-10-30 09:00:00
-abbrlink: "592810"
+abbrlink: 592810
 password:
 ---
 

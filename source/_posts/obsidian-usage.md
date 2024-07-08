@@ -112,7 +112,7 @@ password:
 
 ---
 
-## 插件
+### 插件
 
 - [Obsidian-插件推荐（20230630更新） - 知乎](https://zhuanlan.zhihu.com/p/353449575)
 - obsidian LaTeX 相关插件：[GitHub - RyotaUshio/obsidian-math-booster: Turn your Obsidian into LaTeX on steroids.](https://github.com/RyotaUshio/obsidian-math-booster)、[GitHub - artisticat1/obsidian-latex-suite: Make typesetting LaTeX as fast as handwriting through snippets, text expansion, and editor enhancements](https://github.com/artisticat1/obsidian-latex-suite)
@@ -120,9 +120,10 @@ password:
 
 ---
 
-- 外观：推荐使用 Blut Topaz、Border、[AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) 主题（后两者会出现卡顿情况）
-- AnuPpuccin 使用 css：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入“设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
-- Blut Topaz 主题效果图：
+- 外观：
+	- 推荐使用 Blut Topaz、Border、[AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) 主题（后两者会出现卡顿情况）
+	- AnuPpuccin 使用 css：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入“设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
+	- Blut Topaz 主题效果图：
 
 ![vault-screenshot.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202312120853566.png)
 
@@ -143,11 +144,7 @@ password:
     - 填写服务器地址、用户和密码信息
     - 启动后自动运行一次：启动后第 1 秒运行一次
     - 同步配置文件夹：对于手机 - PC 端之间互相同步，开始可先开启，手机端同步到配置文件后，再将其关闭。
-    - Infini Cloud 服务器地址：
-
-```bash
-https://toi.teracloud.jp/dav/
-```
+    - Infini Cloud 服务器地址：`https://toi.teracloud.jp/dav/`
 
 - Auto Link Title：自动获取 URL 标题（实用性很高）；快捷键 `Crtl + Shift + E`；无法实现文档中的全部链接标题的获取，只能单个。
 - Advanced Tables：markdown 表格增强；按 tab 键自动补全 markdown 表格所需格式。
@@ -155,25 +152,16 @@ https://toi.teracloud.jp/dav/
 - Remember cursor position：记住光标位置。
 - Vault Statistics：Vault 信息统计，包括文档数，文档中的字符和词数（出现在右下角）。
 - Image Auto Upload Plugin：借助 PicGo/PicList 实现图片自动上传并转成图链。
-- Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式。
+- Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式（**通过 Pandoc 导出，需安装并配置；含中文的 md 导出成 pdf 格式一般都会报错，建议手动写命令，其他格式可以成功导出**）。
 - floating toc：目录浮动体；[GitHub - PKM-er/obsidian-floating-toc-plugin](https://github.com/cumany/obsidian-floating-toc-plugin)。
 - Admonitions：和 GitHub 中的 alert 语法一样。
 
 ```text
 > [!NOTE]
-> Useful information that users should know, even when skimming content.
-
 > [!TIP]
-> Helpful advice for doing things better or more easily.
-
 > [!IMPORTANT]
-> Key information users need to know to achieve their goal.
-
 > [!WARNING]
-> Urgent info that needs immediate user attention to avoid problems.
-
 > [!CAUTION]
-> Advises about risks or negative outcomes of certain actions.
 ```
 
 效果：
@@ -181,10 +169,9 @@ https://toi.teracloud.jp/dav/
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081127325.png)
 
 
-
 ---
 
-## 工具
+### 工具
 
 - Notion Notes 转 Obsidian：[GitHub - connertennery/Notion-to-Obsidian-Converter: Converts exported Notion notes to work with Obsidian.](https://github.com/connertennery/Notion-to-Obsidian-Converter)
 

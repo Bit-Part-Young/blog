@@ -35,10 +35,11 @@ GitHub Pages 默认框架。
 
 ---
 
-chirpy 主题使用：
+#### chirpy 主题使用
 
-- md 文档中的 URL 链接 title 中不能有 `|`，否则会渲染错误
 - 文章置顶 front-matter 参数：`top`，数值为 `true` 或 `false`
+- md 文档中的 URL 链接 title 中不能有 `|`，否则会渲染错误
+- 渲染 checklist 时，会无法渲染 bullet list
 
 
 ---

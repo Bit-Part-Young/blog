@@ -131,7 +131,7 @@ jobs:
 - 文档统计的插件：[GitHub - TonyCrane/mkdocs-statistics-plugin](https://github.com/TonyCrane/mkdocs-statistics-plugin)
 - changelog 插件：[GitHub - TonyCrane/mkdocs-changelog-plugin](https://github.com/TonyCrane/mkdocs-changelog-plugin)
 - 内容加密插件：[GitHub - unverbuggt/mkdocs-encryptcontent-plugin](https://github.com/unverbuggt/mkdocs-encryptcontent-plugin)
-- 渲染 jupyter notebook：[mknotebooks](https://github.com/greenape/mknotebooks)、[mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter)
+- 渲染 jupyter notebook：[mknotebooks](https://github.com/greenape/mknotebooks)、[mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter)（公式会无法正确渲染？）
 - 导出 pdf：[mkdocs-exporter](https://github.com/adrienbrignon/mkdocs-exporter)（不好用，会报错）
 - 版本控制：[Setting up versioning - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/)
 
