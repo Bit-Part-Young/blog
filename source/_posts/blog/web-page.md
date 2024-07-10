@@ -27,6 +27,7 @@ password:
 - [GitHub - weijie-chen/weijie-chen.github.io](https://github.com/weijie-chen/weijie-chen.github.io)、[Weijie Chen](https://weijie-chen.github.io/)
 - [Dr. Jinyang Zhang](https://kevinzjy.github.io/)
 - [Zhenchao Jin](https://charlespikachu.github.io/)（纯 html css）
+- [GitHub - HugoBlox/theme-academic-cv: 🎓 无需编写任何代码即可轻松创建漂亮的学术网站](https://github.com/HugoBlox/theme-academic-cv)
 - 在线排版：[GitHub - mdnice/markdown-resume](https://github.com/mdnice/markdown-resume)
 
 - Jekyll 框架：
@@ -74,7 +75,10 @@ password:
 
 ## 恋爱记录网页
 
-WIP…
+- [GitHub - saurabhnemade/will-you-be-my-valentine: A simple application to impress your loved ones on valentines day!!](https://github.com/saurabhnemade/will-you-be-my-valentine)
+- [GitHub - KanurkarPrateek/Valentines\_Day\_Proposal](https://github.com/KanurkarPrateek/Valentines_Day_Proposal)
+- [GitHub - nxuzy/love: love\_matters](https://github.com/nxuzy/love)、[恋爱申请书](https://nxuzy.github.io/love/)
+- [GitHub - xing16/ValentineDaySuprise: HMTL实现情人节告白气球，不一样的惊喜](https://github.com/xing16/ValentineDaySuprise)
 
 
 ---

@@ -21,34 +21,11 @@ password:
 
 ## 介绍
 
-本地 overleaf 程序：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
-
 LaTeX 斜线表头 package（diagbox）：[CTAN: Package diagbox](https://ctan.org/pkg/diagbox/)
 
-LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
-[常用 LaTeX 代码](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
-
-VSCode LaTeX Utilities 插件
-
-texlive 2024 版本已有 sjtutex 包
 
 - [ ] latex 如何在每个章节最后生成参考文献？
-
-LaTeX 实现审阅效果：latexdiff（texlive 自带）
-
-使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
-
-若 tex 多个文件嵌套，会复杂许多
-
-```bash
-# Ubuntu 安装
-sudo apt install latexdiff
-
-# macOS 安装
-brew install latexdiff
-
-```
 
 LaTeX 中文写作：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
 
@@ -64,54 +41,15 @@ LaTeX 中文写作：[Chinese - Overleaf, Online LaTeX Editor](https://www.overl
 波浪线：\~{}
 ```
 
-TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
-
-overleaf 的项目源码可以 push 到 Github 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
-
-
 
 ---
-
-### 模板
-
-较为简洁的作业模板
->[hw1.tex](https://raw.githubusercontent.com/OrangeX4/NJUAI-Notes/master/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/Homework/hw1.tex)
-
-写论文模板
->[GitHub - ElegantLaTeX/ElegantPaper: Elegant LaTeX Template for Working Papers](https://github.com/ElegantLaTeX/ElegantPaper)
-
->[GitHub - ElegantLaTeX/ElegantBook: Elegant LaTeX Template for Books](https://github.com/ElegantLaTeX/ElegantBook)
-
->[上海交通大学 Beamer 模版](https://github.com/sjtug/SJTUBeamer)
-
->[上海交通大学 LaTeX 论文模板](https://github.com/sjtug/SJTUThesis)
-
----
-
-LaTeX 课件（需设置网络代理）
->[LaTeX 科技文档排版](https://lvjr.bitbucket.io/latex.html)
-
-
->[LaTeX专栏 - 八一考研数学竞赛](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU1OTE2MDI4OA==&action=getalbum&album_id=1865901150256857095&scene=173&from_msgid=2247489314&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
-
->[分类: LaTeX | 始终](https://liam.page/categories/LaTeX/)
-
 
 markdown 宏包
 >[以 Markdown 撰写文稿，以 LaTeX 排版 | 始终](https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/)
 
 
->[GitHub - zousiyu1995/Study-LaTeX: LaTeX学习笔记](https://github.com/zousiyu1995/Study-LaTeX)
-
-
->[GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
-
-
 去除超链接、交叉引用中的方框
 [hyperref - Remove ugly borders around clickable cross-references and hyperlinks - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks)
-
-
-[LaTeX 入门与进阶](https://latex.lierhua.top/zh/)
 
 
 
@@ -123,53 +61,56 @@ markdown 宏包
 
 ### 参考资料
 
-vscode latex workshop 设置
->[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
-
-
-cls 内容注释很详细
->[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
-
-
-
->[GitHub - wklchris/Note-by-LaTeX: 《简单粗暴 LaTeX》出版图书开源仓库 | The opensource repo for my published LaTeX book.](https://github.com/wklchris/Note-by-LaTeX)
-
-
->[GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
-
->[LaTeX 备忘清单 & latex cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/latex.html)
-
-lec4：LaTeX 排版简要介绍
->[lec4.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec4.md)
-
-
->[GitHub - Meiting-Wang/Awesome-LaTeX-cn: The LaTeX materials list I used](https://github.com/Meiting-Wang/Awesome-LaTeX-cn)
->[1.1 Awesome-LaTeX-cn - Meiting Wang](https://meiting-wang.github.io/latex/begin1)
-
-
->[GitHub - samcarter/tikzducks: A latex package to draw cute rubber ducks with TikZ](https://github.com/samcarter/tikzducks)
-
-bib 文件写法
->[thesis.bib](https://github.com/thbtppl/latex-thesis-imperial/blob/main/utils/thesis.bib)
-
-
->[LaTeX技巧 | Feng's Blog](https://blog.windsky.tech/2022/01/29/LaTeX-Notes/)
+- [LaTeX 备忘清单 & latex cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/latex.html)
+- LaTeX 排版简要介绍：[lec4.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec4.md)
+- 需设置网络代理：[LaTeX 科技文档排版](https://lvjr.bitbucket.io/latex.html)
+- [LaTeX专栏 - 八一考研数学竞赛](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU1OTE2MDI4OA==&action=getalbum&album_id=1865901150256857095&scene=173&from_msgid=2247489314&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+- [分类: LaTeX - 始终](https://liam.page/categories/LaTeX/)
+- [GitHub - zousiyu1995/Study-LaTeX: LaTeX学习笔记](https://github.com/zousiyu1995/Study-LaTeX)
+- [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
+- [LaTeX 入门与进阶](https://latex.lierhua.top/zh/)
+- [GitHub - wklchris/Note-by-LaTeX: 《简单粗暴 LaTeX》出版图书开源仓库](https://github.com/wklchris/Note-by-LaTeX)
+- [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
+- [GitHub - Meiting-Wang/Awesome-LaTeX-cn: The LaTeX materials list I used](https://github.com/Meiting-Wang/Awesome-LaTeX-cn)
+- [1.1 Awesome-LaTeX-cn - Meiting Wang](https://meiting-wang.github.io/latex/begin1)
+- [GitHub - samcarter/tikzducks: A latex package to draw cute rubber ducks with TikZ](https://github.com/samcarter/tikzducks)
+- bib 文件写法：[thesis.bib](https://github.com/thbtppl/latex-thesis-imperial/blob/main/utils/thesis.bib)
+- [LaTeX技巧 | Feng's Blog](https://blog.windsky.tech/2022/01/29/LaTeX-Notes/)
+- [常用 LaTeX 代码](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
 
 
 自定义列表环境
 >[LaTeX 自定义列表环境 | 智朋的个人博客](https://coffeelize.top/posts/18fc56c9.html)
 
-LaTeX OCR
->[GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
+
+---
+
+## TeX Live 安装
+
+- 参考：[GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
+- TeX Live 2024 版本已有 sjtutex 包
+- TeX Live 不同版本需要安装的数目：medium 约 1395 项；full 约 4543 项。
+- TeX Live 不同版本（basic small medium full）之间的区别：[installing - Minimal TeXLive installation - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/397174/minimal-texlive-installation)
+
+
+![different schemes of texlive](https://i.stack.imgur.com/Edat8.png)
+
+TeX Live 中的目录树（texmf-dist texmf-local），包管理（tlmgr），安装非官方的包
+
+>《lshort-zh-cn.pdf》
+
+>《texlive-zh-cn.pdf》
+
+
+- [ ] tcolorbox 宏包使用
 
 
 ---
 
-## texlive 安装
 
->[GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
+---
 
-### Linux 端
+### Linux
 
 CTAN 镜像：[CTAN - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CTAN/)
 
@@ -191,41 +132,24 @@ export INFOPATH=$HOME/src/texlive/2023/texmf-dist/doc/info
 export PATH=$HOME/src/texlive/2023/bin/x86_64-linux:$PATH
 ```
 
->注：texlive 不同版本需要安装的数目：medium 约 1395 项；full 约 4543 项。
-
-
-basic small medium full 版本 texlive 之间的区别
->[https://tex.stackexchange.com/questions/397174/minimal-texlive-installation](https://tex.stackexchange.com/questions/397174/minimal-texlive-installation)
-
-
-![different schemes of texlive](https://i.stack.imgur.com/Edat8.png)
-
-
 
 ---
 
-
-tlmgr：texlive 包管理器
+tlmgr：TeX Live 包管理器
 
 ```bash
 # 列出已安装的宏包
 tlmgr list --only-installed
 tlmgr list --only-installed | grep ctex
 
-# 查看 package 信息
-tlmgr info <package>
-
-# 查找宏包
-tlmgr search <package>
-
-# 查看可升级的宏包
-tlmgr update --list
-
-# 安装宏包
-tlmgr install <package>
+tlmgr info <package>  # 查看 package 信息
+tlmgr search <package>  # 查找宏包
+tlmgr update --list  # 查看可升级的宏包
+tlmgr install <package>  # 安装宏包
 
 # 升级全部宏包
-# --self 选项用于更新 tlmgr 命令本身，而 --all 选项用于更新 TeX Live 系统中的所有宏包和字体
+# --self 更新 tlmgr 命令本身
+# --all 更新 TeX Live 系统中的所有宏包和字体
 tlmgr update --self --all
 
 # 查看 tlmgr 命令当前使用的源
@@ -239,102 +163,103 @@ tlmgr option repository
 tlmgr option repository url
 ```
 
-
-查看已安装 texlive 的路径
 ```bash
+# 查看已安装 texlive 的路径
 kpsewhich -var-value=TEXMFMAIN
-```
 
-
-查看 texlive 安装版本
-```bash
+# 查看 texlive 安装版本
 tex --version
-
 tlmgr --version
 ```
 
 
-
 ---
 
-### 在线 texlive
+### 在线 LaTeX 编辑器
 
->[overleaf](https://www.overleaf.com/)
->
->[SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
+- [overleaf](https://www.overleaf.com/)
+- [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
+- 本地 overleaf：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
+- LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
-overleaf 可以使用 vim（**组合键**选项）
+TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
 
+overleaf 使用：
 
----
-
-`texdoc` 是一个命令行程序，功能是查阅 TEX Live 中的文档。这些文档包括：发
-行版的说明文档、宏包和文档类的手册，等等。
-```bash
-texdoc texlive
-
-# 查看宏包文档
-texdoc <package>
-```
-
-
-
-
----
-
-texlive 中的目录树（texmf-dist texmf-local），包管理（tlmgr），安装非官方的包
-
->《lshort-zh-cn.pdf》
-
->《texlive-zh-cn.pdf》
-
-
-- [ ] tcolorbox 宏包使用
-
-
-
-
-jupyter notebook 用 tex live+pandoc+nbconvert 转成含中文字符的 pdf（windows 端可以；linux 超算下安装较复杂）
->[https://blog.csdn.net/qq_39004117/article/details/106605076](https://blog.csdn.net/qq_39004117/article/details/106605076)
-
-```bash
-# 1. 转换成tex文件
-jupyter nbconvert --to latex Week09.ipynb
-
-# 2. 在tex文件中添加下面的三行命令
-\usepackage{fontspec, xunicode, xltxtra}
-\setmainfont{Microsoft YaHei}
-\usepackage{ctex}
-
-# 3. 转换成pdf
-xelatex Week09.tex
-```
-
-
+- overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
+- overleaf 可以使用 vim（**组合键**选项）
 
 ---
 
 ## 使用
 
+### 工具
+
+- VSCode LaTeX Workshop 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
+
+- VSCode LaTeX Utilities 插件
+
+- LaTeX OCR：[GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
+
+---
+
+`texdoc`：查阅 texlive 中的文档，包括发行版的说明文档、宏包和文档类的手册等。
+```bash
+texdoc texlive
+texdoc <package>  # 查看宏包文档
+```
+
+---
+
+LaTeX 实现审阅效果：latexdiff（texlive 自带）
+
+使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
+
+若 tex 多个文件嵌套，会复杂许多
+
+```bash
+# Ubuntu 安装
+sudo apt install latexdiff
+
+# macOS 安装
+brew install latexdiff
+```
+
+
+---
+
+### 模板
+
+- 较为简洁的作业模板：[hw1.tex](https://raw.githubusercontent.com/OrangeX4/NJUAI-Notes/master/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/Homework/hw1.tex)
+
+- [GitHub - ElegantLaTeX/ElegantPaper](https://github.com/ElegantLaTeX/ElegantPaper)
+- [GitHub - ElegantLaTeX/ElegantBook](https://github.com/ElegantLaTeX/ElegantBook)
+- [上海交通大学 Beamer 模版](https://github.com/sjtug/SJTUBeamer)
+- [上海交通大学 LaTeX 论文模板](https://github.com/sjtug/SJTUThesis)
+- cls 内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
+
+
+---
+
 输出文件类型：
 
-| 文件类型 |                                               说明                                               |
-| :------: | :----------------------------------------------------------------------------------------------: |
-|  `.sty`  |                                             宏包文件                                             |
-|  `.cls`  |                                            文档类文件                                            |
-|  `.aux`  | 用于储存交叉引用信息的文件；因此，在更新交叉引用（公式编号、纲级别）后，需要编译两次才能正常显示 |
-|  `.log`  |                                     日志；记录上次编译的信息                                     |
-|  `.toc`  |                                             目录文件                                             |
-|  `.lof`  |                                             图形目录                                             |
-|  `.lot`  |                                             表格目录                                             |
-|  `.idx`  |                            如果文档中包含索引，该文件用于储存索引信息                            |
-|  `.ind`  |                                           索引记录文件                                           |
-|  `.ilg`  |                                           索引日志文件                                           |
-|  `.bib`  |                                     bibtex 参考文献数据文件                                      |
-|  `.bbl`  |                                    bibtex 生成的参考文献记录                                     |
-|  `.bst`  |                                           bibtex 模板                                            |
-|  `.blg`  |                                           bibtex 日志                                            |
-|  `.out`  |                                 hyperref 宏包生成的 pdf 书签记录                                 |
+|  文件类型  |                        说明                        |
+| :----: | :----------------------------------------------: |
+| `.sty` |                       宏包文件                       |
+| `.cls` |                      文档类文件                       |
+| `.aux` | 用于储存交叉引用信息的文件；因此，在更新交叉引用（公式编号、纲级别）后，需要编译两次才能正常显示 |
+| `.log` |                   日志；记录上次编译的信息                   |
+| `.toc` |                       目录文件                       |
+| `.lof` |                       图形目录                       |
+| `.lot` |                       表格目录                       |
+| `.idx` |              如果文档中包含索引，该文件用于储存索引信息               |
+| `.ind` |                      索引记录文件                      |
+| `.ilg` |                      索引日志文件                      |
+| `.bib` |                 bibtex 参考文献数据文件                  |
+| `.bbl` |                 bibtex 生成的参考文献记录                 |
+| `.bst` |                    bibtex 模板                     |
+| `.blg` |                    bibtex 日志                     |
+| `.out` |             hyperref 宏包生成的 pdf 书签记录              |
 
 ---
 

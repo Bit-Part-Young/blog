@@ -1,11 +1,11 @@
 ---
-title: Hugo 博客框架
+title: Hugo 框架
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
-summary: Hugo 博客框架
-description: Hugo 博客框架
+summary: Hugo 框架
+description: Hugo 框架
 tags:
   - Hugo
 categories:
@@ -15,7 +15,7 @@ abbrlink: 782024
 password:
 ---
 
-# Hugo 博客框架
+# Hugo 框架
 
 ## 介绍
 

@@ -257,12 +257,10 @@ git push -f origin shend_dev
 
 ### 特殊文件
 
-#### 配置文件：.gitconfig
+#### .gitconfig
 
-- 路径：
-	- Linux - `~/.gitconfig`
-	- windows: `git\etc\gitconfig`
-
+- git 配置文件
+- 路径：Linux - `~/.gitconfig`；windows - `git\etc\gitconfig`
 - 内容示例：
 
 ```bash
@@ -284,9 +282,10 @@ git push -f origin shend_dev
 
 ---
 
-#### 忽略文件：.gitignore
+#### .gitignore
 
-- 可在 repo 根目录及其子目录创建多个 `.gitignore` 文件
+- 忽略文件：写入在 `.gitignore` 文件中的文件/目录会被忽略掉
+- 可在 repo 根目录及其子目录分别创建 `.gitignore` 文件
 - 常用 `.gitignore` 模板：[GitHub - github/gitignore: A collection of useful .gitignore templates](https://github.com/github/gitignore)
 
 
@@ -294,10 +293,10 @@ git push -f origin shend_dev
 
 #### `.gitattributes`
 
-用于配置 Git 在处理不同类型文件时的行为：定义行结束符（Line Endings）、指定语言统计等（linguist-language）
+用于配置 Git 在处理不同类型文件时的行为：定义行结束符（Line Endings）、指定语言统计等（linguist-language）等。
 
-示例 1：[.gitattributes](https://github.com/esemble/simpy/blob/master/.gitattributes)
-示例 2：[md - .gitattributes](https://github.com/TonyCrane/note/blob/master/.gitattributes)
+示例 1：[.gitattributes- simpy](https://github.com/esemble/simpy/blob/master/.gitattributes)
+示例 2：[md - .gitattributes - note](https://github.com/TonyCrane/note/blob/master/.gitattributes)
 
 ```bash
 # 自动检测文本文件，并执行 LF（Line Feed）规范化操作
@@ -330,24 +329,40 @@ linguist-language=...         # 记为 ... 编程语言
 
 #### `.gitmodules`
 
-配置 Git 子模块（submodule）的相关信息。子模块是一个独立的 Git 仓库，被包含在另一个 Git 仓库中，允许将一个 Git 仓库嵌套在另一个 Git 仓库中，以便在一个项目中使用其他项目的代码。
+Git 子模块（submodule）：允许将一个 Git repo 嵌套在另一个 Git repo 中，以便在一个项目中使用其他项目的代码。
 
-`git submodule init`、`git submodule update` - 初始化和更新子模块
-
-示例 [.gitmodules](https://github.com/yujincheng08/ZJU-UGCourse/blob/master/.gitmodules)
+`.gitmodules` 写法及示例：[.gitmodules - ZJU-UGCourse](https://github.com/yujincheng08/ZJU-UGCourse/blob/master/.gitmodules)
 
 ```bash
-[submodule "subrepo"] # 子模块名称
-	path = subrepo # 子模块在 repo 中的相对路径
-	url = git@github.com:user/subrepo.git # 子模块 url
+[submodule "submodule"] # 子模块名称
+	path = submodule # 子模块在 repo 中的相对路径
+	url = git@github.com:username/submodule.git # 子模块 url
 	branch = main # 分支名
 ```
 
 添加子模块
-```bash
-git submodule add https://github.com/username/reop.git
 
+```bash
+git submodule add git@github.com:username/repo.git
+
+# 初始化和更新子模块
 git submodule update --init --recursive
+```
+
+克隆含子模块的 GitHub repo
+
+```bash
+# 方式 1
+git clone git@github.com:username/repo.git
+cd repo
+
+git submodule init    # 初始化子模块
+git submodule update  # 更新子模块
+# 以上两个命令可以等效为以下命令
+git submodule update --init --recursive
+
+# 方式 2
+git clone --recurse-submodules git@github.com:username/repo.git
 ```
 
 

@@ -135,7 +135,6 @@ Pull Requests 流程:
 - 对于其他 repo，也可以开启 Pages 功能，通过 `username.github.io/repo_name` 访问，静态页面来源也需要指定
 - Vercel 部署：GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 5 个 repo
 
-
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011049337.png)
 
 

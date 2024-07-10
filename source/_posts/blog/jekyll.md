@@ -1,22 +1,21 @@
 ---
-title: Jekyll 博客框架
+title: Jekyll 框架
 top: false
+cover: 
 toc: true
 mathjax: true
-summary: Jekyll 博客框架
-description: Jekyll 博客框架
+summary: Jekyll 框架
+description: Jekyll 框架
 tags:
   - Jekyll
-  - CV
 categories:
   - 博客
-abbrlink: 42765
 date: 2023-11-25 09:00:00
-cover:
+abbrlink: 
 password:
 ---
 
-# Jekyll 博客框架
+# Jekyll 框架
 
 ## 介绍
 

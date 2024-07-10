@@ -1,11 +1,11 @@
 ---
-title: Hexo 博客框架
+title: Hexo 框架
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
-summary: Hexo 博客框架
-description: Hexo 博客框架
+summary: Hexo 框架
+description: Hexo 框架
 tags:
   - Hexo
 categories:
@@ -15,7 +15,7 @@ abbrlink: 40315
 password:
 ---
 
-# Hexo 博客框架
+# Hexo 框架
 
 ## 介绍
 

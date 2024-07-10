@@ -1,22 +1,21 @@
 ---
-title: MkDocs 博客框架
+title: MkDocs 框架
 top: false
+cover: 
 toc: true
 mathjax: true
-summary: MkDocs 博客框架
-description: MkDocs 博客框架
+summary: MkDocs 框架
+description: MkDocs 框架
 tags:
-  - Nodejs
   - MkDocs
 categories:
   - 博客
-abbrlink: 46121
 date: 2023-10-21 09:00:00
-cover:
+abbrlink: 
 password:
 ---
 
-# MkDocs 博客框架
+# MkDocs 框架
 
 ## 介绍
 
