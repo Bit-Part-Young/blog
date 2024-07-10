@@ -2,8 +2,8 @@
 
 # 从 Obsidian md 文档中更新 mkdocs-demo 的 notes md 文档
 
-repo_path="$HOME/scripts/sites/mkdocs-demo"
-post_md_path="${repo_path}/docs"
+repo_path="$HOME/scripts/sites/hexo-butterfly-demo"
+post_md_path="${repo_path}/source/_posts"
 # echo $(ls $post_md_path)
 
 post_md_files=$(find ${post_md_path} -type f -name "*.md")
