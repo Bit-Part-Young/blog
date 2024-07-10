@@ -22,7 +22,7 @@ obsd_md_files=$(find ${obsd_md_path} -type f -name "*.md")
 for post_md in $post_md_files; do
     post_md_name=$(basename $post_md)
 
-    if [[ ! $post_md_name =~ "index.md" ]]; then
+    if ! [[ $post_md_name =~ ^(index\.md|intro\.md|README\.md)$ ]]; then
         for obsd_md in $obsd_md_files; do
             obsd_md_name=$(basename $obsd_md)
 
