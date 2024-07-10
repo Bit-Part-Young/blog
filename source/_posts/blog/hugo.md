@@ -48,6 +48,7 @@ curl -sS https://webi.sh/hugo | sh
 ### 快速搭建
 
 - 快速搭建
+
 ```bash
 # 初始化项目
 hugo new site hugo-demo
@@ -94,7 +95,7 @@ hugo --minify
 
 ### 部署
 
-- GitHub Actions
+- GitHub Actions 示例
 
 ```yaml
 name: Hugo deploy
@@ -117,7 +118,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest' # '0.119.0'
+          hugo-version: 'latest'
           # extended: false
       - name: Build
         run: hugo --minify

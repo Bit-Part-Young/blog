@@ -11,7 +11,7 @@ tags:
 categories:
   - 博客
 date: 2023-10-21 09:00:00
-abbrlink: 40315
+abbrlink: 403157
 password:
 ---
 
@@ -75,6 +75,7 @@ npm i hexo-theme-butterfly --save
 ---
 
 - 目录结构
+	- `source/_posts/`: post 文件夹；md 文档可直接全部放于此，也可归类成子目录再放于此
 
 ```text
 ├── _config.yml   # 配置文件
