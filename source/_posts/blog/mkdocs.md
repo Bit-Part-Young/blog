@@ -1,7 +1,6 @@
 ---
 title: MkDocs 博客框架
 top: false
-cover:
 toc: true
 mathjax: true
 summary: MkDocs 博客框架
@@ -11,8 +10,9 @@ tags:
   - MkDocs
 categories:
   - 博客
+abbrlink: 46121
 date: 2023-10-21 09:00:00
-abbrlink: 
+cover:
 password:
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Jekyll 博客框架
 top: false
-cover:
 toc: true
 mathjax: true
 summary: Jekyll 博客框架
@@ -11,8 +10,9 @@ tags:
   - CV
 categories:
   - 博客
+abbrlink: 42765
 date: 2023-11-25 09:00:00
-abbrlink: 
+cover:
 password:
 ---
 
