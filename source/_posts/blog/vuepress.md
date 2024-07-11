@@ -19,12 +19,12 @@ password:
 
 ## 介绍
 
-- 较为简洁博客 & 文档框架
+- 较为简洁的文档 & 博客框架
 - 以下内容主要针对 Vuepress 1.x 版本（2.x 测试效果不太好）
 
 - 主题：
 	- [reco 1.x 版本](http://v1.vuepress-reco.recoluan.com/)
-	- [reco 2.x 版本](https://github.com/vuepress-reco/vuepress-theme-reco)
+	- [reco 2.x 版本](https://github.com/vuepress-reco/vuepress-theme-reco)（功能偏冗余）
 
 - 参考资料：
 	- [GitHub - vuepress/awesome-vuepress: 🎉 A curated list of awesome things related to VuePress](https://github.com/vuepress/awesome-vuepress)
@@ -47,6 +47,7 @@ yarn init  # 初始化项目
 # 添加 scripts
 
 # 安装 reco 主题
+# 可以不安装主题，其余设置均一样
 yarn add vuepress-theme-reco --dev
 
 mkdir docs
@@ -133,6 +134,8 @@ jobs:
 
 ### 配置
 
+- [默认主题配置 - VuePress](https://v1.vuepress.vuejs.org/zh/theme/default-theme-config.html)
+
 - `docs/.vuepress/config.js` 文件常用参数设置
 	- md 文档中的 title front matter 会与正文的一级标题均会渲染，导致重复，其他框架不会有该情况
 
@@ -144,6 +147,14 @@ module.exports = {
 
   // 主题配置
   themeConfig: {
+
+    // 在页面下方添加最后更新时间
+    lastUpdated: 'Last Updated',
+
+    // 搜索
+    search: true,
+    searchMaxSuggestions: 10,
+
     // 导航栏
     navbar: [
       // 普通导航栏
@@ -204,12 +215,7 @@ module.exports = {
     subSidebar: 'auto',
     sidebarDepth: 5,
 
-    // 在页面下方添加最后更新时间
-    lastUpdated: 'Last Updated',
     startYear: '2024',
-
-    search: true,
-    searchMaxSuggestions: 10,
 
     // 关闭 404 页面腾讯公益
     noFoundPageByTencent: false,

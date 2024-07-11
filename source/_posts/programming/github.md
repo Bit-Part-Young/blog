@@ -130,10 +130,25 @@ Pull Requests 流程:
 
 ### GitHub Pages
 
+>[静态博客部署方式](https://blog.17lai.site/posts/5311b619/#%E5%90%84%E7%A7%8D%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F)
+
+>[部署到 Vercel 或 Netlify](https://argvchs.github.io/2022/04/17/hexo-blog-4/)
+
+>[Gitee Pages 介绍](https://help.gitee.com/services/gitee-pages/intro)
+
+- GitHub Pages：GitHub 提供的免费静态网页托管服务，类似的还有 Gitee Pages 和 GitLab Pages；商用：Vercel、Netlify 等
 - GitHub 会为每个用户/组织分配一个二级域名 `username.github.io`
-- 可以创建一个名为 `username.github.io` 的 repo，会作为主页，通过 `username.github.io` 即可访问 repo 内存放的静态网页
-- 对于其他 repo，也可以开启 Pages 功能，通过 `username.github.io/repo_name` 访问，静态页面来源也需要指定
-- Vercel 部署：GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 5 个 repo
+- 创建一个名为 `username.github.io` 的 repo，会作为主页，通过 `username.github.io` 即可访问 repo 内存放的静态网页
+- 对于其他 repo（可无限创建），也可以开启 Pages 功能，通过 `username.github.io/repo-name` 访问，静态页面来源也需要指定
+
+- Vercel 部署：
+	- GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 5 个 repo
+	- GitHub 登录 [Vercel](https://vercel.com/login) - 首页 - New project - Import Git Repository - Deploy
+	- 点击 Goto Dashboard 来到项目主页，选择顶部的 Settings，在 Project Name 中更改网站名称
+
+- Netlify 部署：
+	- GitHub 登录 [Netlify](https://app.netlify.com/)- 首页 - Add new site 中的 Import an existing project，点击 GitHub，与 GitHub 关联，选择仓库 Deploy - 项目主页，选择 Site settings，点击 Change site name 更改网站名称
+
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011049337.png)
 

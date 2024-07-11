@@ -129,9 +129,21 @@ npm init slidev@0.41.0
 - [ONCE — Writebook](https://once.com/writebook)
 - [GitBook](https://www.gitbook.com/)
 
-- jupyter book 形式：[Built with Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
+- Jupyter Book 形式：[Built with Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
 	- GitHub Actions 部署：[GitHub Pages and Actions](https://jupyterbook.org/en/stable/publish/gh-pages.html)
 	- 案例：[GitHub - JaGeo/TutorialAtomate2Forcefields: Tutorial to learn basic features of atomate2](https://github.com/JaGeo/TutorialAtomate2Forcefields)
+
+- [GitHub - jaywcjlove/idoc: :book: Simple document generation tool! Dependence Node.js run.](https://github.com/jaywcjlove/idoc)
+
+- Quarto Docs（基于 Pandoc）：[GitHub - quarto-dev/quarto-cli: Open-source scientific and technical publishing system built on Pandoc.](https://github.com/quarto-dev/quarto-cli)
+	- 案例：[How to Script with OVITO - How To Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO/)
+
+- Sphinx 框架主题：
+	- [GitHub - mgeier/insipid-sphinx-theme](https://github.com/mgeier/insipid-sphinx-theme)
+	- [GitHub - pradyunsg/furo](https://github.com/pradyunsg/furo)
+
+- docsify：[docsify](https://docsify.js.org/#/zh-cn/)
+
 
 ---
 
