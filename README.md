@@ -38,8 +38,14 @@ password:
 
 - 参考资料：
 	- [Hexo 入门](https://blog.17lai.site/posts/40300608/#Hexo%E5%85%A5%E9%97%A8%E7%AF%87)
-	- [matery主题基本设置](https://blog.17lai.site/posts/40300608/#Hexo%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%AF%87)
-	- [基于 Hexo 从零开始搭建个人博客系列 - 唐志远](https://fe32.top/articles/hexo1600/)
+	- 官方：[matery主题基本设置](https://blog.17lai.site/posts/40300608/#Hexo%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E7%AF%87)
+	- [Matery主题搭建与优化教程超详细解析 - 小弋の生活馆](https://lovelijunyi.gitee.io/posts/b8ec.html)
+	- [基于 Hexo 从零开始搭建个人博客系列 - 唐志远](https://fe32.top/articles/hexo1600/)（butterfly 主题）
+	- [Hexo 标签 - Lu's blog](https://islu.cn/tags/Hexo/)（matery 主题）
+	- [标签: Hexo - Justlovesmile's BLOG](https://blog.justlovesmile.top/tags/Hexo/)（butterfly 主题，含如何展示 pdf 内容）
+	- [小弋の生活馆全样式预览 - 小弋の生活馆](https://lovelijunyi.gitee.io/posts/c898.html)（matery 主题，酷炫的标签外挂）
+	- [Hexo 压缩静态文件 - Argvchs の小窝](https://argvchs.github.io/2022/08/27/hexo-minify-static-files/)
+	- [资源压缩部署加速网站访问](https://ninojay.top/hexoplugin/hexo-all-minifier/)（A4 主题）
 
 
 
