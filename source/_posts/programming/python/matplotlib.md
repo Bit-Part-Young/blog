@@ -2,7 +2,7 @@
 title: Matplotlib
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -10,9 +10,9 @@ summary: Matplotlib
 description: Matplotlib
 tags:
   - Matplotlib
-  - Python
 categories:
   - 编程
+  - Python
 date: 2023-10-25 10:30:00
 abbrlink: 404245
 password:

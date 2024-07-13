@@ -2,18 +2,18 @@
 title: Markdown 使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
 summary: Markdown 使用
 description: Markdown 使用
 tags:
-  - markdown
+  - Markdown
 categories:
   - 排版语言
 date: 2022-09-25 23:58:35
-abbrlink: 46884
+abbrlink: 468849
 password:
 ---
 

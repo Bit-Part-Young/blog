@@ -2,7 +2,7 @@
 title: Windows 常用软件
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -13,7 +13,7 @@ tags:
 categories:
   - Win 软件
 date: 2023-07-10 15:00:00
-abbrlink: 40062
+abbrlink: 400627
 password:
 ---
 

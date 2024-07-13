@@ -2,7 +2,7 @@
 title: sqsgen 安装与使用
 top: true
 pin: true
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -12,6 +12,7 @@ tags:
   - sqsgen
 categories:
   - 科研工具
+  - 结构建模
 date: 2023-06-06 15:30:30
 abbrlink: 53125
 password:
@@ -22,9 +23,9 @@ password:
 ## 介绍
 
 >安装：[How to install sqsgen? — sqsgenerator 0.3 documentation](https://sqsgenerator.readthedocs.io/en/latest/installation_guide.html)
->
+
 >命令行使用：[CLI reference — sqsgenerator 0.3 documentation](https://sqsgenerator.readthedocs.io/en/latest/cli_interface.html)
->
+
 >多亚点阵 sqsgen 生成示例：[Advanced topics — sqsgenerator 0.3 documentation](https://sqsgenerator.readthedocs.io/en/latest/advanced_topics.html)
 
 

@@ -602,7 +602,7 @@ h 当前位置 (here)，t 顶部 (top)，b 底部 (bottom)，p 单独成页 (p)�
 斜线表
 ```tex
 \documentclass[UTF8]{ctexart}  
-\usepackage{diagbox} % 需要加载宏包diagbox  
+\usepackage{diagbox} % 需要加载宏包 diagbox  
 
 \begin{document}  
 
@@ -626,8 +626,7 @@ Afternoon& &used&used\\
 ### 字体
 
 ```bash
-# 查看已安装中英文字体
-fc-list :lang=en
+# 查看已安装中英文字体 zh/en
 fc-list :lang=zh
 ```
 
@@ -642,6 +641,16 @@ fc-list :lang=zh
 \usepackage{xeCJK}
 \setCJKmainfont{Source Han Sans SC}
 \setCJKmainfont{Smiley Sans}
+```
+
+- NewComputerModern：[NewComputerModern 字体](https://mp.weixin.qq.com/s/McLeFYLOxygRoXyqDgdF7A)
+- Linux Libertine（衬线体）：简历、公式字体优选；[Linux Libertine 字体介绍](https://mp.weixin.qq.com/s/Lr304vav4gy27sjKAlKf7g)
+
+```latex
+\usepackage{libertine}
+\usepackage{newcomputermodern}
+% 数学模式下使用 Linux Libertine
+\usepackage[libertine]{newtxmath}
 ```
 
 

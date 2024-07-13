@@ -2,7 +2,7 @@
 title: Rust 学习
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -13,7 +13,7 @@ tags:
 categories:
   - 编程
 date: 2024-02-01 09:00:00
-abbrlink: 24234
+abbrlink: 209024
 password:
 ---
 

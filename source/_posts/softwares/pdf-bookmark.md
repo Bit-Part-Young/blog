@@ -1,7 +1,7 @@
 ---
 title: 给 pdf 生成目录
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
 summary: 给 pdf 生成目录
@@ -11,7 +11,7 @@ tags:
 categories:
   - Win 软件
 date: 2022-08-29 01:04:55
-abbrlink: 19687
+abbrlink: 196875
 password:
 ---
 

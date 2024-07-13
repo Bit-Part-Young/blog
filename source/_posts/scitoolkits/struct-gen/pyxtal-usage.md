@@ -2,17 +2,17 @@
 title: PyXtal 安装与使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
 summary: PyXtal 安装与使用
 description: PyXtal 安装与使用
 tags:
-  - 模型构建
   - PyXtal
 categories:
   - 科研工具
+  - 结构建模
 date: 2023-07-02 15:56:30
 abbrlink: 56568
 password:

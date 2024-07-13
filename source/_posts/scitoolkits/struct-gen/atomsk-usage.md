@@ -8,9 +8,9 @@ summary: atomsk 使用
 description: atomsk 使用
 tags:
   - atomsk
-  - 结构建模
 categories:
   - 科研工具
+  - 结构建模
 date: 2024-06-28 16:00:00
 abbrlink: 162806
 password:

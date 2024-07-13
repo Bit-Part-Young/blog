@@ -1,7 +1,7 @@
 ---
 title: 交大材料学院研究生课程选课指北
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
 summary: 交大材料学院研究生课程选课指北
@@ -10,7 +10,7 @@ tags:
   - 研究生
 categories: 
 date: 2022-09-12 12:41:11
-abbrlink: 11143
+abbrlink: 111439
 password: 4e869031f17bcd1916001ea6833eb6ea1e7ff4f7a843451ccc4d1a0666a17441
 ---
 

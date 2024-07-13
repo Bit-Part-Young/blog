@@ -2,7 +2,7 @@
 title: atomate 安装与使用
 top: true
 pin: true
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -14,7 +14,7 @@ tags:
 categories:
   - 科研工具
 date: 2023-06-18 18:30:30
-abbrlink: 12073
+abbrlink: 120738
 password: 
 sticky: "99"
 ---

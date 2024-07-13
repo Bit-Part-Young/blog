@@ -1,7 +1,7 @@
 ---
 title: 期刊订阅
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
 summary: 期刊订阅
@@ -11,7 +11,7 @@ tags:
 categories:
   - 科研工具
 date: 2022-08-05 18:52:37
-abbrlink: 44044
+abbrlink: 440448
 password:
 ---
 

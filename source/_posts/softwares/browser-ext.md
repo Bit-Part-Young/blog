@@ -2,7 +2,7 @@
 title: 浏览器常用插件
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -11,10 +11,11 @@ description: 浏览器常用插件
 tags:
   - Chrome
   - 油猴
+  - 浏览器
 categories:
   - Win 软件
 date: 2023-05-05 18:30:30
-abbrlink: 31268
+abbrlink: 312685
 password:
 ---
 

@@ -1,18 +1,17 @@
 ---
 title: DFT 原理
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
 summary: DFT 原理
 description: DFT 原理
 tags:
-  - 计算模拟
   - DFT
 categories:
-  - 科研基础
+  - 科研工具
 date: 2023-09-27 19:00:00
-abbrlink: 50289
+abbrlink: 502897
 password:
 ---
 

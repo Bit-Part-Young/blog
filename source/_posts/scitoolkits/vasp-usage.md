@@ -1,24 +1,24 @@
 ---
-title: VASP 安装与使用
+title: VASP 使用
 top: true
 pin: true
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
-summary: VASP 安装与使用
-description: VASP 安装与使用
+summary: VASP 使用
+description: VASP 使用
 tags:
   - VASP
-  - 第一性原理
+  - DFT
 categories:
   - 科研工具
 date: 2023-07-03 15:56:30
-abbrlink: 26563
+abbrlink: 265634
 password: d93f517bc1345a0d8ff992410aca5dbc35f2e88087cdc5d9edb0c6d77d8a4c1a
 ---
 
-# VASP 安装与使用
+# VASP 使用
 
 ## 介绍
 

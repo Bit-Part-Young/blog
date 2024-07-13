@@ -11,9 +11,9 @@ description: GitHub 图床搭建
 tags:
   - 图床
 categories:
-  - 图床
+  - Win 软件
 date: 2022-08-29 00:08:57
-abbrlink: 7877
+abbrlink: 787729
 password:
 ---
 

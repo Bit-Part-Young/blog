@@ -8,9 +8,9 @@ summary: Material Studio 安装与使用
 description: Material Studio 安装与使用
 tags:
   - Material-Studio
-  - 结构建模
 categories:
   - 科研工具
+  - 结构建模
 date: 2024-06-28 20:00:00
 abbrlink: 202708
 password:

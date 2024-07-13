@@ -2,7 +2,7 @@
 title: Git 使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -10,11 +10,11 @@ summary: Git 使用
 description: Git 使用
 tags:
   - Git
-  - 版本控制
 categories:
   - 编程
+  - Linux
 date: 2023-09-18 09:00:00
-abbrlink: 24234
+abbrlink: 242349
 password:
 ---
 
@@ -112,9 +112,11 @@ git mv
 
 
 
+---
 
+### .git 结构
 
-.git 结构
+WIP…
 
 
 ---
@@ -512,7 +514,7 @@ url = https://user:token@gitee.com/user/repo.git
 
 ### Git LFS
 
-Git LFS(Git Large File Storage) 是一个开源的 Git 扩展，用于管理大型文件（Gitee 只对付费企业开放；GitHub 的免费存储和带宽额度是 1GB/月，超过需升级）。它通过在 Git 内部使用文本指针，以减小 Git 仓库体积，加快仓库的克隆和拉取。
+Git LFS(Git Large File Storage) ：GitHub 推出的大文件存储服务，让 git 只保存二进制文件的 hash，而二进制文件将会存在 Git LFS 服务器中（Gitee 只对付费企业开放；GitHub 的免费存储空间为 1G，限带宽 1GB/月，超过需升级）。以减小 Git 仓库体积，加快仓库的克隆和拉取。
 
 ```bash
 # 安装
@@ -546,6 +548,42 @@ git rm --cached "*.pdf"
 git lfs migrate import --include="*.dmg" --everything
 git push --force # 强制推送
 ```
+
+
+---
+
+### git-filter-repo
+
+- Git 历史重写工具
+- 运行 `git filter-repo` 后，会改变 `.git/config` 文件，只保留 `[core]` 参数信息，需重新添加远程 repo url 并强制推送
+
+```bash
+# 安装
+brew install git-filter-repo    # macOS
+pip install -U git-filter-repo  # pip
+
+# 使用
+--dry-run  # 模拟运行
+
+# 删除文件（及包含该文件的 commit 历史）
+git filter-repo --path-glob '*.jpg' --invert-paths
+
+# 重命名文件或目录
+git filter-repo --path old/path --to-path new/path
+
+# 替换作者信息
+git filter-repo --name-callback 'return name.replace(b"Old Name", b"New Name")'
+
+# 删除大文件
+git filter-repo --strip-blobs-bigger-than 10M
+
+# 提取子目录
+git filter-repo --subdirectory-filter path/to/directory
+
+# 强制推送至远程 repo
+git push -f origin main
+```
+
 
 
 ---
@@ -952,23 +990,39 @@ git push origin --delete <remote-branch>
 git remote prune origin
 ```
 
-### push 到多个远程 repo
+- 查看 repo commit 总次数
 
->[git-tips#文件推向3个git库](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
+```bash
+# 查看初始提交到当前 HEAD 提交的总提交次数
+git rev-list --count HEAD
+# 查看所有分支的总提交次数
+git rev-list --all --count
+# 按作者查看提交次数
+git shortlog -s -n
+
+# 统计当天的提交数
+# 方式 1
+git rev-list --count --since=@{0:00} --before=@{23:59:59} HEAD
+# 方式 2
+git log --since='midnight' --until='now' --pretty=oneline | wc -l
+```
+
+
+---
+
+- push 到多个远程 repo：[git-tips#文件推向3个git库](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
+	- 只能从 `origin` 里的一个 repo url pull 代码，默认为添加到 `origin` 的第一个地址；若需调整 repo url 顺序，可在 `./.git/config` 文件中直接调整
+	- 可用此方法替代 Gitee 与 GitHub 之间互相同步的设置
 
 ```bash
 # 添加远程 repo url
-git remote add origin git@gitee.com:username/repo.git
-git remote set-url --add origin git@github.com:username/repo.git
-git remote set-url --add origin git@gitlab.com:username/repo.git
+git remote add origin url
+git remote set-url --add origin url
 
 # 删除远程 repo url
-git remote set-url --delete origin git@github.com:username/repo.git
+git remote set-url --delete origin url
 ```
 
->只能从 `origin` 里的一个 repo url pull 代码，默认为添加到 `origin` 的第一个地址；若需调整 repo url 顺序，可在 `./.git/config` 文件中直接调整
-
->可用此方法替代 gitee 与 github 之间互相同步的设置
 
 
 ---
@@ -1002,10 +1056,6 @@ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -
 wget https://gist.githubusercontent.com/user/GIST_ID/raw/filename -O filename
 ```
 
-
----
-
-
 ---
 
 - GitHub 加速下载：安装 GitHub 增强插件：[Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD)
@@ -1031,11 +1081,6 @@ gitmoji-cli：git commit 时使用 emoji
 # 查看两星期内的改动
 git whatchanged --since='2 weeks ago'
 
-# 统计当天的提交数
-# 方式 1
-git rev-list --count --since=@{0:00} --before=@{23:59:59} HEAD
-# 方式 2
-git log --since='midnight' --until='now' --pretty=oneline | wc -l
 
 # 只保留最新的一次提交以减小 repo 体积
 git checkout --orphan <NewBranchName> <last-commit-hash>  # 基于最后的 commit 创建新分支
@@ -1046,6 +1091,9 @@ git push origin main --force  # 强制 push
 
 # 列出所有提交对象
 git rev-list --objects --all
+
+# 列出大文件
+git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -5 | awk '{print$1}')"
 ```
 
 

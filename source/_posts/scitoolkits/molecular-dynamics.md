@@ -1,18 +1,17 @@
 ---
 title: 分子动力学原理
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
 summary: 分子动力学原理
 description: 分子动力学原理
 tags:
-  - 计算模拟
   - 分子动力学
 categories:
-  - 科研基础
+  - 科研工具
 date: 2023-09-27 19:00:00
-abbrlink: 20717
+abbrlink: 207179
 password:
 ---
 

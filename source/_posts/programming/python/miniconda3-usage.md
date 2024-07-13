@@ -2,7 +2,7 @@
 title: Miniconda3 安装与使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -10,11 +10,11 @@ summary: Miniconda3 安装与使用
 description: Miniconda3 安装与使用
 tags:
   - Miniconda3
-  - Python
 categories:
   - 编程
+  - Python
 date: 2023-06-06 15:30:30
-abbrlink: 43711
+abbrlink: 437116
 password:
 ---
 

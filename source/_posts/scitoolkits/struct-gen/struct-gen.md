@@ -1,13 +1,12 @@
 ---
 title: 结构建模
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
 summary: 结构建模
 description: 结构建模
 tags:
-  - 结构建模
   - pymatgen
   - ASE
   - atomsk
@@ -18,6 +17,7 @@ tags:
   - VESTA
 categories:
   - 科研工具
+  - 结构建模
 date: 2023-10-15 09:30:00
 abbrlink: 38100
 password:

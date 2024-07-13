@@ -2,7 +2,7 @@
 title: FFmpeg 使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -12,8 +12,9 @@ tags:
   - FFmpeg
 categories:
   - Linux
+  - 编程
 date: 2024-03-24 14:00:00
-abbrlink: 24324
+abbrlink: 243243
 password:
 ---
 

@@ -2,7 +2,7 @@
 title: Python 基础
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -12,6 +12,7 @@ tags:
   - Python
 categories:
   - 编程
+  - Python
 date: 2023-10-25 10:30:00
 abbrlink: 134405
 password:

@@ -1,24 +1,24 @@
 ---
-title: Win 新机使用
+title: Windows 新机使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
-summary: Win 新机使用
-description: Win 新机使用
+summary: Windows 新机使用
+description: Windows 新机使用
 tags:
-  - 电脑
-  - Win
+  - Windows
+  - 计算机
 categories:
   - Win 软件
 date: 2023-09-28 09:00:00
-abbrlink: 40735
+abbrlink: 407358
 password:
 ---
 
-# Win 新机使用
+# Windows 新机使用
 
 ## 开箱验机
 

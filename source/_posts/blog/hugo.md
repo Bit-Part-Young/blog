@@ -36,9 +36,8 @@ password:
 curl -sS https://webi.sh/golang | sh
 
 # 安装 prebuilt Dart Sass（一般用不到）
-wget https://github.com/sass/dart-sass/releases/download/1.67.0/dart-sass-1.67.0-linux-x64.tar.gz
 
-# 安装 hugo
+# 安装 Hugo
 curl -sS https://webi.sh/hugo | sh
 ```
 

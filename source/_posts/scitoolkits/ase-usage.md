@@ -1,7 +1,7 @@
 ---
 title: ASE 使用
 top: false
-cover:
+cover: 
 toc: true
 mathjax: true
 summary: ASE 使用
@@ -11,7 +11,7 @@ tags:
 categories:
   - 科研工具
 date: 2023-10-15 09:00:00
-abbrlink: 19935
+abbrlink: 199356
 password:
 ---
 

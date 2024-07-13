@@ -165,6 +165,16 @@ npx taze      # 查看 package.json 中的依赖是否是最新
 npx taze -w   # 更新并写入 package.json
 ```
 
+---
+
+Corepack 是 Node.js 的一个实验性功能，通过自动管理和调用 JavaScript 包管理器的特定版本，如 yarn 和 pnpm（可以使用 yarn 的开发版本 4.3.1，稳定版本为 1.22.xx）
+
+```bash
+corepack enable   # 开启
+corepack disable  # 取消
+```
+
+
 
 ---
 

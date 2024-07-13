@@ -2,7 +2,7 @@
 title: VSCode 常用插件
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -10,11 +10,10 @@ summary: VSCode 常用插件
 description: VSCode 常用插件
 tags:
   - VSCode
-  - 编程
 categories:
   - Win 软件
 date: 2022-08-26 18:52:37
-abbrlink: 18925
+abbrlink: 189254
 password:
 ---
 

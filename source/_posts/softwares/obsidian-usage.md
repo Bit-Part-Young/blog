@@ -2,18 +2,18 @@
 title: Obsidian 使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
 summary: Obsidian 使用
 description: Obsidian 使用
 tags:
-  - obsidian
+  - Obsidian
 categories:
   - Win 软件
 date: 2023-07-26 15:00:00
-abbrlink: 4661
+abbrlink: 466176
 password:
 ---
 
