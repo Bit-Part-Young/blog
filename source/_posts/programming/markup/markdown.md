@@ -19,22 +19,10 @@ password:
 
 # Markdown 使用
 
-## 介绍
-
-markdown cheatsheet
-
----
-
-### 参考资料
-
-lec3：Markdown 语法及应用
->[lec3.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec3.md)
-
->[GitHub - tchapi/markdown-cheatsheet: Markdown Cheatsheet for Github Readme.md](https://github.com/tchapi/markdown-cheatsheet)
-
-
-
-[markdown在线编辑器 - Markdown Editor](https://markdown-editor.org/)
+- 参考资料：
+	- Markdown 语法及应用：[lec3.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec3.md)
+	- [GitHub - tchapi/markdown-cheatsheet: Markdown Cheatsheet for Github Readme.md](https://github.com/tchapi/markdown-cheatsheet)
+	- [markdown在线编辑器 - Markdown Editor](https://markdown-editor.org/)
 
 
 ---
@@ -125,7 +113,7 @@ lec3：Markdown 语法及应用
 ## 表格
 
 - `:` 位置表示 左、右、居中对齐方式
-- hexo 框架只显示左对齐，mkdocs 框架正常
+- Hexo 框架只显示左对齐，MkDocs 框架正常
 
 ```markdown
 | 标题 1 | 标题 2 | 标题 3 |
@@ -195,20 +183,10 @@ excel 单元格， csv 内容转成 markdown 表格
 
 ## 表情 emoji
 
-emoji cheatsheet:
+Markdown emoji cheatsheet:
 >[GitHub - ikatyang/emoji-cheat-sheet: A markdown version emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet)
+
 >[📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍](https://emojipedia.org/)
-
-案例：
->[Release v2023.9.10 · materialsproject/pymatgen · GitHub](https://github.com/materialsproject/pymatgen/releases/tag/v2023.9.10)
-
-|      ico      |    shortcode    |         ico         |       shortcode       |
-|:-------------:|:---------------:|:-------------------:|:---------------------:|
-|    :smile:    |    `:smile:`    |        :joy:        |        `:joy:`        |
-|    :wink:     |    `:wink:`     |      :smiley:       |      `:smiley:`       |
-| :sweat_drops: | `:sweat_drops:` |  :speech_balloon:   |  `:speech_balloon:`   |
-|  :hospital:   |  `:hospital:`   | :hammer_and_wrench: | `:hammer_and_wrench:` |
-| :bug:              |      `:bug:`           |                     |                       |
 
 ---
 
@@ -256,12 +234,8 @@ Markdown 文件里链接到内部内容时推荐使用相对链接
 - `<br>`：HTML 标签，用于在 markdown 生成的 HTML 文档中插入换行
 
 
-
 alert 语法
 
-github
-
-notes sjtu
 
 ---
 
@@ -273,3 +247,6 @@ Markdown 中带圆圈的数字编号，没有相应语法，直接复制粘贴�
 markdown 自定义图片大小：[markdown中插入图片怎么定义图片的大小或比例？ - 知乎](https://www.zhihu.com/question/23378396)
 
 markdown 图片并排
+
+markdown 脚注
+>[Markdown 之脚注语法 | 智朋的个人博客](https://coffeelize.top/posts/8ee025b2.html)

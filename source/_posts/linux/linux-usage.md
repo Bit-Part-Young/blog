@@ -740,7 +740,18 @@ kill -9 PID  # 发送强制终止信号给进程
 column -s, -t data.csv  # 指定分隔符格式化（表格形式）输出
 ```
 
+- hostname：输出主机名；配置文件路径：`/etc/hostname`
+
+```bash
+# 临时修改主机名
+hostname new_hostname
+
+# 永久修改主机名
+hostnamectl set-hostname new_hostname
+```
+
 - 文件行数统计
+
 
 ```bash
 grep -c '' file

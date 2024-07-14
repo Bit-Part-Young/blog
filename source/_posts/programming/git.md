@@ -162,6 +162,15 @@ WIP…
 
 ## 使用
 
+### 工具
+
+- git 操作 TUI 工具：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)
+- [onefetch](https://github.com/o2sh/onefetch)：展示本地 Git 仓库的项目详情和代码统计等内容
+- [gita](https://github.com/nosarthur/gita)：管理多个 git repo
+
+
+---
+
 ### 基本使用
 
 - 注册 Gitee 或 GitHub 账户
@@ -320,10 +329,14 @@ git push -f origin shend_dev
 
 *.md linguist-documentation=false linguist-detectable=true
 *.md linguist-language=Markdown
+*.html linguist-detectable=false
+*.js linguist-detectable=false
+*.css linguist-detectable=false
 
 linguist-documentation=false  # 不将文件统计为文档类型
 linguist-detectable=true      # 开启检测
 linguist-language=...         # 记为 ... 编程语言
+linguist-vendored             # 将目录/文件视为外部引入的代码，不计入语言统计中
 ```
 
 
@@ -340,6 +353,9 @@ Git 子模块（submodule）：允许将一个 Git repo 嵌套在另一个 Git r
 	path = submodule # 子模块在 repo 中的相对路径
 	url = git@github.com:username/submodule.git # 子模块 url
 	branch = main # 分支名
+	# 浅克隆
+    shallow = true
+    depth = 1
 ```
 
 添加子模块

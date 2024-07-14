@@ -161,7 +161,7 @@ system_profiler SPDisplaysDataType
 
 >[🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
 
->网络上下载的程序包安装到 Mac 上，需将包（`*.app`）移动到 applications 里；卸载：直接将其移到废纸篓
+>网络上下载的程序安装包安装到 Mac 上，需将包（`*.app`）移动到 Applications 里；卸载：直接将其移到废纸篓
 
 ---
 
@@ -171,10 +171,10 @@ system_profiler SPDisplaysDataType
 - 文件搜索、程序启动工具：Alfred 5
 - VPN 网络代理：ClashX
 - 系统资源监控：RunCat、[stats](https://github.com/exelban/stats)
-- 代码编辑器：vscode-insiders（**vscode-insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
-- 终端工具： iTerm（最实用）、Tabby、Termius、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
+- 代码编辑器：VSCode-Insiders（**VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
+- 终端工具： iTerm2（最实用）、Tabby、Termius、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
 - 数据同步：交大云盘
-- 浏览器： Chrome
+- 浏览器： Safari、Chrome、Arc
 - 压缩文件解压工具：The Unarchiver
 - 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
 - Markdown 笔记管理：Obsidian、Typora
@@ -193,6 +193,9 @@ system_profiler SPDisplaysDataType
 - 输入法切换：自动切换输入法 Lite 版、[Input Source Pro](https://inputsource.pro/zh-CN)
 - pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
 - 窗口管理：Rectangle、Loop
+- 菜单栏管理：Ice
+- 录屏：QuickRecorder
+- 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
 - macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
 - 其他：微信等
 
@@ -256,6 +259,8 @@ brew untap homebrew/core
 brew tap homebrew/cask-fonts
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-hack-nerd-font
+
+brew install --cask font-jetbrains-mono
 
 # 查看可用 nerd font
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
@@ -384,7 +389,7 @@ menu:
 #### Mac 端没有的一些软件
 
 - PotPlayer
-- Notepad++
+- Notepad++（可以用 Notepad-- 代替）
 - MobaXterm
 - WinSCP
 
@@ -394,7 +399,9 @@ menu:
 ### 编程相关
 
 - macOS 版本不同，Homobrew 之前安装的程序有可能会出现不兼容的情况
+
 - Miniconda3 安装：版本需要与芯片类型（如 M1）适配
+
 - Mac 的 gcc 和 g++ 编译器 默认是 clang 的；建议安装 gcc 套件，并设置软链接
 
 ```bash
@@ -416,6 +423,10 @@ ld: symbol(s) not found for architecture arm64
 collect2: error: ld returned 1 exit status
 make: *** [dumpana] Error 1
 ```
+
+- macOS 彻底删除 Node.js：[javascript - How do I completely uninstall Node.js, and reinstall from beginning (Mac OS X) - Stack Overflow](https://stackoverflow.com/questions/11177954/how-do-i-completely-uninstall-node-js-and-reinstall-from-beginning-mac-os-x)
+
+- Mac M1 运行 node、npm 报 `rsh: Command not found.` 错误，是由于 ATAT 编译后也有可执行命令 node（默认使用 rsh 远程登录（较早的远程访问工具之一，但由于安全隐患较大，现在很少使用），-s，指定使用 ssh），系统将 Node.js 的 node 指向了 ATAT 的，导致该错误出现。
 
 
 

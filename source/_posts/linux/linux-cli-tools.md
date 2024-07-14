@@ -291,8 +291,7 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
 - 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
 - 文本编辑器：[helix](https://github.com/helix-editor/helix)
-- 终端 markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
-- git 相关：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)、[onefetch](https://github.com/o2sh/onefetch)（展示本地 Git 仓库的项目详情和代码统计等内容）
+- 终端 Markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
 - 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
 - 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
 - 文件对比：[difftastic](https://github.com/Wilfred/difftastic)
@@ -303,7 +302,11 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
 - neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
-- 其他小工具： cowsay、figlet、sl、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix、asciiquarium
+- 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html)
+
+
+
+- 其他小工具： cowsay、sl（火车）、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix（黑客帝国）、asciiquarium（水族馆）
 
 
 ```bash

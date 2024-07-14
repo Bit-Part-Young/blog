@@ -36,6 +36,7 @@ password:
 - [GitHub 简易指南 - OrangeX4's Blog](https://orangex4.cool/post/github-tutorials-for-beginner/)
 - Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
 - [GitHub - tiimgreen/github-cheat-sheet: A list of cool features of Git and GitHub.](https://github.com/tiimgreen/github-cheat-sheet)
+- [GitHub - phodal/github: GitHub 漫游指南- a Chinese ebook on how to build a good project on Github. Explore the users' behavior. Find some thing interest.](https://github.com/phodal/github)
 
 
 
@@ -337,8 +338,8 @@ repos:
 
 参考资料：
 
-- [github自动化 | 我是谁](https://yuhldr.github.io/posts/dabdcea.html)
-- [使用 Github Action 自动部署 | 安知鱼](https://blog.anheyu.com/posts/asdx.html)
+- [github自动化 - 我是谁](https://yuhldr.github.io/posts/dabdcea.html)
+- [使用 Github Action 自动部署 - 安知鱼](https://blog.anheyu.com/posts/asdx.html)
 - [GitHub Actions 入门教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 - [GitHub Actions工作流自动化的入门核心\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1aT421y7Ar/)
 

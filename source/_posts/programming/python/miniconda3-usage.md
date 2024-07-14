@@ -20,15 +20,10 @@ password:
 
 # Miniconda3 安装与使用
 
-## 介绍
+- Miniconda3： Python 环境管理工具，轻量级 Anaconda 发行版；与完整的 Anaconda 发行版相比，Miniconda 只包含了最基本的组件，体积小，推荐在课题组服务器中安装与使用。
 
-Miniconda3： Python 环境管理工具，轻量级 Anaconda 发行版；与完整的 Anaconda 发行版相比，Miniconda 只包含了最基本的组件，体积小，推荐在课题组服务器中安装与使用。
-
----
-
-### 参考资料
-
->[Conda备忘清单 & conda cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/conda.html)
+- 参考资料
+	- [Conda备忘清单 & conda cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/conda.html)
 
 
 
@@ -213,90 +208,63 @@ miniconda3/envs/<conda_env>/lib/pythonX.X/site-packages
 
 ### 常用 conda 命令
 
-- 创建环境
+- 虚拟环境相关
 
 ```bash
+# 创建虚拟环境
 # 方式 1
 conda create -n <ENVNAME> python=3.X
-
 # 方式 2
 conda env create -f conda-env.yml
-```
 
-- 查看已安装的虚拟环境
-
-```bash
+# 查看已安装的虚拟环境
 conda env list
-# or
 conda info -e
-```
 
-- 激活环境
-
-```bash
+# 激活环境
 conda activate <ENVNAME>
-```
 
-- 退出环境
-
-```bash
+# 退出环境
 conda deactivate
-```
 
-- 删除虚拟环境
-
-```bash
+# 删除虚拟环境
 conda remove -n <ENVNAME> --all
+
+# 重命名虚拟环境名称
+conda rename -n <ENVNAME> <NEWENVNAME>
+
+# 从已有环境克隆新环境
+conda create --clone <ENVNAME> -n <NEW_ENVNAME>
 ```
 
-- 安装 package
+- packages 相关
 
 ```bash
+# 安装 package
 conda install <package>
-```
 
-- 列出已安装 package
-
-```bash
+# 列出已安装 package
 conda list
-```
 
-- 查看具体 package 信息
-
-```bash
+# 查看具体 package 信息
 conda list <package>
-```
 
-- 更新 package
-
-```bash
+# 更新 package
 conda update <package>
-```
 
-- 搜索可用 package
-
-```bash
+# 搜索可用 package
 conda search numpy
 ```
 
 - 删除 pkgs 目录中的缓存的 packages（**清理空间常用**）
+	- 安装 packages 时的缓存路径:`~/.conda/pkgs/`
 
 ```bash
+conda clean -a
+
 conda clean -p
-# 模拟运行，不实际删除
+# --dry-run 模拟运行，不实际删除
 conda clean -p --dry-run
-```
-
-- 重命名虚拟环境名称
-
-```bash
-conda rename -n <ENVNAME> <NEWENVNAME>
-```
-
-- 从已有环境克隆新环境
-
-```bash
-conda create --clone <ENVNAME> -n <NEW_ENVNAME>
 ```
 
 
@@ -388,12 +356,11 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 - 使用
 
 ```bash
-uv venv  # 创建虚拟环境 .venv/
-source .venv/bin/activate   # 激活
-deactivate  # 取消
+uv venv                    # 创建虚拟环境 .venv/
+source .venv/bin/activate  # 激活
+deactivate                 # 取消
 
-# 安装 package；与 pip 基本一致
-uv pip install <package>
+uv pip install <package>   # 安装 package；与 pip 基本一致
 ```
 
 

@@ -20,6 +20,7 @@ iOS Developer Beta 版本系统更新：安装 Apple Developer App，用 Apple I
 
 iPhone 备份到 Mac 本地：数据线连接到 Mac 进行备份设置
 
+iPhone 实况照片转视频：[如何在 iPhone 上将实况照片转换为视频 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/105029)
 
 iPhone 去除开屏广告：
 

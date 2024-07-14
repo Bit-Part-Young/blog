@@ -19,7 +19,8 @@ password:
 
 # Windows 常用软件
 
-[Windows实用软件推荐](https://blog.wfso.cn/archives/115/)
+- 参考：[Windows实用软件推荐](https://blog.wfso.cn/archives/115/)
+
 
 
 ---
@@ -53,11 +54,19 @@ scoop bucket add nerd-fonts
 scoop install nerd-fonts/Meslo-NF
 ```
 
-- `notepad $Profile`（打开的文件目录结构为：`Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`，若没有该文件，可手动创建），初始化 oh-my-posh，写入以下内容；`Get-PoshThemes` 获取主题；`. $Profile` 重新加载 profile
 
 ```powershell
+notepad $Profile  # 初始化 oh-my-posh
+
+# 文件目录结构；若没有该文件，可手动创建
+Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+
+# 写入以下内容
 # 自动配置 oh-my-posh 在 PowerShell 中的初始化设置
 oh-my-posh init pwsh | Invoke-Expression
+
+Get-PoshThemes  # 获取主题
+. $Profile      # 重新加载 profile
 ```
 
 
@@ -112,12 +121,9 @@ Set-PSReadLineKeyHandler -Key Ctrl+z -Function Undo
 >[GitHub - duzyn/scoop-cn: 中国用户能用的 Scoop 应用库，每日同步 Scoop 的官方库，加速应用的下载速度](https://github.com/duzyn/scoop-cn#)
 
 
-- Windows 平台的程序包安装管理工具（类似工具：Winget 和 Chocolatey；Mac 平台为 Homebrew）；
-- 可以安装几乎所有的开源程序和命令行工具（如本博客中提到的所有软件）；
-- 程序安装后无需手动添加环境变量（自动配置；Scoop 中的 Shim 工具）。
-
-
----
+- Windows 平台的程序包安装管理工具（类似工具：Winget 和 Chocolatey；Mac 平台为 Homebrew）
+- 可以安装几乎所有的开源程序和命令行工具（如本文提到的所有软件）
+- 程序安装后无需再手动添加环境变量（自动配置；Scoop 中的 Shim 工具）。
 
 
 ```powershell
@@ -216,20 +222,16 @@ dav.jianguoyun.com/dav
 
 ### notion2md
 
-notion 自带的导出 md 效果不是很好
+- notion 自带的导出 md 效果不是很好
 
-notion 转成 md
->[GitHub - echo724/notion2md: Notion Markdown Exporter with Python Cli](https://github.com/echo724/notion2md)
+- notion 转成 md：[GitHub - echo724/notion2md: Notion Markdown Exporter with Python Cli](https://github.com/echo724/notion2md)
 
-
-设置 notion integration，获取 API KEY，在 notion 每个 page 下 add connection 设置的 notion integration
+- 设置 notion integration，获取 API KEY，在 notion 每个 page 下 add connection 设置的 notion integration
 
 ```bash
 export NOTION_TOKEN='<token>'
-```
 
-```bash
-notion2md --download --unzipped -n 每日任务栏 -p ~/tmp/folder -u [[]]
+notion2md --download --unzipped -n name -p folder -u [[]]
 ```
 
 
@@ -237,23 +239,22 @@ notion2md --download --unzipped -n 每日任务栏 -p ~/tmp/folder -u [[]]
 
 ### md2notion
 
-md 转成 notion（在 notion 的页面中生成子页面）：[GitHub - Cobertos/md2notion: A better Notion.so Markdown importer](https://github.com/Cobertos/md2notion)
+- md 转成 notion（在 notion 的页面中生成子页面）：[GitHub - Cobertos/md2notion: A better Notion.so Markdown importer](https://github.com/Cobertos/md2notion)
 
-
-`pip install md2notion` 出现 `Invalid input` 报错解决方法：[HTTPError - Invalid Input · Issue #40 · Cobertos/md2notion · GitHub](https://github.com/Cobertos/md2notion/issues/40)
+- 安装出现 `Invalid input` 报错解决方法：[HTTPError - Invalid Input · Issue #40 · Cobertos/md2notion · GitHub](https://github.com/Cobertos/md2notion/issues/40)
 
 ```bash
 pip install notion-cobertos-fork
 ```
 
+- CLI 形式
 
-CLI 形式
 ```bash
 python -m md2notion token_v2 [[test]] [[]]
 ```
 
+- Python 脚本形式
 
-python 脚本形式
 ```python
 from notion.client import NotionClient
 from notion.block import PageBlock
@@ -269,16 +270,16 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 ```
 
 
+
 ---
 
 ## Typora
 
-markdown 语法笔记软件；新版本收费，建议安装旧版本或者破解版。
-
+- Markdown 语法笔记软件；新版本收费，建议安装旧版本或者破解版。
 
 - 破解版：[GitHub - markyin0707/typora-activation: Typora最新的激活方案，三步即激活.（😊实时更新中/👩‍🎓学生党必备，有条件支持正版的请不要点开🔞🈲️）。Activate Typora](https://github.com/markyin0707/typora-activation)
 
-- Theme：
+- Theme 主题：
 	- [GitHub - Soanguy/typora-theme-autumnus: Typora theme for 中文](https://github.com/Soanguy/typora-theme-autumnus)
 	- [GitHub - Keldos-Li/typora-latex-theme: 将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.](https://github.com/Keldos-Li/typora-latex-theme)
 
@@ -294,16 +295,23 @@ markdown 语法笔记软件；新版本收费，建议安装旧版本或者破�
 
 ---
 
-## 其他
+## 其他常用软件
 
 - Listary：一款实用的文件搜索、程序启动工具（与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`）。
+
 - MobaXterm：远程服务器连接工具；可自动识别已安装的 WSL。
+
 - WinSCP：远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些。
+
 - Obsidian：本地笔记管理软件，比 Notion、Typora 好用。
+
 - MongoDB Compass：MongoDB 数据库的管理工具。
+
 - Snipaste：截图软件，可以截图、**贴图**、标注；可以获取颜色的 rgb 值等。
+
 - PicGo：图床工具。
-	- 相关设置：github 图床设置；开启时间戳重命名；禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
+	- 相关设置：GitHub 图床设置；开启时间戳重命名；禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
+
 - PicList：图床工具，基于 PicGo 开发
 
 - Notepad++：文本编辑器；直接关闭软件不会删除未保存的内容，可用做临时记录（最新版本的 Windows 的记事本也可以）。
@@ -316,13 +324,22 @@ markdown 语法笔记软件；新版本收费，建议安装旧版本或者破�
 	- 选项 - 文件类型 - 以下站点不自动下载
 
 ```text
-pdf.sciencedirectassets.com pubs.acs.org journals.aps.org onlinelibrary.wiley.com
+pdf.sciencedirectassets.com
+pubs.acs.org
+journals.aps.org
+onlinelibrary.wiley.com
 ```
 
 - Geek Uninstaller：软件卸载工具，能清除软件的注册表，卸载较为彻底。
+
 - TreeSize Free：磁盘管理工具，有利于查看哪些文件占用较大体积进行删除。
+
 - Mathpix：LaTeX OCR 识别；使用教育邮箱，可增加 Mathpix 使用次数；支持临时邮箱
+
 - Potplayer：媒体播放器；[基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
+
 - Quicklook：快速预览文件的工具，按空格键即可实现预览且可以复制文件内容（类似于 Mac 的空格键；有插件可实现预览 office 套件文件，但效果不是很好）。
+
 - Rime 输入法引擎 + 雾凇拼音：[Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)、[小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
+
 - 调节显示器亮度：Twinkle Tray（部分显示器设备无效）

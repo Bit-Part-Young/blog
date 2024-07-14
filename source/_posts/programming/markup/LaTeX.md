@@ -78,6 +78,7 @@ markdown 宏包
 - [LaTeX技巧 | Feng's Blog](https://blog.windsky.tech/2022/01/29/LaTeX-Notes/)
 - [常用 LaTeX 代码](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
 
+- [分类: LaTeX - 智朋的个人博客](https://coffeelize.top/categories/LaTeX/)
 
 自定义列表环境
 >[LaTeX 自定义列表环境 | 智朋的个人博客](https://coffeelize.top/posts/18fc56c9.html)
@@ -188,6 +189,10 @@ overleaf 使用：
 
 - overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
 - overleaf 可以使用 vim（**组合键**选项）
+
+
+ TeXstudio：工具 - 清理辅助文件
+
 
 ---
 
@@ -659,7 +664,9 @@ fc-list :lang=zh
 ### 编译
 
 用 Makefile 编译 LaTeX 文档
->[GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
+- [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
+- [Makefile](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
+
 
 >ctexart 需使用 xelatex 编译
 >overleaf 默认使用 pdflatex 编译
@@ -1005,3 +1012,9 @@ latex 版本
 
 
 ---
+
+### 参考文献
+
+`bst` 格式：参考文献样式文件
+
+[使用 BIBTeX 处理参考文献 | 智朋的个人博客](https://coffeelize.top/posts/Processing-References-with-BIBTeX.html)

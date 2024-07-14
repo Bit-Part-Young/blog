@@ -1187,6 +1187,24 @@ THIS_DIR = Path(__file__).parent
 ```
 
 
+---
+
+### scipy
+
+```python
+# 物理常数
+from scipy.constants import physical_constants
+
+physical_constants  # 查看所有的物理常数
+
+# 光速
+value, unit, uncertainty = physical_constants['speed of light in vacuum']
+# "Planck constant": 普朗克常数
+# "electron mass": 电子质量
+# "proton mass": 质子质量
+# "Avogadro constant": 阿伏伽德罗常数
+```
+
 
 ---
 
@@ -1285,6 +1303,8 @@ mode: Literal["r", "w", "x"] = "r"
 ---
 
 ### 工具
+
+>mypy、pydantic、typeguard
 
 mypy 静态类型检查工具
 

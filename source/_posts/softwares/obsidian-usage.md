@@ -183,3 +183,5 @@ password:
 
 - VSCode 复制代码到 Obsidian，每行会产生多余空格：[从visual studio code复制代码后 产生的unicode的空格问题 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/9332)
 	- 解决方法：Mac - `Command + Shift + V` 粘贴；Win - `Ctrl + Shift + V` 粘贴
+
+- [ ] Obsidian 光标在 N 级标题行时会被黏住

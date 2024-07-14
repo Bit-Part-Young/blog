@@ -116,10 +116,18 @@ npm init slidev@0.41.0
 
 >[Error with installer generated slides.md using inline styles · Issue #1081 · slidevjs/slidev · GitHub](https://github.com/slidevjs/slidev/issues/1081)
 
+---
+
+reveal-md 模板
+>[GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
+
+>[GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)
+
+
 
 ---
 
-### 在线 Book / 文档
+## 在线 Book / 文档
 
 - [mdBook](https://github.com/rust-lang/mdBook)
 	- GitHub Actions 部署：[Automated Deployment: GitHub Actions · rust-lang/mdBook Wiki · GitHub](https://github.com/rust-lang/mdBook/wiki/Automated-Deployment%3A-GitHub-Actions)
@@ -131,7 +139,9 @@ npm init slidev@0.41.0
 
 - Jupyter Book 形式：[Built with Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
 	- GitHub Actions 部署：[GitHub Pages and Actions](https://jupyterbook.org/en/stable/publish/gh-pages.html)
-	- 案例：[GitHub - JaGeo/TutorialAtomate2Forcefields: Tutorial to learn basic features of atomate2](https://github.com/JaGeo/TutorialAtomate2Forcefields)
+	- 案例：
+		- [GitHub - JaGeo/TutorialAtomate2Forcefields: Tutorial to learn basic features of atomate2](https://github.com/JaGeo/TutorialAtomate2Forcefields)
+		- [Testing M3GNet for Random Structure Searching — Test M3GNet for random structure searching](https://zhubonan.github.io/airss-m3gnet-test/root.html)
 
 - [GitHub - jaywcjlove/idoc: :book: Simple document generation tool! Dependence Node.js run.](https://github.com/jaywcjlove/idoc)
 
@@ -163,7 +173,10 @@ mdbook serve --open
 
 ## 其他类型博客
 
-[GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
+- [GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
+
+- Obsidian 数字花园博客设置教程：[使用Obsidian 打造个人数字花园完整教程](https://mp.weixin.qq.com/s/pvlfp59XjqftyJVPbEA4tA)
+
 
 
 ---
