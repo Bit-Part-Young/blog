@@ -21,46 +21,21 @@ password:
 
 ## 介绍
 
-LaTeX 斜线表头 package（diagbox）：[CTAN: Package diagbox](https://ctan.org/pkg/diagbox/)
+- 优缺点：
+	- 优点：专注于内容本身，排版效果好，公式排版强大，跨平台开源…
+	- 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得…
 
-
-
-- [ ] latex 如何在每个章节最后生成参考文献？
-
-LaTeX 中文写作：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
-
-
-```latex
-% 不显示日期
-\date{}
-```
-
-```latex
-摄氏度：$^\circ$C
-
-波浪线：\~{}
-```
-
-
----
-
-markdown 宏包
->[以 Markdown 撰写文稿，以 LaTeX 排版 | 始终](https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/)
-
-
-去除超链接、交叉引用中的方框
-[hyperref - Remove ugly borders around clickable cross-references and hyperlinks - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks)
-
-
-
-自定义 sty 文件
->[mystyle.sty](https://github.com/singularitti/PHYS6080-PS1/blob/main/tex/mystyle.sty)
+- TeX 发行版：TeX Live / MacTeX
+- TeX 编辑器：TeXstudio、TeXShop（MacTeX 自带）
 
 
 ---
 
 ### 参考资料
 
+- 现代 LaTeX 入门讲座：[GitHub - stone-zeng/latex-talk](https://github.com/stone-zeng/latex-talk)
+- 《如何使用 LaTeX 排版论文》讲稿：[GitHub - tuna/thulib-latex-talk](https://github.com/tuna/thulib-latex-talk)
+- [GitHub - wklchris/Note-by-LaTeX: 《简单粗暴 LaTeX》出版图书开源仓库](https://github.com/wklchris/Note-by-LaTeX)
 - [LaTeX 备忘清单 & latex cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/latex.html)
 - LaTeX 排版简要介绍：[lec4.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec4.md)
 - 需设置网络代理：[LaTeX 科技文档排版](https://lvjr.bitbucket.io/latex.html)
@@ -69,7 +44,6 @@ markdown 宏包
 - [GitHub - zousiyu1995/Study-LaTeX: LaTeX学习笔记](https://github.com/zousiyu1995/Study-LaTeX)
 - [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
 - [LaTeX 入门与进阶](https://latex.lierhua.top/zh/)
-- [GitHub - wklchris/Note-by-LaTeX: 《简单粗暴 LaTeX》出版图书开源仓库](https://github.com/wklchris/Note-by-LaTeX)
 - [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
 - [GitHub - Meiting-Wang/Awesome-LaTeX-cn: The LaTeX materials list I used](https://github.com/Meiting-Wang/Awesome-LaTeX-cn)
 - [1.1 Awesome-LaTeX-cn - Meiting Wang](https://meiting-wang.github.io/latex/begin1)
@@ -80,33 +54,38 @@ markdown 宏包
 
 - [分类: LaTeX - 智朋的个人博客](https://coffeelize.top/categories/LaTeX/)
 
-自定义列表环境
->[LaTeX 自定义列表环境 | 智朋的个人博客](https://coffeelize.top/posts/18fc56c9.html)
+- 自定义列表环境：[LaTeX 自定义列表环境 - 智朋的个人博客](https://coffeelize.top/posts/18fc56c9.html)
+
+- LaTeX 中文写作：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
+
 
 
 ---
 
 ## TeX Live 安装
 
+### 介绍
+
 - 参考：[GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
 - TeX Live 2024 版本已有 sjtutex 包
 - TeX Live 不同版本需要安装的数目：medium 约 1395 项；full 约 4543 项。
 - TeX Live 不同版本（basic small medium full）之间的区别：[installing - Minimal TeXLive installation - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/397174/minimal-texlive-installation)
+- TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
 
 
 ![different schemes of texlive](https://i.stack.imgur.com/Edat8.png)
+
+```bash
+# 查看 TeX Live 指南
+texdoc texlive-en
+texdoc texlive-zh
+```
 
 TeX Live 中的目录树（texmf-dist texmf-local），包管理（tlmgr），安装非官方的包
 
 >《lshort-zh-cn.pdf》
 
 >《texlive-zh-cn.pdf》
-
-
-- [ ] tcolorbox 宏包使用
-
-
----
 
 
 ---
@@ -122,10 +101,14 @@ export TEXLIVE_INSTALL_TEXDIR=$HOME/src/texlive/2023
 
 # 下载
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
+
 tar -xzvf nstall-tl-unx.tar.gz
+
 cd install-tl-*
+
+# 安装
 perl ./install-tl --scheme=full  # 或 medium small
-# perl ./install-tl --scheme=full --no-interaction # 不进行交互
+# --no-interaction 参数：不进行交互
 
 # 安装完成后，添加环境变量
 export MANPATH=$HOME/src/texlive/2023/texmf-dist/doc/man
@@ -136,7 +119,21 @@ export PATH=$HOME/src/texlive/2023/bin/x86_64-linux:$PATH
 
 ---
 
+### macOS
+
+```bash
+
+```
+
+---
+
+### tlmgr 使用
+
 tlmgr：TeX Live 包管理器
+
+>清华镜像：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+
+>中科大镜像：https://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
 
 ```bash
 # 列出已安装的宏包
@@ -153,14 +150,9 @@ tlmgr install <package>  # 安装宏包
 # --all 更新 TeX Live 系统中的所有宏包和字体
 tlmgr update --self --all
 
-# 查看 tlmgr 命令当前使用的源
+# 查看当前使用的源
 tlmgr option repository
-
 # 换源
-# 清华镜像
-# https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
-# 中科大镜像
-# https://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
 tlmgr option repository url
 ```
 
@@ -173,25 +165,28 @@ tex --version
 tlmgr --version
 ```
 
-
 ---
 
-### 在线 LaTeX 编辑器
+## LaTeX 编辑器
 
-- [overleaf](https://www.overleaf.com/)
-- [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
-- 本地 overleaf：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
-- LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
+- Windows 端：TeXstudio
+- Mac 端：TeXShop
 
-TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
+- 在线 LaTeX 编辑器
+	- [overleaf](https://www.overleaf.com/)；本地 overleaf 软件：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
+	- [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
+	- LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
+
+---
 
 overleaf 使用：
 
 - overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
 - overleaf 可以使用 vim（**组合键**选项）
 
+---
 
- TeXstudio：工具 - 清理辅助文件
+TeXstudio：工具 - 清理辅助文件
 
 
 ---
@@ -206,9 +201,12 @@ overleaf 使用：
 
 - LaTeX OCR：[GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
 
+- Markdown 宏包：[以 Markdown 撰写文稿，以 LaTeX 排版](https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/)
+
 ---
 
 `texdoc`：查阅 texlive 中的文档，包括发行版的说明文档、宏包和文档类的手册等。
+
 ```bash
 texdoc texlive
 texdoc <package>  # 查看宏包文档
@@ -230,21 +228,138 @@ sudo apt install latexdiff
 brew install latexdiff
 ```
 
+---
+
+### 编译
+
+- pdflatex 表示使用 pdfTeX 作为引擎、使用 LaTeX 格式来编译文档（还有 xelatex、lualatex 等）。这些命令行命令通常称为 “编译方式”；编译方式写成图标的形式
+- 英文文档：用 pdflatex、xelatex、lualatex 编译
+- 中文文档：用、xelatex、lualatex 编译编译
+- ctexart 文档类需使用 xelatex 编译；overleaf 在线编辑器默认使用 pdflatex 编译
+
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202310011726060.png)
+
+```bash
+# .tex 扩展名可以省略
+xelatex file.tex
+xelatex file
+
+xelatex -shell-escape file.tex
+
+xelatex -shell-escape -synctex=1 %.tex
+```
+
+- 参数 `-shell-escape`：开启 shell 转义，允许使用依赖于外部工具的宏包（如 minted 宏包实现代码高亮）
+- 参数 `-synctex=1`：启用 SyncTEX 程序，编辑器可以使用 SyncTEX 的输出来实现源代码和 PDF 之间的相互跳转
 
 ---
 
-### 模板
+含参考文献的文档编译
 
-- 较为简洁的作业模板：[hw1.tex](https://raw.githubusercontent.com/OrangeX4/NJUAI-Notes/master/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/Homework/hw1.tex)
+- BibTeX 后端：[LaTeX 参考文献输出](https://mp.weixin.qq.com/s/_comduqz-XOm7u6ArlP4KQ)
+	- `xe-bib-xe-xe` 编译顺序
 
-- [GitHub - ElegantLaTeX/ElegantPaper](https://github.com/ElegantLaTeX/ElegantPaper)
-- [GitHub - ElegantLaTeX/ElegantBook](https://github.com/ElegantLaTeX/ElegantBook)
-- [上海交通大学 Beamer 模版](https://github.com/sjtug/SJTUBeamer)
-- [上海交通大学 LaTeX 论文模板](https://github.com/sjtug/SJTUThesis)
-- cls 内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
+```bash
+xelatex main.tex
+bibtex main.aux
+xelatex main.tex
+xelatex main.tex
+```
+
+- biber 后端 + biblatex 宏包：[texstudio如何编译biblatex+biber？ - LaTeX问答](https://ask.latexstudio.net/ask/question/7509.html)
+	- 使用 `latexmk` 或 `xe-biber-xe-xe` 编译顺序
+
+```bash
+latexmk --xelatex main.tex
+```
+
+---
+
+用 Makefile 编译 LaTeX 文档
+
+- [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
+- [Makefile](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
+
+使用 Github Actions 自动编译
+
+- [GitHub - xu-cheng/latex-action: :octocat: GitHub Action to compile LaTeX documents](https://github.com/xu-cheng/latex-action)
+- [tex.yml](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)（不是很好用）
+
+使用 GitHub Actions 将编译的 pdf 文档作为 release 发布：[release.yml](https://github.com/sjtug/SJTUThesis/blob/master/.github/workflows/release.yml)
 
 
 ---
+
+#### latexmk
+
+`.latexmkrc` 文件：latexmk 配置文件；通常包含以下内容
+
+- 构建引擎的选择：如 pdfLaTeX、XeLaTeX 或 LuaLaTeX。
+- 构建参数：设置构建过程中的各种参数，如输出文件类型、编译次数、文件清理选项等。
+- 自定义构建规则：包括设置文件依赖关系、指定额外的编译步骤等。
+- 输出文件命名规则：定义输出文件的命名规则，以确保生成的文件按照特定的方式命名。
+- 文件监控选项：配置 latexmk 以在文件更改时自动重新构建文档，以提高工作效率。
+
+.latexmkrc 含义
+>[.latexmkrc](https://github.com/cohsh/.dotfiles/blob/main/latex/.latexmkrc)
+
+```bash
+# 清除编译过程中的临时文件
+latexmk -c
+latexmk -C
+```
+
+[.latexmkrc](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
+
+```bash
+# Set timezone.
+$ENV{'TZ'}='Asia/Shanghai';
+
+# Ensure './texmf//' is in '$TEXINPUTS'.
+ensure_path( 'TEXINPUTS', './texmf//' );
+
+# PDF generate method
+#   - 1 pdfLaTeX
+#   - 3 LaTeX + DVIPDFMx
+#   - 4 LuaLaTeX
+#   - 5 XeLaTeX
+$pdf_mode = 5;
+
+# Add common patterns for tex engines.
+set_tex_cmds( '-synctex=1 %O %S' );
+
+# Always try to embed fonts, ignoring licensing flags, etc.
+$xdvipdfmx = 'xdvipdfmx -E -o %D %O %S';
+
+# Files to clean.
+$clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
+```
+
+---
+
+### 语法
+
+- 注释：以 `%` 开头
+
+- 命令：以 `\` 开头，区分大小写；`\command[]{}`：必选参数放在 `{}` 中，可选参数放在 `[]`，多个参数以逗号分隔
+	- 有些命令会对后续内容产生影响，可以用 `{}` 限定作用范围，如 `{\bf bold}`
+
+- 环境：
+	- 常用环境：列表与枚举、图片、表格、定理等
+
+```latex
+\begin{}
+   ...
+\end{}
+```
+
+- 特殊符号需转义，如 `\%`、`\$` 等
+
+---
+
+### 输出文件
 
 输出文件类型：
 
@@ -268,151 +383,137 @@ brew install latexdiff
 
 ---
 
+### 文件结构
 
- hologo 宏包，可以输出许多 $\TeX$ 家族标志
-```bash
-% 大写 H 表示符号的首字母也大写
-\hologo{XeLaTeX} \Hologo{BibTeX}
-```
-
-
-
-文件结构
+- 文件结构
 
 ```tex
-\documentclass{article} % 百分号为注释
-% 导言区，调用宏包、定义命令、进行文档设置等
+\documentclass{article}  % 指明文档类型
+
+% 导言区：设置文档样式
+\usepackage{amsmath}     % 调用宏包
+\newcommand{...}         % 自定义命令
+
 \begin{document}
 % 正文
+...
 \end{document} % 后续忽略
 ```
 
+---
 
+- 中文支持：
+	- 使用 ctexart ctexrep ctexbook 等文档类（还需确保文档以 UTF-8 编码保存）
+	- 引入 ctex 宏包
 
-章节和目录
-```tex
-\chapter{}
-\section{}
-\subsection{}
-\subsubsection{}
+```latex
+\documentclass{ctexart}
+
+\documentclass{article}
+\usepackage{ctex}
 ```
 
+---
 
+- 中文文档简略测试
 
-命令
-
-- 命令（控制序列）以 `\` 开头，对大小写敏感，如 `\LaTeX` -> $\LaTeX$
-- 有些命令会对后续内容产生影响，可以用 `{}` 限定作用范围，如 {\\bf bold}
-- 命令可以接收参数，\[\] 中为可选参数，{} 中为必选参数，逗号分隔
-
-
-
-字体样式、字号
-
-```tex
-% 字体样式
-\textbf{bold} \textit{italic} \texttt{typewriter}
-\textsf{sans serif} \textsc{Small Caps} \textsl{slanted}
-
-% 字号
-{\tiny tiny} {\scriptsize scriptsize} {\footnotesize footnotesize}
-{\small small} {\normalsize normalsize} {\large large}
-{\Large Large} {\LARGE LARGE} {\huge huge} {\Huge Huge}
-```
-
-
-页眉页脚
-
-
-列表
-
-表格
-
-浮动体
-
-交叉引用
-
-
-参考文献
-
-
-数学公式
-
-
-
-
-```markdown
-$\TeX$
-
-$\LaTeX$
-```
-
-
-
-```tex
-\documentclass[options]{…} % 这里其中options可以有 Font size、Paper size、Page Formats、sides与openany等.  
-\pagestyle{…} % 设定了页脚和页眉的参数  
-\pagenumbering{…} % 页码的样式.默认参数是阿拉伯数字，可重置页码.  
-  
-\begin{document}  
-% 标题部分:包含了 \title, \author, \date, \maketitle  
-% 默认情况下内容自动居中，标题过长也会自动换行，这部分在book和report类型文章中会另起一页，而article则在文档的第一页.  
-\title  
-\author  
-\date  
-\maketitle  
-
-%Abstract：只在article和report中可以调用\begin{abstract}来实现，在report类中这部分会另起一页，在article中这部分会在第一页的标题下方  
-\begin{abstract}  
-摘要部分  
-\end{abstract}  
-
-\chapter %\chapter*{章} 其写法不会产生编号  
-\section  
-\subsection  
-\subsubsection  
-\paragraph  
-\subparagraph  
+```latex
+% 用 XeLaTeX 或 LuaLaTeX 编译
+\documentclass{ctexart}
+\begin{document}
+\TeX{} 你好！
 \end{document}
 ```
 
+---
 
+- 文档部件：
+	- 标题：`\title`、`\author`、`\date` → `\maketitle`
+	- 摘要：`abstract` 环境
+	- 目录：`\tableofcontents`
+	- 章节：`\chapter`、`\section`、`\subsection` 等
+	- 文献：`\bibliography`
 
+>`\title` 和 `\author` 必需，`\date` 若省略或 `\date{\today}` 会生成当天日期，`\date{}` 不显示日期
 
-`\pagenumbering` 默认参数是阿拉伯数字
->arabic: 阿拉伯数字；roman: 小写罗马数字；Roman: 大写罗马数字；alpha: 小写英文字母 ；Alpha: 大写英文字母
+>`\title`、`\author`、`\date` 可放在导言区或正文
 
+>标题信息在 book 和 report 文档类会另起一页，article 文档类会在文档的第一页
 
-假设在前言部分采用罗马数字，在剩余的正文部分用阿拉伯数字，则在前言部分使用命令 `\pagestyle{roman}`，随后在新的章节后面采用 `\chapter{…}\pagenumbering{arabic}`，还可以在后面接 `\setcounter{page}{number}` 来设定起始页码.
+>`abstract` 环境只在 article 和 report 文档类有，report 文档类会另起一页，article 文档类会在标题下方
 
-```text
-\pagenumbering{arabic}\setcounter{page}{2}
-```
+---
+
+- 文档划分：
+	- 分文件编译：`\include`、`\input`
 
 
 ---
 
-### 数学公式
+### 公式
 
-基本环境
-- `equation，equation*` 单行单公式
+>[LaTeX Math Wikibook](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
+---
+
+#### 数学模式
+
+- 空格不起作用；不能有空行
+- 行内（inline）公式：`$...$`
+- 行间（display 独显）公式：
+	- 无编号：`\[...\]` 或 `equation*` 环境
+	- 编号：`equation` 环境
+	- 不要用 `$$...$$$`（为什么？）
+
+
+---
+
+#### 括号与定界符
+
+- 基本括号：
+	- `(...)`、`[...]`、`{...}`
+	- 绝对值、范数：`|...|` 或 `\vert...\vert`、`\Vert...\Vert`
+	- Dirac 符号：`\langle...\rangle`、`|...\rangle`
+- 自动调节大小：`\left(...\right)`
+- 手动调节大小：`\big`、`\Big`、`\bigg`、`\Bigg`；声明左中右，在命令后添加 `l`、`m` 或 `r`，如 `\bigl`
+
+---
+
+#### 符号与数学字体
+
+- 符号
+	- 最常用的额外字体包：amssymb
+
+- 数学字体
+	- 「Times New Roman」：newtxmath 宏包
+	- 不要用 times 和 mathptmx 宏包
+	- 加粗：使用 bm 宏包的 `\bm` 命令（`\mathbf` 只有直立的字母）
+
+- 新方案：unicode-math 宏包
+
+---
+
+#### 多行公式
+
 - `multline multline*` 多行公式，没有对齐操作，只给一个公式编号
 - `gather gather*` 多个公式，可添加多个公式编号
 - `align align*` 多个公式对齐，但只能对齐公式内部的一个部分
 - `flalign flalign*` 多个公式对齐，可对公式内的多个部分
 - `split` 分割公式
 
+- 取消公式编号，在环境名加 `*` 即可实现
 
 >`gathered` 和 `gather` 的区别是放在了一个 `minipage` 里，`aligned` 也是 `minipage` 的问题
 
-
->若公式不要编号，在环境名加 `*` 即可实现
-
-
-```tex
+```latex
 \usepackage{amsmath,amssymb,amsfonts}  % 常用数学宏包
+
+
 ```
 
+```latex
+texdoc symbols % 查看符号表
+```
 
 - 在数学模式中输入普通文本：`\mbox{文本}` 或 `\text{文本}`
 - 在数学模式中插入 空格：`\quad, \qquad, \hspace`，使用 `\,` 等价 `3/18 \quad`
@@ -453,68 +554,23 @@ $\LaTeX$
 
 ---
 
+### 引用与参考文献
 
-代码展示一般会选用 listings 或者 minted 宏包
+- 参考文献由文献数据库（即 `.bib` 文件，条目会包含 key，用于引用）生成
+- 注意特殊符号、公式等常常需要人工检查
+- 需多次编译，推荐 latexmk
 
+- 传统方法：BibTeX 后端（gbt7714 宏包）
 
+```latex
+\bibliographystyle{<style>}  % 指定样式
 
-```tex
+\cite{key1, key2}            % 引用参考文献
 
-% 页眉页脚设置
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\lhead{\kaishu~课程报告~}
-\rhead{\kaishu~xxx}
-\cfoot{\thepage}
-
-% 代码展示设置
-\usepackage{listings}
-% \lstset{...}
-\lstset{tabsize=4, keepspaces=true,
-    xleftmargin=2em,xrightmargin=0em, aboveskip=1em,
-    %backgroundcolor=\color{gray!20},  % 定义背景颜色
-    frame=none,                       % 表示不要边框
-    extendedchars=false,              % 解决代码跨页时，章节标题，页眉等汉字不显示的问题
-    numberstyle=\ttfamily,
-    basicstyle=\ttfamily,
-    keywordstyle=\color{blue}\bfseries,
-    breakindent=10pt,
-    identifierstyle=,                 % nothing happens
-    commentstyle=\color{green}\small,  % 注释的设置
-    morecomment=[l][\color{green}]{\#},
-    numbers=left,stepnumber=1,numberstyle=\scriptsize,
-    showstringspaces=false,
-    showspaces=false,
-    flexiblecolumns=true,
-    breaklines=true, breakautoindent=true,breakindent=4em,
-    escapeinside={/*@}{@*/},
-}
-
-
-
-% 自定义标题样式
-\usepackage{titlesec}
-\titleformat{\chapter}{\centering\zihao{2}\heiti}{第\chinese{chapter}章}{1em}{}
-
-
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-
+\bibliography{bibfile}       % 打印参考文献列表
 ```
 
-
-`comment` 是一个特殊的环境，用于将其中的文本视为注释，从而使这些文本不会在生成的文档中显示
-
-```tex
-\begin{comment}
-...
-\end{comment}
-```
-
-
----
-
-参考文献&文献引用
+- 现代方法：biber 后端 + biblatex 宏包（国家标准：biblatex-gb7714-2015 宏包）
 
 ```tex
 % 参考文献相关设置
@@ -539,8 +595,8 @@ $\LaTeX$
 \addbibresource{reference.bib}
 
 
-% 默认引用格式 
-\cite{} 
+% 默认引用参考文献条目 
+\cite{key1, key2}
 % 右上角引用格式 
 \upcite{} 
 % 不出现在正文，出现在参考文献列表 
@@ -549,46 +605,49 @@ $\LaTeX$
 \supercite{}
 \parencite{}
 
-% 打印参考文献
+% 打印参考文献列表
 \printbibliography
 \printbibliography[heading=bibintoc]
 ```
 
+---
 
+### 列表
 
+- 无序列表，有序列表
+
+```latex
+\begin{itemize}
+    ...
+\end{itemize}
+```
+
+---
+
+### 图片
+
+WIP...
+
+```latex
+
+```
 
 ---
 
 ### 表格
 
-浮动体：浮动调整的环境
->因为有浮动体的存在，图片编排的位置是不确定的，所以要避免在文中使用「下图」、「上图」的说法，而是使用 `ref` 命令生成图表的编号。
+- LaTeX 表格生成：[Create LaTeX tables online](https://www.tablesgenerator.com/)
 
-
-```tex
-\begin{table}[!htbp]
-table
-\end{table}
-%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[!htbp]
-figure
-\end{figure}
+```latex
+\begin{tabular}
+   ...
+\end{tabular}
 ```
 
+- 三线表：`booktabs` 宏包
 
-! 表示忽略内部参数（比如内部参数对一页中浮动体数量的限制）；
-h 当前位置 (here)，t 顶部 (top)，b 底部 (bottom)，p 单独成页 (p)。LATEX 的默认参数是 tbp。
-另外需要注意的是 label 命令写在 caption 命令下方，否则交叉引用会出现问题。
-
-
-
-
-三线表
 ```tex
-\documentclass[UTF8]{ctexart}  
-\usepackage{booktabs} % 需要加载宏包booktabs  
-
-\begin{document}  
+\usepackage{booktabs}
 
 % 三线表
 \begin{tabular}{ccc}  
@@ -599,17 +658,12 @@ h 当前位置 (here)，t 顶部 (top)，b 底部 (bottom)，p 单独成页 (p)�
 4& 5& 6\\  
 \bottomrule     %表格底部粗线  
 \end{tabular}  
-  
-\end{document}
 ```
 
+- 斜线表：`diagbox` 宏包；[CTAN: Package diagbox](https://ctan.org/pkg/diagbox/)
 
-斜线表
 ```tex
-\documentclass[UTF8]{ctexart}  
-\usepackage{diagbox} % 需要加载宏包 diagbox  
-
-\begin{document}  
+\usepackage{diagbox}
 
 % 斜线表头
 \centering
@@ -622,21 +676,75 @@ Morning&used&used&\\
 Afternoon& &used&used\\
 \hline
 \end{tabular}
-
-\end{document}  
 ```
+
+
+---
+
+### 浮动体
+
+- 图片和表格有时会很大，在插入的位置不一定放得下，因此需要浮动调整
+- 避免在文中使用「下图」、「上图」的说法，而是使用图表的编号，如：图 `~\ref{fig:fig1}`
+- `h` 当前位置 (here)，`t` 顶部 (top)，`b` 底部 (bottom)，`p` 单独成页 (p)。LaTeX 的默认参数是 tbp。
+- `!h` 表示忽略一些限制，H 表示强制（强烈不建议）
+- 图标题一般在下方，表标题一般在上方
+- `\label` 需写在 `\caption` 后面，否则交叉引用会出现问题
+
+```latex
+\label{name}     % 添加标签：图片、表格、公式等
+\label{eq:name}  % 有意义的标签
+```
+
+```latex
+\begin{table}[!htbp]
+   ...
+\end{table}
+
+\begin{figure}[!htbp]
+   ...
+\end{figure}
+```
+
+
+---
+
+### 页面设置
+
+页边距
+
+页眉页脚
+
+```latex
+\pagestyle{...} % 设定了页脚和页眉的参数  
+
+\pagenumbering{...} % 页码的样式.默认参数是阿拉伯数字，可重置页码
+```
+
 
 ---
 
 ### 字体
+
+- 宏包：`fontspec`
+
+```tex
+% 字体样式
+\textbf{bold} \textit{italic} \texttt{typewriter}
+\textsf{sans serif} \textsc{Small Caps} \textsl{slanted}
+
+% 字号
+{\tiny tiny} {\scriptsize scriptsize} {\footnotesize footnotesize}
+{\small small} {\normalsize normalsize} {\large large}
+{\Large Large} {\LARGE LARGE} {\huge huge} {\Huge Huge}
+```
 
 ```bash
 # 查看已安装中英文字体 zh/en
 fc-list :lang=zh
 ```
 
-
 中英文字体设置
+
 ```latex
 % 新罗马字体设置
 \usepackage{fontspec}
@@ -661,297 +769,12 @@ fc-list :lang=zh
 
 ---
 
-### 编译
+### 常用宏包
 
-用 Makefile 编译 LaTeX 文档
-- [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
-- [Makefile](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
+- [ ] tcolorbox 宏包使用
 
-
->ctexart 需使用 xelatex 编译
->overleaf 默认使用 pdflatex 编译
-
-
-pdflatex 表示使用 pdf$\TeX$ 作为引擎、使用 $\LaTeX$ 格式来编译文档（还有 xelatex、lualatex 等）。这些命令行命令通常称为 “ 编译方式 “；编译方式写成图标的形式
-
-
-中文文档的编译方式：对于中文文档，推荐使用 xelatex 或 lualatex 编译并使用 ctex 宏集作为中文支持
-```tex
-\documentclass{ctexart}
-```
-
->还需确保文档以 UTF-8 编码保存
-
-
-中文支持
-- 使用 ctexart ctexrep ctexbook 等文档类
-
-```tex
-\documentclass{ctexart}
-\begin{document}
-你好，世界！
-\end{document}
-```
-
-- 引入 ctex 宏包
-
-```tex
-\documentclass{article}
-\usepackage{ctex}
-\begin{document}
-你好，世界！
-\end{document}
-```
-
-
-
-
-```bash
-xelatex file.tex
-
-xelatex -shell-escape file.tex
-
-xelatex file
-
-xelatex -shell-escape -synctex=1 %.tex
-```
-
->编译命令启用了 -shell-escape 选项，从而可以使用一些依赖于外部工具的宏包（比如依赖于 Python 的 minted 宏包）。
-
->-shell-escape 选项开启 shell 转义，这一选项的直接应用就是允许使用 minted
-宏包实现抄录代码高亮（见第 100 页）；-synctex=1 选项用于启用 SyncTEX 程序，编
-辑器可以使用 SyncTEX 的输出来实现源代码和 PDF 之间的相互跳转。
-
-使用命令行编译，若源文件的扩展名为.tex，则扩展名可以省略
-
-
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202310011726060.png)
-
-
-
-
-```bash
-latexmk -c
-
-latexmk -C
-```
-
-
-
----
-
-#### latexmk
-
-`.latexmkrc` 文件：latexmk 配置文件；通常包含以下内容
-- 构建引擎的选择：如 pdfLaTeX、XeLaTeX 或 LuaLaTeX。
-- 构建参数：设置构建过程中的各种参数，如输出文件类型、编译次数、文件清理选项等。
-- 自定义构建规则：包括设置文件依赖关系、指定额外的编译步骤等。
-- 输出文件命名规则：定义输出文件的命名规则，以确保生成的文件按照特定的方式命名。
-- 文件监控选项：配置 latexmk 以在文件更改时自动重新构建文档，以提高工作效率。
-
-
-[.latexmkrc](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
-```bash
-# Latexmk configuration file.
-#
-#   WARNING: Only works with version 4.59 or higher of latexmk.
-#
-
-# reference: https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc
-
-# Set timezone.
-$ENV{'TZ'}='Asia/Shanghai';
-
-# Ensure './texmf//' is in '$TEXINPUTS'.
-ensure_path( 'TEXINPUTS', './texmf//' );
-
-# PDF generate method
-#   - 1 pdfLaTeX
-#   - 3 LaTeX + DVIPDFMx
-#   - 4 LuaLaTeX
-#   - 5 XeLaTeX
-$pdf_mode = 5;
-
-# Add common patterns for tex engines.
-set_tex_cmds( '-synctex=1 %O %S' );
-
-# Always try to embed fonts, ignoring licensing flags, etc.
-$xdvipdfmx = 'xdvipdfmx -E -o %D %O %S';
-
-# Files to clean.
-$clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
-
-```
-
-
----
-
-#### 带参考文献
-
-bibtex 引擎编译参考文献
->[LaTeX 参考文献输出](https://mp.weixin.qq.com/s/_comduqz-XOm7u6ArlP4KQ)
-
-```bash
-xelatex main.tex
-bibtex main.aux
-xelatex main.tex
-xelatex main.tex
-```
-
-
----
-
-使用 biblatex 宏包，biber 作为后端，编译参考文献（使用 `latexmk` 或 `xe-biber-xe-xe`）
->[texstudio如何编译biblatex+biber？ - LaTeX问答](https://ask.latexstudio.net/ask/question/7509.html)
-
-```bash
-latexmk --xelatex main.tex
-```
-
-
----
-
-#### Github Actions 编译
-
-用 github action 来编译 LaTeX
->[GitHub - xu-cheng/latex-action: :octocat: GitHub Action to compile LaTeX documents](https://github.com/xu-cheng/latex-action)
-
->[tex.yml](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)
-
->不是很好用
-
-```yaml
-name: Build LaTeX document
-on: [push]
-jobs:
-  build_latex:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v3
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: hello_latex.tex
-          latexmk_use_xelatex: true
-      - name: Upload PDF file
-        uses: actions/upload-artifact@v3
-        with:
-          name: PDF
-          path: hello_latex.pdf
-		  
-```
-
-
-用 github action 进行 release 发布
-[release.yml](https://github.com/sjtug/SJTUThesis/blob/master/.github/workflows/release.yml)
-```yaml
-name: Release
-
-on:
-  push:
-    branches:
-    - release
-    tags:
-    - "v*"
-
-jobs:
-  release-latexmk:
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v2
-        name: checkout code
-      - uses: xu-cheng/texlive-action/full@v1
-        name: build with latexmk
-        with:
-          run: |
-            latexmk main.tex -halt-on-error -time -xelatex
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref }}
-          body: "New release ${{ github.ref }}"
-          draft: true
-          prerelease: false
-          files: |
-            main.pdf
-```
-
-
-
----
-
-
-表格制作
->[https://www.tablesgenerator.com/](https://www.tablesgenerator.com/)
-
-
-
-长竖线
->[https://www.zhihu.com/question/35119859](https://www.zhihu.com/question/35119859)
 
 ```latex
-\frac{df}{dx}\bigg|_{x = x_0} 
-
-\frac{df}{dx}\Bigg|_{x = x_0}
-```
-
-
-
-括号（大中小）大小控制
->[http://www.52souji.net/control-the-dimension-of-bracket-in-latex.html](http://www.52souji.net/control-the-dimension-of-bracket-in-latex.html)
-
-方法一：在左右括号前分别添加 `\left` 和 `\right`（需要配对使用；能自动控制不同层次括号的大小）
-
-
-
----
-
-## 自定义命令
-
-命令使用 `\cmd{arg1}{arg2}` 来调用
-
-`cmd` - 不能重名，必须符合命名规则。
-`args` - 参数数量，0 ∼ 9，默认为 0。
-`default` - 设定第⼀个参数的默认值，同时表示该参数是**可选参数**，新命令中最多只能有⼀个可选参数。
-`def` - 定义，涉及到参数时使用 `#n` 表示第 n 个参数。
-
-
-```tex
-% 定义新命令
-\newcommand{cmd}[args][default]{def}
-\newcommand*{cmd}[args][default]{def}
-
-% 修改已有命令
-\renewcommand{cmd}[args][default]{def}
-\renewcommand*{cmd}[args][default]{def}
-```
-
->带星号的命令称为短命令，其中参数不能有换段或空行，否则编译报错，但是短命令有利排错
-
-
-在命令中如果包含数学命令，那么这条命令只能⽤于⽂本模式，不能⽤于数学模式（因为
-在数学模式中会被多加了⼀层 `$ $` 导致报错）。所以，在定义数学命令时，使⽤ `\ensuremath{code}` 来定义，这样的命令在数学模式中时 code 本⾝，在⽂本模式中时 `$ code $`。
-
-
-
----
-
-### 宏包
-
-写宏包
->[https://github.com/ustctug/ustcthesis/wiki/参与开发](https://github.com/ustctug/ustcthesis/wiki/%E5%8F%82%E4%B8%8E%E5%BC%80%E5%8F%91)
-
-
-
->[document.tex](https://github.com/Meiting-Wang/Article-template/blob/main/document.tex)
-```latex
-% 需使用 xelatex 编译
-% 导言区
 \documentclass[UTF8,hyperref,space=auto]{ctexart} %UTF8 编码，引入 hyperref 宏包 (可形成超链接及使用其自带的额外命令)，设置其处理空格的方式为 auto
 \usepackage[a4paper,showframe]{geometry} % 设置纸张为 A4 大小
 \usepackage[dvipsnames]{xcolor} % 扩展版的颜色宏包
@@ -983,37 +806,193 @@ jobs:
 
 ```
 
+---
+
+### 抄录
+
+- 抄录：指将键盘输入的字符（包括保留字符和空格）不经过 TeX 解释，直接输出到文档；默认字体是等宽字体
+- 命令：`\verb` 后用两个同样的符号将抄录内容括住（不能是星号）
+- 环境：`verbatim`
+- `\verb` 以及 `verbatim` 环境很脆弱，不能隐式地用于自定义环境，也一般不能用作命令的参数。
+	- 宏包 `verbatim` 提供了更多的抄录支持
+	- 宏包 `fancyvrb` 提供 `\SaveVerb`, `\UseVerb` 命令，以及便于实现居中的 `BVerbatim` 环境（置于 `center` 环境内即可）
+	- 宏包 `shortverb` 支持以一对符号代替 `\verb` 命令
+
+
+```latex
+% 抄录命令
+\verb|\date \author \title|
+
+% 抄录环境
+\begin{verbatim}
+    ...
+\end{verbatim}
+```
+
+
+---
+
+### 代码
+
+一般使用 listings 或者 minted 宏包
+
+```tex
+% 代码展示设置
+\usepackage{listings}
+% \lstset{...}
+\lstset{tabsize=4, keepspaces=true,
+    xleftmargin=2em,xrightmargin=0em, aboveskip=1em,
+    %backgroundcolor=\color{gray!20},  % 定义背景颜色
+    frame=none,                       % 表示不要边框
+    extendedchars=false,              % 解决代码跨页时，章节标题，页眉等汉字不显示的问题
+    numberstyle=\ttfamily,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{blue}\bfseries,
+    breakindent=10pt,
+    identifierstyle=,                 % nothing happens
+    commentstyle=\color{green}\small,  % 注释的设置
+    morecomment=[l][\color{green}]{\#},
+    numbers=left,stepnumber=1,numberstyle=\scriptsize,
+    showstringspaces=false,
+    showspaces=false,
+    flexiblecolumns=true,
+    breaklines=true, breakautoindent=true,breakindent=4em,
+    escapeinside={/*@}{@*/},
+}
+```
+
+
+---
+
+### 其他
+
+- hologo 宏包，可以输出许多 $\TeX$ 家族标志
+
+```latex
+$\TeX$  $\LaTeX$
+
+% 大写 H 表示符号的首字母也大写
+\hologo{XeLaTeX} \Hologo{BibTeX}
+```
+
+- `comment` 环境，用于将其中的文本视为注释，从而使这些文本不会在生成的文档中显示
+
+```tex
+\begin{comment}
+...
+\end{comment}
+```
+
+---
+
+```tex
+\documentclass[options]{...} % 这里其中options可以有 Font size、Paper size、Page Formats、sides与openany等.  
+```
+
+`\pagenumbering` 默认参数是阿拉伯数字
+>arabic: 阿拉伯数字；roman: 小写罗马数字；Roman: 大写罗马数字；alpha: 小写英文字母 ；Alpha: 大写英文字母
+
+
+假设在前言部分采用罗马数字，在剩余的正文部分用阿拉伯数字，则在前言部分使用命令 `\pagestyle{roman}`，随后在新的章节后面采用 `\chapter{…}\pagenumbering{arabic}`，还可以在后面接 `\setcounter{page}{number}` 来设定起始页码.
+
+```text
+\pagenumbering{arabic}\setcounter{page}{2}
+```
+
+
+```latex
+$^\circ$C  % 摄氏度
+
+\~{}  % 波浪线
+```
+
+
+
+---
+
+## 进阶
+
+### 自定义命令
+
+命令使用 `\cmd{arg1}{arg2}` 来调用
+
+`cmd` - 不能重名，必须符合命名规则。
+`args` - 参数数量，0 ∼ 9，默认为 0。
+`default` - 设定第⼀个参数的默认值，同时表示该参数是**可选参数**，新命令中最多只能有⼀个可选参数。
+`def` - 定义，涉及到参数时使用 `#n` 表示第 n 个参数。
+
+```latex
+% 定义新命令
+\newcommand{cmd}[args][default]{def}
+\newcommand*{cmd}[args][default]{def}
+
+% 修改已有命令
+\renewcommand{cmd}[args][default]{def}
+\renewcommand*{cmd}[args][default]{def}
+```
+
+>带星号的命令称为短命令，其中参数不能有换段或空行，否则编译报错，但是短命令有利排错
+
+
+在命令中如果包含数学命令，那么这条命令只能⽤于⽂本模式，不能⽤于数学模式（因为
+在数学模式中会被多加了⼀层 `$ $` 导致报错）。所以，在定义数学命令时，使⽤ `\ensuremath{code}` 来定义，这样的命令在数学模式中时 code 本⾝，在⽂本模式中时 `$ code $`。
+
+---
+
+### 自定义宏包
+
+门槛较高
+
+写宏包
+
+- [https://github.com/ustctug/ustcthesis/wiki/参与开发](https://github.com/ustctug/ustcthesis/wiki/%E5%8F%82%E4%B8%8E%E5%BC%80%E5%8F%91)
+- [document.tex](https://github.com/Meiting-Wang/Article-template/blob/main/document.tex)
+
+
+自定义 sty 文件：[mystyle.sty](https://github.com/singularitti/PHYS6080-PS1/blob/main/tex/mystyle.sty)
+
+
+---
+
+## 模板
+
+- 较为简洁的作业模板：[hw1.tex](https://raw.githubusercontent.com/OrangeX4/NJUAI-Notes/master/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/Homework/hw1.tex)
+
+- [GitHub - ElegantLaTeX/ElegantPaper](https://github.com/ElegantLaTeX/ElegantPaper)
+- [GitHub - ElegantLaTeX/ElegantBook](https://github.com/ElegantLaTeX/ElegantBook)
+- [上海交通大学 Beamer 模版](https://github.com/sjtug/SJTUBeamer)
+- [上海交通大学 LaTeX 论文模板](https://github.com/sjtug/SJTUThesis)
+- cls 内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
+
+
+---
+
+## LaTeX 版本简历
+
+- [GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
+
+- 用的是 tectonic latex 引擎：[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
+
+- [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
+
+- [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
 
 
 ---
 
 ## 问题
 
-下划线 `\newcommand` 及粗细设置
->[underline - Why does \\uline sometimes render thicker and darker (inconsistent with underlining in the rest of the text)? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/537907/why-does-uline-sometimes-render-thicker-and-darker-inconsistent-with-underlini)
->
->[Fixing the length of underline text - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/482835/fixing-the-length-of-underline-text)
+- 下划线 `\newcommand` 及粗细设置
+	- [underline - Why does \\uline sometimes render thicker and darker (inconsistent with underlining in the rest of the text)? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/537907/why-does-uline-sometimes-render-thicker-and-darker-inconsistent-with-underlini)
+	- [Fixing the length of underline text - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/482835/fixing-the-length-of-underline-text)
 
+- 去除超链接、交叉引用中的方框：[hyperref - Remove ugly borders around clickable cross-references and hyperlinks - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks)
 
-
-简历
-
-latex 版本
->[GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
-
-用的是 tectonic latex 引擎
->[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
->[GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
-
-
-
->[GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
-
+- [ ] LaTeX 如何在每个章节最后生成参考文献？
 
 
 ---
 
-### 参考文献
 
 `bst` 格式：参考文献样式文件
 

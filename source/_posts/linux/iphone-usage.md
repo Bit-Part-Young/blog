@@ -8,7 +8,8 @@ summary: iPhone 使用
 description: iPhone 使用
 tags:
   - iPhone
-categories: 
+categories:
+  - Linux
 date: 2024-07-01 22:00:00
 abbrlink: 220701
 password:
@@ -42,3 +43,11 @@ https://whatshub.top/module/adultraplus.module
 
 - [如何把文件app的照片导入到照片app - Apple 社区](https://discussionschinese.apple.com/thread/253090290)
 - [iPhone如何将照片中的视频导入到文件app - Apple 社区](https://discussionschinese.apple.com/thread/255235719)
+
+---
+
+iOS 版本 telegram 会无法显示含敏感内容的 telegram，方法：登录网页版的 telegram，网址 `web.telegram.org`，Settings - Privacy and Security - Sensetive Content，打开（App 版没有 Sensetive Content 这一选项）
+
+ipa 格式文件
+
+较靠谱的咸鱼 Mac 电脑二手卖家：兴全同学

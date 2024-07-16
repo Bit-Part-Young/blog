@@ -196,6 +196,7 @@ system_profiler SPDisplaysDataType
 - 菜单栏管理：Ice
 - 录屏：QuickRecorder
 - 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
+- 隐藏刘海：Only Switch（将菜单栏调成黑色模式）、zNotch（将菜单栏下移）、Notchmeister（增加趣味）
 - macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
 - 其他：微信等
 

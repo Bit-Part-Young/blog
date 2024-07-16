@@ -19,61 +19,222 @@ password:
 
 # Markdown 使用
 
+## 介绍
+
+- 一种轻量级文本**标记语言**（markup language，本质），是对 HTML 的一种简化
+- 语法简单，易于学习，易于使用
+- Markdown 只决定解析出的 HTML 是什么，不会决定任何视觉上的样式
+- 规范：CommonMark 规范、GitHub GFM 规范、Pandoc 规范、Typora 规范等
+- 扩展语法包括：表格、脚注、任务列表、公式、流程图等
+
 - 参考资料：
 	- Markdown 语法及应用：[lec3.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec3.md)
 	- [GitHub - tchapi/markdown-cheatsheet: Markdown Cheatsheet for Github Readme.md](https://github.com/tchapi/markdown-cheatsheet)
-	- [markdown在线编辑器 - Markdown Editor](https://markdown-editor.org/)
 
-
----
-
-## 使用
-
-标题
-
----
-
-引言
-
----
-
-无序列表
-
----
-
-有序列表
 
 
 ---
 
-分割线
+## 工具
+
+- [markdown在线编辑器 - Markdown Editor](https://markdown-editor.org/)
+- 下载 md 文档中的 online 图片：[GitHub - YellowAndGreen/Md-ImgLocalize: Download and convert all online images to local images in markdown files.](https://github.com/YellowAndGreen/Md-ImgLocalize)
+- Excel 单元格， CSV 内容转成 Markdown 表格：[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
+
+
 
 ---
 
-代码块
+## 语法
 
----
+### 行内标记
 
-图片插入
+- `*` 和 `_` 等效
+- 下划线无 Markdown 语法，可以直接使用 HTML 的 `<u>` tag 来实现
 
-图片描述可以为空；图片位置可以是路径，也可以是 URL
-
-```text
-![图片描述](图片位置)
-
-<img src="图片位置" alt="图片描述" 
-    style="..."/>
+```markdown
+*斜体* _也是斜体_ \*这不是斜体\*
+**粗体** __也是粗体__
+***粗斜体*** ___也是粗斜体___
+`行内代码`
+~~删除线~~
+<u>下划线</u>
 ```
 
----
-
-
-插入链接
-
 
 ---
 
-脚注
+### 标题
+
+- 井号 `#` 开头，井号与标题间至少一个空格
+- 只有 1～6 级标题
+- 可以跨过某一级，但不推荐
+
+```markdown
+# 一级标题
+## 二级标题
+```
+
+
+---
+
+### 段落
+
+- 直接编写文本即为普通段落
+- 段落间通过空行来分割（有空行就有新的段落）
+- 段落内换行：在行尾添加 `<br>`
+
+
+---
+
+### 引用
+
+- `>` 加一个空格后接内容（空格可加可不加）；可以嵌套
+- 内部可以嵌套使用 Markdown 语法（有些软件和博客框架无法正常渲染）
+- 需要一个空行来退出环境
+
+```markdown
+> 引用
+```
+
+
+---
+
+### 无序列表
+
+- `- + *` 后接一个空格然后接内容
+- 嵌套列表直接缩进一次即可
+
+```markdown
+- 无序列表 1
+- 无序列表 2
+```
+
+
+---
+
+### 有序列表
+
+- 数字加点 后接空格 再接内容；也可以数字加 `)` 后接空格 再接内容
+- 有序列表可以和无序列表互相嵌套
+
+```markdown
+1. 有序列表 1
+2. 有序列表 2
+```
+
+
+---
+
+### 分割线
+
+- 使用 `* - _` 中任意一个字符重复至少三次
+- 分割线上方不要有文字
+- 分割线上下最好都加空行
+
+```markdown
+---
+```
+
+
+---
+
+### 代码块
+
+- 三个 \` 或 \~ 围起来构成代码块（\~ 或 \` 可以加语言名称）
+	- 带有高亮支持的软件会对其进行高亮显示
+	- 不加（或加 text）不进行高亮
+
+~~~markdown
+```c
+#include <stdio.h>
+
+int main() {
+    printf("hello world\n");
+    return 0;
+}
+~~~
+
+
+---
+
+### 图片插入
+
+- 感叹号 - 方括号 - 圆括号组合
+- 图片描述可以为空
+- 图片位置可以是本地文件路径，也可以是 URL
+- 默认无法调整图片大小，可借助 HTML 语法
+- 图片不会嵌入 md 文件中，要交给别人 md 文件的话请附带上所有素材文件
+
+```markdown
+![图片描述](图片位置)
+
+![](图片位置)
+```
+
+
+---
+
+### 插入链接
+
+- 方括号 - 圆括号组合
+- 链接左右加 `<>` 自动链接
+
+```markdown
+[文字](链接)
+
+<链接>
+等价于 [链接](链接)
+```
+
+- 目录用：`[section name](#section)`
+	- Typora 软件可直接使用 `[TOC]` 生成目录；GitHub 和 Gitee 不识别 `[TOC]`
+	- Gitee 会自动在左侧生成目录，GitHub 需手动生成
+	- 当涉及到 `.` 时，可忽略，涉及到空格时，需用 `-` 连字符连接，涉及到大写字母，需将其小写）
+
+```markdown
+- [一级标题](#一级标题)
+  - [二级标题](#二级标题)
+```
+
+
+---
+
+### 表格
+
+- 每个单元格的内容用 `|` 分开
+- 第二行一定要有，规定整列对齐方式；`|--|` 或 `|:--|` 左对齐，`|--:|` 右对齐，`|:--:|` 居中对齐，`-` 的个数随意
+- Hexo 框架只显示左对齐，MkDocs 框架正常显示
+
+```markdown
+| 标题 1 | 标题 2 | 标题 3 |
+| :--- | ---: | :---: |
+| 左 | 右 | 中 |
+```
+
+
+---
+
+### 任务列表
+
+- 也称 checklist
+- `- [ ]` 插入未完成任务
+- `- [x]` 插入已完成任务
+- GitHub、Obsidian 会自动加上 checkbox 支持修改
+
+```markdown
+- [ ] task 1 - TODO
+- [x] task 2 - DONE
+```
+
+
+---
+
+### 脚注
+
+- 使用 `[^脚注名]` 插入脚注
+- 在文中任意位置添加 `[^脚注名]: 脚注内容` 定义脚注内容
+- 脚注名只是标记、匹配使用的，可以是任何字符串；最终的编号一般由在文中出现的顺序决定
 
 ```text
 这是脚注[^1]
@@ -82,59 +243,13 @@ password:
 ```
 
 
-
 ---
 
-## 字体
+## 其他
 
->[Markdown如何设置字体颜色加粗倾斜\_markdown 加粗\_大前小白的博客-CSDN博客](https://blog.csdn.net/weixin_45195200/article/details/105675238)
+- Markdown 自定义图片大小：[markdown中插入图片怎么定义图片的大小或比例？ - 知乎](https://www.zhihu.com/question/23378396)
 
-- markdown 编辑器本身不支持字体、字号、颜色的修改。但 markdown 支持 HTML 标签，可以使用内嵌 HTML 来实现这些功能。
-- 可以在 `<font></font>` 标签中设置字体、大小、颜色；字号数值可设为 1~7，网页默认为 3。
-- docusaurus 框架无法显示；hexo mkdocs 显示正常。
-
-
-```markdown
-<font face="微软雅黑" >微软雅黑</font>
-<font face="华文彩云" >华文彩云</font>
-
-<font size=2 >2号字</font>
-<font size=5 >5号字</font>
-
-<font color=#FF000 >红色</font> 
-<font color=#008000 >绿色</font>
-<font color=#FFFF00 >黄色</font>
-```
-
-
-
----
-
-## 表格
-
-- `:` 位置表示 左、右、居中对齐方式
-- Hexo 框架只显示左对齐，MkDocs 框架正常
-
-```markdown
-| 标题 1 | 标题 2 | 标题 3 |
-| :--- | ---: | :---: |
-| 左 | 右 | 中 |
-```
-
-| 标题 1  | 标题 2  | 标题 3 |
-| :--- | ---: | :---:|
-| 左 | 右 | 中 |
-
----
-
-
-excel 单元格， csv 内容转成 markdown 表格
->[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
-
-
----
-
-## 内容折叠
+- 内容折叠/展开
 
 ```markdown
 <details>
@@ -143,110 +258,17 @@ excel 单元格， csv 内容转成 markdown 表格
 </details>
 
 <details open>
-<summary>expanded 折叠内容</summary>
-<p>这是一个 expaned 折叠内容</p>
+<summary>展开内容</summary>
+<p>展开内容</p>
 </details>
 ```
 
-<details>
-<summary>折叠内容</summary>
-<p>**这是一个折叠内容**</p>
-</details>
+- 表情 emoji
+	- Markdown emoji cheatsheet：[GitHub - ikatyang/emoji-cheat-sheet: A markdown version emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet)
+	- [📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍](https://emojipedia.org/)
 
----
+- Markdown 中带圆圈的数字编号，没有相应语法，直接复制粘贴
 
-<details open>
-<summary>expaned 折叠内容</summary>
-<p>这是一个 expaned 折叠内容</p>
-</details>
-
-
----
-
-## 热键 hotkey
-
-```text
-<kbd>⌘F</kbd>
-```
-
-| Key     | Symbol | Key       | Symbol |
-| ------- | ------ | --------- | ------ |
-| Option  | ⌥      | Command   | ⌘      |
-| Control | ⌃      | Caps Lock | ⇪      |
-| Shift   | ⇧      | Tab       | ⇥      |
-| Esc     | ⎋      | Power     | ⌽      |
-| Return  | ↩      | Delete    | ⌫      |
-| Up      | ↑      | Down      | ↓      |
-| Left    | ←      | Right     | →      |
-
----
-
-## 表情 emoji
-
-Markdown emoji cheatsheet:
->[GitHub - ikatyang/emoji-cheat-sheet: A markdown version emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet)
-
->[📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍](https://emojipedia.org/)
-
----
-
-## 其他
-
-- 多级任务
-
-- [ ] An uncompleted task
-	- [ ] A subtask
-
-```text
-- [ ] An uncompleted task
-	- [ ] A subtask
-```
-
----
-
- - `[]()` 格式
-	- 图片：`![pic_name](pic_path)`
-	- 链接：`[link_name](link)`
-	- 目录用：`[section_name](#section)`；（Typora 软件可直接使用 `[TOC]` 生成目录；github 和 gitee 不识别 `[TOC]`，gitee 会自动在左侧生成目录，github 需写代码生成；当涉及到 `.` 时，可忽略，涉及到空格时，需用连字符连接，涉及到大写字母，需将其小写）
-
-
-Markdown 文件里链接到内部内容时推荐使用相对链接
-```markdown
-[Link to a header](#awesome-section)
-[Link to a file](docs/readme)
-
-#### 示例
-- [1. 《多尺度材料模拟与计算》实验报告 Markdown 模板](#1-多尺度材料模拟与计算实验报告-markdown-模板)
-  - [1.1. 目录](#11-目录)
-  - [1.2. 实验目的](#12-实验目的)
-  - [1.3. 实验方法](#13-实验方法)
-  - [1.4. 实验内容](#14-实验内容)
-    - [1.4.1. 实验内容 1](#141-实验内容-1)
-    - [1.4.2. 实验内容 2](#142-实验内容-2)
-  - [1.5. 分析与讨论](#15-分析与讨论)
-  - [1.6. 结论](#16-结论)
-  - [1.7. 参考文献](#17-参考文献)
-  - [1.8. 附录](#18-附录)
-```
-
----
-
-- `<br>`：HTML 标签，用于在 markdown 生成的 HTML 文档中插入换行
-
-
-alert 语法
-
-
----
-
-Markdown 中带圆圈的数字编号，没有相应语法，直接复制粘贴即可：
 ```markdown
 ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩
 ```
-
-markdown 自定义图片大小：[markdown中插入图片怎么定义图片的大小或比例？ - 知乎](https://www.zhihu.com/question/23378396)
-
-markdown 图片并排
-
-markdown 脚注
->[Markdown 之脚注语法 | 智朋的个人博客](https://coffeelize.top/posts/8ee025b2.html)
