@@ -41,9 +41,7 @@ password:
 
 ---
 
-## 常用命令行工具
-
-### zsh
+## zsh
 
 - 提升终端使用体验
 	- 插件丰富：可实现命令自动补全、高亮、建议；`x` 解压任意格式压缩文件；`z` 路径快速跳转等
@@ -56,7 +54,7 @@ password:
 
 ---
 
-#### 安装
+### 安装
 
 - Package Managers
 
@@ -128,7 +126,7 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 
 ---
 
-#### 配置
+### 配置
 
 - 安装 ohmyzsh
 
@@ -206,7 +204,7 @@ zsh tips tricks examples: [ZSH-LOVERS(1)](https://grml.org/zsh/zsh-lovers.html)
 
 ---
 
-#### Windows 端安装配置 zsh
+### Windows 端安装配置 zsh
 
 - 安装、配置 ohmyzsh
 - 修改 Windows Terminal 的 `settings.json` 内容
@@ -238,7 +236,7 @@ zsh tips tricks examples: [ZSH-LOVERS(1)](https://grml.org/zsh/zsh-lovers.html)
 
 ---
 
-#### 相关问题
+### 相关问题
 
 - zsh 中的 `[nyae]` 的含义：[What does nyae mean in Zsh? - Stack Overflow](https://stackoverflow.com/questions/800182/what-does-nyae-mean-in-zsh)
 - zsh 安装后，`Home / End` 键可能会失效，对应快捷键：`Home = Ctrl + A`，`End = Ctrl + E`。
@@ -246,7 +244,7 @@ zsh tips tricks examples: [ZSH-LOVERS(1)](https://grml.org/zsh/zsh-lovers.html)
 
 ---
 
-### 数据处理相关命令行工具
+## 数据处理相关命令行工具
 
 - csv 命令行工具：csvkit（Python）
 
@@ -276,7 +274,7 @@ cat data.json | jq '.user.name'  # 获取特定键值
 
 ---
 
-### 其他命令行工具
+## 其他命令行工具
 
 >ripgrep、lsd、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
 
@@ -372,3 +370,16 @@ sudo apt install fastfetch
 [GitHub - context-labs/mactop: mactop - Apple Silicon Monitor Top written in pure Golang! Under 1,000 lines of code.](https://github.com/context-labs/mactop)
 
 安全替代 `rm` 的脚本：[trash.sh](https://github.com/qqAys/trash.sh)
+
+[starship](https://github.com/starship/starship): 美观、可自定义的 shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
+
+```bash
+# 安装
+curl -sS https://starship.rs/install.sh | sh
+brew install starship  # macOS
+
+# 配置
+eval "$(starship init zsh)"   # zsh
+eval "$(starship init bash)"  # bash
+Invoke-Expression (&starship init powershell) # powershell
+```

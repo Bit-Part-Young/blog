@@ -21,22 +21,14 @@ password:
 
 ## 介绍
 
-微信 Win 端没有深色模式，macOS 有深色模式
+Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富...
 
-[yabai](https://github.com/koekeishiya/yabai)：macOS 窗口平铺管理软件
-使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
+明确 Macbook 购买机型：[Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
 
-mac 窗口管理器
->[GitHub - ianyh/Amethyst: Automatic tiling window manager for macOS à la xmonad.](https://github.com/ianyh/Amethyst)
-
-Mac Dash 软件：编程语言 API 查看工具，需收费
 
 ---
 
-Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富…
-
-
-参考资料：
+### 参考资料
 
 - [Mac：终极配置教程 - BLOG](https://44maker.github.io/wiki/Mac/index.html)
 - [GitHub - maoxiaoke/setup-a-mac-for-frontend-dev: How I setup a Mac, with lots of productivity tools, step-by-step guide](https://github.com/maoxiaoke/setup-a-mac-for-frontend-dev)
@@ -171,7 +163,7 @@ system_profiler SPDisplaysDataType
 - 文件搜索、程序启动工具：Alfred 5
 - VPN 网络代理：ClashX
 - 系统资源监控：RunCat、[stats](https://github.com/exelban/stats)
-- 代码编辑器：VSCode-Insiders（**VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
+- 代码编辑器：VSCode、VSCode-Insiders（**VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
 - 终端工具： iTerm2（最实用）、Tabby、Termius、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
 - 数据同步：交大云盘
 - 浏览器： Safari、Chrome、Arc
@@ -189,7 +181,7 @@ system_profiler SPDisplaysDataType
 - 垃圾清理：CleanMyMac X（完整版本需收费；有破解版）、Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
 - 快捷键提示：FlyKey、CheatSheet
 - 切换窗口：AltTab
-- 鼠标：Mos
+- 鼠标滚轮方向切换：Mos
 - 输入法切换：自动切换输入法 Lite 版、[Input Source Pro](https://inputsource.pro/zh-CN)
 - pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
 - 窗口管理：Rectangle、Loop
@@ -197,27 +189,72 @@ system_profiler SPDisplaysDataType
 - 录屏：QuickRecorder
 - 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
 - 隐藏刘海：Only Switch（将菜单栏调成黑色模式）、zNotch（将菜单栏下移）、Notchmeister（增加趣味）
+- 窗口平铺：tiling window manager；[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
+	- yabai 使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
 - macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
-- 其他：微信等
+- 其他：微信（Windows 端没有深色模式，macOS 有深色模式）等
 
+
+---
+
+#### Mac 端没有的一些软件
+
+- PotPlayer
+- Notepad++（可以用 Notepad-- 代替）
+- MobaXterm
+- WinSCP
+
+
+---
+
+### 部分软件设置
+
+ Termius
+
+- 支持 Windows Mac Linux iPad Android，多端数据记录同步
+- 可 ssh 远程连接和 sftp 远程文件传输
+- 可进行学生认证
+- 可保存并显示历史命令
+- 字体设置：设置 - Terminal - Text Size 上方，选择“Meslo”
+- 连接本地终端：Hosts - TERMINAL
+- 可保存自定义 Theme；不错的预设 Theme：
+	- Monokai
+	- Pro
+	- Solarized Dark（个人主要采用该 Theme）
+	- Atom One Dark
+	- Tokyo Night
+
+---
+
+iTerm2 字体设置：Prefrences - profiles - text
+
+---
+
+IINA 相关快捷键：
+
+- 倍速播放
+	- `command + ]` - 1/2/4 倍速加快
+	- `command + option + ]` - 1.1 倍速加快
+- 字幕切换 - `control + command + S`
+- 音频切换 - `control + command + A`
 
 
 ---
 
 #### Homebrew 使用
 
-大部分开源命令行工具、程序和 GUI 程序（cask）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）。
+- 大部分开源命令行工具、程序、库和 GUI 程序（cask）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）
 
-加速安装 Homebrew：[安装和使用 Homebrew｜韬秧道](https://blog.tauyoung.top/article/Homebrew/)
+- 加速安装 Homebrew：[安装和使用 Homebrew - 韬秧道](https://blog.tauyoung.top/article/Homebrew/)
 
-相关命令：[Homebrew 备忘清单 &  homebrew cheatsheet &  Quick Reference](https://quickref.me/zh-CN/docs/homebrew.html)
+- 相关命令：[Homebrew 备忘清单 &  homebrew cheatsheet &  Quick Reference](https://quickref.me/zh-CN/docs/homebrew.html)
 
 ```bash
 brew install <package>  # 安装
 brew install --cask <package>  # 安装 GUI 程序
 brew uninstall <package>  # 卸载
 brew search <package>  # 查找
-# 显示安装包相关信息（是否安装、依赖等）
+# 显示安装包相关信息 是否安装，依赖，头文件、库路径等
 brew info <package>
 brew list  # 显示已安装的包
 brew doctor  # 诊断
@@ -226,7 +263,7 @@ brew upgrade  # 升级
 brew upgrade <package>
 
 # 忽视依赖关系卸载
-brew uninstall --ignore-dependencies gcc
+brew uninstall --ignore-dependencies <package>
 
 # 查看已安装的包的依赖，树形显示
 brew deps --installed --tree
@@ -278,52 +315,14 @@ brew install font-lxgw-wenkai  # 霞鹜文楷
 
 ---
 
-#### Termius
-
-- 支持 Windows Mac Linux iPad Android，多端数据记录同步
-- 可 ssh 远程连接和 sftp 远程文件传输
-- 可进行学生认证
-- 可保存并显示历史命令
-- 可保存自定义 Theme
-
----
-
-适合的 Theme：
-
-- Monokai
-- Pro
-- Solarized Dark（个人主要采用该 Theme）
-- Atom One Dark
-- Tokyo Night
-
----
-
-- 设置 font：设置 - Terminal - Text Size 上方，选择“Meslo”
-- 连接本地终端：Hosts - TERMINAL
-
----
-
-iTerm 字体设置：Prefrences - profiles - text
-
----
-
-IINA 相关快捷键：
-
-- 倍速播放
-	- `command + ]` - 1/2/4 倍速加快
-	- `command + option + ]` - 1.1 倍速加快
-- 字幕切换 - `control + command + S`
-- 音频切换 - `control + command + A`
-
-
----
-
 #### MacTeX 安装与卸载
 
 - 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
 - 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)；卸载 GUI，直接将 TeX 移入废纸篓；卸载 TeX Distribution；卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
 ```bash
+brew install --cask mactex-no-gui  # 不建议
+
 sudo rm -rf /Library/TeX
 sudo rm -rf /usr/local/texlive
 ```
@@ -387,16 +386,6 @@ menu:
 
 ---
 
-#### Mac 端没有的一些软件
-
-- PotPlayer
-- Notepad++（可以用 Notepad-- 代替）
-- MobaXterm
-- WinSCP
-
-
----
-
 ### 编程相关
 
 - macOS 版本不同，Homobrew 之前安装的程序有可能会出现不兼容的情况
@@ -417,7 +406,7 @@ clang: error: unsupported option '-fopenmp'
 make: *** [atom.o] Error 1
 ```
 
-- dumpana 编译出现以下报错（应该是不兼容 arm64 架构的原因）
+- dumpana 编译出现以下报错（应该是不兼容 macOS arm64 架构的原因）
 
 ```bash
 ld: symbol(s) not found for architecture arm64
@@ -429,6 +418,13 @@ make: *** [dumpana] Error 1
 
 - Mac M1 运行 node、npm 报 `rsh: Command not found.` 错误，是由于 ATAT 编译后也有可执行命令 node（默认使用 rsh 远程登录（较早的远程访问工具之一，但由于安全隐患较大，现在很少使用），-s，指定使用 ssh），系统将 Node.js 的 node 指向了 ATAT 的，导致该错误出现。
 
+- Mac Dash 软件：编程语言 API 查看工具，需收费
+
+- Mac 中的 Vim delete 键无法向左删除：[vim中delete（backspace）键不能向左删除 - 脚本小娃子 - 博客园](https://www.cnblogs.com/shengulong/p/10530188.html)
+
+```bash
+set backspace=2
+```
 
 
 ---

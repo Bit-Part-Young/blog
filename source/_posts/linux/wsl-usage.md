@@ -21,11 +21,13 @@ password:
 
 ## 介绍
 
-WSL 的全称叫做：Windows Subsystem for Linux，即「适用于 Linux 的 Windows 子系统」。WSL 的诞生让 Windows 用户（开发人员）按原样运行 GNU/Linux 环境：包括大多数命令行工具、实用工具和应用程序，且不会产生虚拟机开销。
+- WSL 全称为 Windows Subsystem for Linux，即「适用于 Linux 的 Windows 子系统」。WSL 的诞生让 Windows 用户（开发人员）按原样运行 GNU/Linux 环境：包括大多数命令行工具、实用工具和应用程序，且不会产生虚拟机开销。
 
-WSL 2 相比 WSL 1，Linux 内核是完整的，且支持 Docker。
+- WSL 2 相比 WSL 1，Linux 内核是完整的，且支持 Docker。
 
-无法使用 KDE 和 GNOME 桌面
+- WSL 2 访问本机系统的文件速度比 WSL 1 慢
+
+- 无法使用 KDE 和 GNOME 桌面
 
 
 ---
@@ -45,7 +47,7 @@ WSL 2 相比 WSL 1，Linux 内核是完整的，且支持 Docker。
 >[安装 | Dev on Windows with WSL](https://dowww.spencerwoo.com/1-preparations/1-1-installation.html#windows-10)
 
 
-- 开启**适用于 Linux 的 Windows 子系统**的附加功能：以管理员身份打开 PowerShell；运行以下命令，按照提示重启电脑
+- 开启「适用于 Linux 的 Windows 子系统」的附加功能：以管理员身份打开 PowerShell；运行以下命令，按照提示重启电脑
 
 ```powershell
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux

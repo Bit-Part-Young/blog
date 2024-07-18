@@ -330,3 +330,10 @@ hcp 结构原胞原子坐标有两种形式：
 - 两个原子均在胞内：pymatgen 和 pyxtal，(1/3 2/3 1/4) (2/3 1/3 3/4)
 - 两种形式无本质区别，两者可通过过周期性平移进行互相转化
 - [Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/) 有这两种形式的可视化
+
+
+---
+
+## 其他
+
+钙钛矿、半导体、绝缘体的点缺陷比金属或金属间化合物的点缺陷要复杂很多

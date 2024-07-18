@@ -84,26 +84,39 @@ password:
 
 软件/程序及安装前后需注意事项介绍见：[Linux 命令行工具 - Seek Another Land](https://seekanotherland.xyz/hexo-demo/posts/16854.html)。
 
-- 版本控制：git
-- 程序卸载：geekuninstaller
 - 图片查看：jpegview
 - 图床：PicGo
-- oh-my-posh
-- 字体：Meslo-NF、smiley-sans
 - 磁盘管理：treesize-free
-- ls 替代：lsd
-- 文本查找：fzf
-- 字符搜索：ripgrep
-- 文本编辑：vim、neovim
 - 截图：Snipaste
 - 系统资源监控：RunCat
 - 网速监控：TrafficMonitor
-- 字体
+- 程序卸载：geekuninstaller
+- 美化 Windows Terminal：oh-my-posh
+
+---
+
+Linux、编程相关：
+
+- 版本控制：git
+- 文本编辑：vim、neovim
+- ls 替代：lsd
+- 文本查找：fzf
+- 字符搜索：ripgrep
+
+---
+
+- 字体：
+	- Code 字体：Meslo-NF、JetBrains-Mono
+	- 中文字体：得意黑、霞鹜文楷
 
 ```powershell
+# Code 字体
 scoop bucket add nerd-fonts
 
+scoop install JetBrains-Mono
 scoop install Meslo-NF
+
+# 中文字体
 scoop install LXGWWenKai   # 霞鹜文楷
 scoop install smiley-sans  # 得意黑
 ```
@@ -113,7 +126,7 @@ scoop install smiley-sans  # 得意黑
 
 ## 磁盘分区
 
-WIP…
+WIP...
 
 
 

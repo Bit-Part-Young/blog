@@ -61,6 +61,8 @@ password:
 
 - [gallery-template · GitHub Topics · GitHub](https://github.com/topics/gallery-template)
 
+- 照片和视频自托管：[GitHub - immich-app/immich: High performance self-hosted photo and video management solution.](https://github.com/immich-app/immich)
+
 
 ---
 
@@ -71,6 +73,7 @@ password:
 - [GitHub - sherryuser/cake-blow: 🎂 Interactive Birthday Cake 🕯️ - Add and blow out candles using your microphone! Fun and engaging web app using HTML, CSS & JS. 🎉🎤](https://github.com/sherryuser/cake-blow)
 
 
+
 ---
 
 ## 恋爱记录网页
@@ -79,6 +82,7 @@ password:
 - [GitHub - KanurkarPrateek/Valentines\_Day\_Proposal](https://github.com/KanurkarPrateek/Valentines_Day_Proposal)
 - [GitHub - nxuzy/love: love\_matters](https://github.com/nxuzy/love)、[恋爱申请书](https://nxuzy.github.io/love/)
 - [GitHub - xing16/ValentineDaySuprise: HMTL实现情人节告白气球，不一样的惊喜](https://github.com/xing16/ValentineDaySuprise)
+
 
 
 ---
@@ -93,6 +97,7 @@ password:
 - [GitHub - EsunR/Blog-Index: 一个通用的个人网站的引导页、导航页模板](https://github.com/EsunR/Blog-Index)
 - [GitHub - NianBroken/Personal\_Sakura\_Guide\_Page](https://github.com/NianBroken/Personal_Sakura_Guide_Page)
 - [NianBroken](https://www.nianbroken.top/)
+
 
 
 ---
@@ -169,6 +174,7 @@ mdbook serve --open
 ```
 
 
+
 ---
 
 ## 其他类型博客
@@ -182,6 +188,8 @@ mdbook serve --open
 ---
 
 ## 其他
+
+- 将浏览器书签导出成导航网站：[Guide - Pintree](https://pintree.io/guide-zh.html)
 
 - 论文发表情况网页：[GitHub - PhasesResearchLab/PublicationsList](https://github.com/PhasesResearchLab/PublicationsList)
 

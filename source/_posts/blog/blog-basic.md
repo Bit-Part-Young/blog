@@ -26,6 +26,7 @@ password:
 - Jekyll
 - Hexo
 - Vuepress
+- Vitepress
 - Hugo
 - Docusaurus（主要文档）
 - MkDocs（主要文档）
@@ -60,6 +61,54 @@ password:
 
 ---
 
+## 使用 Cloudflare 作为 DNS 服务器
+
+- 注册/登录 Cloudflare 账号
+
+- 添加域名到 Cloudflare
+	- 点击 Dashboard 中的 “Add Site”，输入你的域名
+
+- 选择计划：选择 “Free Plan”，确认
+
+- Cloudflare 检查现有 DNS 记录
+	- Cloudflare 会自动扫描你的域名的现有 DNS 记录并尝试导入它们。
+	- 核对导入的记录，确保重要记录如 MX, CNAME, A 记录等都正确无误。
+
+- 更新域名服务器
+	- Cloudflare 会提供一对新的 DNS 服务器地址
+	- 登录到你的域名注册商，导航至 DNS 管理页面，将现有的 DNS 服务器地址更换为 Cloudflare 提供的地址，保存更改
+
+- 等待 DNS 更改生效：DNS 更改可能需要一些时间（1 小时到 48 小时，通常小于 1 小时）来全球生效
+
+- 调整 Cloudflare SSL/TLS mode 为 `Full(strict)
+
+
+
+---
+
+## Cloudflare 代理访问 vercel.app 网站
+
+>[使用 VitePress “重写” 网道（WangDoc）TypeScript 教程 · Issue #4837 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/4837)
+
+在国内并不能无痛访问 vercel.app 网站
+
+注册/登录 Cloudflare 账号，然后：
+
+1. 准备一个域名，该域名需要使用 Cloudflare 提供的 DNS
+
+2. Vercel 项目（假如为 xxx） - 设置 - 域名配置，新增域名
+	- 若已有域名如 seekanotherland.xyz，可以新增的域名为 xxx.seekanotherland.xyz
+	- 可以将该域名重定向到 xxx.vercel.app，也可以不重定向（建议不重定向）
+
+3. 按照 Vercel 的要求，为域名添加 CNAME 记录
+	- 在 Cloudflare 面板中的 DNS 中添加记录，cname.vercel-dns.com 对应的 IPV4 地址为 76.76.21.21
+
+4. 调整 Cloudflare SSL/TLS mode 为 `Full(strict)
+
+
+
+---
+
 ## Node.js
 
 - Node.js： A JavaScript runtime built on Chrome's V8 JavaScript engine 是一个不依赖浏览器的 JavaScript 运行环境，大部分前端项目比如 Vue、React 和后端项目比如 Express、Koa 均依赖于 Node.js 生态系统；
@@ -82,35 +131,29 @@ source ~/.config/envman/PATH.env
 ### npm 相关命令
 
 ```bash
-# 项目初始化，引导创建 package.json 文件
-npm init
+# 项目初始化
+npm init      # 引导创建 package.json 文件
 
-# 项目快速初始化（默认设置，跳过交互式设置）
-npm init -y
+# 项目快速初始化
+npm init -y   # 默认设置，跳过交互式设置
 
 # 安装依赖
 npm install  # npm i
 npm install <package>
-# 将 package 保存到 package.json 中；默认会保存
+# 写入 package.json 中；默认会
 npm install <package> --save  # npm i <package> -S
-npm install <package>@1.0.0
+npm install <package>@version
 # 全局安装
 npm install -g <package>
 
 # 安装 pnpm 和 yarn 包管理器
 npm install -g pnpm yarn
 
-# 卸载
-npm uninstall
-
-# 搜索
-npm search
-
-# 列出当前项目的所有依赖项
-npm list
-
-# 检查项目中的依赖项是否有更新的版本可用
-npm outdated
+npm uninstall    # 卸载
+npm search       # 搜索
+npm list         # 列出当前项目的所有依赖
+npm outdated     # 检查项目中的依赖是否有更新
+npm outdated -g  # 全局
 
 # 检查项目的依赖项是否存在安全漏洞，并提供修复建议
 npm audit
@@ -129,6 +172,7 @@ npm cache verify
 # 强制删除 npm 缓存
 npm cache clean --force
 
+# 查看源
 npm config get registry
 yarn config get registry
 

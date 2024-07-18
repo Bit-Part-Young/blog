@@ -25,7 +25,7 @@ password:
 	- 优点：专注于内容本身，排版效果好，公式排版强大，跨平台开源…
 	- 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得…
 
-- TeX 发行版：TeX Live / MacTeX
+- TeX 发行版：TeX Live / MacTeX（macOS 下定制的 TeX Live 版本）
 - TeX 编辑器：TeXstudio、TeXShop（MacTeX 自带）
 
 
@@ -35,6 +35,7 @@ password:
 
 - 现代 LaTeX 入门讲座：[GitHub - stone-zeng/latex-talk](https://github.com/stone-zeng/latex-talk)
 - 《如何使用 LaTeX 排版论文》讲稿：[GitHub - tuna/thulib-latex-talk](https://github.com/tuna/thulib-latex-talk)
+- lshort-zh-cn.pdf
 - [GitHub - wklchris/Note-by-LaTeX: 《简单粗暴 LaTeX》出版图书开源仓库](https://github.com/wklchris/Note-by-LaTeX)
 - [LaTeX 备忘清单 & latex cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/latex.html)
 - LaTeX 排版简要介绍：[lec4.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec4.md)
@@ -66,9 +67,12 @@ password:
 
 ### 介绍
 
-- 参考：[GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
-- TeX Live 2024 版本已有 sjtutex 包
-- TeX Live 不同版本需要安装的数目：medium 约 1395 项；full 约 4543 项。
+- 安装参考：
+	- [GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
+	- [GitHub - AlphaZTX/LaTeX-tutorials](https://github.com/AlphaZTX/LaTeX-tutorials)（含 TeXstudio 使用）
+
+- TeX Live 2024 版本已有 sjtutex 文档类
+- TeX Live 不同版本需要安装的宏包和文档类数目：medium 约 1395 项；full 约 4543 项。
 - TeX Live 不同版本（basic small medium full）之间的区别：[installing - Minimal TeXLive installation - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/397174/minimal-texlive-installation)
 - TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
 
@@ -79,13 +83,8 @@ password:
 # 查看 TeX Live 指南
 texdoc texlive-en
 texdoc texlive-zh
+
 ```
-
-TeX Live 中的目录树（texmf-dist texmf-local），包管理（tlmgr），安装非官方的包
-
->《lshort-zh-cn.pdf》
-
->《texlive-zh-cn.pdf》
 
 
 ---
@@ -109,6 +108,7 @@ cd install-tl-*
 # 安装
 perl ./install-tl --scheme=full  # 或 medium small
 # --no-interaction 参数：不进行交互
+# -gui  启用 GUI 安装程序
 
 # 安装完成后，添加环境变量
 export MANPATH=$HOME/src/texlive/2023/texmf-dist/doc/man
@@ -121,9 +121,44 @@ export PATH=$HOME/src/texlive/2023/bin/x86_64-linux:$PATH
 
 ### macOS
 
-```bash
+- 不建议用 brew 下载安装（体积太大），而是手动下载安装包
+- 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
+- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)；卸载 GUI，直接将 TeX 移入废纸篓；卸载 TeX Distribution；卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
+```bash
+sudo rm -rf /Library/TeX
+sudo rm -rf /usr/local/texlive
 ```
+
+- MacTeX 本质上就是 TeXLive，只不过捆绑了 Ghostscript（处理 PS 图片文件转换成 pdf 文件） 和一些 GUI 程序，做成了便于安装的 pkg 包而已。pkg 包内的安装脚本会帮你设置好环境变量
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405070921146.png)
+
+
+---
+
+### TeX 目录结构
+
+TeX 目录结构（TeX Directory Structure, TDS）：TeX 发行版中宏包、字体、帮助文档等文件的组织结构；有时也称为 TEXMF 树
+
+```bash
+texlive/XXXX/texmf-dist/  # TEXMF 树根目录
+
+tex/latex       # LaTeX 宏包
+doc/latex       # LaTeX 宏包的帮助文档
+source/latex    # LaTeX 宏包的源代码
+bibtex/         # BibTeX 工具相关文件，许多宏包配套的 BibTeX 格式文件位于子目录 bst 中
+fonts/tfm       # TeX 使用的字体文件，TFM 格式
+fonts/type1     # PostScript 字体文件（Type1），PFB 格式
+fonts/opentype  # OpenType 格式的字体文件
+```
+
+需要手动安装的宏包，一般已经按照上述目录结构打包完成。手动安装时，尽量不要拷贝到系统的 TEXMF 树，而是拷贝到发行版提供的用户 TEXMF 树，如 `texlive/texmf-local`。安装完成后，还需**刷新 TeX 发行版的文件名数据库**，令新安装的宏包文件能够被系统找到。
+
+```bash
+mktexlsr
+```
+
 
 ---
 
@@ -136,11 +171,10 @@ tlmgr：TeX Live 包管理器
 >中科大镜像：https://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
 
 ```bash
-# 列出已安装的宏包
+# 列出已安装的宏包和文档类
 tlmgr list --only-installed
-tlmgr list --only-installed | grep ctex
 
-tlmgr info <package>  # 查看 package 信息
+tlmgr info <package>  # 查看宏包信息
 tlmgr search <package>  # 查找宏包
 tlmgr update --list  # 查看可升级的宏包
 tlmgr install <package>  # 安装宏包
@@ -153,12 +187,15 @@ tlmgr update --self --all
 # 查看当前使用的源
 tlmgr option repository
 # 换源
-tlmgr option repository url
+tlmgr repository set <CTAN mirrors>/systems/texlive/tlnet
 ```
 
 ```bash
 # 查看已安装 texlive 的路径
 kpsewhich -var-value=TEXMFMAIN
+
+# 查看文档类路径
+kpsewhich <classname>.cls
 
 # 查看 texlive 安装版本
 tex --version
@@ -306,9 +343,8 @@ latexmk --xelatex main.tex
 >[.latexmkrc](https://github.com/cohsh/.dotfiles/blob/main/latex/.latexmkrc)
 
 ```bash
-# 清除编译过程中的临时文件
-latexmk -c
-latexmk -C
+latexmk -c  # 删除编译过程中的临时文件
+latexmk -C  # 会删除 pdf 文件
 ```
 
 [.latexmkrc](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
@@ -350,9 +386,9 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 	- 常用环境：列表与枚举、图片、表格、定理等
 
 ```latex
-\begin{}
+\begin{env}
    ...
-\end{}
+\end{env}
 ```
 
 - 特殊符号需转义，如 `\%`、`\$` 等
@@ -447,6 +483,12 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 - 文档划分：
 	- 分文件编译：`\include`、`\input`
 
+>两者区别在于 `\include` 命令将会插入 `\clearpage` 再读取文件
+
+```latex
+\input{filename.tex}
+\include{filename}
+```
 
 ---
 
@@ -629,18 +671,22 @@ texdoc symbols % 查看符号表
 WIP...
 
 ```latex
-
+\usepackage{graphicx}
+% 指定图片目录
+\graphicspath{{figures/}}
+% 指定图片扩展名
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 ```
 
 ---
 
 ### 表格
 
-- LaTeX 表格生成：[Create LaTeX tables online](https://www.tablesgenerator.com/)
+- LaTeX 表格生成（可生成三线表）：[Create LaTeX tables online](https://www.tablesgenerator.com/)
 
 ```latex
 \begin{tabular}
-   ...
+    ...
 \end{tabular}
 ```
 
@@ -652,11 +698,11 @@ WIP...
 % 三线表
 \begin{tabular}{ccc}  
 \toprule        % 表格头部粗线  
-姓名& 学号& 性别\\  
+姓名& 学号& 性别 \\  
 \midrule        % 表格中横线  
-1& 2& 3\\  
-4& 5& 6\\  
-\bottomrule     %表格底部粗线  
+1 &2 &3 \\  
+4 &5 &6 \\  
+\bottomrule     % 表格底部粗线  
 \end{tabular}  
 ```
 
@@ -683,15 +729,18 @@ Afternoon& &used&used\\
 
 ### 浮动体
 
-- 图片和表格有时会很大，在插入的位置不一定放得下，因此需要浮动调整
+- 图片和表格有时会很大，在插入的位置不一定放得下，因此需要浮动调整；两类浮动体环境 figure 和 table
 - 避免在文中使用「下图」、「上图」的说法，而是使用图表的编号，如：图 `~\ref{fig:fig1}`
 - `h` 当前位置 (here)，`t` 顶部 (top)，`b` 底部 (bottom)，`p` 单独成页 (p)。LaTeX 的默认参数是 tbp。
 - `!h` 表示忽略一些限制，H 表示强制（强烈不建议）
-- 图标题一般在下方，表标题一般在上方
+- 图标题一般在下方，表标题一般在上方，即 `\caption{...}` 应放在 `\begin{tabular}` 前
 - `\label` 需写在 `\caption` 后面，否则交叉引用会出现问题
+- 可通过修改 `\figurename` 和 `\tablename` 的内容来修改标题的前缀，标题样式的定制功能由 caption 宏包提供
+- table 和 figure 两种浮动体分别有各自的生成目录的命令：`\listoftables` 和 `\listoffigures`
+
 
 ```latex
-\label{name}     % 添加标签：图片、表格、公式等
+\label{name}     % 添加标签：图片、表格、公式、章节等
 \label{eq:name}  % 有意义的标签
 ```
 
@@ -703,6 +752,10 @@ Afternoon& &used&used\\
 \begin{figure}[!htbp]
    ...
 \end{figure}
+
+% 修改标题的前缀
+\renewcommand{\tablename}{newname}
+\renewcommand{\figurename}{newname}
 ```
 
 
@@ -710,14 +763,25 @@ Afternoon& &used&used\\
 
 ### 页面设置
 
-页边距
+页边距：geometry 宏包
 
-页眉页脚
+页眉页脚：fancyhdr 宏包，`\pagestyle`，将页眉页脚分为左中右三个部分，页眉页脚处的横线粗细可以定义，默认页眉为 0.4pt、页脚为 0pt
+
+页码：`\pagenumbering` 命令，有 arabic，\[Rr\]oman，\[Aa\]lph 五种页码形式
 
 ```latex
-\pagestyle{...} % 设定了页脚和页眉的参数  
-
-\pagenumbering{...} % 页码的样式.默认参数是阿拉伯数字，可重置页码
+% 页眉页脚设置
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+    \fancyhf{} 
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \lfoot{}
+    \cfoot{\thepage}
+    \rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 ```
 
 
@@ -746,22 +810,37 @@ fc-list :lang=zh
 中英文字体设置
 
 ```latex
-% 新罗马字体设置
-\usepackage{fontspec}
-\setmainfont{Times New Roman}
-
 % 中文字体设置
 \usepackage{xeCJK}
 \setCJKmainfont{Source Han Sans SC}
 \setCJKmainfont{Smiley Sans}
+
+% 英文字体设置
+\usepackage{fontspec}
+\setmainfont{Times New Roman}  % 新罗马字体
+\setmainfont{Tex Gyre Termes}  % 会报没有该字体的错
+
+% 检查字体是否存在；不存在则使用默认字体
+\usepackage{fontspec}
+\IfFontExistsTF{Times New Roman}{
+  \setmainfont{Times New Roman}
+}{
+  \typeout{Times New Roman font not found. Using default font.}
+}
 ```
+
+- 解决 Tex Gyre Termes 字体报错问题：
+	- 在当前项目路径下创建 tutgtermes.fd 和 texgyretermes.fontspec 文件
+	- 参考：[texlive - How to install font Tex Gyre Termes - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/470456/how-to-install-font-tex-gyre-termes)
+
 
 - NewComputerModern：[NewComputerModern 字体](https://mp.weixin.qq.com/s/McLeFYLOxygRoXyqDgdF7A)
 - Linux Libertine（衬线体）：简历、公式字体优选；[Linux Libertine 字体介绍](https://mp.weixin.qq.com/s/Lr304vav4gy27sjKAlKf7g)
 
 ```latex
+\usepackage{newcomputermodern}  % 会报错
+
 \usepackage{libertine}
-\usepackage{newcomputermodern}
 % 数学模式下使用 Linux Libertine
 \usepackage[libertine]{newtxmath}
 ```
@@ -771,7 +850,74 @@ fc-list :lang=zh
 
 ### 常用宏包
 
-- [ ] tcolorbox 宏包使用
+- 常用宏包简介：见 lshort-zh-cn.pdf 文件中附录 B.3 的内容
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407182134632.png)
+
+- hyperref 宏包：超链接、引用，由于它经常与其他宏包冲突，一般把它放在导言区的最后
+
+- xcolor 宏包：调用颜色
+
+```latex
+\usepackage{xcolor}
+
+% 自定义颜色
+\definecolor{keywordcolor}{RGB}{34,34,250}
+
+% 文本颜色
+{\color{color-name}{text}}
+\textcolor{red!70}{百分之70红色}
+```
+
+- hologo 宏包：可以输出许多 $\TeX$ 家族标志
+
+```latex
+\usepackage{hologo}
+
+% 大写 H 表示符号的首字母也大写
+\hologo{XeLaTeX} \Hologo{BibTeX}
+
+\TeX  \LaTeX
+```
+
+- comment 宏包：用于将其中的文本视为注释，从而使这些文本不会在生成的文档中显示
+
+```latex
+\usepackage{comment}
+
+\begin{comment}
+    ...
+\end{comment}
+```
+
+- lipsum、zhlipsum 宏包：生成随机的英文、中文文本，主要用途是填充文档以便测试文档的版面布局
+
+```latex
+\usepackage{lipsum}
+\usepackage{zhlipsum}
+
+\lipsum        % 插入默认的第一段到第七段的 Lorem Ipsum 文本
+\lipsum[2-4]   % 第 2-4 段
+```
+
+- titlesec 宏包：
+
+- tcolorbox 宏包：创建彩色盒子
+
+```latex
+\usepackage{tcolorbox}
+
+% 接受一串 key-value 的参数列表
+\begin{tcolorbox}[
+title=..., % 盒子标题
+colframe=...,
+colback=...,
+...
+]
+    \tcblower  % 增加了一条虚线，将盒子内容分成了上下两部分
+    ...
+\end{tcolorbox}
+```
 
 
 ```latex
@@ -779,17 +925,12 @@ fc-list :lang=zh
 \usepackage[a4paper,showframe]{geometry} % 设置纸张为 A4 大小
 \usepackage[dvipsnames]{xcolor} % 扩展版的颜色宏包
 \usepackage{cprotect} % 保护被抄录的语句
-\usepackage{lipsum} % 形成一些随机的英语文字
-\usepackage{zhlipsum} % 形成一些随机的中文文字
 \usepackage{amsmath} % 数学命令及环境中最重要的宏包之一
 \usepackage{amssymb} % 输出更多的数学符号
 \usepackage{mathtools} % 提供了 dcases 环境
 \usepackage{extarrows} % 提供了更多的数学长箭头
 \usepackage{multirow} % 提供可跨行的处理表格的命令
 \usepackage{array} % 提供了更多的表格列说明符，以及修正了一些表格显示上的问题
-\usepackage{booktabs} % 以使用学术上常见的三线表命令
-\usepackage{graphicx} % 插图专用宏包
-\graphicspath{{figures/}} % 图片在当前目录的 figures 目录下
 \usepackage{caption,subcaption} % 输出子图表专用
 \usepackage{float} % 其 H 参数可以让浮动环境不再浮动
 \usepackage{titlesec,titletoc} % 可分别设置目录和正文中的标题样式
@@ -803,7 +944,6 @@ fc-list :lang=zh
 % center 使标题居中，还可以设为 raggedleft(居左，默认),raggedright(居右)
 % indentafter 相当于宏包 indentfirst 的作用，使标题下面的第一个段落正常缩进
 % pagestyles 是申明后面要自定义页面样式
-
 ```
 
 ---
@@ -864,28 +1004,35 @@ fc-list :lang=zh
 
 ---
 
-### 其他
+### 排除错误
 
-- hologo 宏包，可以输出许多 $\TeX$ 家族标志
+- 常见的 LaTeX 错误信息：见 lshort-zh-cn.pdf 文件中附录 B.1 的内容
 
-```latex
-$\TeX$  $\LaTeX$
+```bash
+! Undefined control sequences.
+# 使用了未定义的命令。拼写错误是原因之一；
+# 也有可能是没有调用某个宏包，但用了该宏包定义的命令。
 
-% 大写 H 表示符号的首字母也大写
-\hologo{XeLaTeX} \Hologo{BibTeX}
+! LaTeX Error: Can be used only in preamble.
+# 由于将必须用于导言区的命令在 \begin{document} 之后使用而产生。
 ```
 
-- `comment` 环境，用于将其中的文本视为注释，从而使这些文本不会在生成的文档中显示
 
-```tex
-\begin{comment}
-...
-\end{comment}
+---
+
+### 其他
+
+- 文本上下标
+
+```latex
+% 不需要额外的宏包
+\newcommand{\tsub}[1]{\textsubscript{#1}}
+\newcommand{\tsuper}[1]{\textsuperscript{#1}}
 ```
 
 ---
 
-```tex
+```latex
 \documentclass[options]{...} % 这里其中options可以有 Font size、Paper size、Page Formats、sides与openany等.  
 ```
 
@@ -895,14 +1042,17 @@ $\TeX$  $\LaTeX$
 
 假设在前言部分采用罗马数字，在剩余的正文部分用阿拉伯数字，则在前言部分使用命令 `\pagestyle{roman}`，随后在新的章节后面采用 `\chapter{…}\pagenumbering{arabic}`，还可以在后面接 `\setcounter{page}{number}` 来设定起始页码.
 
-```text
+```latex
 \pagenumbering{arabic}\setcounter{page}{2}
 ```
 
 
 ```latex
-$^\circ$C  % 摄氏度
+30$\,^{\circ}$ 三角形     % 角度
 
+37$\,^{\circ}\mathrm{C}$ % 摄氏度
+
+Å  % 埃
 \~{}  % 波浪线
 ```
 
@@ -937,6 +1087,9 @@ $^\circ$C  % 摄氏度
 在命令中如果包含数学命令，那么这条命令只能⽤于⽂本模式，不能⽤于数学模式（因为
 在数学模式中会被多加了⼀层 `$ $` 导致报错）。所以，在定义数学命令时，使⽤ `\ensuremath{code}` 来定义，这样的命令在数学模式中时 code 本⾝，在⽂本模式中时 `$ code $`。
 
+- LaTeX 不允许使用 `\newcommand` 定义一个与现有命令重名的命令。如果需要修改命令定义的话，使用 `\renewcommand` 命令，其语法与 `\newcommand` 相同。
+
+
 ---
 
 ### 自定义宏包
@@ -951,6 +1104,13 @@ $^\circ$C  % 摄氏度
 
 自定义 sty 文件：[mystyle.sty](https://github.com/singularitti/PHYS6080-PS1/blob/main/tex/mystyle.sty)
 
+
+---
+
+### LaTeX 可定制的一些命令和参数
+
+- 标题名称/前后缀：可以用 `\renewcommand` 来修改
+- 长度：可用 `\setlength` 来修改
 
 ---
 

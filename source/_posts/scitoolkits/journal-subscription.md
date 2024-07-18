@@ -21,6 +21,8 @@ password:
 
 取消跟踪谷歌学术的学者的相关最新被引用：在谷歌学术中搜索该作者，点击 follow 按钮；也可以在收到邮件的邮箱中取消订阅
 
+取消订阅的期刊：在收到的邮件最下方会有取消订阅按钮
+
 
 ---
 
@@ -28,20 +30,20 @@ password:
 
 ### ElSEVIER 系列
 
-| 期刊 |         缩写 | 期刊等级 | 链接 |
-|:-----------------------------------------:|:---------------------:|:--------:|:---------------------------------------------------------------------------------:|
-| Acta Materialia |  Acta / Acta Mater. |   一区 |               https://www.sciencedirect.com/journal/acta-materialia |
-| Computational Materials Science |  Comput. Mater. Sci. |   三区 |       https://www.sciencedirect.com/journal/computational-materials-science |
-| Computer Physics Communications |           - |   二区 |       https://www.sciencedirect.com/journal/computer-physics-communications |
-| Scripta Materialia |           - |   一区 |             https://www.sciencedirect.com/journal/scripta-materialia |
-| Journal of Alloys and Compounds | JAC J. Alloys Compd. | 二区 |       https://www.sciencedirect.com/journal/journal-of-alloys-and-compounds |
-| materials today |           - |   一区 |               https://www.sciencedirect.com/journal/materials-today |
-| Intermetallics |           - |   二区 |               https://www.sciencedirect.com/journal/intermetallics |
-| Journal of Materials Science & Technology | JMST |   二区 | https://www.sciencedirect.com/journal/journal-of-materials-science-and-technology |
-| Materials Science and Engineering: A |  Mater. Sci. Eng. A |   一区 |    https://www.sciencedirect.com/journal/materials-science-and-engineering-a/ |
-| Scripta Materialia |      Scr. Mater. |   一区 |             https://www.sciencedirect.com/journal/scripta-materialia/ |
-| Intermetallics |    Intermetallics |   二区 |               https://www.sciencedirect.com/journal/intermetallics/ |
-| |                       | |                                                                                   |
+|                    期刊                     |          缩写          | 期刊等级 |                                        链接                                         |
+| :---------------------------------------: | :------------------: | :--: | :-------------------------------------------------------------------------------: |
+|              Acta Materialia              |  Acta / Acta Mater.  |  一区  |               https://www.sciencedirect.com/journal/acta-materialia               |
+|      Computational Materials Science      | Comput. Mater. Sci.  |  三区  |       https://www.sciencedirect.com/journal/computational-materials-science       |
+|      Computer Physics Communications      |          -           |  二区  |       https://www.sciencedirect.com/journal/computer-physics-communications       |
+|            Scripta Materialia             |          -           |  一区  |             https://www.sciencedirect.com/journal/scripta-materialia              |
+|      Journal of Alloys and Compounds      | JAC J. Alloys Compd. |  二区  |       https://www.sciencedirect.com/journal/journal-of-alloys-and-compounds       |
+|              materials today              |          -           |  一区  |               https://www.sciencedirect.com/journal/materials-today               |
+|              Intermetallics               |          -           |  二区  |               https://www.sciencedirect.com/journal/intermetallics                |
+| Journal of Materials Science & Technology |         JMST         |  二区  | https://www.sciencedirect.com/journal/journal-of-materials-science-and-technology |
+|   Materials Science and Engineering: A    |  Mater. Sci. Eng. A  |  一区  |    https://www.sciencedirect.com/journal/materials-science-and-engineering-a/     |
+|            Scripta Materialia             |     Scr. Mater.      |  一区  |             https://www.sciencedirect.com/journal/scripta-materialia/             |
+|              Intermetallics               |    Intermetallics    |  二区  |               https://www.sciencedirect.com/journal/intermetallics/               |
+|                                           |                      |      |                                                                                   |
 
 >scipta materialia 期刊没有 introduction method result and discussion 等一级标题
 >

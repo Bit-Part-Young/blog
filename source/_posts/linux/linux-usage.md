@@ -21,10 +21,7 @@ password:
 
 ## 介绍
 
-WIP…
-
-命令行艺术
-[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
+WIP...
 
 ```bash
 # 在 .bashrc .zshrc 中 创建与函数功能等同的 alias
@@ -38,36 +35,19 @@ alias showjob='showjob'
 ```
 
 
-[starship](https://github.com/starship/starship): 美观、可自定义的 shell prompt（与 ohmyzsh 的主题不兼容）
-
-```bash
-# 安装
-brew install starship  # macOS
-
-# 配置
-eval "$(starship init zsh)"  # zsh
-```
-
-
-
-
-
 ---
 
 ### 参考资料
 
-Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
+- bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
+- 在线的 Unix 和 Linux 手册页（man 页）：[Linux Man Pages Online](http://man.he.net/)
+- Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
+- 中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)
+- [GitHub - linuxhitchhiker/THGLG: The Hitchhiker's Guide to the Linux : Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
+- [GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
+- 不借助 bash 中已有命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
+- 命令行艺术：[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
 
->[GitHub - linuxhitchhiker/THGLG: The Hitchhiker's Guide to the Linux : Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
-
-bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
-
-不借助 bash 中已有命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
-
->[GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
-
-
-中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)
 
 
 ---
@@ -740,9 +720,13 @@ kill -9 PID  # 发送强制终止信号给进程
 column -s, -t data.csv  # 指定分隔符格式化（表格形式）输出
 ```
 
-- hostname：输出主机名；配置文件路径：`/etc/hostname`
+- 命令 `$_`：保存前一个命令的最后一个参数
+
+- hostname：输出主机名
 
 ```bash
+/etc/hostname  # 配置文件路径
+
 # 临时修改主机名
 hostname new_hostname
 
@@ -751,7 +735,6 @@ hostnamectl set-hostname new_hostname
 ```
 
 - 文件行数统计
-
 
 ```bash
 grep -c '' file
