@@ -21,9 +21,12 @@ password:
 
 ## 介绍
 
+- TeX 是高德纳 (Donald E. Knuth) 为排版文字和数学公式而开发的软件
+- LaTeX 是一种使用 TeX 程序作为排版引擎的格式（format），可以粗略地将它理解成是对 TeX 的一层封装；与汉字 “拉泰赫” 或 “雷泰赫” 的发音相近
+
 - 优缺点：
-	- 优点：专注于内容本身，排版效果好，公式排版强大，跨平台开源…
-	- 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得…
+	- 优点：专注于内容本身，排版（typesetting）效果好，数学公式排版强大，跨平台开源...
+	- 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得...
 
 - TeX 发行版：TeX Live / MacTeX（macOS 下定制的 TeX Live 版本）
 - TeX 编辑器：TeXstudio、TeXShop（MacTeX 自带）
@@ -84,6 +87,8 @@ password:
 texdoc texlive-en
 texdoc texlive-zh
 
+# 查看宏包、文档类帮助文档
+texdoc package/class
 ```
 
 
@@ -166,9 +171,9 @@ mktexlsr
 
 tlmgr：TeX Live 包管理器
 
->清华镜像：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
-
->中科大镜像：https://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
+- 清华镜像：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+- 中科大镜像：https://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
+- 交大镜像：https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/texlive/tlnet
 
 ```bash
 # 列出已安装的宏包和文档类
@@ -187,6 +192,7 @@ tlmgr update --self --all
 # 查看当前使用的源
 tlmgr option repository
 # 换源
+tlmgr option repository url
 tlmgr repository set <CTAN mirrors>/systems/texlive/tlnet
 ```
 
@@ -299,6 +305,7 @@ xelatex -shell-escape -synctex=1 %.tex
 	- `xe-bib-xe-xe` 编译顺序
 
 ```bash
+# 可以略去扩展名
 xelatex main.tex
 bibtex main.aux
 xelatex main.tex
@@ -379,11 +386,13 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 
 - 注释：以 `%` 开头
 
-- 命令：以 `\` 开头，区分大小写；`\command[]{}`：必选参数放在 `{}` 中，可选参数放在 `[]`，多个参数以逗号分隔
-	- 有些命令会对后续内容产生影响，可以用 `{}` 限定作用范围，如 `{\bf bold}`
+- 命令：以 `\` 开头，区分大小写；`\command[...]{...}`：必选参数放在 `{...}` 中，可选参数放在 `[...]`，多个参数以逗号分隔
 
-- 环境：
-	- 常用环境：列表与枚举、图片、表格、定理等
+- 有些命令会对后续内容产生影响，可以用 `{}` 限定作用范围，如 `{\bf bold}`
+
+- 环境：常用环境：列表与枚举、图片、表格、定理等
+
+- 特殊符号需转义，如 `\%`、`\$` 等
 
 ```latex
 \begin{env}
@@ -391,56 +400,90 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 \end{env}
 ```
 
-- 特殊符号需转义，如 `\%`、`\$` 等
+- 相关术语与概念：引擎、格式、编译命令
+
 
 ---
 
-### 输出文件
+### 文档类和宏包
 
-输出文件类型：
+#### 文档类
 
-|  文件类型  |                        说明                        |
-| :----: | :----------------------------------------------: |
-| `.sty` |                       宏包文件                       |
-| `.cls` |                      文档类文件                       |
-| `.aux` | 用于储存交叉引用信息的文件；因此，在更新交叉引用（公式编号、纲级别）后，需要编译两次才能正常显示 |
-| `.log` |                   日志；记录上次编译的信息                   |
-| `.toc` |                       目录文件                       |
-| `.lof` |                       图形目录                       |
-| `.lot` |                       表格目录                       |
-| `.idx` |              如果文档中包含索引，该文件用于储存索引信息               |
-| `.ind` |                      索引记录文件                      |
-| `.ilg` |                      索引日志文件                      |
-| `.bib` |                 bibtex 参考文献数据文件                  |
-| `.bbl` |                 bibtex 生成的参考文献记录                 |
-| `.bst` |                    bibtex 模板                     |
-| `.blg` |                    bibtex 日志                     |
-| `.out` |             hyperref 宏包生成的 pdf 书签记录              |
+- 文档类：英文排版：article、report、book；中文排版 ctexart、ctexrep、ctexbook；幻灯片：beamer
+- 可选参数：为文档类指定选项，以全局地规定一些排版的参数，如字号、纸张大小、单双面等；三个标准文档类可指定的选项如下
+
+```latex
+\documentclass[options]{classname}
+\documentclass[12pt,twoside,a4paper]{article}
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407191928496.png)
+
+
+---
+
+#### 宏包
+
+- 宏包：在使用 LaTeX 时，时常需要依赖一些扩展来增强或补充 LaTeX 的功能，比如排版复杂的表格、插入图片、增加颜色甚至超链接等
+- 可一次性调用多个宏包，逗号隔开，这种用法一般不要指定选项
+
+```latex
+\usepackage[options]{packagename}
+```
+
+
+---
+
+### 文件类型
+
+- LaTeX 模板相关文件格式：`.sty`、`.cls`、`bst`、`bib`
+- LaTeX 编译过程中生成相当多的辅助文件和日志，一些功能如交叉引用、参考文献、目录、索引等，需要先通过编译生成辅助文件，然后再次编译时读入辅助文件得到正确的结果，所以复杂的 LaTeX 源代码可能要编译多次
+
+|  文件类型  |                 说明                  |
+| :----: | :---------------------------------: |
+| `.sty` |           宏包文件；宏包名称与文件名一致           |
+| `.cls` |          文档类文件；文档类名称与文件名一致          |
+| `.bst` |         BibTeX 用到的参考文献格式模板          |
+| `.bib` |          BibTeX 参考文献数据库文件           |
+| `.log` |         排版引擎生成的日志文件，供排查错误使用         |
+| `.aux` |      主辅助文件，记录交叉引用、目录、参考文献的引用等       |
+| `.toc` |               目录记录文件                |
+| `.lof` |              图形目录记录文件               |
+| `.lot` |              表格目录记录文件               |
+| `.bbl` |         BibTeX 生成的参考文献记录文件          |
+| `.blg` |           BibTeX 生成的日志文件            |
+| `.idx` |        供 makeindex 处理的索引记录文件        |
+| `.ind` | makeindex 处理 `.idx` 生成的用于排版的格式化索引文件 |
+| `.ilg` |          makeindex 生成的日志文件          |
+| `.out` |      hyperref 宏包生成的 pdf 书签记录文件      |
 
 ---
 
 ### 文件结构
 
-- 文件结构
+#### 文件结构
 
 ```tex
 \documentclass{article}  % 指明文档类型
 
 % 导言区：设置文档样式
-\usepackage{amsmath}     % 调用宏包
+\usepackage{...}     % 调用宏包
 \newcommand{...}         % 自定义命令
 
 \begin{document}
 % 正文
-...
-\end{document} % 后续忽略
+    ...
+\end{document}
+% 后续忽略
 ```
+
 
 ---
 
-- 中文支持：
-	- 使用 ctexart ctexrep ctexbook 等文档类（还需确保文档以 UTF-8 编码保存）
-	- 引入 ctex 宏包
+#### 中文排版
+
+- 使用 ctexart ctexrep ctexbook 等 ctex 文档类（源代码需保存为 UTF-8 编码）
+- 引入 ctex 宏包
 
 ```latex
 \documentclass{ctexart}
@@ -463,135 +506,147 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 
 ---
 
-- 文档部件：
-	- 标题：`\title`、`\author`、`\date` → `\maketitle`
-	- 摘要：`abstract` 环境
-	- 目录：`\tableofcontents`
-	- 章节：`\chapter`、`\section`、`\subsection` 等
-	- 文献：`\bibliography`
+#### 文档部件
 
->`\title` 和 `\author` 必需，`\date` 若省略或 `\date{\today}` 会生成当天日期，`\date{}` 不显示日期
+- 标题：`\title`、`\author`、`\date` → `\maketitle`
+- 摘要：`abstract` 环境
+- 目录：`\tableofcontents`
+- 章节：`\chapter`、`\section`、`\subsection` 等
+- 文献：`\bibliography`
 
->`\title`、`\author`、`\date` 可放在导言区或正文
+注：`abstract` 环境只在 article 和 report 文档类有，report 文档类会单独成页，article 文档类会在标题下方
 
->标题信息在 book 和 report 文档类会另起一页，article 文档类会在文档的第一页
-
->`abstract` 环境只在 article 和 report 文档类有，report 文档类会另起一页，article 文档类会在标题下方
 
 ---
 
-- 文档划分：
-	- 分文件编译：`\include`、`\input`
+#### 文档划分
 
->两者区别在于 `\include` 命令将会插入 `\clearpage` 再读取文件
+- 分文件编译：`\include`、`\input`
+- 两者区别在于 `\include` 命令将会插入 `\clearpage` 再读取文件（即另起一页）
 
 ```latex
 \input{filename.tex}
 \include{filename}
 ```
 
----
-
-### 公式
-
->[LaTeX Math Wikibook](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
 
 ---
 
-#### 数学模式
+### 字符
 
-- 空格不起作用；不能有空行
-- 行内（inline）公式：`$...$`
-- 行间（display 独显）公式：
-	- 无编号：`\[...\]` 或 `equation*` 环境
-	- 编号：`equation` 环境
-	- 不要用 `$$...$$$`（为什么？）
+- 空格：空格键和 Tab 键输入的空白字符视为“空格”。连续的若干个空白字符视为一个空格。一行开头的空格忽略不计。
 
+- 换行：行末的换行符视为一个空格；但连续两个换行符，也就是空行，会将文字分段。多个空行被视为一个空行。也可以在行末使用 `\par` 命令分段。
 
----
+- 中文的标点符号（绝大多数为非 ASCII 字符）使用中文输入法输入即可，一般不需要过多留意；而输入西文标点符号时，有不少地方需要留意
+	- 西文排版中经常会出现连字（ligatures），常见的有 ff/fi/fl/ffi/ffl
+	- 单引号 ' 和 ' 分别用 \` 和 ' 输入；双引号 “ 和 ” 分别用 \`\` 和 '' 输入
+	- 三种长度的横线：连字号 `-` 用来组成复合词；短破折号 `--` 用来连接数字表示范围；长破折号 `---` 用来连接单词，语义上类似中文的破折号
+	- 英文省略号用 `\ldots`
 
-#### 括号与定界符
-
-- 基本括号：
-	- `(...)`、`[...]`、`{...}`
-	- 绝对值、范数：`|...|` 或 `\vert...\vert`、`\Vert...\Vert`
-	- Dirac 符号：`\langle...\rangle`、`|...\rangle`
-- 自动调节大小：`\left(...\right)`
-- 手动调节大小：`\big`、`\Big`、`\bigg`、`\Bigg`；声明左中右，在命令后添加 `l`、`m` 或 `r`，如 `\bigl`
-
----
-
-#### 符号与数学字体
-
-- 符号
-	- 最常用的额外字体包：amssymb
-
-- 数学字体
-	- 「Times New Roman」：newtxmath 宏包
-	- 不要用 times 和 mathptmx 宏包
-	- 加粗：使用 bm 宏包的 `\bm` 命令（`\mathbf` 只有直立的字母）
-
-- 新方案：unicode-math 宏包
-
----
-
-#### 多行公式
-
-- `multline multline*` 多行公式，没有对齐操作，只给一个公式编号
-- `gather gather*` 多个公式，可添加多个公式编号
-- `align align*` 多个公式对齐，但只能对齐公式内部的一个部分
-- `flalign flalign*` 多个公式对齐，可对公式内的多个部分
-- `split` 分割公式
-
-- 取消公式编号，在环境名加 `*` 即可实现
-
->`gathered` 和 `gather` 的区别是放在了一个 `minipage` 里，`aligned` 也是 `minipage` 的问题
+- 拉丁文扩展与重音
 
 ```latex
-\usepackage{amsmath,amssymb,amsfonts}  % 常用数学宏包
+% 加一对花括号的写法相当于提供了空的参数
+% 否则它们可能会将后面的字符作为参数，形成重音效果
+\# \$ \% \& \{ \} \_
+\^{}  \~{}  \textbackslash
 
+dif{}f{}icult  f{}ind  % 连字
 
+``Please press the `x' key.''  % 单引号、双引号
+
+\ldots  \ldots{}  % 省略号
+
+% 三种长度的横线
+daughter-in-law, X-rated \\
+pages 13--67 \\
+yes---or no?
+
+% 特殊字符
+Å  \AA % 埃
 ```
+
+
+---
+
+### 断行和换页
+
+- 单词间距：西文排版中，断行的位置优先选取在两个单词之间，即“空格”；文字在单词间的“空格”处断行时，“空格”生成的间距随之舍去。可使用字符 `~` 输入一个不会断行的空格，通常用在英文人名、图表名称等上下文环境
+
+- 断行：`\\` 可在表格、公式等地方用于换行，而 `\newline` 只用于文本段落中
+
+- 换页：`\newpage`、`clearpage`
+
+- 命令 `\newline` 和 `\newpage` 会在断行/断页位置填充适当的间距，但 `\linebreak` 和 `\pagebreak` 不能，使用这些命令强行断行/断页可能会制造出糟糕的排版效果，并导致 LaTeX 报 `Underfull \hbox` 等警告
+
+- 手动断词：对于绝大多数单词，LaTeX 能够找到合适的断词位置，在断开的行尾加上连字符 `-`。手动使用 `\-` 命令指定断词的位置
 
 ```latex
-texdoc symbols % 查看符号表
+% 不会断行的空格
+Fig.~2a \\
+Donald~E. Knuth
+
+% 断行
+\\[length]  \newline
+
+% 换页
+\newpage  \clearpage
+
+% 数字 n 代表适合/不适合的程度；0-4，缺省为 4
+\linebreak[n] \nolinebreak[n]
+\pagebreak[n] \nopagebreak[n]
 ```
 
-- 在数学模式中输入普通文本：`\mbox{文本}` 或 `\text{文本}`
-- 在数学模式中插入 空格：`\quad, \qquad, \hspace`，使用 `\,` 等价 `3/18 \quad`
 
-- 数学公式书写：行内 `$ ··· $`，行间：`\[ ··· \]`，
+---
 
-- 常用数学字体命令：`\mathrm, \mathit, \mathtt, \mathsf, \mathbf, \mathcal，\mathbb`
+### 章节和目录
 
-- 数学公式中的函数名最好用正体, 一般通过函数名命令输入，`LaTeX` 中的函数命令都是斜杆 `\` 开始自定义新的函数名 (需 `amsmath` 宏包)，`\DeclareMathOperator{\函数名命令}{函数名}`：注意像这样的命令只能放置在导言区。
+- 命令 `\chapter` 只在 report 和 book 文档类有定义
+- article 文档类带编号的层级为 `\section`、`\subsection`、`\subsubsection` 三级
+- report 和 book 文档类带编号的层级为 `\chapter`、`\section`、`\subsection` 三级
+- article 文档类的 section 标题默认左对齐，ctexart 文档类的 section 标题默认居中，article 文档类 + ctex 宏包的 section 标题是左对齐的
+- 正确生成目录项，一般需要编译两次源代码
+
+```latex
+\chapter
+\section
+\subsection
+\subsubsection
+
+% 定制章节标题的样式
+\usepackge{titlesec}
+
+\tableofcontents
+
+\renewcommand{\contentsname}{目录}
+
+% 定制目录的样式
+\usepackge{titletoc}
+```
 
 
+---
 
-- 角标：上标 `ˆ{···}`, 下标 `_{···}`，若实现导数 → 可以直接使用右单引号 `'` 或 `\prime`
+### 标题页
 
-- 分式：`\frac → 普通分式， \tfrac → \textstyle， \dfrac → \displaystyle`。注意到 `\frac` 在行内公式中等价于 `\tfrac`, 在行间公式中等价于 `\dfrac`；二项式系数: `\binom, \tbinom, \dbinom`；根式:`\sqrt{···}或\sqrt[n]{···}`
+- `\title` 和 `\author` 必需（不用 `\title` 会报错；不用 `\author` 会警告），`\date` 若省略或 `\date{\today}` 会生成当天日期，`\date{}` 不显示日期
 
-- 求和与积分：求和 `\sum` ，积分 `\int`，针对于行内行间公式取不同的尺寸, 上下限位置也可能不同，这里举个例子，行间公式 `$$ \sum_{i=1}^{n} xˆi $$或\[\]` 可以等价于行内公式的 `$ \displaystyle\sum_{i=1}^{n} xˆi $或\(\)`
+- 在 `\title`、`\author` 等命令内可以使用 `\thanks` 命令生成标题页的脚注，用 `\and` 隔开多个人名
 
-- 上、下划线：`\overline{…}，\underline{…}`；
+- `\title`、`\author`、`\date` 可放在导言区或正文
 
-- 上、下大括号：`\overbrace{…}，\underbrace{…}`
+- article 文档类的标题默认不单独成页，book 和 report 文档类默认单独成页；可在 `\documentclass` 命令调用文档类时指定 `titlepage` 或 `notitlepage` 选项以修改默认的行为
 
-- 堆积：`\stackrel{上位符号}{基位符号}`，大家可能不懂，例下这样等号上有条件 `def`
+- titlepage 环境，生成不带页眉页脚的一页；生成自定义的标题页以替代 `\maketitle` 命令
 
+```latex
+\title  \author  \date
+\date{\today}  \date{}
 
-- 定界符：`LaTeX` 中常用的定界符 `( ) [ ] | / \ { } ∥ ⌊ ⌋ ⌈ ⌉ ⟨ ⟩ ↑ ↓ ↕ ⇑ ⇓ ⇕`；定界符可以放大: `\big (1.5 倍), \Big (2 倍), \bigg (2.5 倍), \Bigg (3 倍)`
-
-- 定界符的自适应放大：`\left, \right`，比如 `\left(, \right)` 产生小括号，中括号为 `\left[…\right]`，大括号为 `\left\{…\right\}`，尖括号为 `\left<…\right>`， 绝对值为 `\left|…\right|`， 范数为 `\left\|…\right\|`
-
-
-
-自带定界符的矩阵环境，包括：
-- 带圆括号 的 `pmatrix` 环境；
-- 带方括号 的 `bmatrix` 环境；
-- 带花括号 的 `Bmatrix` 环境；
-- 带绝对值界的 `vmatrix` 环境与带范数界的 `Vmatrix` .
+\maketitle
+```
 
 
 ---
@@ -606,51 +661,63 @@ texdoc symbols % 查看符号表
 
 ```latex
 \bibliographystyle{<style>}  % 指定样式
+\renewcommand{\bibname}{参考文献}
 
-\cite{key1, key2}            % 引用参考文献
+\cite{key1, key2}            % 引用文献
+\nocite{}                    % 列出未引用的文献 
+\nocite{*}                   % 列出所有未被引用的文献
 
 \bibliography{bibfile}       % 打印参考文献列表
+
 ```
 
 - 现代方法：biber 后端 + biblatex 宏包（国家标准：biblatex-gb7714-2015 宏包）
 
+- biblatex 宏包：支持以 `key=value` 形式指定选项，包括参考文献样式 style、参考文献著录排序的规则 sorting
+	- biblatex 使用的参考文献样式分为著录样式（bibliography style）和引用样式（citation style），分别以 `.bbx` 和 `.cbx` 为扩展名。参考文献的样式在调用宏包时使用 style 选项指定，或者使用 bibstyle 或 citestyle 分别指定
+
 ```tex
 % 参考文献相关设置
 \usepackage[
-    defernumbers=true,
-    backend=biber,
-    % sorting=ymdnt,     % Year in descending order
-    sorting=ynt,       % Year in ascending order
-    maxbibnames=3,    % No. of listed names
-    style = gb7714-2015,
-    % style=ieee,
-    % style=science,
-    citestyle=numeric-comp,
-    isbn=false,     % controls whether the fields isbn/issn/isrn are printed
-    % block=par,
-    doi=false,        % do not show doi
-    giveninits=false,
+    backend       = biber,
+    defernumbers  = true,
+    sorting       = ymdnt,     % Year in descending order
+    sorting       = ynt,       % Year in ascending order
+    maxbibnames   = 3,    % No. of listed names
+    style         = gb7714-2015,
+    citestyle     = numeric-comp,
+    isbn          = false, % controls whether the fields isbn/issn/isrn are printed
+    block         = par,
+    doi           = false,        % do not show doi
+    giveninits    = false,
 ]{biblatex}
 \renewcommand*{\bibfont}{\small}
 \setlength{\bibitemsep}{0pt}
-\renewcommand{\bibname}{参考文献}
-\addbibresource{reference.bib}
+\addbibresource{refs.bib}  % 需要加文件名后缀
 
 
-% 默认引用参考文献条目 
-\cite{key1, key2}
-% 右上角引用格式 
-\upcite{} 
-% 不出现在正文，出现在参考文献列表 
-\nocite{} 
+\cite{key1, key2}   % 默认引用参考文献条目 
+\upcite             % 右上角引用格式 
+\nocite             % 列出未引用的参考文献 
 
-\supercite{}
-\parencite{}
+\citeauthor  \citeyear  \textcite   \footcite
+\supercite   \parencite 
 
 % 打印参考文献列表
 \printbibliography
 \printbibliography[heading=bibintoc]
 ```
+
+- natbib 宏包：可以生成用人名——年份的引用方式
+
+```latex
+% 连续引用多篇文献时，会生成形如 (3–7) 的引用
+\usepackage[numbers,sort&compress]{natbib}
+
+\citep{}
+\citet{}
+```
+
 
 ---
 
@@ -787,6 +854,115 @@ Afternoon& &used&used\\
 
 ---
 
+### 公式
+
+>[LaTeX Math Wikibook](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
+amsmath 允许用户在导言区用 `\DeclareMathOperator` 定义自己的算符，其中带星号的命令定义带上下限的算符
+
+```latex
+\DeclareMathOperator{\diff}{d\!} % 定义微分运算符
+```
+
+---
+
+#### 数学模式
+
+- 空格不起作用；不能有空行
+- 行内（inline）公式：`$...$`
+- 行间（display 独显）公式：
+	- 无编号：`\[...\]` 或 `equation*` 环境
+	- 编号：`equation` 环境
+	- 不要用 `$$...$$$`（为什么？）
+
+
+---
+
+#### 括号与定界符
+
+- 基本括号：
+	- `(...)`、`[...]`、`{...}`
+	- 绝对值、范数：`|...|` 或 `\vert...\vert`、`\Vert...\Vert`
+	- Dirac 符号：`\langle...\rangle`、`|...\rangle`
+- 自动调节大小：`\left(...\right)`
+- 手动调节大小：`\big`、`\Big`、`\bigg`、`\Bigg`；声明左中右，在命令后添加 `l`、`m` 或 `r`，如 `\bigl`
+
+---
+
+#### 符号与数学字体
+
+- 符号
+	- 最常用的额外字体包：amssymb
+
+- 数学字体
+	- 「Times New Roman」：newtxmath 宏包
+	- 不要用 times 和 mathptmx 宏包
+	- 加粗：使用 bm 宏包的 `\bm` 命令（`\mathbf` 只有直立的字母）
+
+- 新方案：unicode-math 宏包
+
+---
+
+#### 多行公式
+
+- `multline multline*` 多行公式，没有对齐操作，只给一个公式编号
+- `gather gather*` 多个公式，可添加多个公式编号
+- `align align*` 多个公式对齐，但只能对齐公式内部的一个部分
+- `flalign flalign*` 多个公式对齐，可对公式内的多个部分
+- `split` 分割公式
+
+- 取消公式编号，在环境名加 `*` 即可实现
+
+>`gathered` 和 `gather` 的区别是放在了一个 `minipage` 里，`aligned` 也是 `minipage` 的问题
+
+```latex
+\usepackage{amsmath,amssymb,amsfonts}  % 常用数学宏包
+
+```
+
+```latex
+texdoc symbols % 查看符号表
+```
+
+- 在数学模式中输入普通文本：`\mbox{文本}` 或 `\text{文本}`
+- 在数学模式中插入 空格：`\quad, \qquad, \hspace`，使用 `\,` 等价 `3/18 \quad`
+
+- 数学公式书写：行内 `$ ··· $`，行间：`\[ ··· \]`，
+
+- 常用数学字体命令：`\mathrm, \mathit, \mathtt, \mathsf, \mathbf, \mathcal，\mathbb`
+
+- 数学公式中的函数名最好用正体, 一般通过函数名命令输入，`LaTeX` 中的函数命令都是斜杆 `\` 开始自定义新的函数名 (需 `amsmath` 宏包)，`\DeclareMathOperator{\函数名命令}{函数名}`：注意像这样的命令只能放置在导言区。
+
+
+
+- 角标：上标 `ˆ{···}`, 下标 `_{···}`，若实现导数 → 可以直接使用右单引号 `'` 或 `\prime`
+
+- 分式：`\frac → 普通分式， \tfrac → \textstyle， \dfrac → \displaystyle`。注意到 `\frac` 在行内公式中等价于 `\tfrac`, 在行间公式中等价于 `\dfrac`；二项式系数: `\binom, \tbinom, \dbinom`；根式:`\sqrt{···}或\sqrt[n]{···}`
+
+- 求和与积分：求和 `\sum` ，积分 `\int`，针对于行内行间公式取不同的尺寸, 上下限位置也可能不同，这里举个例子，行间公式 `$$ \sum_{i=1}^{n} xˆi $$或\[\]` 可以等价于行内公式的 `$ \displaystyle\sum_{i=1}^{n} xˆi $或\(\)`
+
+- 上、下划线：`\overline{…}，\underline{…}`；
+
+- 上、下大括号：`\overbrace{…}，\underbrace{…}`
+
+- 堆积：`\stackrel{上位符号}{基位符号}`，大家可能不懂，例下这样等号上有条件 `def`
+
+
+- 定界符：`LaTeX` 中常用的定界符 `( ) [ ] | / \ { } ∥ ⌊ ⌋ ⌈ ⌉ ⟨ ⟩ ↑ ↓ ↕ ⇑ ⇓ ⇕`；定界符可以放大: `\big (1.5 倍), \Big (2 倍), \bigg (2.5 倍), \Bigg (3 倍)`
+
+- 定界符的自适应放大：`\left, \right`，比如 `\left(, \right)` 产生小括号，中括号为 `\left[…\right]`，大括号为 `\left\{…\right\}`，尖括号为 `\left<…\right>`， 绝对值为 `\left|…\right|`， 范数为 `\left\|…\right\|`
+
+
+
+自带定界符的矩阵环境，包括：
+- 带圆括号 的 `pmatrix` 环境；
+- 带方括号 的 `bmatrix` 环境；
+- 带花括号 的 `Bmatrix` 环境；
+- 带绝对值界的 `vmatrix` 环境与带范数界的 `Vmatrix` .
+
+
+---
+
 ### 字体
 
 - 宏包：`fontspec`
@@ -819,6 +995,7 @@ fc-list :lang=zh
 \usepackage{fontspec}
 \setmainfont{Times New Roman}  % 新罗马字体
 \setmainfont{Tex Gyre Termes}  % 会报没有该字体的错
+\setmainfont{PingFang SC}      % 苹方字体
 
 % 检查字体是否存在；不存在则使用默认字体
 \usepackage{fontspec}
@@ -856,6 +1033,25 @@ fc-list :lang=zh
 
 - hyperref 宏包：超链接、引用，由于它经常与其他宏包冲突，一般把它放在导言区的最后
 
+```latex
+\usepackage{hyperref}
+\hypersetup{
+	pdftitle=...,            % PDF 标题
+	pdfauthor=...,           % PDF 作者
+	pdfsubject=...,          % PDF 主题 
+	pdfborder={0 0 0},
+	bookmarks=true,          % 显示书签
+    bookmarksopen=true,      % 书签展开  
+    bookmarksnumbered=true,  % 书签编号
+    hidelinks=true,          % 隐藏链接方框
+    colorlinks=true,
+    urlcolor=...,            % 外部链接颜色
+    linkcolor=...,           % 内部链接颜色
+    citecolor=...,           % 文献引用颜色
+    filecolor=...,
+}
+```
+
 - xcolor 宏包：调用颜色
 
 ```latex
@@ -876,8 +1072,11 @@ fc-list :lang=zh
 
 % 大写 H 表示符号的首字母也大写
 \hologo{XeLaTeX} \Hologo{BibTeX}
+\providecommand{\XeTeX}{\hologo{XeTeX}}
+\providecommand{\BibLaTeX}{\textsc{Bib}\LaTeX}
 
-\TeX  \LaTeX
+% LaTeX 标志
+\TeX  \LaTeX \LaTeXe
 ```
 
 - comment 宏包：用于将其中的文本视为注释，从而使这些文本不会在生成的文档中显示
@@ -900,8 +1099,6 @@ fc-list :lang=zh
 \lipsum[2-4]   % 第 2-4 段
 ```
 
-- titlesec 宏包：
-
 - tcolorbox 宏包：创建彩色盒子
 
 ```latex
@@ -921,30 +1118,47 @@ colback=...,
 
 
 ```latex
-\documentclass[UTF8,hyperref,space=auto]{ctexart} %UTF8 编码，引入 hyperref 宏包 (可形成超链接及使用其自带的额外命令)，设置其处理空格的方式为 auto
-\usepackage[a4paper,showframe]{geometry} % 设置纸张为 A4 大小
-\usepackage[dvipsnames]{xcolor} % 扩展版的颜色宏包
-\usepackage{cprotect} % 保护被抄录的语句
-\usepackage{amsmath} % 数学命令及环境中最重要的宏包之一
-\usepackage{amssymb} % 输出更多的数学符号
-\usepackage{mathtools} % 提供了 dcases 环境
-\usepackage{extarrows} % 提供了更多的数学长箭头
-\usepackage{multirow} % 提供可跨行的处理表格的命令
-\usepackage{array} % 提供了更多的表格列说明符，以及修正了一些表格显示上的问题
-\usepackage{caption,subcaption} % 输出子图表专用
-\usepackage{float} % 其 H 参数可以让浮动环境不再浮动
-\usepackage{titlesec,titletoc} % 可分别设置目录和正文中的标题样式
-\usepackage{natbib} % 专门用来排版文献的宏包
-\usepackage[nottoc]{tocbibind} % 默认可将参考文献、索引等放入 tableofcontents
-\usepackage[amsmath,thmmarks]{ntheorem} % 定理类环境宏包，如果前面使用 amsmath 宏包，则需加上 amsmath 宏包选项以避免出现未知问题，若需在定理环境末尾加上特定符号 (如证毕符号)，则需使用 thmmarks 宏包选项以使用\theoremsymbol{}命令。
+% 文字、公式和符号
+amsmath       % AMS数学公式扩展
+mathtools     % 数学公式扩展宏包，提供了公式编号定制和更多的符号、矩阵等
+amsfonts      % AMS 扩展符号的基础字体支持
+amssymb       % 在 amsfonts 基础上将 AMS 扩展符号定义成命令
+bm            % 提供将数学符号加粗的命令 \bm
+unicode-math  % 使用 Unicode 数学字体
+siunitx       % 以国际单位规范排版物理量的单位
+mhchem        % 排版化学式和方程式
 
-\usepackage[bf,small,raggedright,indentafter,pagestyles]{titlesec}
-% 其中 bf 设置章节标题的字体为黑体，这也是默认值，此外可以设为 rm(罗马体), sf(无衬线体), tt(打字机体), md(中等黑度),up(直立体), it(意大利斜体), sl(机械斜体), sc(小体大写字母)。
-% small 设置标题字体的尺寸，还可设为 big(默认), medium, tiny。
-% center 使标题居中，还可以设为 raggedleft(居左，默认),raggedright(居右)
-% indentafter 相当于宏包 indentfirst 的作用，使标题下面的第一个段落正常缩进
-% pagestyles 是申明后面要自定义页面样式
+% 排版元素
+ulem          % 提供排版可断行下划线的命令 \uline 以及其它装饰文字的命令
+multicol      % 提供将内容自由分栏的 multicols 环境
+multitoc      % 生成多栏排版的目录
+minitoc       % 为章节生成独立的小目录
+verbatim      % 对原始的 verbatim 环境的改善。提供了命令 \verbatiminput 调用源文件
+fancyvrb      % 提供了代码排版环境 Verbatim 以及对版式的自定义
+listings      % 提供了排版关键字高亮的代码环境 lstlisting 以及对版式的自定义。类似宏包有 minted 等
+algorithmic   % 一个简单的实现算法排版的宏包。如果要生成浮动体的话，需要搭配 algorithm 宏包使用
+algorithm2e   % 较为复杂的、可定制的算法排版宏包。类似宏包有 algorithmicx 等
+amsthm        % 定制定理环境。类似宏包 theorem、ntheorem、thmtools 等
+
+% 图表和浮动体
+array         % 对表格列格式的扩展
+booktabs      % 排版三线表
+tabularx      % 提供 tabularx 环境排版定宽表格，支持自动计算宽度的 X 列格式
+diagbox       % 排版斜线表头
+longtable     % 提供排版跨页长表格的 longtable 环境
+graphicx      % 支持插图
+caption       % 控制浮动体标题的格式。类似宏包有 keyfloat 等
+subcaption    % 提供子图表和子标题的排版。类似宏包有 subfigure 和subfig 等
+float         % 为浮动体提供不浮动的 H 模式；提供自定义浮动体结构的功能
+
+% 修改版式
+geometry      % 修改页面尺寸、页边距、页眉页脚等参数
+fancyhdr      % 修改页眉页脚格式，令页眉页脚可以左对齐、居中、右对齐
+titlesec      % 修改章节标题 \chapter、\section 等的格式
+titletoc      % 修改目录中各条目的格式。类似宏包有 tocloft 等
+tocbibind     % 支持将目录、参考文献、索引本身写入目录项
 ```
+
 
 ---
 
@@ -1048,12 +1262,13 @@ colback=...,
 
 
 ```latex
+% 附录部分的标题和编号设置
+% 会报该命令弃用的错
+\CTEXsetup[name={附录},number={\Alph{section}}]{appendix}
+
 30$\,^{\circ}$ 三角形     % 角度
 
 37$\,^{\circ}\mathrm{C}$ % 摄氏度
-
-Å  % 埃
-\~{}  % 波浪线
 ```
 
 
@@ -1064,37 +1279,62 @@ colback=...,
 
 ### 自定义命令
 
-命令使用 `\cmd{arg1}{arg2}` 来调用
+- 自定义命令使用 `\name{arg1}{arg2}` 来调用
 
-`cmd` - 不能重名，必须符合命名规则。
-`args` - 参数数量，0 ∼ 9，默认为 0。
-`default` - 设定第⼀个参数的默认值，同时表示该参数是**可选参数**，新命令中最多只能有⼀个可选参数。
-`def` - 定义，涉及到参数时使用 `#n` 表示第 n 个参数。
+- LaTeX 不允许使用 `\newcommand` 定义一个与现有命令重名的命令。如果需要修改命令定义的话，使用 `\renewcommand` 命令，其语法与 `\newcommand` 相同。
+
+- 带星号的命令称为短命令，其中参数不能有换段或空行，否则编译报错，但是短命令有利排错
+
+- 在命令中如果包含数学命令，那么这条命令只能⽤于⽂本模式，不能⽤于数学模式（因为在数学模式中会被多加了⼀层 `$ $` 导致报错）。所以，在定义数学命令时，使⽤ `\ensuremath{code}` 来定义，这样的命令在数学模式中时 code 本⾝，在⽂本模式中时 `$ code $`。
 
 ```latex
 % 定义新命令
-\newcommand{cmd}[args][default]{def}
-\newcommand*{cmd}[args][default]{def}
+\newcommand{name}[num]{def}
+\newcommand*{name}[num]{def}
+
+% name - 带反斜线，必须符合命名规则
+% num - 命令参数数量，最多 9 个，默认为 0，即不带任何参数
+% def - 命令具体定义，涉及到参数时使用 `#n` 表示第 n 个参数。
 
 % 修改已有命令
-\renewcommand{cmd}[args][default]{def}
-\renewcommand*{cmd}[args][default]{def}
+\renewcommand{name}[num]{def}
+\renewcommand*{name}[num]{def}
+
+% 命令未定义时，相当于 \newcommand；命令已定义时，沿用已有定义
+\providecommand{name}[num]{def}
+
+% 常宏包和类文件的开发中；
+% \DeclareRobustCommand 与 name 间可以不用花括号
+\DeclareRobustCommand{name}[num]{def}
 ```
-
->带星号的命令称为短命令，其中参数不能有换段或空行，否则编译报错，但是短命令有利排错
-
-
-在命令中如果包含数学命令，那么这条命令只能⽤于⽂本模式，不能⽤于数学模式（因为
-在数学模式中会被多加了⼀层 `$ $` 导致报错）。所以，在定义数学命令时，使⽤ `\ensuremath{code}` 来定义，这样的命令在数学模式中时 code 本⾝，在⽂本模式中时 `$ code $`。
-
-- LaTeX 不允许使用 `\newcommand` 定义一个与现有命令重名的命令。如果需要修改命令定义的话，使用 `\renewcommand` 命令，其语法与 `\newcommand` 相同。
 
 
 ---
 
-### 自定义宏包
+### 自定义宏包/文档类
 
-门槛较高
+- 门槛较高
+
+- 如果定义了很多新的环境和命令，文档的导言区将变得很长，在这种情况下，可以建立一个新的 LaTeX 宏包来存放所有你自己定义的命令和环境，然后在文档中使用 `\usepackage` 命令来调用自定义的宏包。
+
+- 写一个宏包的基本工作就是将原本在你的文档导言区里很长的内容拷贝到另一个文件中去，这个文件需要以 `.sty` 作扩展名。你还需要加入一个宏包专用的命令
+
+- 在宏包中调用其它宏包：LaTeX 允许你在自己编写的宏包中调用其它宏包
+
+- 自定义文档类：以 `.cls` 作扩展名，可以像调用宏包那样调用一个基本的文档类
+
+```latex
+% 该命令应该放在你的宏包的最前面
+% package-name 需要和宏包的文件名一致
+\ProvidesPackage{package-name}
+
+\RequirePackage[...]{package-name}
+
+\ProvidesClass{class-name}
+
+\RequireClass[...]{class-name}
+```
+
 
 写宏包
 
@@ -1110,7 +1350,14 @@ colback=...,
 ### LaTeX 可定制的一些命令和参数
 
 - 标题名称/前后缀：可以用 `\renewcommand` 来修改
+	- 使用 ctex 宏包或文档类时，表中的标题会修改为中文标题
 - 长度：可用 `\setlength` 来修改
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407191919074.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407191921567.png)
+
+
 
 ---
 
@@ -1153,7 +1400,14 @@ colback=...,
 
 ---
 
+```latex
+% 使参考文献字符居中
+\titleformat{\section}{\centering\Large\bfseries}{\thesection}{1em}{}
 
-`bst` 格式：参考文献样式文件
+% 添加 "附录" 字符
+% 该操作并不能使目录中也添加 "附录" 字符
+\titleformat{\section}{\centering\Large\bfseries}{附录~\Alph{section}}{1em}{}
 
-[使用 BIBTeX 处理参考文献 | 智朋的个人博客](https://coffeelize.top/posts/Processing-References-with-BIBTeX.html)
+% 使 section 标题左对齐
+\titleformat{\section}{\raggedright\Large\bfseries}{\thesection}{1em}{}
+```

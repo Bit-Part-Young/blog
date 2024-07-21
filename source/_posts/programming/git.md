@@ -167,6 +167,7 @@ WIP…
 - git 操作 TUI 工具：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)
 - [onefetch](https://github.com/o2sh/onefetch)：展示本地 Git 仓库的项目详情和代码统计等内容
 - [gita](https://github.com/nosarthur/gita)：管理多个 git repo
+- 查看 git repo 的统计信息:[GitHub - arzzen/git-quick-stats](https://github.com/arzzen/git-quick-stats)
 
 
 ---
@@ -313,6 +314,10 @@ git push -f origin shend_dev
 # 自动检测文本文件，并执行 LF（Line Feed）规范化操作
 * text=auto
 *.txt eol=lf
+
+*.jpg binary
+*.pdf binary
+*.png binary
 
 # 配置特定文件类型的差异（diff）显示策略
 # 并非将文件转换为文本文件，只是尝试以文本方式进行显示
