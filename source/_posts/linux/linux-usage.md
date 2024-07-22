@@ -34,6 +34,21 @@ showjob() {
 alias showjob='showjob'
 ```
 
+终端快捷键
+
+```bash
+Crtl + A              # 光标移动到命令首
+Crtl + E              # 光标移动到命令尾
+Alt + B / Ctrl + ←    # 光标向左移动一个单词
+Alt + F / Ctrl + →    # 光标向右移动一个单词
+Crtl + W              # 删除光标左方的单词
+Alt + D               # 删除光标右方的单词
+Crtl + R              # 搜索之前输入过的命令
+Crtl + G              # 退出历史搜索模式
+Crtl + ↓              # 跳转至底部
+Crtl + L              # 将底部内容移至最上方
+```
+
 
 ---
 
@@ -197,6 +212,16 @@ export PATH=$HOME/bin:$PATH
 
 - `cut` - 剪切命令
 
+```bash
+# 查看所有同名命令
+which -a command
+
+
+# 查看相对路径文件的绝对路径
+readlink -f path
+
+```
+
 
 注：简单命令直接列出来
 
@@ -221,31 +246,12 @@ Advanced:
 ```
 
 
-终端快捷键
-
-```bash
-Crtl + A              # 光标移动到命令首
-Crtl + E              # 光标移动到命令尾
-Alt + B / Ctrl + ←    # 光标向左移动一个单词
-Alt + F / Ctrl + →    # 光标向右移动一个单词
-Crtl + W              # 删除光标左方的单词
-Alt + D               # 删除光标右方的单词
-Crtl + R              # 搜索之前输入过的命令
-Crtl + G              # 退出历史搜索模式
-Crtl + ↓              # 跳转至底部
-Crtl + L              # 将底部内容移至最上方
-```
-
-
-
 
 ```bash
 !!                 # 执行上一条命令
 clear # 这个命令并非真正清空，只是把内容全部向上滚，让它们消失在视野中
 reset # 这个命令是真正的清空
 ```
-
-
 
 
 dirname basename
@@ -283,8 +289,7 @@ history  # 返回所有的执行命令及其序号
 - 打包命令，不是压缩/解压缩命令（和其他压缩程序如 gzip、bzip2 等一起实现压缩/解压缩功能）
 - 不同压缩格式的文件体积大小：`tar.gz` > `tar.bz2` > `tar.xz`
 
-
-参数：
+- 常用参数
 
 ```bash
 -c             # 创建归档
@@ -298,9 +303,7 @@ history  # 返回所有的执行命令及其序号
 --remove-files # 删除原始文件，谨慎使用
 ```
 
----
-
-示例：
+- 示例
 
 ```bash
 tar -xzvf file.tar.gz  # tar.gz 格式
@@ -345,7 +348,7 @@ ln -s -f .tmux/.tmux.conf
 
 - 利用 URL 规则在命令行下工作的文件传输工具。
 
-常用参数：
+- 常用参数
 
 ```bash
 -o             # 指定保存文件名
@@ -359,9 +362,15 @@ ln -s -f .tmux/.tmux.conf
 -S             # 在发生错误时显示错误信息
 ```
 
-示例：
+- 示例
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+
+# 有趣 curl 命令；输出 ascii live 字符
+curl parrot.live
+curl ascii.live/forrest
+curl ascii.live/parrot
 ```
 
 

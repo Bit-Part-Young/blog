@@ -200,14 +200,17 @@ system_profiler SPDisplaysDataType
 #### Mac 端没有的一些软件
 
 - PotPlayer
-- Notepad++（可以用 Notepad-- 代替）
+- Notepad++（可以用 [Notepad--](https://github.com/cxasm/notepad--) 代替）
 - MobaXterm
 - WinSCP
 
 
+Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
+
+
 ---
 
-### 部分软件设置
+#### 部分软件设置
 
  Termius
 

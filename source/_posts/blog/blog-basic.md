@@ -218,6 +218,14 @@ corepack enable   # 开启
 corepack disable  # 取消
 ```
 
+npm 配置文件：.npmrc
+```yaml
+auto-install-peers=true
+
+# 设置镜像源
+registry=https://registry.npmmirror.com
+```
+
 
 
 ---

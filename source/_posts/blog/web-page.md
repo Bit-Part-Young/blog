@@ -29,6 +29,7 @@ password:
 - [Zhenchao Jin](https://charlespikachu.github.io/)（纯 html css）
 - [GitHub - HugoBlox/theme-academic-cv: 🎓 无需编写任何代码即可轻松创建漂亮的学术网站](https://github.com/HugoBlox/theme-academic-cv)
 - 在线排版：[GitHub - mdnice/markdown-resume](https://github.com/mdnice/markdown-resume)
+- [GitHub - xitanggg/open-resume: OpenResume is a powerful open-source resume builder and resume parser. https://open-resume.com/](https://github.com/xitanggg/open-resume)
 
 - Jekyll 框架：
 	- [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)

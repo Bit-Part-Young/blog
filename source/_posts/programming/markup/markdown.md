@@ -41,6 +41,10 @@ password:
 - 下载 md 文档中的 online 图片：[GitHub - YellowAndGreen/Md-ImgLocalize: Download and convert all online images to local images in markdown files.](https://github.com/YellowAndGreen/Md-ImgLocalize)
 - Excel 单元格， CSV 内容转成 Markdown 表格：[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
 
+- 检查 markdown 文件中的链接是否失效
+	- [GitHub - gaurav-nelson/github-action-markdown-link-check: Check all links in markdown files if they are alive or dead. 🔗✔️](https://github.com/gaurav-nelson/github-action-markdown-link-check)
+	- [GitHub - UmbrellaDocs/linkspector: Uncover broken links in your content.](https://github.com/UmbrellaDocs/linkspector)
+
 
 
 ---
@@ -143,7 +147,7 @@ password:
 
 - 三个 \` 或 \~ 围起来构成代码块（\~ 或 \` 可以加语言名称）
 	- 带有高亮支持的软件会对其进行高亮显示
-	- 不加（或加 text）不进行高亮
+	- 不加（或加 `text`）不进行高亮
 
 ~~~markdown
 ```c
@@ -217,9 +221,7 @@ int main() {
 
 ### 任务列表
 
-- 也称 checklist
-- `- [ ]` 插入未完成任务
-- `- [x]` 插入已完成任务
+- 也称 checklist；`- [ ]` 插入未完成任务，`- [x]` 插入已完成任务
 - GitHub、Obsidian 会自动加上 checkbox 支持修改
 
 ```markdown

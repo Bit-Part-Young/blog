@@ -13,7 +13,7 @@ tags:
 categories:
   - Linux
 date: 2023-09-18 09:00:00
-abbrlink: 16854
+abbrlink: 168542
 password:
 ---
 
@@ -36,6 +36,7 @@ password:
 
 - [命令行常用工具的替代品 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2022/01/cli-alternative-tools.html)
 - [GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
+- 有意思/搞笑的 GitHub repo：[GitHub - terremoth/awesome-hilarious-repos: Awesome hilarious github repositories](https://github.com/terremoth/awesome-hilarious-repos)
 
 
 
@@ -290,7 +291,7 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
 - 文本编辑器：[helix](https://github.com/helix-editor/helix)
 - 终端 Markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
-- 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
+- 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）、[hyfetch](https://github.com/hykilpikonna/hyfetch)
 - 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
 - 文件对比：[difftastic](https://github.com/Wilfred/difftastic)
 - 文件搜索：[fzf](https://github.com/junegunn/fzf)
@@ -300,7 +301,15 @@ cat data.json | jq '.user.name'  # 获取特定键值
 - 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
 - neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
-- 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html)
+- 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
+- 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
+- Slurm TUI 版本（查看集群任务）：[GitHub - kabouzeid/turm: TUI for the Slurm Workload Manager](https://github.com/kabouzeid/turm)
+
+```bash
+# turm 安装
+cargo install turm
+```
+
 
 
 
@@ -310,8 +319,8 @@ cat data.json | jq '.user.name'  # 获取特定键值
 ```bash
 ncdu -o ncdu.txt  # 输出信息到文件中
 
-# 按需添加 cheatsheet git repo 以增加丰富性
-navi repo browse
+# navi 使用
+navi repo browse  # 按需添加 cheatsheet git repo 以增加丰富性
 ```
 
 
@@ -327,6 +336,12 @@ rg 'content' -g '*.py'    # 包含
 # eg 安装
 pip install -U eg
 brew install eg-examples
+
+# figlet toilet 相关用法
+showfigfonts   # 查看可用字体
+figlet spt
+figlet -c spt  # 居中 
+figlet spt | toilet -f term --gay  # 彩色输出
 ```
 
 
@@ -352,7 +367,7 @@ curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh 
 eval "$(mcfly init zsh)"
 
 
-# fastfetch
+# fastfetch Ubuntu 安装
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 

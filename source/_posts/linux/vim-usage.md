@@ -30,6 +30,12 @@ password:
 vim `:10m3` 将第 10 行剪切并粘贴到第 3 行下方
 vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移一个 Tab 距离
 
+```bash
+# 在 vim 中打开终端
+:term
+```
+
+
 
 ---
 
@@ -266,6 +272,10 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.
 ```
 
 - 包管理安装（Ubuntu apt 安装的版本较老，不建议此方式）
+
+```bash
+brew install neovim
+```
 
 - 源码编译
 

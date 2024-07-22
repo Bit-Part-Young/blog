@@ -25,6 +25,8 @@ password: d93f517bc1345a0d8ff992410aca5dbc35f2e88087cdc5d9edb0c6d77d8a4c1a
 - VASP 全称：Vienna Ab-initio Simulation Package
 
 
+VASP ELFCAR 文件
+
 
 VASP6 用的赝势和 5.4.4 相同
 
@@ -266,6 +268,9 @@ direct
 ---
 
 #### POTCAR
+
+POTCAR：RCORE 代表最大截止半径，单位是波尔 bohr
+
 
 - 赝势文件；包含计算体系中每个元素种类的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 

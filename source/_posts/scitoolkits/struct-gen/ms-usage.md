@@ -59,6 +59,11 @@ password:
 
 ## 建模使用
 
+MS - build - find symmetry 找到对称性
+
+[关于Material Studio和Vesta导出来的cif文件的差别](https://zhuanlan.zhihu.com/p/417605545)
+
+
 >[How to build and optimize crystal structure of a compound - Part 01 - Materials studio (CASTEP)](https://www.youtube.com/watch?v=IMvzznBhEns)
 
 [如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)

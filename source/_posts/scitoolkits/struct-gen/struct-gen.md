@@ -225,6 +225,10 @@ direct
 
 ## 晶体学相关
 
+晶体结构标注：空间群符号、Pearson 符号、典型晶体结构类型（Strukturbericht designation 或 Strukturbericht type）
+
+[典型晶体结构类型 - 维基百科，自由的百科全书](https://zh.m.wikipedia.org/wiki/%E5%85%B8%E5%9E%8B%E6%99%B6%E4%BD%93%E7%BB%93%E6%9E%84%E9%A1%9E%E5%9E%8B)
+
 二维晶体：10 种点群，17 种空间群（墙纸群 (wallpaper group)）
 
 
