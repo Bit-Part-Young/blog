@@ -26,7 +26,7 @@ Docusaurus：文档龙/多库龙。
 
 ### 参考资料
 
-- 官网：[Build optimized websites quickly, focus on your content | Docusaurus](https://docusaurus.io/)
+- 官网：[Build optimized websites quickly, focus on your content - Docusaurus](https://docusaurus.io/)
 - Docusaurus 与其他框架的对比：[Comparison with other tools - Docusaurus](https://docusaurus.io/docs#comparison-with-other-tools)
 
 - 示例站点
@@ -246,3 +246,19 @@ scitoolSidebar: [
 #### 搜索
 
 - 搜索功能：[search - Docusaurus](https://docusaurus.io/docs/2.x/search)
+
+- 使用 Algolia DocSearch：Docusaurus 自带的 `@docusaurus/preset-classic` 支持 Algolia DocSearch 集成，无需安装依赖；添加以下 Algolia 设置
+
+```js
+themeConfig: {
+  // ...
+  algolia: {
+    // The application ID provided by Algolia
+    appId: 'XXX',
+    // Public API key: it is safe to commit it
+    apiKey: 'XXX',
+    indexName: 'docusaurus-demo',
+    // 其余参数均为可选
+  },
+}
+```

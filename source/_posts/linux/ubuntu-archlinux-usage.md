@@ -2,7 +2,7 @@
 title: Ubuntu、Arch Linux 使用
 top: false
 pin: false
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -14,7 +14,7 @@ tags:
 categories:
   - Linux
 date: 2023-09-18 16:50:00
-abbrlink: 14224
+abbrlink: 142249
 password:
 ---
 
@@ -116,6 +116,7 @@ sudo ./install.sh -t tela -s 2k
 - `Ctrl + Alt + Del` - 打开睡眠、关机、重启、登出对话框
 - `Alt + F2` - 打开运行对话框
 - `Win` - 也称 Super 键，可进行程序搜索
+
 
 ---
 
@@ -541,11 +542,16 @@ rclone mount jbox: /home/yangsl/jbox --vfs-cache-mode=minimal
 
 #### 字体安装
 
-- 系统字体路径：`/usr/share/fonts`；个人用户字体路径：`~/.fonts` 或 `~/.local/share/fonts`（较新 Ubuntu 版本）
 - 中文字体：[得意黑](https://github.com/atelier-anchor/smiley-sans)
 - 英文字体： [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)（主要下载 Meslo 或 Hack）
 
 ```bash
+# 字体路径
+/usr/share/fonts      # 系统
+~/.fonts              # 个人用户
+~/.local/share/fonts  # 较新 Ubuntu 版本
+
+# 拷贝字体
 sudo cp <font>.ttf /usr/share/fonts/truetype  # ttf 字体
 sudo cp <font>.otf /usr/share/fonts/opentype  # otf 字体
 sudo cp *.ttf /usr/share/fonts
@@ -610,7 +616,6 @@ ifconfig
 ```
 
 
-
 ---
 
 ### 相关问题
@@ -634,6 +639,8 @@ xxx    ALL=(ALL:ALL) ALL
 timedatectl set-local-rtc 1
 ```
 
+- 连接校园网：[Linux设备连接校园SJTU无线网络说明-上海交通大学网络信息中心](https://net.sjtu.edu.cn/info/1215/2712.htm)
+
 - [ ] 触控板，如何右键？
 
 
@@ -642,11 +649,9 @@ timedatectl set-local-rtc 1
 
 ## Arch Linux 使用
 
-参考资料：
-
->[Arch Linux 安装使用教程 - ArchTutorial - Arch Linux Studio](https://archlinuxstudio.github.io/ArchLinuxTutorial/#/)
-
->[archlinux 简明指南 | archlinux 简明指南](https://arch.icekylin.online/)
+- 参考资料：
+	- [Arch Linux 安装使用教程 - ArchTutorial - Arch Linux Studio](https://archlinuxstudio.github.io/ArchLinuxTutorial/#/)
+	- [archlinux 简明指南 | archlinux 简明指南](https://arch.icekylin.online/)
 
 
 ---
@@ -748,18 +753,13 @@ pacman -Qo $(which gfortran)
 
 #### plasma 组件相关
 
-查看安装的 plasma 组件（desktop 等）
+完全卸载 plasma 组件：[[SOLVED] Help removing plasma and kde-applications / Newbie Corner / Arch Linux Forums](https://bbs.archlinux.org/viewtopic.php?id=269353)
 
 ```bash
+# 查看安装的 plasma 组件（desktop 等）
 pacman -Q | grep plasma
-```
 
----
-
-完全卸载 plasma 组件
->[[SOLVED] Help removing plasma and kde-applications / Newbie Corner / Arch Linux Forums](https://bbs.archlinux.org/viewtopic.php?id=269353)
-
-```bash
+# 卸载 plasma 组件
 sudo pacman -Rcns plasma
 ```
 

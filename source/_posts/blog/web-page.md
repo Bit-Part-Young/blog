@@ -30,6 +30,8 @@ password:
 - [GitHub - HugoBlox/theme-academic-cv: 🎓 无需编写任何代码即可轻松创建漂亮的学术网站](https://github.com/HugoBlox/theme-academic-cv)
 - 在线排版：[GitHub - mdnice/markdown-resume](https://github.com/mdnice/markdown-resume)
 - [GitHub - xitanggg/open-resume: OpenResume is a powerful open-source resume builder and resume parser. https://open-resume.com/](https://github.com/xitanggg/open-resume)
+- [GitHub - Troublor/troublor.github.io: Source code of my personal homepage](https://github.com/Troublor/troublor.github.io)
+- [GitHub - bchiang7/v4: Fourth iteration of my personal website built with Gatsby](https://github.com/bchiang7/v4)
 
 - Jekyll 框架：
 	- [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)
@@ -203,3 +205,8 @@ mdbook serve --open
 - [x] 约会日程路线静态网页模板查找？（暂无必要，写成 markdown 即可）
 
 - [Excalidraw - 在线手写风作图](https://excalidraw.com/)
+
+- 左右拖拽实现图片对比效果：
+	- [GitHub - kylewetton/image-compare-viewer: Compare before and after images, for grading and other retouching for instance. Vanilla JS, zero dependencies.](https://github.com/kylewetton/image-compare-viewer)
+	- [Image Compare Viewer](https://image-compare-viewer.netlify.app/)
+	- [GitHub - CodeSteppe/image-compare](https://github.com/CodeSteppe/image-compare)

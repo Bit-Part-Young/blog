@@ -29,7 +29,7 @@ password:
 
 ---
 
-笔记本开箱验机：
+笔记本开箱验机步骤：
 
 - 检查外包装是否有已拆除的痕迹
 - 不插电源看是否能开机（大部分品牌笔记本有运输模式，正常不能开机）
@@ -58,24 +58,24 @@ password:
 - 文件搜索、程序启动工具：Listary
 - 软件包安装、管理工具：Scoop
 - 笔记管理：Obsidian、Typora（破解版）
-- 远程服务器连接：MobaXterm
-- 代码编辑器：VSCode-insiders、VSCode
+- 远程服务器连接：MobaXterm、Termius
+- 代码编辑器：VSCode、VSCode-Insiders
 - 终端：Windows Terminal（Windows 11 会自带）
-- 浏览器：Chrome
+- 浏览器：Chrome、Arc
 - 文献管理：Zotero
 - 远程文件传输：WinSCP
-- Mongodb 数据：MongoDB Compass
-- 文本编辑器：Notepad++
+- MongoDB：MongoDB Compass
+- 文本编辑器：Notepad--
 - 交大云盘：jBox
 - 构型可视化：VESTA、OVITO
 - 媒体播放器：PotPlayer
-- BT 下载：qBittorrent
+- PT 资源下载：qBittorrent
 - 网络代理：V2ray、Clash
-- 下载工具： IDM
+- 资源嗅探下载： IDM
 - 压缩、解压缩：WinRAR
-- 图床：PicList
+- 图床：PicList、PicGo
 - 调节显示器亮度：Twinkle Tray 或 Monitorian（sRGB 和开启 HDR，亮度会无法调节，作用有限）
-- 微信等
+- 微信、Tim 等
 
 
 ---
@@ -85,25 +85,13 @@ password:
 软件/程序及安装前后需注意事项介绍见：[Linux 命令行工具 - Seek Another Land](https://seekanotherland.xyz/hexo-demo/posts/16854.html)。
 
 - 图片查看：jpegview
-- 图床：PicGo
 - 磁盘管理：treesize-free
 - 截图：Snipaste
 - 系统资源监控：RunCat
 - 网速监控：TrafficMonitor
 - 程序卸载：geekuninstaller
 - 美化 Windows Terminal：oh-my-posh
-
----
-
-Linux、编程相关：
-
-- 版本控制：git
-- 文本编辑：vim、neovim
-- ls 替代：lsd
-- 文本查找：fzf
-- 字符搜索：ripgrep
-
----
+- Linux 相关：git、vim、neovim、lsd、fzf、ripgrep 等
 
 - 字体：
 	- Code 字体：Meslo-NF、JetBrains-Mono
@@ -112,9 +100,8 @@ Linux、编程相关：
 ```powershell
 # Code 字体
 scoop bucket add nerd-fonts
-
-scoop install JetBrains-Mono
 scoop install Meslo-NF
+scoop install JetBrains-Mono
 
 # 中文字体
 scoop install LXGWWenKai   # 霞鹜文楷
@@ -155,11 +142,12 @@ reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\
 # 恢复 win11 右键
 reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /va /f
 
-# cmd 管理员运行 重启资源管理器：
+# cmd 管理员运行
+# 重启资源管理器
 taskkill /f /im explorer.exe & start explorer.exe
 ```
 
-- Win11 息屏断网：控制面板 - 网络和 Internet - 网络和共享中心 - 更改适配器设置 - 选中网络，属性，配置，电源管理，取消勾选“允许计算机关闭设备以节约电源”；[更新win11以后，休眠模式下断网，怎么改？ - 知乎](https://www.zhihu.com/question/498326700)
+- 取消 Win11 息屏断网：控制面板 - 网络和 Internet - 网络和共享中心 - 更改适配器设置 - 选中网络，属性，配置，电源管理，取消勾选“允许计算机关闭设备以节约电源”；[更新win11以后，休眠模式下断网，怎么改？ - 知乎](https://www.zhihu.com/question/498326700)
 
 - 删除 2345 王牌输入法：`win + R`，输入 `regedit`，搜索以下内容并删除；[如何彻底删除2345输入法？ - 知乎](https://www.zhihu.com/question/37679187)
 
@@ -169,4 +157,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 
 ---
 
-- 旧电脑绕过 TPM 和 CPU 兼容性升级到 win11：下载 win11 的 iso、下载 [MediaCreationTool.bat](https://github.com/AveYo/MediaCreationTool.bat)，运行 Skip_TPM_Check_on_Dynamic_Update.cmd
+- 老电脑绕过 TPM 和 CPU 兼容性升级到 Win11：去官网下载对应版本的 Win11 的 ISO 镜像文件，之后克隆 [GitHub - AveYo/MediaCreationTool.bat](https://github.com/AveYo/MediaCreationTool.bat) repo 或下载压缩包，（管理员）运行其中的 `Skip_TPM_Check_on_Dynamic_Update.cmd` 文件，耐心等待更新升级
+
+- [如何关闭Win10搜索栏内的系统广告](https://www.zhihu.com/question/569384371/answer/2790041626)（建议使用方法二）

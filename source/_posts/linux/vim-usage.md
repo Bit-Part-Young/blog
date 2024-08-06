@@ -21,12 +21,6 @@ password:
 
 ## 介绍
 
->[GitHub - wsdjeg/vim-galore-zh\_cn: Vim 从入门到精通](https://github.com/wsdjeg/vim-galore-zh_cn)
-
->[GitHub - yyq123/learn-vim](https://github.com/yyq123/learn-vim)
-
->[GitHub - yangyangwithgnu/use\_vim\_as\_ide: use vim as IDE](https://github.com/yangyangwithgnu/use_vim_as_ide)
-
 vim `:10m3` 将第 10 行剪切并粘贴到第 3 行下方
 vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移一个 Tab 距离
 
@@ -36,10 +30,21 @@ vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移
 ```
 
 
+---
+
+### 参考资料
+
+- [GitHub - wsdjeg/vim-galore-zh\_cn: Vim 从入门到精通](https://github.com/wsdjeg/vim-galore-zh_cn)
+- [GitHub - yyq123/learn-vim](https://github.com/yyq123/learn-vim)
+- [GitHub - yangyangwithgnu/use\_vim\_as\_ide: use vim as IDE](https://github.com/yangyangwithgnu/use_vim_as_ide)
+
+
 
 ---
 
-## 快捷键
+## 使用
+
+### 快捷键
 
 - [vim.txt - awesome-cheatsheets](https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt)、[Vim Cheat Sheet](https://vim.rtorr.com/lang/zh_cn)
 
@@ -191,13 +196,15 @@ ctrl + v    # 块可视化模式；可以选择一个矩形内的文本
 
 ---
 
-## vimrc
+### 配置
 
-vimrc 文件相关配置注释
->[https://github.com/yangyangwithgnu/use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)
+- `.vimrc` 文件相关配置注释：[https://github.com/yangyangwithgnu/use_vim_as_ide](https://github.com/yangyangwithgnu/use_vim_as_ide)
 
-star 数很多的 vimrc 配置
->[GitHub - amix/vimrc: The ultimate Vim configuration (vimrc)](https://github.com/amix/vimrc)
+- GitHub star 数很多的 `.vimrc` 配置：[GitHub - amix/vimrc: The ultimate Vim configuration (vimrc)](https://github.com/amix/vimrc)
+
+- [GitHub - KinnariyaMamaTanha/KinanVim: My personal configuration for neovim on Ubuntu22.04(WSL2)](https://github.com/KinnariyaMamaTanha/KinanVim)
+
+- [GitHub - KinnariyaMamaTanha/KinaVim: My personal configuration of vim.](https://github.com/KinnariyaMamaTanha/KinaVim)
 
 
 ---
@@ -208,32 +215,30 @@ star 数很多的 vimrc 配置
 
 buffer 相关
 
-|       命令       |                        说明                         |
-|:----------------:|:---------------------------------------------------:|
-|    `:e file`     |           打开文件并创建一个新的 buffer。            |
-|      `:ls`       | 查看当前打开的所有 buffer，以及它们的状态和 buffer ID |
-|     `:bnext`     |                 切换到下一个 buffer                 |
-|     `:bprev`     |                 切换到上一个 buffer                 |
-|     `:hide`      |      隐藏 buffer，但不会关闭文件，只是不再显示       |
-| `:bdelete` / `:bd` |                     关闭 buffer                      |
+```bash
+:e file  # 打开文件并创建一个新的 buffer
+:ls      # 查看当前打开的所有 buffer，以及它们的状态和 buffer ID
+:bnext   #  切换到下一个 buffer
+:bprev   #  切换到上一个 buffer
+:hide    #  隐藏 buffer，但不会关闭文件，只是不再显示
+```
 
 ---
 
-- 个人 `~/.vimrc` 文件设置：[.vimrc · Falling Slowly/dotfiles](https://gitee.com/yangsl306/dotfiles/blob/main/.vimrc)
-
-- 相对行号、高亮
-- 缩进设置
-- 打开文件返回到上次的编辑位置
-- 插件安装与设置
-- buffer 设置
-- 删除行尾的空白符
-- 块模式选中文本搜索
-- 块模式选中文本添加括号
+- 个人 `.vimrc` 文件设置：[.vimrc · Falling Slowly/dotfiles](https://gitee.com/yangsl306/dotfiles/blob/main/.vimrc)
+	- 相对行号、高亮
+	- 缩进设置
+	- 打开文件返回到上次的编辑位置
+	- 插件安装与设置
+	- buffer 设置
+	- 删除行尾的空白符
+	- 块模式选中文本搜索
+	- 块模式选中文本添加括号
 
 
 ---
 
-### Vim 插件
+#### 插件
 
 - vim 插件推荐：[Great VIM Plugins in 2023 | hacking C++](https://hackingcpp.com/dev/vim_plugins.html)
 - [markdown-preview.nvim:](https://github.com/iamcco/markdown-preview.nvim)：预览 md 文件插件
@@ -261,15 +266,11 @@ buffer 相关
 
 ---
 
-## neovim
+## Neovim 使用
 
-安装
+### 安装
 
-- 安装二进制版本
-
-```bash
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-```
+- 安装二进制版本：[Releases · neovim/neovim](https://github.com/neovim/neovim/releases/)
 
 - 包管理安装（Ubuntu apt 安装的版本较老，不建议此方式）
 
@@ -288,6 +289,6 @@ make install
 
 ---
 
-设置
+### 配置
 
 >[GitHub - bryant-video/neovim-tutorial](https://github.com/bryant-video/neovim-tutorial)

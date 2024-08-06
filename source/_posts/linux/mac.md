@@ -21,9 +21,12 @@ password:
 
 ## 介绍
 
-Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富...
+- Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富...
 
-明确 Macbook 购买机型：[Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
+- 明确 Macbook 购买机型：
+	- [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
+	- [2024年苹果 MacBook 选购指南(MacBook Air/Pro 的 M123/Pro/Max/Ultra有什么区别，13/14/15/16寸怎么选)](https://www.zhihu.com/tardis/zm/art/378347974?source_id=1003)
+
 
 
 ---
@@ -248,7 +251,19 @@ IINA 相关快捷键：
 
 - 大部分开源命令行工具、程序、库和 GUI 程序（cask）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）
 
-- 加速安装 Homebrew：[安装和使用 Homebrew - 韬秧道](https://blog.tauyoung.top/article/Homebrew/)
+- 安装 Homebrew：
+	- [安装和使用 Homebrew - 韬秧道](https://blog.tauyoung.top/article/Homebrew/)
+	- [homebrew - 清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
+
+```bash
+# 安装
+/bin/bash -c "$(curl -fsSL https://github.com/Homebrew/install/raw/master/install.sh)"
+
+# 交大镜像
+export HOMEBREW_BREW_GIT_REMOTE=https://mirrors.sjtug.sjtu.edu.cn/git/brew.git  
+export HOMEBREW_CORE_GIT_REMOTE=https://mirrors.sjtug.sjtu.edu.cn/git/homebrew-core.git  
+export HOMEBREW_BOTTLE_DOMAIN=https://mirror.sjtu.edu.cn/homebrew-bottles/bottles
+```
 
 - 相关命令：[Homebrew 备忘清单 &  homebrew cheatsheet &  Quick Reference](https://quickref.me/zh-CN/docs/homebrew.html)
 
@@ -389,11 +404,38 @@ menu:
 
 ---
 
+#### Safari 浏览器插件
+
+- 去广告：AdGuard
+- 合并标签页：OneTab
+- 使用 Vim 快捷键操作网页内容：Vimlike
+- 视频倍速：Accelerate
+- 中英文翻译：沉浸式翻译、无官方的 DeepL（有非官方的，不是很好用）、沙拉查词翻译（无官方）
+- 油猴（需收费，有破解版；部分油猴脚本未适配 Safari，导致无法使用）
+- 网络代理：[如何在safari上实现类SwitchyOmega代理切换功能](https://www.youtube.com/watch?v=pAY8pNou9Gk)
+
+```bash
+sudo apachectl start
+```
+
+- B 站相关插件：[\[Safari\]：安装指南 · Issue #679 · BewlyBewly/BewlyBewly · GitHub](https://github.com/BewlyBewly/BewlyBewly/issues/679)
+
+
+---
+
 ### 编程相关
 
 - macOS 版本不同，Homobrew 之前安装的程序有可能会出现不兼容的情况
 
 - Miniconda3 安装：版本需要与芯片类型（如 M1）适配
+
+- 安装性能提升的 NumPy：[Option to install numpy built with Apple's Accelerate BLAS implementation · Issue #253 · conda-forge/numpy-feedstock · GitHub](https://github.com/conda-forge/numpy-feedstock/issues/253)
+	- NumPy、SciPy 和 Matlab 支持 AMX 单元加速：[一次讲透！工科生用Mac，体验如何？\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1YJ4m1M7bD)
+
+```bash
+conda install -c conda-forge numpy "libblas=*=*accelerate"
+conda install numpy "libblas=*=*accelerate"
+```
 
 - Mac 的 gcc 和 g++ 编译器 默认是 clang 的；建议安装 gcc 套件，并设置软链接
 
@@ -511,3 +553,4 @@ export HOMEBREW_MACOS_VERSION=14.5
 - Apple ID 相关问题：此 Apple ID 尚未在 app store 使用（弹出“检查”窗口时，会出现要求完善支付方式信息内容；macOS 11 在检查这步一直无法弹出后面的内容，将版本更新至最新无此问题）
 - 蓝牙耳机连接：长按 Redmi Airdots3 Pro 耳机盒的开关机键；将 Bose qc45 电源键推至右侧一段时间
 - [Word for Mac彻底删除Endnote插件的方法 - 知乎](https://zhuanlan.zhihu.com/p/29321865)
+- Final Cut Pro 软件无法打开 mkv 格式文件（和 PR 一样）

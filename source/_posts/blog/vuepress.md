@@ -1,13 +1,14 @@
 ---
-title: Vuepress 框架
+title: Vuepress、Vitepress 框架
 top: false
 cover: 
 toc: true
 mathjax: true
-summary: Vuepress 框架
-description: Vuepress 框架
+summary: Vuepress、Vitepress 框架
+description: Vuepress、Vitepress 框架
 tags:
   - Vuepress
+  - Vitepress
 categories:
   - 博客
 date: 2023-10-21 09:00:00
@@ -15,14 +16,17 @@ abbrlink: 102123
 password:
 ---
 
-# Vuepress 框架
+# Vuepress、Vitepress 框架
 
 ## 介绍
 
 - 较为简洁的文档 & 博客框架
-- 以下内容主要针对 Vuepress 1.x 版本（2.x 测试效果不太好）
+- Vitepress 框架内容主要针对 Vuepress 1.x 版本（2.x 测试效果不太好）
+- Vitepress 框架与其非常像（项目文件结构及配置；Vitepress 搭建比 Vuepress 简单；故不重复介绍）
 
-- 主题：
+- Vitepress 框架官网：[VitePress - 由 Vite 和 Vue 驱动的静态站点生成器](https://vitepress.dev/zh/)
+
+- Vuepress 框架主题：
 	- [reco 1.x 版本](http://v1.vuepress-reco.recoluan.com/)
 	- [reco 2.x 版本](https://github.com/vuepress-reco/vuepress-theme-reco)（功能偏冗余）
 
@@ -37,7 +41,7 @@ password:
 
 ### 快速搭建
 
-- 快速搭建
+- Vuepress 框架快速搭建
 
 ```bash
 mkdir vuepress-demo && cd $_
@@ -76,14 +80,29 @@ export NODE_OPTIONS=--openssl-legacy-provider
 }
 ```
 
+- Vitepress 框架快速搭建
+
+```bash
+mkdir vitepress-demo && cd $_
+
+# npm 可替换成 yarn、pnpm
+npm add -D vitepress
+
+npx vitepress init    # 初始化 
+
+npm run docs:dev      # 本地预览
+npm run docs:build    # 构建
+npm run docs:preview  # 构建后预览
+```
+
 ---
 
 - 目录结构
 
 ```text
 ├── docs/
-│   ├── .vuepress/
-│   │   ├── config.js   # 配置文件
+│   ├── .vuepress/      # .vitepress/
+│   │   ├── config.js   # 配置文件 config.mjs
 │   └── README.md
 ├── package.json
 ```
@@ -93,14 +112,17 @@ export NODE_OPTIONS=--openssl-legacy-provider
 
 ### 部署
 
-- GitHub Actions 示例
+- GitHub Actions 示例（Vitepress 框架部署时只需将 `.vuepress` 修改为 `.vitepress`）
 
 ```yaml
-name: docs
+name: Vuepress Depoly
 
 on:
   push:
     branches: [main]
+
+permissions:
+  contents: write
 
 jobs:
   docs:
@@ -141,9 +163,9 @@ jobs:
 
 ```js
 module.exports = {
-  title: '',  // 网站标题
-  description: '',  // 网站描述
-  base: 'repo-name',  // 通常为 GitHub repo name
+  title: 'xxx',  // 网站标题
+  description: 'xxx',  // 网站描述
+  base: '/repo-name/',  // 通常为 GitHub repo name
 
   // 主题配置
   themeConfig: {
@@ -186,10 +208,73 @@ module.exports = {
                         {title: 'atomate 安装与使用', path: 'scitoolkits/atomate/atomate-usage'},
                     ]
                 },
-    ]
+    ],
+    ...
   }
 }
 ```
+
+- Vitepress 框架配置（配置文件：`docs/.vitepress/config.js`）：
+
+```js
+import { defineConfig } from 'vitepress'
+
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+  title: "xxx",
+  description: "xx",
+  base: '/repo-name/',
+
+  themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
+
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    },
+
+    footer: {
+      message: '基于 MIT 许可发布',
+      copyright: `版权所有 © 2024-${new Date().getFullYear()}`
+    },
+
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium'
+      }
+    },
+
+    // 导航栏
+    nav: [
+      { text: '首页', link: '/' },
+      { text: '笔记', link: 'scitoolkits/lammps-install' }
+    ],
+
+    // docs 侧边栏配置 含多级子目录示例
+    sidebar: [
+      {
+        text: '科研工具',
+        collapsed: false,
+        items: [
+            {text: 'LAMMPS 安装', link: 'scitoolkits/lammps-install'},
+            {   
+                text: 'atomate',
+                collapsed: false,
+                items: [
+                    {text: 'atomate 安装与使用', link: 'scitoolkits/atomate/atomate-usage'},
+                ]
+            },
+    ],
+    ...
+  }
+}
+```
+
+- Vitepress 与 Vuepress 框架中 sidebar 参数配置差异
+	- text - title, collapsed - collapsable, items - children, link - path
+	- 多级子目录下，Vitepress 框架下不能有 index.md 文件，而 Vuepress 框架允许有
 
 - reco v1.x 版本配置参考：[Vuepress-theme-reco-v1.x 新手指北之Hello烤鸭 | latte and cat](https://blog.latteandcat.cn/blogs/frontend/2023/theme-reco-1.x.html)
 
@@ -199,17 +284,12 @@ module.exports = {
 	- **md 文档的目录侧边栏可自动生成，docs 的侧边栏仍需手动生成，较繁琐**
 
 ```js
-  // ...
-
   // 移动端优化
   head: [
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
   ],
 
-   // ...
-
   themeConfig: {
-    // ...
 
    // md 文档目录侧边栏 右侧
     subSidebar: 'auto',
@@ -239,6 +319,45 @@ module.exports = {
       { text: 'GitHub', link: 'https://github.com/username', icon: 'reco-github' }
     ],
 
+  }
+```
+
+
+---
+
+### 搜索功能
+
+Vuepress 和 Vitepress 框架均支持使用 Algolia DocSearch 搜索文档站点
+
+```js
+// docs/.vuepress/config.js
+module.exports = {
+  themeConfig: {
+    // ...
+    algolia: {
+      appId: 'XXX',
+      apiKey: 'XXX',
+      indexName: 'XXX'
+    },
     // ...
   }
+}
+```
+
+```js
+// docs/.vitepress/config.js
+export default defineConfig({
+  themeConfig: {
+    // ...
+    search: {
+      provider: 'algolia',
+      options: {
+        appId: '...',
+        apiKey: '...',
+        indexName: '...'
+      }
+    },
+    // ...
+  }
+})
 ```

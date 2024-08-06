@@ -21,11 +21,11 @@ password:
 
 ## 介绍
 
-WIP…
+WIP...
 
 ---
 
-参考资料
+### 参考资料
 
 - [关于本书 - Rust语言圣经(Rust Course)](https://course.rs/)
 - [Rusty Book - Rusty Book(锈书)](https://rusty.course.rs/about.html)
@@ -35,6 +35,9 @@ WIP…
 - [Introduction - PyO3 user guide](https://pyo3.rs/)
 
 - [GitHub - mainmatter/100-exercises-to-learn-rust: A self-paced course to learn Rust, one exercise at a time.](https://github.com/mainmatter/100-exercises-to-learn-rust)
+- [GitHub - rust-lang/rustlings: :crab: Small exercises to get you used to reading and writing Rust code!](https://github.com/rust-lang/rustlings)
+
+
 
 ---
 

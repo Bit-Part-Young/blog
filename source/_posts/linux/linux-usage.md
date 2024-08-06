@@ -182,9 +182,12 @@ export PATH=$HOME/bin:$PATH
 
 ### 常用命令
 
-- [Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
+参考：
 
->[Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
+- [Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
+- [Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
+
+---
 
 #### 基本命令
 
@@ -256,23 +259,6 @@ reset # 这个命令是真正的清空
 
 dirname basename
 
-```bash
-${file%.*}  # 删掉最后一个.及其右边的字符串
-${file%%.*}  # 删掉第一个.及其右边的字符串
-${file#.*}  # 删掉第一个.及其右边的字符串
-${file##.*}  # 删掉最后一个.及其右边的字符串
-```
-
-
-
-nl 显示行号
-```bash
-nl file # 显示行号
-nl -n ln file # 行号在荧幕的最左方显示；
-nl -n rn file # 行号在自己栏位的最右方显示，且不加 0 ；
-nl -n rz file # 行号在自己栏位的最右方显示，且加 0 ；
-nl -b a file # 表示不论是否为空行，也同样列出行号
-```
 
 
 ```bash
@@ -346,11 +332,10 @@ ln -s -f .tmux/.tmux.conf
 
 #### curl
 
-- 利用 URL 规则在命令行下工作的文件传输工具。
-
-- 常用参数
+利用 URL 规则在命令行下工作的文件传输工具
 
 ```bash
+# 常用参数
 -o             # 指定保存文件名
 -O             # 保存文件名与远程文件相同
 --progress     # 显示进度条
@@ -360,11 +345,10 @@ ln -s -f .tmux/.tmux.conf
 -I             # 仅获取远程文件的头部信息，而不下载实际内容
 -f             # 请求发生错误时，返回非零的退出状态码，表示请求失败
 -S             # 在发生错误时显示错误信息
-```
 
-- 示例
 
-```bash
+# 示例
+
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 
 # 有趣 curl 命令；输出 ascii live 字符
@@ -378,18 +362,15 @@ curl ascii.live/parrot
 
 #### wget
 
-从网络下载文件。
-
-参数：
+从网络下载文件
 
 ```bash
--P             # 指定保存目录
--O             # 指定保存文件名
-```
+# 参数
+-P         # 指定保存目录
+-O         # 指定保存文件名
 
-示例：
+# 示例
 
-```bash
 wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O install.sh
 
 # wget -O - 将下载的内容输出到标准输出，而非将其保存为文件
@@ -400,14 +381,13 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 
 #### find
 
-- 查找文件
-- 与另外两个命令对比：
-	- `whereis`：查找程序的二进制文件、源代码文件和 man 手册路径
-	- `locate`：通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
+查找文件；与另外两个命令对比：
 
-- 常用参数：
+- `whereis`：查找程序的二进制文件、源代码文件和 man 手册路径
+- `locate`：通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
 
 ```bash
+# 常用参数
 -name          # 按照文件名查找
 -iname         # 按照文件名查找，忽略大小写
 -type          # 文件类型；f 普通文件，d 目录，l 软链接
@@ -418,18 +398,17 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 -iregex        # 正则表达式匹配，忽略大小写
 -exec          # 执行指令
 -ok            # 执行指令，但需确认
-```
 
-示例：
 
-```bash
+# 示例
+
 # 查找 txt 或 pdf 文件
 find . -type f -name "*.txt" -or -name "*.pdf"
 
 # 查找 tar.gz 文件并删除
 find . -type f -name "*.tar.gz" -exec rm {} +
 
-# 找到含下划线的 python 脚本，并将其换成连字符输出
+# 找到含下划线的 Python 脚本，并将其换成连字符输出
 fes=$(find . -maxdepth 2 -type f -name "*_*.py"); for f in ${fes}; do echo ${f//_/-}; done
 ```
 
@@ -457,7 +436,6 @@ a              # 在行后添加文本
 i              # 在行前插入文本
 c              # 替换行
 ```
-
 
 示例：
 
@@ -495,17 +473,6 @@ sed '1c\content' file  # 替换第 1 行内容
 
 # 组合多个命令
 sed -e '1d' -e '/pattern/d' file  # 删除多行
-```
-
-
-sed 引入变量：[sed引入变量的几种方法\_sed传入变量-CSDN博客](https://blog.csdn.net/qq_35445255/article/details/113750720)
-
-```bash
-# 方法 1
-sed "2s/subs/$i/" file
-
-#  方式 2
-sed '2s/subs/'"$i"'/' file
 ```
 
 
@@ -613,41 +580,6 @@ awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # �
 
 ---
 
-#### 大括号处理字符串
-
->[Bash笔记](https://zhuanlan.zhihu.com/p/524196855)
-
-大括号 `{}` 处理字符串：主要利用 Bash 的参数展开（parameter expansion）功能来实现
-
-```bash
-# 基于模式匹配进行字符串剪裁
-var="sample.bk.tar.gz"
-# 常用于删除字符串前缀
-${var#*.}       # 删除字符串开头部分，最短匹配；输出 "bk.tar.gz"
-${var##*.}      # 删除字符串开头部分，最长匹配；输出 "gz"
-# 常用于删除字符串后缀
-${var%.*}       # 删除字符串末尾部分，最短匹配；输出 "sample.bk.tar"
-${var%%.*}      # 删除字符串末尾部分，最长匹配；输出 "sample"
-
-# 按字符位置截取字符串
-${var:N:M}      # 从第 N 个位置开始，截取 M 个字符
-
-# 字符串替换
-${var/a/b}      # 把变量中的第一个 a 替换成 b
-${var//a/b}     # 把变量中的所有 a 替换成 b
-
-# 生成字符串列表
-echo beg{i,a,u}n  # 输出 begin began begun
-echo {0..5}       # 等价于 seq 0 5
-echo {00..8..2}   # 00 02 04 06 08
-
-#复制文件夹中的多个文件到当前路径；可结合通配符使用
-cp /path/{file1,file2,file3,file4} .
-```
-
-
----
-
 #### 其他命令
 
 - cat
@@ -657,6 +589,7 @@ cat -          # 读取标准输入
 # 将标准输入的内容和文件内容一并显示
 echo '#' | cat - test.log
 
+# 参数
 -n             # 附加行号
 -b             # 给非空行附加行号
 -s             # 压缩连续的空行到一行
@@ -669,12 +602,10 @@ du -sh file/folder
 du -sh file/folder | sort -h  # 按大小排序
 ```
 
----
-
 - dirs：显示目录堆栈，按照最近访问的目录排序（ohmyzsh 有关 dirs 的 alias 是 `d`）
-常用参数：
 
 ```bash
+# 常用参数
 -l             # 展开 ~
 -p             # 每个目录按行显示
 -v             # 每个目录按行显示并进行编号
@@ -691,7 +622,6 @@ find . -name *.tmp | xargs rm -f
 echo "a b c d" | xargs -n 2 echo
 ```
 
-
 - tee：从标准输入读取数据并重定向到标准输出和文件（即输出到屏幕上，也保存到文件中，可以多个文件）
 
 ```bash
@@ -701,21 +631,18 @@ command | tee file
 -i             # 忽略中断信号
 ```
 
-- nohup：全称 “no hang up”。允许在用户注销或者断开终端连接之后，仍然运行后台的程序（或直接在命令后添加 `&`，使程序进入后台运行）
+- nohup：全称 no hang up。允许在用户注销或者断开终端连接之后，仍然运行后台的程序（或直接在命令后添加 `&`，使程序进入后台运行）
 
 ```bash
 nohup command &
 nohup command > output.log &
 ```
 
----
-
 - paste: 可以用来进行多个（csv）文件之间的列合并
 
 ```bash
 paste -d' ' file1 file2  # 以空格为间隔符来进行列合并文件
 ```
-
 
 - kill：杀死进程
 
@@ -729,7 +656,21 @@ kill -9 PID  # 发送强制终止信号给进程
 column -s, -t data.csv  # 指定分隔符格式化（表格形式）输出
 ```
 
-- 命令 `$_`：保存前一个命令的最后一个参数
+- nl：显示行号
+
+```bash
+nl file         # 显示行号
+nl -n ln file   # 行号在荧幕的最左方显示；
+nl -n rn file   # 行号在自己栏位的最右方显示，且不加 0 ；
+nl -n rz file   # 行号在自己栏位的最右方显示，且加 0 ；
+nl -b a file    # 表示不论是否为空行，也同样列出行号
+```
+
+- 参数 `$_`：保存前一个命令的最后一个参数
+
+```bash
+mkdir directory && cd $_
+```
 
 - hostname：输出主机名
 
@@ -768,17 +709,17 @@ echo -n '123456' | wc -c
 
 ---
 
-### tmux
+### Tmux
 
-tmux 配置：[GitHub - gpakosz/.tmux: 🇫🇷 Oh my tmux! My self-contained, pretty & versatile tmux configuration made with ❤️](https://github.com/gpakosz/.tmux)
+参考资料：
 
->[Tmux 配置：打造最适合自己的终端复用工具 - zuorn - 博客园](https://www.cnblogs.com/zuoruining/p/11074367.html)
-
->[Tmux 使用教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/10/tmux.html)
-
->[tmux + oh-my-tmux使用指北](https://ixjx.github.io/2020-04-14/tmux-+-oh-my-tmux%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/)
+- [Tmux 配置：打造最适合自己的终端复用工具 - zuorn - 博客园](https://www.cnblogs.com/zuoruining/p/11074367.html)
+- [Tmux 使用教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/10/tmux.html)
+- [tmux + oh-my-tmux使用指北](https://ixjx.github.io/2020-04-14/tmux-+-oh-my-tmux%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/)
+- tmux 配置：[GitHub - gpakosz/.tmux: 🇫🇷 Oh my tmux! My self-contained, pretty & versatile tmux configuration made with ❤️](https://github.com/gpakosz/.tmux)
 
 tmux session 管理：
+
 - [GitHub - tmux-python/tmuxp: 🖥️ Session manager for tmux, build on libtmux.](https://github.com/tmux-python/tmuxp)
 - [GitHub - tmuxinator/tmuxinator: Manage complex tmux sessions easily](https://github.com/tmuxinator/tmuxinator)
 
@@ -841,8 +782,6 @@ prefix + s       # 可视化 session
 prefix + %       # 
 prefix + "       # 
 ```
-
-
 
 
 

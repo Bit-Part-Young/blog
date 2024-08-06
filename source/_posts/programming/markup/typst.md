@@ -44,6 +44,8 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 
 - [ ] 数学公式中的两个及以上字符如何使其斜体
 
+Typst Logo：[fenjalien/Typst Logo](https://gist.github.com/fenjalien/1463a19ba2b91d061ed35e295494e0b3)
+
 
 ---
 
@@ -86,10 +88,14 @@ Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://git
 - VSCode 插件：
 	- typst-lsp：具有语言服务器 + 代码格式化（不再继承）等功能
 	- typst-preview：实时编译预览
+
 - 代码格式化：
 	- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果感觉一般）
 	- [GitHub - Enter-tainer/typstyle: Beautiful and reliable typst code formatter](https://github.com/Enter-tainer/typstyle)
 	- [GitHub - antonWetzel/prettypst: Formatter for Typst](https://github.com/antonWetzel/prettypst)
+
+- Jupyter Notebook 转 Typst pdf：[GitHub - 8LWXpg/jupyter2typst: Jupyter to Typst converter with template support](https://github.com/8LWXpg/jupyter2typst)
+
 
 
 ---
@@ -567,12 +573,13 @@ typst-upgrade -d .           # dry run
 
 ---
 
-## 相关 project
+## 模板
 
 - 简历 CV
 	- [GitHub - gaoachao/uniquecv-typst: A simple resume template written in Typst](https://github.com/gaoachao/uniquecv-typst)
 	- [GitHub - OrangeX4/Chinese-Resume-in-Typst: 使用 Typst 编写的中文简历, 语法简洁, 样式美观, 开箱即用, 可选是否显示照片](https://github.com/OrangeX4/Chinese-Resume-in-Typst)
 	- [GitHub - memset0/my-resume](https://github.com/memset0/my-resume)（repo 现为 private 状态）
+	- [GitHub - pavelzw/moderner-cv: moderncv in typst](https://github.com/pavelzw/moderner-cv)
 
 - 将 typst 内容渲染成网页：
 	- [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
@@ -592,9 +599,14 @@ typst-upgrade -d .           # dry run
 	- [GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
 
 
-论文海报 poster：[Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
+- 论文海报 poster：[Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
 
-用 typst 创建 online books：[GitHub - Myriad-Dreamin/shiroa: shiroa is a simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/shiroa)
+- 用 Typst 创建 online books：[GitHub - Myriad-Dreamin/shiroa: shiroa is a simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/shiroa)
+
+- 爱思唯尔期刊模板
+	- 预印版：[GitHub - maucejo/elsearticle](https://github.com/maucejo/elsearticle)、[elsarticle preprint - Typst.app](https://typst.app/project/rFAXkf0lxIp1Paj1l-gKTr)
+	- 正式出版：[elsarticle formal - Typst.app](https://typst.app/project/rrn_CcZC2mSFvKWd9vuVgT)
+
 
 
 ---

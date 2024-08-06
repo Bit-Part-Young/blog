@@ -832,6 +832,35 @@ Afternoon& &used&used\\
 
 页边距：geometry 宏包
 
+通过 geometry 宏包设置的纸张大小是输出 PDF 文件的真实大小，而在文档类选项中设置的参数实际上只影响输出区域。
+
+ LaTeX 默认将页面内容在垂直方向分散对齐。
+
+```latex
+% geometry-settings 多以 key = value 的形式组织
+% 方式 1
+\usepackage{geometry}
+\geometry{geometry-settings}
+% 方式 2
+\usepackage[geometry-settings]{geometry}
+
+% Microsoft Word 习惯的页面设定：A4 纸张，上下边距 1 英寸，左右边距 1.25英寸
+% 方式 1
+\geometry{a4paper,left=1.25in,right=1.25in,top=1in,bottom=1in}
+% 方式 2
+\geometry{a4paper,hmargin=1.25in,vmargin=1in}
+
+% 书籍等双面文档，习惯上奇数页右边、偶数页左边留出较大的页边距，而靠近书脊一侧的奇数页左边、偶数页右边页边距较小
+\geometry{inner=1in,outer=1.25in}
+
+\raggedbottom  % 页面在垂直方向向顶部对齐
+\flushbottom   % 页面在垂直方向分散对齐
+```
+
+
+
+
+
 页眉页脚：fancyhdr 宏包，`\pagestyle`，将页眉页脚分为左中右三个部分，页眉页脚处的横线粗细可以定义，默认页眉为 0.4pt、页脚为 0pt
 
 页码：`\pagenumbering` 命令，有 arabic，\[Rr\]oman，\[Aa\]lph 五种页码形式
@@ -840,15 +869,17 @@ Afternoon& &used&used\\
 % 页眉页脚设置
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-    \fancyhf{} 
-    \lhead{}
+    \fancyhf{}  % 清空页眉页脚的设置
+	\fancyhead[position]{}  % 设置页眉
+	\fancyfoot[position]{}  % 设置页脚
+    \lhead{}  % 分别设置页眉左中右内容
     \chead{}
     \rhead{}
-    \lfoot{}
+    \lfoot{}  % 分别设置页脚左中右内容
     \cfoot{\thepage}
     \rfoot{}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}  % 修改页眉横线宽度
+\renewcommand{\footrulewidth}{0pt}    % 去掉页脚横线
 ```
 
 
@@ -1271,6 +1302,16 @@ tocbibind     % 支持将目录、参考文献、索引本身写入目录项
 37$\,^{\circ}\mathrm{C}$ % 摄氏度
 ```
 
+LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段不缩进（和 Typst 一样）；ctex 宏包和文档类默认按照中文习惯保持标题后第一段的首行缩进
+
+```latex
+\textgreat  \textless  % 大于号，小于号
+
+% 弹性长度
+12pt plus 2pt minus 3pt % 表示基础长度为 12pt，可以伸展到 14pt，也可以收缩到 9pt
+
+\\[6pt]  \\*[6pt]  % 在段落内的两行之间增加垂直间距
+```
 
 
 ---
@@ -1383,6 +1424,9 @@ tocbibind     % 支持将目录、参考文献、索引本身写入目录项
 - [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
 
 - [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
+
+- 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
+
 
 
 ---

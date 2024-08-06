@@ -97,40 +97,19 @@ from va_elastic_prop_plot import elastic_prop_plot
 
 ---
 
-在 matplolib 中使用 latex
->[Use latex with matplotlib on HPCs where you can't sudo! · GitHub](https://gist.github.com/chiang-yuan/62fbcaae06bf77f793a8f9b5aed1ba70)
-
-
----
-
 ### 参考资料
 
->[GitHub - lijin-THU/notes-python: 中文 Python 笔记](https://github.com/lijin-THU/notes-python)
+- [GitHub - lijin-THU/notes-python: 中文 Python 笔记](https://github.com/lijin-THU/notes-python)
 
+- Python 速查表
+	- [Python 3 备忘清单 & python cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/python.html)
+	- [GitHub - gto76/python-cheatsheet: Comprehensive Python Cheatsheet](https://github.com/gto76/python-cheatsheet)
 
-python 速查表
->[Python 3 备忘清单 & python cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/python.html)
->
->[GitHub - gto76/python-cheatsheet: Comprehensive Python Cheatsheet](https://github.com/gto76/python-cheatsheet)
+- [GitHub - piglei/one-python-craftsman: 来自一位 Pythonista 的编程经验分享，内容涵盖编码技巧、最佳实践与思维模式等方面。](https://github.com/piglei/one-python-craftsman)
 
+- 《编程不难》书籍源码：[GitHub - Visualize-ML/Book1\_Python-For-Beginners: Book\_1](https://github.com/Visualize-ML/Book1_Python-For-Beginners)
 
->[GitHub - piglei/one-python-craftsman: 来自一位 Pythonista 的编程经验分享，内容涵盖编码技巧、最佳实践与思维模式等方面。](https://github.com/piglei/one-python-craftsman)
-
-
-《编程不难》书籍源码
->[GitHub - Visualize-ML/Book1\_Python-For-Beginners: Book\_1\_《编程不难》 | 鸢尾花书：从加减乘除到机器学习；已文件还会经过至少两轮修改，改动会很大，大家注意下载最新版本。请多提意见，谢谢](https://github.com/Visualize-ML/Book1_Python-For-Beginners)
-
-
-multiprocess 多进程
->[（数据科学学习手札70）面向数据科学的Python多进程简介及应用 - 费弗里 - 博客园](https://www.cnblogs.com/feffery/p/11621076.html)
-
-
-进度条
->[（数据科学学习手札91）在Python中妥善使用进度条 - 费弗里 - 博客园](https://www.cnblogs.com/feffery/p/13392024.html)
-
-
-Python tips and tools
->[GitHub - pablovegan/Python-tips-tools: Short Python tips and tools talk for the Superconducting Qubit Technology school at Benasque 2023.](https://github.com/pablovegan/Python-tips-tools)
+- Python tips and tools：[GitHub - pablovegan/Python-tips-tools: Short Python tips and tools talk for the Superconducting Qubit Technology school at Benasque 2023.](https://github.com/pablovegan/Python-tips-tools)
 
 
 
@@ -184,37 +163,37 @@ print(MyClass.get_counter())  # 输出: 2
 
 ## 安装
 
-建议使用 miniconda 安装
+建议使用 Miniconda3 安装
 
 
 ---
 
 ## 运行
 
-通过命令行运行 python 脚本
+- 在终端运行 Python 脚本
+
 ```bash
-python code.py
+python script.py
 ```
 
+- 在终端中直接执行 Python 代码，用于快速测试一些代码片段或进行简单的计算
 
-在命令行中直接执行 python 代码，用于快速测试一些代码片段或进行简单的计算
 ```bash
 python -c 'import matplotlib; print(matplotlib.matplotlib_fname())'
 ```
 
-
-查看 python 环境变量
-```bash
-python --help-env
-```
-
-
-`python -m` - 在命令行中使用 Python 模块（通常用于运行那些设计为可以作为脚本执行的模块，如 `venv`、`pip` 等）
+- 在终端中使用 Python 模块：`python -m`，通常用于运行可以作为脚本执行的模块，如 `venv`、`pip` 等
 
 ```bash
 python -m venv venv
 
 python -m pip install <package>
+```
+
+- 查看 python 环境变量
+
+```bash
+python --help-env
 ```
 
 
@@ -236,39 +215,29 @@ python -m pip install <package>
 ### 变量
 
 - 动态类型，不需要规定类型（可以通过 `变量名: 类型 = 内容` 来进行类型标注）
-
-
-
-临时变量 `_`
-
----
-
-#### 变量命名规则
-
-全大写一般表示常量
+- 变量命名规则：全大写一般表示常量
+- 临时变量：`_`
 
 
 ---
 
 ### 数据类型
 
----
-
 #### 字符串
 
-- 拼接：直接将字符串 “ 相加 ”
-- “…”.upper()、“…”.lower()：转为全大写、全小写
-- “…”.title()：单词首字母大写
-- “…”.strip()：删除字符串首尾空白（包含空格和制表符）
-- “…”.lstrip()、“…”.rstrip()：删除左、右端空白
-- “…”.split(c)：根据字符 c 来拆分字符串得到列表，默认拆分空白
+```python
+str1 + str2    # 字符串拼接
+str.upper()    # 转为大写
+str.lower()    # 转为小写
+str.title()    # 首字母大些
+str.lstrip()   # 删除左侧空白
+str.rstrip()   # 删除右侧空白
+str.strip()    # 去除字符串两端指定字符（默认是空格）
+str.split(c)   # 根据字符 c 拆分字符串得到列表，默认空白
+```
 
 
-`str.strip()`：用于去除字符串两端指定字符（默认是空格）的函数
-
----
-
-##### f-string
+- f-string
 
 - 格式化（在填入内容后面加冒号 f“…{ 表达式 : 格式 }…”）
     - 宽度填充：:[ 填充字符 ][ 对齐方式 ][ 宽度 ]，< 左对齐，> 右对齐，^ 居中
@@ -355,7 +324,7 @@ sh_cmd = f"grep -m 1 Loop log.lammps | awk '{{print $9}}'"
 
 #### 字典
 
-- 存储键值对，也是大括号括起来，不过逗号分隔的是键值对 {key: value, …}
+- 存储键值对，也是大括号括起来，不过逗号分隔的是键值对 {key: value,}
 - {} 是空字典而不是空集合
 - 通过 d[key] 来访问字典中 key 对应的值，可以读取、修改
 - 添加键值对可以直接通过 d[key] = value 来进行

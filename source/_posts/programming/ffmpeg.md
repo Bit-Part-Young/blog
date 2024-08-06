@@ -12,7 +12,6 @@ tags:
   - FFmpeg
 categories:
   - Linux
-  - 编程
 date: 2024-03-24 14:00:00
 abbrlink: 243243
 password:
@@ -36,20 +35,36 @@ password:
 ### 视频相关
 
 ```bash
-# 截取片段
-ffmpeg  -i input.mp4 -vcodec copy -acodec copy -ss 00:00:00 -to 00:00:05 output.mp4 -y
+# 截取视频片段
+# 时间格式：HH:MM:SS 或 秒数
+ffmpeg -i input.* -ss START_TIME -to END_TIME -c copy output.*
 
 # 分离视频流
 ffmpeg -i input.mp4 -c:v copy -an output.mp4
 
-# 分离音频流
-ffmpeg -i input.mp4 -vn -y -acodec copy output.aac  # 或 m4a
+# 分离音频流 aac m4a
+ffmpeg -i input.mp4 -vn -y -acodec copy output.aac
 
 # 水平裁剪视频两边空白
 x=150; ffmpeg -i input.avi -filter:v "crop=out_w=in_w-2*${x}:out_h=in_h:x=${x}" output.avi
 
 # 横向拼接两个视频
 ffmpeg -i input1.avi -i input2.avi -filter_complex "[0:v][1:v]hstack=inputs=2[v]" -map "[v]" output.avi
+
+
+# 多个视频文件合并
+
+# 情况 1：使用 Concat 协议（适用于格式完全相同的视频）
+# 创建一个文本文件：列出所有要合并的视频文件；文件路径前加 file
+file 'file1.mkv'
+file 'file2.mkv'
+file 'file3.mkv'
+
+ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mkv
+
+# 情况 2：使用 Concat 滤镜（适用于需要重新编码的情况）
+# 采用 libx264 视频编码器和 aac 音频编码器
+ffmpeg -i "concat:input1.*|input2.*" -c:v libx264 -crf 23 -preset fast -c:a aac -b:a 192k output.mkv
 ```
 
 

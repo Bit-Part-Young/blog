@@ -1,13 +1,13 @@
 ---
-title: Matplotlib
+title: Matplotlib 使用
 top: false
 pin: false
 cover: 
 toc: true
 mathjax: true
 math: true
-summary: Matplotlib
-description: Matplotlib
+summary: Matplotlib 使用
+description: Matplotlib 使用
 tags:
   - Matplotlib
 categories:
@@ -18,9 +18,21 @@ abbrlink: 404245
 password:
 ---
 
-# Matplotlib
+# Matplotlib 使用
 
 ## 介绍
+
+WIP...
+
+---
+
+### 参考资料
+
+- [官方 cheatsheet](https://matplotlib.org/cheatsheets/)
+- Matplotlib Tutorial：[GitHub - rougier/matplotlib-tutorial: Matplotlib tutorial for beginner](https://github.com/rougier/matplotlib-tutorial)
+- 精美科研绘图示例：[Veusz 2D Examples](https://veusz.github.io/examples/)
+- 在 Matplolib 中使用 LaTeX：[Use latex with matplotlib on HPCs where you can't sudo! · GitHub](https://gist.github.com/chiang-yuan/62fbcaae06bf77f793a8f9b5aed1ba70)
+
 
 matplotlib mplstyle 写法
 
@@ -42,12 +54,6 @@ ax = fig.add_subplot()  # 返回 Axes object
 # 填充
 ax.fill_between()
 ```
-
----
-
-- [官方 cheatsheet](https://matplotlib.org/cheatsheets/)
-- matplotlib tutorial：[GitHub - rougier/matplotlib-tutorial: Matplotlib tutorial for beginner](https://github.com/rougier/matplotlib-tutorial)
-- 精美科研绘图示例：[Veusz 2D Examples](https://veusz.github.io/examples/)
 
 
 matplotlib 图中的所有元素

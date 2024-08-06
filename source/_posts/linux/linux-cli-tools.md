@@ -273,6 +273,17 @@ cat data.json | jq '.user.name'  # 获取特定键值
 ```
 
 
+JSON、YAML、TOML、HCL 格式之间互相转换：[yj](https://github.com/sclevine/yj)
+
+```bash
+brew install yj          # macOS 安装
+
+yj -jy < package.json    # JSON 转 YAML
+yj -yj < deploy.yml      # YAML 转 JSON
+yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
+```
+
+
 ---
 
 ## 其他命令行工具
