@@ -160,3 +160,5 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 - 老电脑绕过 TPM 和 CPU 兼容性升级到 Win11：去官网下载对应版本的 Win11 的 ISO 镜像文件，之后克隆 [GitHub - AveYo/MediaCreationTool.bat](https://github.com/AveYo/MediaCreationTool.bat) repo 或下载压缩包，（管理员）运行其中的 `Skip_TPM_Check_on_Dynamic_Update.cmd` 文件，耐心等待更新升级
 
 - [如何关闭Win10搜索栏内的系统广告](https://www.zhihu.com/question/569384371/answer/2790041626)（建议使用方法二）
+
+- [解决Windows删除文件或文件夹时的【该项目不在XXX中。请确认该项目的位置，然后重试。】问题\_该项目不在d: 请确认该项目位置,然后重试-CSDN博客](https://blog.csdn.net/zgnckzn/article/details/109764025)

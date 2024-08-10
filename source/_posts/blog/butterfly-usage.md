@@ -1,21 +1,22 @@
 ---
-title: butterfly 主题使用
+title: Hexo 框架 Butterfly 主题使用
 top: false
 cover: 
 toc: true
 mathjax: true
-summary: butterfly 主题使用
-description: butterfly 主题使用
+summary: Hexo 框架 Butterfly 主题使用
+description: Hexo 框架 Butterfly 主题使用
 tags:
-  - butterfly
+  - Butterfly
+  - Hexo
 categories: 
-  - hexo
+  - 博客
 date: 2022-08-04 16:20:00
-abbrlink: 22084
+abbrlink: 220845
 password:
 ---
 
-# butterfly 主题使用
+# Hexo 框架 Butterfly 主题使用
 
 ## 外挂标签
 

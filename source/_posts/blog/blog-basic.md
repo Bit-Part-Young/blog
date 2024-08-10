@@ -78,7 +78,7 @@ password:
 	- Cloudflare 会提供一对新的 DNS 服务器地址
 	- 登录到你的域名注册商，导航至 DNS 管理页面，将现有的 DNS 服务器地址更换为 Cloudflare 提供的地址，保存更改
 
-- 等待 DNS 更改生效：DNS 更改可能需要一些时间（1 小时到 48 小时，通常小于 1 小时）来全球生效
+- 等待 DNS 更改生效：DNS 更改可能需要一些时间（1 小时到 48 小时，通常小于 1 小时，10 分钟以内）来全球生效
 
 - 调整 Cloudflare SSL/TLS mode 为 `Full(strict)
 
@@ -90,20 +90,17 @@ password:
 
 >[使用 VitePress “重写” 网道（WangDoc）TypeScript 教程 · Issue #4837 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/4837)
 
-在国内并不能无痛访问 vercel.app 网站
+在国内并不能无痛访问 vercel.app 网站；Free 计划只能 connect 5 个 Git Repository（可创建的 project 数目多于 5 个，但也有数量限制）
 
 注册/登录 Cloudflare 账号，然后：
 
-1. 准备一个域名，该域名需要使用 Cloudflare 提供的 DNS
-
-2. Vercel 项目（假如为 xxx） - 设置 - 域名配置，新增域名
+- 准备一个域名，该域名需要使用 Cloudflare 提供的 DNS
+- Vercel 项目（假如为 xxx） - 设置 - 域名配置，新增域名
 	- 若已有域名如 seekanotherland.xyz，可以新增的域名为 xxx.seekanotherland.xyz
 	- 可以将该域名重定向到 xxx.vercel.app，也可以不重定向（建议不重定向）
 
-3. 按照 Vercel 的要求，为域名添加 CNAME 记录
+- 按照 Vercel 的要求，为域名添加 CNAME 记录
 	- 在 Cloudflare 面板中的 DNS 中添加记录，cname.vercel-dns.com 对应的 IPV4 地址为 76.76.21.21
-
-4. 调整 Cloudflare SSL/TLS mode 为 `Full(strict)
 
 
 
@@ -232,4 +229,4 @@ registry=https://registry.npmmirror.com
 
 ## 其他
 
-[搭建 CDN | Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
+[搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)

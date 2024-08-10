@@ -12,7 +12,6 @@ tags:
   - Git
 categories:
   - 编程
-  - Linux
 date: 2023-09-18 09:00:00
 abbrlink: 242349
 password:
