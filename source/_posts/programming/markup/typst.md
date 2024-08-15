@@ -96,6 +96,9 @@ Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://git
 
 - Jupyter Notebook 转 Typst pdf：[GitHub - 8LWXpg/jupyter2typst: Jupyter to Typst converter with template support](https://github.com/8LWXpg/jupyter2typst)
 
+- 将文献标题超链接化：[GitHub - alexanderkoller/typst-blinky: Creates bibliographies in Typst with URL/DOI links](https://github.com/alexanderkoller/typst-blinky)
+
+- 数学公式 OCR：[GitHub - ParaN3xus/typress: Typst Mathematical Expression OCR](https://github.com/ParaN3xus/typress)
 
 
 ---
@@ -580,6 +583,8 @@ typst-upgrade -d .           # dry run
 	- [GitHub - OrangeX4/Chinese-Resume-in-Typst: 使用 Typst 编写的中文简历, 语法简洁, 样式美观, 开箱即用, 可选是否显示照片](https://github.com/OrangeX4/Chinese-Resume-in-Typst)
 	- [GitHub - memset0/my-resume](https://github.com/memset0/my-resume)（repo 现为 private 状态）
 	- [GitHub - pavelzw/moderner-cv: moderncv in typst](https://github.com/pavelzw/moderner-cv)
+	- [GitHub - stuxf/basic-typst-resume-template: A basic resume for typst, designed to work well with ATS systems.](https://github.com/stuxf/basic-typst-resume-template)
+	- [GitHub - skyzh/chicv: A minimal and fully-customizable CV template for Typst.](https://github.com/skyzh/chicv)
 
 - 将 typst 内容渲染成网页：
 	- [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)

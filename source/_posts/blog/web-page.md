@@ -65,6 +65,7 @@ password:
 - [gallery-template · GitHub Topics · GitHub](https://github.com/topics/gallery-template)
 
 - 照片和视频自托管：[GitHub - immich-app/immich: High performance self-hosted photo and video management solution.](https://github.com/immich-app/immich)
+	- [ ] 如何 host ？
 
 
 ---

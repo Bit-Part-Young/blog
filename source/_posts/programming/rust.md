@@ -63,15 +63,6 @@ export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 >[Rust Toolchain 反向代理使用帮助 — USTC Mirror Help  文档](https://mirrors.ustc.edu.cn/help/rust-static.html)
 
 
-rust-binstall 安装
-
-```bash
-curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-
-cargo binstall ripgrep
-```
-
-
 ```bash
 # 运行简单脚本
 rustc *.rs
@@ -81,24 +72,24 @@ rustc *.rs
 cargo 相关命令
 
 ```bash
-cargo install <package>  # 安装 package
-cargo install <package> --force  # 若有新版本，覆盖旧版本
+cargo --list   # 查看所有安装的命令
+# 安装 package （指 Rust binary）
+cargo install <package>
+# 若有新版本，覆盖旧版本
+cargo install <package> --force
 # --locked 确保安装时依赖项的版本与在 Cargo.lock 文件中的版本完全一致
 cargo install --locked <package>
-
+# 列出所有安装的 packages 及对应的版本
+cargo install --list
 
 cargo add <lib>
 
 rustup update  # 更新 Rust 工具链
 ```
 
-cargo 缓存管理工具：cargo-cache
-
 ---
 
-修改 Rust 的下载镜像为国内的镜像地址
-
-创建或编辑 `$HOME/.cargo/config.toml`
+修改 Rust 的下载镜像为国内的镜像地址：创建或编辑 `$HOME/.cargo/config.toml`
 
 ```toml
 [source.crates-io]
@@ -116,9 +107,6 @@ registry = "sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/"
 - [清华大学镜像 - crates.io-index.git](https://mirrors.tuna.tsinghua.edu.cn/help/crates.io-index.git/)、[Rust Crates 源使用帮助 — USTC Mirror Help  文档](https://mirrors.ustc.edu.cn/help/crates.io-index.html)
 - cargo 1.68 版本开始支持稀疏索引：不再需要完整克隆 crates.io-index 仓库，可以加快获取包的速度。
 
-
-
-Rust 相关 VSCode 插件：rust-analyzer
 
 ---
 
@@ -185,14 +173,40 @@ geometry = { path = "crates/geometry" }
 项目依赖
 
 
+---
+
+### 工具
+
+- Rust 相关 VSCode 插件：rust-analyzer
+
+- [cargo-update](https://github.com/nabijaczleweli/cargo-update)：检查和更新 package 的 cargo 子命令
+
+```bash
+cargo install cargo-update  # 安装
+
+cargo install-update -l     # 列出所有安装的 packages 
+cargo install-update -a     # 检查并更新所有安装的 packages 
+```
+
+- cargo-cache：cargo 缓存管理工具
+
+- rust-binstall
+
+```bash
+# 安装
+curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+cargo binstall ripgrep
+```
+
 
 
 
 ---
 
-### 语法
+## 语法
 
-#### 变量
+### 变量
 
 ```rust
 let x = 5;
@@ -210,7 +224,7 @@ const
 
 ---
 
-#### 基本类型
+### 基本类型
 
 Rust 编译器可以根据变量的值和上下文中的使用方式来自动推导出变量的类型
 

@@ -21,7 +21,7 @@ password:
 
 ## 介绍
 
-- Macbook Air 很轻便；续航很强；音响很好；触控板功能丰富...
+- Macbook Air 轻便；续航强；音响音质好；触控板功能丰富...
 
 - 明确 Macbook 购买机型：
 	- [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
@@ -50,18 +50,24 @@ password:
 ### 基本设置
 
 - 不同的 macOS 版本对应的操作设置会有不同，建议在官网上查询
-- Mac 中的大部分程序的**设置快捷键**都是 `command + ,`
-- 正常的鼠标接入 Mac，滚轮控制的上下滚动与 Windows 是相反的
+- MacBook 中的大部分程序的**设置快捷键**都是 `command + ,`
+- MacBook 接入鼠标 ，滚轮控制的上下滚动与 Windows 相反（可借助 Mos 软件使其保持一致）
 - macOS 对大小写不敏感，Linux 和 Windows 对大小写敏感
 - [修改用户名](https://support.apple.com/zh-cn/102547)：需创建另一个用户，登录该用户，在其系统设置中修改原用户名
 - [删除用户](https://support.apple.com/zh-cn/guide/mac-help/mchlp1557/mac)
 - [Apple ID 申请](https://support.apple.com/zh-cn/108647)
 - 英文大小写转换：点按「中/英」键即可切换中英文；切换成大写，长按两秒「中英」键，直至亮灯；按住 shift 键的同时输入字母
-- 程序坞（dock）相关：双手指点击触控板的软件 logo，可将软件 logo 在程序坞中保留或移除，进而从 dock 中移除一些不常用的软件 logo
-- 小组件设置：点击菜单栏右上角的时钟，会有其他的小组件，可移除，保留“每日使用情况”小组件
+- 程序坞（Dock）相关：双手指点击触控板的软件 logo，可将软件 logo 在程序坞中保留或移除，进而从 Dock 中移除一些不常用的软件 logo
+- 小组件设置：点击菜单栏右上角的时钟，会有其他的小组件，可移除，保留 “每日使用情况” 小组件
 - 默认终端 Theme 设置：设置 - Profile - Pro Theme，点击下方的默认按钮
-- Mac 合盖不休眠：连接电源、键鼠即可
-- 程序坞呼出时长设置
+- MacBook 合盖不休眠：系统设置 - 电池 - 勾选 “使用电源适配器供电且显示器关闭时，防止自动进入睡”
+
+- 接入 Windows 键盘，进行修饰键的键位重映射：
+	- Alt（相当于 option 键）和 Win 键（相当于 command 键）互换，Fn 和 Ctrl 键无法互换（联想 USB 薄膜键盘）；
+	- [Mac电脑 + Windows机械键盘？功能键映射了解一下说起 Mac 电脑最独特的地方的话，就是它的操作系统了。mac - 掘金](https://juejin.cn/post/6948294239960694797)；
+	- [在 Mac 上更改修饰键的行为 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchlp1011/mac)
+
+- 程序坞呼出时长设置：
 
 ```bash
 # 程序坞立即呼出
@@ -71,7 +77,7 @@ defaults write com.apple.dock "autohide-delay" -float "0" && killall Dock
 defaults delete com.apple.dock "autohide-delay" && killall Dock​
 ```
 
-- [ ] 修改 Mac 邮箱
+- [ ] 修改 MacBook 邮箱
 
 ---
 
@@ -81,14 +87,14 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - macOS 版本升级到最新：系统设置 - 通用 - 软件更新
 - 修改电脑名称：系统设置 - 通用 - 关于本机
 - 文本字体：系统设置 - 文本字体（使用 `MesloLGM Nerd Font`）
-- 菜单栏设置：系统设置 - 控制中心 - 选择模块应用“不在菜单栏显示”
+- 菜单栏设置：系统设置 - 控制中心 - 选择模块应用 “不在菜单栏显示”
 - 台前调度：系统设置 - 桌面与程序坞 - 桌面与台前调度 - 打开 “台前调度”
-- 去掉留在程序坞中最近打开过的软件：系统设置 - 桌面与程序坞 - 取消勾选“在程序坞中显示建议 App 和最近使用的 App”
-- 关闭开机时的声音：系统设置 - 声音 - 取消勾选“启动时播放声音”
+- 去掉留在程序坞中最近打开过的软件：系统设置 - 桌面与程序坞 - 取消勾选 “在程序坞中显示建议 App 和最近使用的 App”
+- 关闭开机时的声音：系统设置 - 声音 - 取消勾选 “启动时播放声音”
 - 调整键盘背光、键重复速率和重复前延迟：系统设置 - 键盘
 - 显示电池百分比：系统设置 - 控制中心 - 电池 - 显示百分比
 - 时钟 24 小时格式：系统设置 - 日期与时间 - 24 小时制
-- 外部显示器设置：系统设置 - 显示器 - 内建显示器用作主显示器，适配此 Mac 名称；外部显示器用作内建显示器的镜像，适配此 Mac 名称
+- 外部显示器设置：系统设置 - 显示器 - 内建显示器用作主显示器，适配此 MacBook 名称；外部显示器用作内建显示器的镜像，适配此 MacBook 名称
 
 
 ---
@@ -96,10 +102,10 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 #### 访达相关
 
 - 访达：显示路径栏和状态栏，鼠标靠近路径栏，右键可以拷贝路径名称
-- 隐藏 “最近使用” ：访达 - 设置 - 边栏 - 取消勾选“最近使用”
-- 文件夹用图标展示时，右键 - 查看显示选项 - 勾选“显示项目简介”和“用作默认”
+- 隐藏 “最近使用” ：访达 - 设置 - 边栏 - 取消勾选 “最近使用”
+- 文件夹用图标展示时，右键 - 查看显示选项 - 勾选 “显示项目简介” 和 “用作默认”
 - 访达可以打开多个标签页，打开多个窗口时，可以合并所有窗口
-- 右键文件，选择快速操作，有“创建 PDF”、“转换图像”、“移除背景”等操作
+- 右键文件，选择快速操作，有 “创建 PDF”、“转换图像”、“移除背景”等操作
 - 按住 `command` 键，可以将文件夹拖到工具栏中，实现快速访问
 - 更改同类型文件的默认打开方式：右键 - 显示简介 - 打开方式，选择指定的默认应用程序，全部更改；[基础教程：如何更改 Mac 文件的默认打开方式 - 少数派](https://sspai.com/post/28394)
 
@@ -124,6 +130,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 快捷键：
 
+- 剪切移动文件：`Command + C` 复制，然后 `Command + Option + V` 将其移动到目标目录
 - `command + Space` - 聚焦搜索（没有 Alfred 的 `option + Space` 好用）
 - `Space` - 预览功能
 - `Control ⌃ + Left ⬅︎ / Right ➡︎` - 左右切换「空间」（有全屏的窗口的话）
@@ -134,20 +141,6 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 返回桌面 - `command + F3`
 
 注：无 Windows 的 `Win + X` 等效快捷键
-
-
----
-
-#### 其他
-
-查看 Macbook Air M1 中的 GPU：
-
-- 系统设置 - 通用 - 系统报告 - 图形卡/显示器
-- 运行以下命令
-
-```bash
-system_profiler SPDisplaysDataType
-```
 
 
 ---
@@ -191,7 +184,11 @@ system_profiler SPDisplaysDataType
 - 菜单栏管理：Ice
 - 录屏：QuickRecorder
 - 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
-- 隐藏刘海：Only Switch（将菜单栏调成黑色模式）、zNotch（将菜单栏下移）、Notchmeister（增加趣味）
+- 刘海屏相关：
+	- 将刘海屏当作 AirDrop：NotchDrop
+	- 隐藏刘海屏：Only Switch（将菜单栏调成黑色模式）、zNotch（将菜单栏下移）、
+	- 增加趣味：Notchmeister
+- 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）
 - 窗口平铺：tiling window manager；[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
 	- yabai 使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
 - macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
@@ -465,11 +462,16 @@ make: *** [dumpana] Error 1
 
 - Mac Dash 软件：编程语言 API 查看工具，需收费
 
-- Mac 中的 Vim delete 键无法向左删除：[vim中delete（backspace）键不能向左删除 - 脚本小娃子 - 博客园](https://www.cnblogs.com/shengulong/p/10530188.html)
+- Mac 中的 Vim Delete 键无法向左删除：[vim中delete（backspace）键不能向左删除 - 脚本小娃子 - 博客园](https://www.cnblogs.com/shengulong/p/10530188.html)
 
 ```bash
 set backspace=2
 ```
+
+- 查看 Macbook GPU 信息：
+	- 系统设置 - 通用 - 系统报告 - 图形卡/显示器
+	- 运行命令：`system_profiler SPDisplaysDataType`
+
 
 
 ---

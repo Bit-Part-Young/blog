@@ -24,6 +24,12 @@ password:
 取消订阅的期刊：在收到的邮件最下方会有取消订阅按钮
 
 
+[PRB 论文 issue](https://journals.aps.org/prb/issues/)
+
+[PRM 论文 issue](https://journals.aps.org/prmaterials/issues)
+
+
+
 ---
 
 ## 期刊
@@ -46,7 +52,7 @@ password:
 |                                           |                      |      |                                                                                   |
 
 >scipta materialia 期刊没有 introduction method result and discussion 等一级标题
->
+
 >elsevier 文献连续下载/爬文献（10 篇以上），会开始机器人验证
 
 

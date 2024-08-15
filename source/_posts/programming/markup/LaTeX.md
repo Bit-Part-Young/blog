@@ -38,7 +38,7 @@ password:
 
 - 现代 LaTeX 入门讲座：[GitHub - stone-zeng/latex-talk](https://github.com/stone-zeng/latex-talk)
 - 《如何使用 LaTeX 排版论文》讲稿：[GitHub - tuna/thulib-latex-talk](https://github.com/tuna/thulib-latex-talk)
-- lshort-zh-cn.pdf
+- [lshort-zh-cn.pdf](https://github.com/CTeX-org/lshort-zh-cn)
 - [GitHub - wklchris/Note-by-LaTeX: 《简单粗暴 LaTeX》出版图书开源仓库](https://github.com/wklchris/Note-by-LaTeX)
 - [LaTeX 备忘清单 & latex cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/latex.html)
 - LaTeX 排版简要介绍：[lec4.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec4.md)
@@ -52,7 +52,6 @@ password:
 - [GitHub - Meiting-Wang/Awesome-LaTeX-cn: The LaTeX materials list I used](https://github.com/Meiting-Wang/Awesome-LaTeX-cn)
 - [1.1 Awesome-LaTeX-cn - Meiting Wang](https://meiting-wang.github.io/latex/begin1)
 - [GitHub - samcarter/tikzducks: A latex package to draw cute rubber ducks with TikZ](https://github.com/samcarter/tikzducks)
-- bib 文件写法：[thesis.bib](https://github.com/thbtppl/latex-thesis-imperial/blob/main/utils/thesis.bib)
 - [LaTeX技巧 | Feng's Blog](https://blog.windsky.tech/2022/01/29/LaTeX-Notes/)
 - [常用 LaTeX 代码](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
 
@@ -60,7 +59,8 @@ password:
 
 - 自定义列表环境：[LaTeX 自定义列表环境 - 智朋的个人博客](https://coffeelize.top/posts/18fc56c9.html)
 
-- LaTeX 中文写作：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
+- Overleaf LaTeX 教程：[Learn LaTeX in 30 minutes - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes)
+- Overleaf LaTeX 中文写作教程：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
 
 
 
@@ -75,7 +75,6 @@ password:
 	- [GitHub - AlphaZTX/LaTeX-tutorials](https://github.com/AlphaZTX/LaTeX-tutorials)（含 TeXstudio 使用）
 
 - TeX Live 2024 版本已有 sjtutex 文档类
-- TeX Live 不同版本需要安装的宏包和文档类数目：medium 约 1395 项；full 约 4543 项。
 - TeX Live 不同版本（basic small medium full）之间的区别：[installing - Minimal TeXLive installation - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/397174/minimal-texlive-installation)
 - TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
 
@@ -197,7 +196,7 @@ tlmgr repository set <CTAN mirrors>/systems/texlive/tlnet
 ```
 
 ```bash
-# 查看已安装 texlive 的路径
+# 查看已安装 Tex Live 的路径
 kpsewhich -var-value=TEXMFMAIN
 
 # 查看文档类路径
@@ -257,6 +256,68 @@ texdoc <package>  # 查看宏包文档
 
 ---
 
+BibTeX 相关：
+
+- 格式化 bib 文件：[GitHub - FlamingTempura/bibtex-tidy: Cleaner and Formatter for BibTeX files](https://github.com/FlamingTempura/bibtex-tidy)
+- [GitHub - Nickydusk/BibTeX-Formatter: Format your bibtex (.bib) file to help standardize citations for conference and journal submissions](https://github.com/Nickydusk/BibTeX-Formatter)
+
+```bash
+npm install -g bibtex-tidy
+
+bibtex-tidy refs.bib
+
+# 常用参数
+bibtex-tidy refs.bib \
+    --sort=-year,title \
+    --sort-fields \
+    --omit=abstract,keywords \
+    --blank-lines \
+    --duplicates \
+    --escape \
+    --strip-comments \
+    --trailing-commas \
+    --no-wrap \
+    --remove-empty-fields \
+    --remove-dupe-fields \
+    --tidy-comments
+```
+
+[GitHub - njzjz/tushuguan: A template to create a BibTeX Library](https://github.com/njzjz/tushuguan)
+
+doi 转 bib 格式：
+
+- [GitHub - njzjz/wenxian: A tool to generate BibTeX files from given identifiers (DOI, PMID, or arXiv ID).](https://github.com/njzjz/wenxian)（效果比较好）
+- [doi2bib](https://www.doi2bib.org/)（最直接方便；无摘要参数；中国人名的姓名前后顺序问题；article 后面的信息与官方期刊生成的 BibTeX 不一致）
+- [GitHub - thchr/DOI2BibTeX.jl](https://github.com/thchr/DOI2BibTeX.jl)（只能在 REPL 下输出格式才美观）
+- [GitHub - bibcure/doi2bib: get the bibtex string given a doi](https://github.com/bibcure/doi2bib)
+
+```bash
+# doi
+julia> using DOI2BibTeX
+julia> doi = "10.1103/PhysRevLett.45.494"
+julia> doi2bib(doi)
+
+# arxiv
+julia> arxiv = "arxiv:1710.10324"
+julia> arxiv2bib(arxiv)
+
+# wenxian 安装与使用
+pip install -U pipx
+pipx run wenxian from 10.1063/5.0155600
+
+# bib 中一些不需要的条目
+sed -i '/abstract = {/d' xxx.bib
+sed -i '/doi = {/d' xxx.bib
+sed -i '/keywords = {/d' xxx.bib
+```
+
+ris（Zotero）转 bib 格式：
+
+- [GitHub - harrisonlabollita/ris-2-bib: A command line tool to convert RIS files into bib files for LaTeX bibliographies](https://github.com/harrisonlabollita/ris-2-bib)
+- [GitHub - janberges/ris2bib: Convert bibliographies from RIS to BibTeX format](https://github.com/janberges/ris2bib)
+
+---
+
 LaTeX 实现审阅效果：latexdiff（texlive 自带）
 
 使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
@@ -270,6 +331,13 @@ sudo apt install latexdiff
 # macOS 安装
 brew install latexdiff
 ```
+
+---
+
+[GitHub - chazeon/revtex2docx: Wrapper scripts and pandoc filters to convert LaTeX documents to Word docx files](https://github.com/chazeon/revtex2docx)
+
+生成多种格式文献引用：[BibGuru - A New FREE APA, Harvard, & MLA Citation Generator](https://www.bibguru.com/)
+
 
 ---
 
@@ -668,7 +736,6 @@ Donald~E. Knuth
 \nocite{*}                   % 列出所有未被引用的文献
 
 \bibliography{bibfile}       % 打印参考文献列表
-
 ```
 
 - 现代方法：biber 后端 + biblatex 宏包（国家标准：biblatex-gb7714-2015 宏包）
@@ -681,14 +748,16 @@ Donald~E. Knuth
 \usepackage[
     backend       = biber,
     defernumbers  = true,
-    sorting       = ymdnt,     % Year in descending order
-    sorting       = ynt,       % Year in ascending order
-    maxbibnames   = 3,    % No. of listed names
+    sorting       = ymdnt,          % Year in descending order
+    sorting       = ynt,            % Year in ascending order
+    maxbibnames   = 3,              % No. of listed names
     style         = gb7714-2015,
     citestyle     = numeric-comp,
-    isbn          = false, % controls whether the fields isbn/issn/isrn are printed
+    isbn          = false,          % controls whether the fields isbn/issn/isrn are printed
     block         = par,
-    doi           = false,        % do not show doi
+    doi           = false,          % do not show doi
+	url           = false,
+	eprint        = false,
     giveninits    = false,
 ]{biblatex}
 \renewcommand*{\bibfont}{\small}
@@ -1344,9 +1413,35 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 % 命令未定义时，相当于 \newcommand；命令已定义时，沿用已有定义
 \providecommand{name}[num]{def}
 
-% 常宏包和类文件的开发中；
+% 在常宏包和类文件的开发中
 % \DeclareRobustCommand 与 name 间可以不用花括号
 \DeclareRobustCommand{name}[num]{def}
+
+
+% https://github.com/0382/util/blob/main/latex/physics.tex
+% 摄氏度
+\newcommand{\celsius}{\mathrm{^o\! C}}
+
+% 量子力学 bra ket 符号
+\newcommand{\bra}[1]{\langle{#1}|}
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\braket}[2]{\langle{#1}|{#2}\rangle}
+
+% 尖括号平均值
+\newcommand{\anglemean}[1]{\langle{#1}\rangle}
+
+% 实数虚数
+\renewcommand{\Re}[1]{\mathfrak{Re}(#1)}
+\renewcommand{\Im}[1]{\mathfrak{Im}(#1)}
+
+% 三种矩阵简写
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\Bmat}[1]{\begin{Bmatrix}#1\end{Bmatrix}}
+
+% 绝对值和范数
+\newcommand{\abs}[1]{\vert #1 \vert}
+\newcommand{\norm}[1]{\Vert #1 \Vert}
 ```
 
 
@@ -1404,28 +1499,25 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 
 ## 模板
 
-- 较为简洁的作业模板：[hw1.tex](https://raw.githubusercontent.com/OrangeX4/NJUAI-Notes/master/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/Homework/hw1.tex)
-
-- [GitHub - ElegantLaTeX/ElegantPaper](https://github.com/ElegantLaTeX/ElegantPaper)
-- [GitHub - ElegantLaTeX/ElegantBook](https://github.com/ElegantLaTeX/ElegantBook)
+- 作业模板（较为简洁）：[hw1.tex](https://raw.githubusercontent.com/OrangeX4/NJUAI-Notes/master/%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/Homework/hw1.tex)
 - [上海交通大学 Beamer 模版](https://github.com/sjtug/SJTUBeamer)
 - [上海交通大学 LaTeX 论文模板](https://github.com/sjtug/SJTUThesis)
-- cls 内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
+- [GitHub - ElegantLaTeX/ElegantPaper](https://github.com/ElegantLaTeX/ElegantPaper)
+- [GitHub - ElegantLaTeX/ElegantBook](https://github.com/ElegantLaTeX/ElegantBook)
+- cls 文档类文件内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
 
+- 简历
+	- [GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
+	- 用的是 tectonic 引擎：[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
+	- [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
+	- [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
+	- 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
 
----
+- 国自然基金 LaTeX 模板：
+	- [GitHub - Ruzim/NSFC-application-template-latex: 国家自然科学基金申请书正文（面上项目）LaTeX 模板（非官方）](https://github.com/Ruzim/NSFC-application-template-latex)
+	- 青基：[GitHub - QijingZheng/QZ\_ExcellentYoungScientistsFund\_2024](https://github.com/QijingZheng/QZ_ExcellentYoungScientistsFund_2024)
+	- [NSFC - overleaf 版](https://www.overleaf.com/project/6372028b9049e7ce5ea603fc)
 
-## LaTeX 版本简历
-
-- [GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
-
-- 用的是 tectonic latex 引擎：[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
-
-- [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
-
-- [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
-
-- 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
 
 
 
