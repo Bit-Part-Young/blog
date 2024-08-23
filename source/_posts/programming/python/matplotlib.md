@@ -886,4 +886,6 @@ KeysView(RcParams({'_internal.classic_mode': False,
 
 ### 其他
 
-双 Y 轴 + brokenaxes 绘制（matplotlib 及 brokenaxes 实现效果一般，建议还是用 Origin）：[python - Matplotlib with brokenaxes package second Y-Axis - Stack Overflow](https://stackoverflow.com/questions/60026605/matplotlib-with-brokenaxes-package-second-y-axis)
+- 双 Y 轴 + brokenaxes 绘制（matplotlib 及 brokenaxes 实现效果一般，建议还是用 Origin）：[python - Matplotlib with brokenaxes package second Y-Axis - Stack Overflow](https://stackoverflow.com/questions/60026605/matplotlib-with-brokenaxes-package-second-y-axis)
+
+- 在 Jupyter Notebook 中使用 `%matplotlib inline`，从 matplotlib 3.2 版本开始，这个命令在大多数情况下已不再是必需的，因为 Jupyter 和 IPython 的默认行为已经是将图形内嵌显示

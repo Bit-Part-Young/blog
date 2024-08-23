@@ -155,7 +155,9 @@ Pull Requests 流程:
 - Netlify 部署：
 	- GitHub 登录 [Netlify](https://app.netlify.com/)- 首页 - Add new site 中的 Import an existing project，点击 GitHub，与 GitHub 关联，选择仓库 Deploy - 项目主页，选择 Site settings，点击 Change site name 更改网站名称
 
-- Cloudfale Pages 部署：[Cloudflare Pages 自动化部署 Github 项目指南 | Indie Hacker Tools](https://indiehackertools.net/blog/cloudflare-pages-guide-automating-deployment-of-github-projects)
+- Cloudfale Pages 部署：
+	- [Cloudflare Pages 自动化部署 Github 项目指南 | Indie Hacker Tools](https://indiehackertools.net/blog/cloudflare-pages-guide-automating-deployment-of-github-projects)
+	- [Hi , Cloudflare Pages :: 木木木木木](https://immmmm.com/hi-cloudflare/)
 
 - Vercel 部署时忽略 GitHub Actions 生成的 gh-pages 分支：[Vercel deploy忽略指定分支 | Oragekk's Blog](https://oragekk.me/tutorial/CI_CD/vercel-deploy.html)；选择 preject - Settings - Git - Ignored Build Step，选择 Only build production
 
@@ -356,6 +358,7 @@ repos:
 - [使用 Github Action 自动部署 - 安知鱼](https://blog.anheyu.com/posts/asdx.html)
 - [GitHub Actions 入门教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 - [GitHub Actions工作流自动化的入门核心\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1aT421y7Ar/)
+- 内含 Github Action 计划任务语法：[GitHub - xlc520/AutoGreen: 保持GitHub一直绿](https://github.com/xlc520/AutoGreen)
 
 具体示例：
 
@@ -437,3 +440,5 @@ echo 'eval "$(gh copilot alias -- zsh)"' >> ~/.zshrc
 ## 相关问题
 
 - [x] 之前留言过的 GitHub issue，仍会收到后续通知， 如何关闭（在 GitHub 个人主页的 Notifications 处关闭）
+
+- [ ] GitHub Organization 删除后，90 天内该名字无法被使用

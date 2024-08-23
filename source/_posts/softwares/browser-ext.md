@@ -49,10 +49,10 @@ password:
 
 ### SwitchyOmega
 
-- 自动切换对网页实现不同的代理（直连或代理），节省流量。配置好切换规则后，选择 “auto switch”；[2023最新SwitchyOmega使用教程配置从入门到精通](https://switchyomega.org/)
+- 自动切换对网页实现不同的代理（直连或代理），节省流量。配置好切换规则后，选择 “auto switch”；[2024最新SwitchyOmega使用教程配置从入门到精通](https://switchyomega.org/)
 - 规则列表网址：
 
-```bash
+```text
 https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 ```
 
@@ -73,19 +73,21 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 
 ### 其他插件
 
+- 让 [网页版微信](https://wx.qq.com/) 可用：[GitHub - lqzhgood/wechat-need-web](https://github.com/lqzhgood/wechat-need-web?tab=readme-ov-file)
 - Adblock Plus：广告拦截；[GitHub - sbwml/halflife-list: ABP/ublock 广告过滤规则（每周一早上9点更新）](https://github.com/sbwml/halflife-list)
-- Zotero Connector：保存网页中的文献到 Zotero 中。
-- OneTab：当标签页很多时，可以一键收起全部标签页，节省内存。
+- Zotero Connector：保存网页中的文献到 Zotero 中
+- OneTab：当标签页很多时，可以一键收起全部标签页，节省内存
 - [沉浸式翻译](https://immersivetranslate.com/docs/) 网页翻译；百度翻译 API 申请：[百度翻译 | 沉浸式翻译](https://immersivetranslate.com/docs/services/baidu/)
-- DeepL 翻译：网页翻译。
-- 沙拉查词：网页翻译。
-- easyScholar：显示文献期刊排名；也可以下载 2021 年前的文献。
-- Copy As Plain Text：去除选中内容的所有格式，转换成普通文本。
-- Global Speed：全局网页视频速度控制。
-- Notion Boost：使网页版 Notion page 侧边栏生成目录。
-- IDM Integration Module：IDM 下载集成模块；嗅探下载网页视频。
+- DeepL 翻译：网页翻译
+- 沙拉查词：网页翻译
+- easyScholar：显示文献期刊排名；也可以下载 2021 年前的文献
+- Copy As Plain Text：去除选中内容的所有格式，转换成普通文本
+- Global Speed：全局网页视频速度控制
+- Notion Boost：使网页版 Notion page 侧边栏生成目录
+- [GitHub - 027xiguapi/code-box: 本插件可以用于CSDN/知乎/脚本之家/博客园等网站,实现无需登录一键复制代码;支持选中代码;或者代码右上角按钮的一键复制;解除关注博主即可阅读全文提示;去除登录弹窗;去除跳转APP弹窗.](https://github.com/027xiguapi/code-box)
+- IDM Integration Module：IDM 下载集成模块；嗅探下载网页视频
 - Bing Unchained - Use new Bing in Chrome：实现在 Chrome 中使用 new Bing；已失效，可使用 [New Bing Anywhere (Bing Chat GPT-4)](https://chrome.google.com/webstore/detail/new-bing-anywhere-bing-ch/hceobhjokpdbogjkplmfjeomkeckkngi/related)
-- WebChatGPT：使 ChatGPT 具备互联网访问功能（**不是很好用**）。
+- WebChatGPT：使 ChatGPT 具备互联网访问功能（不是很好用）
 
 
 
@@ -106,7 +108,10 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 - [链接助手](https://greasyfork.org/zh-CN/scripts/422773)：文本转链接；百度网盘密码自动填写
 - AC baidu 重定向：去广告，优化排列等。
 - CSDN 广告过滤
-- 知乎增强：移除登录弹窗、屏蔽首页视频、默认收起回答、快捷收起回答/评论（左键两侧）等。
+
+- 知乎相关：
+	- [知乎修改器🤜持续更新🤛努力实现功能最全的知乎配置插件](https://greasyfork.org/zh-CN/scripts/423404)
+	- 知乎增强：移除登录弹窗、屏蔽首页视频、默认收起回答、快捷收起回答/评论（左键两侧）等。
 
 ```text
 # 知乎增强油猴插件自定义屏蔽关键词

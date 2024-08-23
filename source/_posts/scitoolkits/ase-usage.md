@@ -87,6 +87,8 @@ from ase.utils.ptable import ptable
 
 atoms = ptable()
 atoms.write("ptable.png")
+
+from ase.data import atomic_masses
 ```
 
 

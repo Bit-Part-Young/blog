@@ -23,6 +23,14 @@ password:
 
 WIP...
 
+Bash 脚本，用来生成 Markdown 表格：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
+
+命令历史文件：`~/.bash_history`，`~/.zsh_history`
+
+
+在线试用各种 Linux 发行版，它会分配一个虚拟机，浏览器里连接桌面：[Test Linux distros online - DistroSea](https://distrosea.com/)
+
+
 ```bash
 # 在 .bashrc .zshrc 中 创建与函数功能等同的 alias
 cha='WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime|BatchHost|Partition'
@@ -62,6 +70,7 @@ Crtl + L              # 将底部内容移至最上方
 - [GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
 - 不借助 bash 中已有命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
 - 命令行艺术：[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
+- [真有人用Linux？（Linux下的工作、科研、学习与生活） - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/281312)
 
 
 
@@ -722,6 +731,8 @@ tmux session 管理：
 
 - [GitHub - tmux-python/tmuxp: 🖥️ Session manager for tmux, build on libtmux.](https://github.com/tmux-python/tmuxp)
 - [GitHub - tmuxinator/tmuxinator: Manage complex tmux sessions easily](https://github.com/tmuxinator/tmuxinator)
+
+替代工具：[GitHub - zellij-org/zellij: A terminal workspace with batteries included](https://github.com/zellij-org/zellij)
 
 
 ```bash

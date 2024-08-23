@@ -83,11 +83,20 @@ Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://git
 
 ## 使用
 
-### 实用工具
+### 工具
 
 - VSCode 插件：
 	- typst-lsp：具有语言服务器 + 代码格式化（不再继承）等功能
 	- typst-preview：实时编译预览
+
+- [typst-upgrade](https://github.com/Coekjan/typst-upgrade)：检查并升级 Typst packages
+
+```bash
+cargo install typst-upgrade  # 安装
+
+typst-upgrade file.typ       # 更新 package 并写入文件
+typst-upgrade -d file.typ    # 不实际运行
+```
 
 - 代码格式化：
 	- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果感觉一般）
@@ -585,8 +594,9 @@ typst-upgrade -d .           # dry run
 	- [GitHub - pavelzw/moderner-cv: moderncv in typst](https://github.com/pavelzw/moderner-cv)
 	- [GitHub - stuxf/basic-typst-resume-template: A basic resume for typst, designed to work well with ATS systems.](https://github.com/stuxf/basic-typst-resume-template)
 	- [GitHub - skyzh/chicv: A minimal and fully-customizable CV template for Typst.](https://github.com/skyzh/chicv)
+	- [GitHub - DawnEver/typst-academic-cv: Typst Template for Academic CV](https://github.com/DawnEver/typst-academic-cv)
 
-- 将 typst 内容渲染成网页：
+- 将 Typst 内容渲染成网页：
 	- [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
 
 - 作业模板

@@ -37,6 +37,7 @@ vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移
 - [GitHub - wsdjeg/vim-galore-zh\_cn: Vim 从入门到精通](https://github.com/wsdjeg/vim-galore-zh_cn)
 - [GitHub - yyq123/learn-vim](https://github.com/yyq123/learn-vim)
 - [GitHub - yangyangwithgnu/use\_vim\_as\_ide: use vim as IDE](https://github.com/yangyangwithgnu/use_vim_as_ide)
+- [Eric Wong / Learn Vim Zh Cn · GitLab](https://gitlab.com/wsdjeg/Learn-Vim_zh_cn)
 
 
 

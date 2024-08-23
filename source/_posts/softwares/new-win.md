@@ -162,3 +162,5 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 - [如何关闭Win10搜索栏内的系统广告](https://www.zhihu.com/question/569384371/answer/2790041626)（建议使用方法二）
 
 - [解决Windows删除文件或文件夹时的【该项目不在XXX中。请确认该项目的位置，然后重试。】问题\_该项目不在d: 请确认该项目位置,然后重试-CSDN博客](https://blog.csdn.net/zgnckzn/article/details/109764025)
+
+- [ ] 如何关闭 Office 模板

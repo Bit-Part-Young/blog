@@ -41,6 +41,10 @@ password:
 
 ### 基础设置
 
+- Ubuntu 配置工具（感觉一般）：[Omakub — An Omakase Developer Setup for Ubuntu 24.04 by DHH](https://omakub.org/)
+
+---
+
 #### 换源
 
 - 修改软件源以加速 package 下载

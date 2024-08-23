@@ -169,7 +169,7 @@ scoop uninstall scoop
 - 可实现文献、文献中的批注云同步（需找到合适的同步盘软件，如坚果云，InfiniCLOUD 等，推荐使用后者）；
 - 插件生态很好，比 EndNote 好用很多。
 
-- zotero 文献存储路径修改（默认 C 盘）：[Zotero更改储存路径&迁移文件 - 知乎](https://zhuanlan.zhihu.com/p/478035708)
+- Zotero 文献存储路径修改（默认 C 盘）：[Zotero更改储存路径&迁移文件 - 知乎](https://zhuanlan.zhihu.com/p/478035708)
 
 - 文献云同步：通过 WebDAV，主要有 infini-cloud 和坚果云：[如何在Zotero中设置webdav连接到坚果云？ - 坚果云帮助中心](https://help.jianguoyun.com/?p=3168)、[Zotero × Logseq - 有意栽花花满枝](https://blog.hjroyal.top/posts/tools/2023-04-zotero_logseq/)
 
@@ -178,7 +178,7 @@ toi.teracloud.jp/dav
 dav.jianguoyun.com/dav
 ```
 
-- zotero 插件：[plugins [Zotero Documentation]](https://www.zotero.org/support/plugins)、[文献管理软件Zotero常用插件安装及配置使用\_zotero插件\_qq\_43309940的博客-CSDN博客](https://blog.csdn.net/qq_43309940/article/details/117126357)
+- Zotero 插件：[plugins [Zotero Documentation]](https://www.zotero.org/support/plugins)、[文献管理软件Zotero常用插件安装及配置使用\_zotero插件\_qq\_43309940的博客-CSDN博客](https://blog.csdn.net/qq_43309940/article/details/117126357)
 
 - Zotero style 插件安装后会导致软件很卡
 
@@ -190,7 +190,7 @@ dav.jianguoyun.com/dav
 
 ## Notion
 
-- 跨平台同步的笔记软件；也有网页版，但网页版的体验不如客户端，很卡。
+- 跨平台同步的笔记软件；也有网页版，但网页版的体验不如客户端，很卡
 - 可以查看每一个页面的内容更新情况（页面右上角的时钟图案）
 - Notion 可以用教育邮箱使用教育版
 - 不可以改变图片大小
@@ -222,11 +222,11 @@ dav.jianguoyun.com/dav
 
 ### notion2md
 
-- notion 自带的导出 md 效果不是很好
+- Notion 自带的导出 md 效果不是很好
 
 - notion 转成 md：[GitHub - echo724/notion2md: Notion Markdown Exporter with Python Cli](https://github.com/echo724/notion2md)
 
-- 设置 notion integration，获取 API KEY，在 notion 每个 page 下 add connection 设置的 notion integration
+- 设置 Notion Integration，获取 API KEY，在 Notion 每个 page 下 add connection 设置的 Notion Integration
 
 ```bash
 export NOTION_TOKEN='<token>'
@@ -239,7 +239,7 @@ notion2md --download --unzipped -n name -p folder -u [[]]
 
 ### md2notion
 
-- md 转成 notion（在 notion 的页面中生成子页面）：[GitHub - Cobertos/md2notion: A better Notion.so Markdown importer](https://github.com/Cobertos/md2notion)
+- md 转成 notion（在 Notion 的页面中生成子页面）：[GitHub - Cobertos/md2notion: A better Notion.so Markdown importer](https://github.com/Cobertos/md2notion)
 
 - 安装出现 `Invalid input` 报错解决方法：[HTTPError - Invalid Input · Issue #40 · Cobertos/md2notion · GitHub](https://github.com/Cobertos/md2notion/issues/40)
 
@@ -278,6 +278,8 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 - Markdown 语法笔记软件；新版本收费，建议安装旧版本或者破解版。
 
 - 破解版：[GitHub - markyin0707/typora-activation: Typora最新的激活方案，三步即激活.（😊实时更新中/👩‍🎓学生党必备，有条件支持正版的请不要点开🔞🈲️）。Activate Typora](https://github.com/markyin0707/typora-activation)
+
+- [手摸手教你安装激活最新的Typora1.8.10\_typora1.8.10 linux 激活-CSDN博客](https://blog.csdn.net/qq_37636739/article/details/136338284)
 
 - Theme 主题：
 	- [GitHub - Soanguy/typora-theme-autumnus: Typora theme for 中文](https://github.com/Soanguy/typora-theme-autumnus)
@@ -343,3 +345,15 @@ onlinelibrary.wiley.com
 - Rime 输入法引擎 + 雾凇拼音：[Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)、[小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
 
 - 调节显示器亮度：Twinkle Tray（部分显示器设备无效）
+
+---
+
+>以下软件并未实际下载使用测试
+
+- 锁定键盘：[GitHub - Nigh/I-wanna-clean-keyboard](https://github.com/Nigh/I-wanna-clean-keyboard)
+
+- 为 Windows 系统提供 Vim 风格的快捷键：[GitHub - pit-ray/win-vind: You can operate Windows with key bindings like Vim.](https://github.com/pit-ray/win-vind)
+
+- PPT 插件，插入 LaTeX 公式：[GitHub - Jonathan-LeRoux/IguanaTex: A PowerPoint add-in allowing you to insert LaTeX equations into PowerPoint presentations on Windows and Mac](https://github.com/Jonathan-LeRoux/IguanaTex)
+
+- 优化 Windows 11 系统的脚本：[GitHub - Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat)

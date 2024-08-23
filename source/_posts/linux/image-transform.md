@@ -56,6 +56,10 @@ svg2pdf file.svg
 	- pdf 转 png 的图片质量没有 pdf2image 高
 	- tiff 图片转换，会将 tiff 的所有图层输出出来（只要编号最小的即可）
 
+- ghostscript：处理 pdf 文件，可执行命令为 `gs`
+
+- 操作 pdf：[GitHub - Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF)（可使用 Docker 安装）
+
 - pdftk M1 芯片安装：[pdftk MacOs M1 · GitHub](https://gist.github.com/u1i/d8d4422ce770ffaad4619eb7e9d040f4)
 
 ```bash
@@ -83,7 +87,6 @@ convert -trim input.png output.png
 
 # 左右堆叠图片 +
 convert image1.png image2.png +append stack.png
-
 # 上下堆叠图片 -
 convert image1.png image2.png -append stack.png
 
@@ -101,7 +104,7 @@ ps2pdf input.pdf output.pdf
 ps2pdf -dPDFSETTINGS=/screen input.pdf output.pdf
 # -dPDFSETTINGS 参数有 /screen, /ebook, /prepress, /printer
 # /screen 压缩效果最好
-# -dPDFSETTINGS=/ebook -dColorImageResolution=250 组合使用 可产生介于/ebook和/prepress的效果
+# -dPDFSETTINGS=/ebook -dColorImageResolution=250 组合使用 可产生介于 /ebook 和 /prepress 的效果
 # https://www.ghostscript.com/doc/current/VectorDevices.htm#distillerparams
 ```
 

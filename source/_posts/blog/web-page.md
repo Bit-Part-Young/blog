@@ -32,6 +32,7 @@ password:
 - [GitHub - xitanggg/open-resume: OpenResume is a powerful open-source resume builder and resume parser. https://open-resume.com/](https://github.com/xitanggg/open-resume)
 - [GitHub - Troublor/troublor.github.io: Source code of my personal homepage](https://github.com/Troublor/troublor.github.io)
 - [GitHub - bchiang7/v4: Fourth iteration of my personal website built with Gatsby](https://github.com/bchiang7/v4)
+- Obsidian / Typora 简历：[GitHub - BingyanStudio/LapisCV: 📃 开箱即用的 Obsidian / Typora 简历](https://github.com/BingyanStudio/LapisCV)
 
 - Jekyll 框架：
 	- [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)
@@ -65,7 +66,18 @@ password:
 - [gallery-template · GitHub Topics · GitHub](https://github.com/topics/gallery-template)
 
 - 照片和视频自托管：[GitHub - immich-app/immich: High performance self-hosted photo and video management solution.](https://github.com/immich-app/immich)
+	- 校园网下，需连接网线，移动端才能成功登录使用
 	- [ ] 如何 host ？
+
+```bash
+# 启动 Docker 容器
+docker compose up -d
+# 拉取最新的 Docker 镜像并启动 Docker 容器
+docker compose pull && docker compose up -d
+
+http://machine_ip_address:2283      # 网页端登录
+http://machine_ip_address:2283/api  # 移动端登录
+```
 
 
 ---
@@ -101,6 +113,15 @@ password:
 - [GitHub - EsunR/Blog-Index: 一个通用的个人网站的引导页、导航页模板](https://github.com/EsunR/Blog-Index)
 - [GitHub - NianBroken/Personal\_Sakura\_Guide\_Page](https://github.com/NianBroken/Personal_Sakura_Guide_Page)
 - [NianBroken](https://www.nianbroken.top/)
+- [GitHub - KawaiiZapic/Present: 一个简洁的个人主页,支持显示博客文章.](https://github.com/KawaiiZapic/Present)
+
+
+
+---
+
+## 学术首页
+
+- [GitHub - academicpages/academicpages.github.io: Github Pages template for academic personal websites, forked from mmistakes/minimal-mistakes](https://github.com/academicpages/academicpages.github.io)
 
 
 
@@ -186,6 +207,8 @@ mdbook serve --open
 - [GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
 
 - Obsidian 数字花园博客设置教程：[使用Obsidian 打造个人数字花园完整教程](https://mp.weixin.qq.com/s/pvlfp59XjqftyJVPbEA4tA)
+
+- 静态网页 Julia 版：[GitHub - tlienart/Franklin.jl: (yet another) static site generator. Simple, customisable, fast, maths with KaTeX, code evaluation, optional pre-rendering, in Julia.](https://github.com/tlienart/Franklin.jl)
 
 
 

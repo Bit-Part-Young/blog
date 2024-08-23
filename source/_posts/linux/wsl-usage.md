@@ -21,9 +21,9 @@ password:
 
 ## 介绍
 
-- WSL 全称为 Windows Subsystem for Linux，即「适用于 Linux 的 Windows 子系统」。WSL 的诞生让 Windows 用户（开发人员）按原样运行 GNU/Linux 环境：包括大多数命令行工具、实用工具和应用程序，且不会产生虚拟机开销。
+- WSL 全称为 Windows Subsystem for Linux，即「适用于 Linux 的 Windows 子系统」。WSL 的诞生让 Windows 用户（开发人员）按原样运行 GNU/Linux 环境：包括大多数命令行工具、实用工具和应用程序，且不会产生虚拟机开销
 
-- WSL 2 相比 WSL 1，Linux 内核是完整的，且支持 Docker。
+- WSL 2 相比 WSL 1，Linux 内核是完整的，且支持 Docker
 
 - WSL 2 访问本机系统的文件速度比 WSL 1 慢
 
@@ -37,6 +37,7 @@ password:
 - WSL 问题 Q&A：[关于适用于 Linux 的 Windows 子系统的常见问题解答 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/faq)
 - WSL 开发指南：[Dev on Windows with WSL](https://dowww.spencerwoo.com/)
 - WSL GUI 图形化窗口：[GUI 图形化窗口 | Dev on Windows with WSL](https://dowww.spencerwoo.com/4-advanced/4-1-gui.html#%E5%AE%89%E8%A3%85-xserver-for-windows)
+- WSL Windows Terminal 终端设置：[GitHub - tautomer/WSL\_Windows\_Terminal: A full guide on how to set up WSL/WSL2 and use Windows Terminal or Terminator as the terminal emulator. Some tricky X11 configuration is also included.](https://github.com/tautomer/WSL_Windows_Terminal)
 
 
 
@@ -174,11 +175,19 @@ wsl --unregister <Distro>
 
 ---
 
+### 其他
+
+WSL2 安装 cuda：[win11+wls2+ubuntu2004配置cuda+cudnn+pytorch - LandWind - 博客园](https://www.cnblogs.com/LandWind/p/wsl2-cuda-cudnn-first-start.html)
+
+cuda 的 API 分为两种类型，一种是驱动（driver）API，另一种是运行（runtime）API。`nvidia-smi` 查看的 cuda 版本是驱动 API 版本，`nvcc -V` 是运行 API
+
+
+
+---
+
 ## 问题
 
-### 安装 WSL 2 报错
-
->[WslRegisterDistribution failed with error: 0x800701bc · Issue #5393 · microsoft/WSL · GitHub](https://github.com/microsoft/WSL/issues/5393)
+- 安装 WSL 2 报错：[WslRegisterDistribution failed with error: 0x800701bc · Issue #5393 · microsoft/WSL · GitHub](https://github.com/microsoft/WSL/issues/5393)
 
 ```bash
 WslRegisterDistribution failed with error: 0x800701bc
@@ -186,12 +195,9 @@ WslRegisterDistribution failed with error: 0x800701bc
 
 解决方法：[更新 WSL 2 Linux kernel](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
-
 ---
 
-### 默认用户设置
-
->[WSL Ubuntu设置普通用户为默认用户 - 简书](https://www.jianshu.com/p/5bfeb5920fb1)
+- 默认用户设置：[WSL Ubuntu设置普通用户为默认用户 - 简书](https://www.jianshu.com/p/5bfeb5920fb1)
 
 WSL Ubuntu 设置默认用户为普通用户：在 powershell 中输入以下命令
 
@@ -201,8 +207,6 @@ ubuntu config --default-user <username>
 ubuntu2204 config --default-user <username>
 ```
 
----
-
 WSLArch 设置默认用户为普通用户：在 `/etc/wsl.conf` 添加以下内容，在 powershell 中输入 `wsl --shutdown` 关闭 WSL
 
 ```bash
@@ -210,9 +214,6 @@ WSLArch 设置默认用户为普通用户：在 `/etc/wsl.conf` 添加以下内�
 default=myuser
 ```
 
-
 ---
 
-### WSL 可被分配的最大内存
-
-WSL 2 在可用内存允许的情况下可以分配更大的内存量，而 WSL 1 的可用内存通常受到一定限制，约为 4 GB。
+- WSL 可被分配的最大内存：WSL 2 在可用内存允许的情况下可以分配更大的内存量，而 WSL 1 的可用内存通常受到一定限制，约为 4 GB。

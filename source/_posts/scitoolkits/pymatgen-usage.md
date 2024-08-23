@@ -44,6 +44,7 @@ password:
 workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面
 workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
+- [ ] 阅读 monty 包
 
 MP 晶体 DFT code 用的是 VASP，分子用的是 Q-Chem
 

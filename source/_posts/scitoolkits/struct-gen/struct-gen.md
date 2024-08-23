@@ -51,6 +51,14 @@ VESTA 相关：
 - 当 POSCAR 中的原子坐标有负值时，可使用 VESTA 导出使其变为正。
 - 无法读取 `.poscar` 格式构型文件（Materials Project），OVITO 可以，建议将其统一为 `.vasp`
 
+OVITO 2.9 版本的 Python script 功能可以免费使用，其他需要 Pro 版本
+
+将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）
+
+VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffraction Pattern - Calculate, Plot
+
+[VESTA 使用](https://mp.weixin.qq.com/s/wTxztn1RDWCG4cjVaA3E0A)
+
 
 ---
 

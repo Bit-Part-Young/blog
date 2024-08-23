@@ -115,45 +115,31 @@ git mv
 
 ### .git 结构
 
-WIP…
+WIP...
 
 
 ---
 
 ### 参考资料
 
->[图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
-
+- [图解Git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
+- [Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
 - 可视化 git 学习：[GitHub - pcottle/learnGitBranching](https://github.com/pcottle/learnGitBranching)
 - [git-flight-rules](https://github.com/k88hudson/git-flight-rules/blob/master/README_zh-CN.md)
 - Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
-
->[GitHub - twtrubiks/Git-Tutorials: Git-Tutorials GIT基本使用教學:memo:](https://github.com/twtrubiks/Git-Tutorials)
-
->[Git Commands - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Git/Commands/)
-
-
->[Git 备忘清单 & git cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/git.html)
-
->[git.txt](https://github.com/skywind3000/awesome-cheatsheets/blob/master/tools/git.txt)
-
->[GitHub - jaywcjlove/git-tips: 这里是我的笔记，记录一些git常用和一些记不住的命令。](https://github.com/jaywcjlove/git-tips)
-
->[GitHub - 521xueweihan/git-tips: :trollface:Git的奇技淫巧](https://github.com/521xueweihan/git-tips)
-
->[Git • Linux tutorial](https://pranabdas.github.io/linux/git)
-
->[十分钟学会正确的github工作流，和开源作者们使用同一套流程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV19e4y1q7JJ/)
-
->[GitHub - hongiii/gitNotes\_from\_Liao: 从廖老师网站上总结的Git笔记，对常见命令进行了总结。](https://github.com/hongiii/gitNotes_from_Liao)
-
->[Git 重学指南 - Git 重学指南](https://git-remake.wybxc.cc/index.html)
-
->[Git 和 Github 秘籍](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md)
-
->[GitHub - k88hudson/git-flight-rules: Flight rules for git](https://github.com/k88hudson/git-flight-rules)
-
-- 以 SQL 的方式查询 repo 的 git 相关内容：[Git Query language](https://amrdeveloper.github.io/GQL/)
+- [Oh Shit, Git!?!](https://ohshitgit.com/zh)
+- [GitHub - twtrubiks/Git-Tutorials: Git-Tutorials GIT基本使用教學:memo:](https://github.com/twtrubiks/Git-Tutorials)
+- [Git Commands - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Git/Commands/)
+- [git.txt](https://github.com/skywind3000/awesome-cheatsheets/blob/master/tools/git.txt)
+- [GitHub - jaywcjlove/git-tips: 这里是我的笔记，记录一些git常用和一些记不住的命令。](https://github.com/jaywcjlove/git-tips)
+- [GitHub - 521xueweihan/git-tips: :trollface:Git的奇技淫巧](https://github.com/521xueweihan/git-tips)
+- [Git • Linux tutorial](https://pranabdas.github.io/linux/git)
+- [十分钟学会正确的github工作流，和开源作者们使用同一套流程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV19e4y1q7JJ/)
+- [GitHub - hongiii/gitNotes\_from\_Liao: 从廖老师网站上总结的Git笔记，对常见命令进行了总结。](https://github.com/hongiii/gitNotes_from_Liao)
+- [Git 重学指南 - Git 重学指南](https://git-remake.wybxc.cc/index.html)
+- [Git 和 Github 秘籍](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md)
+- [GitHub - k88hudson/git-flight-rules: Flight rules for git](https://github.com/k88hudson/git-flight-rules)
+- [Git - 茂茂物语](https://notes.fe-mm.com/workflow/git/)
 
 
 
@@ -167,6 +153,42 @@ WIP…
 - [onefetch](https://github.com/o2sh/onefetch)：展示本地 Git 仓库的项目详情和代码统计等内容
 - [gita](https://github.com/nosarthur/gita)：管理多个 git repo
 - 查看 git repo 的统计信息:[GitHub - arzzen/git-quick-stats](https://github.com/arzzen/git-quick-stats)
+- 以 SQL 的方式查询 repo 的 git 相关内容：[Git Query language](https://amrdeveloper.github.io/GQL/)
+
+- [delta](https://github.com/dandavison/delta)：主要用于 git 相关命令（diff、blame、show 等）的语法突出显示分页器
+	- 安装包为 git-delta，可执行命令为 delta
+	- 使用：在 `~/.gitconfig` 中添加以下设置
+
+```bash
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    features = side-by-side line-numbers decorations
+    navigate = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+```
+
+- git 扩展：[GitHub - tj/git-extras](https://github.com/tj/git-extras)
+	- git extras 命令功能中文翻译：[git-extras-zh/Commands.zh.md](https://github.com/chinanf-boy/git-extras-zh/blob/master/Commands.zh.md)
+
+```bash
+# 安装
+brew install git-extras
+
+# 常用命令
+git setup      # 初始化项目（等同于 git init + add + commit）
+git summary    # 输出 repo 总结
+git changelog  # 生成 History.md
+git commits-since  # 列出（默认为上周）date 以来的提交
+git count
+git count --all
+git undo
+```
 
 
 ---
@@ -685,6 +707,9 @@ git add -i  # 交互式
 # 根据当前时间进行 commit
 git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
 
+# 将改动添加进最近一次的 commit 中
+git commit --amend --no-edit
+
 # 修改 commit 信息
 git commit --amend --no-edit -m 'xxx'
 
@@ -866,19 +891,40 @@ git pull --all  # pull 远程所有内容包括标签
 git log           # 查看提交日志
 git reflog        # 查看所有分支的所有操作记录
 
+# 统计作者提交次数
+git shortlog -s -n
+# 统计 repo 中的提交总数
+git rev-list --all --count
+# 统计 repo 中指定分支的提交总数
+git rev-list --count [分支名]
+
 # 较为简洁美观的 git log 输出样式
 git log --oneline --graph --all
 git log --oneline --graph --stat  
 # 源于 zsh git alias
 git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
 
+# 获取文件最后一次修改的时间
+git log -1 --pretty="%ci" file
+# 获取文件第一次添加到 repo 的时间
+git log -1 --diff-filter=A --follow --pretty="%ci" file
+
+# 常用参数
 -p                # --patch；显示详细修改内容
 --graph           # 显示分支结构
 --stat            # 
 --oneline         # 一行显示；commit id 8 个字符
 --pretty=oneline  # 一行显示；完整 commit id
 --pretty=%B       # 只显示 commit message
---pretty=%H       # 只显示 commit hash
+        =%s       # commit message
+        =%H       # 完整 commit hash
+        =%h       # 缩写 commit hash
+		=%ci      # 提交日期（不受作者限制）
+		=%ad      # 作者提交日期（绝对时间）
+		=%ar      # 作者提交日期（相对时间）
+		=%an      # 作者名称
+		=%ad      # 作者邮箱
+		=%d       # 分支信息
 -n N / HEAD~N     # 显示最新的前 N 条提交记录
 --grep=pattern    # 查看给定 pattern 的提交记录
 ```
@@ -1140,8 +1186,13 @@ git push -u origin <new branch>
 
 ## 相关问题
 
-- github 和 gitee 中的 md 文档无法渲染 `\begin{}` 等 复杂 LaTeX 公式命令
-- github 可以渲染 Front-Matter，gitee 和 typora 暂不行，但会将其包裹起来
+- GitHub 和 Gitee 中的 md 文档无法渲染 `\begin{}` 等复杂 LaTeX 公式命令
+- GitHub 可以渲染 Front-Matter，Gitee 和 Typora 暂不行，但会将其包裹起来
+- [坑：ssh: connect to host github.com port 22: Connection refused - 知乎](https://zhuanlan.zhihu.com/p/521340971)
+- git 报错：`error: RPC failed; Failed to connect to github.com port 443: Couldn't connect to server`
 
-
->[坑：ssh: connect to host github.com port 22: Connection refused - 知乎](https://zhuanlan.zhihu.com/p/521340971)
+```bash
+# 若有 VPN 代理，设置代理
+git config --global http.proxy 127.0.0.1:7890
+git config --global https.proxy 127.0.0.1:7890
+```

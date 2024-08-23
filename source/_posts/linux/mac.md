@@ -27,6 +27,10 @@ password:
 	- [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
 	- [2024年苹果 MacBook 选购指南(MacBook Air/Pro 的 M123/Pro/Max/Ultra有什么区别，13/14/15/16寸怎么选)](https://www.zhihu.com/tardis/zm/art/378347974?source_id=1003)
 
+- 2024.08.19：M1 pro 电池健康 98%
+
+- macOS 可以运行的游戏：[Mac能玩哪些游戏？实测5种游玩方式\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Vy421a7Rd)
+	- 运行 Windows 3A 游戏：使用 Game Porting Toolkit
 
 
 ---
@@ -41,6 +45,7 @@ password:
 - [GitHub - itcharge/macOS-Tips: macOS 系统的使用技巧介绍、常用软件推荐、效率工具推荐。](https://github.com/itcharge/macOS-Tips)
 - [大洋的朝九晚十的个人空间-大洋的朝九晚十个人主页-哔哩哔哩视频](https://space.bilibili.com/33734786)
 - [GitHub - macdao/ocds-guide-to-setting-up-mac: OCD's Guide to Setting up Mac](https://github.com/macdao/ocds-guide-to-setting-up-mac)
+- [摸鱼人的 macOS 工作流 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/282518)
 
 
 ---
@@ -107,7 +112,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 访达可以打开多个标签页，打开多个窗口时，可以合并所有窗口
 - 右键文件，选择快速操作，有 “创建 PDF”、“转换图像”、“移除背景”等操作
 - 按住 `command` 键，可以将文件夹拖到工具栏中，实现快速访问
-- 更改同类型文件的默认打开方式：右键 - 显示简介 - 打开方式，选择指定的默认应用程序，全部更改；[基础教程：如何更改 Mac 文件的默认打开方式 - 少数派](https://sspai.com/post/28394)
+- 更改同类型文件的默认打开方式：选中文件，右键 - 显示简介 - 打开方式，选择指定的默认应用程序，全部更改；[基础教程：如何更改 Mac 文件的默认打开方式 - 少数派](https://sspai.com/post/28394)
 
 
 ---
@@ -130,15 +135,20 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 快捷键：
 
-- 剪切移动文件：`Command + C` 复制，然后 `Command + Option + V` 将其移动到目标目录
+- 剪切移动文件：`command + C` 复制，然后 `command + option + V` 将其移动到目标目录
+- 删除文件：`command + delete`
 - `command + Space` - 聚焦搜索（没有 Alfred 的 `option + Space` 好用）
 - `Space` - 预览功能
-- `Control ⌃ + Left ⬅︎ / Right ➡︎` - 左右切换「空间」（有全屏的窗口的话）
+- `control + ⬅︎ / ➡︎` - 左右切换「空间」（有全屏的窗口的话）
 - `command + Q` - 退出程序（macOS 关闭窗口不是完全退出程序）
-- `command + ⬆️/⬇️` - 返回上一层文件夹；进入文件夹
-- `command + shift + G` 打开“前往文件夹” 窗口
+- `command + ⬆️ / ⬇️` - 返回上一层文件夹；进入文件夹
+- `command + shift + G` 打开 “前往文件夹” 窗口
 - 打开 Alfred，输入 `Restart`、`Sleep`、`Shut down` 实现重启、睡眠、关机
 - 返回桌面 - `command + F3`
+- 更加细致地调节音量、亮度：`option + shift + F1/2/11/12`
+- `option + command + 5`：显示截图、录屏选项
+- `option + command + esc`：强制退出应用程序
+- `command + ~`：切换同一个程序下的窗口
 
 注：无 Windows 的 `Win + X` 等效快捷键
 
@@ -146,6 +156,8 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 ---
 
 ### 软件/程序安装及设置
+
+>[macOS 破解软件、游戏](https://appstorrent.ru/)
 
 >[🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
 
@@ -156,43 +168,59 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 #### 软件/程序推荐
 
 - 软件包安装、管理工具：Homebrew
-- 文件搜索、程序启动工具：Alfred 5
+- 文件搜索、程序启动工具：Alfred 5、[Raycast](https://www.raycast.com/)
 - VPN 网络代理：ClashX
-- 系统资源监控：RunCat、[stats](https://github.com/exelban/stats)
-- 代码编辑器：VSCode、VSCode-Insiders（**VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中**）
-- 终端工具： iTerm2（最实用）、Tabby、Termius、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
+- 系统资源监控：RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)、[glances](https://github.com/nicolargo/glances)
+- 代码编辑器：VSCode、VSCode-Insiders（VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中）
+- 终端模拟器： iTerm2（最实用）、Tabby、Termius、kitty、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
 - 数据同步：交大云盘
-- 浏览器： Safari、Chrome、Arc
-- 压缩文件解压工具：The Unarchiver
+- 浏览器： Safari、Chrome、Arc、Zen
+- 压缩、解压缩工具：The Unarchiver
 - 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
-- Markdown 笔记管理：Obsidian、Typora
+- Markdown 笔记管理：Obsidian、Typora、MarkText
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
 - 图床：PicList（基于 PicGo 开发）、PicGo
 - 文献管理：Zotero
 - 构型可视化：VESTA、OVITO
 - 邮件服务：Mailspring 或 Mac 自带邮件程序
-- 截图：Snipaste
+- 截图：Snipaste、Shottr（可以长截图）
 - 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
 - 垃圾清理：CleanMyMac X（完整版本需收费；有破解版）、Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
 - 快捷键提示：FlyKey、CheatSheet
-- 切换窗口：AltTab
-- 鼠标滚轮方向切换：Mos
+- 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
+- 鼠标滚轮方向切换：Mos、LinearMouse、Mac Mouse Fix
 - 输入法切换：自动切换输入法 Lite 版、[Input Source Pro](https://inputsource.pro/zh-CN)
 - pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
 - 窗口管理：Rectangle、Loop
-- 菜单栏管理：Ice
+- 菜单栏管理：Ice、Bartender
 - 录屏：QuickRecorder
+- 运行 Docker 容器和 Linux：[orbstack](https://github.com/orbstack/orbstack)
 - 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
 - 刘海屏相关：
-	- 将刘海屏当作 AirDrop：NotchDrop
-	- 隐藏刘海屏：Only Switch（将菜单栏调成黑色模式）、zNotch（将菜单栏下移）、
+	- 将刘海屏当作 AirDrop：NotchDrop、Folder Hub
+	- 隐藏刘海屏：Only Switch（将菜单栏调成黑色）、zNotch（将菜单栏下移）、
 	- 增加趣味：Notchmeister
-- 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）
+- 控制外置显示器亮度：MonitorControl、BetterDisplay（功能更强大，需付费）
+- 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
+- 限制电池最大充电量：[bclm](https://github.com/zackelia/bclm)、AlDente
+- 文件互传：LocalSend（跨平台）
+- 虚拟机：Parallels Desktop、VMware Fusion
+- 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）、Maccy
 - 窗口平铺：tiling window manager；[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
-	- yabai 使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
 - macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
+- 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
+- 异地组网、内网穿透：Tailscale（跨平台）
+- 挂载云盘：AList、CloudMounter
+- 视频下载：Downie
+- 远程控制：向日葵、TeamViewer Host、ToDesk
+- 抠图：鲜艺 AI 抠图
+- Android 连接 Mac：Macdroid（需付费）、OpenMTP、Android 文件传输助手（有时无法识别）
+- 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
+- 软件更新：Latest
+- 媒体库管理：Emby（海报墙）
 - 其他：微信（Windows 端没有深色模式，macOS 有深色模式）等
+- 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（任务清单）
 
 
 ---
@@ -205,48 +233,103 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - WinSCP
 
 
-Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
-
-
 ---
 
 #### 部分软件设置
 
- Termius
+- Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
 
-- 支持 Windows Mac Linux iPad Android，多端数据记录同步
-- 可 ssh 远程连接和 sftp 远程文件传输
-- 可进行学生认证
-- 可保存并显示历史命令
-- 字体设置：设置 - Terminal - Text Size 上方，选择“Meslo”
-- 连接本地终端：Hosts - TERMINAL
-- 可保存自定义 Theme；不错的预设 Theme：
-	- Monokai
-	- Pro
-	- Solarized Dark（个人主要采用该 Theme）
-	- Atom One Dark
-	- Tokyo Night
+- kitty 配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
+	- [ ] 如何将 kitty 的窗口信息放到上面，而非默认的下方
+
+ - Termius 设置：
+	- 跨平台，多端数据记录同步；有学生认证
+	- 可 ssh 远程连接和 sftp 远程文件传输
+	- 可进行学生认证
+	- 可保存并显示历史命令
+	- 字体设置：设置 - Terminal - Text Size 上方，选择“Meslo”
+	- 连接本地终端：Hosts - TERMINAL
+	- 可保存自定义 Theme；不错的预设 Theme：
+		- Monokai
+		- Pro
+		- Solarized Dark（个人主要采用该 Theme）
+		- Atom One Dark
+		- Tokyo Night
+
+- iTerm2 字体设置：Prefrences - profiles - text
+
+- IINA 相关快捷键：
+	- 倍速播放
+		- `command + ]` - 1/2/4 倍速加快
+		- `command + option + ]` - 1.1 倍速加快
+	- 字幕切换 - `control + command + S`
+	- 音频切换 - `control + command + A`
+
+- 在 macOS 中，由 Intel 芯片编译得到的程序在 Apple Silicon 芯片上通常可以运行，得益于 Apple 提供的 Rosetta 2 技术
+
+- yabai 使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
+
+- bclm 安装与配置
+
+```bash
+# 安装
+brew tap zackelia/formulae
+brew install bclm
+
+# 设置
+sudo bclm write 80
+bclm read
+
+# 出现以下报错
+keyNotFound(code: "CHWA")
+```
+
+- [Cannot install MarkText 0.17.0rc2-arm64 on M1 MacBook Air · Issue #2983 · marktext/marktext · GitHub](https://github.com/marktext/marktext/issues/2983)
+
+- LocalSend 连接 SJTU WiFi 无法互相发现设备，使用手机热点可以
+	- SJTU 的公共 WiFi 不支持局域网下设备互相发现（AP 隔离，导致不能正常使用）
+	- [连SJTU wifi，ios和windows怎么互传文件呢？ - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/248270)
+	- AP 隔离：种将同一无线网络中各个设备 “隔离开来” 的功能，确保它们只能与互联网或路由器通信，而不能直接相互通信。
+
+- Tailscale 安装与配置：
+	- [部署TailScale实现异地组网+全内网设备远程访问！一次上手Tailscale！轻松打通内外网！群晖、威联通NAS部署Tailscale内网穿透！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768?p=1)
+	- [TailScale子网路由配置，实现使用原生内网IP远程访问，异地组网更加优雅！TailScale Subnet Router使用教程！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768/?p=2)
+	- [ ] macOS `tailscale ssh` 无法使用（sandbox 原因）
+
+- AList docker-compose 部署，挂载网盘时出现 `tcp XXX: connect: connection refused`：[挂载阿里云盘报错 · alist-org/alist · Discussion #1063 · GitHub](https://github.com/alist-org/alist/discussions/1063)
+
+```yaml
+        # 注释 port 参数，将 bridge 模式改成 host
+        network_mode: 'host'
+```
+
 
 ---
 
-iTerm2 字体设置：Prefrences - profiles - text
+#### 终端模拟器集成 SFTP
 
----
+- tabby 集成 SFTP（无法查看远程文件内容），需要在 “设置 - 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
+	- 在当前目录下打开 SFTP 面板：[Shell working directory reporting · Eugeny/tabby Wiki · GitHub](https://github.com/Eugeny/tabby/wiki/Shell-working-directory-reporting)
 
-IINA 相关快捷键：
+```bash
+# bash ~/.bash_profile
+export PS1="$PS1\[\e]1337;CurrentDir="'$(pwd)\a\]'
 
-- 倍速播放
-	- `command + ]` - 1/2/4 倍速加快
-	- `command + option + ]` - 1.1 倍速加快
-- 字幕切换 - `control + command + S`
-- 音频切换 - `control + command + A`
+# zsh ~/.zshrc
+precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
+```
+
+- Termius 集成 SFTP（可以查看远程文件内容）
+
+- iTerm2 安装 Shell Integration：登录远程服务器，iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传；[使用iTerm2管理SSH服务器 – 爪哇堂 JavaTang](https://www.javatang.com/archives/2021/11/29/13063392.html)
+	- 可以在终端查看图片和 gif 图（imgls）；[Features - iTerm2 - macOS Terminal Replacement](https://iterm2.com/features.html)
 
 
 ---
 
 #### Homebrew 使用
 
-- 大部分开源命令行工具、程序、库和 GUI 程序（cask）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）
+- 大部分开源命令行工具、程序、库和 GUI 程序（cask，不太推荐用该方式，有时下载速度很慢，建议直接官网下载）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）
 
 - 安装 Homebrew：
 	- [安装和使用 Homebrew - 韬秧道](https://blog.tauyoung.top/article/Homebrew/)
@@ -265,16 +348,17 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirror.sjtu.edu.cn/homebrew-bottles/bottle
 - 相关命令：[Homebrew 备忘清单 &  homebrew cheatsheet &  Quick Reference](https://quickref.me/zh-CN/docs/homebrew.html)
 
 ```bash
-brew install <package>  # 安装
+brew install <package>         # 安装
 brew install --cask <package>  # 安装 GUI 程序
-brew uninstall <package>  # 卸载
-brew search <package>  # 查找
+brew uninstall <package>       # 卸载
+brew search <package>          # 查找
 # 显示安装包相关信息 是否安装，依赖，头文件、库路径等
 brew info <package>
-brew list  # 显示已安装的包
-brew doctor  # 诊断
-brew outdated   # 显示可以升级的包
-brew upgrade  # 升级
+brew list          # 列出已安装的包
+brew list --casks  # 仅列出已安装的软件
+brew doctor        # 诊断
+brew outdated      # 列出可以升级的包
+brew upgrade       # 升级
 brew upgrade <package>
 
 # 忽视依赖关系卸载
@@ -283,17 +367,14 @@ brew uninstall --ignore-dependencies <package>
 # 查看已安装的包的依赖，树形显示
 brew deps --installed --tree
 
-# 查看可清理的旧版本包
-brew cleanup -n
-# 清理所有包的旧版本
-brew cleanup
-# 删除缓存
-brew cleanup --prune=all
+brew cleanup -n           # 查看可清理的旧版本包
+brew cleanup              # 清理所有包的旧版本
+brew cleanup --prune=all  # 删除缓存
 
-brew pin <package>  # 锁定包
+brew pin <package>    # 锁定包
 brew unpin <package>  # 取消锁定
 
-# 取消 Homebrew 对 homebrew/core 仓库的关注
+# 取消 对 homebrew/core 仓库的关注
 brew untap homebrew/core
 ```
 
@@ -314,6 +395,7 @@ brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-hack-nerd-font
 
 brew install --cask font-jetbrains-mono
+brew install --cask font-juliamono
 
 # 查看可用 nerd font
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
@@ -408,7 +490,7 @@ menu:
 - 使用 Vim 快捷键操作网页内容：Vimlike
 - 视频倍速：Accelerate
 - 中英文翻译：沉浸式翻译、无官方的 DeepL（有非官方的，不是很好用）、沙拉查词翻译（无官方）
-- 油猴（需收费，有破解版；部分油猴脚本未适配 Safari，导致无法使用）
+- 油猴（需收费，有破解版；很多油猴脚本未适配 Safari）
 - 网络代理：[如何在safari上实现类SwitchyOmega代理切换功能](https://www.youtube.com/watch?v=pAY8pNou9Gk)
 
 ```bash
@@ -472,6 +554,19 @@ set backspace=2
 	- 系统设置 - 通用 - 系统报告 - 图形卡/显示器
 	- 运行命令：`system_profiler SPDisplaysDataType`
 
+- 查看网线 IP 地址：系统设置 - 网络 - USB XXX LAN，IP 地址
+- 获取本机 WiFi IP 地址：`ipconfig getifaddr en0`
+
+- 安装 Java：Java 存档下载：[Java Archive Downloads - Java SE 18](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
+
+```bash
+# 安装 Java
+brew install openjdk
+```
+
+- 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
+	- 有 command（类似 vim） 和 edit 模式；需自己添加 miniconda 虚拟环境的 kernel
+
 
 
 ---
@@ -522,7 +617,7 @@ brew install coreutils
 
 ---
 
-### Mac 软件安装问题
+### 软件安装问题
 
 - 身份不明开发者：按住 `Control` 键，点击 App，弹出的窗口会有打开按钮；[Mac如何打开身份不明开发者的程序？ - 知乎](https://www.zhihu.com/question/52623818)
 - [Apple 无法检查 App 是否包含恶意软件 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchleab3a043/mac)

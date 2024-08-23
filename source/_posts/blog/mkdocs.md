@@ -139,11 +139,58 @@ jobs:
 
 ### 自定义设置
 
-- `markdown_extensions` 参数：可直接添加，无需额外安装相关依赖
-
 ```yaml
-# 参考设置
-markdown_extensions:
+theme:
+  icon: 
+    logo: material/notebook-outline  # 自定义 logo
+    repo: fontawesome/brands/github-alt
+    admonition: # 自定义 admonition
+	# https://github.com/IsshikiHugh/notebook/blob/main/mkdocs.yaml
+      info: fontawesome/solid/anchor
+      note: fontawesome/solid/pen-nib
+      abstract: fontawesome/solid/list
+      tip: fontawesome/solid/lightbulb
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: material/alien
+      danger: fontawesome/solid/virus
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/link
+
+  font:  # 文本及代码字体设置
+    text: LXGW WenKai Screen GB Screen
+    code: JetBrains Mono
+
+  # https://github.com/HobbitQia/notebook/blob/note1/mkdocs.yml
+  palette:  # 浅色/深色模式切换
+    - media: "(prefers-color-scheme: light)" 
+      scheme: default  # 配色方案：浅色模式
+      # primary: brown  # 原色，用于标题、侧边栏、文本链接和其他几个组件
+      # accent: brown  # 强调色，可以交互的元素如悬停链接、按钮和滚动条
+      toggle:
+        icon: material/weather-sunny # 太阳
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"  
+      scheme: slate  # 配色方案：深色模式
+      toggle:
+        icon: material/weather-night  # 月亮
+        name: Switch to light mode
+		
+  features:
+    - navigation.footer  # 页面底部显示 “上一页、下一页”
+    - navigation.tabs    # 导航栏
+	
+  custom_dir: overrides  # 指定自定义模板和静态文件的目录路径
+
+plugins:  # 插件
+
+extra_css:
+
+extra_javascript:
+
+markdown_extensions:  # 可直接添加，无需额外安装相关依赖；参考设置
   - abbr
   - admonition
   - attr_list
@@ -191,75 +238,22 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-```
-
----
-
-- 导航栏
-
-```yaml
-theme:
-  features:
-    - navigation.tabs
-
+  
+extra:  # 添加 social link
+  social:
+    - name: GitHub
+      icon: fontawesome/brands/github
+      link: https://github.com/user
+    - name: Home
+      icon: fontawesome/solid/house-chimney
+      link: url
+	  
 nav:
   - Home: 
     - index.md
 
   - XXX:
     - XXX/index.md
-```
-
----
-
-- 页面底部显示 “上一页、下一页”
-
-```yaml
-theme:
-  features:
-    - navigation.footer
-```
-
----
-
-- 站点 icon 修改
-
-```yaml
-theme:
-  icon: 
-    logo: material/notebook-outline
-```
-
----
-
-- 浅色/深色模式切换：[mkdocs.yml - HobbitQia notebook](https://github.com/HobbitQia/notebook/blob/note1/mkdocs.yml)
-
-```yaml
-# reference: https://github.com/HobbitQia/notebook/blob/note1/mkdocs.yml
-theme:
-  palette:  # 切换昼夜模式的颜色，审美差就用默认，专业点就自定义
-    - media: "(prefers-color-scheme: light)" 
-      scheme: default  #配色方案：浅色模式
-      # primary: brown  # 原色，默认蓝，用于标题、侧边栏、文本链接和其他几个组件
-      # accent: brown  # 强调色，默认蓝，可以交互的元素如悬停链接、按钮和滚动条
-      toggle:
-        icon: material/weather-sunny #图标，太阳
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"  
-      scheme: slate  # 配色方案：深色模式
-      # primary: Brown  # 原色，默认蓝，用于标题、侧边栏、文本链接和其他几个组件
-      toggle:
-        icon: material/weather-night  # 图标，月亮
-        name: Switch to light mode
-```
-
----
-
-- `custom_dir` 参数：指定自定义模板和静态文件的目录路径
-
-```yaml
-theme:
-  custom_dir: overrides
 ```
 
 ---
@@ -280,22 +274,6 @@ theme:
     ```
 ```
 
----
-
-- 添加 social link
-
-```yaml
-extra:
-  social:
-    - name: GitHub
-      icon: fontawesome/brands/github
-      link: https://github.com/Bit-Part-Young
-    - name: Home
-      icon: fontawesome/solid/house-chimney
-      link: https://seekanotherland.xyz/mkdocs-demo/
-```
-
----
 
 - i18n 设置：[mkdocs.yml](https://github.com/jiegec/kb/blob/main/mkdocs.yml)
 
@@ -303,7 +281,7 @@ extra:
 
 ---
 
-## To do
+## To Do
 
 - [ ] 字体修改（暂无必要）：TonyCrane 有 heti repo；[Changing the fonts - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-fonts/#additional-fonts-mkdocsyml)
 - [ ] 将 docs 目录用脚本的形式写入到 mkdocs.yml 中的 nav 中：[weekly/main.py at main · howie6879/weekly · GitHub](https://github.com/howie6879/weekly/blob/main/main.py)（参考代码）

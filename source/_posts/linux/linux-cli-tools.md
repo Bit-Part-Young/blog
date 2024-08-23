@@ -26,7 +26,7 @@ password:
 - Linux 端：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）
 - Windows 端：scoop、winget 等
 - Mac 端：brew；
-- 程序端：Python（pip、conda），Rust（cargo），Nodejs（npm、yarn）
+- 程序端：Python（pip、pipx、conda），Rust（cargo），Nodejs（npm）
 - 从 [webinstall.dev](https://webinstall.dev/) 网站安装（后三者可以在无 root 权限情况下安装）
 - 源码编译安装
 
@@ -57,7 +57,7 @@ password:
 
 ### 安装
 
-- Package Managers
+- 通过 Package Managers
 
 ```bash
 sudo apt install zsh  # Ubuntu
@@ -65,9 +65,11 @@ sudo pacman -S zsh    # Arch Linux
 brew install zsh      # macOS
 ```
 
+---
+
 - 源码编译：依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
 
-编译 ncurses
+编译 ncurses（构建 TUI（文本用户界面）的库）
 
 ```bash
 wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certificate
@@ -76,8 +78,6 @@ wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certifica
 
 make -j && make install
 ```
-
----
 
 编译 zsh
 
@@ -91,7 +91,56 @@ make -j && make install
 
 ---
 
-设置 zsh 为默认 shell：；无 root 权限：
+- Windows：
+	- 两种方式：WSL + zsh，Git Bash + zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
+	- Windows Terminal 以及 VSCode 本地设置默认终端为 Git Bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
+
+下载 zsh 包；复制 `etc/`、`usr/` 到 Git 安装目录中；打开 Git Bash，执行命令 `zsh`
+
+```bash
+wget https://mirror.msys2.org/msys/x86_64/zsh-5.9-2-x86_64.pkg.tar.zst
+
+tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
+```
+
+设置 zsh 为默认 shell，在 `.bashrc` 添加：
+
+```bash
+ # Enable zsh
+ if [ -t 1 ]; then
+    exec zsh
+ fi
+```
+
+修改 Windows Terminal 的 `settings.json` 内容：
+
+```json
+{
+    // ...
+    // 添加项 
+    // 默认启动为 Git Bash
+    "defaultProfile": "{5D1F95DF-36E8-56AD-C203-EA75CE06422C}",
+    // "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    // ...
+        "list": 
+        [			
+            // 添加项
+	        {
+                "guid" : "{5D1F95DF-36E8-56AD-C203-EA75CE06422C}",
+                "name" : "Git Bash",
+                "commandline" : "D:\\Scoop\\apps\\git\\current\\bin\\bash.exe --login -i",
+                "icon" : "D:\\Scoop\\apps\\git\\current\\usr\\share\\git\\git-for-windows.ico",
+                "startingDirectory": "C:\\Users\\XXX\\Desktop"
+            },
+		    // ...
+        ],
+    },
+}
+```
+
+---
+
+- 设置 zsh 为默认 shell
 
 ```bash
 # 有 root 权限
@@ -101,27 +150,6 @@ chsh -s /bin/zsh
 export PATH=$HOME/bin:$PATH
 export SHELL=`which zsh`
 [ -f "$SHELL" ] && exec "$SHELL" -l
-```
-
----
-
-- Windows：
-	- 两种方式：WSL+zsh，git bash+zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
-	- Windows Terminal 以及 VSCode 本地设置默认终端为 git bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
-
-下载 zsh 包；复制 `etc/`、`usr/` 到 Git 安装目录中；打开 Git Bash，执行命令 `zsh`；设置 zsh 为默认 shell，在 `.bashrc` 添加：
-
-```bash
-wget https://mirror.msys2.org/msys/x86_64/zsh-5.9-2-x86_64.pkg.tar.zst
-
-tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
-```
-
-```bash
- # Enable zsh
- if [ -t 1 ]; then
-    exec zsh
- fi
 ```
 
 
@@ -141,7 +169,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  # via wget
 ```
 
-- 插件下载：zsh-completions（自动补全）、zsh-syntax-highlighting（高亮）、zsh-autosuggestions（建议）、powerlevel10k（主题）
+- 插件下载：
+	- powerlevel10k（主题）
+	- zsh-completions（自动补全）
+	- zsh-syntax-highlighting（高亮）
+	- zsh-autosuggestions（建议）
+	- zsh prompt（可选）：[spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt)
 
 ```bash
 # github 源
@@ -151,7 +184,10 @@ git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${Z
 git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/fast-syntax-highlighting && \
 git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM}/plugins/zsh-vi-mode && \
 git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM}/plugins/you-should-use && \
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k && \
+# 可选
+# git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM}/themes/spaceship-prompt && \
+# ln -s ${ZSH_CUSTOM}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM}/themes/spaceship.zsh-theme
 
 # gitee 源
 git clone --depth=1 https://gitee.com/yuhldr/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
@@ -160,78 +196,44 @@ git clone --depth=1 https://gitee.com/yuhldr/zsh-completions ${ZSH_CUSTOM}/plugi
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 ```
 
-- 备份 ~/.zshrc（如果有）：`cp ~/.zshrc ~/.zshrc.bak`；更新 ohmyzsh：`omz update`；配置 powerlevel10k：`p10k configure`
+- 备份 `~/.zshrc`（如果有）
 
-- 下载安装好 ohmyzsh 和 powerlevel10k 后，重新登录，会进入配置 powerlevel10k 的交互，按照指示自定义设置即可。
+- 重新登录，会进入配置 powerlevel10k 的交互，按照指示自定义设置即可
+
+```bash
+omz update      # 更新 ohmyzsh
+p10k configure  # 配置 powerlevel10k
+```
 
 
 ---
 
-ohmyzsh 有用的内置与外置插件：[Plugins · ohmyzsh/ohmyzsh Wiki · GitHub](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins)
+### 插件
+
+- ohmyzsh 有用的内置与外置插件：[Plugins · ohmyzsh/ohmyzsh Wiki · GitHub](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins)
+- [GitHub - magicmonty/bash-git-prompt: An informative and fancy bash prompt for Git users](https://github.com/magicmonty/bash-git-prompt)
+- zsh tips tricks examples: [ZSH-LOVERS(1)](https://grml.org/zsh/zsh-lovers.html)
 
 ```bash
-################ 内置插件 ################
-# 目录自动跳转，模糊匹配最近进入过的目录
-z
-# 丰富的 git alias
-git
+# 内置插件
+z    # 目录自动跳转，模糊匹配最近进入过的目录
+git  # 丰富的 git alias
 
-################ 外置插件 ################
+# 外置插件
 zsh-syntax-highlighting
 zsh-autosuggestions
 zsh-completions
-```
-
-
-```bash
-# bash 插件
-bash-git-prompt  # 效果还不错
-bash-language-server  # 有 Bash IDE 的 VSCode 插件
-bash-completion
-bash-snippets  # 有 cheat 等可执行命令
-
-# zsh 插件
 zsh-fast-syntax-highlighting
 zsh-you-should-use
 zsh-vi-mode  # Crtl + [ 进入 Normal mode
 zsh-lovers
 zsh-git-prompt
-```
 
->[GitHub - magicmonty/bash-git-prompt: An informative and fancy bash prompt for Git users](https://github.com/magicmonty/bash-git-prompt)
-
-zsh tips tricks examples: [ZSH-LOVERS(1)](https://grml.org/zsh/zsh-lovers.html)
-
-
----
-
-### Windows 端安装配置 zsh
-
-- 安装、配置 ohmyzsh
-- 修改 Windows Terminal 的 `settings.json` 内容
-
-```json
-{
-    // ...
-    // 添加项 
-    // 默认启动为 Git Bash
-    "defaultProfile": "{5D1F95DF-36E8-56AD-C203-EA75CE06422C}",
-    // "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    // ...
-        "list": 
-        [			
-            // 添加项
-	        {
-                "guid" : "{5D1F95DF-36E8-56AD-C203-EA75CE06422C}",
-                "name" : "Git Bash",
-                "commandline" : "D:\\Scoop\\apps\\git\\current\\bin\\bash.exe --login -i",
-                "icon" : "D:\\Scoop\\apps\\git\\current\\usr\\share\\git\\git-for-windows.ico",
-                "startingDirectory": "C:\\Users\\SLY\\Desktop"
-            },
-		    // ...
-        ],
-    },
-}
+# bash 插件
+bash-git-prompt       # 效果还不错
+bash-language-server  # 有 Bash IDE 的 VSCode 插件
+bash-completion
+bash-snippets         # 有 cheat 等可执行命令
 ```
 
 
@@ -262,8 +264,6 @@ csvstat file.csv  # 统计所有列的情况
 csvstat -c 1,2,3 data.csv  # 统计特定列
 ```
 
----
-
 - josn 命令行工具：jq、[jnv](https://github.com/ynqa/jnv)（交互式）
 
 ```bash
@@ -272,8 +272,7 @@ cat data.json | jq .  # 输出 json 文件内容
 cat data.json | jq '.user.name'  # 获取特定键值
 ```
 
-
-JSON、YAML、TOML、HCL 格式之间互相转换：[yj](https://github.com/sclevine/yj)
+- JSON、YAML、TOML、HCL 格式之间互相转换：[yj](https://github.com/sclevine/yj)
 
 ```bash
 brew install yj          # macOS 安装
@@ -290,6 +289,7 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 
 >ripgrep、lsd、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
 
+- shell：nushell、fish 体验（没有 zsh 好用）
 - 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)、[navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
@@ -302,7 +302,7 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
 - 文本编辑器：[helix](https://github.com/helix-editor/helix)
 - 终端 Markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
-- 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）、[hyfetch](https://github.com/hykilpikonna/hyfetch)
+- 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[neofetch-themes](https://github.com/Chick2D/neofetch-themes)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）、[hyfetch](https://github.com/hykilpikonna/hyfetch)
 - 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
 - 文件对比：[difftastic](https://github.com/Wilfred/difftastic)
 - 文件搜索：[fzf](https://github.com/junegunn/fzf)
@@ -315,46 +315,18 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
 - 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
 - Slurm TUI 版本（查看集群任务）：[GitHub - kabouzeid/turm: TUI for the Slurm Workload Manager](https://github.com/kabouzeid/turm)
-
-```bash
-# turm 安装
-cargo install turm
-```
-
-
-
-
+- [starship](https://github.com/starship/starship): 美观、可自定义的 shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
+- 安全替代 `rm` 的脚本：[trash.sh](https://github.com/qqAys/trash.sh)
+- 终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)
+- [GitHub - theryangeary/choose: A human-friendly and fast alternative to cut and (sometimes) awk](https://github.com/theryangeary/choose)
+- [GitHub - imsnif/bandwhich: Terminal bandwidth utilization tool](https://github.com/imsnif/bandwhich)
+- [GitHub - swsnr/mdcat: cat for markdown](https://github.com/swsnr/mdcat)
+- 检测 GPU（Nvidia 和 AMD 等）：[nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
+- 将输入的图片，使用几何形状重新绘制：[GitHub - fogleman/primitive: Reproducing images with geometric primitives.](https://github.com/fogleman/primitive)
 - 其他小工具： cowsay、sl（火车）、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix（黑客帝国）、asciiquarium（水族馆）
 
 
-```bash
-ncdu -o ncdu.txt  # 输出信息到文件中
-
-# navi 使用
-navi repo browse  # 按需添加 cheatsheet git repo 以增加丰富性
-```
-
-
-```bash
-# 升级 fzf
-cd ~/.fzf && git pull && ./install
-
-# rg 使用
-# -g 过滤搜索
-rg 'content' -g '!docs/'  # 排除
-rg 'content' -g '*.py'    # 包含
-
-# eg 安装
-pip install -U eg
-brew install eg-examples
-
-# figlet toilet 相关用法
-showfigfonts   # 查看可用字体
-figlet spt
-figlet -c spt  # 居中 
-figlet spt | toilet -f term --gay  # 彩色输出
-```
-
+---
 
 fzf 进阶用法
 
@@ -369,8 +341,43 @@ apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycl
 fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 ```
 
+---
+
 ```bash
-# mcfly
+# turm 安装
+cargo install turm
+
+
+ncdu -o ncdu.txt  # 输出信息到文件中
+
+
+# navi 使用
+navi repo browse  # 按需添加 cheatsheet git repo 以增加丰富性
+
+
+# 升级 fzf
+cd ~/.fzf && git pull && ./install
+
+
+# rg 使用
+# -g 过滤搜索
+rg 'content' -g '!docs/'  # 排除
+rg 'content' -g '*.py'    # 包含
+
+
+# eg 安装
+pip install -U eg
+brew install eg-examples
+
+
+# figlet toilet 相关用法
+showfigfonts   # 查看可用字体
+figlet spt
+figlet -c spt  # 居中 
+figlet spt | toilet -f term --gay  # 彩色输出
+
+
+# mcfly 安装与配置
 brew install mcfly
 
 curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly
@@ -383,23 +390,9 @@ sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 
 sudo apt install fastfetch
-```
 
----
 
-终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)
-
-[GitHub - theryangeary/choose: A human-friendly and fast alternative to cut and (sometimes) awk](https://github.com/theryangeary/choose)
-
-[GitHub - imsnif/bandwhich: Terminal bandwidth utilization tool](https://github.com/imsnif/bandwhich)
-
-[GitHub - context-labs/mactop: mactop - Apple Silicon Monitor Top written in pure Golang! Under 1,000 lines of code.](https://github.com/context-labs/mactop)
-
-安全替代 `rm` 的脚本：[trash.sh](https://github.com/qqAys/trash.sh)
-
-[starship](https://github.com/starship/starship): 美观、可自定义的 shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
-
-```bash
+# starship
 # 安装
 curl -sS https://starship.rs/install.sh | sh
 brew install starship  # macOS
@@ -408,4 +401,12 @@ brew install starship  # macOS
 eval "$(starship init zsh)"   # zsh
 eval "$(starship init bash)"  # bash
 Invoke-Expression (&starship init powershell) # powershell
+
+
+# primitive 安装与使用
+go install github.com/fogleman/primitive@latest
+
+export PATH=$(go env GOPATH)/bin:$PATH
+
+primitive -i input.png -o output.png -n 100
 ```

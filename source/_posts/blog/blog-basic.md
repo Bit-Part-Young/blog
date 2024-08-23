@@ -106,6 +106,26 @@ password:
 
 ---
 
+### 其他
+
+- [搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
+
+- 提供 DNS 查询的 API：[DNS.fish - Command-line DNS Record Lookup Tool](https://dns.fish/)
+
+- Cloudflare R2 需要先添加订阅（免费额度：10GB/月），建议使用 PayPal 方式，可以使用银联银行卡；添加 Bucket，之后可以添加文件或文件夹；管理 API Token
+
+- [ ] Cloudflare 代理域名 DNS 后，经常出现如下错误，如何解决（有时正常）
+
+```bash
+SSL handshake failed Error code 525
+```
+
+- [ ] 如何取消 Cloudflare 代理域名 DNS
+
+
+
+---
+
 ## Node.js
 
 - Node.js： A JavaScript runtime built on Chrome's V8 JavaScript engine 是一个不依赖浏览器的 JavaScript 运行环境，大部分前端项目比如 Vue、React 和后端项目比如 Express、Koa 均依赖于 Node.js 生态系统；
@@ -224,9 +244,8 @@ registry=https://registry.npmmirror.com
 ```
 
 
-
 ---
 
-## 其他
+### 其他
 
-[搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
+- [【js】require vs import | nodejs的模块化方式\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1JJ41177Dx)

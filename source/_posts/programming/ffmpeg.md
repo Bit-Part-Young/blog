@@ -25,6 +25,7 @@ password:
 - [FFmpeg 命令生成](https://alfg.dev/ffmpeg-commander/)
 - [用FFmpeg来生成带背景和视频信息的缩略图（一） - Gu Gu Gu](https://bupt.dev/index.php/archives/67/)
 - FFmpeg 的 GPL 和 LGPL 协议含义：[终于理解了什么是LGPL - findumars - 博客园](https://www.cnblogs.com/findumars/p/3556883.html)
+- FFmpega + Python 实现给视频添加水印：[GitHub - HeiSir2014/ffmpeg-wiki](https://github.com/HeiSir2014/ffmpeg-wiki)
 
 
 
@@ -105,7 +106,7 @@ ffmpeg -i input.gif -vf "drawtext=text='Your Text Here':fontfile=/path/to/font.t
 # 查看音乐文件元数据
 ffprobe -v quiet -print_format json -show_format -show_streams input.flac
 
-# 查看整轨 ape 音乐文件元数据（含歌曲总数和每首歌曲的开始时间）
+# 查看整轨 APE 音乐文件元数据（含歌曲总数和每首歌曲的开始时间）
 ffprobe -show_entries format=nb_streams -show_entries stream=codec_type,start_time -print_format flat input.ape
 
 # FLAC 转 MP3 保留元数据
@@ -113,4 +114,17 @@ ffmpeg -i input.flac -ab 320k -map_metadata 0 -id3v2_version 3 -acodec libmp3lam
 
 #  APE 转 FLAC
 ffmpeg -i input.ape -c:a flac output.flac
+
+# LPCM 无损压缩转 FLAC
+```
+
+
+---
+
+### 其他
+
+```bash
+ffmpeg -hwaccels  # 列出硬件加速方法
+ffmpeg -decoders  # 查看支持的所有解码器
+ffmpeg -encoders  # 查看支持的所有编码器
 ```

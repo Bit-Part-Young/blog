@@ -29,7 +29,7 @@ password:
 	- 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得...
 
 - TeX 发行版：TeX Live / MacTeX（macOS 下定制的 TeX Live 版本）
-- TeX 编辑器：TeXstudio、TeXShop（MacTeX 自带）
+- TeX 编辑器：TeXstudio（Windows）、TeXShop（MacTeX 自带）、Texifier（macOS；有破解版）
 
 
 ---
@@ -215,16 +215,16 @@ tlmgr --version
 - Mac 端：TeXShop
 
 - 在线 LaTeX 编辑器
-	- [overleaf](https://www.overleaf.com/)；本地 overleaf 软件：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
+	- [网页版 Overleaf](https://www.overleaf.com/)；桌面端 Overleaf：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
 	- [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
 	- LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
 ---
 
-overleaf 使用：
+Overleaf 使用：
 
-- overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
-- overleaf 可以使用 vim（**组合键**选项）
+- Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
+- Overleaf 可以使用 Vim（**组合键**选项）
 
 ---
 
@@ -241,7 +241,9 @@ TeXstudio：工具 - 清理辅助文件
 
 - VSCode LaTeX Utilities 插件
 
-- LaTeX OCR：[GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
+- LaTeX OCR：
+	- [GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
+	- [公式识别](https://www.simpletex.cn/ai/latex_ocr)
 
 - Markdown 宏包：[以 Markdown 撰写文稿，以 LaTeX 排版](https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/)
 
