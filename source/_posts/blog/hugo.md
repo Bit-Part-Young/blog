@@ -20,6 +20,7 @@ password:
 ## 介绍
 
 - 主题：
+	- [Hugo 框架主题集合](https://themes.gohugo.io/)
 	- [hextra](https://github.com/imfing/hextra)
 	- [stack](https://github.com/CaiJimmy/hugo-theme-stack)
 	- [PaperMod](https://github.com/adityatelange/hugo-PaperMod/)、[modified-papermod](https://github.com/xyming108/sulv-hugo-papermod)

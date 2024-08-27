@@ -185,6 +185,7 @@ Pull Requests 流程:
 - [GitHub - lowlighter/metrics](https://github.com/lowlighter/metrics)（形式丰富，可使用 GitHub Actions）
 - [GitHub - jstrieb/github-stats](https://github.com/jstrieb/github-stats)
 - [GitHub - vn7n24fzkq/github-profile-summary-cards](https://github.com/vn7n24fzkq/github-profile-summary-cards)
+- 生成并更新 WakaTime 统计数据：[GitHub - matchai/waka-box](https://github.com/matchai/waka-box)
 
 使用 github-readme-stats repo 部署的 vercel app API 会有次数限制，且只能访问公开 repo 的相关数据，导致统计信息不全。因此更建议 fork 该 repo，部署自己的 vercel app API（可以访问私有 repo 数据，参见 [deploy-on-your-own](https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own)；添加 PAT_1 环境变量时，注意需点击 Save 保存）
 
@@ -364,6 +365,7 @@ repos:
 
 - 同步到 Gitee：[gitee.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/gitee.yml)、[hub-mirror-action](https://github.com/Yikun/hub-mirror-action)
 - 自动发布 Release：[release.yml](https://github.com/frostming/marko/blob/master/.github/workflows/release.yml)
+- 自动化发布 release：[GitHub - release-it/release-it: 🚀 Automate versioning and package publishing](https://github.com/release-it/release-it)
 
 
 ---

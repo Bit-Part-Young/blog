@@ -8,6 +8,7 @@ summary: 博客搭建基础
 description: 博客搭建基础
 tags:
   - Nodejs
+  - Cloudflare
 categories:
   - 博客
 date: 2024-07-11 09:00:00
@@ -106,7 +107,16 @@ password:
 
 ---
 
-### 其他
+## 其他
+
+- [使用 GitHub Actions 通过 acme.sh 自动申请 SSL 证书](https://github.com/danbao/auto-ssl)
+
+- 反向代理：
+	- nginx：[【nginx入门】nginx反向代理与负载均衡教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Bx411Z7Do/)
+	- [GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
+
+- 自动获得公网 IPv4 或 IPv6 地址，并解析到对应的域名服务：[GitHub - jeessy2/ddns-go](https://github.com/jeessy2/ddns-go)
+	- [外网访问家庭内网的两大最优方案，零基础教程 远程控制家庭电脑 ，公网访问家庭局域网\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV15T421X7aa)
 
 - [搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
 

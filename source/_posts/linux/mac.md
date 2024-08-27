@@ -43,9 +43,11 @@ password:
 - [GitHub - nikitavoloboev/my-mac: Apps/tools I use on macOS](https://github.com/nikitavoloboev/my-mac)
 - [GitHub - serhii-londar/open-source-mac-os-apps: 🚀 Awesome list of open source applications for macOS. https://t.me/s/opensourcemacosapps](https://github.com/serhii-londar/open-source-mac-os-apps)
 - [GitHub - itcharge/macOS-Tips: macOS 系统的使用技巧介绍、常用软件推荐、效率工具推荐。](https://github.com/itcharge/macOS-Tips)
+- [Mac\_张的个人空间-Mac\_张个人主页-哔哩哔哩视频](https://space.bilibili.com/49574614)
 - [大洋的朝九晚十的个人空间-大洋的朝九晚十个人主页-哔哩哔哩视频](https://space.bilibili.com/33734786)
 - [GitHub - macdao/ocds-guide-to-setting-up-mac: OCD's Guide to Setting up Mac](https://github.com/macdao/ocds-guide-to-setting-up-mac)
 - [摸鱼人的 macOS 工作流 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/282518)
+
 
 
 ---
@@ -157,24 +159,23 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 ### 软件/程序安装及设置
 
->[macOS 破解软件、游戏](https://appstorrent.ru/)
+- 网络上下载的程序安装包安装到 Mac 上，需将包（`*.app`）移动到 Applications 里；卸载：直接将其移到废纸篓
+- [macOS 破解软件、游戏](https://appstorrent.ru/)
+- [🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
+- [GitHub - hzlzh/Best-App: 收集&推荐优秀的 Apps/硬件/技巧/周边等](https://github.com/hzlzh/Best-App)
 
->[🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
-
->网络上下载的程序安装包安装到 Mac 上，需将包（`*.app`）移动到 Applications 里；卸载：直接将其移到废纸篓
 
 ---
 
 #### 软件/程序推荐
 
-- 软件包安装、管理工具：Homebrew
+- 包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：Alfred 5、[Raycast](https://www.raycast.com/)
 - VPN 网络代理：ClashX
-- 系统资源监控：RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)、[glances](https://github.com/nicolargo/glances)
+- 系统资源监控：iStat Menus、RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)、[glances](https://github.com/nicolargo/glances)
 - 代码编辑器：VSCode、VSCode-Insiders（VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中）
-- 终端模拟器： iTerm2（最实用）、Tabby、Termius、kitty、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
-- 数据同步：交大云盘
-- 浏览器： Safari、Chrome、Arc、Zen
+- 终端模拟器：默认终端、iTerm2（最实用）、Tabby、Termius、kitty、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
+- 浏览器：Safari、Chrome、Arc、Zen
 - 压缩、解压缩工具：The Unarchiver
 - 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
 - Markdown 笔记管理：Obsidian、Typora、MarkText
@@ -195,7 +196,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 窗口管理：Rectangle、Loop
 - 菜单栏管理：Ice、Bartender
 - 录屏：QuickRecorder
-- 运行 Docker 容器和 Linux：[orbstack](https://github.com/orbstack/orbstack)
+- 运行 Docker 容器、k8s 和 Linux：[orbstack](https://github.com/orbstack/orbstack)
 - 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
 - 刘海屏相关：
 	- 将刘海屏当作 AirDrop：NotchDrop、Folder Hub
@@ -205,6 +206,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
 - 限制电池最大充电量：[bclm](https://github.com/zackelia/bclm)、AlDente
 - 文件互传：LocalSend（跨平台）
+- 文件同步：Syncthing、交大云盘
 - 虚拟机：Parallels Desktop、VMware Fusion
 - 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）、Maccy
 - 窗口平铺：tiling window manager；[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
@@ -212,15 +214,15 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
 - 异地组网、内网穿透：Tailscale（跨平台）
 - 挂载云盘：AList、CloudMounter
-- 视频下载：Downie
+- 视频下载：Downie、Motrix、imFile
 - 远程控制：向日葵、TeamViewer Host、ToDesk
 - 抠图：鲜艺 AI 抠图
 - Android 连接 Mac：Macdroid（需付费）、OpenMTP、Android 文件传输助手（有时无法识别）
 - 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
-- 软件更新：Latest
+- 软件更新：Latest（一般）
 - 媒体库管理：Emby（海报墙）
+- 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（to-do 清单）
 - 其他：微信（Windows 端没有深色模式，macOS 有深色模式）等
-- 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（任务清单）
 
 
 ---
@@ -228,7 +230,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 #### Mac 端没有的一些软件
 
 - PotPlayer
-- Notepad++（可以用 [Notepad--](https://github.com/cxasm/notepad--) 代替）
+- Notepad++（可以用 [Notepad--](https://github.com/cxasm/notepad--) 代替；[micro](https://github.com/zyedidia/micro)（基于终端的文本编辑器））
 - MobaXterm
 - WinSCP
 
@@ -243,6 +245,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 	- [ ] 如何将 kitty 的窗口信息放到上面，而非默认的下方
 
  - Termius 设置：
+	- [ ] Termius 无法复制粘贴
 	- 跨平台，多端数据记录同步；有学生认证
 	- 可 ssh 远程连接和 sftp 远程文件传输
 	- 可进行学生认证
@@ -295,12 +298,17 @@ keyNotFound(code: "CHWA")
 	- [部署TailScale实现异地组网+全内网设备远程访问！一次上手Tailscale！轻松打通内外网！群晖、威联通NAS部署Tailscale内网穿透！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768?p=1)
 	- [TailScale子网路由配置，实现使用原生内网IP远程访问，异地组网更加优雅！TailScale Subnet Router使用教程！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768/?p=2)
 	- [ ] macOS `tailscale ssh` 无法使用（sandbox 原因）
+	- IPv6 不需要做穿透，外网也能连：[IPv6 不需要做穿透，外网也能连 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/214653)
 
 - AList docker-compose 部署，挂载网盘时出现 `tcp XXX: connect: connection refused`：[挂载阿里云盘报错 · alist-org/alist · Discussion #1063 · GitHub](https://github.com/alist-org/alist/discussions/1063)
+	- [GitHub - DDS-Derek/xiaoya-alist: 小雅Alist的相关周边](https://github.com/DDS-Derek/xiaoya-alist)
+	- [x] AList macOS 本地存储路径写法 `/Users/XXX/XXX`，报路径不存在的错：正确写法：把本地路径挂载到 Docker 里，AList 里应该填 Docker 内的路径（可以挂载多个本地路径）
 
 ```yaml
+{
         # 注释 port 参数，将 bridge 模式改成 host
         network_mode: 'host'
+}
 ```
 
 
@@ -429,7 +437,9 @@ sudo rm -rf /usr/local/texlive
 
 #### Rime 输入法引擎 + 雾凇拼音
 
-- 参考：[RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
+- 参考：
+	- [RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
+	- [GitHub - Mintimate/oh-my-rime: The Simple Config Template Of Rime By Mintimate.](https://github.com/Mintimate/oh-my-rime)
 
 ```bash
 # 安装 Rime 鼠须管 输入法引擎

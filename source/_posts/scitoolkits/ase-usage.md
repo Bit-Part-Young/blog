@@ -92,6 +92,11 @@ from ase.data import atomic_masses
 ```
 
 
+ase 没有直接计算弹性常数的模块
+
+[MAC版的ASE如何换轴的颜色 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=46950&extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline)
+
+
 interface 构建（较简单情况）：[Interface building - Manipulating atoms — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/manipulating_atoms/manipulating_atoms.html#interface-building)
 
 DOS、能带、EOS 计算：[Crystals and band structure — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut04_bulk/bulk.html)

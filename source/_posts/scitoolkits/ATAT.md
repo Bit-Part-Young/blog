@@ -13,7 +13,7 @@ tags:
 categories:
   - 科研工具
 date: 2024-03-20 15:00:00
-abbrlink: 32015
+abbrlink: 320153
 password:
 ---
 
@@ -78,7 +78,37 @@ make install
 
 ---
 
-## 使用 mmaps 构建 CE
+## 使用
+
+### 工具
+
+- POSCAR 转 lat.in：vaspkit 414 选项（1.5.0 版本及以上没有该选项），atomkit 107 选项
+- str.out 格式转 POSCAR：
+	- [GitHub - c-niu/sqs2poscar: A c++ code to convert bestsqs.out from mcsqs (ATAT) to POSCAR for VASP.](https://github.com/c-niu/sqs2poscar)
+	- [sqs2poscar - web](https://albertlinda.com/sqs_to_poscar.html)
+	- ATAT 自带可执行命令
+
+```bash
+str2poscar < str.out > POSCAR
+str2cif < str.out > str.cif
+```
+
+- [python-atat/findenergy at master · jkitchin/python-atat · GitHub](https://github.com/jkitchin/python-atat/blob/master/findenergy)
+
+
+- [GitHub - utksi/ATAT-to-VASP](https://github.com/utksi/ATAT-to-VASP)
+
+
+结构枚举 Fortran 版本：[GitHub - msg-byu/enumlib: Derivative structure enumeration library](https://github.com/msg-byu/enumlib)
+
+```bash
+enum.x input.file
+```
+
+
+---
+
+### 使用 mmaps 构建 CE
 
 - 输入文件：lat.in 和 vasp.wrap（类 VASP 的 INCAR 文件中的参数；通常少于 10 行）
 
@@ -159,7 +189,7 @@ mmapsrep  # 从 mmaps 得到的 *.out 数据中分析绘制；调用 gnuplot
 
 ---
 
-## 其他
+### 其他
 
 ```bash
 # 定义 coordinate system 
@@ -241,34 +271,6 @@ Same format as the lattice file, except that
 
 
 ---
-
-一些工具：
-
-- POSCAR 转 lat.in：**vaspkit 414** 选项（1.5.0 版本及以上没有该选项），**atomkit 107** 选项
-- str.out 格式转 POSCAR：
-	- [GitHub - c-niu/sqs2poscar: A c++ code to convert bestsqs.out from mcsqs (ATAT) to POSCAR for VASP.](https://github.com/c-niu/sqs2poscar)
-	- [sqs2poscar - web](https://albertlinda.com/sqs_to_poscar.html)
-	- ATAT 自带可执行命令
-
-```bash
-str2poscar < str.out > POSCAR
-str2cif < str.out > str.cif
-```
-
->[python-atat/findenergy at master · jkitchin/python-atat · GitHub](https://github.com/jkitchin/python-atat/blob/master/findenergy)
-
-
-
-
-
-
-
-结构枚举 Fortran 版本：[GitHub - msg-byu/enumlib: Derivative structure enumeration library](https://github.com/msg-byu/enumlib)
-
-```bash
-enum.x input.file
-```
-
 
 
 ```text

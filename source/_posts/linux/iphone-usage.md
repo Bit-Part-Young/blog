@@ -17,9 +17,13 @@ password:
 
 # iPhone 使用
 
+- [iPhone 优缺点 - 小红书](http://xhslink.com/A/bVqRz4)
+
 iOS Developer Beta 版本系统更新：安装 Apple Developer App，用 Apple ID 注册即可。
 
-iPhone 备份到 Mac 本地：数据线连接到 Mac 进行备份设置（打开访达，在“位置”中选择设置）
+iPhone 备份到 Mac 本地：数据线连接到 Mac 进行备份设置（打开访达，在 “位置” 中选择设置）
+
+替代 iPhone 原生输入法：微信输入法、Hamster
 
 iPhone 实况照片转视频：[如何在 iPhone 上将实况照片转换为视频 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/105029)
 
@@ -46,11 +50,15 @@ https://whatshub.top/module/adultraplus.module
 
 ---
 
-iOS 版本 telegram 会无法显示含敏感内容的 telegram，方法：登录网页版的 telegram，网址 `web.telegram.org`，Settings - Privacy and Security - Sensetive Content，打开（App 版没有 Sensetive Content 这一选项）
+iOS 版本 Telegram 会无法显示含敏感内容的 Telegram，方法：登录网页版的 telegram，网址 `web.telegram.org`，Settings - Privacy and Security - Sensetive Content，打开（App 版没有 Sensetive Content 这一选项）
 
 ipa 格式文件
 
-较靠谱的咸鱼 Mac 电脑二手卖家：兴全同学
+较靠谱的咸鱼 MacBook 二手卖家：兴全同学（还卖 Apple Watch 和 iPad）
+
+较靠谱的咸鱼 MacBook（企业级）二手卖家：德古拉耸耸肩
+
+
 
 
 [GitHub - Lakr233/Asspp: The App Store for your multi-account eco system.](https://github.com/Lakr233/Asspp)

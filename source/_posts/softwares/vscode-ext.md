@@ -22,9 +22,9 @@ password:
 ## 介绍
 
 - VSCode 连接远程服务器，点击打开的文件，会立马跳转到相应的目录中，定位文件相比 MobaXterm 更便捷，便于下载文件到本地
-- 命令行启动：vscode-insiders - `code-insiders`；vscode - `code`
+- 命令行启动：VSCode-Insiders - `code-insiders`；VSCode - `code`
 - 配置文件 `settings.json`：**分用户和远程设置**；配置文件中有设置但没安装的插件其命令不会有高亮
-- VSCode 同步：[VSCode官方的配置同步方案\_vscode同步\_蝉沐风的码场的博客-CSDN博客](https://blog.csdn.net/chanmufeng/article/details/123028133)
+- VSCode 配置同步：[VSCode官方的配置同步方案\_vscode同步\_蝉沐风的码场的博客-CSDN博客](https://blog.csdn.net/chanmufeng/article/details/123028133)
 - [在VScode中，代码提示左边的图标各自代表什么含义？ - 知乎](https://www.zhihu.com/question/370258254/answer/1003317979)
 - VSCode 中类、函数、方法、属性等的图标：[IntelliSense in Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions)
 - VSCode 终端字体设置：[Change terminal font family to nerd font · Issue #81497 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/81497)
@@ -42,30 +42,38 @@ password:
 }
 ```
 
+- VSCode 设置 black-formatter 的单行字符长度限制：[vscode 配置 python black 格式化单行长度 - Ainsliaea - 博客园](https://www.cnblogs.com/ainsliaea/p/17647847.html)
+
+```json
+    "black-formatter.args": [
+        "--line-length",
+        "79"
+    ],
+```
 
 
 ---
 
 ### 快捷键
 
-| 命令 | 功能说明 |
-|:-----------:|:------------:|
-| `Crtl + J` | 工作区和终端间的切换 |
-| `alt + shift + ↓` | 复制上一行代码到下一行 |
-| `Ctrl + /` | 单行注释 |
-| `Alt + Shift + A` | 多行注释 |
-| `Ctrl + C` | 复制当前整行内容 |
-| `Ctrl + X` | 剪切当前整行内容 |
-| `Ctrl + Shift + K` | 删除一行 |
-| `Ctrl + F4` | 关闭文件 |
-| `Crtl + P` 或 `Crtl + Tab` | 文件跳转 |
-| `Crtl` + 点击图片 | 缩小图片 |
+```bash
+# 命令                  # 功能说明
+Ctrl + /                # 单行注释
+Alt + Shift + A         # 多行注释
+Ctrl + C                # 复制当前整行内容
+Ctrl + X                # 剪切当前整行内容
+Ctrl + Shift + K        # 删除一行
+Crtl + J                # 工作区和终端间的切换
+alt + shift + ↓         # 复制上一行代码到下一行
+Ctrl + F4               # 关闭文件
+Crtl + P 或 Crtl + Tab  # 文件跳转
+Crtl + 点击图片          # 缩小图片
+```
+
 
 ---
 
 ## 插件
-
----
 
 ### Vim
 
@@ -121,9 +129,10 @@ password:
 
 - easymotion 用法：
 
-|  Motion 命令   |  描述   |
-| :---: | :---: |
-| `<leader><leader> s <char>`    |  查找字符   |
+```bash
+# Motion 命令               # 描述
+<leader><leader> s <char>  # 查找字符
+```
 
 ---
 
@@ -180,12 +189,14 @@ password:
 - shellcheck、shell-format：不是很好
 
 ```json
+{
     // markdownlint 设置：md 文件保存自动格式化
     "[markdown]": {
         "editor.codeActionsOnSave": {
         "source.fixAll.markdownlint": "always"
         }
     }
+}
 ```
 
 
@@ -193,10 +204,10 @@ password:
 
 ### 非编程相关
 
-- PicGo：图床。
-- vscode-pdf：打开 pdf 文件。
-- Material Icon Theme：文件、目录图标，美化用。
-- Excel Viewer：查看 excel 表格。
+- PicGo：图床
+- vscode-pdf：打开 pdf 文件（会与 LaTeX Workshop 插件冲突）
+- Material Icon Theme：文件、目录图标，美化用
+- Excel Viewer：查看 Excel 表格
 
 
 
@@ -210,7 +221,7 @@ password:
 
 - 浏览器或远程使用 vscode 进行开发；服务器平台为 Linux 和 macOS，不支持 Windows；可脚本、二进制安装
 - 将 `bind-addr` 改成 `0.0.0.0:8080`，可使用 `http://<ip>:8080` 的形式登录，在同一局域网下，不同电脑可以直接访问；不在同一局域网下，需使用内网穿透使其远程访问
-- 无法显示图片、ipynb 文件 [Allow opening files, folders, and workspaces in existing code-server from CLI · Issue #164 · coder/code-server · GitHub](https://github.com/coder/code-server/issues/164)；连接性不是很好
+- 无法显示图片、ipynb 文件 [Allow opening files, folders, and workspaces in existing code-server from CLI · Issue #164 · coder/code-server · GitHub](https://github.com/coder/code-server/issues/164)；**连接性不是很好**
 
 ```bash
 # 指定 host 和 port

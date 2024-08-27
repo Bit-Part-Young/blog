@@ -341,6 +341,29 @@ apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycl
 fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 ```
 
+- 用 fzf-tab 替代 zsh 的自动补全：[GitHub - Aloxaf/fzf-tab](https://github.com/Aloxaf/fzf-tab)
+	- 需将 fzf-tab 写在 zsh-autosuggestions、fast-syntax-highlighting 插件前，compinit 后
+
+```bash
+# 安装
+git clone --depth 1 https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM}/plugins/fzf-tab
+
+# fzf-tab 配置；写入 ~/.zshrc 
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+```
+
 ---
 
 ```bash

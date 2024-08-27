@@ -95,7 +95,7 @@ Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://git
 cargo install typst-upgrade  # 安装
 
 typst-upgrade file.typ       # 更新 package 并写入文件
-typst-upgrade -d file.typ    # 不实际运行
+typst-upgrade -d file.typ    # -d --dry-run 不实际运行
 ```
 
 - 代码格式化：
@@ -109,6 +109,8 @@ typst-upgrade -d file.typ    # 不实际运行
 
 - 数学公式 OCR：[GitHub - ParaN3xus/typress: Typst Mathematical Expression OCR](https://github.com/ParaN3xus/typress)
 
+- 表格中的科学计数格式化（小数点自动对齐）：[GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
+
 
 ---
 
@@ -116,10 +118,10 @@ typst-upgrade -d file.typ    # 不实际运行
 
 ```bash
 # 编译
-typst compile file.typ  # compile 可简写成 c
+typst compile file.typ  # 或 typst c
 
 # 跟踪文档实时编译
-typst watch file.typ    # watch 可简写成 c
+typst watch file.typ    # 或 typst w
 
 # 指定字体搜索路径
 typst compile file.typ --font-path path/to/fonts
@@ -133,7 +135,7 @@ TYPST_FONT_PATHS=path/to/fonts typst fonts
 # 指定 project 路径
 typst compile file.typ --root ..
 
-# 更新版本
+# 更新 typst 版本
 typst update
 ```
 
@@ -629,9 +631,8 @@ typst-upgrade -d .           # dry run
 ## 相关问题
 
 - [x] 标题后首段无法正确缩进：
->[Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
-
->[首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
+	- [Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
+	- [首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
 
 ```rust
 #set par(
@@ -715,3 +716,5 @@ typst-upgrade -d .           # dry run
 - [ ] 生成的 pdf 如何也有对应的编号（暂无法实现）：[Include numbering in PDF bookmark · Issue #2416 · typst/typst · GitHub](https://github.com/typst/typst/issues/2416)
 
 - [ ] Typst 如何让公式中的单个字符不斜体
+
+- [ ] Typst page 函数中 margin 页边距参数如何使水平方向全部填充？

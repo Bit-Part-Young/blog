@@ -181,7 +181,7 @@ python script.py
 python -c 'import matplotlib; print(matplotlib.matplotlib_fname())'
 ```
 
-- 在终端中使用 Python 模块：`python -m`，通常用于运行可以作为脚本执行的模块，如 `venv`、`pip` 等
+- 在终端中使用 Python 模块：`python -m`，通常用于运行可以作为脚本执行的模块，如 `venv`、`pip` 等；[Python's many command-line utilities - Python Morsels](https://www.pythonmorsels.com/cli-tools/)
 
 ```bash
 python -m venv venv

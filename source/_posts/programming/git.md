@@ -140,6 +140,10 @@ WIP...
 - [Git 和 Github 秘籍](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md)
 - [GitHub - k88hudson/git-flight-rules: Flight rules for git](https://github.com/k88hudson/git-flight-rules)
 - [Git - 茂茂物语](https://notes.fe-mm.com/workflow/git/)
+- 解决 git 合并冲突：[解决冲突 - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/896043488029600/900004111093344)
+- [Git常用操作清单](https://blog.sbyu.top/post/8)
+- [常用 Git 命令清单 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+- [git cherry-pick 教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
 
 
 

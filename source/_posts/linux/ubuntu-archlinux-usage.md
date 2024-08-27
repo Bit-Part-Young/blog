@@ -655,7 +655,8 @@ timedatectl set-local-rtc 1
 
 - 参考资料：
 	- [Arch Linux 安装使用教程 - ArchTutorial - Arch Linux Studio](https://archlinuxstudio.github.io/ArchLinuxTutorial/#/)
-	- [archlinux 简明指南 | archlinux 简明指南](https://arch.icekylin.online/)
+	- [archlinux 简明指南](https://arch.icekylin.online/)
+	- [GitHub - ayaka-icu/mycfg: 我的archlinux配置文件](https://github.com/ayaka-icu/mycfg)
 
 
 ---
@@ -663,6 +664,11 @@ timedatectl set-local-rtc 1
 ### 安装
 
 archinstall：安装过程会有引导；已集成到安装镜像中，无需额外安装
+
+本人在安装过程中遇到的问题：
+
+- 使用 archinstall 安装 Arch Linux，办公室电脑，EFI 分区在固态硬盘上，`/` 等分区设置在机械硬盘区，最后安装会报错
+- 联想拯救者电脑，插入制作的 Arch Linux 启动器 U 盘时报错
 
 
 ---

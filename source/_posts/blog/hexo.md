@@ -22,6 +22,7 @@ password:
 - 官网：[Hexo](https://hexo.io/)
 
 - 主题：
+	- [Hexo 框架主题集合](https://hexo.io/themes/)
 	- [butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
 	- [matery](https://github.com/blinkfox/hexo-theme-matery)
 	- [icarus](https://github.com/ppoffice/hexo-theme-icarus)

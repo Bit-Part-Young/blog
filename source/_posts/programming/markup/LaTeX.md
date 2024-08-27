@@ -52,15 +52,14 @@ password:
 - [GitHub - Meiting-Wang/Awesome-LaTeX-cn: The LaTeX materials list I used](https://github.com/Meiting-Wang/Awesome-LaTeX-cn)
 - [1.1 Awesome-LaTeX-cn - Meiting Wang](https://meiting-wang.github.io/latex/begin1)
 - [GitHub - samcarter/tikzducks: A latex package to draw cute rubber ducks with TikZ](https://github.com/samcarter/tikzducks)
-- [LaTeX技巧 | Feng's Blog](https://blog.windsky.tech/2022/01/29/LaTeX-Notes/)
+- [LaTeX技巧 - Feng's Blog](https://blog.windsky.tech/2022/01/29/LaTeX-Notes/)
 - [常用 LaTeX 代码](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
-
+- [GitHub - learnlatex/learnlatex.github.io: Learn LaTeX online](https://github.com/learnlatex/learnlatex.github.io)
 - [分类: LaTeX - 智朋的个人博客](https://coffeelize.top/categories/LaTeX/)
-
 - 自定义列表环境：[LaTeX 自定义列表环境 - 智朋的个人博客](https://coffeelize.top/posts/18fc56c9.html)
-
 - Overleaf LaTeX 教程：[Learn LaTeX in 30 minutes - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes)
 - Overleaf LaTeX 中文写作教程：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
+- [GitHub - guanyingc/latex\_paper\_writing\_tips: Tips for Writing a Research Paper using LaTeX](https://github.com/guanyingc/latex_paper_writing_tips)
 
 
 
@@ -237,9 +236,11 @@ TeXstudio：工具 - 清理辅助文件
 
 ### 工具
 
-- VSCode LaTeX Workshop 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
+- VSCode 插件：
+	- LaTeX Workshop 插件设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
+	- LaTeX Utilities 插件
 
-- VSCode LaTeX Utilities 插件
+- [GitHub - tectonic-typesetting/tectonic: A modernized, complete, self-contained TeX/LaTeX engine, powered by XeTeX and TeXLive.](https://github.com/tectonic-typesetting/tectonic)
 
 - LaTeX OCR：
 	- [GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)

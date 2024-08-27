@@ -68,9 +68,20 @@ Crtl + L              # 将底部内容移至最上方
 - 中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)
 - [GitHub - linuxhitchhiker/THGLG: The Hitchhiker's Guide to the Linux : Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
 - [GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
-- 不借助 bash 中已有命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
+- 用纯 bash 命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
 - 命令行艺术：[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
+- bash 一行命令：[https://github.com/onceupon/Bash-Oneliner](https://github.com/onceupon/Bash-Oneliner)
 - [真有人用Linux？（Linux下的工作、科研、学习与生活） - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/281312)
+
+---
+
+- [GitHub - 1Panel-dev/1Panel：现代化、开源的 Linux 服务器运维管理面板。](https://github.com/1Panel-dev/1Panel)
+- 备份 dotfiles 工具：[GitHub - deadc0de6/dotdrop: Save your dotfiles once, deploy them everywhere](https://github.com/deadc0de6/dotdrop)
+- [GitHub - RubyMetric/chsrc: chsrc 全平台通用换源工具](https://github.com/RubyMetric/chsrc)
+- [Bash 脚本如何创建临时文件：mktemp 命令和 trap 命令教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/12/mktemp.html)
+
+[GitHub - skwp/dotfiles: YADR - The best vim,git,zsh plugins and the cleanest vimrc you've ever seen](https://github.com/skwp/dotfiles)
+
 
 
 
@@ -200,38 +211,40 @@ export PATH=$HOME/bin:$PATH
 
 #### 基本命令
 
-- `man` - 查看命令帮助
-- `echo` - 打印字符串
-- `pwd` - 显示当前路径
-- `cd` - 切换目录
-- `ls` - 列出目录内容；`-a` 与 `-A` 的区别，后者表示 almost all，不列出 `.` 和 `..`
-- `cat` - 显示文件内容
-- `head` & `tail` - 打印文件首尾内容，默认 10 行
-- `less` - 逐页显示文件内容
-- `touch` - 创建文件/修改文件时间属性
-- `mkdir` - 创建目录；创建多级目录：`mkdir -p 1/2/3/4`
-- `mv` - 移动/重命名；建议在~/.bashrc 或~/.zshrc 中设置 `alias mv="mv -v"`
-- `cp` - 复制
-- `rm` - 删除
-- `>`、`>>` - 标准输出流重定向
-- `<` - 标准输入流重定向
-- `2>`、`2>>` - 标准错误流重定向
-- `|` - 管道符
-- `rmdir` - 删除空目录
-- `tac` - 从最后一行显示文件内容
-- `diff` - 查看文件差异
-- `which` - 查看可执行命令所在路径
-
-- `cut` - 剪切命令
+```bash
+man         # 查看命令帮助
+echo        # 打印字符串
+pwd         # 显示当前路径
+cd          # 切换目录
+ls          # 列出目录内容；-a 与 -A 的区别，后者表示 almost all，不列出 . 和 ..
+cat         # 显示文件内容
+tac         # 从最后一行显示文件内容
+head tail   # 打印文件首尾内容，默认 10 行
+less        # 逐页显示文件内容
+touch       # 创建文件/修改文件时间属性
+mkdir       # 创建目录；创建多级目录：mkdir -p 1/2/3/4
+mv          # 移动/重命名；建议设置 alias mv="mv -v"
+cp          # 复制
+rm          # 删除
+>  >>       # 标准输出流重定向
+<           # 标准输入流重定向
+2>  2>>     # 标准错误流重定向
+|           # 管道符
+rmdir       # 删除空目录
+diff        # 查看文件差异
+which       # 查看可执行命令所在路径
+cut         # 剪切命令
+```
 
 ```bash
 # 查看所有同名命令
 which -a command
 
-
 # 查看相对路径文件的绝对路径
 readlink -f path
 
+# 从每一行文本中提取以逗号分隔的第三个字段
+cut -d, -f3 file
 ```
 
 
@@ -584,6 +597,11 @@ awk '{ temp = $1; $1 = $2; $2 = temp; print }' file  # 第 1、2 列交换
 awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}'  # 逆向排列
 
 awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # 列拼接文件
+
+# 去除重复行（包括空行）
+awk '!seen [$0]++' file
+# 去除重复行（不包括空行）
+awk '!seen[$0]++ || $0 == ""' file
 ```
 
 
@@ -702,6 +720,8 @@ wc -l file
 sed -n '$=' file
 ```
 
+- nmon：Linux 端监控系统资源（应该不常用）
+
 - 其他
 
 ```bash
@@ -713,6 +733,9 @@ ldd --version  # 查看 GLIBC 版本
 
 # 统计字符串长度 c 可换成 m
 echo -n '123456' | wc -c
+
+# 获取系统中文件名的最大长度
+getconf NAME_MAX /
 ```
 
 

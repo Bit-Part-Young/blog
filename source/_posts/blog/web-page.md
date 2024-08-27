@@ -9,6 +9,7 @@ description: 网页推荐
 tags:
   - 博客
   - 相册
+  - CV
 categories:
   - 网页
 date: 2024-06-30 16:00:00
@@ -22,7 +23,7 @@ password:
 
 ---
 
-## 简历网页
+## 简历 / CV 网页
 
 - [GitHub - weijie-chen/weijie-chen.github.io](https://github.com/weijie-chen/weijie-chen.github.io)、[Weijie Chen](https://weijie-chen.github.io/)
 - [Dr. Jinyang Zhang](https://kevinzjy.github.io/)
@@ -210,6 +211,8 @@ mdbook serve --open
 
 - 静态网页 Julia 版：[GitHub - tlienart/Franklin.jl: (yet another) static site generator. Simple, customisable, fast, maths with KaTeX, code evaluation, optional pre-rendering, in Julia.](https://github.com/tlienart/Franklin.jl)
 
+- [ ] 如何用 docker compose 搭建 WordPress 博客系统
+
 
 
 ---
@@ -223,6 +226,9 @@ mdbook serve --open
 - 网页文件夹（分享文件）
 	- GitHub Actions 形式；需 repo 状态为 public： [GitHub - linyuxuanlin/File-host: 资源共享仓库](https://github.com/linyuxuanlin/File-host)
 	- 手动创建（需在每个文件夹目录下创建 index.html 文件）：[GitHub - pranabdas/drive](https://github.com/pranabdas/drive)
+	- [GitHub - filebrowser/filebrowser: 📂 Web File Browser](https://github.com/filebrowser/filebrowser)
+	- 可自建的文件分享平台：[GitHub - stonith404/pingvin-share: A self-hosted file sharing platform that combines lightness and beauty, perfect for seamless and efficient file sharing.](https://github.com/stonith404/pingvin-share)
+
 
 - 课程资料在线浏览（不是特别好用；会报错，暂无更新）：[GitHub - OrangeX4/GitNotes: 一个在浏览器上运行的笔记浏览应用, 用于浏览以 Markdown 书写的, 存放在 GitLab 或 GitHub 上的笔记.](https://github.com/OrangeX4/GitNotes)
 
@@ -234,3 +240,5 @@ mdbook serve --open
 	- [GitHub - kylewetton/image-compare-viewer: Compare before and after images, for grading and other retouching for instance. Vanilla JS, zero dependencies.](https://github.com/kylewetton/image-compare-viewer)
 	- [Image Compare Viewer](https://image-compare-viewer.netlify.app/)
 	- [GitHub - CodeSteppe/image-compare](https://github.com/CodeSteppe/image-compare)
+
+简单网站点击量设置：[Free Hit Counters for your website or your blog - Free and without ads - Toolbox for webmaster](https://www.websiteout.net/counter.php)

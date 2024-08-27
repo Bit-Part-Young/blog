@@ -505,7 +505,7 @@ count = atomate_db.collection.count_documents(query)
 # 方式 2
 count = atomate_db.collection.aggregate([{"$match": query}, {"$count": "total"}])
 # 方式 3 不行？
-count = db.collection.find(query).count()   不行
+count = db.collection.find(query).count()
 
 # 获取满足 query projection 条件的所有 documents
 documents = atomate_db.collection.find(query, projection)

@@ -191,31 +191,34 @@ dav.jianguoyun.com/dav
 ## Notion
 
 - 跨平台同步的笔记软件；也有网页版，但网页版的体验不如客户端，很卡
-- 可以查看每一个页面的内容更新情况（页面右上角的时钟图案）
+- 可以查看每一个页面的内容更新情况（页面右上角的时钟图标）
 - Notion 可以用教育邮箱使用教育版
 - 不可以改变图片大小
 - task list 没有快捷键
 
+---
 
-备份（不好用，且复杂）：[GitHub - LoneKingCode/notion-backup: notion python自动备份脚本，提交到git，可指定工作空间，Automatic Notion workspace backup to git and local machine.](https://github.com/LoneKingCode/notion-backup)
-
-使用 notion 的 Authorization：[Authorization](https://developers.notion.com/docs/authorization)
+- Notion 开源替代品：[GitHub - docmost/docmost](https://github.com/docmost/docmost)
+- 备份（不好用，且复杂）：[GitHub - LoneKingCode/notion-backup](https://github.com/LoneKingCode/notion-backup)
+- 使用 Notion 的 Authorization：[Authorization](https://developers.notion.com/docs/authorization)
 
 
 ---
 
 ### 快捷键
 
-- `Ctrl + E` - 将文本转为内联代码
-- `/color` - 更改文本颜色（可在开头或结尾输入；默认 `/default`）
-- `Crtl + F` - 查找（只能在当前页面查找）
-- `Crtl + P` - 快速查找（可在所有的页面查找）；**快速跳转 page**
-- `" + Space` - 引用
-- `> + Space` - toggle list
-- `# + Space` - 一级标题；其他类推
-- `Ctrl + Shift + E` - 公式
-- `Ctrl + Shift + 8` - 代码块
-- `/pdf` - 嵌入 pdf
+```text
+# + Space         # 一级标题；其他类推
+" + Space         # 引用
+> + Space         # toggle list
+Ctrl + E          # 将文本转为内联代码
+/color            # 更改文本颜色（可在开头或结尾输入；默认 /default）
+Crtl + F          # 查找（当前页面）
+Crtl + P          # 查找（所有页面）
+Ctrl + Shift + E  # 公式
+Ctrl + Shift + 8  # 代码块
+/pdf              # 嵌入 pdf
+```
 
 
 ---
@@ -224,7 +227,7 @@ dav.jianguoyun.com/dav
 
 - Notion 自带的导出 md 效果不是很好
 
-- notion 转成 md：[GitHub - echo724/notion2md: Notion Markdown Exporter with Python Cli](https://github.com/echo724/notion2md)
+- notion 转 md：[GitHub - echo724/notion2md](https://github.com/echo724/notion2md)
 
 - 设置 Notion Integration，获取 API KEY，在 Notion 每个 page 下 add connection 设置的 Notion Integration
 
@@ -282,6 +285,7 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 - [手摸手教你安装激活最新的Typora1.8.10\_typora1.8.10 linux 激活-CSDN博客](https://blog.csdn.net/qq_37636739/article/details/136338284)
 
 - Theme 主题：
+	- [GitHub - liangjingkanji/DrakeTyporaTheme: 十二种主题风格 - Material Google JetBrains Vue Juejin Purple Ayu Dark](https://github.com/liangjingkanji/DrakeTyporaTheme)
 	- [GitHub - Soanguy/typora-theme-autumnus: Typora theme for 中文](https://github.com/Soanguy/typora-theme-autumnus)
 	- [GitHub - Keldos-Li/typora-latex-theme: 将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.](https://github.com/Keldos-Li/typora-latex-theme)
 

@@ -163,4 +163,10 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 
 - [解决Windows删除文件或文件夹时的【该项目不在XXX中。请确认该项目的位置，然后重试。】问题\_该项目不在d: 请确认该项目位置,然后重试-CSDN博客](https://blog.csdn.net/zgnckzn/article/details/109764025)
 
-- [ ] 如何关闭 Office 模板
+- [免费下载缺失的 DLL 文件 | DLL‑files.com](https://cn.dll-files.com/)
+
+- [ ] 如何关闭 Office 模板（去除其广告）
+
+- [ ] VSCode 清理
+	- [ ] `AppData\Local\Temp\vscode-remote-wsl` 占用体积较大
+	- [ ] `\AppData\Roaming\Code\Service Worker` 占用体积较大

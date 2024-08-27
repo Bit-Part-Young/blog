@@ -23,7 +23,8 @@ password:
 
 ## Chrome 插件
 
-浏览器中的插件可以设置在隐私窗口中使用（Firefox 会自动提示，Chrome 和 Edge 需手动设置）
+- Chrome 中的插件大多都可以在 Edge 和 Firefox 中找到
+- 浏览器中的插件可以设置在隐私/无痕窗口中使用（Firefox 会自动提示，Chrome 和 Edge 需手动设置）
 
 
 ---
@@ -80,6 +81,7 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 - [沉浸式翻译](https://immersivetranslate.com/docs/) 网页翻译；百度翻译 API 申请：[百度翻译 | 沉浸式翻译](https://immersivetranslate.com/docs/services/baidu/)
 - DeepL 翻译：网页翻译
 - 沙拉查词：网页翻译
+- Dark Reader：深色模式
 - easyScholar：显示文献期刊排名；也可以下载 2021 年前的文献
 - Copy As Plain Text：去除选中内容的所有格式，转换成普通文本
 - Global Speed：全局网页视频速度控制

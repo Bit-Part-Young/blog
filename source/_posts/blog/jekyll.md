@@ -29,8 +29,11 @@ GitHub Pages 默认框架。
 
 ### Jekyll 框架主题
 
+- [Jekyll 框架主题集合](https://jekyllrb.com/docs/themes/)
 - [GitHub - just-the-docs/just-the-docs: A modern, high customizable, responsive Jekyll theme for documentation with built-in search.](https://github.com/just-the-docs/just-the-docs)
-- 简洁博客：[GitHub - cotes2020/jekyll-theme-chirpy: A minimal, responsive, and feature-rich Jekyll theme for technical writing.](https://github.com/cotes2020/jekyll-theme-chirpy)
+- chirpy 主题（简洁博客）：[GitHub - cotes2020/jekyll-theme-chirpy: A minimal, responsive, and feature-rich Jekyll theme for technical writing.](https://github.com/cotes2020/jekyll-theme-chirpy)
+- [GitHub - vinitkumar/white-paper: Simple, elegant and clean jekyll theme.](https://github.com/vinitkumar/white-paper)
+
 
 ---
 

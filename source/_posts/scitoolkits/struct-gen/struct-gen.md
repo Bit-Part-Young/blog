@@ -104,6 +104,8 @@ VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffract
 
 [如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
 
+[[建模与可视化] 求助Si和α-Al2O3材料界面计算的界面搭建问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-47013-1-1.html)
+
 在 latgen、VASPKIT 和 MS 中，称为 build layer
 
 

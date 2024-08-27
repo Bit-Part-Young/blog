@@ -107,13 +107,13 @@ wsl --import Ubuntu-22.04 "D:\Ubuntu-2204" "D:\Ubuntu-2204.tar"
 
 ### WSL 2 网络代理
 
->[WSL 2 的一些网络访问问题 - 野声](https://cat.ms/posts/wsl2-network-tricks/)
+- Windows 和 WSL 2 算是在同一个局域网内，由 Hyper-V 创建；WSL 2 使用的网络适配器是 'Default Hyper-V Switch'，该适配器每次重启都会被删除重建（WSL 2 IP 不固定的原因）
+- [WSL 2 的一些网络访问问题 - 野声](https://cat.ms/posts/wsl2-network-tricks/)
 
->[WSL 2 中访问宿主机 Windows 的代理 - ZingLix Blog](https://zinglix.xyz/2020/04/18/wsl2-proxy/)
+- [WSL 2 中访问宿主机 Windows 的代理 - ZingLix Blog](https://zinglix.xyz/2020/04/18/wsl2-proxy/)
 
->[WSL 2 中的网络访问问题](https://dowww.spencerwoo.com/2-cli/2-3-cli-tools.html#wsl-2-%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98)
+- [WSL 2 中的网络访问问题](https://dowww.spencerwoo.com/2-cli/2-3-cli-tools.html#wsl-2-%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98)
 
-WSL 2 相关知识：Windows 和 WSL 2 算是在同一个局域网内，这个局域网是由 Hyper-V 创建的；WSL 2 使用的网络适配器是 'Default Hyper-V Switch'，这个适配器每次重启都会被删除重建，这就是 WSL 2 为什么 IP 不固定的原因。
 
 ---
 
@@ -170,6 +170,8 @@ wsl -l -o
 
 # 卸载 WSL 发行版
 wsl --unregister <Distro>
+
+wslconfig
 ```
 
 

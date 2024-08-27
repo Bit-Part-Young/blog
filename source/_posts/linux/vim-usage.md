@@ -47,7 +47,10 @@ vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移
 
 ### 快捷键
 
-- [vim.txt - awesome-cheatsheets](https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt)、[Vim Cheat Sheet](https://vim.rtorr.com/lang/zh_cn)
+- 快捷键 Cheat Sheet：
+	- [Vim Cheat Sheet - 中文](https://vim.rtorr.com/lang/zh_cn)
+	- [vim.txt - awesome-cheatsheets](https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt)
+	- [A Great Vim Cheat Sheet](https://vimsheet.com/)
 
 
 vim 中 j 和 gj 快捷键之间的区别：`j` 和 `gj` 都用于向下移动光标，但 `gj` 在处理折行文本时表现不同（前者不考虑，后者考虑），更视觉友好。
