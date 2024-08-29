@@ -18,9 +18,31 @@ password:
 
 # 博客搭建基础
 
+## 网络基础知识
+
+- [lec6：网络/网站基础知识概述 - 2023秋冬实用技能拾遗](https://slides.tonycrane.cc/PracticalSkillsTutorial/2023-fall-ckc/lec6/)
+
+- CDN：内容分发网络，其原理大概是将服务内容分发至全网加速节点，让用户从就近的服务器节点上获取内容，从而提高网站的访问速度。
+
+- 回环地址（Lookback address）：用于主机的自身通信，不会发送到网络上
+
+```bash
+127.0.0.1  # IPv4
+::1        # IPv6
+localhost  # 主机名
+```
+
+- 查看是否有 IPv6 地址：
+	- [IPv6 测试](https://test-ipv6.com/)
+	- [ipv6 test](https://ipv6-test.com/)
+
+
+
+---
+
 ## 博客/文档框架类型
 
->均为静态网页
+>大多为静态网页
 
 >大部分框架都需要用到 Node.js（Hugo、Jekyll 除外）
 
@@ -32,9 +54,9 @@ password:
 - Docusaurus（主要文档）
 - MkDocs（主要文档）
 - Sphinx（主要文档）
-- Wordpress
+- WordPress
 - Typecho
-- …
+- ...
 
 
 ---
@@ -46,7 +68,7 @@ password:
 - 阿里云：[域名服务价格\_域名注册价格\_域名续费价格\_转入价格 - 阿里云](https://www.alibabacloud.com/zh/domain/pricing)
 - 华为云：[价格计算器\_pricing -华为云](https://www.huaweicloud.com/pricing.html#/domains)
 - 腾讯云：[域名价格 - 域名注册 - 腾讯云\_域名购买\_交易选购\_转入续费\_DNSPod](https://buy.cloud.tencent.com/domain/price)
-- `.top` 域名价格较便宜（20+），`.xyz` 较贵（70+）
+- `.top` 域名价格较便宜（￥20+/年），`.xyz` 较贵（￥70+/年）
 
 ---
 
@@ -111,6 +133,8 @@ password:
 
 - [使用 GitHub Actions 通过 acme.sh 自动申请 SSL 证书](https://github.com/danbao/auto-ssl)
 
+- 优选 IP：[CloudflareSpeedTest](https://github.com/XIU2/CloudflareSpeedTest)
+
 - 反向代理：
 	- nginx：[【nginx入门】nginx反向代理与负载均衡教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Bx411Z7Do/)
 	- [GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
@@ -146,6 +170,10 @@ SSL handshake failed Error code 525
 
 ### 安装
 
+- 方式 1：官网安装：[Download Node.js](https://nodejs.org/en/download/package-manager)
+
+- 方式 2：
+
 ```bash
 curl -sS https://webi.sh/node | sh
 
@@ -165,16 +193,13 @@ npm init      # 引导创建 package.json 文件
 npm init -y   # 默认设置，跳过交互式设置
 
 # 安装依赖
-npm install  # npm i
-npm install <package>
+npm install                    # 等同于 npm i
+npm install <package>          # 安装特定 package
 # 写入 package.json 中；默认会
-npm install <package> --save  # npm i <package> -S
-npm install <package>@version
-# 全局安装
-npm install -g <package>
-
-# 安装 pnpm 和 yarn 包管理器
-npm install -g pnpm yarn
+npm install <package> --save   # npm i <package> -S
+npm install <package>@version  # 安装特定 package 及版本
+npm install -g <package>       # 全局安装
+npm install -g pnpm yarn       # 安装 pnpm 和 yarn 包管理器
 
 npm uninstall    # 卸载
 npm search       # 搜索
@@ -182,29 +207,17 @@ npm list         # 列出当前项目的所有依赖
 npm outdated     # 检查项目中的依赖是否有更新
 npm outdated -g  # 全局
 
-# 检查项目的依赖项是否存在安全漏洞，并提供修复建议
-npm audit
-npm audit fix --force
+npm audit        # 检查项目依赖是否存在安全漏洞，并提供修复建议
 npm audit fix
+npm audit fix --force
 
-# 删除不在 package.json 文件中的依赖项
-npm prune
+npm prune                # 删除不在 package.json 文件中的依赖项
+npm run                  # 运行在 package.json 文件中定义的脚本命令
+npm cache verify         # 验证 npm 缓存，并删除旧的缓存内容
+npm cache clean --force  # 强制删除 npm 缓存
 
-# 运行在 package.json 文件中定义的脚本命令
-npm run
-
-# 验证 npm 缓存，并删除旧的缓存内容
-npm cache verify
-
-# 强制删除 npm 缓存
-npm cache clean --force
-
-# 查看源
-npm config get registry
-yarn config get registry
-
-# 设置镜像源
-npm config set registry http://registry.npmmirror.com
+npm config get registry  # 查看源；npm 可改成 yarn
+npm config set registry  # 设置镜像源
 ```
 
 ---
@@ -219,18 +232,10 @@ npm config set registry http://registry.npmmirror.com
 - 项目本地安装的包的命令路径：`./node_modules/.bin/command-name`
 
 ```bash
-# 执行指定命令
-npx <command>
-
-# 查找将要运行的命令的路径
-npx which <command>
-
-# 检查系统设置，以查找可能影响 npx 运行的问题，并提供解决方案
-npx doctor
-
-# 执行指定的命令字符串
-npx -c <command-string>
-npx -c "node -v && npm -v"
+npx <command>        # 执行指定命令
+npx which <command>  # 查找将要运行的命令的路径
+npx doctor  # 检查系统设置，查找影响 npx 运行的问题，并提供解决方案
+npx -c <command-string>  # 执行指定的命令字符串
 
 npx taze      # 查看 package.json 中的依赖是否是最新
 npx taze -w   # 更新并写入 package.json
@@ -246,16 +251,10 @@ corepack disable  # 取消
 ```
 
 npm 配置文件：.npmrc
-```yaml
+
+```bashrc
 auto-install-peers=true
 
 # 设置镜像源
 registry=https://registry.npmmirror.com
 ```
-
-
----
-
-### 其他
-
-- [【js】require vs import | nodejs的模块化方式\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1JJ41177Dx)

@@ -150,6 +150,15 @@ ase symmetry 教程（内容一般）
 
 >[Calculation of elastic properties of crystals — Elastic v5.1.0 documentation](https://elastic.readthedocs.io/en/stable/)
 
+ase 模拟 md
+>[simulator.py](https://github.com/PythonFZ/ase_md_example/blob/main/ase_md/simulator.py)
+
+
+ase 相关教程
+>[ASE Calculator — Atomistic Simulation Tutorial](https://docs.matlantis.com/atomistic-simulation-tutorial/en/1_5_ase_calculator.html)
+
+
+>[GitHub - ASE-Workshop-2023/tutorial: Tutorial site for the 2023 workshop "Open Science with the Atomic Simulation Environment"](https://github.com/ASE-Workshop-2023/tutorial)
 
 
 ---

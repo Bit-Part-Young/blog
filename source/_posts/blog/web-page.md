@@ -34,6 +34,7 @@ password:
 - [GitHub - Troublor/troublor.github.io: Source code of my personal homepage](https://github.com/Troublor/troublor.github.io)
 - [GitHub - bchiang7/v4: Fourth iteration of my personal website built with Gatsby](https://github.com/bchiang7/v4)
 - Obsidian / Typora 简历：[GitHub - BingyanStudio/LapisCV: 📃 开箱即用的 Obsidian / Typora 简历](https://github.com/BingyanStudio/LapisCV)
+- [GitHub - AmruthPillai/Reactive-Resume: A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!](https://github.com/AmruthPillai/Reactive-Resume)
 
 - Jekyll 框架：
 	- [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)
@@ -241,4 +242,10 @@ mdbook serve --open
 	- [Image Compare Viewer](https://image-compare-viewer.netlify.app/)
 	- [GitHub - CodeSteppe/image-compare](https://github.com/CodeSteppe/image-compare)
 
-简单网站点击量设置：[Free Hit Counters for your website or your blog - Free and without ads - Toolbox for webmaster](https://www.websiteout.net/counter.php)
+- 简单网站点击量设置：[Free Hit Counters for your website or your blog - Free and without ads - Toolbox for webmaster](https://www.websiteout.net/counter.php)
+
+- 会议 workshop 网页模板：
+	- [GitHub - carpentries/workshop-template: The Carpentries Workshop Template](https://github.com/carpentries/workshop-template)
+	- [GitHub - DigitaleGesellschaft/jekyll-theme-conference: Jekyll template for a conference website containing program, speaker, talks and room overview](https://github.com/DigitaleGesellschaft/jekyll-theme-conference)
+
+- 生命重要时间线网页：[GitHub - cheeaun/life: Life - a timeline of important events in my life](https://github.com/cheeaun/life)

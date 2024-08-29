@@ -40,6 +40,7 @@ MkDocs：文档、笔记、博客框架。
 	- [mkdocs.yml | chenggroup.github.io - chenggroup - GitHub](https://github.com/chenggroup/chenggroup.github.io/blob/master/mkdocs.yml)
 
 - 参考笔记站点搭建 repo：
+	- [GitHub - IsshikiHugh/zju-cs-asio: 收集各类与 ZJU-CS 有关的网站形式的资料。](https://github.com/IsshikiHugh/zju-cs-asio)
 	- [鹤翔万里的笔记本](https://note.tonycrane.cc/)
 	- [Welcome to HobbitQia's Notebook! - HobbitQia的笔记本](https://note.hobbitqia.cc/)
 	- [图灵班学习指南](https://zju-turing.github.io/TuringCourses/)
@@ -292,6 +293,8 @@ nav:
 ---
 
 ## 问题
+
+- i18n 含义：国际化（Internationalization）的缩写，在网页搭建中的主要作用是为了支持多语言和国际化。
 
 - MkDocs Material 未来会支持 Algolia 搜索
 

@@ -37,10 +37,14 @@ password:
 
 ## 工具
 
+- 微信 Markdown 编辑器：[GitHub - doocs/md](https://github.com/doocs/md)
 - [markdown在线编辑器 - Markdown Editor](https://markdown-editor.org/)
 - 下载 md 文档中的 online 图片：[GitHub - YellowAndGreen/Md-ImgLocalize: Download and convert all online images to local images in markdown files.](https://github.com/YellowAndGreen/Md-ImgLocalize)
-- Excel 单元格， CSV 内容转成 Markdown 表格：[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
-- CSV 转 Markdown 表格（还可以转 LaTeX 表格等）：[Convert CSV to Markdown Table - Table Convert Online](https://tableconvert.com/csv-to-markdown)
+- CSV 内容转成 Markdown 表格：
+	- 还可以 Excel 内容：[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
+	- 还可以转 LaTeX 表格等：[Convert CSV to Markdown Table - Table Convert Online](https://tableconvert.com/csv-to-markdown)
+	- [GitHub - lzakharov/csv2md](https://github.com/lzakharov/csv2md)
+	- [GitHub - astanin/python-tabulate](https://github.com/astanin/python-tabulate)
 
 - 检查 markdown 文件中的链接是否失效
 	- [GitHub - gaurav-nelson/github-action-markdown-link-check: Check all links in markdown files if they are alive or dead. 🔗✔️](https://github.com/gaurav-nelson/github-action-markdown-link-check)
@@ -275,3 +279,5 @@ int main() {
 ```markdown
 ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩
 ```
+
+- mdx 格式文件（在 md 中使用 JSX）

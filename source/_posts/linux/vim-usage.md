@@ -29,6 +29,7 @@ vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移
 :term
 ```
 
+vim 折叠
 
 ---
 
@@ -39,6 +40,8 @@ vim `> + Enter` 该行首右移一个 Tab 距离；`>4 + Enter`4 行行首右移
 - [GitHub - yangyangwithgnu/use\_vim\_as\_ide: use vim as IDE](https://github.com/yangyangwithgnu/use_vim_as_ide)
 - [Eric Wong / Learn Vim Zh Cn · GitLab](https://gitlab.com/wsdjeg/Learn-Vim_zh_cn)
 
+
+[GitHub - alexzhang1030/full-keyboard: 让你在日常开发中全键盘操作](https://github.com/alexzhang1030/full-keyboard)
 
 
 ---
@@ -66,40 +69,38 @@ vim 中 j 和 gj 快捷键之间的区别：`j` 和 `gj` 都用于向下移动�
 
 - 光标移动
 ```shell
-##-----光标移动-----##
-h    # 光标向左移动一个字符
-j    # 光标向下移动一个字符
-k    # 光标向上移动一个字符
-l    # 光标向右移动一个字符
-0 / [Home]  # 数字0；移动到这一行行首(常用)
-$ / [End]   # 移动到这一行行尾(常用)
-gg   # 转到第一行(常用)
-G    # 转到最后一行(常用)
-nG   # n为数字；转到第n行
-n<Enter> # n为数字；<Enter>表示<Enter>键；光标向下移动n行
-H    # 光标移动到这个屏幕的最上方那一行的第一个字符
-M    # 光标移动到这个屏幕的中央那一行的第一个字符
-L    # 光标移动到这个屏幕的最下方那一行的第一个字符
-
-##-----光标词间移动-----##
-w       # 移动到下一个单词头部
-b       # 移动到前一个单词头部
-e       # 移动到下一个单词尾部
-ge      # 移动到前一个单词尾部
+# 光标移动
+h           # 向左移动一个字符
+l           # 向右移动一个字符
+j           # 向下移动一个字符
+k           # 向上移动一个字符
+0 / [Home]  # 移动到该行行首；数字 0
+$ / [End]   # 移动到该行行尾
+gg          # 移动到第一行
+G           # 移动到最后一行
+nG          # 移动到第 n 行；n 为数字
+n<Enter>    # 向下移动 n 行；<Enter> 为 Enter 键
+H           # 移动到屏幕的最上方
+M           # 移动到屏幕的中央
+L           # 移动到屏幕的最下方
+w           # 移动到下一个单词头部
+b           # 移动到前一个单词头部
+e           # 移动到下一个单词尾部
+ge          # 移动到前一个单词尾部
 ```
 
-- 搜索替换
 ```shell
-/word    # 向光标之下寻找一个名称为 word 的字符串；按下<Enter>键后会显示所有的名称为 word 的字符串
-?word    # 向光标之上寻找一个名称为 word 的字符串
-n        # 英文按键；代表重复前一个搜寻的动作；向下搜寻
-N        # 英文按键；代表重复前一个搜寻的动作；向上搜寻
+# 搜索
+/word    # 向光标之下寻找 word 字符串
+?word    # 向光标之上寻找 word 字符串
+n        # 向下搜寻
+N        # 向上搜寻
 
-:n1,n2s/word1/word2/g   # n1 与 n2 为数字；在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2；:1,6s/if/fi/g
-
-:1,$s/word1/word2/g   # 从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2
-:%s/word1/word2/g     # 同上
-:%s/word1/word2/gc    # 确认是否替代
+# 替换
+:n1,n2s/word1/word2/g   # 在第 n1 与 n2 行内，将 word1 替换为 word2
+:1,$s/word1/word2/g     # 第一行到最后一行
+:%s/word1/word2/g       # 同上
+:%s/word1/word2/gc      # 确认是否替代
 ```
 
 - 复制、粘贴和删除
@@ -134,12 +135,14 @@ bdw    # b 让光标回退到单词开头的位置；dw 从光标当前的位置
 daw    # 直接删除光标所在的一个单词
 
 ##-----撤回/重复-----##
-u      # 复原前一个动作(常用)
-Ctrl + r      # 重做上一个动作(常用)
-.      # 重复前一个动作(常用)
+u      # 复原前一个动作
+Ctrl + r      # 重做上一个动作
+.      # 重复前一个动作（普通模式，替换操作无法重复）
+&      # 重复前一个替换操作
 ```
 
 - 同时显示多个文件的分屏操作及切换操作
+
 ```shell
 # 分屏
 :split    # 上下分屏
@@ -244,11 +247,19 @@ buffer 相关
 
 #### 插件
 
-- vim 插件推荐：[Great VIM Plugins in 2023 | hacking C++](https://hackingcpp.com/dev/vim_plugins.html)
-- [markdown-preview.nvim:](https://github.com/iamcco/markdown-preview.nvim)：预览 md 文件插件
+- Vim 插件推荐：[Great VIM Plugins in 2023 | hacking C++](https://hackingcpp.com/dev/vim_plugins.html)
+- [markdown-preview.nvim:](https://github.com/iamcco/markdown-preview.nvim)：预览 md 文件
+- Markdown 格式列表：[GitHub - dkarter/bullets.vim](https://github.com/dkarter/bullets.vim)
 
-- [plug](https://github.com/junegunn/vim-plug)：插件管理器；
-	- 相关命令：`:PlugInstall` - 安装插件；`:PlugClean` - 卸载插件；`:PlugUpdate` - 更新插件
+- [plug](https://github.com/junegunn/vim-plug)：插件管理器
+
+```bash
+# 相关命令
+:PlugInstall   # 安装插件
+:PlugClean     # 卸载插件
+:PlugUpdate    # 更新插件
+```
+
 
 - [airline](https://github.com/vim-airline/vim-airline.git)：状态栏美化；[vim-airline-themes](https://github.com/vim-airline/vim-airline-themes.git)
 - [surround](https://github.com/tpope/vim-surround.git)
@@ -265,6 +276,10 @@ buffer 相关
 - [ultisnips](https://github.com/SirVer/ultisnips)：代码片段（snippets）
 - [lammps.vim](https://github.com/tommason14/lammps.vim.git)：LAMMPS 输入参数高亮
 - [vasp.vim](https://github.com/Lattay/vasp.vim.git)：VASP 输入文件参数高亮
+- snipMate 中的 snippets：[GitHub - hotoo/snippets: Vim snippets for snipMate.](https://github.com/hotoo/snippets)
+- 光标高亮单词：
+	- [GitHub - hotoo/highlight-cursor-word.vim](https://github.com/hotoo/highlight-cursor-word.vim)
+	- [GitHub - dominikduda/vim\_current\_word](https://github.com/dominikduda/vim_current_word)
 
 
 

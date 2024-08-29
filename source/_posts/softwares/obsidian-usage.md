@@ -110,28 +110,36 @@ password:
 - 手机端个人主要随时记录想法或看到的一些有用链接，仅这些内容需要同步，不需要太多的插件。可通过 Obsidian + Remotely Save（WebDav Infini Cloud）插件实现
 - Remotely Save 无版本回退功能，建议等两端同步好之后，再对文档进行修改，**否则有数据丢失的风险**
 
+
 ---
 
 ### 插件
 
 - [Obsidian-插件推荐（20230630更新） - 知乎](https://zhuanlan.zhihu.com/p/353449575)
-- obsidian LaTeX 相关插件：[GitHub - RyotaUshio/obsidian-math-booster: Turn your Obsidian into LaTeX on steroids.](https://github.com/RyotaUshio/obsidian-math-booster)、[GitHub - artisticat1/obsidian-latex-suite: Make typesetting LaTeX as fast as handwriting through snippets, text expansion, and editor enhancements](https://github.com/artisticat1/obsidian-latex-suite)
+- obsidian LaTeX 相关插件（建议在 VSCode 中书写 LaTeX 公式）：
+	- [GitHub - RyotaUshio/obsidian-math-booster](https://github.com/RyotaUshio/obsidian-math-booster)
+	- [GitHub - artisticat1/obsidian-latex-suite](https://github.com/artisticat1/obsidian-latex-suite)
 
+- 整合 Obsidian 与 Zotero 的插件（可以尝试）：[GitHub - PKM-er/obsidian-zotlit](https://github.com/PKM-er/obsidian-zotlit)
 
 ---
 
 - 外观：
 	- 推荐使用 Blut Topaz、Border、[AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) 主题（后两者会出现卡顿情况）
-	- AnuPpuccin 使用 css：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入“设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
+	- AnuPpuccin 使用 css：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入 “设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
 	- Blut Topaz 主题效果图：
 
 ![vault-screenshot.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202312120853566.png)
 
 ---
 
-- Vimrc Support：支持设置 `.vimrc` 配置文件（实用性很高；需在编辑器选项中打开 Vim 模式）。
+- [Vimrc Support](https://github.com/esm7/obsidian-vimrc-support)：支持设置 `.vimrc` 配置文件（实用性很高；需在编辑器选项中打开 Vim 模式）
+	- [08\_obsidian01.md](https://github.com/alexzhang1030/full-keyboard/blob/0cb16b4d9fbc2d8e589b38fad14308220d184d72/docs/08_obsidian01.md)
+	- [obsidian-vimrc-support\_readme.md](https://github.com/PKM-er/Pkmer-Docs/blob/84e53b107bff5fe3f4f76f54d909275625acf17d/10-Obsidian/Obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/Readme/obsidian-vimrc-support_readme.md?plain=1#L3)
+	- [.obsidian.vimrc](https://github.com/conneroisu/conneroisu-obsidian-vimrc/blob/main/.obsidian.vimrc)
     - 个人 `.obsidian.vimrc` 设置：[.obsidian.vimrc · Falling Slowly/obsidian-config - Gitee.com](https://gitee.com/yangsl306/obsidian-config/blob/main/.obsidian.vimrc)
     - [ ] 状态栏 powerline 设置不起作用：[vimrc support里面提到可以定制状态栏成powerline风格，但是无效 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/23660)
+	- [ ] Obsidian Vim 插件无法使用重复替换操作的快捷键
 
 - Obsidian Git：Git 插件以实现版本控制 + 云同步。相关设置：
     - 自动 commit 和 push（称为备份）时间间隔设置为 30min（在文件最后一次改变后的 30min，可避免在编辑文件时自动备份；也可以设置成最后一次 commit 后的 30min；二选一）；
@@ -146,15 +154,16 @@ password:
     - 同步配置文件夹：对于手机 - PC 端之间互相同步，开始可先开启，手机端同步到配置文件后，再将其关闭。
     - Infini Cloud 服务器地址：`https://toi.teracloud.jp/dav/`
 
-- Auto Link Title：自动获取 URL 标题（实用性很高）；快捷键 `Crtl + Shift + E`；无法实现文档中的全部链接标题的获取，只能单个。
-- Advanced Tables：markdown 表格增强；按 tab 键自动补全 markdown 表格所需格式。
-- Editing Toolbar：在文档编辑栏上方添加类似 Office 的工具栏。
-- Remember cursor position：记住光标位置。
-- Vault Statistics：Vault 信息统计，包括文档数，文档中的字符和词数（出现在右下角）。
-- Image Auto Upload Plugin：借助 PicGo/PicList 实现图片自动上传并转成图链。
-- Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式（**通过 Pandoc 导出，需安装并配置；含中文的 md 导出成 pdf 格式一般都会报错，建议手动写命令，其他格式可以成功导出**）。
-- floating toc：目录浮动体；[GitHub - PKM-er/obsidian-floating-toc-plugin](https://github.com/cumany/obsidian-floating-toc-plugin)。
-- Admonitions：和 GitHub 中的 alert 语法一样。
+- Auto Link Title：自动获取 URL 标题（实用性很高）；快捷键 `Crtl + Shift + E`；无法实现文档中的全部链接标题的获取，只能单个
+- Advanced Tables：markdown 表格增强；按 tab 键自动补全 markdown 表格所需格式
+- Editing Toolbar：在文档编辑栏上方添加类似 Office 的工具栏
+- Remember cursor position：记住光标位置
+- Vault Statistics：Vault 信息统计，包括文档数，文档中的字符和词数（出现在右下角）
+- Image Auto Upload Plugin：借助 PicGo/PicList 实现图片自动上传并转成图链
+- Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式（**通过 Pandoc 导出，需安装并配置；含中文的 md 导出成 pdf 格式一般都会报错，建议手动写命令，其他格式可以成功导出**）
+- floating toc：目录浮动体；[GitHub - PKM-er/obsidian-floating-toc-plugin](https://github.com/cumany/obsidian-floating-toc-plugin)
+
+- Admonitions：和 GitHub 中的 alert 语法一样
 
 ```text
 > [!NOTE]
@@ -175,13 +184,16 @@ password:
 
 - Notion Notes 转 Obsidian：[GitHub - connertennery/Notion-to-Obsidian-Converter: Converts exported Notion notes to work with Obsidian.](https://github.com/connertennery/Notion-to-Obsidian-Converter)
 
+- Obsidian 模板制作（个人主要添加预定义的 Front Matter 键值对）
+
 
 
 ---
 
 ## 相关问题
 
-- VSCode 复制代码到 Obsidian，每行会产生多余空格：[从visual studio code复制代码后 产生的unicode的空格问题 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/9332)
+- VSCode 复制代码到 Obsidian，每行会产生多余空格
+	- [从visual studio code复制代码后 产生的unicode的空格问题 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/9332)
 	- 解决方法：Mac - `Command + Shift + V` 粘贴；Win - `Ctrl + Shift + V` 粘贴
 
 - [ ] Obsidian 光标在 N 级标题行时会被黏住

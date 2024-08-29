@@ -280,6 +280,9 @@ direct
 
 POTCAR：RCORE 代表最大截止半径，单位是波尔 bohr
 
+PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
+
+赝势目录中每个类型的泛函目录中有一个 data_base 文件，里面包含每个赝势对应元素 3 种可能结构的基态能量数据
 
 - 赝势文件；包含计算体系中每个元素种类的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 
@@ -365,8 +368,6 @@ POTCAR 示例
  0.235E-04 0.179E-04 0.134E-04 0.125E-04
 END of PSCTR-controll parameters
 ```
-
-
 
 
 ---

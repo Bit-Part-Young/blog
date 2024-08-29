@@ -122,7 +122,8 @@ wsl --import Ubuntu-22.04 "D:\Ubuntu-2204" "D:\Ubuntu-2204.tar"
 - Windows 主机上的网络代理软件**允许局域网访问**
 - 获取 Windows 主机 IP
 - 设置 WSL 2 的代理
-- shell 脚本：[proxywsl · Falling Slowly/dotfiles - Gitee.com](https://gitee.com/yangsl306/dotfiles/blob/main/proxywsl)
+- shell 脚本：[proxywsl · Falling Slowly/dotfiles - Gitee.com](https://gitee.com/yangsl306/dotfiles/blob/main/proxywsl)；[proxy.sh](https://github.com/Roy-Kid/Personal-scripts-and-configs/blob/master/proxy.sh)
+
 
 ---
 

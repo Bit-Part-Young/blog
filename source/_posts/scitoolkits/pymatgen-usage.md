@@ -46,6 +46,8 @@ workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 ---
 
+- [x] pymatgen 如何获取可用的 POTCAR 种类；较难：一般是指定泛函类型
+
 pymatgen 构型可视化：[Pymatgen - how to visualize a crystal structure? - Materials Project / Materials Project Data/API - Materials Science Community Discourse](https://matsci.org/t/pymatgen-how-to-visualize-a-crystal-structure/2761)
 
 ```python

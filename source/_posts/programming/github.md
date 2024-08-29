@@ -55,6 +55,8 @@ password:
 	- [GitHub - 0x2E/GitStatus: Show GitHub notifications on menubar (macOS 13.0+)](https://github.com/0x2E/GitStatus)
 - 生成 changelog：[GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
 
+- 用 nbviewer 浏览 GitHub 中的 ipynb 文件
+
 
 ---
 
@@ -197,6 +199,7 @@ profile 实例参考：
 - [sudoskys (Jasmine) · GitHub](https://github.com/sudoskys)
 - [XYCode-Kerman (XYCode Kerman) · GitHub](https://github.com/XYCode-Kerman)
 - [GitHub - Wybxc/metrics: 忘忧北萱草大合集！](https://github.com/Wybxc/metrics/)
+- [ayaka-icu/README.md at main · ayaka-icu/ayaka-icu · GitHub](https://github.com/ayaka-icu/ayaka-icu/blob/main/README.md)
 
 
 标准 README.md 文件写法：[GitHub - RichardLitt/standard-readme: A standard style for README files](https://github.com/RichardLitt/standard-readme)
@@ -232,6 +235,8 @@ GitHub contribution 可视化：
 - [GitHub - inttter/md-badges: An extensive list of Shields.io badges.](https://github.com/inttter/md-badges)
 - [GitHub - ziadOUA/m3-Markdown-Badges: 🏅 A Material You inspired markdown badge collection.](https://github.com/ziadOUA/m3-Markdown-Badges)
 - skill 图标 icon：[GitHub - tandpfun/skill-icons: Showcase your skills on your Github readme or resumé with ease ✨](https://github.com/tandpfun/skill-icons)
+- 可参考：[README.rst](https://github.com/charmoniumQ/charmonium.cache/blob/main/README.rst?plain=1)
+
 
 ---
 
@@ -283,7 +288,9 @@ GitHub Repo 相关（使用 github）
 
 ### pre-commit
 
-[pre-commit](https://pre-commit.com/)：用于管理和维护 git 钩子的框架。允许配置多种钩子，这些钩子会在代码提交到仓库之前自动运行，以检查代码风格、格式化代码、检查语法错误（可用于 Python、Markdown、Shell）等。配置文件：.pre-commit-config.yaml
+>[Git项目管理，代码规范pre-commit使用详解 - 夏冬](https://amos-x.com/index.php/amos/archives/pre-commit/)
+
+[pre-commit](https://pre-commit.com/)：用于管理和维护 git 钩子的框架。允许配置多种钩子，这些钩子会在代码提交到仓库之前自动运行，以检查代码风格、格式化代码、检查语法错误（可用于 Python、Markdown、Shell）等。配置文件：`.pre-commit-config.yaml`
 
 
 ```bash
@@ -291,6 +298,8 @@ GitHub Repo 相关（使用 github）
 pip install -U pre-commit
 # 安装钩子
 pre-commit install
+# 生成默认配置
+pre-commit sample-config
 # 手动运行钩子
 pre-commit run
 pre-commit run --all-files

@@ -144,7 +144,7 @@ WIP...
 - [Git常用操作清单](https://blog.sbyu.top/post/8)
 - [常用 Git 命令清单 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 - [git cherry-pick 教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
-
+- [个人心得：Git使用与开发规范 - AllenY's blog](https://alleny.xyz/post/development-standards/)
 
 
 ---
@@ -962,6 +962,10 @@ git diff-tree <commit_id> --stat
 # --word-diff 忽略空行
 git diff --staged --stat
 git diff --cached --stat
+
+# 常用参数
+--name-only         # 只显示发生变化的文件名称
+--diff-filter=M     # 筛选只显示被修改的文件
 ```
 
 ---

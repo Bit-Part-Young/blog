@@ -165,6 +165,14 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 
 - [免费下载缺失的 DLL 文件 | DLL‑files.com](https://cn.dll-files.com/)
 
+- [解决windows显示开启HDR后chrome内截图泛白问题\_截图浏览器变色\_Athus\_c的博客-CSDN博客](https://blog.csdn.net/Athus_c/article/details/106494715)
+
+- 个人老惠普笔记本目前情况：
+	- 转轴损坏，屏幕与网卡之间的线损坏
+	- 外接显示器无法显示 BIOS 界面（无独显直连？）
+	- 笔记本的网卡通常兼具网络和蓝牙的功能，网卡不起作用，则蓝牙的功能也将不起作用（需要买连接网卡的天线）
+	- 笔记本的外壳可以单买（A B C D 面）
+
 - [ ] 如何关闭 Office 模板（去除其广告）
 
 - [ ] VSCode 清理

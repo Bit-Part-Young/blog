@@ -45,6 +45,9 @@ alias showjob='showjob'
 终端快捷键
 
 ```bash
+TAB                   # 命令补全
+Ctrl + C              # 中止命令
+Ctrl + D              # 键盘输入结束，可用于退出 Shell 窗口
 Crtl + A              # 光标移动到命令首
 Crtl + E              # 光标移动到命令尾
 Alt + B / Ctrl + ←    # 光标向左移动一个单词
@@ -72,6 +75,7 @@ Crtl + L              # 将底部内容移至最上方
 - 命令行艺术：[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
 - bash 一行命令：[https://github.com/onceupon/Bash-Oneliner](https://github.com/onceupon/Bash-Oneliner)
 - [真有人用Linux？（Linux下的工作、科研、学习与生活） - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/281312)
+- [工具是第一生产力——Linux入门教程](https://ysyx.oscc.cc/slides/2306/02.html)
 
 ---
 
@@ -82,6 +86,9 @@ Crtl + L              # 将底部内容移至最上方
 
 [GitHub - skwp/dotfiles: YADR - The best vim,git,zsh plugins and the cleanest vimrc you've ever seen](https://github.com/skwp/dotfiles)
 
+[GitHub - yutkat/dotfiles: The best and strongest dotfiles. Editor: Neovim; Shell: zsh(zinit, powerlevel10k); Terminal: wezterm; Desktop: sway, ulauncher, dunst; OS: ArchLinux (Ubuntu/Fedora/CentOS)](https://github.com/yutkat/dotfiles)（内含一键安装脚本，可参考写法）
+
+[GitHub - dibingfa/flash-linux0.11-talk: 你管这破玩意叫操作系统源码 — 像小说一样品读 Linux 0.11 核心代码](https://github.com/dibingfa/flash-linux0.11-talk)
 
 
 
@@ -216,14 +223,14 @@ man         # 查看命令帮助
 echo        # 打印字符串
 pwd         # 显示当前路径
 cd          # 切换目录
-ls          # 列出目录内容；-a 与 -A 的区别，后者表示 almost all，不列出 . 和 ..
+ls          # 列出目录内容；
 cat         # 显示文件内容
 tac         # 从最后一行显示文件内容
 head tail   # 打印文件首尾内容，默认 10 行
 less        # 逐页显示文件内容
 touch       # 创建文件/修改文件时间属性
-mkdir       # 创建目录；创建多级目录：mkdir -p 1/2/3/4
-mv          # 移动/重命名；建议设置 alias mv="mv -v"
+mkdir       # 创建目录
+mv          # 移动/重命名
 cp          # 复制
 rm          # 删除
 >  >>       # 标准输出流重定向
@@ -237,14 +244,29 @@ cut         # 剪切命令
 ```
 
 ```bash
-# 查看所有同名命令
-which -a command
+man man                 # 查看如何使用 man 命令
+man 3 printf            # 查看如何使用 printf 库函数
+man -k xxx              # 检索关键字含有 xxx 的命令
 
-# 查看相对路径文件的绝对路径
-readlink -f path
+ls -a                   # 会列出 . 和 ..
+ls -A                   # almost all，不列出 . 和 ..
+ls -1 | grep -v 'XXX*'  # ls 不列出特定的文件/目录
 
-# 从每一行文本中提取以逗号分隔的第三个字段
-cut -d, -f3 file
+mkdir -p xxx/xxx        # 创建多级目录
+
+tail -n +2 file         # 从第二行开始输出内容
+
+# 建议设置 
+alias mv="mv -v"
+alias cp="cp -v"
+alias rm="rm -v"
+
+
+which -a command  # 查看所有同名命令
+
+readlink -f path  # 查看相对路径文件的绝对路径
+
+cut -d, -f3 file  # 从每一行文本中提取以逗号分隔的第三个字段
 ```
 
 
@@ -362,7 +384,7 @@ ln -s -f .tmux/.tmux.conf
 -O             # 保存文件名与远程文件相同
 --progress     # 显示进度条
 -L             # 跟随重定向，如果服务器返回重定向响应，将自动请求新的 URL
--C             # 在下载中断的情况下，继续下载而不是重新开始，通常与 -o 参数一起使用
+-C             # 下载中断时，继续下载，通常与 -o 一起使用
 -s             # 安静模式，减少输出信息，只显示错误信息
 -I             # 仅获取远程文件的头部信息，而不下载实际内容
 -f             # 请求发生错误时，返回非零的退出状态码，表示请求失败
@@ -370,13 +392,17 @@ ln -s -f .tmux/.tmux.conf
 
 
 # 示例
-
 curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 
 # 有趣 curl 命令；输出 ascii live 字符
 curl parrot.live
 curl ascii.live/forrest
 curl ascii.live/parrot
+
+# 获取 IP 地址
+curl ip.sb
+curl ifconfig.co/json
+curl cip.cc
 ```
 
 
@@ -613,8 +639,7 @@ awk '!seen[$0]++ || $0 == ""' file
 
 ```bash
 cat -          # 读取标准输入
-# 将标准输入的内容和文件内容一并显示
-echo '#' | cat - test.log
+echo '#' | cat - test.log  # 将标准输入的内容和文件内容一并显示
 
 # 参数
 -n             # 附加行号
@@ -725,17 +750,20 @@ sed -n '$=' file
 - 其他
 
 ```bash
-ls -1 | grep -v 'IECT*'  # ls 不列出特定的文件/目录
+ldd --version          # 查看 GLIBC 版本
 
-tail -n +2 file  # 从第二行开始输出内容
+echo -n 'XXX' | wc -c  # 统计字符串长度 c 可换成 m
 
-ldd --version  # 查看 GLIBC 版本
+getconf NAME_MAX /     # 获取系统中文件名的最大长度
 
-# 统计字符串长度 c 可换成 m
-echo -n '123456' | wc -c
+# Win 行尾符通常是 \r\n（回车符+换行符），Unix/Linux 为 \n
+tr -d '\r'             # 删除字符串中的回车符
 
-# 获取系统中文件名的最大长度
-getconf NAME_MAX /
+zcat                   # 查看 gz 压缩文件内容
+
+cal 2024               # 显示 2024 年的日历；或 cal 8 2024，精确到月
+
+env                    # 显示环境变量
 ```
 
 

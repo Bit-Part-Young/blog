@@ -73,6 +73,8 @@ VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffract
 
 - xyz 文件格式通过 ase 读取，其 pbc 为 false，且无晶格参数信息；posconv 转换成 xyz 文件格式会附加晶格参数信息
 
+vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
+
 
 ---
 
@@ -351,3 +353,7 @@ hcp 结构原胞原子坐标有两种形式：
 ## 其他
 
 钙钛矿、半导体、绝缘体的点缺陷比金属或金属间化合物的点缺陷要复杂很多
+
+C60 POSCAR 文件：[C60.POSCAR.vasp](https://github.com/Shuyangzero/Ogre/blob/master/structures/C60.POSCAR.vasp)
+
+钙钛矿晶体结构：八面体扭转理论

@@ -23,20 +23,30 @@ password:
 
 WIP...
 
+Rust、Julia、Fortran 没有类的概念
+
+
 ---
 
 ### 参考资料
 
-- [关于本书 - Rust语言圣经(Rust Course)](https://course.rs/)
+- [关于本书 - Rust语言圣经(Rust Course)](https://course.rs/)；[GitHub - sunface/rust-course](https://github.com/sunface/rust-course)
 - [Rusty Book - Rusty Book(锈书)](https://rusty.course.rs/about.html)
 - [Rust - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/rust/)
 - [GitHub - rust-lang-cn/book-cn: Rust 程序设计语言 中文版](https://github.com/rust-lang-cn/book-cn)
 - [Rust 程序设计语言 - Rust 程序设计语言 中文版](https://rustwiki.org/zh-CN/book/)
 - [Introduction - PyO3 user guide](https://pyo3.rs/)
-
 - [GitHub - mainmatter/100-exercises-to-learn-rust: A self-paced course to learn Rust, one exercise at a time.](https://github.com/mainmatter/100-exercises-to-learn-rust)
 - [GitHub - rust-lang/rustlings: :crab: Small exercises to get you used to reading and writing Rust code!](https://github.com/rust-lang/rustlings)
+- [GitHub - guofei9987/rs\_lib: Rust调用C的例子（混合编程）](https://github.com/guofei9987/rs_lib)
 
+
+---
+库
+
+- [GitHub - pola-rs/polars: Dataframes powered by a multithreaded, vectorized query engine, written in Rust](https://github.com/pola-rs/polars)
+
+- 命令行参数解析：[GitHub - google/argh: Rust derive-based argument parsing optimized for code size](https://github.com/google/argh)
 
 
 ---

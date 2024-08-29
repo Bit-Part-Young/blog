@@ -23,6 +23,8 @@ iOS Developer Beta 版本系统更新：安装 Apple Developer App，用 Apple I
 
 iPhone 备份到 Mac 本地：数据线连接到 Mac 进行备份设置（打开访达，在 “位置” 中选择设置）
 
+锁屏状态下拒接电话：按两下右侧的电源键
+
 替代 iPhone 原生输入法：微信输入法、Hamster
 
 iPhone 实况照片转视频：[如何在 iPhone 上将实况照片转换为视频 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/105029)

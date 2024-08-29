@@ -385,3 +385,5 @@ ln -s path/to/project path/to/miniconda3/envs/<env_name>
 
 conda activate <env_name>
 ```
+
+- Linux conda 当前用户创建的虚拟环境名消失，只有 root 的：`~/.zshrc` 中的 `conda init` 代码中的相关路径变成了 root 的，将其改回当前用户的路径

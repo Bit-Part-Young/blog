@@ -303,27 +303,29 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 
 ## 其他常用软件
 
-- Listary：一款实用的文件搜索、程序启动工具（与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`）。
+- Listary：一款实用的文件搜索、程序启动工具
+	- 与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`
 
-- MobaXterm：远程服务器连接工具；可自动识别已安装的 WSL。
+- MobaXterm：远程服务器连接工具；可自动识别已安装的 WSL
+	- [ ] Mobaxterm 左侧文件目录无法随右侧终端命令实时改变（暂无法解决）
 
-- WinSCP：远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些。
+- WinSCP：远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些
 
-- Obsidian：本地笔记管理软件，比 Notion、Typora 好用。
+- Obsidian：本地笔记管理软件，比 Notion、Typora 好用
 
-- MongoDB Compass：MongoDB 数据库的管理工具。
+- MongoDB Compass：MongoDB 数据库的管理工具
 
-- Snipaste：截图软件，可以截图、**贴图**、标注；可以获取颜色的 rgb 值等。
+- Snipaste：截图软件，可以截图、**贴图**、标注；可以获取颜色的 rgb 值等
 
-- PicGo：图床工具。
-	- 相关设置：GitHub 图床设置；开启时间戳重命名；禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
+- PicGo：图床工具
+	- 相关设置：设置 GitHub 图床；开启时间戳重命名；禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
 
 - PicList：图床工具，基于 PicGo 开发
 
-- Notepad++：文本编辑器；直接关闭软件不会删除未保存的内容，可用做临时记录（最新版本的 Windows 的记事本也可以）。
-	- 自动换行设置：” 视图 “—勾选 ” 自动换行 “
-	- 文件每行末尾显示 `CRLF`：” 视图 “ -- ” 显示符号 “ -- 取消勾选 ” 显示行尾符 “。
-	- 该软件开发者涉及辱华，建议使用其他替代工具
+- Notepad++：文本编辑器；直接关闭软件不会删除未保存的内容，可用做临时记录（最新版本的 Windows 的记事本也可以）
+	- 自动换行设置：“ 视图 ” -- 勾选 “自动换行 ”
+	- 文件每行末尾显示 `CRLF`：” 视图 “ -- “ 显示符号 ” -- 取消勾选 “显示行尾符 ”。
+	- 该软件开发者涉及辱华，建议使用其他替代工具（Notepad--）
 
 - Internet Download Manager：简称 IDM，下载工具，可嗅探到网页中任何可下载的东西（如文件、视频、音频等）并自动分类归档。一些配置：
 	- 选项 - 常规设置 - 接管以下浏览器，仅 chrome 和 firefox（取消勾选 edge，因其会经常提示下载更新包）
@@ -336,19 +338,26 @@ journals.aps.org
 onlinelibrary.wiley.com
 ```
 
-- Geek Uninstaller：软件卸载工具，能清除软件的注册表，卸载较为彻底。
+- Geek Uninstaller：软件卸载工具，能清除软件的注册表，卸载较为彻底
 
-- TreeSize Free：磁盘管理工具，有利于查看哪些文件占用较大体积进行删除。
+- TreeSize Free：磁盘管理工具，有利于查看哪些文件占用较大体积进行删除
 
 - Mathpix：LaTeX OCR 识别；使用教育邮箱，可增加 Mathpix 使用次数；支持临时邮箱
 
-- Potplayer：媒体播放器；[基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
+- Potplayer：媒体播放器
+	- [基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
 
-- Quicklook：快速预览文件的工具，按空格键即可实现预览且可以复制文件内容（类似于 Mac 的空格键；有插件可实现预览 office 套件文件，但效果不是很好）。
+- Quicklook：快速预览文件的工具，按空格键即可实现预览且可以复制文件内容
+	- 类似于 Mac 的空格键；有插件可实现预览 office 套件文件，但效果不是很好
 
-- Rime 输入法引擎 + 雾凇拼音：[Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)、[小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
+- Rime 输入法引擎 + 雾凇拼音
+	- [Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)
+	- [小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
 
 - 调节显示器亮度：Twinkle Tray（部分显示器设备无效）
+
+- [GitHub - Planshit/Tai: 👻 在Windows上统计软件使用时长和网站浏览时长](https://github.com/Planshit/Tai)
+
 
 ---
 

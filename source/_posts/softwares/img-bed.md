@@ -73,3 +73,4 @@ password:
 
 - GitHub Token 过期：`StatusCodeError: 401`；更新 Token；[PicGo+GitHub图床配置&常见错误 - Eighty Percent](http://b.aksy.space/study-notes/514.html)
 - [SM.MS](https://sm.ms/) 网址失效（另一个常用的图床）；备用网址：[smms.app](https://smms.app)；[Bug SM.MS域名被墙，Picgo无法上传 · Issue #963 · Molunerfinn/PicGo · GitHub](https://github.com/Molunerfinn/PicGo/issues/963)
+- [GitHub - 1357310795/SMMS\_Downloader: 下载/备份您在sm.ms图床上传的图片 | Download and backup your images uploaded to sm.ms](https://github.com/1357310795/SMMS_Downloader)

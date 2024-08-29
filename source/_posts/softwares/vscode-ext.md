@@ -243,6 +243,7 @@ brew services start code-server
 ## 相关问题
 
 - WSL1 无法安装插件：[Installing extensions to WSL VS Code Server gives \`EACCES: Permission Denied\` · Issue #90164 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/90164)
+
 - GitHub Copilot 无法连接服务器：[GitHub Copilot could not connect to server. Extension activation failed: "Timed out waiting for authentication provider to register" · community · Discussion #11324 · GitHub](https://github.com/orgs/community/discussions/11324)
 
 ```bash
@@ -250,15 +251,23 @@ GitHub Copilot could not connect to server. Extension activation failed: "Timed 
 ```
 
 - 扩展远程主机在过去 5 分钟内意外终止了 3 次：[vscode 扩展主机意外终止怎么办，重装好几次了\_博问\_博客园](https://q.cnblogs.com/q/94411/)
+
 - Pylance 语言服务器 crashed：[The Python Tools server crashed 5 times in the last 3 minutes. The server will not be restarted. · Issue #13679 · microsoft/vscode-python · GitHub](https://github.com/microsoft/vscode-python/issues/13679)
 
 ```bash
 The Pylance server crashed 5 times in the last 3 minutes. The server will not be restarted. See the output for more information.
 ```
 
-- Remote-ssh 远程连接服务器，使用 `plt.show()` 打不开画图窗口：[python - Is there any way to show figures in VScode remote ssh (windows) - Stack Overflow](https://stackoverflow.com/questions/59063892/is-there-any-way-to-show-figures-in-vscode-remote-ssh-windows)；解决方法：保存图片再打开查看；或者在互动窗口中运行代码
-- vscode 加载图片错误：[visual studio code - Error loading webview: Error: Could not register service workers: TypeError: Failed to register a ServiceWorker for scope - Stack Overflow](https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai)；解决方法：清楚相关文件的缓存：进入 `C:\Users\<user_name>\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
+- Remote-ssh 远程连接服务器，使用 `plt.show()` 打不开画图窗口：
+	- [python - Is there any way to show figures in VScode remote ssh (windows) - Stack Overflow](https://stackoverflow.com/questions/59063892/is-there-any-way-to-show-figures-in-vscode-remote-ssh-windows)
+	- 解决方法：保存图片再打开查看；或者在互动窗口中运行代码
+
+- vscode 加载图片错误：
+	- [visual studio code - Error loading webview: Error: Could not register service workers: TypeError: Failed to register a ServiceWorker for scope - Stack Overflow](https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai)
+	- 解决方法：清除相关文件缓存：进入 `C:\Users\XX\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
 
 ```bash
 加载 Web 视图时出错: Error: Could not register service workers: InvalidStateError: Failed to register a ServiceWorker: The document is in an invalid state.
 ```
+
+- VSCode terminal profile 无法使用 zsh：[VSCode terminal task not using zsh profile · Issue #143061 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/143061)

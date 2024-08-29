@@ -111,6 +111,9 @@ typst-upgrade -d file.typ    # -d --dry-run 不实际运行
 
 - 表格中的科学计数格式化（小数点自动对齐）：[GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
 
+- 预览 Typst 的 Neovim 插件：[GitHub - chomosuke/typst-preview.nvim: Low latency typst preview for Neovim](https://github.com/chomosuke/typst-preview.nvim)
+
+
 
 ---
 

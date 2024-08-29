@@ -171,7 +171,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 - 包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：Alfred 5、[Raycast](https://www.raycast.com/)
-- VPN 网络代理：ClashX
+- 网络代理：ClashX
 - 系统资源监控：iStat Menus、RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)、[glances](https://github.com/nicolargo/glances)
 - 代码编辑器：VSCode、VSCode-Insiders（VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中）
 - 终端模拟器：默认终端、iTerm2（最实用）、Tabby、Termius、kitty、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
@@ -206,7 +206,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
 - 限制电池最大充电量：[bclm](https://github.com/zackelia/bclm)、AlDente
 - 文件互传：LocalSend（跨平台）
-- 文件同步：Syncthing、交大云盘
+- 文件同步：[Syncthing](https://github.com/syncthing/syncthing)（跨平台）、交大云盘
 - 虚拟机：Parallels Desktop、VMware Fusion
 - 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）、Maccy
 - 窗口平铺：tiling window manager；[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
@@ -577,6 +577,12 @@ brew install openjdk
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
 	- 有 command（类似 vim） 和 edit 模式；需自己添加 miniconda 虚拟环境的 kernel
 
+- macOS 中终端下安全删除文件工具（可恢复）：[GitHub - hotoo/rm-trash](https://github.com/hotoo/rm-trash)
+
+```bash
+npm i rm-trash -g  # 安装
+```
+
 
 
 ---
@@ -661,3 +667,5 @@ export HOMEBREW_MACOS_VERSION=14.5
 - 蓝牙耳机连接：长按 Redmi Airdots3 Pro 耳机盒的开关机键；将 Bose qc45 电源键推至右侧一段时间
 - [Word for Mac彻底删除Endnote插件的方法 - 知乎](https://zhuanlan.zhihu.com/p/29321865)
 - Final Cut Pro 软件无法打开 mkv 格式文件（和 PR 一样）
+
+- [ ] 如何安装黑苹果

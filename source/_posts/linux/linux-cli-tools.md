@@ -323,6 +323,8 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - [GitHub - swsnr/mdcat: cat for markdown](https://github.com/swsnr/mdcat)
 - 检测 GPU（Nvidia 和 AMD 等）：[nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
 - 将输入的图片，使用几何形状重新绘制：[GitHub - fogleman/primitive: Reproducing images with geometric primitives.](https://github.com/fogleman/primitive)
+- [sshx](https://github.com/ekzhang/sshx)：通过链接共享终端（可创建多个终端画布）
+- [f2](https://github.com/ayoisaiah/f2)：文件批量重命名
 - 其他小工具： cowsay、sl（火车）、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix（黑客帝国）、asciiquarium（水族馆）
 
 

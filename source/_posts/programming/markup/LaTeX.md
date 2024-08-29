@@ -60,6 +60,7 @@ password:
 - Overleaf LaTeX 教程：[Learn LaTeX in 30 minutes - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes)
 - Overleaf LaTeX 中文写作教程：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
 - [GitHub - guanyingc/latex\_paper\_writing\_tips: Tips for Writing a Research Paper using LaTeX](https://github.com/guanyingc/latex_paper_writing_tips)
+- [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
 
 
 
@@ -248,6 +249,10 @@ TeXstudio：工具 - 清理辅助文件
 
 - Markdown 宏包：[以 Markdown 撰写文稿，以 LaTeX 排版](https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/)
 
+- [checkcites](https://gitlab.com/islandoftex/checkcites)：检查在 bib 文件中但未引用的参考文献（TeX Live 已安装该工具）
+
+- [GitHub - reproducible-reporting/bibsane](https://github.com/reproducible-reporting/bibsane)：与 checkcites 功能类似，性能提升版本
+
 ---
 
 `texdoc`：查阅 texlive 中的文档，包括发行版的说明文档、宏包和文档类的手册等。
@@ -340,6 +345,9 @@ brew install latexdiff
 [GitHub - chazeon/revtex2docx: Wrapper scripts and pandoc filters to convert LaTeX documents to Word docx files](https://github.com/chazeon/revtex2docx)
 
 生成多种格式文献引用：[BibGuru - A New FREE APA, Harvard, & MLA Citation Generator](https://www.bibguru.com/)
+
+[GitHub - teatimeguest/setup-texlive-action: A GitHub Action to set up TeX Live](https://github.com/teatimeguest/setup-texlive-action)
+
 
 
 ---
@@ -1534,7 +1542,9 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 
 - 去除超链接、交叉引用中的方框：[hyperref - Remove ugly borders around clickable cross-references and hyperlinks - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks)
 
-- [ ] LaTeX 如何在每个章节最后生成参考文献？
+- [ ] LaTeX 如何在每个章节最后生成参考文献（好像不行）
+
+- [x] 不同期刊的文献格式转换？（具体的期刊不行；可用不同期刊的 LaTeX 的模板）
 
 
 ---
