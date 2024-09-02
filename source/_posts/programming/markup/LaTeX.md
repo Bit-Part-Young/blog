@@ -61,6 +61,7 @@ password:
 - Overleaf LaTeX 中文写作教程：[Chinese - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Chinese)
 - [GitHub - guanyingc/latex\_paper\_writing\_tips: Tips for Writing a Research Paper using LaTeX](https://github.com/guanyingc/latex_paper_writing_tips)
 - [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
+- [latex相关笔记 - 我是谁](https://yuhldr.github.io/posts/2dcfe2a6.html)
 
 
 
@@ -238,8 +239,9 @@ TeXstudio：工具 - 清理辅助文件
 ### 工具
 
 - VSCode 插件：
-	- LaTeX Workshop 插件设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
-	- LaTeX Utilities 插件
+	- LaTeX Workshop 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
+	- LaTeX Utilities
+	- Overleaf Workshop
 
 - [GitHub - tectonic-typesetting/tectonic: A modernized, complete, self-contained TeX/LaTeX engine, powered by XeTeX and TeXLive.](https://github.com/tectonic-typesetting/tectonic)
 
@@ -250,17 +252,9 @@ TeXstudio：工具 - 清理辅助文件
 - Markdown 宏包：[以 Markdown 撰写文稿，以 LaTeX 排版](https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/)
 
 - [checkcites](https://gitlab.com/islandoftex/checkcites)：检查在 bib 文件中但未引用的参考文献（TeX Live 已安装该工具）
-
 - [GitHub - reproducible-reporting/bibsane](https://github.com/reproducible-reporting/bibsane)：与 checkcites 功能类似，性能提升版本
 
----
-
-`texdoc`：查阅 texlive 中的文档，包括发行版的说明文档、宏包和文档类的手册等。
-
-```bash
-texdoc texlive
-texdoc <package>  # 查看宏包文档
-```
+- `makeglossaries`：Tex Live 自带，用于生成和管理文档中的术语表（glossaries）、缩略词表（acronyms）和符号表等
 
 ---
 
@@ -355,33 +349,41 @@ brew install latexdiff
 ### 编译
 
 - pdflatex 表示使用 pdfTeX 作为引擎、使用 LaTeX 格式来编译文档（还有 xelatex、lualatex 等）。这些命令行命令通常称为 “编译方式”；编译方式写成图标的形式
-- 英文文档：用 pdflatex、xelatex、lualatex 编译
-- 中文文档：用、xelatex、lualatex 编译编译
-- ctexart 文档类需使用 xelatex 编译；overleaf 在线编辑器默认使用 pdflatex 编译
-
-
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202310011726060.png)
 
+---
+
+- 英文文档：用 pdflatex、xelatex、lualatex 编译；中文文档：用 xelatex、lualatex 编译编译
+- ctexart 文档类需使用 xelatex 编译
+- Overleaf 默认使用 pdflatex 编译
+
 ```bash
+# 语法
+xelatex [OPTION]... [TEXNAME[.tex]] [COMMANDS]
 # .tex 扩展名可以省略
-xelatex file.tex
-xelatex file
+xelatex file.tex  # xelatex file
 
 xelatex -shell-escape file.tex
 
 xelatex -shell-escape -synctex=1 %.tex
+
+# 常用参数
+-output-directory   # 输出目录
+-shell-escape       # 开启 shell 转义，允许使用依赖于外部工具的宏包（如 minted 宏包实现代码高亮）
+-synctex            # 启用 SyncTEX 程序，编辑器可以使用 SyncTEX 的输出来实现源代码和 PDF 之间的相互跳转
+
+# 命令
+# 设置 graphicx 包为 draft 模式来加快编译速度
+'\PassOptionsToPackage{draft}{graphicx}\input{main}'
 ```
 
-- 参数 `-shell-escape`：开启 shell 转义，允许使用依赖于外部工具的宏包（如 minted 宏包实现代码高亮）
-- 参数 `-synctex=1`：启用 SyncTEX 程序，编辑器可以使用 SyncTEX 的输出来实现源代码和 PDF 之间的相互跳转
 
 ---
 
-含参考文献的文档编译
-
-- BibTeX 后端：[LaTeX 参考文献输出](https://mp.weixin.qq.com/s/_comduqz-XOm7u6ArlP4KQ)
-	- `xe-bib-xe-xe` 编译顺序
+- 含参考文献的文档编译：[LaTeX 参考文献输出](https://mp.weixin.qq.com/s/_comduqz-XOm7u6ArlP4KQ)
+	- BibTeX 后端：`xe-bib-xe-xe` 编译顺序
+	- biber 后端 + biblatex 宏包：使用 `latexmk` 或 `xe-biber-xe-xe` 编译顺序
 
 ```bash
 # 可以略去扩展名
@@ -389,28 +391,21 @@ xelatex main.tex
 bibtex main.aux
 xelatex main.tex
 xelatex main.tex
-```
 
-- biber 后端 + biblatex 宏包：[texstudio如何编译biblatex+biber？ - LaTeX问答](https://ask.latexstudio.net/ask/question/7509.html)
-	- 使用 `latexmk` 或 `xe-biber-xe-xe` 编译顺序
-
-```bash
 latexmk --xelatex main.tex
 ```
 
 ---
 
-用 Makefile 编译 LaTeX 文档
+- 用 Makefile 编译 LaTeX 文档
+	- [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
+	- [Makefile](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
 
-- [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
-- [Makefile](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
+- 使用 Github Actions 自动编译
+	- [GitHub - xu-cheng/latex-action: :octocat: GitHub Action to compile LaTeX documents](https://github.com/xu-cheng/latex-action)
+	- [tex.yml](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)（不是很好用）
 
-使用 Github Actions 自动编译
-
-- [GitHub - xu-cheng/latex-action: :octocat: GitHub Action to compile LaTeX documents](https://github.com/xu-cheng/latex-action)
-- [tex.yml](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)（不是很好用）
-
-使用 GitHub Actions 将编译的 pdf 文档作为 release 发布：[release.yml](https://github.com/sjtug/SJTUThesis/blob/master/.github/workflows/release.yml)
+- 使用 GitHub Actions 将编译的 pdf 文档作为 release 发布：[release.yml](https://github.com/sjtug/SJTUThesis/blob/master/.github/workflows/release.yml)
 
 
 ---
@@ -1123,6 +1118,7 @@ fc-list :lang=zh
 
 
 - NewComputerModern：[NewComputerModern 字体](https://mp.weixin.qq.com/s/McLeFYLOxygRoXyqDgdF7A)
+
 - Linux Libertine（衬线体）：简历、公式字体优选；[Linux Libertine 字体介绍](https://mp.weixin.qq.com/s/Lr304vav4gy27sjKAlKf7g)
 
 ```latex
@@ -1132,6 +1128,34 @@ fc-list :lang=zh
 % 数学模式下使用 Linux Libertine
 \usepackage[libertine]{newtxmath}
 ```
+
+衬线字体（Serif）与非衬线字体 (Sans-Serif) 的区别：笔画开始和结束处有额外的装饰元素，称为衬线；非衬线字体没有衬线装饰，笔画末端简洁平直。
+
+常见衬线字体：Times New Roman，宋体，仿宋（带“宋”字体），楷体
+常见非衬线字体：Arial，黑体（带“黑”字体），幼圆
+
+---
+
+代码字体相关后缀
+
+Mono 后缀：等宽字体（Monospaced Font）
+LF 后缀：连字（Ligature Font）（给常用的一些字符组合做特殊处理，让它们看起来更连贯，如“不等于”的渲染）
+- 默认带连字支持：JetBrains Mono、Cascadia Code 和 FiraCode 等
+- 不带连字支持：Consolas、Monaco、Menlo 和 Hack
+
+NL 不带连字
+
+Nerd Font 自带图标字体
+Nerd Font Mono：带 Mono 的 NF，其图标宽度和字母宽度一致。
+NF 不带 Mono 的图标本身在排版上也是和字母严格等宽的，只是看起来大一点
+
+代码字体主要是非衬线的，Fira Code 和 Cascadia Code 是衬线字体
+
+WOFF2（Web Open Font Format 2）是一种专为网页上使用而设计的字体格式。
+
+>[写代码用哪种字体看起来最舒适？](https://www.zhihu.com/question/32058777/answer/3561707776)
+
+TerminalVector 字体
 
 
 ---
@@ -1535,6 +1559,12 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 ---
 
 ## 问题
+
+- 开启 draft 模式：不编译图片，在图片位置显示占位符，以加快编译速度
+
+```latex
+\documentclass{article}[draft]
+```
 
 - 下划线 `\newcommand` 及粗细设置
 	- [underline - Why does \\uline sometimes render thicker and darker (inconsistent with underlining in the rest of the text)? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/537907/why-does-uline-sometimes-render-thicker-and-darker-inconsistent-with-underlini)

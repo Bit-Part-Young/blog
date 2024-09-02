@@ -50,6 +50,19 @@ password:
 	- [GitHub - gaurav-nelson/github-action-markdown-link-check: Check all links in markdown files if they are alive or dead. 🔗✔️](https://github.com/gaurav-nelson/github-action-markdown-link-check)
 	- [GitHub - UmbrellaDocs/linkspector: Uncover broken links in your content.](https://github.com/UmbrellaDocs/linkspector)
 
+- 配置 markdownlint：[crawlee-python/.markdownlint.yaml at master · apify/crawlee-python · GitHub](https://github.com/apify/crawlee-python/blob/master/.markdownlint.yaml)
+
+```yml
+default: true
+line-length:
+  line_length: 120
+MD007:
+  indent: 4
+MD004:
+  style: dash
+no-inline-html: false
+```
+
 
 
 ---

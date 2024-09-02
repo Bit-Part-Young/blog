@@ -178,3 +178,5 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 - [ ] VSCode 清理
 	- [ ] `AppData\Local\Temp\vscode-remote-wsl` 占用体积较大
 	- [ ] `\AppData\Roaming\Code\Service Worker` 占用体积较大
+
+- [ ] Bose qc45 两侧如何清理

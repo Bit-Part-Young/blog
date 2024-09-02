@@ -35,6 +35,8 @@ C++/Python 实现 MD（待测试）
 
 >[GitHub - brucefan1983/Molecular-Dynamics-Simulation: Sample codes for my book on molecular dynamics simulation](https://github.com/brucefan1983/Molecular-Dynamics-Simulation)
 
+[MD 笔记 - zhaobo9337 - 知乎](https://www.zhihu.com/people/zhaobo9337/posts)
+
 
 MD 教程（含广义层错能计算）
 >[GitHub - shuozhixu/LAMMPSatUCSB](https://github.com/shuozhixu/LAMMPSatUCSB)

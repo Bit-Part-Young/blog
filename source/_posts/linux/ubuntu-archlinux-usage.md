@@ -41,6 +41,9 @@ password:
 
 ### 基础设置
 
+参考：
+
+- [ubuntu20.04全新配置 - 我是谁](https://yuhldr.github.io/posts/30877.html)
 - Ubuntu 配置工具（感觉一般）：[Omakub — An Omakase Developer Setup for Ubuntu 24.04 by DHH](https://omakub.org/)
 
 ---
@@ -653,11 +656,12 @@ timedatectl set-local-rtc 1
 
 ## Arch Linux 使用
 
-- 参考资料：
-	- [Arch Linux 安装使用教程 - ArchTutorial - Arch Linux Studio](https://archlinuxstudio.github.io/ArchLinuxTutorial/#/)
-	- [archlinux 简明指南](https://arch.icekylin.online/)
-	- [GitHub - ayaka-icu/mycfg: 我的archlinux配置文件](https://github.com/ayaka-icu/mycfg)
+参考资料：
 
+- [Arch Linux 安装使用教程 - ArchTutorial - Arch Linux Studio](https://archlinuxstudio.github.io/ArchLinuxTutorial/#/)
+- [archlinux安装回顾 - 我是谁](https://yuhldr.github.io/posts/3513d90f.html)
+- [archlinux 简明指南](https://arch.icekylin.online/)
+- [GitHub - ayaka-icu/mycfg: 我的archlinux配置文件](https://github.com/ayaka-icu/mycfg)
 
 ---
 

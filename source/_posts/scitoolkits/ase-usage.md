@@ -334,16 +334,19 @@ Atom 和 Atoms 是 ASE 的两个基本 Object， Atoms 由 Atom 构成。
 
 需添加 calculator 才能使用的 methods：[Adding a calculator](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#adding-a-calculator)
 
+
 ```python
+# 属性
+
+# 方法
+get_XXX()
+set_XXX()
+
+# 需添加 calculator 才能使用的方法
 get_potential_energy()
 get_forces()
 get_stress()
 ```
-
-- 属性 -
-- 方法
-- `get_XXX()` method -
-- `set_XXX()` method -
 
 
 ```python
@@ -361,6 +364,9 @@ composition = Formula(formula).count()
 natoms = len(atoms)
 # 元素种类数
 nele = len(set(atoms.get_chemical_symbols()))
+
+# 构型中某一元素的浓度 
+conc = atoms.get_chemical_symbols().count('Pd') / len(atoms)
 
 # 删除 H 原子
 del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
@@ -429,6 +435,8 @@ from ase.build import surface
 - 可以读取 gz 格式压缩文件，如 OUTCAR.gz
 
 [lammps的结构文件转其他格式 - 知乎](https://zhuanlan.zhihu.com/p/390968120)
+
+- [ ] ase 中读取 VASP OUTCAR 文件，写了一个 chunk 类？
 
 
 ---

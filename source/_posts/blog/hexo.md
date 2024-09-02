@@ -35,7 +35,7 @@ password:
 
 - 实例：
 	- stun 主题：[OrangeX4's Blog](https://orangex4.cool/)
-	- butterfly 主题：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)
+	- butterfly 主题：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)（交大学生博客）
 
 - 参考资料：
 	- [Hexo 入门](https://blog.17lai.site/posts/40300608/#Hexo%E5%85%A5%E9%97%A8%E7%AF%87)

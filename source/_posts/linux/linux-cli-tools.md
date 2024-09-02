@@ -243,16 +243,22 @@ bash-snippets         # 有 cheat 等可执行命令
 
 - zsh 中的 `[nyae]` 的含义：[What does nyae mean in Zsh? - Stack Overflow](https://stackoverflow.com/questions/800182/what-does-nyae-mean-in-zsh)
 - zsh 安装后，`Home / End` 键可能会失效，对应快捷键：`Home = Ctrl + A`，`End = Ctrl + E`。
+- 添加 `~/.bash_profile` 文件（内容可为空），可使登录时不直接使用 zsh
+
+```bash
+export PATH=$PATH:$HOME/bin
+```
+
 
 
 ---
 
 ## 数据处理相关命令行工具
 
-- csv 命令行工具：csvkit（Python）
+- CSV 命令行工具：csvkit（Python）
 
 ```bash
-in2csv data.xlsx | csvlook  # excel 表格转 csv 表格查看
+in2csv data.xlsx | csvlook  # Excel 表格转 csv 表格查看
 
 csvlook data.csv | head  # 以表格形式查看
 
@@ -264,7 +270,7 @@ csvstat file.csv  # 统计所有列的情况
 csvstat -c 1,2,3 data.csv  # 统计特定列
 ```
 
-- josn 命令行工具：jq、[jnv](https://github.com/ynqa/jnv)（交互式）
+- JSON 命令行工具：jq、[jnv](https://github.com/ynqa/jnv)（交互式）
 
 ```bash
 cat data.json | jq .  # 输出 json 文件内容

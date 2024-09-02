@@ -77,6 +77,8 @@ Crtl + L              # 将底部内容移至最上方
 - [真有人用Linux？（Linux下的工作、科研、学习与生活） - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/281312)
 - [工具是第一生产力——Linux入门教程](https://ysyx.oscc.cc/slides/2306/02.html)
 
+- Linux 设置：[Setting up Linux • Linux tutorial](https://pranabdas.github.io/linux/setup)
+
 ---
 
 - [GitHub - 1Panel-dev/1Panel：现代化、开源的 Linux 服务器运维管理面板。](https://github.com/1Panel-dev/1Panel)
@@ -98,15 +100,23 @@ Crtl + L              # 将底部内容移至最上方
 
 ### 基本使用
 
+用户切换：
+- 切换到用户：`su username`
+- 切换到 root：
+	- `sudo -i` 或 `sudo su` 只需输入当前用户密码
+	- `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，需通过 `sudo passwd root` 给 root 创建密码
+
+---
+
 #### 系统信息查看
 
 - 系统信息
 
 ```bash
-lsb_release -a  # 显示 LSB 版本信息
-uname -r        # 显示内核版本
-uname -a        # 查看完整的内核版本信息
-hostnamectl     # 显示系统信息，包括主机名、操作系统、内核等
+lsb_release -a        # 显示 LSB 版本信息
+uname -r              # 显示内核版本
+uname -a              # 查看完整的内核版本信息
+hostnamectl           # 显示系统信息，包括主机名、操作系统、内核等
 cat /proc/version
 cat /etc/os-release
 cat /etc/lsb-release
@@ -319,27 +329,24 @@ history  # 返回所有的执行命令及其序号
 - 打包命令，不是压缩/解压缩命令（和其他压缩程序如 gzip、bzip2 等一起实现压缩/解压缩功能）
 - 不同压缩格式的文件体积大小：`tar.gz` > `tar.bz2` > `tar.xz`
 
-- 常用参数
-
 ```bash
+# 常用参数
 -c             # 创建归档
 -x             # 从归档中提取文件
 -v             # 显示详细信息
 -f             # 指定归档文件名称
--z             # tar.gz 格式，-j tar.bz2 格式，-J tar.xz 格式，--zstd tar.zst 格式
+-z             # tar.gz 格式
+-j             # tar.bz2 格式
+-J             # tar.xz 格式
+--zstd         # tar.zst 格式
 -t             # 显示归档文件中的内容，而非提取文件
 -C             # 指定路径
 --exclude      # 排除指定文件或目录
 --remove-files # 删除原始文件，谨慎使用
-```
 
-- 示例
 
-```bash
-tar -xzvf file.tar.gz  # tar.gz 格式
-tar --zstd -xvf file.tar.zst  # tar.zst 格式
-
-tar -czvf ${fn}.tar.gz ${fn}  # 压缩
+# 示例
+tar -czvf file.tar.gz file  # 压缩
 
 # 指定解压缩路径
 tar -xzvf archive.tar.gz -C /path/destination
@@ -348,12 +355,14 @@ tar -xzvf archive.tar.gz -C /path/destination
 tar -czvf archive.tar.gz --exclude=exclude_file file1 file2
 
 gzip -d all.gz  # 解压 .gz 文件
-gunzip all.gz
+gunzip all.gz   # 同上
 
-unzip all.zip  # 解压 .zip 文件
+zip file.zip file
+zip -r xxx.zip directory  # 压缩目录
+unzip all.zip             # 解压 .zip 文件
 
-zcat  # 查看 .gz 文件
-bzcat  # 查看 .bz2 文件
+zcat     # 查看 .gz 文件
+bzcat    # 查看 .bz2 文件
 ```
 
 
@@ -417,8 +426,8 @@ curl cip.cc
 -P         # 指定保存目录
 -O         # 指定保存文件名
 
-# 示例
 
+# 示例
 wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O install.sh
 
 # wget -O - 将下载的内容输出到标准输出，而非将其保存为文件
@@ -449,10 +458,8 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 
 
 # 示例
-
 # 查找 txt 或 pdf 文件
 find . -type f -name "*.txt" -or -name "*.pdf"
-
 # 查找 tar.gz 文件并删除
 find . -type f -name "*.tar.gz" -exec rm {} +
 
@@ -764,6 +771,9 @@ zcat                   # 查看 gz 压缩文件内容
 cal 2024               # 显示 2024 年的日历；或 cal 8 2024，精确到月
 
 env                    # 显示环境变量
+type                   # 显示命令的类型
+
+pstree                 # 将所有进程以树状图显示
 ```
 
 
@@ -883,7 +893,9 @@ prefix + "       #
 
 ### 其他
 
-终端 Tab 补全忽略大小写：[linux下，按tab补全时，忽略大小写的配置\_linux命令行终端设置tab补全文件名或路径不区分大小写-CSDN博客](https://blog.csdn.net/lianshaohua/article/details/108710098)
+- ETA（Estimated Time of Arrival，预计到达时间）是 Linux 系统中一个常见的术语，用于估计正在运行的进程或任务剩余执行时间。
+
+- 终端 Tab 补全忽略大小写：[linux下，按tab补全时，忽略大小写的配置\_linux命令行终端设置tab补全文件名或路径不区分大小写-CSDN博客](https://blog.csdn.net/lianshaohua/article/details/108710098)
 
 
 alias 使用参数：以定义函数的方式进行：[https://forsworns.github.io/zh/blogs/20190919/](https://forsworns.github.io/zh/blogs/20190919/)

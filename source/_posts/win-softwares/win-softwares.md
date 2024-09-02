@@ -370,3 +370,5 @@ onlinelibrary.wiley.com
 - PPT 插件，插入 LaTeX 公式：[GitHub - Jonathan-LeRoux/IguanaTex: A PowerPoint add-in allowing you to insert LaTeX equations into PowerPoint presentations on Windows and Mac](https://github.com/Jonathan-LeRoux/IguanaTex)
 
 - 优化 Windows 11 系统的脚本：[GitHub - Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat)
+
+- 查看磁盘占用：[WinDirStat - Windows Directory Statistics](https://windirstat.net/)

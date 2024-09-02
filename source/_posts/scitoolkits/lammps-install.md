@@ -20,6 +20,19 @@ password:
 
 LAMMPS 所有版本：[LAMMPS Source Download Repository](https://download.lammps.org/tars/index.html)
 
+>[安装LAMMPS - lammps-tutorial](https://lammpscn2.vercel.app/Tutorial/install/#step2b-%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84make%E5%AE%89%E8%A3%85)
+
+[GitHub - njzjz/lammps-wheel: LAMMPS unofficial Python wheels on PyPi, \`pip install lammps\`](https://github.com/njzjz/lammps-wheel)
+
+[Lammps installation - Jia-Xin Zhu](https://chiahsinchu.github.io/blog/2022/lmp-install/)
+
+[Linux系统源码编译安装LAMMPS - 我是谁](https://yuhldr.github.io/posts/320.html)
+
+[用 Intel® 加速 LAMMPS - Jinzhe Zeng's Blog](https://njzjz.win/2018/09/22/intellammps/)
+
+[Linux 软件安装⑥|LAMMPS - Jinzhe Zeng's Blog](https://njzjz.win/2018/06/16/installlammps/)
+
+
 ---
 
 ### cmake 编译
@@ -199,79 +212,6 @@ ld: cannot find -ljpeg: No such file or directory
 
 ---
 
-### Mac 安装 LAMMPS GUI
+### macOS 安装 LAMMPS GUI
 
-限制较多，不推荐
-
-```text
-LAMMPS and LAMMPS GUI universal binaries for macOS (arm64/x86_64)
-=================================================================
-
-This package provides universal binaries of LAMMPS and LAMMPS GUI that should
-run on macOS systems running running macOS version 11 (Big Sur) or newer.  Note
-the binaries are compiled without MPI support and contain a compatible subset
-of the available packages.
-
-The following individual commands are included:
-binary2txt lammps-gui lmp msi2lmp phana stl_bin2txt
-
-After copying the LAMMPS_GUI folder into your Applications folder, please follow
-these steps:
-
-1. Open the Terminal app
-
-2. Type the following command and press ENTER:
-
-   open ~/.zprofile
-
-   This will open a text editor for modifying the .zprofile file in your home
-   directory.
-
-3. Add the following lines to the end of the file, save it, and close the editor
-
-   LAMMPS_INSTALL_DIR=/Applications/LAMMPS_GUI.app/Contents
-   LAMMPS_POTENTIALS=${LAMMPS_INSTALL_DIR}/share/lammps/potentials
-   LAMMPS_BENCH_DIR=${LAMMPS_INSTALL_DIR}/share/lammps/bench
-   MSI2LMP_LIBRARY=${LAMMPS_INSTALL_DIR}/share/lammps/frc_files
-   PATH=${LAMMPS_INSTALL_DIR}/bin:$PATH
-   export LAMMPS_POTENTIALS LAMMPS_BENCH_DIR PATH
-
-4. In your existing terminal, type the following command make the settings active
-
-   source ~/.zprofile
-
-   Note, you don't have to type this in new terminals, since they will apply
-   the changes from .zprofile automatically.
-
-   Note: the above assumes you use the default shell (zsh) that comes with
-   MacOS. If you customized MacOS to use a different shell, you'll need to
-   modify that shell's init file (.cshrc, .bashrc, etc.) instead with
-   appropiate commands to modify the same environment variables.
-
-5. Try running LAMMPS (which might fail, see step 7)
-
-   lmp -in ${LAMMPS_BENCH_DIR}/in.lj
-
-6. Try running the LAMMPS GUI
-
-   lammps-gui ${LAMMPS_BENCH_DIR}/in.rhodo
-
-   Depending on the size and resolution of your screen, the fonts may be too
-   small to read. This can be adjusted by setting the environment variable
-   QT_FONT_DPI. The default value would be 72, so to increase the fonts by a
-   third, one can add to the .zprofile file the line
-
-   export QT_FONT_DPI=96
-
-   and reload as shown above.
-
-7. Give permission to execute the commands (lmp, lammps-gui, msi2lmp, binary2txt, phana, stl_bin2txt)
-
-   MacOS will likely block the initial run of the executables, since they were
-   downloaded from the internet and are missing a known signature from an
-   identified developer. Go to "Settings" and search for "Security settings".
-   It should display a message that an executable like "lmp" was blocked. Press
-   "Open anyway", which might prompt you for your admin credentials. Afterwards
-   "lmp" and the other executables should work as expected.
-
-```
+限制较多（without MPI support），不推荐

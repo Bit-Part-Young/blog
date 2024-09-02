@@ -84,7 +84,17 @@ vmd....................To visualize md trajectories
 
 ---
 
-- GPU 信息及使用情况查看：`nvidia-smi`、`gpustat`；[gpustat - Python](https://github.com/wookayin/gpustat)
+#### GPU 相关
+
+- 查看 cuda 是否安装
+
+```bash
+nvidia-smi       # NVIDIA 驱动
+nvcc --version
+/usr/local/cuda  # CUDA 库路径
+```
+
+- GPU 信息及使用情况查看：`nvidia-smi`、[gpustat - Python](https://github.com/wookayin/gpustat)
 
 ```bash
 # 持续查看 GPU 使用情况
@@ -98,27 +108,44 @@ gpustat -i 2
 
 输出信息解读：两个 GPU 都在高负载运行（GPU 利用率 100%，温度分别为 77 摄氏度和 72 摄氏度），并且接近其功率上限。GPU 上的内存几乎被完全利用，表明运行的进程（主要是 python）正在积极使用 GPU 资源。
 
-- **NVIDIA-SMI 版本和驱动版本**：显示 `nvidia-smi` 工具的版本为 525.116.04，NVIDIA 驱动版本也是 525.116.04，CUDA 版本是 12.0。这对于确保软件兼容性是重要的信息。
+```bash
+# GPU 列表
+GPU 0 / GPU 1         # 系统中有两个 NVIDIA GeForce 系列的 GPU
+Persistence-M         # 显示 GPU 的持久模式是否开启
+Bus-Id                # 显示 GPU 在系统总线上的唯一标识符，可以用于特定应用配置
+Disp.A                # 显示是否用作显示输出
+Volatile Uncorr. ECC  # 显示易失性未校正的 ECC（错误校正码）错误
+Fan                   # GPU 风扇速度
+Temp                  # GPU 温度
+Perf                  # 性能状态，P2 表示当前在一种性能状态
+Pwr:Usage/Cap         # 当前功率使用量和功率上限
+Memory-Usage          # GPU 内存使用情况
+GPU-Util              # GPU 使用率
+Compute M.            # 计算模式，默认是 Default
 
-- **GPU 列表**：
-    - **GPU 0 和 GPU 1**：系统中有两个 NVIDIA GeForce 系列的 GPU。具体型号没有完全显示，但可以看出系统识别到两块 GPU 卡。
-    - **Persistence-M**：显示 GPU 的持久模式是否开启，这里都是关闭（Off）的。
-    - **Bus-Id**：显示 GPU 在系统总线上的唯一标识符，可以用于特定应用配置。
-    - **Disp.A**：显示是否用作显示输出，这里都是关闭（Off）的。
-    - **Volatile Uncorr. ECC**：显示易失性未校正的 ECC（错误校正码）错误，这里显示为 N/A（不适用），可能是因为 GPU 不支持 ECC 或未启用。
-    - **Fan**：GPU 风扇速度，以百分比表示。
-    - **Temp**：GPU 温度，单位是摄氏度。
-    - **Perf**：性能状态，P2 表示当前在一种性能状态。
-    - **Pwr:Usage/Cap**：当前功率使用量和功率上限，单位是瓦特。
-    - **Memory-Usage**：GPU 内存使用情况，包括当前使用量和总量，单位是 MiB。
-    - **GPU-Util**：GPU 使用率，以百分比表示。
-    - **Compute M.**：计算模式，默认是 Default。
+# 进程：列出了在每个 GPU 上运行的进程
+PID                   # 进程 ID
+Type                  # 进程类型，G 表示图形，C 表示计算
+Process name          # 进程名称
+GPU Memory Usage      # 进程使用的 GPU 内存量
+```
 
-- **进程**：列出了在每个 GPU 上运行的进程，包括：
-    - **PID**：进程 ID。
-    - **Type**：进程类型，G 表示图形，C 表示计算。
-    - **Process name**：进程名称。
-    - **GPU Memory Usage**：进程使用的 GPU 内存量。
+---
+
+- 指定使用哪块 GPU（适用于 TensorFlow 和 PyTorch 等任何使用 CUDA 的程序）
+
+```bash
+CUDA_VISIBLE_DEVICES=1 python script.py
+```
+
+```python
+import torch
+
+# 指定使用第二块 GPU
+device = torch.device("cuda:1")
+# 将模型和数据移至此
+model.to(device)
+```
 
 
 ---
@@ -132,6 +159,7 @@ gpustat -i 2
 - GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理任务）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）
 - 内存：登录、manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G；内存使用情况查看：`free -h`
 - Intel 套件：Composer XE 2015
+- glibc 版本过低（编译安装新版本较为复杂）
 
 
 ---
@@ -344,6 +372,10 @@ submit -n 8 vasp
 # LAMMPS 任务提交命令
 submit -nc -n 8 lmp -in in.file
 submit -n 8 lmp -in in.file
+
+# 或进入到计算节点本地运行
+ssh manager
+mpirun -n 1 lmp -in in.file
 ```
 
 ---
@@ -355,16 +387,16 @@ manager 中与 PBS 相关的一些 alias 设置
 alias | grep ^q
 
 # q 相关命令均由 qstat 延伸
-alias q='qstat -u yangsl'
+alias q='qstat -u xxx'
 alias qq='pestat'
 alias qa='qstat -a'
-alias qn='qstat -u yangsl|wc -l|awk '\\''{if ($1>0) print "Number of jobs by yangsl: " $1-5; else print "Number of jobs by yangsl: 0"}'\\'';qstat -a|wc -l|awk '\\''{print "Number of jobs by all: " $1-5}'\\'''
+alias qn='qstat -u xxx|wc -l|awk '\\''{if ($1>0) print "Number of jobs by xxx: " $1-5; else print "Number of jobs by xxx: 0"}'\\'';qstat -a|wc -l|awk '\\''{print "Number of jobs by all: " $1-5}'\\'''
 ```
 
 - `qstat` - 查看所有任务的状态；
 - `q` - 查看自己任务的状态；
 - `qa` - 查看所有任务的状态（比 qstat 显示的信息更多一些）；
-- `qq` - 查看计算节点的状态（`excl` - 正在运行；`free` - 空闲；`down` - 出现故障）；
+- `qq` - 查看计算节点的状态（`excl` 正在运行；`free` 空闲；`down` 出现故障）；
 - `run` - 查看自己任务的结果输出路径和信息；
 - `qn` - 查看自己提交任务的数量和 manager 目前已提交的任务总数；
 - `ssh node02` - 连接计算节点；任务到了截止时间后程序会终止，只会输出 `error` 和 `out` 文件，可以通过 `ssh node` 节点到计算该任务的节点中去，在 `scratch` 目录中可以找到该任务计算的结果；
@@ -666,6 +698,7 @@ mpirun lmp -i in.test
 
 module purge
 
+# 该版本的 LAMMPS 只安装了 4 个 packages
 module load lammps/20230802-oneapi-2021.4.0
 
 mpirun lmp -in in.test
@@ -725,14 +758,17 @@ bash test.sh
 - `err` 文件不为空，表示提交的任务出错；需查看 `err` 文件中的出错提示，进行修改
 - 若 `err`、`out` 文件出现以下内容，大概率为超算平台出现故障，请与相关负责人联系
 
-```text
+```bash
 # err 文件内容
 /tmp/slurmd/jobid/slurm_script: line 24: mpirun: command not found
 
 # out 文件内容
-couldn't read file "/usr/share/Modules/libexec/modulecmd.tcl": no such file or directory
-```
+could not read file "/usr/share/Modules/libexec/modulecmd.tcl": no such file or directory
 
+# Slurm 故障
+slurm_load_jobs error: Socket timed out on send/recv operation
+slurm_load_jobs error: Slurm backup controller in standby mode
+```
 
 
 ---
@@ -751,16 +787,16 @@ couldn't read file "/usr/share/Modules/libexec/modulecmd.tcl": no such file or d
 
 ## 数据传输
 
->[数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
+参考：
+
+- [数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
+- 提高数据传输速度：[数据传输技巧 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportskills.html)
 
 超算进行数据传输一般在 data 节点上进行。超算传输节点：
 
 ```bash
-# Pi
-data.hpc.sjtu.edu.cn
-
-# 思源一号
-sydata.hpc.sjtu.edu.cn
+data.hpc.sjtu.edu.cn    # Pi
+sydata.hpc.sjtu.edu.cn  # 思源一号
 ```
 
 
@@ -768,60 +804,44 @@ sydata.hpc.sjtu.edu.cn
 
 ### 命令行
 
-主要使用 scp 和 rsync 两个命令：
-
-- scp：Secure Copy，是一种安全的文件传输协议，它使用 SSH（Secure Shell）协议来加密和传输文件。SCP 允许你将文件从一个系统复制到另一个系统，也可以在本地系统和远程系统之间传输文件。它提供了对远程系统的安全访问，并使用类似于 cp（复制）命令的语法来指定源文件和目标位置。
-- rsync：可以通过检测源和目标文件之间的差异，仅传输发生更改的部分，从而在网络带宽和传输时间上提供更好的性能。
-
----
-
-- scp: `scp -r src_path dest_path`
+- scp：Secure Copy，基于 SSH 协议进行文件传输，不支持增量传输
+- rsync：支持 SSH 协议或 rsync 协议、增量传输、支持本地和远程同步、支持断点续传
 
 ```bash
-# 将 manager 的数据上传到 master 上
-scp -r 1.manager yangsl@master:/home/yangsl/test
+# scp 语法
+scp [OPTION]... SRC DEST
+scp [OPTION]... SRC [USER@]host:DEST
+scp [OPTION]... [USER@]HOST:SRC DEST
 
-# 将 master 的数据下载到 manager 上
-scp -r yangsl@master:/home/yangsl/test/1.master .
+# rsync 语法
+rsync [OPTION]... SRC DEST
+# 单个冒号：通过 ssh 或 rsh 协议连接远程主机
+rsync [OPTION]... SRC [USER@]host:DEST
+rsync [OPTION]... [USER@]HOST:SRC DEST
+# 两个冒号：通过 rsync 协议连接远程主机的 rsync 守护进程
+rsync [OPTION]... [USER@]HOST::SRC DEST
+rsync [OPTION]... SRC [USER@]HOST::DEST
 
-scp -r mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/tests/1.sy .
-
-scp -r 1.manager mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/tests
+# 参数
+-v, --verbose      # 详细输出
+-q, --quiet        # 精简输出
+-a, --archive      # 归档模式，表示以递归方式传输文件，并保持所有文件属性，相当于 -rlptgoD
+-r, --recursive    # 递归模式
+-l, --links        # 处理符号链接保持符号链接的属性
+-p, --perms        # 保持文件权限
+-t, --times        # 保持文件时间戳
+-g, --group        # 保持文件所属组
+-o, --owner        # 保持文件所有者
+-D, --devices      # 保持设备文件（块设备和字符设备）
+-z, --compress     # 传输时进行压缩处理 
+-n, --dry-run      # 不实际运行，显示哪些文件将被传输
+-delete            # 删除那些 DST 中 SRC 没有的文件
+-exclude           # 排除指定的文件或目录
+-include           # 只包括指定的文件或目录
+-e, --rsh=COMMAND  # 指定使用 rsh、ssh 方式进行同步
+-u，--update       # 仅进行更新
+--human-readable   # 显示输出文件大小以 KB、MB、GB 等表示
 ```
-
-- rsync: `rsync -avu src_path dest_path`
-
-```bash
-# 将manager的数据上传到master上
-rsync -avu 1.manager yangsl@master:/home/yangsl/test
-
-# 将master的数据下载到manager上
-rsync -avu yangsl@master:/home/yangsl/test/1.master .
-
-rsync -avu mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/tests/1.sy .
-rsync -avu 1.manager mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/mseklt/yangsl/tests
-```
-
-注：rsync 的部分参数介绍：
-
-- `a, --archive` - 归档模式。保持文件属性和目录结构，并递归地复制子目录。这是最常用的 rsync 选项，相当于 `rlptgoD`。
-- `r, --recursive` - 递归地复制目录和子目录。
-- `l, --links` - 处理符号链接。保持符号链接的属性。
-- `p, --perms` - 保持文件权限。
-- `t, --times` - 保持文件时间戳。
-- `g, --group` - 保持文件所属组。
-- `o, --owner` - 保持文件所有者。
-- `D, --devices` - 保持设备文件（块设备和字符设备）。
-- `v, --verbose` - 显示详细输出。在传输过程中显示文件列表。
-- `z, --compress` - 使用压缩传输。在网络带宽有限时，可以加快传输速度。
-- `h, --human-readable` - 以人类可读的格式显示输出。文件大小以 KB、MB、GB 等表示。
-- `n, --dry-run` - 执行模拟运行，不实际进行文件传输或同步。可以用于检查操作的效果。
-- `-delete` - 删除目标文件夹中与源文件夹不匹配的文件。这将确保目标文件夹与源文件夹完全同步。
-- `-exclude` - 排除指定的文件或目录，不进行传输或同步。可以使用通配符模式进行匹配。
-- `-include` - 只包括指定的文件或目录，排除其他文件或目录。可以使用通配符模式进行匹配。
-- `e, --rsh=COMMAND` - 指定用于远程 shell 的命令。默认为使用 ssh。
-- `-u，--update` - 仅传输源文件中更新或修改过的文件。使用 `-u` 选项可以减少传输的数据量，节省带宽和传输时间。
-
 
 ---
 
@@ -836,7 +856,7 @@ rsync -avu 1.manager mseklt@sylogin.hpc.sjtu.edu.cn:/dssg/home/acct-mseklt/msekl
 
 ### manager 与超算间的数据传输
 
-上传与下载：upload 与 download 脚本
+上传与下载：upload 与 download 脚本（孔老师写的）
 
 - manager 与 Pi：`upload -s P` 或将 `P` 改成 `H` 或 `h`
 - manager 与思源一号：将 `P` 改成 `s`
@@ -1557,7 +1577,15 @@ export PATH=$HOME/src/texlive/2023/bin/x86_64-linux:$PATH
 
 ### ATAT
 
-WIP…
+WIP...
+
+
+---
+
+### 其他
+
+- 超算高版本 glibc 编译：[glibc - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/glibc.html)
+- 超算上没有 mpi4py（得自己安装）：[Mpi4py - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/mpi4py.html)
 
 
 
@@ -1571,53 +1599,53 @@ WIP…
 
 **充值/费率**
 
-1. 计费系统 (HPC 账号和密码登陆)：[https://account.hpc.sjtu.edu.cn](https://account.hpc.sjtu.edu.cn)
-2. 充值方法：[https://net.sjtu.edu.cn/info/1244/2392.htm](https://net.sjtu.edu.cn/info/1244/2392.htm)
-3. 费率问题：请用交大邮箱发送至 hpc@stju.edu.cn 咨询
+- 计费系统 (HPC 账号和密码登陆)：[https://account.hpc.sjtu.edu.cn](https://account.hpc.sjtu.edu.cn)
+- 充值方法：[https://net.sjtu.edu.cn/info/1244/2392.htm](https://net.sjtu.edu.cn/info/1244/2392.htm)
+- 费率问题：请用交大邮箱发送至 hpc@stju.edu.cn 咨询
 
 ---
 
 **致谢模版**
 
-1. “ 交我算 ” 用户在发布科研成果或论文时，应标注 “ 本论文的计算结果得到了上海交通大学交我算平台的支持和帮助 “（The computations in this paper were run on the π 2.0 (or Siyuan Mark-I) cluster supported by the Center for High Performance Computing at Shanghai Jiao Tong University）. 论文发表后，欢迎将见刊论文通过邮件发送到 hpc@sjtu.edu.cn。
+- “ 交我算 ” 用户在发布科研成果或论文时，应标注 “本论文的计算结果得到了上海交通大学交我算平台的支持和帮助”（The computations in this paper were run on the π 2.0 (or Siyuan Mark-I) cluster supported by the Center for High Performance Computing at Shanghai Jiao Tong University）. 论文发表后，欢迎将见刊论文通过邮件发送到 hpc@sjtu.edu.cn。
 
 ---
 
 **登录问题**
 
-1. 连不上集群： [https://docs.hpc.sjtu.edu.cn/faq/index.html#id6](https://docs.hpc.sjtu.edu.cn/faq/index.html#id6)
-2. 登录常掉线：[https://docs.hpc.sjtu.edu.cn/login/index.html#id10](https://docs.hpc.sjtu.edu.cn/login/index.html#id10)
-3. HPC studio 登录问题：[https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error](https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error)
-4. Jupyter、Rstudio 连接提示需要输入密码：[https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio](https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio)
+- 连不上集群： [https://docs.hpc.sjtu.edu.cn/faq/index.html#id6](https://docs.hpc.sjtu.edu.cn/faq/index.html#id6)
+- 登录常掉线：[https://docs.hpc.sjtu.edu.cn/login/index.html#id10](https://docs.hpc.sjtu.edu.cn/login/index.html#id10)
+- HPC studio 登录问题：[https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error](https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error)
+- Jupyter、Rstudio 连接提示需要输入密码：[https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio](https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio)
 
 ---
 
 **排队问题**
 
-1. status 监控系统：[https://status.hpc.sjtu.edu.cn](https://status.hpc.sjtu.edu.cn)，该系统包含各队列上线节点数、排队数、作业数等信息
-2. π集群排队问题：思源一号可用 CPU/GPU 资源更多，欢迎使用思源一号。
-3. 通过 squeue 查看作业，NODELIST(REASON) 为 resources/priority 表示正常排队，AssocGrpNodeLimit 表示欠费。
+- status 监控系统：[https://status.hpc.sjtu.edu.cn](https://status.hpc.sjtu.edu.cn)，该系统包含各队列上线节点数、排队数、作业数等信息
+- π集群排队问题：思源一号可用 CPU/GPU 资源更多，欢迎使用思源一号。
+- 通过 squeue 查看作业，NODELIST(REASON) 为 resources/priority 表示正常排队，AssocGrpNodeLimit 表示欠费。
 
 ---
 
 **作业问题**
 
-1. 报错作业咨询，请将用户名、作业 ID、路径、作业脚本名邮件发至 [hpc@sjtu.edu.cn](mailto:hpc@sjtu.edu.cn)。
-2. NodeFail：计算节点故障导致作业运行失败，重新提交作业即可，失败作业的机时系统会自动返还。
-3. 运行程序时提示缺少 xxx.so 文件或者显示任务被 kill：如果是在登录节点出现该报错，请申请计算节点再做尝试。
+- 报错作业咨询，请将用户名、作业 ID、路径、作业脚本名邮件发至 [hpc@sjtu.edu.cn](mailto:hpc@sjtu.edu.cn)。
+- NodeFail：计算节点故障导致作业运行失败，重新提交作业即可，失败作业的机时系统会自动返还。
+- 运行程序时提示缺少 xxx.so 文件或者显示任务被 kill：如果是在登录节点出现该报错，请申请计算节点再做尝试。
 
 ---
 
 **软件安装问题**
 
-1. 如何在集群上安装软件：[https://docs.hpc.sjtu.edu.cn/faq/index.html#id16](https://docs.hpc.sjtu.edu.cn/faq/index.html#id16)
-2. 商业软件问题：[https://docs.hpc.sjtu.edu.cn/faq/index.html#id17](https://docs.hpc.sjtu.edu.cn/faq/index.html#id17)
+- 如何在集群上安装软件：[https://docs.hpc.sjtu.edu.cn/faq/index.html#id16](https://docs.hpc.sjtu.edu.cn/faq/index.html#id16)
+- 商业软件问题：[https://docs.hpc.sjtu.edu.cn/faq/index.html#id17](https://docs.hpc.sjtu.edu.cn/faq/index.html#id17)
 
 ---
 
 **数据传输问题**
 
-1. $\pi$ 集群传输至思源一号：[https://docs.hpc.sjtu.edu.cn/transport/index.html#id4](https://docs.hpc.sjtu.edu.cn/transport/index.html#id4)
+- $\pi$ 集群传输至思源一号：[https://docs.hpc.sjtu.edu.cn/transport/index.html#id4](https://docs.hpc.sjtu.edu.cn/transport/index.html#id4)
 
 ---
 

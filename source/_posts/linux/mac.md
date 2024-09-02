@@ -102,6 +102,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 显示电池百分比：系统设置 - 控制中心 - 电池 - 显示百分比
 - 时钟 24 小时格式：系统设置 - 日期与时间 - 24 小时制
 - 外部显示器设置：系统设置 - 显示器 - 内建显示器用作主显示器，适配此 MacBook 名称；外部显示器用作内建显示器的镜像，适配此 MacBook 名称
+- 摇动鼠标指针以定位：系统设置 - 辅助功能 - 显示 - 指针，摇动鼠标指针以定位（快速移动鼠标指针以使其变大）
 
 
 ---
@@ -221,6 +222,8 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
 - 软件更新：Latest（一般）
 - 媒体库管理：Emby（海报墙）
+- 可视化键盘输入：KeyCastr
+- 编程语言 API 下载、查看：Dash
 - 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（to-do 清单）
 - 其他：微信（Windows 端没有深色模式，macOS 有深色模式）等
 
@@ -239,10 +242,26 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### 部分软件设置
 
+- 在 macOS 中，由 Intel 芯片编译得到的程序在 Apple Silicon 芯片上通常可以运行，得益于 Apple 提供的 Rosetta 2 技术
+
 - Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
 
-- kitty 配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
+- kitty 使用：
+	- 介绍：[kitty - Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/Kitty)；[Kitty基于GPU的终端工具 - Escape](https://www.escapelife.site/posts/8e342b57.html)
+	- Linux 安装路径：`~/.local/kitty.app`
+	- 配置文件路径：`~/.config/kitty/kitty.conf`
+	- kitty 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
 	- [ ] 如何将 kitty 的窗口信息放到上面，而非默认的下方
+
+```bash
+kitty +kitten diff file1 file2
+
+kitty +kitten icat <figure>
+
+kitty +kitten themes
+```
+
+---
 
  - Termius 设置：
 	- [ ] Termius 无法复制粘贴
@@ -259,6 +278,8 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 		- Atom One Dark
 		- Tokyo Night
 
+---
+
 - iTerm2 字体设置：Prefrences - profiles - text
 
 - IINA 相关快捷键：
@@ -267,8 +288,6 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 		- `command + option + ]` - 1.1 倍速加快
 	- 字幕切换 - `control + command + S`
 	- 音频切换 - `control + command + A`
-
-- 在 macOS 中，由 Intel 芯片编译得到的程序在 Apple Silicon 芯片上通常可以运行，得益于 Apple 提供的 Rosetta 2 技术
 
 - yabai 使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
 
@@ -299,6 +318,7 @@ keyNotFound(code: "CHWA")
 	- [TailScale子网路由配置，实现使用原生内网IP远程访问，异地组网更加优雅！TailScale Subnet Router使用教程！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768/?p=2)
 	- [ ] macOS `tailscale ssh` 无法使用（sandbox 原因）
 	- IPv6 不需要做穿透，外网也能连：[IPv6 不需要做穿透，外网也能连 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/214653)
+	- 交大接入有线网会分配一个公网 IPv6 地址
 
 - AList docker-compose 部署，挂载网盘时出现 `tcp XXX: connect: connection refused`：[挂载阿里云盘报错 · alist-org/alist · Discussion #1063 · GitHub](https://github.com/alist-org/alist/discussions/1063)
 	- [GitHub - DDS-Derek/xiaoya-alist: 小雅Alist的相关周边](https://github.com/DDS-Derek/xiaoya-alist)
@@ -366,14 +386,13 @@ brew list          # 列出已安装的包
 brew list --casks  # 仅列出已安装的软件
 brew doctor        # 诊断
 brew outdated      # 列出可以升级的包
-brew upgrade       # 升级
-brew upgrade <package>
+brew upgrade [package]  # 升级
 
 # 忽视依赖关系卸载
 brew uninstall --ignore-dependencies <package>
 
 # 查看已安装的包的依赖，树形显示
-brew deps --installed --tree
+brew deps --installed --tree [package]
 
 brew cleanup -n           # 查看可清理的旧版本包
 brew cleanup              # 清理所有包的旧版本
@@ -552,8 +571,6 @@ make: *** [dumpana] Error 1
 
 - Mac M1 运行 node、npm 报 `rsh: Command not found.` 错误，是由于 ATAT 编译后也有可执行命令 node（默认使用 rsh 远程登录（较早的远程访问工具之一，但由于安全隐患较大，现在很少使用），-s，指定使用 ssh），系统将 Node.js 的 node 指向了 ATAT 的，导致该错误出现。
 
-- Mac Dash 软件：编程语言 API 查看工具，需收费
-
 - Mac 中的 Vim Delete 键无法向左删除：[vim中delete（backspace）键不能向左删除 - 脚本小娃子 - 博客园](https://www.cnblogs.com/shengulong/p/10530188.html)
 
 ```bash
@@ -570,8 +587,7 @@ set backspace=2
 - 安装 Java：Java 存档下载：[Java Archive Downloads - Java SE 18](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
 
 ```bash
-# 安装 Java
-brew install openjdk
+brew install openjdk  # 安装 Java
 ```
 
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
@@ -581,6 +597,26 @@ brew install openjdk
 
 ```bash
 npm i rm-trash -g  # 安装
+```
+
+- 在 macOS 中，LAPACK 库是作为 Accelerate.framework 框架的一部分被提供的
+
+```bash
+lapack is keg-only, which means it was not symlinked into /opt/homebrew,
+because macOS provides LAPACK in Accelerate.framework.
+
+For compilers to find lapack you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/lapack/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/lapack/include"
+
+For pkg-config to find lapack you may need to set:
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/lapack/lib/pkgconfig"
+```
+
+```bash
+# lib 路径
+/System/Library/Frameworks/Accelerate.framework/Versions/Current/Frameworks/vecLib.framework/libBLAS.dylib
+/System/Library/Frameworks/Accelerate.framework/Versions/Current/Frameworks/vecLib.framework/libLAPACK.dylib
 ```
 
 

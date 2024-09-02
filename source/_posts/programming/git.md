@@ -145,6 +145,8 @@ WIP...
 - [常用 Git 命令清单 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 - [git cherry-pick 教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
 - [个人心得：Git使用与开发规范 - AllenY's blog](https://alleny.xyz/post/development-standards/)
+- [Getting Started with: Git, GitHub, and GitHub pages - howtos](https://www.wgilpin.com/howto/howto_github.html)
+
 
 
 ---

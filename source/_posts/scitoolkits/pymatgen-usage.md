@@ -46,6 +46,38 @@ workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 ---
 
+里面有讲到 IEEE 标准
+[Elastic Constants | Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/elasticity)
+
+pymatgen 有安装 argcomplete 库（`pyamtgen/cli/pmg.py`）
+
+```python
+    try:
+        import argcomplete
+
+        argcomplete.autocomplete(parser)
+    except ImportError:
+        # argcomplete not present.
+        pass
+
+```
+
+
+pymatgen 中的 LLL reduction 是什么含义
+
+```python
+# 枚举无序结构
+# reference: https://github.com/luzihen/pymatgen_examples/blob/master/enumerate_ordering.py
+from pymatgen.transformations.advanced_transformations import EnumerateStructureTransformation
+
+enum = EnumerateStructureTransformation()
+enumerated = enum.apply_transformation(structure, return_ranked_list=100)  # return no more than 100 structures
+```
+
+pymatgen 键长计算（并非只是简单的计算原子对之间的距离）
+pymatgen 移动原子位点（`translate_sites()`）
+
+
 - [x] pymatgen 如何获取可用的 POTCAR 种类；较难：一般是指定泛函类型
 
 pymatgen 构型可视化：[Pymatgen - how to visualize a crystal structure? - Materials Project / Materials Project Data/API - Materials Science Community Discourse](https://matsci.org/t/pymatgen-how-to-visualize-a-crystal-structure/2761)
@@ -442,6 +474,13 @@ task_doc = drone.assimilate(path="./example_VASP_Al16Cr10")
 
 print(task_doc.keys())
 ```
+
+---
+
+[【Pymatgen学习 2】Ewald方法计算静电能](https://zhuanlan.zhihu.com/p/708133858)
+
+EwaldSummation 是 pymatgen 库中的一个类，用于计算离子晶体的 Ewald 总能量。Ewald 总能量是一种用于处理带电体系的长程库仑相互作用的技术，通常用于计算固体材料中的电势能。该方法将总能量分解为实空间、倒空间、点电荷修正和偶极修正部分，并进行相应的求和计算。
+
 
 
 ---
@@ -962,7 +1001,7 @@ symmetry_dataset['equivalent_atoms']
 
 #### standard_transformations
 
-WIP…
+WIP...
 
 
 
@@ -977,6 +1016,8 @@ WIP…
 ---
 
 ### API
+
+[新版和老版Materials Project API使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/10/b438dad131c8.html)
 
 - 调用 MP API 获取 MP 数据
 - pymatgen 新 API：[Materials Project - API](https://materialsproject.org/api)、[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)

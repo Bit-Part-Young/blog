@@ -219,4 +219,24 @@ default=myuser
 
 ---
 
-- WSL 可被分配的最大内存：WSL 2 在可用内存允许的情况下可以分配更大的内存量，而 WSL 1 的可用内存通常受到一定限制，约为 4 GB。
+- WSL 可被分配的最大内存：WSL 2 在可用内存允许的情况下可以分配更大的内存量，而 WSL 1 的可用内存通常受到一定限制，约为 4 GB
+	- [WSL2高级使用 - 我是谁](https://yuhldr.github.io/posts/2411.html)
+
+```bash
+[wsl2]  
+# 自定义 Linux 内核的绝对路径  
+kernel=<path>  
+# 给 WSL 2 虚拟机分配的内存大小  
+memory=<size>  
+# 为 WSL 2 虚拟机分配的处理器核心数量  
+processors=<number>  
+# 为 WSL 2 虚拟机分配的交换空间，0 表示没有交换空间  
+swap=<size>  
+# 自定义交换虚拟磁盘 vhd 的绝对路径  
+swapFile=<path>  
+# 是否允许将 WSL 2 的端口转发到主机（默认为 true）  
+localhostForwarding=<bool>  
+  
+# `<path>` 必须是带反斜杠的绝对路径，例如 `C:\\Users\\kernel`  
+# `<size>` 必须在后面加上单位，例如 8 GB 或 512 MB
+```

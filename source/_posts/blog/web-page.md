@@ -30,6 +30,7 @@ password:
 - [Zhenchao Jin](https://charlespikachu.github.io/)（纯 html css）
 - [GitHub - HugoBlox/theme-academic-cv: 🎓 无需编写任何代码即可轻松创建漂亮的学术网站](https://github.com/HugoBlox/theme-academic-cv)
 - 在线排版：[GitHub - mdnice/markdown-resume](https://github.com/mdnice/markdown-resume)
+- [GitHub - Hacker233/resume-design](https://github.com/Hacker233/resume-design)
 - [GitHub - xitanggg/open-resume: OpenResume is a powerful open-source resume builder and resume parser. https://open-resume.com/](https://github.com/xitanggg/open-resume)
 - [GitHub - Troublor/troublor.github.io: Source code of my personal homepage](https://github.com/Troublor/troublor.github.io)
 - [GitHub - bchiang7/v4: Fourth iteration of my personal website built with Gatsby](https://github.com/bchiang7/v4)

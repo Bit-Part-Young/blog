@@ -889,3 +889,14 @@ KeysView(RcParams({'_internal.classic_mode': False,
 - 双 Y 轴 + brokenaxes 绘制（matplotlib 及 brokenaxes 实现效果一般，建议还是用 Origin）：[python - Matplotlib with brokenaxes package second Y-Axis - Stack Overflow](https://stackoverflow.com/questions/60026605/matplotlib-with-brokenaxes-package-second-y-axis)
 
 - 在 Jupyter Notebook 中使用 `%matplotlib inline`，从 matplotlib 3.2 版本开始，这个命令在大多数情况下已不再是必需的，因为 Jupyter 和 IPython 的默认行为已经是将图形内嵌显示
+
+- 给每张子图表 (a) (b) 序号标签（最后其实还是用 ax.text() 实现；效果一般）：[Labelling subplots — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/text_labels_and_annotations/label_subplots.html)
+
+- 箱线图又称为盒须图，是显示一组数据分散情况的统计图，因形状如箱子而得名。 它主要用于反映原始数据分布的特征，还可以进行多组数据分布特征的比较。
+
+```python
+ax.boxplot(x, showmeans=...)
+# x 为二维数组时，每一列都会产生一个统计图形
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202404271553335.png)

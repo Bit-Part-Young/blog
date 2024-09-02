@@ -27,7 +27,7 @@ password:
 
 ## 介绍
 
-结构建模常用工具：
+### 结构建模常用工具
 
 - [pymatgen](https://pymatgen.org/)
 - [ASE](https://wiki.fysik.dtu.dk/ase/)
@@ -36,13 +36,27 @@ password:
 - [PyXtal](https://pyxtal.readthedocs.io/)
 - Material Studio（Win + Linux）
 
+其他：
+
+- [GitHub - orex/supercell: The program allows you to create regular structure supercell from cif file with partial occupancy and/or substitutions.](https://github.com/orex/supercell)
+
+
 ---
 
-构型可视化工具：
+### 构型可视化工具
 
 - [OVITO](https://www.ovito.org/)
 - [VESTA](https://jp-minerals.org/vesta/en/download.html)
 - VMD
+
+
+---
+
+### 分析工具
+
+结构原型分析
+>[GitHub - chuanxun/StructurePrototypeAnalysisPackage: Structure Prototype Analysis Package can analyze symmetry and compare similarity of a large number of atomic structures.](https://github.com/chuanxun/StructurePrototypeAnalysisPackage)
+
 
 ---
 
@@ -58,6 +72,11 @@ OVITO 2.9 版本的 Python script 功能可以免费使用，其他需要 Pro �
 VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffraction Pattern - Calculate, Plot
 
 [VESTA 使用](https://mp.weixin.qq.com/s/wTxztn1RDWCG4cjVaA3E0A)
+
+ovito 选中某层原子：表达式选取 Expression selection
+
+
+ovito 计算层间距：可以尝试 Histogram add modification
 
 
 ---
@@ -237,6 +256,11 @@ direct
 
 ## 晶体学相关
 
+晶体学课程内容
+>[GitHub - aronwalsh/Crystallography: Online resource for introduction to crystallography at Imperial College London (MATE40004)](https://github.com/aronwalsh/Crystallography)
+
+[晶体化学](https://www.hxzxs.cn/shuju/newpage/jthx.htm)
+
 晶体结构标注：空间群符号、Pearson 符号、典型晶体结构类型（Strukturbericht designation 或 Strukturbericht type）
 
 [典型晶体结构类型 - 维基百科，自由的百科全书](https://zh.m.wikipedia.org/wiki/%E5%85%B8%E5%9E%8B%E6%99%B6%E4%BD%93%E7%BB%93%E6%9E%84%E9%A1%9E%E5%9E%8B)
@@ -357,3 +381,49 @@ hcp 结构原胞原子坐标有两种形式：
 C60 POSCAR 文件：[C60.POSCAR.vasp](https://github.com/Shuyangzero/Ogre/blob/master/structures/C60.POSCAR.vasp)
 
 钙钛矿晶体结构：八面体扭转理论
+
+```text
+A Handbook of Lattice Spacings and Structures of Metals and Alloys Volume 4 in International Series of Monographs on Metal Physics and Physical Metallurgy Book • 1958
+
+https://doi.org/10.1016/C2013-0-08243-6
+
+CHAPTER VI
+CRYSTALLOGRAPHIC DATA ON "STRUKTURBERICHT" TYPES
+
+CHAPTER VII
+TABULATED LATTICE SPACINGS AND DATA OF THE ELEMENTS
+
+CHAPTER VIII
+TABULATED LATTICE SPACINGS AND DATA OF INTERMEDIATE PHASES IN ALLOY SYSTEMS
+
+CHAPTER IX
+ALPHABETICAL INDEX OF WORK ON BORIDES, CARBIDES, HYDRIDES, NITRIDES, AND
+BINARY OXIDES
+```
+
+晶胞转换（介绍了几种工具；内容一般）：[晶胞之间相互转换 - ZSaying](https://mixzeng.github.io/2020/12/27/crystal-cell-convert/)
+
+---
+
+A15 A3B 型
+
+B1 NaCl 型
+
+D019 hcp 结构
+D022 正交结构
+
+Pearson 符号
+3 个符号表示
+晶系 +（P I R F SABC I）+ 数字（原子数）
+
+225 FCC 结构
+
+原型结构（最早发现的晶体）
+
+---
+
+pymatgen 中的 BCC 形成的 (111) 表面结构是菱形晶系，latgen 形成的晶系是六方晶系
+latgen 中表面的真空层距离数值设置
+latgen 可以生成界面（multi-layer）
+
+- [ ] 当 POSCAR 文件中的原子位点出现负值或大于 1 时（分数坐标），可以通过 VESTA 软件进行转换；如何通过 pymatgen 解决上述问题？
