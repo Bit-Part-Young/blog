@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# 从 Obsidian md 文档中更新 mkdocs-demo 的 notes md 文档
+
+repo_path="$HOME/scripts/sites/hexo-butterfly-demo"
+post_md_path="${repo_path}/source/_posts"
+
+obsd_md_path="${HOME}/scripts/obsidian-md"
+if [[ $HOSTNAME =~ "DESKTOP" ]]; then
+    obsd_md_path="/mnt/e/obsidian-md"
+elif [[ $HOSTNAME =~ "LAPTOP" ]]; then
+    obsd_md_path="/mnt/d/obsidian-md"
+fi
+
+rsync -auv --human-readable ${obsd_md_path}/programming/markup ${post_md_path}/programming
+rsync -auv --human-readable ${obsd_md_path}/win-softwares ${post_md_path}
+
