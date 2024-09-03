@@ -60,6 +60,32 @@ velocity verlet 算法（含两原子及多原子）
 
 >[LAMMPS tutorials - EVOCD](https://icme.hpc.msstate.edu/mediawiki/index.php/LAMMPS_tutorials.html)
 
+---
+
+
+```text
+同时进行：物理机制上无法将其分开
+
+螺旋上升：解耦
+
+
+dynamics  叫运动学更合适
+
+
+遍历原理
+
+
+
+两个基本原理
+
+系综平均值代替时间平均值
+
+
+
+纳米线：用圆柱框住晶体，圆柱外的原子删除
+
+```
+
 
 ---
 
@@ -670,7 +696,7 @@ $\beta$ 为体模量
 
 
 >https://docs.lammps.org/fix_nh.html
->
+
 >https://docs.lammps.org/fix_press_berendsen.html
 
 

@@ -164,6 +164,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - [macOS 破解软件、游戏](https://appstorrent.ru/)
 - [🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
 - [GitHub - hzlzh/Best-App: 收集&推荐优秀的 Apps/硬件/技巧/周边等](https://github.com/hzlzh/Best-App)
+- [GitHub - Louiszhai/tool: 开发效率提升：Mac生产力工具链推荐](https://github.com/Louiszhai/tool)
 
 
 ---

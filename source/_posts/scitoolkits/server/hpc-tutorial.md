@@ -843,6 +843,7 @@ rsync [OPTION]... SRC [USER@]HOST::DEST
 --human-readable   # 显示输出文件大小以 KB、MB、GB 等表示
 ```
 
+
 ---
 
 ### 客户端
@@ -856,16 +857,17 @@ rsync [OPTION]... SRC [USER@]HOST::DEST
 
 ### manager 与超算间的数据传输
 
-上传与下载：upload 与 download 脚本（孔老师写的）
+上传与下载：孔老师写的 upload 与 download 脚本
 
 - manager 与 Pi：`upload -s P` 或将 `P` 改成 `H` 或 `h`
 - manager 与思源一号：将 `P` 改成 `s`
-- `which upload` 或 `which download`，**查看其可执行文件位置与源码内容**
 
 ```bash
+# 上传
 upload -s P manager/path pi/path
 upload -s s manager/path siyuan/path
 
+# 下载
 download -s P pi/path manager/path
 download -s s siyuan/path manager/path
 ```
@@ -876,14 +878,14 @@ download -s s siyuan/path manager/path
 
 ## 程序编译/安装
 
-- 在超算上编译程序，由于登录节点资源有限，需在计算节点上进行，需申请临时计算节点（一个核即可）。
+- 在超算上编译程序，由于登录节点资源有限，需在计算节点上进行，需申请临时计算节点（一个核即可）
 
 ```bash
-# 思源一号
-srun -p 64c512g -n 1 --pty /bin/bash
-
 # Pi
 srun -p cpu -n 1 --pty /bin/bash
+
+# 思源一号
+srun -p 64c512g -n 1 --pty /bin/bash
 ```
 
 
@@ -896,14 +898,12 @@ srun -p cpu -n 1 --pty /bin/bash
 编译前，需理解 Makefile 文件中的命令含义！
 
 ```bash
-# 自定义安装路径
-./configure --prefix=
+./configure   # 配置
+# 常见参数
+--prefix      # 自定义安装路径
 
-# 编译
-make
-
-# 安装
-make install
+make          # 编译
+make install  # 安装
 ```
 
 

@@ -465,6 +465,18 @@ find . -type f -name "*.tar.gz" -exec rm {} +
 
 # 找到含下划线的 Python 脚本，并将其换成连字符输出
 fes=$(find . -maxdepth 2 -type f -name "*_*.py"); for f in ${fes}; do echo ${f//_/-}; done
+
+
+# 安装 locate
+sudo apt install mlocate
+
+# 更新 locate 数据库
+sudo updatedb
+
+locate libstdc++.so.6
+
+# 查看库文件中包含的字符串信息
+strings libstdc++.so.6 | grep GLIBCXX
 ```
 
 
@@ -743,6 +755,13 @@ hostname new_hostname
 hostnamectl set-hostname new_hostname
 ```
 
+- ldconfig: 用于创建、更新和维护动态链接器运行时绑定的缓存；常在系统启动时运行
+
+```bash
+ldconfig -p    # 查看库文件路径和实际缓存的库
+sudo ldconfig  # 更新缓存
+```
+
 - 文件行数统计
 
 ```bash
@@ -752,11 +771,11 @@ wc -l file
 sed -n '$=' file
 ```
 
-- nmon：Linux 端监控系统资源（应该不常用）
 
 - 其他
 
 ```bash
+ldd                    # 列出可执行文件在运行时所需要的共享库
 ldd --version          # 查看 GLIBC 版本
 
 echo -n 'XXX' | wc -c  # 统计字符串长度 c 可换成 m
@@ -774,6 +793,7 @@ env                    # 显示环境变量
 type                   # 显示命令的类型
 
 pstree                 # 将所有进程以树状图显示
+nmon                   # 监控系统资源（应该不常用）
 ```
 
 

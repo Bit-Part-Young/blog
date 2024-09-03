@@ -648,6 +648,8 @@ timedatectl set-local-rtc 1
 
 - 连接校园网：[Linux设备连接校园SJTU无线网络说明-上海交通大学网络信息中心](https://net.sjtu.edu.cn/info/1215/2712.htm)
 
+- [ ] Ubuntu23.04 设置交大 VPN 无作用
+
 - [ ] 触控板，如何右键？
 
 

@@ -18,6 +18,10 @@ password:
 
 # atomsk 使用
 
+## 介绍
+
+### 参考资料
+
 - atomsk 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
 - [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
 - 查看所有的 options 和 modes 及其用法：[Documentioin - Atomsk](https://atomsk.univ-lille.fr/doc.php)
@@ -32,6 +36,8 @@ password:
 
 ---
 
+## 使用
+
 命令相关概念：
 
 - `options`：应用于体系的变换（transformations），用 `-` 区分。
@@ -40,7 +46,7 @@ password:
 
 ---
 
-## 常用命令实例
+### 常用命令实例
 
 ```bash
 # 构建晶体结构
@@ -93,3 +99,65 @@ dat dd dlp fdf gin imd jems lmp mol
 pdb pos pw str vesta xmd xsf xv
 xyz exyz sxyz
 ```
+
+
+---
+
+### 其他
+
+- [ ] atomsk 可否建立界面模型？
+
+---
+
+基于 Voronoi tessellation 算法 生成多晶模型
+
+```bash
+atomsk --create fcc 4.04 Al Al_unitcell.lmp
+
+atomsk --polycrystal Al_unitcell.lmp poly.txt -wrap Al_polycrystal.lmp
+
+# poly.txt
+box 200 100 100  # 盒子大小
+random 6  # 生成 6 个随机取向&位置的晶粒
+```
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090952718.png)
+
+
+```bash
+atomsk --create fcc 3.48 Ni -duplicate 5 5 5 Ni_host.lmp
+
+# 有问题
+atomsk Ni_host.lmp -select random 30% Ni -substitute Ni Fe -properties props.txt Fe_Ni.lmp
+
+atomsk Fe_Ni.lmp -select random 20% Ni -substitute Ni Cr -properties props.txt Fe_Cr_Ni.lmp
+
+atomsk --polycrystal Fe_Cr_Ni.lmp poly.txt -wrap incoloy_poly.lmp
+
+# props.txt
+Type
+Fe 1
+Cr 2
+Ni 3
+
+# poly.txt
+box 100 100 300
+random 12
+```
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090953911.png)
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090954457.png)
+
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090955091.png)
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090956815.png)
+
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090958113.png)

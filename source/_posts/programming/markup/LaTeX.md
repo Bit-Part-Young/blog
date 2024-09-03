@@ -208,6 +208,8 @@ tex --version
 tlmgr --version
 ```
 
+
+
 ---
 
 ## LaTeX 编辑器
@@ -220,16 +222,12 @@ tlmgr --version
 	- [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
 	- LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
----
+- Overleaf 使用：
+	- Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
+	- Overleaf 可以使用 Vim（**组合键**选项）
 
-Overleaf 使用：
+- TeXstudio：工具 - 清理辅助文件
 
-- Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
-- Overleaf 可以使用 Vim（**组合键**选项）
-
----
-
-TeXstudio：工具 - 清理辅助文件
 
 
 ---
@@ -256,17 +254,42 @@ TeXstudio：工具 - 清理辅助文件
 
 - `makeglossaries`：Tex Live 自带，用于生成和管理文档中的术语表（glossaries）、缩略词表（acronyms）和符号表等
 
+- LaTeX 实现审阅效果：latexdiff（texlive 自带）
+	- 使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
+	- 若 tex 多个文件嵌套，会复杂许多
+
+```bash
+# Ubuntu 安装
+sudo apt install latexdiff
+
+# macOS 安装
+brew install latexdiff
+```
+
+- 生成多种格式文献引用：[BibGuru - A New FREE APA, Harvard, & MLA Citation Generator](https://www.bibguru.com/)
+
+- [GitHub - chazeon/revtex2docx: Wrapper scripts and pandoc filters to convert LaTeX documents to Word docx files](https://github.com/chazeon/revtex2docx)
+
+- [GitHub - teatimeguest/setup-texlive-action: A GitHub Action to set up TeX Live](https://github.com/teatimeguest/setup-texlive-action)
+
+
 ---
 
-BibTeX 相关：
+#### BibTeX 相关
 
-- 格式化 bib 文件：[GitHub - FlamingTempura/bibtex-tidy: Cleaner and Formatter for BibTeX files](https://github.com/FlamingTempura/bibtex-tidy)
+[GitHub - njzjz/tushuguan: A template to create a BibTeX Library](https://github.com/njzjz/tushuguan)
+
+---
+
+##### 格式化 bib 文件
+
+- [GitHub - FlamingTempura/bibtex-tidy: Cleaner and Formatter for BibTeX files](https://github.com/FlamingTempura/bibtex-tidy)
 - [GitHub - Nickydusk/BibTeX-Formatter: Format your bibtex (.bib) file to help standardize citations for conference and journal submissions](https://github.com/Nickydusk/BibTeX-Formatter)
 
 ```bash
-npm install -g bibtex-tidy
+npm install -g bibtex-tidy  # 安装
 
-bibtex-tidy refs.bib
+bibtex-tidy refs.bib        # 基本使用
 
 # 常用参数
 bibtex-tidy refs.bib \
@@ -282,11 +305,16 @@ bibtex-tidy refs.bib \
     --remove-empty-fields \
     --remove-dupe-fields \
     --tidy-comments
+	
+# bib 中一些不需要的条目
+sed -i '/abstract = {/d' xxx.bib
+sed -i '/doi = {/d' xxx.bib
+sed -i '/keywords = {/d' xxx.bib
 ```
 
-[GitHub - njzjz/tushuguan: A template to create a BibTeX Library](https://github.com/njzjz/tushuguan)
+---
 
-doi 转 bib 格式：
+##### doi 转 bib 格式
 
 - [GitHub - njzjz/wenxian: A tool to generate BibTeX files from given identifiers (DOI, PMID, or arXiv ID).](https://github.com/njzjz/wenxian)（效果比较好）
 - [doi2bib](https://www.doi2bib.org/)（最直接方便；无摘要参数；中国人名的姓名前后顺序问题；article 后面的信息与官方期刊生成的 BibTeX 不一致）
@@ -307,41 +335,16 @@ julia> arxiv2bib(arxiv)
 pip install -U pipx
 pipx run wenxian from 10.1063/5.0155600
 
-# bib 中一些不需要的条目
-sed -i '/abstract = {/d' xxx.bib
-sed -i '/doi = {/d' xxx.bib
-sed -i '/keywords = {/d' xxx.bib
 ```
 
-ris（Zotero）转 bib 格式：
+---
+
+##### ris 转 bib 格式
+
+ris：Zotero 格式
 
 - [GitHub - harrisonlabollita/ris-2-bib: A command line tool to convert RIS files into bib files for LaTeX bibliographies](https://github.com/harrisonlabollita/ris-2-bib)
 - [GitHub - janberges/ris2bib: Convert bibliographies from RIS to BibTeX format](https://github.com/janberges/ris2bib)
-
----
-
-LaTeX 实现审阅效果：latexdiff（texlive 自带）
-
-使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
-
-若 tex 多个文件嵌套，会复杂许多
-
-```bash
-# Ubuntu 安装
-sudo apt install latexdiff
-
-# macOS 安装
-brew install latexdiff
-```
-
----
-
-[GitHub - chazeon/revtex2docx: Wrapper scripts and pandoc filters to convert LaTeX documents to Word docx files](https://github.com/chazeon/revtex2docx)
-
-生成多种格式文献引用：[BibGuru - A New FREE APA, Harvard, & MLA Citation Generator](https://www.bibguru.com/)
-
-[GitHub - teatimeguest/setup-texlive-action: A GitHub Action to set up TeX Live](https://github.com/teatimeguest/setup-texlive-action)
-
 
 
 ---
@@ -1547,12 +1550,14 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 	- [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
 	- [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
 	- 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
+	- [GitHub - ml-evs/CV: My TeX CV built with moderncv.](https://github.com/ml-evs/CV)
 
 - 国自然基金 LaTeX 模板：
 	- [GitHub - Ruzim/NSFC-application-template-latex: 国家自然科学基金申请书正文（面上项目）LaTeX 模板（非官方）](https://github.com/Ruzim/NSFC-application-template-latex)
 	- 青基：[GitHub - QijingZheng/QZ\_ExcellentYoungScientistsFund\_2024](https://github.com/QijingZheng/QZ_ExcellentYoungScientistsFund_2024)
 	- [NSFC - overleaf 版](https://www.overleaf.com/project/6372028b9049e7ce5ea603fc)
 
+- arxiv 模板：[GitHub - kourgeorge/arxiv-style: A Latex style and template for paper preprints (based on NIPS style)](https://github.com/kourgeorge/arxiv-style)
 
 
 

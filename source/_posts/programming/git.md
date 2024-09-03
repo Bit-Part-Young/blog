@@ -1206,3 +1206,5 @@ git push -u origin <new branch>
 git config --global http.proxy 127.0.0.1:7890
 git config --global https.proxy 127.0.0.1:7890
 ```
+
+- [ ] 交大 VPN 打开，会使得 ssh 连接 git 失效（已水源提问，暂无法解决）

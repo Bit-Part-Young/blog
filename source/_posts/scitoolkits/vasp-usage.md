@@ -36,6 +36,13 @@ Perdew-Burke-Ernzerhof (PBE) 形式的 generalized gradient approximation (GGA) 
 
 投影缀加平面波赝势（PAW）方法（描述离子 - 电子相互作用）
 
+---
+
+能带计算，ISMEAR=0？
+
+EIGENVAL 文件内容含义
+
+---
 
 DFT-D3：vdW 相互作用修正
 
@@ -151,6 +158,13 @@ Ni(100) 表面的能带结构计算，K-path 是 reziprok 方式，非 Line-Mode
 Ni(111) 表面高精度单点能计算（截断能提高；用以计算吸附能、功函数（添加 LVHAR 参数））：[Ni 111 surface high precision - VASP Wiki](https://www.vasp.at/wiki/index.php/Ni_111_surface_high_precision)
 
 >[Ex49 功函数（work function）的计算（一） | Learn VASP The Hard Way](https://www.bigbrosci.com/2018/09/03/ex49/)
+
+VASP wiki 中的示例 POSCAR 格式和 POTCAR 文件（PAW 格式）较老？
+
+[Fcc Ni DOS - VASP Wiki](https://www.vasp.at/wiki/index.php/Fcc_Ni_DOS)
+
+
+[Partial DOS of CO on Ni 111 surface - VASP Wiki](https://www.vasp.at/wiki/index.php/Partial_DOS_of_CO_on_Ni_111_surface)
 
 
 VASP 官网算例中的部分 POSCAR 文件中没有元素符号行（第 6 行，不影响）
@@ -277,6 +291,13 @@ direct
 ---
 
 #### POTCAR
+
+```text
+# POTCAR 中的 PBE 泛涵显示为 PE？
+LEXCH  = PE
+
+GGA = PE
+```
 
 POTCAR：RCORE 代表最大截止半径，单位是波尔 bohr
 
@@ -831,7 +852,6 @@ reached required accuracy - stopping structural energy minimisation
 
 
 ```bash
-
 # 构型原子数
 natoms=$(sed -n '7p' POSCAR | awk '{ for(i=1; i<=NF; i++) a+=$i; print a} ')
 natoms=$(grep 'NIONS' OUTCAR | tail -1 | awk '{print $12}')
@@ -857,6 +877,15 @@ grep  'energy without entropy' OUTCAR
 # 'energy  without' 'free  energy' 之间有两个空格
 grep 'free  energy' OUTCAR
 grep  'energy  without entropy' OUTCAR
+
+awk 'BEGIN{i=1} /dos>/,\
+                /\/dos>/ \
+                 {a[i]=$2 ; b[i]=$3 ; i=i+1} \
+     END{for (j=12;j<i-5;j++) print a[j],b[j]}' vasprun.xml > dos.dat
+
+ef=`awk '/efermi/ {print $3}' vasprun.xml`
+
+
 ```
 
 
@@ -1413,3 +1442,13 @@ VASP 相关脚本
 >[GitHub - tamaswells/VASP\_script: Useful scripts for VASP](https://github.com/tamaswells/VASP_script)
 
 - 检查 OUTCAR 文件中 T·S 项的数值是否小于 0.001eV，以检查 SIGMA 值是否设置合理：[VASP\_script/sigma.sh at master · tamaswells/VASP\_script · GitHub](https://github.com/tamaswells/VASP_script/blob/master/sigma.sh)
+
+---
+
+基于分子动力学模拟，可以通过对速度自关联函数（velocity autocorrelation function，VACF）进行傅里叶变换得到材料的振动态密度（vibrational density of states， VDOS）。VACF 是根据动力学模拟出来的轨迹文件和速度文件，求算系统在某一时刻的速度与另一时刻速度的关联程度的函数，直接看 VACF 并不能很直观的得到一些信息，而 VDOS 直接对应实验红外光谱，可以直观的对高温或高压下的振动变化情况等进行分析。
+
+>[AIMD结合vaspkit计算振动态密度](https://mp.weixin.qq.com/s/gqM5c1P3BtIqi0h_tVTj5g)
+
+---
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202405272344155.png)

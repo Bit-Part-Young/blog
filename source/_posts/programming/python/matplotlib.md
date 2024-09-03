@@ -262,6 +262,8 @@ plt.show()
 
 ### colorbar 绘制
 
+- [GitHub - 1313e/CMasher: Scientific colormaps for making accessible, informative and 'cmashing' plots](https://github.com/1313e/CMasher)
+
 - colormap：从蓝到红渐变：`coolwarm`、`jet`、`bwr`
 
 ```python
@@ -885,6 +887,8 @@ KeysView(RcParams({'_internal.classic_mode': False,
 ---
 
 ### 其他
+
+- hatch：填充样式
 
 - 双 Y 轴 + brokenaxes 绘制（matplotlib 及 brokenaxes 实现效果一般，建议还是用 Origin）：[python - Matplotlib with brokenaxes package second Y-Axis - Stack Overflow](https://stackoverflow.com/questions/60026605/matplotlib-with-brokenaxes-package-second-y-axis)
 

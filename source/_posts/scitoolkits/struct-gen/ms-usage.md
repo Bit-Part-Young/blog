@@ -59,6 +59,8 @@ password:
 
 ## 建模使用
 
+>[Materials Studio学习](https://cndaqiang.github.io/2017/11/24/ms1/)
+
 MS - build - find symmetry 找到对称性
 
 [关于Material Studio和Vesta导出来的cif文件的差别](https://zhuanlan.zhihu.com/p/417605545)

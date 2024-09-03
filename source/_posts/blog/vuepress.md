@@ -158,6 +158,8 @@ jobs:
 
 - [默认主题配置 - VuePress](https://v1.vuepress.vuejs.org/zh/theme/default-theme-config.html)
 
+- 参考配置：[awesome-fenix/.vuepress/config.js at master · fenixsoft/awesome-fenix · GitHub](https://github.com/fenixsoft/awesome-fenix/blob/master/.vuepress/config.js)
+
 - `docs/.vuepress/config.js` 文件常用参数设置
 	- md 文档中的 title front matter 会与正文的一级标题均会渲染，导致重复，其他框架不会有该情况
 

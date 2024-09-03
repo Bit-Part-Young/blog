@@ -209,7 +209,13 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 cargo binstall ripgrep
 ```
 
+- 一次性更新所有软件包（跨平台）：[GitHub - topgrade-rs/topgrade: Upgrade all the things](https://github.com/topgrade-rs/topgrade)
 
+```bash
+brew install topgrade  # 安装
+topgrade               # 使用
+topgrade -n            # 不实际运行
+```
 
 
 ---

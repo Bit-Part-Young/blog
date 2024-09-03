@@ -222,6 +222,9 @@ GitHub contribution 可视化：
 	- 实例：[github-contribution-grid-snake.yml](https://github.com/hotoo/hotoo/blob/main/.github/workflows/github-contribution-grid-snake.yml)
 - （未测试）[GitHub - jasineri/gitartwork: Gitartwork on user's contribution graph](https://github.com/jasineri/gitartwork)
 
+---
+
+
 
 ---
 
@@ -235,7 +238,9 @@ GitHub contribution 可视化：
 - [GitHub - inttter/md-badges: An extensive list of Shields.io badges.](https://github.com/inttter/md-badges)
 - [GitHub - ziadOUA/m3-Markdown-Badges: 🏅 A Material You inspired markdown badge collection.](https://github.com/ziadOUA/m3-Markdown-Badges)
 - skill 图标 icon：[GitHub - tandpfun/skill-icons: Showcase your skills on your Github readme or resumé with ease ✨](https://github.com/tandpfun/skill-icons)
+- 统计 GitHub 中的 REDME、Issue、PR visitor 数量：[Visitor Badge](https://visitor-badge.laobi.icu/)
 - 可参考：[README.rst](https://github.com/charmoniumQ/charmonium.cache/blob/main/README.rst?plain=1)
+- [Notes-for-Data-Structure/README.md at master · OE-Heart/Notes-for-Data-Structure · GitHub](https://github.com/OE-Heart/Notes-for-Data-Structure/blob/master/README.md?plain=1)
 
 
 ---
@@ -292,7 +297,6 @@ GitHub Repo 相关（使用 github）
 
 [pre-commit](https://pre-commit.com/)：用于管理和维护 git 钩子的框架。允许配置多种钩子，这些钩子会在代码提交到仓库之前自动运行，以检查代码风格、格式化代码、检查语法错误（可用于 Python、Markdown、Shell）等。配置文件：`.pre-commit-config.yaml`
 
-
 ```bash
 # 安装
 pip install -U pre-commit
@@ -319,7 +323,12 @@ repos:
 		language_version: # 编程语言版本 如 python3.11
 ```
 
-示例：[.pre-commit-config.yaml](https://github.com/CederGroupHub/smol/blob/main/.pre-commit-config.yaml)
+---
+
+示例：
+- [.pre-commit-config.yaml](https://github.com/CederGroupHub/smol/blob/main/.pre-commit-config.yaml)
+- https://github.com/jupyter/docker-stacks/blob/main/.pre-commit-config.yaml
+- [ZnFrame/.pre-commit-config.yaml at main · zincware/ZnFrame · GitHub](https://github.com/zincware/ZnFrame/blob/main/.pre-commit-config.yaml)
 
 ```yaml
 exclude: '.git|.tox'
@@ -375,7 +384,7 @@ repos:
 - 同步到 Gitee：[gitee.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/gitee.yml)、[hub-mirror-action](https://github.com/Yikun/hub-mirror-action)
 - 自动发布 Release：[release.yml](https://github.com/frostming/marko/blob/master/.github/workflows/release.yml)
 - 自动化发布 release：[GitHub - release-it/release-it: 🚀 Automate versioning and package publishing](https://github.com/release-it/release-it)
-
+- Wakatime GitHub Actions 设置：[OE-Heart/.github/workflows/main.yml at master · OE-Heart/OE-Heart · GitHub](https://github.com/OE-Heart/OE-Heart/blob/master/.github/workflows/main.yml)
 
 ---
 

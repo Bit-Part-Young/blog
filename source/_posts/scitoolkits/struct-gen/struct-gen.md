@@ -376,6 +376,10 @@ hcp 结构原胞原子坐标有两种形式：
 
 ## 其他
 
+- [ ] 原子半径没有统一值？
+
+晶胞正交化、等长化：[晶胞正方化 - Jerkwin](https://jerkwin.github.io/2024/05/14/%E6%99%B6%E8%83%9E%E6%AD%A3%E6%96%B9%E5%8C%96/)
+
 钙钛矿、半导体、绝缘体的点缺陷比金属或金属间化合物的点缺陷要复杂很多
 
 C60 POSCAR 文件：[C60.POSCAR.vasp](https://github.com/Shuyangzero/Ogre/blob/master/structures/C60.POSCAR.vasp)
@@ -427,3 +431,28 @@ latgen 中表面的真空层距离数值设置
 latgen 可以生成界面（multi-layer）
 
 - [ ] 当 POSCAR 文件中的原子位点出现负值或大于 1 时（分数坐标），可以通过 VESTA 软件进行转换；如何通过 pymatgen 解决上述问题？
+
+---
+
+借鉴该文献中的结构晶体学信息表格写法
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202406141558921.png)
+
+---
+
+点缺陷
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052005978.png)
+
+>[8.2: Close-packing and Interstitial Sites - Chemistry LibreTexts](https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Book%3A_Introduction_to_Inorganic_Chemistry_(Wikibook)/08%3A_Ionic_and_Covalent_Solids_-_Structures/8.02%3A_Close-packing_and_Interstitial_Sites)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014348.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014588.png)
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014611.png)
+
+
+
+[Interstitial Sites: Size, Types, Applications, And Calculations – Materials Science & Engineering](https://msestudent.com/interstitial-sites-size-types-applications-and-calculations/)
+
+[Interstitial Sites (FCC & BCC)](https://lamma.engineering.unt.edu/sites/default/files/class8_handout_mtse_5010_2018.pdf)

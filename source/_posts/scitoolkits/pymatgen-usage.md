@@ -46,6 +46,30 @@ workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 ---
 
+```python
+Kpoints.automatic_density()
+
+from pymatgen.analysis.diffusion.neb.pathfinder import IDPPSolver
+
+from pymatgen.analysis.defects.generators import SubstitutionGenerator
+
+subs = SubstitutionGenerator(structure, "Bi")
+
+# 晶界相关
+from pymatgen.core.interface import GrainBoundary, GrainBoundaryGenerator
+
+mpr.get_structure_by_material_id()
+```
+
+[求助：过渡态计算新版pymatgen中找不到iddp插值方法 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-19704-1-1.html)
+
+```python
+# 过渡态 NEB
+from pymatgen.analysis import transition_state
+```
+
+确保 VASP 计算符合 MP 数据：[GitHub - materialsproject/pymatgen-io-validation: Comprehensive input/output validator. Made with the initial purpose of ensuring calculations in the MP Database are compatible; now generalized.](https://github.com/materialsproject/pymatgen-io-validation)
+
 里面有讲到 IEEE 标准
 [Elastic Constants | Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/elasticity)
 

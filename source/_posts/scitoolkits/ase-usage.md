@@ -89,6 +89,11 @@ atoms = ptable()
 atoms.write("ptable.png")
 
 from ase.data import atomic_masses
+
+
+# 固定平面
+from ase.constraints import FixAtoms, FixedPlane
+
 ```
 
 
