@@ -601,25 +601,6 @@ lspci | grep -i nvidia
 # 查看显示器信息
 xrandr
 
-# 查看 shell
-cat /etc/shells
-
-# 查看当前 shell
-echo $0
-echo $SHELL
-
-# 设置默认 shell 
-chsh -s /bin/zsh
-sudo chsh -s /usr/bin/zsh root
-
-# 设置 root 密码
-sudo passwd root
-
-# 安装 ifconfig
-sudo apt install net-tools
-
-# 查看 ip 地址 Linux/macOS
-ifconfig
 ```
 
 

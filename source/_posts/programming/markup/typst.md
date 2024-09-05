@@ -94,6 +94,7 @@ Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://git
 ```bash
 cargo install typst-upgrade  # 安装
 
+# file.typ 可改成 .
 typst-upgrade file.typ       # 更新 package 并写入文件
 typst-upgrade -d file.typ    # -d --dry-run 不实际运行
 ```
@@ -578,14 +579,8 @@ Show 规则用于全局替换
 - 在 Typst 中使用 LaTeX 公式：MiTeX
 - 中文伪粗体、伪斜体：cuti
 - presentation 制作：[touying](https://github.com/touying-typ/touying)、[polylux](https://github.com/andreasKroepelin/polylux)
-- 升级 Typst package：[typst-upgrade](https://github.com/Coekjan/typst-upgrade)
+- 自动调整 content 尺寸：[GitHub - jdpieck/oasis-align: A Typst package to cleanly place content side by side with equal heights using automatic content sizing.](https://github.com/jdpieck/oasis-align)
 
-```bash
-cargo install typst-upgrade  # 安装
-
-typst-upgrade .              # 升级
-typst-upgrade -d .           # dry run
-```
 
 
 ---

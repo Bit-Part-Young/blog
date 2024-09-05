@@ -37,9 +37,9 @@ password:
 
 ### 参考资料
 
+- Mac 相关汇总：[awesome-mac](https://github.com/jaywcjlove/awesome-mac)
 - [Mac：终极配置教程 - BLOG](https://44maker.github.io/wiki/Mac/index.html)
 - [GitHub - maoxiaoke/setup-a-mac-for-frontend-dev: How I setup a Mac, with lots of productivity tools, step-by-step guide](https://github.com/maoxiaoke/setup-a-mac-for-frontend-dev)
-- [awesome-mac](https://github.com/jaywcjlove/awesome-mac)
 - [GitHub - nikitavoloboev/my-mac: Apps/tools I use on macOS](https://github.com/nikitavoloboev/my-mac)
 - [GitHub - serhii-londar/open-source-mac-os-apps: 🚀 Awesome list of open source applications for macOS. https://t.me/s/opensourcemacosapps](https://github.com/serhii-londar/open-source-mac-os-apps)
 - [GitHub - itcharge/macOS-Tips: macOS 系统的使用技巧介绍、常用软件推荐、效率工具推荐。](https://github.com/itcharge/macOS-Tips)
@@ -152,6 +152,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - `option + command + 5`：显示截图、录屏选项
 - `option + command + esc`：强制退出应用程序
 - `command + ~`：切换同一个程序下的窗口
+- 强制关机：按住 Touch ID 直到屏幕变黑并且电脑关闭
 
 注：无 Windows 的 `Win + X` 等效快捷键
 
@@ -171,67 +172,91 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### 软件/程序推荐
 
+**系统相关**
+
 - 包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：Alfred 5、[Raycast](https://www.raycast.com/)
-- 网络代理：ClashX
 - 系统资源监控：iStat Menus、RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)、[glances](https://github.com/nicolargo/glances)
-- 代码编辑器：VSCode、VSCode-Insiders（VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，解压将其拷贝到 bin 目录中）
-- 终端模拟器：默认终端、iTerm2（最实用）、Tabby、Termius、kitty、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
-- 浏览器：Safari、Chrome、Arc、Zen
-- 压缩、解压缩工具：The Unarchiver
-- 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
-- Markdown 笔记管理：Obsidian、Typora、MarkText
-- 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
-- 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
-- 图床：PicList（基于 PicGo 开发）、PicGo
-- 文献管理：Zotero
-- 构型可视化：VESTA、OVITO
-- 邮件服务：Mailspring 或 Mac 自带邮件程序
-- 截图：Snipaste、Shottr（可以长截图）
-- 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
+- 限制电池最大充电量：[bclm](https://github.com/zackelia/bclm)、AlDente
+- 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
 - 垃圾清理：CleanMyMac X（完整版本需收费；有破解版）、Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
-- 快捷键提示：FlyKey、CheatSheet
+- 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
+- 软件卸载：Pearcleaner
+- 软件更新：Latest（一般）
+- 窗口管理：Rectangle、Loop
 - 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
+- 菜单栏管理：Ice、Bartender
+- 快捷键提示：FlyKey、CheatSheet
+- 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
 - 鼠标滚轮方向切换：Mos、LinearMouse、Mac Mouse Fix
 - 输入法切换：自动切换输入法 Lite 版、[Input Source Pro](https://inputsource.pro/zh-CN)
-- pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
-- 窗口管理：Rectangle、Loop
-- 菜单栏管理：Ice、Bartender
-- 录屏：QuickRecorder
-- 运行 Docker 容器、k8s 和 Linux：[orbstack](https://github.com/orbstack/orbstack)
-- 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
+- 可视化键盘输入：KeyCastr
+- 风扇控制：Mac Fan Control
 - 刘海屏相关：
 	- 将刘海屏当作 AirDrop：NotchDrop、Folder Hub
 	- 隐藏刘海屏：Only Switch（将菜单栏调成黑色）、zNotch（将菜单栏下移）、
 	- 增加趣味：Notchmeister
 - 控制外置显示器亮度：MonitorControl、BetterDisplay（功能更强大，需付费）
-- 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
-- 限制电池最大充电量：[bclm](https://github.com/zackelia/bclm)、AlDente
-- 文件互传：LocalSend（跨平台）
-- 文件同步：[Syncthing](https://github.com/syncthing/syncthing)（跨平台）、交大云盘
-- 虚拟机：Parallels Desktop、VMware Fusion
-- 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）、Maccy
-- 窗口平铺：tiling window manager；[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
-- macOS 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
-- 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
-- 异地组网、内网穿透：Tailscale（跨平台）
-- 挂载云盘：AList、CloudMounter
-- 视频下载：Downie、Motrix、imFile
-- 远程控制：向日葵、TeamViewer Host、ToDesk
-- 抠图：鲜艺 AI 抠图
-- Android 连接 Mac：Macdroid（需付费）、OpenMTP、Android 文件传输助手（有时无法识别）
 - 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
-- 软件更新：Latest（一般）
-- 媒体库管理：Emby（海报墙）
-- 可视化键盘输入：KeyCastr
-- 编程语言 API 下载、查看：Dash
-- 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（to-do 清单）
-- 其他：微信（Windows 端没有深色模式，macOS 有深色模式）等
-
+- Android 连接 Mac：Macdroid（需付费）、OpenMTP、Android 文件传输助手（有时无法识别）
 
 ---
 
-#### Mac 端没有的一些软件
+**图音视频**
+
+- 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
+- 媒体库管理：Emby（海报墙）
+- 视频下载：Downie、Motrix、imFile
+- 抠图：鲜艺 AI 抠图
+- 截图：Snipaste、Shottr（可以长截图）
+- 图床：PicList（基于 PicGo 开发）、PicGo
+- 录屏：QuickRecorder
+
+---
+
+**文档写作**
+
+- Markdown 笔记管理：Obsidian、Typora、MarkText
+- 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
+- 书签工具：Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
+- 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
+- pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
+- 文献管理：Zotero
+- 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
+
+---
+
+**网络**
+
+- 网络代理：ClashX
+- 异地组网、内网穿透：Tailscale（跨平台）
+- 虚拟机：Parallels Desktop、VMware Fusion
+- 文件互传：LocalSend（跨平台）
+- 文件同步：[Syncthing](https://github.com/syncthing/syncthing)（跨平台）、交大云盘
+- 挂载云盘：AList、CloudMounter
+- 远程控制：向日葵、TeamViewer Host、ToDesk
+- 运行 Docker 容器、k8s 和 Linux：[orbstack](https://github.com/orbstack/orbstack)
+
+---
+
+**其他**
+
+- 代码编辑器：VSCode、VSCode-Insiders（VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，将其拷贝到 bin 目录中）
+- 终端模拟器：默认终端、iTerm2（最实用）、Tabby、Termius、kitty、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
+- 浏览器：Safari、Chrome、Arc、Zen
+- 邮件服务：Mailspring 或 Mac 自带邮件程序
+- 压缩、解压缩工具：The Unarchiver
+- 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
+- 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）、Maccy
+- 窗口平铺（tiling window manager）：[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
+- 编程语言 API 下载、查看：Dash
+- 构型可视化：VESTA、OVITO
+- 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（to-do 清单）
+- 微信（Windows 端没有深色模式，macOS 有深色模式）等
+
+---
+
+**macOS 没有的一些软件**
 
 - PotPlayer
 - Notepad++（可以用 [Notepad--](https://github.com/cxasm/notepad--) 代替；[micro](https://github.com/zyedidia/micro)（基于终端的文本编辑器））
@@ -330,6 +355,18 @@ keyNotFound(code: "CHWA")
         # 注释 port 参数，将 bridge 模式改成 host
         network_mode: 'host'
 }
+```
+
+- 使用 rclone 将 AList 挂载到本地磁盘（看影视不流畅，效果一般）：
+	- 参考：[如何在 macOS 使用 AList + RCLONE 把网盘挂载到本地](https://zhuanlan.zhihu.com/p/612368639)
+	- 去对应官网下载 rclone（Homebrew 安装的 rclone 无法使用 mount 命令）和 macfuse
+	- [M1/M2/M3芯片 Mac 在“恢复”模式中启用系统扩展教程 - 我爱MAC](https://www.52mac.com/soft/13613-1-1.html)
+
+```bash
+rclone config  # 配置
+
+# 挂载
+rclone mount AList:/ /Users/XXX/AList --cache-dir /tmp --allow-other --vfs-cache-mode writes --header "Referer:https://www.aliyundrive.com/drive"
 ```
 
 
@@ -583,7 +620,17 @@ set backspace=2
 	- 运行命令：`system_profiler SPDisplaysDataType`
 
 - 查看网线 IP 地址：系统设置 - 网络 - USB XXX LAN，IP 地址
-- 获取本机 WiFi IP 地址：`ipconfig getifaddr en0`
+
+```bash
+# 获取本机 WiFi IP 地址
+ipconfig getifaddr en0
+
+# 获取外部 IP 地址
+curl ip.sb
+curl ifconfig.co/json
+curl cip.cc
+curl ipinfo.io/ip
+```
 
 - 安装 Java：Java 存档下载：[Java Archive Downloads - Java SE 18](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
 
@@ -699,10 +746,19 @@ export HOMEBREW_MACOS_VERSION=14.5
 ### 其他
 
 - Mac 终端模拟器（Terminal、iTerm）ssh 连接远程服务器，打开 GUI 程序：[Enable X11 forward for ssh to load images from remote server on MacOS Mojave · GitHub](https://gist.github.com/fengyuentau/7c43c06fb563752b6947affaf4677f2a)
+
 - 文件创建 Mac 无法直接创建文件（可通过终端 `touch` 命令或安装 “超级右键”软件），只能创建文件夹
+
 - Apple ID 相关问题：此 Apple ID 尚未在 app store 使用（弹出“检查”窗口时，会出现要求完善支付方式信息内容；macOS 11 在检查这步一直无法弹出后面的内容，将版本更新至最新无此问题）
+
 - 蓝牙耳机连接：长按 Redmi Airdots3 Pro 耳机盒的开关机键；将 Bose qc45 电源键推至右侧一段时间
+
 - [Word for Mac彻底删除Endnote插件的方法 - 知乎](https://zhuanlan.zhihu.com/p/29321865)
+
 - Final Cut Pro 软件无法打开 mkv 格式文件（和 PR 一样）
+
+- 将网盘（如阿里云盘）的内容挂载到本地磁盘
+	- 将网盘挂载到 AList
+	- rclone（macOS、Linux）；RaiDrive（Windows、Linux）
 
 - [ ] 如何安装黑苹果

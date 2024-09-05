@@ -148,6 +148,8 @@ localhost  # 主机名
 
 - Cloudflare R2 需要先添加订阅（免费额度：10GB/月），建议使用 PayPal 方式，可以使用银联银行卡；添加 Bucket，之后可以添加文件或文件夹；管理 API Token
 
+- [ ] 如何白嫖域名（限制较多，不建议）：[2024最新免费域名教程，可托管CF，零失败率，解决所有坑点。\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1by411B7Ko/)
+
 - [ ] Cloudflare 代理域名 DNS 后，经常出现如下错误，如何解决（有时正常）
 
 ```bash

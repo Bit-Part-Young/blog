@@ -288,6 +288,13 @@ yj -yj < deploy.yml      # YAML 转 JSON
 yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 ```
 
+- [GitHub - multiprocessio/dsq: Commandline tool for running SQL queries against JSON, CSV, Excel, Parquet, and more.](https://github.com/multiprocessio/dsq)
+
+- [GitHub - jeroenjanssens/data-science-at-the-command-line: Data Science at the Command Line](https://github.com/jeroenjanssens/data-science-at-the-command-line)
+
+- [100+ Command Line Tools for Data Visualization / Alex Garcia - Observable](https://observablehq.com/@asg017/100-command-line-tools-for-data-viz)
+
+
 
 ---
 
@@ -336,10 +343,9 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 
 ---
 
-fzf 进阶用法
-
-- [fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
-- [Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
+- fzf 进阶用法
+	- [fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
+	- [Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
 
 ```bash
 # 搜索整个 apt package；回车安装
@@ -425,13 +431,13 @@ sudo apt install fastfetch
 
 # starship
 # 安装
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh  # Linux
 brew install starship  # macOS
 
 # 配置
 eval "$(starship init zsh)"   # zsh
 eval "$(starship init bash)"  # bash
-Invoke-Expression (&starship init powershell) # powershell
+Invoke-Expression (&starship init powershell) # PowerShell
 
 
 # primitive 安装与使用

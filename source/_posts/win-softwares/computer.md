@@ -120,6 +120,8 @@ cd /d c:
 
 ## 其他
 
+- [Windows特殊文件夹,用这么多年电脑,竟然不知道？\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ou4m1F7sD)
+
 - 在指定路径下打开 CMD、PowerShell
 	- 点击当前路径栏并输入 `cmd`
 	- 在当前路径中，在空白处按住 shift 键并点击鼠标右键，在菜单栏中选择 “在此处打开 Powershell 窗口”

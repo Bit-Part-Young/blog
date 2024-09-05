@@ -42,24 +42,6 @@ showjob() {
 alias showjob='showjob'
 ```
 
-终端快捷键
-
-```bash
-TAB                   # 命令补全
-Ctrl + C              # 中止命令
-Ctrl + D              # 键盘输入结束，可用于退出 Shell 窗口
-Crtl + A              # 光标移动到命令首
-Crtl + E              # 光标移动到命令尾
-Alt + B / Ctrl + ←    # 光标向左移动一个单词
-Alt + F / Ctrl + →    # 光标向右移动一个单词
-Crtl + W              # 删除光标左方的单词
-Alt + D               # 删除光标右方的单词
-Crtl + R              # 搜索之前输入过的命令
-Crtl + G              # 退出历史搜索模式
-Crtl + ↓              # 跳转至底部
-Crtl + L              # 将底部内容移至最上方
-```
-
 
 ---
 
@@ -97,6 +79,19 @@ Crtl + L              # 将底部内容移至最上方
 ---
 
 ## 使用
+
+```bash
+# 设置 root 密码
+sudo passwd root
+
+# 安装 ifconfig
+sudo apt install net-tools
+
+# 查看 ip 地址 Linux/macOS
+ifconfig
+```
+
+---
 
 ### 基本使用
 
@@ -262,6 +257,8 @@ ls -a                   # 会列出 . 和 ..
 ls -A                   # almost all，不列出 . 和 ..
 ls -1 | grep -v 'XXX*'  # ls 不列出特定的文件/目录
 
+cd -                    # 返回上一次的目录
+
 mkdir -p xxx/xxx        # 创建多级目录
 
 tail -n +2 file         # 从第二行开始输出内容
@@ -407,11 +404,6 @@ curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/instal
 curl parrot.live
 curl ascii.live/forrest
 curl ascii.live/parrot
-
-# 获取 IP 地址
-curl ip.sb
-curl ifconfig.co/json
-curl cip.cc
 ```
 
 
@@ -737,10 +729,20 @@ nl -n rz file   # 行号在自己栏位的最右方显示，且加 0 ；
 nl -b a file    # 表示不论是否为空行，也同样列出行号
 ```
 
-- 参数 `$_`：保存前一个命令的最后一个参数
+- type：判断命令的来源（内置命令，外部程序）；命令的类型：别名（alias），关键词（keyword），函数（function），内置命令（builtin）和文件（file）
 
 ```bash
-mkdir directory && cd $_
+# 参数
+-a    # 查看一个命令的所有定义
+-t    # 返回一个命令的类型
+```
+
+- 格式化输出日期：[Bash Date Format Options - Examples](https://www.tutorialkart.com/bash-shell-scripting/bash-date-format-options-examples/)
+
+```bash
+date                       # Sun Mar 12 00:32:26 CST 2023
+date +%Y%m%d               # 20240228
+date +"%Y/%m/%d %H:%M:%S"  # 2023/03/12 00:32:33
 ```
 
 - hostname：输出主机名
@@ -790,7 +792,6 @@ zcat                   # 查看 gz 压缩文件内容
 cal 2024               # 显示 2024 年的日历；或 cal 8 2024，精确到月
 
 env                    # 显示环境变量
-type                   # 显示命令的类型
 
 pstree                 # 将所有进程以树状图显示
 nmon                   # 监控系统资源（应该不常用）
@@ -912,6 +913,8 @@ prefix + "       #
 ---
 
 ### 其他
+
+- 命令提示符：环境变量 `PS1`；[note/Linux系统管理/PS1：配置命令提示符.md at main · zze326/note · GitHub](https://github.com/zze326/note/blob/main/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/PS1%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6.md)
 
 - ETA（Estimated Time of Arrival，预计到达时间）是 Linux 系统中一个常见的术语，用于估计正在运行的进程或任务剩余执行时间。
 
