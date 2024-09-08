@@ -31,6 +31,7 @@ password:
 
 [PRM 论文 issue](https://journals.aps.org/prmaterials/issues)
 
+Elsevier 无 RSS、APS 有 RSS（效果一般）
 
 
 ---

@@ -198,6 +198,7 @@ dav.jianguoyun.com/dav
 
 ---
 
+- [Notion工具资源集合](https://notion2go.com/)
 - Notion 开源替代品：[GitHub - docmost/docmost](https://github.com/docmost/docmost)
 - 备份（不好用，且复杂）：[GitHub - LoneKingCode/notion-backup](https://github.com/LoneKingCode/notion-backup)
 - 使用 Notion 的 Authorization：[Authorization](https://developers.notion.com/docs/authorization)
@@ -372,3 +373,7 @@ onlinelibrary.wiley.com
 - 优化 Windows 11 系统的脚本：[GitHub - Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat)
 
 - 查看磁盘占用：[WinDirStat - Windows Directory Statistics](https://windirstat.net/)
+
+- Windows 常见的 CLI 包管理器 GUI：[GitHub - marticliment/UniGetUI](https://github.com/marticliment/UniGetUI)
+
+- [Site Unreachable](https://github.com/the1812/Malware-Patch)

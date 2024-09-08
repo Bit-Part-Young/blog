@@ -184,8 +184,10 @@ python -c 'import matplotlib; print(matplotlib.matplotlib_fname())'
 - 在终端中使用 Python 模块：`python -m`，通常用于运行可以作为脚本执行的模块，如 `venv`、`pip` 等；[Python's many command-line utilities - Python Morsels](https://www.pythonmorsels.com/cli-tools/)
 
 ```bash
+# 创建虚拟环境
 python -m venv venv
 
+# 安装 package
 python -m pip install <package>
 ```
 
@@ -213,9 +215,14 @@ python --help-env
 
 ### 变量
 
-- 动态类型，不需要规定类型（可以通过 `变量名: 类型 = 内容` 来进行类型标注）
-- 变量命名规则：全大写一般表示常量
-- 临时变量：`_`
+- 动态类型，不需要规定类型（可通过 `变量名: 类型 = 内容` 来进行类型标注）
+
+```python
+x = 3
+a: int = 3     # 类型标注
+PI  = 3.14     # 全大写一般表示常量
+_ = 3          # 临时变量
+```
 
 
 ---
@@ -225,42 +232,108 @@ python --help-env
 #### 字符串
 
 ```python
-str1 + str2    # 字符串拼接
-str.upper()    # 转为大写
-str.lower()    # 转为小写
-str.title()    # 首字母大些
-str.lstrip()   # 删除左侧空白
-str.rstrip()   # 删除右侧空白
-str.strip()    # 去除字符串两端指定字符（默认是空格）
-str.split(c)   # 根据字符 c 拆分字符串得到列表，默认空白
+str = "hello, world"
+
+str1 + str2     # 字符串相加/拼接
+str * 3         # 字符串与数字相乘
+len(str)        # 字符串长度 
+
+
+## 方法
+# 分割
+str.split(sep)    # 按照给定分隔符进行分割得到列表，默认空白
+
+# 连接
+lst = ["1", "2", "3"]
+" ".join(lst)
+
+# 替换
+str.replace(old, new)
+
+# 大小写转换
+str.upper()     # 转为大写
+str.lower()     # 转为小写
+str.title()     # 首字母大写
+
+# 去除多余空格
+str.strip()     # 去除两端多余空格
+str.lstrip()    # 删除左侧空格
+str.rstrip()    # 删除右侧空格
+
+
+# 多行字符串 用一对 """ 或 ''' 生成
+str = """hello, world.
+it is a nice day."""
+
+# 代码太长，进行换行
+str = "hello, world." \
+      "it is a nice day."
+
+str(1)         # 转换为字符串
+repr(1)        # 同上
+int("1")       # 将字符串转换为整数
+float(1.0)     # 将字符串转换为浮点数
+
+
+# 格式化字符串
+# format() 方法
+"{} {} {}".format("a", "b", "c")
+# 用数字指定传入参数位置
+"{2} {1} {0}".format("a", "b", "c")
+# 指定传入参数名称
+"{x} {y}".format(y="a", x=1.0)
+# 可一起混用
+"{y} {0}".format("a", y=1)
+# 指定格式
+"{:.2f}".format(3.1415)
+
+
 ```
 
-
-- f-string
-
-- 格式化（在填入内容后面加冒号 f“…{ 表达式 : 格式 }…”）
-    - 宽度填充：:[ 填充字符 ][ 对齐方式 ][ 宽度 ]，< 左对齐，> 右对齐，^ 居中
-    - 字符截断：:[…].n，只显示字符串的前 n 个字符
-    - 数值符号：:+ 正数加正号、负数加负号，:- 原样，: （空格）正数加空格、负数加负号
-    - 数值精度：:[ 宽度 ][ 分隔符 (,_)].[ 精度 ]f，没有精度默认为 6
-    - 进制显示：x 小写十六进制，X 大写十六进制，o 八进制，b 二进制，加 # 显示前缀
+f-string：一种用于格式化输出字符串的简洁方式；基本语法为：在字符串前加上 `f` 或 `F`，然后在字符串中用 `{}` 包含变量或表达式
 
 ```python
-struct_id = f"ICET-Training-No-{i+1:05d}"
+a = 5
+b = 10
+result = f"{a} + {b}: {a + b}."
 
-# 大括号转义 需写两个 {{
-sh_cmd = f"grep -m 1 Loop log.lammps | awk '{{print $9}}'"
+# 转义大括号 需写两个 {{
+print(f"awk '{{print $0}}' file")
+
+
+## 格式化语法 f-string format() 通用
+# 宽度填充
+:[填充字符][对齐方式][宽度]  # < 左对齐，> 右对齐，^ 居中
+
+# 字符截断
+:.n                       # 只显示字符串的前 n 个字符
+
+# 数值符号
+:+                        # 正数加正号、负数加负号
+:-                        # 原样
+:                         # 正数加空格、负数加负号（: 跟的是空格）
+
+# 数值精度
+:[宽度].[精度]f            # 没有精度默认为 6
+
+:[填充字符][宽度]d          # 格式化整数
 ```
+
 
 ---
 
 #### 布尔类型
 
-- True 和 False，记住首字母大写
-- 用 bool(…) 来转换，如果是数字则非零都是 True，如果是字符串则非空都是 True
 - 运算
     - 可以使用 & | 来表示与和或（但并不会短路）
     - 一般使用 and or not 进行与 / 或 / 非运算（会短路）
+
+```python
+True
+False
+
+bool(...)    # 非零数字、非空字符串都是 True
+```
 
 
 ---
@@ -268,54 +341,86 @@ sh_cmd = f"grep -m 1 Loop log.lammps | awk '{{print $9}}'"
 #### 列表
 
 内部元素不要求同一类型
-- 索引可以是负数，负数即表示倒数，例 lst[-2] 表示倒数第二个元素
-- 切片（获取列表中的一部分值）
-    - lst[a:b]：从 lst[a] 到 lst[b-1] 的列表
-    - lst[:b]：从开头到 lst[b-1] 的列表
-    - lst[a:]：从 lst[a] 到结尾的列表
-    - lst[:]：表示整个列表（拷贝一份）
-    - lst[a:b:c]：从 lst[a] 到 lst[b-1] 每 c 个（即步长）取一个形成的列表
-    - c 可以是负数，此时需要 a > b 才能获取到值
-    - 有步长时若省略 a、b 记得不要省略冒号，例 lst[::-1] 表示列表倒序
+
+
+```python
+lst = []
+
+# 索引
+lst[1]            # 第二个元素
+lst[-2]           # 倒数第二个元素
+
+# 切片（获取列表中的一部分值）
+lst[1:4]
+lst[:4]
+lst[1:]
+lst[:]            # 整个列表（拷贝一份）
+lst[1:4:2]        # 
+lst[4:1:-2]       # 
+lst[::-1]         # 列表倒序
+
+
+lst[1] = item     # 修改元素
+
+lst.append()      # 列表末尾加入元素
 
 
 
-列表操作
 
-- 修改元素：直接通过索引 / 切片，然后等号赋值
+# 列表拼接
+lst3 = lst + lst2 # 直接相加，不改变原列表，得到新的列表
+lst.extend(lst2)  # 把一个列表接到当前列表后面
 
-- lst.append(…) 在列表末尾加入元素
+
+# 排序列表
+# 默认从小到大，传入 reverse=True 则从大到小
+lst.sort()      # 永久排序（即排序后赋值给当前列表）
+sorted(lst)      # 临时排序，返回排序好的新列表
+
+lst.reverse()   # 永久反转
+lst[::-1]       # 返回反转的列表
 
 
-列表拼接
 
-- 直接相加，不改变原列表，得到新的列表
-- lst.extend([…])，把一个列表接到当前列表后面
+# 统计
+len(lst)        # 列表长度
+sum(lst)        # 列表元素和；传入 start 参数，指定加和的起始值
+max(lst)        # 列表最大值
+min(lst)        # 列表最小值
 
-- 排序列表
-    - lst.sort() 永久排序（即排序后赋值给当前列表）
-    - sorted(lst) 临时排序，返回排序好的新列表
-    - 默认从小到大，如果传入 reverse=True 则从大到小
-- 反转列表
-    - lst.reverse() 永久反转（意义同上）
-    - lst[::-1] 返回反转的列表（利用前面说到的切片）
-- 统计操作
-    - len(lst) 得到列表的长度
-    - sum(lst) 得到列表的元素和（本质上是将 start 参数和每个元素依次相加）
-        - 可以传入 start 参数用来指定加和的起始值
-    - max(lst) 得到列表中的最大值
-    - min(lst) 得到列表中的最小值
+
+# 列表推导
+lst = [i**2 for i in range(10)]
+
+# 等价于
+lst = []
+for i in range(10):
+    lst.append(i**2)
+
+lst1 = [x*y for x in l1 for y in l2]
+
+lst2 = [... for ... in ... if ...]
+```
+
 
 
 ---
 
 #### 元组
 
-括号表示元组，可以看成元素不可变的列表，内部也可以包含不同类型的元素
+可以看成元素不可变的列表，内部也可以包含不同类型的元素
 
-当只有一个元素的时候要写成 (a,) 而不是 (a)（后者是单个值）
+```python
+t = (10, 1, 3, 5, 9)
 
-- 可以使用 tuple(…) 来将可迭代对象（列表、字符串等）转为元组
+t[1]          # 索引
+t[1:3]        # 切片
+
+t = (10,)     # 单个元素的元组
+t = (10)      # 单个值，类型为 int
+
+tuple(lst)   # 将列表转换为元组
+```
 
 
 
@@ -323,50 +428,74 @@ sh_cmd = f"grep -m 1 Loop log.lammps | awk '{{print $9}}'"
 
 #### 字典
 
-- 存储键值对，也是大括号括起来，不过逗号分隔的是键值对 {key: value,}
-- {} 是空字典而不是空集合
-- 通过 d[key] 来访问字典中 key 对应的值，可以读取、修改
-- 添加键值对可以直接通过 d[key] = value 来进行
-- 删除键值对可以直接 del d[key]
-- 通过 d[key] 访问值时如果不存在 key 这个键会抛出异常
-    - 通过 d.get(key) 来访问值时如果不存在则会返回 None
-    - 使用 d.get(key, default) 如果没有 key 时会返回 default 值
-- d.update(d2) 来用 d2 中的键值对更新 d
-
-
-
-
-参数的形式转换成字典
 ```python
-incar_tags = dict(
-    System="initial relax",
-    NSW=100,
-    POTIM=0.1,
-)
+d = {key: value,}    
+d = {}                # 空字典，而非空集合
+d = dict(key=value)   # dict() 函数
+d.keys()
+d.values()
+d.items()
 
-# output
-# {'System': 'initial relax', 'NSW': 100, 'POTIM': 0.1}
+# 访问键 key 对应的值；可读取、修改
+d[key]               # 若 key 不存在，会抛出异常
+d.get(key)           # 返回 None
+d.get(key, default)  # 返回 default 值
+
+d[key] = value       # 添加键值
+
+del d[key]           # 删除键值
+
+d.update(d2)         # 字典更新
+
+d2 = {key: value, **d}  # 在字典首插入键值对
+
+{k: v for k, v in d.items()}
+
+
+# 遍历所有键
+for key in d.keys():
+    ...
+
+# 遍历所有值
+for value in d.values():
+    ...
+
+# 遍历键值对；item 为一个元组
+for item in d.items():
+    ... 
+
+# 将 item 解包
+for key, value in d.items():
+    ... 
 ```
-
-在 dict 首插入键值对
-```python
-dict1 = {...}
-dict2 = {"key": value, **dict1}
-```
-
 
 
 ---
 
 #### 集合
 
-大括号括起来，会自动去重，可用 set(…) 来将可迭代对象转为元组
+无序序列，因此会自动去重；集合放入的元素只能是不可变的对象
 
-- 集合中不能包含列表等不可 hash 化的元素
+```python
+s = {1, 2, 3, 1}
 
-- 运算
-    - s1 & s2、s1 | s2、s1 - s2 交集、并集、差集
-    - s1 ^ s2 对称差集
+s = set()       # 空集合
+s = set(lst)    # 将列表转为集合
+
+s1 & s2         # 交集  s1.intersection(s2)
+s1 | s2         # 并集  s1.union(s2)
+s1 - s2         # 差集  s1.difference(s2)
+s1 ^ s2         # 对称差集  s1.symmetric_difference(s2)
+s2 <= s1        # 包含关系 s2.issubset(s1)
+
+s.add(5)          # 添加单个元素；若为已有元素，集合不变
+s.update([5, 6])  # 添加多个元素
+s.remove(1)       # 移除单个元素；元素不存在会报错
+s.discard(10)     # 不会报错
+s.pop()           # 弹出元素
+```
+
+
 
 ---
 
@@ -374,9 +503,13 @@ dict2 = {"key": value, **dict1}
 
 #### 布尔表达式
 
-- 判断元素是否在列表中
-    - value in lst：如果在则值为 True
-    - value not in lst：如果在则为 False（判断是否不在）
+```python
+# 判断元素是否在列表中
+value in lst：# 如果在则值为 True
+
+value not in lst：# 如果在则为 False
+```
+
 
 ---
 
@@ -392,30 +525,28 @@ dict2 = {"key": value, **dict1}
 
 - python 中的 for 循环并不像 c 中是指定一个变量的变化方式，而是从列表 / 元组 / 迭代器等可迭代对象中遍历值
 
-- 可以使用 range 来生成一串数字用来循环
-    - range(a, b) 生成从 a 到 b-1 的连续整数
-    - range(a, b, c) 以 c 为步长生成
-    - range 得到的并不是列表，如果要用其生成列表要使用 list(range(…))
+- `range()` 得到的并不是列表，如果要用其生成列表要使用 `list(range(...))`
+
+```python
+# 使用 range 来生成一串数字用来循环
+for i in range(10):
+    pass
+
+for i in range(1, 10):
+    pass
+
+for i in range(1, 10, 2):
+    pass
+
+lst = list(range(10))      # 生成列表
+```
 
 ---
 
 #### 遍历字典
 
 ```python
-# 遍历所有键
-for key in d.keys():
-    ...
 
-# 遍历所有值
-for value in d.values():
-    ...
-
-# 遍历键值对
-for item in d.items():
-    ... # item 为一个元组
-
-for key, value in d.items():
-    ... # 将 item 解包
 
 ```
 
@@ -456,38 +587,20 @@ for a, b in lst:
 - enumerate 计数
     - 可以指定初始值
 - zip 同时循环多个可迭代对象
-    - 循环次数为最短的对象的长度
 
 ```python
-for i, value in enumerate(lst):
-    ... # i 依次为 0，1，2，……
+for i, value in enumerate(lst, start=...):
+    ...
 
-for i, value in enumerate(lst, start=1):
-    ... # i 依次为 1，2，3，……
 
+# a 在 lst1 中循环，b 在 lst2 中循环
+# 循环次数为最短的对象的长度
 for a, b in zip(lst1, lst2):
-    ... # a 在 lst1 中循环
-        # b 在 lst2 中循环
-
+    ... 
 ```
 
 
 ---
-
-#### 列表推导
-
-```python
-lst = []
-for i in range(1, 10):
-    lst.append(i**2)
-## 等价于
-lst = [i**2 for i in range(1, 10)]
-
-lst1 = [x*y for x in l1 for y in l2]
-
-lst2 = [... for ... in ... if ...]
-
-```
 
 #### 生成元组/字典
 
@@ -507,8 +620,6 @@ tuple(i**2 for i in range(1, 10))
 ```
 
 
-
-
 ---
 
 ### 函数
@@ -526,17 +637,16 @@ tuple(i**2 for i in range(1, 10))
 函数定义
 
 ```python
-def func_name(arg1, arg2):
+def func(arg1, arg2):
     ...
 
-def func_name(arg1, arg2):
+def func(arg1, arg2):
     ...
     return ...
 
-def func_name(arg1, arg2):
+def func(arg1, arg2):
     ...
     return ..., ...
-
 ```
 
 

@@ -360,9 +360,9 @@ sinfo --partition=64c512g
 
 - manager 为此作业调度系统。
 - 常用命令：`qsub` - 提交任务；`qdel` - 取消任务
-- `submit` 命令是孔老师写的一个 PBS 任务提交脚本。
-- `-nc` 参数含义：不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**。
-- 提交任务命令会自动生成对应的 `PBS.batch` 脚本；当提交的任务出错时，修改 `PBS.batch` 脚本内容，之后可使用 `qsub PBS.batch` 命令提交任务。
+- `submit` 命令是孔老师写的一个 PBS 任务提交脚本
+- `-nc` 参数含义：不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**
+- 提交任务命令会自动生成对应的 `PBS.batch` 脚本；当提交的任务出错时，修改 `PBS.batch` 脚本内容，之后可使用 `qsub PBS.batch` 命令提交任务
 
 ```bash
 # VASP 任务提交命令
@@ -391,18 +391,21 @@ alias q='qstat -u xxx'
 alias qq='pestat'
 alias qa='qstat -a'
 alias qn='qstat -u xxx|wc -l|awk '\\''{if ($1>0) print "Number of jobs by xxx: " $1-5; else print "Number of jobs by xxx: 0"}'\\'';qstat -a|wc -l|awk '\\''{print "Number of jobs by all: " $1-5}'\\'''
-```
 
-- `qstat` - 查看所有任务的状态；
-- `q` - 查看自己任务的状态；
-- `qa` - 查看所有任务的状态（比 qstat 显示的信息更多一些）；
-- `qq` - 查看计算节点的状态（`excl` 正在运行；`free` 空闲；`down` 出现故障）；
-- `run` - 查看自己任务的结果输出路径和信息；
-- `qn` - 查看自己提交任务的数量和 manager 目前已提交的任务总数；
-- `ssh node02` - 连接计算节点；任务到了截止时间后程序会终止，只会输出 `error` 和 `out` 文件，可以通过 `ssh node` 节点到计算该任务的节点中去，在 `scratch` 目录中可以找到该任务计算的结果；
-- 计算时间：
-    - `Elap Time` 为实际时间（小时: 分）；`Req'd Time` 为截止计算时间（240 小时）；
-    - `Time Use` 为实际时间 \* 节点数。
+# q 相关命令
+qstat       # 查看所有任务的状态
+qa          # 查看所有任务的状态（信息比 qstat 详细）
+q           # 查看自己任务的状态
+qq          # 查看计算节点的状态（excl 正在运行；free 空闲；down 出现故障）
+run         # 查看自己任务的结果输出路径和信息
+qn          # 查看自己提交任务的数量和 manager 目前已提交的任务总数
+ssh node02  # 连接计算节点；任务到了截止时间后程序会终止，只会输出 error 和 out 文件，可通过 ssh node 节点到计算该任务的节点中去，在 scratch 目录中可以找到该任务计算的结果
+
+# 计算时间
+Elap Time   # 实际时间（小时: 分）
+Req'd Time  # 截止计算时间（240 小时）
+Time Use    # 实际时间 * 节点数
+```
 
 
 ---

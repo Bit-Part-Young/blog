@@ -110,6 +110,7 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 - [链接助手](https://greasyfork.org/zh-CN/scripts/422773)：文本转链接；百度网盘密码自动填写
 - AC baidu 重定向：去广告，优化排列等。
 - CSDN 广告过滤
+- [新标签页打开链接](https://greasyfork.org/zh-CN/scripts/429714)
 
 - 知乎相关：
 	- [知乎修改器🤜持续更新🤛努力实现功能最全的知乎配置插件](https://greasyfork.org/zh-CN/scripts/423404)

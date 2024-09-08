@@ -25,21 +25,20 @@ WIP...
 
 Bash 脚本，用来生成 Markdown 表格：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
 
-命令历史文件：`~/.bash_history`，`~/.zsh_history`
+Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
 
 
 在线试用各种 Linux 发行版，它会分配一个虚拟机，浏览器里连接桌面：[Test Linux distros online - DistroSea](https://distrosea.com/)
 
 
 ```bash
-# 在 .bashrc .zshrc 中 创建与函数功能等同的 alias
-cha='WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime|BatchHost|Partition'
+# 在 .bashrc 中创建与函数功能等同的 alias
 
-showjob() {
-    scontrol show job "$1" | grep -E "$cha"
+fn() {
+    commands
 }
 
-alias showjob='showjob'
+alias fn='fn'
 ```
 
 
@@ -80,32 +79,9 @@ alias showjob='showjob'
 
 ## 使用
 
-```bash
-# 设置 root 密码
-sudo passwd root
-
-# 安装 ifconfig
-sudo apt install net-tools
-
-# 查看 ip 地址 Linux/macOS
-ifconfig
-```
-
----
-
 ### 基本使用
 
-用户切换：
-- 切换到用户：`su username`
-- 切换到 root：
-	- `sudo -i` 或 `sudo su` 只需输入当前用户密码
-	- `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，需通过 `sudo passwd root` 给 root 创建密码
-
----
-
-#### 系统信息查看
-
-- 系统信息
+系统信息查看
 
 ```bash
 lsb_release -a        # 显示 LSB 版本信息
@@ -118,34 +94,29 @@ cat /etc/lsb-release
 cat /etc/issue
 ```
 
+---
 
-Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
-
-- 资源查看
+系统资源查看
 
 ```bash
-lscpu  # 查看 CPU 信息
-lsmem  # 查看内存信息
-lspci  # 查看 PCI 设备信息
+lscpu          # 查看 CPU 信息
+lsmem          # 查看内存信息
+lspci          # 查看 PCI 设备信息
 
-intel_gpu_top  # intel 集显
+intel_gpu_top  # Intel 集显
 
-free -gh  # 以 GB 单位显示内存使用情况
-vmstat -S M  # 以 MB 单位显示虚拟内存使用情况
-htop  # 显示系统资源；增强版 top
+free -gh       # 以 GB 单位显示内存使用情况
+vmstat -S M    # 以 MB 单位显示虚拟内存使用情况
+htop           # 显示系统资源；增强版 top
 ```
 
 ---
 
-**SSH 配置**
-
-- 用户配置：`~/.ssh/config`
-- 系统配置：`/etc/ssh/ssh_config`
-
+图片查看：`eog` 或 `display`
 
 ---
 
-**Linux 系统文件颜色**
+Linux 系统文件颜色
 
 - 白色：一般性文件，如文本文件，配置文件，代码文件等
 - 蓝色：目录
@@ -153,61 +124,86 @@ htop  # 显示系统资源；增强版 top
 - 红色：压缩文件
 - 浅蓝色：链接文件
 
+---
+
+登录 Shell 与非登录 Shell
+
+- 登录 Shell：物理登录到系统上（如在登录界面输入用户名和密码）或远程登录（如 SSH）
+- 非登录 Shell：打开新终端窗口或启动新 Shell（如输入 `bash` 命令）
 
 ---
 
-图片查看：`eog` 或 `display`
+SSH 配置
 
-
----
-
-登录 shell 与非登录 shell
-
-- 登录 shell：物理登录到系统上（如在登录界面输入用户名和密码）或远程登录（如 SSH）
-- 非登录 shell：打开新终端窗口或启动新 shell（如输入 `bash` 命令）
-
+- 用户配置：`~/.ssh/config`
+- 系统配置：`/etc/ssh/ssh_config`
 
 ---
 
-查看环境变量（`PATH`）
+用户切换
+
+- 切换到用户：`su username`
+- 切换到 root：
+	- `sudo -i` 或 `sudo su` 只需输入当前用户密码
+	- `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，需通过 `sudo passwd root` 给 root 创建密码
+
+---
 
 ```bash
-echo $PATH
+# 设置 root 密码
+sudo passwd root
+
+# 安装 ifconfig
+sudo apt install net-tools
+
+# 查看 IP 地址 Linux/macOS
+ifconfig
 ```
 
-添加环境变量
+
+---
+
+### Session
+
+用户每次使用 Shell，都会开启一个与 Shell 的 Session（对话）。
+
+Session 有两种类型：登录 Session 和非登录 Session。
+
+---
+
+登录 Session 是用户登录系统以后，系统为用户开启的原始 Session，通常需要用户输入用户名和密码进行登录。
+
+登录 Session 一般进行整个系统环境的初始化，启动的初始化脚本依次如下：
+
+- `/etc/profile`：所有用户的全局配置脚本
+- `/etc/profile.d` 目录里面所有 `.sh` 文件
+- `~/.bash_profile`、`~/.bash_login`、`~/.profile`：用户的个人配置脚本（执行顺序同书写顺序）
+
+Linux 发行版更新的时候，会更新 `/etc` 里面的文件，比如 `/etc/profile`，因此不要直接修改这个文件。如果想修改所有用户的登陆环境，就在 `/etc/profile.d` 目录里面新建 `.sh` 脚本。
+
+修改个人的登录环境，一般是写在 `~/.bash_profile` 里面。
 
 ```bash
-# 方式 1
-export PATH=$PATH:$HOME/bin
-
-# 方式 2
-export PATH=$HOME/bin:$PATH
+bash --login      # 强制执行登录 Session 会执行的脚本
+bash --noprofile  # 跳过上面这些 Profile 脚本
 ```
 
-
 ---
 
-### 配置文件
+非登录 Session 是用户进入系统以后，手动新建的 Session，这时不会进行环境初始化。如执行 `bash` 命令，就会新建一个非登录 Session。
 
-在 Linux 系统中，开机或用户登录时会执行的配置文件（系统级别 > 用户级别）。
+非登录 Session 的初始化脚本依次如下：
 
----
+- `/etc/bash.bashrc`：对全体用户有效
+- `~/.bashrc`：仅对当前用户有效
 
-- 系统级别
+`~/.bashrc` 通常是最重要的脚本。非登录 Session 默认会执行它，而登录 Session 一般也会通过调用执行它。每次新建一个 Bash 窗口，就相当于新建一个非登录 Session，所以 `~/.bashrc` 每次都会执行。注意，执行脚本相当于新建一个非互动的 Bash 环境，但是这种情况不会调用 `~/.bashrc`。
 
-1. `/etc/profile`：系统级别全局配置文件，影响所有用户；在登录时执行。
-2. `/etc/bash.bashrc`：针对 Bash shell 的全局配置。
+```bash
+bash --norc    # 禁止在非登录 Session 执行 ~/.bashrc 脚本
 
-
----
-
-- 用户级别（用户登录时执行）
-
-当创建新用户时，默认的 `~/.bashrc`，`~/.profile` 等配置文件从 `/etc/skel` 目录复制而来。
-
-1. `~/.bash_profile` 或 `~/.profile` 或 `~/.bash_login`：用户级别配置文件，仅影响当前用户；在用户登录时执行，用于设置个人的环境变量和启动程序；优先级：`~/.bash_profile` > `~/.profile` 或 `~/.bash_login`
-2. `~/.bashrc`：用户级别 Bash shell 配置文件；在 Bash shell 中执行，用于设置 shell 选项、别名和环境变量。
+bash --rcfile testrc  # 指定另一个脚本代替 .bashrc
+```
 
 
 ---
@@ -238,14 +234,18 @@ mkdir       # 创建目录
 mv          # 移动/重命名
 cp          # 复制
 rm          # 删除
->  >>       # 标准输出流重定向
-<           # 标准输入流重定向
-2>  2>>     # 标准错误流重定向
-|           # 管道符
 rmdir       # 删除空目录
 diff        # 查看文件差异
 which       # 查看可执行命令所在路径
 cut         # 剪切命令
+clear       # 清屏
+reset       # 重置终端
+dirname
+basename
+|           # 管道符
+>  >>       # 标准输出流重定向
+<           # 标准输入流重定向
+2>  2>>     # 标准错误流重定向
 ```
 
 ```bash
@@ -281,42 +281,18 @@ cut -d, -f3 file  # 从每一行文本中提取以逗号分隔的第三个字段
 
 ```bash
 Basic:
-      more
       chmod
       chown
-      wget
       top
-      history
       uname
-      hostname
       
 Advanced:
-      seq
       scp
       zip
       time
-      unzip
       nohup
 ```
 
-
-
-```bash
-!!                 # 执行上一条命令
-clear # 这个命令并非真正清空，只是把内容全部向上滚，让它们消失在视野中
-reset # 这个命令是真正的清空
-```
-
-
-dirname basename
-
-
-
-```bash
-history  # 返回所有的执行命令及其序号
-!! 执行最后一次的命令
-!n  # 执行第 n 个命令
-```
 
 
 ---
@@ -339,23 +315,20 @@ history  # 返回所有的执行命令及其序号
 -t             # 显示归档文件中的内容，而非提取文件
 -C             # 指定路径
 --exclude      # 排除指定文件或目录
---remove-files # 删除原始文件，谨慎使用
 
 
 # 示例
 tar -czvf file.tar.gz file  # 压缩
-
 # 指定解压缩路径
-tar -xzvf archive.tar.gz -C /path/destination
-
+tar -xzvf archive.tar.gz -C DEST
 # 排除指定文件
-tar -czvf archive.tar.gz --exclude=exclude_file file1 file2
+tar -czvf archive.tar.gz --exclude=exclude_file file
 
 gzip -d all.gz  # 解压 .gz 文件
 gunzip all.gz   # 同上
 
-zip file.zip file
-zip -r xxx.zip directory  # 压缩目录
+zip file.zip file         # 压缩
+zip -r xxx.zip directory  # 递归压缩目录
 unzip all.zip             # 解压 .zip 文件
 
 zcat     # 查看 .gz 文件
@@ -880,49 +853,53 @@ prefix + "       #
 
 ---
 
-### 文件系统
+### 文件系统层次结构
 
->[Linux 系统目录结构 | 菜鸟教程](https://www.runoob.com/linux/linux-system-contents.html)
+- [Unix filesystem - Wikipedia](https://en.wikipedia.org/wiki/Unix_filesystem#Conventional_directory_layout)
+- [Filesystem Hierarchy Standard - Wikipedia](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
+- [Linux 系统目录结构 - 菜鸟教程](https://www.runoob.com/linux/linux-system-contents.html)
+
+
+![](tmp.svg)
 
 
 ![ft.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202312311529652.png)
 
-| 文件夹                     | 描述                                                         |
-|:--------------------------: | :------------------------------------------------------------: |
-| `/bin`                     | 包含用户的基本二进制程序（如 ls, cat 等）。对所有用户可用。  |
-| `/sbin`                    | 存放系统管理和维护的必需二进制程序，如启动和修复工具。只有 root 或需要特定权限的用户可用。 |
-| `/etc`                     | 包含系统配置文件。这些文件由系统管理员编辑，控制系统的行为。 |
-| `/lib`、`/lib32`、`/lib64` | 存放系统库文件和内核模块。`/lib32` 和 `/lib64` 分别用于 32 位和 64 位库。 |
-| `/usr`                     | 包含用户程序和数据。类似于 Windows 下的 Program Files，包括 `/usr/bin`、`/usr/sbin`、`/usr/local` 等子目录。 |
-| `/home`                    | 用户的个人文件夹。每个用户都有一个对应的目录。               |
-| `/root`                    | root 用户的家目录。                                          |
-| `/var`                     | 存放经常变化的文件，如日志、数据库等。                       |
-| `/tmp`                     | 用于存放临时文件。系统重启时，这些文件可能会被删除。         |
-| `/boot`                    | 包含启动 Linux 系统所需的文件，如内核、引导加载程序等。      |
-| `/dev`                     | 包含设备文件，这些文件代表系统中的硬件设备。                 |
-| `/proc`                    | 虚拟文件系统，提供对内核和进程信息的访问。                   |
-| `/sys`                     | 另一个虚拟文件系统，用于与内核交互。                         |
-| `/media`                   | 用于挂载可移除媒体，如 CD-ROMs、USB 驱动器等。               |
-| `/mnt`                     | 通常用于临时挂载文件系统。                                   |
-| `/opt`                     | 用于存放可选的应用软件包和数据文件。                         |
-| `/run`                     | 用于存储系统运行时的数据，如套接字和进程 ID，通常在启动时创建。 |
-| `/srv`                     | 存放服务相关的数据，如 FTP 或 Web 服务器的数据。             |
-| `/lost+found`               | 当系统意外崩溃或机器非正常关机时，文件系统检查 (fsck) 的恢复文件存放地。 |
-| `/snap`                    | 用于存放 Snappy 软件包管理器的应用程序和数据。               |
+```bash
+/bin              # 基本二进制程序；对所有用户可用
+/sbin             # 系统二进制程序
+/etc              # 配置文件
+/lib              # 库文件
+/usr              # 包含用户程序和数据
+  /usr/bin          # 用户二进制文件
+  /usr/sbin         # 
+  /usr/lib          # 
+  /usr/local        # 
+/home             # 用户家目录
+/root             # root 用户家目录
+/var              # 变量/化文件
+  /var/cache        # 应用程序缓存数据
+  /var/log          # 日志文件
+/tmp              # 临时文件
+/boot             # 引导启动文件
+/proc             # 虚拟文件系统，以文件形式提供对内核和进程信息
+/mnt              # 临时挂载文件系统
+/opt              # 可选应用软件包
+```
 
 ---
 
 ### 其他
 
-- 命令提示符：环境变量 `PS1`；[note/Linux系统管理/PS1：配置命令提示符.md at main · zze326/note · GitHub](https://github.com/zze326/note/blob/main/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/PS1%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6.md)
+- 命令提示符：环境变量 `PS1`
+	- [note/Linux系统管理/PS1：配置命令提示符.md at main · zze326/note · GitHub](https://github.com/zze326/note/blob/main/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/PS1%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6.md)；
+	- [命令提示符 - Bash 脚本教程 - 网道](https://wangdoc.com/bash/prompt)
 
 - ETA（Estimated Time of Arrival，预计到达时间）是 Linux 系统中一个常见的术语，用于估计正在运行的进程或任务剩余执行时间。
 
 - 终端 Tab 补全忽略大小写：[linux下，按tab补全时，忽略大小写的配置\_linux命令行终端设置tab补全文件名或路径不区分大小写-CSDN博客](https://blog.csdn.net/lianshaohua/article/details/108710098)
 
-
 alias 使用参数：以定义函数的方式进行：[https://forsworns.github.io/zh/blogs/20190919/](https://forsworns.github.io/zh/blogs/20190919/)
-
 ```bash
 alias ipynb2md="py2md(){jupyter nbconvert --to markdown $1}; py2md"
 ```
@@ -933,31 +910,8 @@ zsh 与 bash 之间的一些区别：
 - zsh 数组索引从 1 开始， bash 从 0 开始
 
 
-
-```bash
-if [[ "$kind" == "app" ]]; then
-    git status &>/dev/null && echo "error: your current working directory is inside a git repository" >&2 && exit 1
-fi
-```
-
-
->&2 表示将标准输出重定向到标准错误输出（>&重定向操作符）（1 表示标准输出，2 表示标准错误）
-
-`&>`：重定向操作符，将标准输出和标准错误都重定向到同一个文件或设备中
-
-`/dev/null`：空设备文件，将所有的输出都丢弃掉
-
-
 一般来说，头文件通常位于 **`/usr/include`** 或 **`/usr/local/include`** 目录中，而库文件通常位于 **`/usr/lib`** 或 **`/usr/local/lib`** 目录中。请注意，库文件可能会有不同的后缀，例如 `.so` 动态库 `.a` 静态库。
 
 
 crysinfo 程序（孔老师程序）
 6a 选项 查看 Assign Wyckoff letter（等同位点）
-
-
-configure、 make、 make install 相关区别：[configure、 make、 make install 背后的原理(翻译) - 知乎](https://zhuanlan.zhihu.com/p/77813702)
-
-linux configure `--prefix` 的作用是：编译的时候用来指定程序存放路径
-
-
->[linux configure 的 --prefix 参数的作用-CSDN博客](https://blog.csdn.net/xiaojin21cen/article/details/90600284)

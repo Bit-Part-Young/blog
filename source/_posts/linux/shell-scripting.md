@@ -73,7 +73,6 @@ Crtl + R              # 搜索之前输入过的命令
 Crtl + G              # 退出历史搜索模式
 Crtl + ↓              # 跳转至底部
 Crtl + L              # 将底部内容移至最上方
-
 ```
 
 
@@ -81,7 +80,7 @@ Crtl + L              # 将底部内容移至最上方
 
 ### 参考资料
 
-- [Bash 脚本教程](https://wangdoc.com/bash/)
+- [Bash 脚本教程 - 网道](https://wangdoc.com/bash/)
 - 速查表：[Bash 备忘清单 & bash cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/bash.html)
 - [shell脚本基础 - cherry](https://jaav.com.cn/posts/1b2.html)
 - shell 脚本案例：[GitHub - jacobproject/Shell\_Scripts: Shell Scripts examples](https://github.com/jacobproject/Shell_Scripts)
@@ -147,9 +146,8 @@ shellcheck [option] script.sh
 - 运行脚本
 
 ```bash
-# 方式 1 查看当前运行的 Shell：echo $0
-bash script.sh
-sh script.sh
+# 方式 1
+bash script.sh      # 或 sh script.sh
 
 # 方式 2 赋予可执行权限
 chmod +x script.sh  # Linux 文件颜色变绿；macOS，变红
@@ -256,6 +254,9 @@ env            # 显示所有环境变量；或 printenv
 printenv PATH  # 查看单个环境变量的值  
 echo $PATH
 
+export PATH=$PATH:$HOME/bin  # 方式 1
+export PATH=$HOME/bin:$PATH  # 方式 2
+
 # 常见环境变量
 HOME           # 用户主目录
 HOST           # 当前主机名称
@@ -340,7 +341,7 @@ ${var:N:M}      # 从第 N 个位置开始，截取 M 个字符
 ${var/a/b}      # 把变量中的第一个 a 替换成 b
 ${var//a/b}     # 把变量中的所有 a 替换成 b
 
-# 生成字符串列表
+# 生成字符串列表、序列
 echo beg{i,a,u}n  # 输出 begin began begun
 echo {0..5}       # 等价于 seq 0 5
 echo {00..8..2}   # 00 02 04 06 08
@@ -453,9 +454,13 @@ ${array[@]:position:length}
 array1=(xxx); array2=(xxx)
 array_merge=(${array1[*]} ${array2[*]})
 
+```
 
-## 关联数组
-# 使用字符串而不是整数作为数组索引；可等效为字典
+---
+
+关联数组：使用字符串而不是整数作为数组索引；可等效为字典
+
+```bash
 declare -A sounds      # 创建
 
 sounds[dog]="bark"     # 添加键值对
@@ -480,41 +485,41 @@ done
 # 语法
 # then 可以另起一行，删除分号
 if condtion1; then
-    command
+    commands
 elif condition2; then
-    command
+    commands
 fi
 
 # 写成一行
-if condition; then command; fi
+if condition; then commands; fi
 ```
 
 ---
 
-`if` 结构的判断条件写法：`[[]]` 是扩展条件判断，相比 `[]`，支持更多的操作符（如正则表达式匹配和逻辑操作符等）
+`if` 结构的判断条件写法：`[[]]` 是扩展条件判断，相比 `[]`，支持更多的操作符（如正则表达式匹配）
 
 ```bash
-test expression   # 写法一
-[ expression ]    # 写法二
-[[ expression ]]  # 写法三
+test expression      # 写法一
+[ expression ]       # 写法二
+[[ expression ]]     # 写法三
 
 
 # 字符串条件
-[[ -z STR ]]      # 空字符串
-[[ -n STR ]]      # 非空字符串 
-[[ STR1 == STR2 ]]  # 相等 
-[[ STR1 = STR2 ]]   # 相等（同上）
-[[ STR1 =~ STR2 ]]  # 正则表达式
+[[ -z STR ]]         # 空字符串
+[[ -n STR ]]         # 非空字符串 
+[[ STR1 == STR2 ]]   # 相等 
+[[ STR1 = STR2 ]]    # 相等（同上）
+[[ STR1 =~ STR2 ]]   # 正则表达式
 
 # 文件条件
-[[ -f FILE ]]     # 文件
-[[ -d FILE ]]     # 目录
-[[ -e FILE ]]     # 文件/目录是否存在
+[[ -f FILE ]]        # 文件
+[[ -d FILE ]]        # 目录
+[[ -e FILE ]]        # 文件/目录是否存在
 
 # 整数条件
-[[ NUM1 -eq NUM2 ]]     # 等于
-[[ NUM1 -lt NUM2 ]]     # 小于
-[[ NUM1 -gt NUM2 ]]     # 大于
+[[ NUM1 -eq NUM2 ]]  # 等于
+[[ NUM1 -lt NUM2 ]]  # 小于
+[[ NUM1 -gt NUM2 ]]  # 大于
 ```
 
 
@@ -528,12 +533,12 @@ test expression   # 写法一
 # 语法
 # ;; 可以另起一行
 #  ) 前后面的内容可以在一行
-# *)：匹配任意输入，通常作为`case`结构的最后一个模式
+# *)：匹配任意输入，通常作为 case 结构的最后一个模式
 case expression in
   pattern1)
-    command ;;
+    commands ;;
   pattern2)
-    command ;;
+    commands ;;
   ...
 esac
 ```
@@ -618,15 +623,15 @@ done
 # 函数定义语法
 # 第一种
 fn() {
-    command
+    commands
 }
 
 # 第二种
 function fn() {
-    command
+    commands
 }
 
-fn
+fn  # 函数调用
 ```
 
 
@@ -717,7 +722,7 @@ printf '==%.0s' {1..20}; printf '\n'
 
 # 定义函数
 repeat(){
-	for i in {1..90}; do echo -n "$1"; done
+	for i in {1..20}; do echo -n "$1"; done
 }
 
 repeat '-'; echo

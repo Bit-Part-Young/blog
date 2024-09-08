@@ -69,8 +69,6 @@ password:
 - [gallery-template · GitHub Topics · GitHub](https://github.com/topics/gallery-template)
 
 - 照片和视频自托管：[GitHub - immich-app/immich: High performance self-hosted photo and video management solution.](https://github.com/immich-app/immich)
-	- 校园网下，需连接网线，移动端才能成功登录使用
-	- [ ] 如何 host ？
 
 ```bash
 # 启动 Docker 容器
@@ -81,6 +79,11 @@ docker compose pull && docker compose up -d
 http://machine_ip_address:2283      # 网页端登录
 http://machine_ip_address:2283/api  # 移动端登录
 ```
+
+- [GitHub - photoprism/photoprism: AI-Powered Photos App for the Decentralized Web 🌈💎✨](https://github.com/photoprism/photoprism)
+
+- [GitHub - ente-io/ente: Fully open source, End to End Encrypted alternative to Google Photos and Apple Photos](https://github.com/ente-io/ente)
+
 
 
 ---
@@ -212,6 +215,8 @@ mdbook serve --open
 - Obsidian 数字花园博客设置教程：[使用Obsidian 打造个人数字花园完整教程](https://mp.weixin.qq.com/s/pvlfp59XjqftyJVPbEA4tA)
 
 - 静态网页 Julia 版：[GitHub - tlienart/Franklin.jl: (yet another) static site generator. Simple, customisable, fast, maths with KaTeX, code evaluation, optional pre-rendering, in Julia.](https://github.com/tlienart/Franklin.jl)
+
+- [GitHub - tangly1024/NotionNext: 使用 NextJS + Notion API 实现的，支持多种部署方案的静态博客，无需服务器、零门槛搭建网站，为Notion和所有创作者设计](https://github.com/tangly1024/NotionNext)
 
 - [ ] 如何用 docker compose 搭建 WordPress 博客系统
 

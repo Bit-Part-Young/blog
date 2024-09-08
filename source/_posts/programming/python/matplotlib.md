@@ -153,24 +153,30 @@ plt.show()
 
 - 常用绘图形式
 
+- [ ] 散点图绘制时，无法直接使每个数据点对应不同的 marker
+
 ```python
 # 点线图
 ax.plot(x, y, ...)
+
+# 参数
+marker      # marker style
 
 
 # 散点图
 ax.scatter(x, y, s, c, cmap, ...)
 
-s               # marker size；float 或 array-like
-c               # marker colors；array-like 或 color list；该参数可结合 colorbar 使用
-cmap            # colormap
+# 参数
+s           # marker size；float 或 array-like
+c           # marker colors；array-like 或 color list；该参数可结合 colorbar 使用
+cmap        # colormap
 
 
 # 直方图
 ax.hist(x, bins, histtype, edgecolor, ...)
 
-bins            # 将 x 范围等分成 bins 份
-edgecolor       # 边缘颜色
+bins        # 将 x 范围等分成 bins 份
+edgecolor   # 边缘颜色
 
 
 # 水平线

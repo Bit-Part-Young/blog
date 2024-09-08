@@ -29,6 +29,7 @@ password:
 - Vuepress 框架主题：
 	- [reco 1.x 版本](http://v1.vuepress-reco.recoluan.com/)
 	- [reco 2.x 版本](https://github.com/vuepress-reco/vuepress-theme-reco)（功能偏冗余）
+	- [vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope)
 
 - 参考资料：
 	- [GitHub - vuepress/awesome-vuepress: 🎉 A curated list of awesome things related to VuePress](https://github.com/vuepress/awesome-vuepress)

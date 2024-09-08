@@ -1028,7 +1028,6 @@ symmetry_dataset['equivalent_atoms']
 WIP...
 
 
-
 ---
 
 ### pymatgen.phonon
@@ -1036,12 +1035,13 @@ WIP...
 >[https://pymatgen.org/pymatgen.phonon.html](https://pymatgen.org/pymatgen.phonon.html)
 
 
-
 ---
 
 ### API
 
 [新版和老版Materials Project API使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/10/b438dad131c8.html)
+
+>[利用Materials Project的API下载结构文件](https://zhuanlan.zhihu.com/p/618452536)
 
 - 调用 MP API 获取 MP 数据
 - pymatgen 新 API：[Materials Project - API](https://materialsproject.org/api)、[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
@@ -1055,23 +1055,39 @@ pip install -U mp_api
 - 使用
 
 ```python
-# 新 API
+# 新 API 模块导入
 from mp_api.client import MPRester
 
 with MPRester("api-key") as mpr:
     ...
 
-# 查看可获取内容的字段，这些字段可用做筛选 query data 的参数
+# 查看可获取内容的字段，可用做筛选 query data 的参数
 mpr.summary.available_fields
+
+
+mpr.materials.summary.search(...)
+# 参数
+material_ids=["mp-149"]  # 根据材料 ID
+chemsys="Si-O",          # 仅含 Si O 两种元素的材料
+elements=["Si", "O"]     # 至少含 Si O 两种元素的材料
+fields=["band_gap"]      # 字段
+is_stable=True           # 稳定材料
 ```
 
 ```python
-# 旧 API
+# 旧 API模块导入
 from pymatgen.ext.matproj import MPRester
 
 # 从 MP 获取结构
 with MPRester("api-key") as mpr:
-    struct = mpr.get_structure_by_material_id("mp-149")
+    ...
+
+
+mpr.get_structure_by_material_id(...)
+
+
+get_download_info()  # 获取来自 NoMaD repository 的裸 VASP 输出文件链接
+get_gb_data()   # 获取晶界数据
 ```
 
 使用旧 API 出现的 warning
@@ -1079,15 +1095,3 @@ with MPRester("api-key") as mpr:
 ***/lib/python3.11/site-packages/pymatgen/ext/matproj_legacy.py:166: UserWarning: You are using the legacy MPRester. This version of the MPRester will no longer be updated. To access the latest data with the new MPRester, obtain a new API key from https://materialsproject.org/api and consult the docs at https://docs.materialsproject.org/ for more information.
   warnings.warn(
 ```
-
-
->[利用Materials Project的API下载结构文件](https://zhuanlan.zhihu.com/p/618452536)
-
-模块具体用法
-
-
-`get_download_info()`：获取来自 NoMaD repository 的裸 VASP 输出文件链接
-
-`get_gb_data()`：获取晶界数据
-
-- [ ] 如何通过 API 获得 equation of state 和晶界能

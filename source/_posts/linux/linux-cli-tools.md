@@ -327,7 +327,8 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
 - 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
 - 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
-- Slurm TUI 版本（查看集群任务）：[GitHub - kabouzeid/turm: TUI for the Slurm Workload Manager](https://github.com/kabouzeid/turm)
+- 以 PPT 形式查看 md 文档的 CLI 工具：[GitHub - maaslalani/slides: Terminal based presentation tool](https://github.com/maaslalani/slides)
+- 文件传输：[GitHub - schollz/croc](https://github.com/schollz/croc)
 - [starship](https://github.com/starship/starship): 美观、可自定义的 shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
 - 安全替代 `rm` 的脚本：[trash.sh](https://github.com/qqAys/trash.sh)
 - 终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)

@@ -114,6 +114,7 @@ ps2pdf -dPDFSETTINGS=/screen input.pdf output.pdf
 
 ## 图片压缩
 
+- [Squoosh](https://squoosh.app/)
 - [GitHub - joye61/pic-smaller: Pic Smaller – Compress JPEG, PNG, WEBP, AVIF and GIF images intelligently](https://github.com/joye61/pic-smaller)
 - [GitHub - Lymphatus/caesium-image-compressor](https://github.com/Lymphatus/caesium-image-compressor)
 - [GitHub - richhost/pixzip-lite: Easy to use batch image compression software. Powered by Svelte 🧡 Electron. 简单易用的批量图片压缩软件，使用 Svelte、Electron 构建。](https://github.com/richhost/pixzip-lite)

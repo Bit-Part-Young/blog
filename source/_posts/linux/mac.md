@@ -37,7 +37,7 @@ password:
 
 ### 参考资料
 
-- Mac 相关汇总：[awesome-mac](https://github.com/jaywcjlove/awesome-mac)
+- Mac 相关汇总：[GitHub - jaywcjlove/awesome-mac](https://github.com/jaywcjlove/awesome-mac)
 - [Mac：终极配置教程 - BLOG](https://44maker.github.io/wiki/Mac/index.html)
 - [GitHub - maoxiaoke/setup-a-mac-for-frontend-dev: How I setup a Mac, with lots of productivity tools, step-by-step guide](https://github.com/maoxiaoke/setup-a-mac-for-frontend-dev)
 - [GitHub - nikitavoloboev/my-mac: Apps/tools I use on macOS](https://github.com/nikitavoloboev/my-mac)
@@ -57,9 +57,9 @@ password:
 ### 基本设置
 
 - 不同的 macOS 版本对应的操作设置会有不同，建议在官网上查询
+- macOS 对大小写不敏感，Linux 和 Windows 对大小写敏感
 - MacBook 中的大部分程序的**设置快捷键**都是 `command + ,`
 - MacBook 接入鼠标 ，滚轮控制的上下滚动与 Windows 相反（可借助 Mos 软件使其保持一致）
-- macOS 对大小写不敏感，Linux 和 Windows 对大小写敏感
 - [修改用户名](https://support.apple.com/zh-cn/102547)：需创建另一个用户，登录该用户，在其系统设置中修改原用户名
 - [删除用户](https://support.apple.com/zh-cn/guide/mac-help/mchlp1557/mac)
 - [Apple ID 申请](https://support.apple.com/zh-cn/108647)
@@ -67,7 +67,7 @@ password:
 - 程序坞（Dock）相关：双手指点击触控板的软件 logo，可将软件 logo 在程序坞中保留或移除，进而从 Dock 中移除一些不常用的软件 logo
 - 小组件设置：点击菜单栏右上角的时钟，会有其他的小组件，可移除，保留 “每日使用情况” 小组件
 - 默认终端 Theme 设置：设置 - Profile - Pro Theme，点击下方的默认按钮
-- MacBook 合盖不休眠：系统设置 - 电池 - 勾选 “使用电源适配器供电且显示器关闭时，防止自动进入睡”
+- **MacBook 合盖不休眠**：系统设置 - 电池 - 勾选 “使用电源适配器供电且显示器关闭时，防止自动进入睡”
 
 - 接入 Windows 键盘，进行修饰键的键位重映射：
 	- Alt（相当于 option 键）和 Win 键（相当于 command 键）互换，Fn 和 Ctrl 键无法互换（联想 USB 薄膜键盘）；
@@ -85,6 +85,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 ```
 
 - [ ] 修改 MacBook 邮箱
+
 
 ---
 
@@ -162,7 +163,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 ### 软件/程序安装及设置
 
 - 网络上下载的程序安装包安装到 Mac 上，需将包（`*.app`）移动到 Applications 里；卸载：直接将其移到废纸篓
-- [macOS 破解软件、游戏](https://appstorrent.ru/)
+- [macOS 破解软件、游戏 - appstorrent.ru](https://appstorrent.ru/)
 - [🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
 - [GitHub - hzlzh/Best-App: 收集&推荐优秀的 Apps/硬件/技巧/周边等](https://github.com/hzlzh/Best-App)
 - [GitHub - Louiszhai/tool: 开发效率提升：Mac生产力工具链推荐](https://github.com/Louiszhai/tool)
@@ -187,6 +188,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
 - 菜单栏管理：Ice、Bartender
 - 快捷键提示：FlyKey、CheatSheet
+- 右键增强：MouseBoost（右键助手）
 - 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
 - 鼠标滚轮方向切换：Mos、LinearMouse、Mac Mouse Fix
 - 输入法切换：自动切换输入法 Lite 版、[Input Source Pro](https://inputsource.pro/zh-CN)
@@ -207,10 +209,10 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
 - 媒体库管理：Emby（海报墙）
 - 视频下载：Downie、Motrix、imFile
-- 抠图：鲜艺 AI 抠图
 - 截图：Snipaste、Shottr（可以长截图）
 - 图床：PicList（基于 PicGo 开发）、PicGo
 - 录屏：QuickRecorder
+- 抠图：鲜艺 AI 抠图
 
 ---
 
@@ -293,9 +295,8 @@ kitty +kitten themes
 	- [ ] Termius 无法复制粘贴
 	- 跨平台，多端数据记录同步；有学生认证
 	- 可 ssh 远程连接和 sftp 远程文件传输
-	- 可进行学生认证
 	- 可保存并显示历史命令
-	- 字体设置：设置 - Terminal - Text Size 上方，选择“Meslo”
+	- 字体设置：设置 - Terminal - Text Size 上方，选择 “Meslo”
 	- 连接本地终端：Hosts - TERMINAL
 	- 可保存自定义 Theme；不错的预设 Theme：
 		- Monokai
@@ -309,11 +310,8 @@ kitty +kitten themes
 - iTerm2 字体设置：Prefrences - profiles - text
 
 - IINA 相关快捷键：
-	- 倍速播放
-		- `command + ]` - 1/2/4 倍速加快
-		- `command + option + ]` - 1.1 倍速加快
-	- 字幕切换 - `control + command + S`
-	- 音频切换 - `control + command + A`
+	- 倍速播放：`command + ]` 1/2/4 倍速加快；`command + option + ]` 1.1 倍速加快
+	- 打开视频、音频、字幕面板： `control + command + V/A/S`
 
 - yabai 使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
 
@@ -357,6 +355,10 @@ keyNotFound(code: "CHWA")
 }
 ```
 
+- 将网盘（如阿里云盘）挂载到本地磁盘
+	- 将网盘挂载到 AList
+	- rclone（macOS、Linux）；RaiDrive（Windows、Linux）
+
 - 使用 rclone 将 AList 挂载到本地磁盘（看影视不流畅，效果一般）：
 	- 参考：[如何在 macOS 使用 AList + RCLONE 把网盘挂载到本地](https://zhuanlan.zhihu.com/p/612368639)
 	- 去对应官网下载 rclone（Homebrew 安装的 rclone 无法使用 mount 命令）和 macfuse
@@ -374,7 +376,8 @@ rclone mount AList:/ /Users/XXX/AList --cache-dir /tmp --allow-other --vfs-cache
 
 #### 终端模拟器集成 SFTP
 
-- tabby 集成 SFTP（无法查看远程文件内容），需要在 “设置 - 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
+- tabby 集成 SFTP（无法查看远程文件内容）
+	- 在 “设置 - 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
 	- 在当前目录下打开 SFTP 面板：[Shell working directory reporting · Eugeny/tabby Wiki · GitHub](https://github.com/Eugeny/tabby/wiki/Shell-working-directory-reporting)
 
 ```bash
@@ -387,8 +390,11 @@ precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
 
 - Termius 集成 SFTP（可以查看远程文件内容）
 
-- iTerm2 安装 Shell Integration：登录远程服务器，iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传；[使用iTerm2管理SSH服务器 – 爪哇堂 JavaTang](https://www.javatang.com/archives/2021/11/29/13063392.html)
-	- 可以在终端查看图片和 gif 图（imgls）；[Features - iTerm2 - macOS Terminal Replacement](https://iterm2.com/features.html)
+- iTerm2 安装 Shell Integration：
+	- 登录远程服务器，iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传
+	- [使用iTerm2管理SSH服务器 – 爪哇堂 JavaTang](https://www.javatang.com/archives/2021/11/29/13063392.html)
+	- 可以在终端查看图片和 gif 图（imgls）
+	- [Features - iTerm2 - macOS Terminal Replacement](https://iterm2.com/features.html)
 
 
 ---
@@ -447,11 +453,9 @@ brew untap homebrew/core
 
 #### 字体安装
 
-方法一：手动下载字体，双击安装字体
-
-方法二：brew 命令行安装
-
->中文字体：[霞鹜文楷](https://github.com/lxgw/LxgwWenKai)、[得意黑](https://github.com/atelier-anchor/smiley-sans)
+- 方法一：手动下载字体，双击安装字体
+- 方法二：brew 命令行安装
+- 中文字体推荐：[霞鹜文楷](https://github.com/lxgw/LxgwWenKai)、[得意黑](https://github.com/atelier-anchor/smiley-sans)
 
 ```bash
 # nerd font
@@ -480,7 +484,10 @@ brew install font-lxgw-wenkai  # 霞鹜文楷
 #### MacTeX 安装与卸载
 
 - 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
-- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)；卸载 GUI，直接将 TeX 移入废纸篓；卸载 TeX Distribution；卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
+- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)
+	- 卸载 GUI，直接将 TeX 移入废纸篓
+	- 卸载 TeX Distribution
+	- 卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
 ```bash
 brew install --cask mactex-no-gui  # 不建议
@@ -494,9 +501,10 @@ sudo rm -rf /usr/local/texlive
 
 #### Rime 输入法引擎 + 雾凇拼音
 
-- 参考：
-	- [RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
-	- [GitHub - Mintimate/oh-my-rime: The Simple Config Template Of Rime By Mintimate.](https://github.com/Mintimate/oh-my-rime)
+参考：
+
+- [RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
+- [GitHub - Mintimate/oh-my-rime: The Simple Config Template Of Rime By Mintimate.](https://github.com/Mintimate/oh-my-rime)
 
 ```bash
 # 安装 Rime 鼠须管 输入法引擎
@@ -511,12 +519,14 @@ bash rime-install iDvel/rime-ice:others/recipes/full
 ```
 
 可修改的配置文件路径：
+
 ```bash
 /Users/XXX/Library/Rime/squirrel.yaml
 /Users/XXX/Library/Rime/default.yaml
 ```
 
 macOS 修改应用的默认 ascii_mode（个人更倾向修改成默认英文）：`squirrel.yaml`
+
 ```yaml
 # 可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
 app_options:
@@ -541,6 +551,7 @@ style:
 ```
 
 修改候选词个数：`default.yaml`
+
 ```yaml
 # 菜单
 menu:
@@ -573,9 +584,23 @@ sudo apachectl start
 
 - macOS 版本不同，Homobrew 之前安装的程序有可能会出现不兼容的情况
 
-- Miniconda3 安装：版本需要与芯片类型（如 M1）适配
+- git 出现以下报错；解决方法：`xcode-select --install`
 
-- 安装性能提升的 NumPy：[Option to install numpy built with Apple's Accelerate BLAS implementation · Issue #253 · conda-forge/numpy-feedstock · GitHub](https://github.com/conda-forge/numpy-feedstock/issues/253)
+```bash
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+```
+
+- coreutils 工具
+	- `coreutils` (GNU Core Utilities) 包含了很多基本的文件、shell 和文本操作工具
+	- macOS 中的一些命令的参数没有 Ubuntu 的全（如 `du`）
+	- 通过在命令前加 `g` 来调用 GNU 版本的命令（如 `gdu`）
+
+```bash
+brew install coreutils
+```
+
+- 安装性能提升的 NumPy：
+	- [Option to install numpy built with Apple's Accelerate BLAS implementation · Issue #253 · conda-forge/numpy-feedstock · GitHub](https://github.com/conda-forge/numpy-feedstock/issues/253)
 	- NumPy、SciPy 和 Matlab 支持 AMX 单元加速：[一次讲透！工科生用Mac，体验如何？\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1YJ4m1M7bD)
 
 ```bash
@@ -639,7 +664,7 @@ brew install openjdk  # 安装 Java
 ```
 
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
-	- 有 command（类似 vim） 和 edit 模式；需自己添加 miniconda 虚拟环境的 kernel
+	- 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel
 
 - macOS 中终端下安全删除文件工具（可恢复）：[GitHub - hotoo/rm-trash](https://github.com/hotoo/rm-trash)
 
@@ -673,19 +698,6 @@ For pkg-config to find lapack you may need to set:
 
 ## 相关问题
 
-### git 相关
-
-git 出现以下报错：
-
-```bash
-xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
-```
-
-解决方法：`xcode-select --install`
-
-
----
-
 ### VSCode-Insiders 相关
 
 - 如何将 vscode-insiders 从 Downloads 放入到 Applications（可直接拖到侧边栏的 Applications 中）：[Moving VS Code Insiders ARM to programs "folder" on M1 mac makes it unable to start (crashes/exits immediately). Can only start from "downloads" folder · Issue #113751 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/113751)
@@ -704,24 +716,11 @@ $ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool fal
 
 ---
 
-### coreutils 相关
-
-- `coreutils` (GNU Core Utilities) 包含了很多基本的文件、shell 和文本操作工具
-- macOS 中的一些命令的参数没有 Ubuntu 的全（如 `du`）
-- 通过在命令前加 `g` 来调用 GNU 版本的命令（如 `gdu`）
-
-```bash
-brew install coreutils
-```
-
-
----
-
 ### 软件安装问题
 
 - 身份不明开发者：按住 `Control` 键，点击 App，弹出的窗口会有打开按钮；[Mac如何打开身份不明开发者的程序？ - 知乎](https://www.zhihu.com/question/52623818)
 - [Apple 无法检查 App 是否包含恶意软件 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchleab3a043/mac)
-- PicGo 安装显示文件已损坏：[PicGo arm64文件已损坏](https://github.com/Molunerfinn/PicGo/issues/1055)
+- 文件已损坏：[PicGo arm64文件已损坏](https://github.com/Molunerfinn/PicGo/issues/1055)
 
 ```bash
 sudo xattr -d com.apple.quarantine "/Applications/PicGo.app"
@@ -745,20 +744,16 @@ export HOMEBREW_MACOS_VERSION=14.5
 
 ### 其他
 
-- Mac 终端模拟器（Terminal、iTerm）ssh 连接远程服务器，打开 GUI 程序：[Enable X11 forward for ssh to load images from remote server on MacOS Mojave · GitHub](https://gist.github.com/fengyuentau/7c43c06fb563752b6947affaf4677f2a)
+- 无法直接创建文件（可通过终端 `touch` 命令或安装 “超级右键”软件），只能创建文件夹
 
-- 文件创建 Mac 无法直接创建文件（可通过终端 `touch` 命令或安装 “超级右键”软件），只能创建文件夹
+- 终端模拟器 ssh 连接远程服务器，打开 GUI 程序：[Enable X11 forward for ssh to load images from remote server on MacOS Mojave · GitHub](https://gist.github.com/fengyuentau/7c43c06fb563752b6947affaf4677f2a)
 
-- Apple ID 相关问题：此 Apple ID 尚未在 app store 使用（弹出“检查”窗口时，会出现要求完善支付方式信息内容；macOS 11 在检查这步一直无法弹出后面的内容，将版本更新至最新无此问题）
+- Apple ID 相关问题：此 Apple ID 尚未在 app store 使用（弹出 “检查” 窗口时，会出现要求完善支付方式信息内容；macOS 11 在检查这步一直无法弹出后面的内容，将版本更新至最新无此问题）
 
 - 蓝牙耳机连接：长按 Redmi Airdots3 Pro 耳机盒的开关机键；将 Bose qc45 电源键推至右侧一段时间
 
 - [Word for Mac彻底删除Endnote插件的方法 - 知乎](https://zhuanlan.zhihu.com/p/29321865)
 
 - Final Cut Pro 软件无法打开 mkv 格式文件（和 PR 一样）
-
-- 将网盘（如阿里云盘）的内容挂载到本地磁盘
-	- 将网盘挂载到 AList
-	- rclone（macOS、Linux）；RaiDrive（Windows、Linux）
 
 - [ ] 如何安装黑苹果

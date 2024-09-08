@@ -40,11 +40,17 @@ Rust、Julia、Fortran 没有类的概念
 - [GitHub - rust-lang/rustlings: :crab: Small exercises to get you used to reading and writing Rust code!](https://github.com/rust-lang/rustlings)
 - [GitHub - guofei9987/rs\_lib: Rust调用C的例子（混合编程）](https://github.com/guofei9987/rs_lib)
 
+---
+
+Rust 练习：
+
+- [GitHub - feint123/code-search: a command code tools of search](https://github.com/feint123/code-search)
+- [【编程】用rust写了一个超好用的命令行代码搜索工具！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV196WNeWEJE)
 
 ---
 库
 
-- [GitHub - pola-rs/polars: Dataframes powered by a multithreaded, vectorized query engine, written in Rust](https://github.com/pola-rs/polars)
+- 类似 Python Pandas：[GitHub - pola-rs/polars: Dataframes powered by a multithreaded, vectorized query engine, written in Rust](https://github.com/pola-rs/polars)
 
 - 命令行参数解析：[GitHub - google/argh: Rust derive-based argument parsing optimized for code size](https://github.com/google/argh)
 
@@ -55,22 +61,20 @@ Rust、Julia、Fortran 没有类的概念
 
 ### Rust 环境安装
 
+- [rustup | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/rustup/)
+- [Rust Toolchain 反向代理使用帮助 — USTC Mirror Help  文档](https://mirrors.ustc.edu.cn/help/rust-static.html)
+
 ```bash
 # 方式 1
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 
 # 方式 2
 curl -sS https://webi.sh/rustlang | sh
-```
 
-加速安装：将 Rust 安装源设置国内源，在 `.bashrc` 或 `.zshrc` 中添加
-```bash
+# 加速安装：将 Rust 安装源设置国内源
+
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 ```
-
->[rustup | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/rustup/)
-
->[Rust Toolchain 反向代理使用帮助 — USTC Mirror Help  文档](https://mirrors.ustc.edu.cn/help/rust-static.html)
 
 
 ```bash
@@ -78,6 +82,10 @@ export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 rustc *.rs
 ```
 
+
+---
+
+### Cargo
 
 cargo 相关命令
 
@@ -115,7 +123,8 @@ registry = "sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/"
 ```
 
 - [清华大学镜像 - crates.io-index.git](https://mirrors.tuna.tsinghua.edu.cn/help/crates.io-index.git/)、[Rust Crates 源使用帮助 — USTC Mirror Help  文档](https://mirrors.ustc.edu.cn/help/crates.io-index.html)
-- cargo 1.68 版本开始支持稀疏索引：不再需要完整克隆 crates.io-index 仓库，可以加快获取包的速度。
+- cargo 1.68 版本开始支持稀疏索引：不再需要完整克隆 crates.io-index 仓库，可以加快获取包的速度
+- 注：添加镜像后，会无法使用 `cargo search` 民令
 
 
 ---
@@ -127,7 +136,10 @@ registry = "sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/"
 cargo new <project>
 
 # 运行项目
-cargo run
+cargo run     # cargo r；默认使用调试模式编译
+cargo run -- arg1 arg2  # 将参数参数传递给程序，用 -- 隔开
+cargo run --release  # 使用发布模式编译（优化更好，但编译速度较慢）
+
 
 # 代码验证
 cargo check

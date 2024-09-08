@@ -19,6 +19,14 @@ password:
 
 # Excel 使用
 
+参考资料：
+
+- [Excel 教程 Excel精选28个技巧\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Ea4y1v7eN/)
+
+
+
+---
+
 ## 常见功能实现
 
 - 统计一列中不同数值及其对应的数目

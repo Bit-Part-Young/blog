@@ -80,10 +80,12 @@ git filter-repo -f --commit-callback 'commit.committer_date = commit.author_date
 
 ### 相关概念
 
+Git 中的 4 个位置：工作目录 Working Directory、暂存区 Staging Area、本地存储库 Local Repository、远程存储库 Remote Repository
+
 暂存区（stage）：已经修改、等待后续提交的文件
 文件三个类别：未跟踪（Untracked）、已追踪（Tracked）、被忽略（Ignored）
 HEAD：当前工作区在提交历史中的**指针**
-detached HEAD：HEAD 指向某个历史提交，而不是某个“分支”
+detached HEAD：HEAD 指向某个历史提交，而不是某个 “分支”
 
 
 ```bash
@@ -146,6 +148,7 @@ WIP...
 - [git cherry-pick 教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
 - [个人心得：Git使用与开发规范 - AllenY's blog](https://alleny.xyz/post/development-standards/)
 - [Getting Started with: Git, GitHub, and GitHub pages - howtos](https://www.wgilpin.com/howto/howto_github.html)
+- git 游戏：[Oh My Git!](https://ohmygit.org/)
 
 
 

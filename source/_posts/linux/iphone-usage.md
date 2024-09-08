@@ -38,7 +38,7 @@ password:
 		- [分享神级去除 IOS 应用开屏广告的方法 - V2EX](https://www.v2ex.com/t/1018073)
 		- [常用 URL Schemes 收集。 · GitHub](https://gist.github.com/zhuziyi1989/3f96a73c45a87778b560e44cb551ebd2)
 		- [GitHub - WengYuehTing/iOS-app-info: iOS 应用程序的 Bundle ID, App Store App ID 和 URL Scheme 信息汇总](https://github.com/WengYuehTing/iOS-app-info)
-	- 方式 2：下载 Shadowrocket App，拷贝以下链接，进入 配置 - 右上角 “+” 号（比 URL Schemes 方便；有时去广告效果会失效）
+	- 方式 2：下载 Shadowrocket App，拷贝以下链接，进入 配置 - 右上角 “+” 号（比 URL Schemes 方便；不能关掉 Shadowrocket 后台，否则去广告效果会失效）
 
 ```text
 https://whatshub.top/module/adultraplus.module
@@ -48,8 +48,11 @@ https://whatshub.top/module/adultraplus.module
 	- [如何把文件app的照片导入到照片app - Apple 社区](https://discussionschinese.apple.com/thread/253090290)
 	- [iPhone如何将照片中的视频导入到文件app - Apple 社区](https://discussionschinese.apple.com/thread/255235719)
 
+- [苹果iPhone手机交大VPN使用说明-上海交通大学网络信息中心](https://net.sjtu.edu.cn/info/1200/2668.htm)
 
 - iOS 版本 Telegram 会无法显示含敏感内容的 Telegram，方法：登录网页版的 telegram，网址 `web.telegram.org`，Settings - Privacy and Security - Sensetive Content，打开（App 版没有 Sensetive Content 这一选项）
+
+---
 
 - ipa 格式文件（安装较麻烦，需要自签证书）
 
