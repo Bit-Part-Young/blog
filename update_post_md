@@ -4,10 +4,8 @@
 
 repo_path="$HOME/scripts/sites/hexo-butterfly-demo"
 post_md_path="${repo_path}/source/_posts"
-# echo $(ls $post_md_path)
 
-post_md_files=$(find ${post_md_path} -type f -name "*.md")
-# echo $post_md_files
+post_md_files=$(find "${post_md_path}" -type f -name "*.md")
 
 obsd_md_path="${HOME}/scripts/obsidian-md"
 if [[ $HOSTNAME =~ "DESKTOP" ]]; then
@@ -16,19 +14,17 @@ elif [[ $HOSTNAME =~ "LAPTOP" ]]; then
     obsd_md_path="/mnt/d/obsidian-md"
 fi
 
-obsd_md_files=$(find ${obsd_md_path} -type f -name "*.md")
-# echo $obsd_md_files
+obsd_md_files=$(find "${obsd_md_path}" -type f -name "*.md")
 
 for post_md in $post_md_files; do
-    post_md_name=$(basename $post_md)
+    post_md_name=$(basename "${post_md}")
 
     if ! [[ $post_md_name =~ ^(index\.md|intro\.md|README\.md)$ ]]; then
         for obsd_md in $obsd_md_files; do
-            obsd_md_name=$(basename $obsd_md)
+            obsd_md_name=$(basename "${obsd_md}")
 
-            if [[ $post_md_name == $obsd_md_name ]]; then
-                # echo "cp $obsd_md to ${post_md}"
-                cp ${obsd_md} ${post_md}
+            if [[ "${post_md_name}" == "${obsd_md_name}" ]]; then
+                cp "${obsd_md}" "${post_md}"
             fi
         done
     fi
@@ -36,20 +32,18 @@ done
 
 
 git_update(){
-    BRANCH=$(git branch --show-current)
     git status --short --branch
     echo
-    git add ${post_md_path}
+    git add "${post_md_path}"
     git commit -m "update post mds"
     echo
-    # git push origin ${BRANCH}
 }
 
 
 update_num(){
-    cd ${repo_path}
+    cd "${repo_path}" || exit
 
-    update_md_num=$(git status --short --branch | grep -E "\.md$" | wc -l)
+    update_md_num=$(git status --short --branch | grep -c "\.md$")
 
     if [[ $update_md_num -eq 0 ]]; then
         echo -e "\nNo post md files are updated."
@@ -58,7 +52,7 @@ update_num(){
         git_update
     fi
 
-    cd - > /dev/null 2>&1 
+    cd - > /dev/null 2>&1  || exit
 }
 
 
