@@ -30,7 +30,10 @@ password:
 
 ### 参考资料
 
+- pymatgen notebook：[GitHub - yw-fang/pymatgen-notebook](https://github.com/yw-fang/pymatgen-notebook)
+
 - pymatgen 实例代码：[GitHub - materialsvirtuallab/matgenb](https://github.com/materialsvirtuallab/matgenb)
+
 - [Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)（该网址包含了 pymatgen 在材料相关计算中用的具体参数及其说明：如，截断能为 520eV 是由元素周期表所有元素中最大截断能的 1.3 倍得到的）
 
 - [GitHub - computron/pymatgen\_tutorials: Tutorials for using the pymatgen library](https://github.com/computron/pymatgen_tutorials)
@@ -40,9 +43,7 @@ password:
 	- 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
 	- 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
 	- 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
-
-workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面
-workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
+	- 注：workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面；workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 ---
 
@@ -58,7 +59,6 @@ subs = SubstitutionGenerator(structure, "Bi")
 # 晶界相关
 from pymatgen.core.interface import GrainBoundary, GrainBoundaryGenerator
 
-mpr.get_structure_by_material_id()
 ```
 
 [求助：过渡态计算新版pymatgen中找不到iddp插值方法 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-19704-1-1.html)
@@ -542,20 +542,26 @@ get_space_group_info()
 
 #### surface
 
-pymatgen 表面生成无法指定具体的层数
->[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
+pymatgen 表面生成无法指定具体的层数（可以指定最第层数）：[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
 
 
 
+```python
+# 获取指定晶面指数中的最大数值下其对称性非等同的所有晶面指数
+get_symmetrically_distinct_miller_indices()
 
-`get_symmetrically_distinct_miller_indices()` - 获取指定晶面指数中的最大数值下其对称性非等同的所有晶面指数
+# 获取指定晶面指数下其对称性等同的所有晶面指数
+get_symmetrically_equivalent_miller_indices()
 
-`get_symmetrically_equivalent_miller_indices()` - 获取指定晶面指数下其对称性等同的所有晶面指数
+# 获取层间距
+get_d()
 
-`get_d()` - 获取层间距
+SlabGenerator     # 类；构建指定晶面指数的 slab 模型
 
-`SlabGenerator` 类 - 构建指定晶面指数的 slab 模型
-`get_slabs()` 方法 - 类初始化后，获取 slab 构型，可通过其得到该 slab 模型下不同终端的数量（`len()`）
+get_slabs()       # 方法 - 类初始化后，获取所有的 slab 构型（数量含义为该 slab 模型下不同终端的数量）
+```
+
+
 
 
 ---

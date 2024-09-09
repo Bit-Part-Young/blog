@@ -22,11 +22,22 @@ password:
 ## 介绍
 
 - VSCode 连接远程服务器，点击打开的文件，会立马跳转到相应的目录中，定位文件相比 MobaXterm 更便捷，便于下载文件到本地
-- 命令行启动：VSCode-Insiders - `code-insiders`；VSCode - `code`
+
+- 命令行启动：
+
+```bash
+code-insiders  # VSCode Insiders
+code           # VSCode
+```
+
 - 配置文件 `settings.json`：**分用户和远程设置**；配置文件中有设置但没安装的插件其命令不会有高亮
+
 - VSCode 配置同步：[VSCode官方的配置同步方案\_vscode同步\_蝉沐风的码场的博客-CSDN博客](https://blog.csdn.net/chanmufeng/article/details/123028133)
+
 - [在VScode中，代码提示左边的图标各自代表什么含义？ - 知乎](https://www.zhihu.com/question/370258254/answer/1003317979)
+
 - VSCode 中类、函数、方法、属性等的图标：[IntelliSense in Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions)
+
 - VSCode 终端字体设置：[Change terminal font family to nerd font · Issue #81497 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/81497)
 
 ```json
@@ -57,7 +68,7 @@ password:
 ### 快捷键
 
 ```bash
-# 命令                  # 功能说明
+# 快捷键
 Ctrl + /                # 单行注释
 Alt + Shift + A         # 多行注释
 Ctrl + C                # 复制当前整行内容
@@ -83,7 +94,7 @@ Crtl + 点击图片          # 缩小图片
 - Vim 设置（**用户**设置）
 
 ```json
-    // vim configuration
+    // Vim 配置
     "vim.leader": "<space>",
     "vim.surround": true,
     "vim.easymotion": true,
@@ -130,7 +141,7 @@ Crtl + 点击图片          # 缩小图片
 - easymotion 用法：
 
 ```bash
-# Motion 命令               # 描述
+# 快捷键
 <leader><leader> s <char>  # 查找字符
 ```
 
@@ -153,6 +164,7 @@ Crtl + 点击图片          # 缩小图片
 - Python 设置：脚本文件保存自动格式化
 
 ```json
+{
     "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
@@ -161,6 +173,7 @@ Crtl + 点击图片          # 缩小图片
         },
     },
     "isort.args":["--profile", "black"],
+}
 ```
 
 - 问题：当 root 中已有 conda 时，当前用户下的 conda 虚拟环境名称无法被 VSCode 的相关插件识别，可在设置中找到 `conda path` 选项，写入将当前用户下的 conda 路径
@@ -175,18 +188,29 @@ Crtl + 点击图片          # 缩小图片
 
 ### 编程相关
 
-- Remote Development：集成插件；可连接 WSL（自动识别）和远程服务器（若已设置别名，可自动识别）。
-- Github Copilot (Chat)：辅助编写代码，如代码自动补全，可在代码和侧边栏中开启对话。目前主要用它进行（Github Copilot Chat 目前只有 vscode-insider 版本才有）。
+- Remote Development：集成插件；可连接 WSL（自动识别）和远程服务器（若已设置别名，可自动识别）
+
+- Github Copilot (Chat)：辅助编写代码，如代码自动补全，可在代码和侧边栏中开启对话。目前主要用它进行（Github Copilot Chat 目前只有 VSCode Insider 版本才有）
+
 - GitLens：增强 Git 使用
+
 - WakaTime：统计编程项目 Codinig 数据
-- TabOut：跳出括号（函数、列表、字典和字符串等）。
+
+- TabOut：跳出括号（函数、列表、字典和字符串等）
+
 - LaTeX Workshop：实时编译 LaTeX，有字数统计功能
-- Typst preview：预览 typst 文件。
-- Markdown All in One：markdown 语法高亮，自动补全，**可生成目录，添加/更新章节序号**；[VSCode插件生成编号、目录、文件目录树](https://github.com/lc-1203/k8s-practice/blob/main/06-Tools%26Tips/Markdown/VSCode%E6%8F%92%E4%BB%B6%E7%94%9F%E6%88%90%E7%BC%96%E5%8F%B7%E3%80%81%E7%9B%AE%E5%BD%95%E3%80%81%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%A0%91.md)；暂无很好的 “ 中英文混排添加空格 ” 格式化的插件；会使用 Obsidian 中的 Linter 插件，可将 markdown 内容复制到 Obsidian 中进行格式化。
-- Markdownlint：markdown 语法风格格式化。
-- Markdown PDF：将 markdown 文档导出成 pdf 文件，**需要本地或终端支持中文字符，不支持公式**。
-- Lammps Syntax Highlighting：LAMMPS 语法命令高亮、自动补全。
-- shellcheck、shell-format：不是很好
+
+- Typst preview：预览 Typst 文件
+
+- Markdown All in One：markdown 语法高亮，自动补全，**可生成目录，添加/更新章节序号**；[VSCode插件生成编号、目录、文件目录树](https://github.com/lc-1203/k8s-practice/blob/main/06-Tools%26Tips/Markdown/VSCode%E6%8F%92%E4%BB%B6%E7%94%9F%E6%88%90%E7%BC%96%E5%8F%B7%E3%80%81%E7%9B%AE%E5%BD%95%E3%80%81%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%A0%91.md)；暂无很好的 “ 中英文混排添加空格 ” 格式化的插件；会使用 Obsidian 中的 Linter 插件，可将 markdown 内容复制到 Obsidian 中进行格式化
+
+- Markdownlint：markdown 语法风格格式化
+
+- Markdown PDF：将 markdown 文档导出成 pdf 文件，**需要本地或终端支持中文字符，不支持公式**
+
+- LAMMPS Syntax Highlighting：LAMMPS 语法命令高亮、自动补全
+
+- shellcheck、shell-format：不是很好（建议直接使用其命令行工具）
 
 ```json
 {
@@ -208,6 +232,7 @@ Crtl + 点击图片          # 缩小图片
 - vscode-pdf：打开 pdf 文件（会与 LaTeX Workshop 插件冲突）
 - Material Icon Theme：文件、目录图标，美化用
 - Excel Viewer：查看 Excel 表格
+- [VScode 插件推荐-状态栏篇\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HBsMejEJM/)
 
 
 

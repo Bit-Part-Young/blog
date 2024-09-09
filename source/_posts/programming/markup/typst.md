@@ -25,7 +25,6 @@ Typst 是一门用于文档排版的标记语言。
 
 Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建简单，详细使用体验，参见：[Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
 
-目前的大语言模型都没有学习 Typst 内容
 
 ```rust
 // 页脚设置
@@ -42,10 +41,6 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 )
 ```
 
-- [ ] 数学公式中的两个及以上字符如何使其斜体
-
-Typst Logo：[fenjalien/Typst Logo](https://gist.github.com/fenjalien/1463a19ba2b91d061ed35e295494e0b3)
-
 
 ---
 
@@ -58,14 +53,15 @@ Typst Logo：[fenjalien/Typst Logo](https://gist.github.com/fenjalien/1463a19ba2
 	- Typst 示例：[Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
 	- [GitHub - OrangeX4/typst-talk: 并不复杂的 Typst 讲座 Typst is Simple](https://github.com/OrangeX4/typst-talk)
 	- [GitHub - typst-doc-cn/tutorial: Typst中文教程](https://github.com/typst-doc-cn/tutorial)
+	- [The Raindrop-Blue Book (Typst中文教程)](https://typst-doc-cn.github.io/tutorial/)
 	- [GitHub - qjcg/awesome-typst: Awesome Typst Links](https://github.com/qjcg/awesome-typst)
 	- [GitHub - typst-cn/awesome-typst-cn: Awesome Typst 列表中文版](https://github.com/typst-cn/awesome-typst-cn)
 
->[LaTeX 用户指南 – Typst 中文文档](https://typst-doc-cn.github.io/docs/guides/guide-for-latex-users/)
+- Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://github.com/typst/typst/discussions)
 
->[Typst 中文社区](https://typst.cn/#/)
+- [LaTeX 用户指南 – Typst 中文文档](https://typst-doc-cn.github.io/docs/guides/guide-for-latex-users/)
 
-Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://github.com/typst/typst/discussions)
+- [Typst 中文社区](https://typst.cn/#/)
 
 
 
@@ -73,9 +69,15 @@ Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://git
 
 ## 安装
 
-- 在线版本：[Web - Typst](https://typst.app/)
-- 下载 [预构建二进制文件](https://github.com/typst/typst/releases)（pre-built binaries）
-- 不同 Linux 发行版 + macOS(`brew install typst`) + Win(`scoop install main/typst`)
+- 二进制文件： [Releases · typst/typst](https://github.com/typst/typst/releases)
+- 包管理器：
+
+```bash
+brew install typst         # macOS
+scoop install main/typst   # Win
+```
+
+- 在线编辑器：[Web - Typst](https://typst.app/)
 
 
 
@@ -110,15 +112,13 @@ typst-upgrade -d file.typ    # -d --dry-run 不实际运行
 
 - 数学公式 OCR：[GitHub - ParaN3xus/typress: Typst Mathematical Expression OCR](https://github.com/ParaN3xus/typress)
 
-- 表格中的科学计数格式化（小数点自动对齐）：[GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
-
 - 预览 Typst 的 Neovim 插件：[GitHub - chomosuke/typst-preview.nvim: Low latency typst preview for Neovim](https://github.com/chomosuke/typst-preview.nvim)
 
 
 
 ---
 
-### 命令行
+### 命令
 
 ```bash
 # 编译
@@ -580,6 +580,14 @@ Show 规则用于全局替换
 - 中文伪粗体、伪斜体：cuti
 - presentation 制作：[touying](https://github.com/touying-typ/touying)、[polylux](https://github.com/andreasKroepelin/polylux)
 - 自动调整 content 尺寸：[GitHub - jdpieck/oasis-align: A Typst package to cleanly place content side by side with equal heights using automatic content sizing.](https://github.com/jdpieck/oasis-align)
+- 表格中的科学计数格式化（小数点自动对齐）：[GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
+
+
+---
+
+### 其他
+
+- Typst Logo：[fenjalien/Typst Logo](https://gist.github.com/fenjalien/1463a19ba2b91d061ed35e295494e0b3)
 
 
 
@@ -596,9 +604,6 @@ Show 规则用于全局替换
 	- [GitHub - skyzh/chicv: A minimal and fully-customizable CV template for Typst.](https://github.com/skyzh/chicv)
 	- [GitHub - DawnEver/typst-academic-cv: Typst Template for Academic CV](https://github.com/DawnEver/typst-academic-cv)
 
-- 将 Typst 内容渲染成网页：
-	- [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
-
 - 作业模板
 	- [GitHub - gRox167/typst-assignment-template](https://github.com/gRox167/typst-assignment-template)
 	- [GitHub - OriginCode/typst-homework-template: Homework Template for Typst](https://github.com/OriginCode/typst-homework-template)
@@ -609,24 +614,28 @@ Show 规则用于全局替换
 	- [GitHub - howardlau1999/sysu-thesis-typst: 中山大学学位论文 Typst 模板](https://github.com/howardlau1999/sysu-thesis-typst)
 	- [简易上海交通大学学位论文 Typst 模板](https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF)
 
-- typst 文档编译 Github Actions：
+- Typst 文档编译 Github Actions：
 	- [build.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/build.yml)
 	- [GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
 
-
 - 论文海报 poster：[Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
+
+- Elsevier 期刊模板
+	- 预印版：[GitHub - maucejo/elsearticle](https://github.com/maucejo/elsearticle)、[elsarticle preprint - Typst.app](https://typst.app/project/rFAXkf0lxIp1Paj1l-gKTr)
+	- 正式出版：[elsarticle formal - Typst.app](https://typst.app/project/rrn_CcZC2mSFvKWd9vuVgT)
 
 - 用 Typst 创建 online books：[GitHub - Myriad-Dreamin/shiroa: shiroa is a simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/shiroa)
 
-- 爱思唯尔期刊模板
-	- 预印版：[GitHub - maucejo/elsearticle](https://github.com/maucejo/elsearticle)、[elsarticle preprint - Typst.app](https://typst.app/project/rFAXkf0lxIp1Paj1l-gKTr)
-	- 正式出版：[elsarticle formal - Typst.app](https://typst.app/project/rrn_CcZC2mSFvKWd9vuVgT)
+- 将 Typst 内容渲染成网页
+	- [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
 
 
 
 ---
 
 ## 相关问题
+
+- [ ] 目前的大语言模型都没有学习 Typst 内容（Claude 3.5 pro）
 
 - [x] 标题后首段无法正确缩进：
 	- [Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
@@ -692,9 +701,9 @@ Show 规则用于全局替换
 }
 ```
 
-- [ ] typst 中暂无 latexdiff 替代工具
+- [ ] Typst 中暂无 latexdiff 替代工具
 
-- [x] mac 中的 VSCode typst preview 无法处理相对路径情况 `#import "../template.typ": *`，会报错（应该是 bug，已修复）；windows 上的正常
+- [x] Mac 中的 VSCode typst preview 无法处理相对路径情况 `#import "../template.typ": *`，会报错（应该是 bug，已修复）；windows 上的正常
 
 - [ ] 自己电脑的中文字体在 Typst 已是加粗 bold 状态，如何恢复 regular
 
@@ -714,5 +723,7 @@ Show 规则用于全局替换
 - [ ] 生成的 pdf 如何也有对应的编号（暂无法实现）：[Include numbering in PDF bookmark · Issue #2416 · typst/typst · GitHub](https://github.com/typst/typst/issues/2416)
 
 - [ ] Typst 如何让公式中的单个字符不斜体
+
+- [ ] 数学公式中的两个及以上字符如何使其斜体
 
 - [ ] Typst page 函数中 margin 页边距参数如何使水平方向全部填充？

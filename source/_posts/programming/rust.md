@@ -40,6 +40,8 @@ Rust、Julia、Fortran 没有类的概念
 - [GitHub - rust-lang/rustlings: :crab: Small exercises to get you used to reading and writing Rust code!](https://github.com/rust-lang/rustlings)
 - [GitHub - guofei9987/rs\_lib: Rust调用C的例子（混合编程）](https://github.com/guofei9987/rs_lib)
 
+- [萌的 4 分钟！Rust 光速入门！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1bg411W757/)
+
 ---
 
 Rust 练习：

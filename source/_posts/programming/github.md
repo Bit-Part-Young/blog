@@ -133,12 +133,6 @@ Pull Requests 流程:
 
 ### GitHub Pages
 
->不同部署方式对比：[静态博客部署方式](https://blog.17lai.site/posts/5311b619/#%E5%90%84%E7%A7%8D%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F)
-
->[部署到 Vercel 或 Netlify](https://argvchs.github.io/2022/04/17/hexo-blog-4/)
-
->[Gitee Pages 介绍](https://help.gitee.com/services/gitee-pages/intro)
-
 - GitHub Pages 介绍
 	- GitHub 提供的免费静态网页托管服务，类似的还有 Gitee Pages 和 GitLab Pages；商用：Vercel、Netlify、Cloudflare Pages 等
 	- GitHub 会为每个用户/组织分配一个二级域名 `username.github.io`
@@ -146,31 +140,6 @@ Pull Requests 流程:
 	- 对于其他 repo（可无限创建），也可以开启 Pages 功能，通过 `username.github.io/repo-name` 访问，静态页面来源也需要指定
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011049337.png)
-
----
-
-- Vercel 部署：
-	- GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 repo（多于 5 个时，在 vercel 中只能显示 5 个 ）
-	- GitHub 登录 [Vercel](https://vercel.com/login) - 首页 - New project - Import Git Repository - Deploy
-	- 点击 Goto Dashboard 来到项目主页，选择顶部的 Settings，在 Project Name 中更改网站名称
-
-- Netlify 部署：
-	- GitHub 登录 [Netlify](https://app.netlify.com/)- 首页 - Add new site 中的 Import an existing project，点击 GitHub，与 GitHub 关联，选择仓库 Deploy - 项目主页，选择 Site settings，点击 Change site name 更改网站名称
-
-- Cloudfale Pages 部署：
-	- [Cloudflare Pages 自动化部署 Github 项目指南 | Indie Hacker Tools](https://indiehackertools.net/blog/cloudflare-pages-guide-automating-deployment-of-github-projects)
-	- [Hi , Cloudflare Pages :: 木木木木木](https://immmmm.com/hi-cloudflare/)
-
-- Vercel 部署时忽略 GitHub Actions 生成的 gh-pages 分支：[Vercel deploy忽略指定分支 | Oragekk's Blog](https://oragekk.me/tutorial/CI_CD/vercel-deploy.html)；选择 preject - Settings - Git - Ignored Build Step，选择 Only build production
-
-- Cloudflare Pages 部署时忽略 GitHub Actions 生成的 gh-pages 分支：选择 preject - 设置 - 构建与部署，禁用预览分支的自动部署
-
-- 个人部署设置：
-	- Hexo、Jekyll、Docusaurus、Vuepress 和 Vitepress 框架等其他前端代码由 Vercel 部署
-	- MkDocs 和 Hugo 框架由 Cloudflare Pages 部署
-
-- Vercel 部署 Vuepress 框架失败：将 Vuepress 框架选择成 Other；[vercel部署失败，提示Error: ENOENT: no such file or directory, stat '/vercel/path0/src' · Issue #11647 · DIYgod/RSSHub · GitHub](https://github.com/DIYgod/RSSHub/issues/11647)
-
 
 
 ---

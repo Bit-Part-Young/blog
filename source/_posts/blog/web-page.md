@@ -104,6 +104,7 @@ http://machine_ip_address:2283/api  # 移动端登录
 - [GitHub - KanurkarPrateek/Valentines\_Day\_Proposal](https://github.com/KanurkarPrateek/Valentines_Day_Proposal)
 - [GitHub - nxuzy/love: love\_matters](https://github.com/nxuzy/love)、[恋爱申请书](https://nxuzy.github.io/love/)
 - [GitHub - xing16/ValentineDaySuprise: HMTL实现情人节告白气球，不一样的惊喜](https://github.com/xing16/ValentineDaySuprise)
+- [GitHub - Kicamon/Kicamon.github.io: 恋爱](https://github.com/Kicamon/Kicamon.github.io)
 
 
 
@@ -137,27 +138,14 @@ http://machine_ip_address:2283/api  # 移动端登录
 
 - [GitHub - slidevjs/slidev: Presentation Slides for Developers](https://github.com/slidevjs/slidev)
 - [使用 reveal-md 来写 Slides - Isshiki修's Notebook](https://note.isshikih.top/others/reveal-md2Slides/)
+- reveal-md 模板：
+	- [GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
+	- [GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)
 
-
-安装
 ```bash
+# slidev 安装
 npm init slidev@0.41.0
 ```
-
-注：`npm init slidev@latest` 安装最新版本时会出现报错：
-
-```bash
-[vite] Internal server error: [postcss] /@slidev/slides/2.md?vue&type=style&index=0&scoped=2e431aa8&lang.css:9:2: Unknown word
-```
-
->[Error with installer generated slides.md using inline styles · Issue #1081 · slidevjs/slidev · GitHub](https://github.com/slidevjs/slidev/issues/1081)
-
----
-
-reveal-md 模板
->[GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
-
->[GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)
 
 
 
@@ -169,8 +157,21 @@ reveal-md 模板
 	- GitHub Actions 部署：[Automated Deployment: GitHub Actions · rust-lang/mdBook Wiki · GitHub](https://github.com/rust-lang/mdBook/wiki/Automated-Deployment%3A-GitHub-Actions)
 	- mdbook 加密：[GitHub - Wybxc/mdbook-pagecrypt: Encrypt your mdbook-built site with password protection.](https://github.com/Wybxc/mdbook-pagecrypt)
 
+```bash
+# 安装 mdbook
+cargo install mdbook
+
+# 初始化 project
+mdbook init mdbook-demo & cd $_
+
+# 预览
+mdbook serve --open
+```
+
 - [GitHub - auula/typikon: Typikon lets you use markdown to write your online books.](https://github.com/auula/typikon)
+
 - [ONCE — Writebook](https://once.com/writebook)
+
 - [GitBook](https://www.gitbook.com/)
 
 - Jupyter Book 形式：[Built with Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
@@ -191,20 +192,6 @@ reveal-md 模板
 - docsify：[docsify](https://docsify.js.org/#/zh-cn/)
 
 
----
-
-```bash
-# 安装 mdbook
-cargo install mdbook
-
-# 初始化 project
-mdbook init mdbook-demo & cd $_
-
-# 预览
-mdbook serve --open
-```
-
-
 
 ---
 
@@ -218,7 +205,9 @@ mdbook serve --open
 
 - [GitHub - tangly1024/NotionNext: 使用 NextJS + Notion API 实现的，支持多种部署方案的静态博客，无需服务器、零门槛搭建网站，为Notion和所有创作者设计](https://github.com/tangly1024/NotionNext)
 
-- [ ] 如何用 docker compose 搭建 WordPress 博客系统
+- 可 Docker 部署（前后端）：[GitHub - LinMoQC/Memory-Blog: This is a personal blogging platform built with React, TypeScript, and Spring Boot.](https://github.com/LinMoQC/Memory-Blog)
+
+- WordPress 博客系统：[保姆级搭建wordpress博客教程（docker版）\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Nf4y127gj)
 
 
 

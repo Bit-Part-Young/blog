@@ -38,7 +38,9 @@ password:
 		- [分享神级去除 IOS 应用开屏广告的方法 - V2EX](https://www.v2ex.com/t/1018073)
 		- [常用 URL Schemes 收集。 · GitHub](https://gist.github.com/zhuziyi1989/3f96a73c45a87778b560e44cb551ebd2)
 		- [GitHub - WengYuehTing/iOS-app-info: iOS 应用程序的 Bundle ID, App Store App ID 和 URL Scheme 信息汇总](https://github.com/WengYuehTing/iOS-app-info)
+
 	- 方式 2：下载 Shadowrocket App，拷贝以下链接，进入 配置 - 右上角 “+” 号（比 URL Schemes 方便；不能关掉 Shadowrocket 后台，否则去广告效果会失效）
+		- [GitHub - Johnshall/Shadowrocket-ADBlock-Rules-Forever: 提供多款 Shadowrocket 规则，拥有强劲的广告过滤功能。每日8时重新构建规则。](https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever)
 
 ```text
 https://whatshub.top/module/adultraplus.module

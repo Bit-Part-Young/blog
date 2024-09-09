@@ -45,8 +45,6 @@ password:
 ## zsh
 
 - 提升终端使用体验
-	- 插件丰富：可实现命令自动补全、高亮、建议；`x` 解压任意格式压缩文件；`z` 路径快速跳转等
-	- 丰富的 git 命令 alias，git 状态可视化
 - master、manager 上没有 zsh；Pi 和思源一号有 zsh，但版本较老
 - zsh 系列插件：[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
 - 管理 zsh 配置：[ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
@@ -157,6 +155,12 @@ export SHELL=`which zsh`
 
 ### 配置
 
+ohmyzsh 介绍：插件丰富；丰富的 git 命令 alias，git 状态可视化
+
+zimfw（类似 ohmyzsh）：[GitHub - zimfw/zimfw: Zim: Modular, customizable, and blazing fast Zsh framework](https://github.com/zimfw/zimfw)
+
+---
+
 - 安装 ohmyzsh
 
 ```bash
@@ -175,6 +179,7 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 	- zsh-syntax-highlighting（高亮）
 	- zsh-autosuggestions（建议）
 	- zsh prompt（可选）：[spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt)
+	- [starship](https://github.com/starship/starship): Shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
 
 ```bash
 # github 源
@@ -216,8 +221,9 @@ p10k configure  # 配置 powerlevel10k
 
 ```bash
 # 内置插件
-z    # 目录自动跳转，模糊匹配最近进入过的目录
-git  # 丰富的 git alias
+x          # 解压任意格式压缩
+z          # 目录自动跳转，模糊匹配最近进入过的目录
+git        # 丰富的 git alias
 
 # 外置插件
 zsh-syntax-highlighting
@@ -242,11 +248,22 @@ bash-snippets         # 有 cheat 等可执行命令
 ### 相关问题
 
 - zsh 中的 `[nyae]` 的含义：[What does nyae mean in Zsh? - Stack Overflow](https://stackoverflow.com/questions/800182/what-does-nyae-mean-in-zsh)
-- zsh 安装后，`Home / End` 键可能会失效，对应快捷键：`Home = Ctrl + A`，`End = Ctrl + E`。
+
+- zsh 安装后，`Home / End` 键可能会失效，对应快捷键：`Home = Ctrl + A`，`End = Ctrl + E`
+
 - 添加 `~/.bash_profile` 文件（内容可为空），可使登录时不直接使用 zsh
 
 ```bash
 export PATH=$PATH:$HOME/bin
+```
+
+- 超算 Pi 更换操作系统后， zsh 无需重新编译，只是缺少了部分动态库如 `libncursesw.so.5` 和 `libtinfo.so.5`，可从 conda 环境中 lib 目录里找到创建其符号链接，在 `~/.bashrc` 文件中添加动态库 `PATH`
+
+```bash
+ln -s ~/.conda/envs/XXX/lib/libncursesw.so.6 ~/yangsl/lib/libncursesw.so.5
+ln -s ~/.conda/envs/XXX/lib/libtinfo.so.6 ~/yangsl/lib/libtinfo.so.5
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/XXX/lib
 ```
 
 
@@ -302,7 +319,9 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 
 >ripgrep、lsd、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
 
-- shell：nushell、fish 体验（没有 zsh 好用）
+系统相关
+
+- Shell：nushell、fish 体验（没有 zsh 好用）
 - 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)、[navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
@@ -311,35 +330,59 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
-- 替代 diff：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
-- 替代 top：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
-- 文本编辑器：[helix](https://github.com/helix-editor/helix)
-- 终端 Markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
+- 替代 `diff`：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
+- 替代 `top`：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
+- 检测 GPU（Nvidia 和 AMD 等）：[nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
 - 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[neofetch-themes](https://github.com/Chick2D/neofetch-themes)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）、[hyfetch](https://github.com/hykilpikonna/hyfetch)
 - 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
-- 文件对比：[difftastic](https://github.com/Wilfred/difftastic)
-- 文件搜索：[fzf](https://github.com/junegunn/fzf)
-- 统计代码文件行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
-- 终端文件管理器：[yazi](https://github.com/sxyazi/yazi)、[superfile](https://github.com/MHNightCat/superfile)、[ranger](https://github.com/ranger/ranger)、[lf](https://github.com/gokcehan/lf)（效果一般）
-- 富文本：[rich](https://github.com/textualize/rich)
-- 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
-- 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
-- neovim 配置：[lazyvim](https://github.com/LazyVim/LazyVim)（siyuan 无法使用）
-- 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
 - 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
-- 以 PPT 形式查看 md 文档的 CLI 工具：[GitHub - maaslalani/slides: Terminal based presentation tool](https://github.com/maaslalani/slides)
-- 文件传输：[GitHub - schollz/croc](https://github.com/schollz/croc)
-- [starship](https://github.com/starship/starship): 美观、可自定义的 shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
 - 安全替代 `rm` 的脚本：[trash.sh](https://github.com/qqAys/trash.sh)
-- 终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)
 - [GitHub - theryangeary/choose: A human-friendly and fast alternative to cut and (sometimes) awk](https://github.com/theryangeary/choose)
-- [GitHub - imsnif/bandwhich: Terminal bandwidth utilization tool](https://github.com/imsnif/bandwhich)
+- 带宽：[GitHub - imsnif/bandwhich: Terminal bandwidth utilization tool](https://github.com/imsnif/bandwhich)
+
+---
+
+Markdown 相关
+
+- 终端 Markdown 渲染：[frogmouth](https://github.com/Textualize/frogmouth)、[glow](https://github.com/charmbracelet/glow)
 - [GitHub - swsnr/mdcat: cat for markdown](https://github.com/swsnr/mdcat)
-- 检测 GPU（Nvidia 和 AMD 等）：[nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
-- 将输入的图片，使用几何形状重新绘制：[GitHub - fogleman/primitive: Reproducing images with geometric primitives.](https://github.com/fogleman/primitive)
-- [sshx](https://github.com/ekzhang/sshx)：通过链接共享终端（可创建多个终端画布）
+- 以 PPT 形式查看 md 文档：[GitHub - maaslalani/slides: Terminal based presentation tool](https://github.com/maaslalani/slides)
+
+---
+
+文件相关
+
+- 文件搜索：[fzf](https://github.com/junegunn/fzf)
+- 终端文件管理器：[yazi](https://github.com/sxyazi/yazi)、[superfile](https://github.com/MHNightCat/superfile)、[ranger](https://github.com/ranger/ranger)、[joshuto](https://github.com/kamiyaa/joshuto)、[lf](https://github.com/gokcehan/lf)（效果一般）
+- 文件传输：[GitHub - schollz/croc](https://github.com/schollz/croc)
 - [f2](https://github.com/ayoisaiah/f2)：文件批量重命名
-- 其他小工具： cowsay、sl（火车）、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix（黑客帝国）、asciiquarium（水族馆）
+
+
+---
+
+编程相关
+
+- 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
+- 统计代码文件行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
+
+
+---
+
+图片相关
+
+- 终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)
+- 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
+- 将输入的图片，使用几何形状重新绘制：[GitHub - fogleman/primitive: Reproducing images with geometric primitives.](https://github.com/fogleman/primitive)
+
+---
+
+其他
+
+- [sshx](https://github.com/ekzhang/sshx)：通过链接共享终端（可创建多个终端画布）
+- 富文本：[rich](https://github.com/textualize/rich)
+- 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
+- 文本编辑器：[helix](https://github.com/helix-editor/helix)
+- 趣味小工具： cowsay、sl（火车）、fortune（幸运饼干；格言）、lolcat、boxes、cmatrix（黑客帝国）、asciiquarium（水族馆）
 
 
 ---

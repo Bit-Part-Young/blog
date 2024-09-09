@@ -209,10 +209,11 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
 - 媒体库管理：Emby（海报墙）
 - 视频下载：Downie、Motrix、imFile
-- 截图：Snipaste、Shottr（可以长截图）
+- 截图：Snipaste（无 OCR）、Shottr（可长截图、OCR）
 - 图床：PicList（基于 PicGo 开发）、PicGo
 - 录屏：QuickRecorder
 - 抠图：鲜艺 AI 抠图
+- codye：将代码片段转换为精美图片（类似 carbon）
 
 ---
 
@@ -458,16 +459,18 @@ brew untap homebrew/core
 - 中文字体推荐：[霞鹜文楷](https://github.com/lxgw/LxgwWenKai)、[得意黑](https://github.com/atelier-anchor/smiley-sans)
 
 ```bash
-# nerd font
+# 查看可用 nerd font
+brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
+	
+# 图标字体 nerd font
 brew tap homebrew/cask-fonts
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-hack-nerd-font
 
+# 代码字体
 brew install --cask font-jetbrains-mono
 brew install --cask font-juliamono
-
-# 查看可用 nerd font
-brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
+brew install --cask font-maple
 
 # 中文字体
 brew install font-smiley-sans  # 得意黑
@@ -647,10 +650,10 @@ set backspace=2
 - 查看网线 IP 地址：系统设置 - 网络 - USB XXX LAN，IP 地址
 
 ```bash
-# 获取本机 WiFi IP 地址
+# 获取本机 WiFi IP 地址（局域网 IP 地址）
 ipconfig getifaddr en0
 
-# 获取外部 IP 地址
+# 获取外部 IP 地址（广域网 IP 地址）
 curl ip.sb
 curl ifconfig.co/json
 curl cip.cc
@@ -662,6 +665,10 @@ curl ipinfo.io/ip
 ```bash
 brew install openjdk  # 安装 Java
 ```
+
+- 在 Mac 本地运行 SD：[GitHub - MochiDiffusion/MochiDiffusion: Run Stable Diffusion on Mac natively](https://github.com/MochiDiffusion/MochiDiffusion)
+
+- [国行Mac电脑如何开启Apple Intelligence\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV198p4e2Eg7)
 
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
 	- 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel

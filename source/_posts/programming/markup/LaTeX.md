@@ -1382,6 +1382,8 @@ tocbibind     % 支持将目录、参考文献、索引本身写入目录项
 \newcommand{\tsuper}[1]{\textsuperscript{#1}}
 ```
 
+[LaTeX tcolorbox宏包配色分享](https://zhuanlan.zhihu.com/p/336171630)
+
 ---
 
 ```latex
@@ -1551,6 +1553,8 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 	- [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
 	- 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
 	- [GitHub - ml-evs/CV: My TeX CV built with moderncv.](https://github.com/ml-evs/CV)
+	- [A Customised CurVe CV - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/a-customised-curve-cv/mvmbhkwsnmwv)
+	- [GitHub - rasenior/CV: CV using CurVe in LaTeX](https://github.com/rasenior/CV)
 
 - 国自然基金 LaTeX 模板：
 	- [GitHub - Ruzim/NSFC-application-template-latex: 国家自然科学基金申请书正文（面上项目）LaTeX 模板（非官方）](https://github.com/Ruzim/NSFC-application-template-latex)

@@ -54,6 +54,8 @@ password:
 
 ### 分析工具
 
+crysinfo 程序（孔老师程序）：6a 选项 查看 Assign Wyckoff letter（等同位点）
+
 结构原型分析
 >[GitHub - chuanxun/StructurePrototypeAnalysisPackage: Structure Prototype Analysis Package can analyze symmetry and compare similarity of a large number of atomic structures.](https://github.com/chuanxun/StructurePrototypeAnalysisPackage)
 
@@ -94,6 +96,8 @@ ovito 计算层间距：可以尝试 Histogram add modification
 
 vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
 
+- [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
+
 
 ---
 
@@ -101,7 +105,7 @@ vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
 
 ### 复杂 Bulk 结构
 
-方法 1：在文献中查找该结构的晶体学信息，若提到 protype structure（原型结构），可以在数据库（ICSD、mp、aflow、Springer Materials 等）中找对应原型结构的 cif 文件（需留意 Wyckoff position 是否一致或接近），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
+方法 1：在文献中查找该结构的晶体学信息，若提到 protype structure（原型结构），可在数据库（ICSD、MP、Aflow、Springer Materials 等）中找对应原型结构的 cif 文件（需留意 Wyckoff position 是否一致或接近），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
 
 - Springer Materials：[https://materials.springer.com/](https://materials.springer.com/)
 

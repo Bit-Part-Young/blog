@@ -23,24 +23,6 @@ password:
 
 WIP...
 
-Bash 脚本，用来生成 Markdown 表格：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
-
-Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
-
-
-在线试用各种 Linux 发行版，它会分配一个虚拟机，浏览器里连接桌面：[Test Linux distros online - DistroSea](https://distrosea.com/)
-
-
-```bash
-# 在 .bashrc 中创建与函数功能等同的 alias
-
-fn() {
-    commands
-}
-
-alias fn='fn'
-```
-
 
 ---
 
@@ -50,34 +32,45 @@ alias fn='fn'
 - 在线的 Unix 和 Linux 手册页（man 页）：[Linux Man Pages Online](http://man.he.net/)
 - Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
 - 中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)
-- [GitHub - linuxhitchhiker/THGLG: The Hitchhiker's Guide to the Linux : Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
+- [GitHub - linuxhitchhiker/THGLG: Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
 - [GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
-- 用纯 bash 命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
-- 命令行艺术：[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
-- bash 一行命令：[https://github.com/onceupon/Bash-Oneliner](https://github.com/onceupon/Bash-Oneliner)
 - [真有人用Linux？（Linux下的工作、科研、学习与生活） - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/281312)
 - [工具是第一生产力——Linux入门教程](https://ysyx.oscc.cc/slides/2306/02.html)
-
 - Linux 设置：[Setting up Linux • Linux tutorial](https://pranabdas.github.io/linux/setup)
-
----
-
-- [GitHub - 1Panel-dev/1Panel：现代化、开源的 Linux 服务器运维管理面板。](https://github.com/1Panel-dev/1Panel)
-- 备份 dotfiles 工具：[GitHub - deadc0de6/dotdrop: Save your dotfiles once, deploy them everywhere](https://github.com/deadc0de6/dotdrop)
-- [GitHub - RubyMetric/chsrc: chsrc 全平台通用换源工具](https://github.com/RubyMetric/chsrc)
-- [Bash 脚本如何创建临时文件：mktemp 命令和 trap 命令教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/12/mktemp.html)
-
-[GitHub - skwp/dotfiles: YADR - The best vim,git,zsh plugins and the cleanest vimrc you've ever seen](https://github.com/skwp/dotfiles)
-
-[GitHub - yutkat/dotfiles: The best and strongest dotfiles. Editor: Neovim; Shell: zsh(zinit, powerlevel10k); Terminal: wezterm; Desktop: sway, ulauncher, dunst; OS: ArchLinux (Ubuntu/Fedora/CentOS)](https://github.com/yutkat/dotfiles)（内含一键安装脚本，可参考写法）
-
-[GitHub - dibingfa/flash-linux0.11-talk: 你管这破玩意叫操作系统源码 — 像小说一样品读 Linux 0.11 核心代码](https://github.com/dibingfa/flash-linux0.11-talk)
+- [GitHub - dibingfa/flash-linux0.11-talk: 你管这破玩意叫操作系统源码 — 像小说一样品读 Linux 0.11 核心代码](https://github.com/dibingfa/flash-linux0.11-talk)
+- Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
 
 
 
 ---
 
 ## 使用
+
+### 工具
+
+- 在线试用各种 Linux 发行版，它会分配一个虚拟机，浏览器里连接桌面：[Test Linux distros online - DistroSea](https://distrosea.com/)
+
+- [GitHub - 1Panel-dev/1Panel：现代化、开源的 Linux 服务器运维管理面板。](https://github.com/1Panel-dev/1Panel)
+
+- 用纯 bash 命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
+
+- 命令行艺术：[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
+
+- bash 一行命令：[https://github.com/onceupon/Bash-Oneliner](https://github.com/onceupon/Bash-Oneliner)
+
+- [GitHub - RubyMetric/chsrc: chsrc 全平台通用换源工具](https://github.com/RubyMetric/chsrc)
+
+- [Bash 脚本如何创建临时文件：mktemp 命令和 trap 命令教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/12/mktemp.html)
+
+- Linux 配置文件：
+	- [GitHub - skwp/dotfiles](https://github.com/skwp/dotfiles)
+	- [GitHub - yutkat/dotfiles](https://github.com/yutkat/dotfiles)（内含一键安装脚本，可参考写法）
+	- 备份 dotfiles：[GitHub - deadc0de6/dotdrop: Save your dotfiles once, deploy them everywhere](https://github.com/deadc0de6/dotdrop)
+
+- Bash 脚本，用来生成 Markdown 表格：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
+
+
+---
 
 ### 基本使用
 
@@ -219,6 +212,8 @@ bash --rcfile testrc  # 指定另一个脚本代替 .bashrc
 
 #### 基本命令
 
+基本命令
+
 ```bash
 man         # 查看命令帮助
 echo        # 打印字符串
@@ -242,11 +237,18 @@ clear       # 清屏
 reset       # 重置终端
 dirname
 basename
+chmod
+chown
+time
 |           # 管道符
 >  >>       # 标准输出流重定向
 <           # 标准输入流重定向
 2>  2>>     # 标准错误流重定向
 ```
+
+---
+
+基本命令进阶用法
 
 ```bash
 man man                 # 查看如何使用 man 命令
@@ -268,6 +270,8 @@ alias mv="mv -v"
 alias cp="cp -v"
 alias rm="rm -v"
 
+# 对比目录差异
+diff -urp folder1 folder2 2>/dev/null
 
 which -a command  # 查看所有同名命令
 
@@ -277,29 +281,11 @@ cut -d, -f3 file  # 从每一行文本中提取以逗号分隔的第三个字段
 ```
 
 
-注：简单命令直接列出来
-
-```bash
-Basic:
-      chmod
-      chown
-      top
-      uname
-      
-Advanced:
-      scp
-      zip
-      time
-      nohup
-```
-
-
-
 ---
 
 #### tar
 
-- 打包命令，不是压缩/解压缩命令（和其他压缩程序如 gzip、bzip2 等一起实现压缩/解压缩功能）
+- 打包命令，非压缩/解压缩命令（和其他程序如 gzip、bzip2 等一起实现压缩/解压缩功能）
 - 不同压缩格式的文件体积大小：`tar.gz` > `tar.bz2` > `tar.xz`
 
 ```bash
@@ -420,6 +406,7 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 -iregex        # 正则表达式匹配，忽略大小写
 -exec          # 执行指令
 -ok            # 执行指令，但需确认
+-perm          # 按照文件权限查找；111 精确匹配，/111 任意一个匹配，-111 都必须匹配
 
 
 # 示例
@@ -548,24 +535,19 @@ sed -e '1d' -e '/pattern/d' file  # 删除多行
 - awk 程序由模式和动作组成（可以没有模式）
 - `-v var=` 定义变量
 
----
+```bash
+# awk 中的变量
+$0        # 所有字段
+$n        # 第 n 个字段
+NR        # 记录行号
+NF        # 记录字段数（列数）
+FNR       # 记录文件数
 
-awk 中的变量
+# awk 中的模式
+BEGIN     # 在 awk 开始读取输入数据流之前执行一些初始化操作
+END       # 在 awk 读取完输入数据流之后执行一些最终操作
 
-- `$0`：所有字段
-- `$n`：第 n 个字段
-- `NR`：记录行号
-- `NF`：记录字段数（列数）
-- `FNR`：记录文件数
-
----
-
-awk 中的模式
-
-- `BEGIN`：在 awk 开始读取输入数据流之前执行一些初始化操作
-- `END`：在 awk 读取完输入数据流之后执行一些最终操作
-
-```awk
+# 语法
 BEGIN {
    command
 }
@@ -746,7 +728,6 @@ wc -l file
 sed -n '$=' file
 ```
 
-
 - 其他
 
 ```bash
@@ -773,94 +754,14 @@ nmon                   # 监控系统资源（应该不常用）
 
 ---
 
-### Tmux
-
-参考资料：
-
-- [Tmux 配置：打造最适合自己的终端复用工具 - zuorn - 博客园](https://www.cnblogs.com/zuoruining/p/11074367.html)
-- [Tmux 使用教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/10/tmux.html)
-- [tmux + oh-my-tmux使用指北](https://ixjx.github.io/2020-04-14/tmux-+-oh-my-tmux%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8C%97/)
-- tmux 配置：[GitHub - gpakosz/.tmux: 🇫🇷 Oh my tmux! My self-contained, pretty & versatile tmux configuration made with ❤️](https://github.com/gpakosz/.tmux)
-
-tmux session 管理：
-
-- [GitHub - tmux-python/tmuxp: 🖥️ Session manager for tmux, build on libtmux.](https://github.com/tmux-python/tmuxp)
-- [GitHub - tmuxinator/tmuxinator: Manage complex tmux sessions easily](https://github.com/tmuxinator/tmuxinator)
-
-替代工具：[GitHub - zellij-org/zellij: A terminal workspace with batteries included](https://github.com/zellij-org/zellij)
-
-
-```bash
-# 安装在 ~
-cd ~
-git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
-```
-
-
-将终端和会话分离
-
-后台服务 (server)，会话 (session)，窗口 (window)，窗格 (pane)
-一个 session 可以包含多个 window，一个 window 可以被分割成多个 pane
-
-
-安装
-```bash
-brew install tmux  # macOS
-
-sudo apt install tmux  # Ubuntu
-```
-
-session 相关命令
-
-```bash
-tmux -V  # 查看版本
-
-tmux source-file ~/.tmux.conf  # 刷新配置
-
-tmux new -s <session-name>  # 新建 session，默认从 0 开始
-
-tmux detach  # 分离 session
-
-tmux ls  # tmux list-sessions 查看所有 sessions
-
-tmux a  # tmux attach 重新连接 session
-tmux attach -t <session-name>
-
-tmux kill-session -t <session-name>  # kill
-
-tmux switchc -t <session-name>  # 切换
-
-tmux rename-session -t 0 <new-name>  # 重命名
-```
-
-
-默认前缀键：`Ctrl + b`，oh-my-tmux 添加了 `Ctrl + a`（如何将其取消或换成别的）
-
-快捷键
-
-```bash
-prefix + s       # 可视化 session
-
-
-# 分屏相关
-prefix + %       # 
-prefix + "       # 
-```
-
-
-
----
-
 ### 文件系统层次结构
 
 - [Unix filesystem - Wikipedia](https://en.wikipedia.org/wiki/Unix_filesystem#Conventional_directory_layout)
 - [Filesystem Hierarchy Standard - Wikipedia](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
 - [Linux 系统目录结构 - 菜鸟教程](https://www.runoob.com/linux/linux-system-contents.html)
 
+![](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/Standard-unix-filesystem-hierarchy.svg)
 
-![](tmp.svg)
 
 
 ![ft.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202312311529652.png)
@@ -899,19 +800,12 @@ prefix + "       #
 
 - 终端 Tab 补全忽略大小写：[linux下，按tab补全时，忽略大小写的配置\_linux命令行终端设置tab补全文件名或路径不区分大小写-CSDN博客](https://blog.csdn.net/lianshaohua/article/details/108710098)
 
-alias 使用参数：以定义函数的方式进行：[https://forsworns.github.io/zh/blogs/20190919/](https://forsworns.github.io/zh/blogs/20190919/)
+- 在 `.bashrc` 中定义函数
+
 ```bash
-alias ipynb2md="py2md(){jupyter nbconvert --to markdown $1}; py2md"
+# 详细列出给定目录及其子目录的文件信息
+lsr() { find "${@:-.}" -print0 | sort -z | xargs -0 ls --color=auto -dlha; }
 ```
 
-
-zsh 与 bash 之间的一些区别：
-
-- zsh 数组索引从 1 开始， bash 从 0 开始
-
-
-一般来说，头文件通常位于 **`/usr/include`** 或 **`/usr/local/include`** 目录中，而库文件通常位于 **`/usr/lib`** 或 **`/usr/local/lib`** 目录中。请注意，库文件可能会有不同的后缀，例如 `.so` 动态库 `.a` 静态库。
-
-
-crysinfo 程序（孔老师程序）
-6a 选项 查看 Assign Wyckoff letter（等同位点）
+- zsh 与 bash 之间的一些区别：
+	- zsh 数组索引从 1 开始， bash 从 0 开始

@@ -25,6 +25,8 @@ password:
 
 - Chrome 中的插件大多都可以在 Edge 和 Firefox 中找到
 - 浏览器中的插件可以设置在隐私/无痕窗口中使用（Firefox 会自动提示，Chrome 和 Edge 需手动设置）
+- Chrome 登录谷歌账号可同步安装过的插件（Tampermonkey 安装的油猴脚本无法同步）
+- 隐藏浏览器书签栏：右键点击书签栏，取消勾选 “显示书签栏”
 
 
 ---
@@ -32,43 +34,46 @@ password:
 ### Vimium
 
 - 使用 Vim 快捷键浏览网页；[vimium的日常](https://coffee1993.github.io/2016/03/16/vimium%E7%9A%84%E6%97%A5%E5%B8%B8/)
-- 快捷键
-	- `?`：快捷键帮助
-	- `j`、`k` : 上下移动
-	- `J`、`K` (`shift + J`、`shitf + J`)： 上下移动标签页
-	- `x` : 关闭当前页面
-	- `X` : 恢复刚刚关闭的页面
-	- `f` : 获取全页面的焦点，按照相应的位置输入字母打开新的链接
-	- `b` : 在当前页打开一个书签
-	- `o` : 相当于 Chorme 的地址栏，可以匹配历史记录、书签并在当前的窗口打开
-	- `yy` : 拷贝当前页面的 URL 到剪切板（之后可以 Crtl+V 粘贴到其他地方）
-	- `gi` : 光标移动到输入框，如果有多个可以按 Tab 键切换
-	- `r` : 刷新页面（同 F5）
+
+```bash
+# 快捷键
+?            # 快捷键帮助
+j / k        # 上下移动页面
+t            # 新建标签页
+r            # 刷新页面（同 F5）
+x            # 关闭当前页面
+gi           # 光标移动到输入框
+X            # 恢复刚刚关闭的页面
+H            # 回退
+J / K        # 左右移动标签页；等同于 shift + J、shitf + K 
+f            # 获取全页面的焦点，按照相应的位置输入字母打开新的链接
+b            # 在当前页打开一个书签
+o            # 相当于 Chorme 的地址栏，可以匹配历史记录、书签并在当前的窗口打开
+yy           # 拷贝当前页面的 URL 到剪切板
+```
 
 
 ---
 
 ### SwitchyOmega
 
-- 自动切换对网页实现不同的代理（直连或代理），节省流量。配置好切换规则后，选择 “auto switch”；[2024最新SwitchyOmega使用教程配置从入门到精通](https://switchyomega.org/)
-- 规则列表网址：
+自动切换对网页实现不同的代理（直连或代理），节省流量。配置好切换规则后，选择 “auto switch”；[2024最新SwitchyOmega使用教程配置从入门到精通](https://switchyomega.org/)
 
-```text
+```bash
+# 规则列表网址
 https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
+
+# 个人使用切换规则
+# 域名                    # 代理方式
+*openai.com               # 代理
+*bing.com                 # 代理
+claude.ai                 # 代理
+www.torrentleech.org      # 代理
+www.em*ium.is             # 代理
+pubs.acs.org              # 直接连接
+pubs.aip.org              # 直接连接
+www.sciencedirect.com     # 直接连接
 ```
-
-- 个人使用切换规则：
-
-| 域名                      | 代理方式 |
-| ----------------------- | ---- |
-| `*openai.com`           | 代理   |
-| `*bing.com`             | 代理   |
-| `claude.ai`             | 代理   |
-| `www.torrentleech.org`  | 代理   |
-| `www.em*ium.is`         | 代理   |
-| `pubs.acs.org`          | 直接连接 |
-| `pubs.aip.org`          | 直接连接 |
-| `www.sciencedirect.com` | 直接连接 |
 
 ---
 
@@ -85,9 +90,13 @@ https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 - easyScholar：显示文献期刊排名；也可以下载 2021 年前的文献
 - Copy As Plain Text：去除选中内容的所有格式，转换成普通文本
 - Global Speed：全局网页视频速度控制
-- Notion Boost：使网页版 Notion page 侧边栏生成目录
 - [GitHub - 027xiguapi/code-box: 本插件可以用于CSDN/知乎/脚本之家/博客园等网站,实现无需登录一键复制代码;支持选中代码;或者代码右上角按钮的一键复制;解除关注博主即可阅读全文提示;去除登录弹窗;去除跳转APP弹窗.](https://github.com/027xiguapi/code-box)
 - IDM Integration Module：IDM 下载集成模块；嗅探下载网页视频
+- 隐藏浏览器插件（会把插件关掉）：[GitHub - cunzaizhuyi/up-mode-extension: This is a browser extension that protects the author's privacy by hiding pinned browser extensions.](https://github.com/cunzaizhuyi/up-mode-extension)
+
+---
+
+- Notion Boost：使网页版 Notion page 侧边栏生成目录
 - Bing Unchained - Use new Bing in Chrome：实现在 Chrome 中使用 new Bing；已失效，可使用 [New Bing Anywhere (Bing Chat GPT-4)](https://chrome.google.com/webstore/detail/new-bing-anywhere-bing-ch/hceobhjokpdbogjkplmfjeomkeckkngi/related)
 - WebChatGPT：使 ChatGPT 具备互联网访问功能（不是很好用）
 
