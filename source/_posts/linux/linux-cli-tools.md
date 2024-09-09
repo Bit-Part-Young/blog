@@ -257,7 +257,6 @@ bash-snippets         # 有 cheat 等可执行命令
 export PATH=$PATH:$HOME/bin
 ```
 
-- 超算 Pi 更换操作系统后， zsh 无需重新编译，只是缺少了部分动态库如 `libncursesw.so.5` 和 `libtinfo.so.5`，可从 conda 环境中 lib 目录里找到创建其符号链接，在 `~/.bashrc` 文件中添加动态库 `PATH`
 
 ```bash
 ln -s ~/.conda/envs/XXX/lib/libncursesw.so.6 ~/yangsl/lib/libncursesw.so.5

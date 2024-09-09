@@ -39,8 +39,9 @@ GitHub Pages 默认框架。
 
 #### chirpy 主题使用
 
-- 文章置顶 front-matter 参数：`top`，数值为 `true` 或 `false`
+- 文章置顶 Front Matter 参数：`top`，数值为 `true` 或 `false`
 - md 文档中的 URL 链接 title 中不能有 `|`，否则会渲染错误
+- md 文档中不能使用双大括号，否则被其包括的内容不会出现
 - 渲染 checklist 时，会无法渲染 bullet list
 
 
@@ -113,4 +114,4 @@ bundle exec jekyll server
 
 ### 部署
 
-部署（不需要写 GitHub Actions yml 文件）：repo - Settings - Pages - Build and deployment - Branch
+部署（不需要 GitHub Actions）：repo - Settings - Pages - Build and deployment - Branch

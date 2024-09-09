@@ -19,7 +19,7 @@ categories:
   - 科研工具
   - 结构建模
 date: 2023-10-15 09:30:00
-abbrlink: 38100
+abbrlink: 381006
 password:
 ---
 
