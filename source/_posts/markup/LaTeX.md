@@ -1252,6 +1252,19 @@ colback=...,
     \tcblower  % 增加了一条虚线，将盒子内容分成了上下两部分
     ...
 \end{tcolorbox}
+
+% 另一种写法
+\usepackage[most]{tcolorbox}
+\begin{tcolorbox}[
+    boxrule=0pt,
+    rightrule=0pt,
+    % toprule=0pt,
+    % bottomrule=0pt,
+    frame hidden,
+    % sharp corners,  % rounded corners 圆角
+    enhanced,
+    borderline west={1pt}{0pt}{red}
+  ]
 ```
 
 
@@ -1489,36 +1502,45 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 
 ### 自定义宏包/文档类
 
-- 门槛较高
+参考：
 
-- 如果定义了很多新的环境和命令，文档的导言区将变得很长，在这种情况下，可以建立一个新的 LaTeX 宏包来存放所有你自己定义的命令和环境，然后在文档中使用 `\usepackage` 命令来调用自定义的宏包。
+- [LaTeX 模板制作教程，从一份简历说起](https://mp.weixin.qq.com/s/uZQTDYi-QFb3yLzRzHnA6g)
+- [参与开发 · ustctug/ustcthesis Wiki · GitHub](https://github.com/ustctug/ustcthesis/wiki/%E5%8F%82%E4%B8%8E%E5%BC%80%E5%8F%91)
+- [Article-template/document.tex at main · Meiting-Wang/Article-template · GitHub](https://github.com/Meiting-Wang/Article-template/blob/main/document.tex)
+- 自定义宏包文件参考：[PHYS6080-PS1/tex/mystyle.sty at main · singularitti/PHYS6080-PS1 · GitHub](https://github.com/singularitti/PHYS6080-PS1/blob/main/tex/mystyle.sty)
 
-- 写一个宏包的基本工作就是将原本在你的文档导言区里很长的内容拷贝到另一个文件中去，这个文件需要以 `.sty` 作扩展名。你还需要加入一个宏包专用的命令
+---
 
-- 在宏包中调用其它宏包：LaTeX 允许你在自己编写的宏包中调用其它宏包
+#### 自定义宏包
 
-- 自定义文档类：以 `.cls` 作扩展名，可以像调用宏包那样调用一个基本的文档类
+- 自定义宏包/文档类门槛较高
+
+- 若定义了很多新的环境和命令，文档的导言区将变得很长，这种情况下，可以建立一个新的 LaTeX 宏包来存放所有定义的命令和环境，然后在文档中使用 `\usepackage` 命令来调用自定义的宏包
+
+- 自定义宏包的基本工作就是将原本在文档导言区里很长的内容拷贝到 `.sty` 文件中
+
+- 在宏包中调用其它宏包：LaTeX 允许在自己编写的宏包中调用其它宏包
 
 ```latex
-% 该命令应该放在你的宏包的最前面
-% package-name 需要和宏包的文件名一致
-\ProvidesPackage{package-name}
-
-\RequirePackage[...]{package-name}
-
-\ProvidesClass{class-name}
-
-\RequireClass[...]{class-name}
+% 该命令应该放在自定义 .sty 宏包中的最前面
+\ProvidesPackage{package}  % package 需要和宏包的文件名一致
 ```
 
+---
 
-写宏包
+#### 自定义文档类
 
-- [https://github.com/ustctug/ustcthesis/wiki/参与开发](https://github.com/ustctug/ustcthesis/wiki/%E5%8F%82%E4%B8%8E%E5%BC%80%E5%8F%91)
-- [document.tex](https://github.com/Meiting-Wang/Article-template/blob/main/document.tex)
+- 以 `.cls` 作扩展名，可以像调用宏包那样调用一个基本的文档类
 
+```latex
+\ProvidesClass{class}
 
-自定义 sty 文件：[mystyle.sty](https://github.com/singularitti/PHYS6080-PS1/blob/main/tex/mystyle.sty)
+\RequireClass[...]{class}
+
+\LoadClass[...]{class}
+
+\RequirePackage[...]{package}  % 与 \usepackage 用法一致；在 .cls 文件中推荐使用
+```
 
 
 ---

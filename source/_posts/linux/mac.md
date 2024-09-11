@@ -463,7 +463,6 @@ brew untap homebrew/core
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
 	
 # 图标字体 nerd font
-brew tap homebrew/cask-fonts
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-hack-nerd-font
 

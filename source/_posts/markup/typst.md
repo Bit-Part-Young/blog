@@ -89,7 +89,7 @@ scoop install main/typst   # Win
 
 - VSCode 插件：
 	- typst-lsp：具有语言服务器 + 代码格式化（不再继承）等功能
-	- typst-preview：实时编译预览
+	- tinymist：代码格式化
 
 - [typst-upgrade](https://github.com/Coekjan/typst-upgrade)：检查并升级 Typst packages
 
@@ -98,7 +98,7 @@ cargo install typst-upgrade  # 安装
 
 # file.typ 可改成 .
 typst-upgrade file.typ       # 更新 package 并写入文件
-typst-upgrade -d file.typ    # -d --dry-run 不实际运行
+typst-upgrade -d file.typ    # --dry-run 不实际运行
 ```
 
 - 代码格式化：

@@ -123,6 +123,12 @@ shellcheck [option] script.sh
 -f   # 指定输出格式 checkstyle, diff, gcc, json, json1, quiet, tty
 ```
 
+- Bash LSP：[GitHub - bash-lsp/bash-language-server](https://github.com/bash-lsp/bash-language-server)（依赖 ShellCheck 和 shfmt，可集成在 Vim 或 Neovim 中）
+
+```bash
+npm i -g bash-language-server
+```
+
 - 命令行解析：
 	- `shift` 命令和 `while` 循环手动解析参数
 	- [getoptions](https://github.com/ko1nksm/getoptions)、[argparse-bash](https://github.com/nhoffman/argparse-bash)（这两个感觉都一般）

@@ -20,7 +20,7 @@ password:
 
 参考资料：
 
-- [GitHub - criwits/missing-web: Your Missing Semester of Using Computer | 你缺失的那门计算机课（网页版）](https://github.com/criwits/missing-web/)
+- [GitHub - criwits/missing-web: Your Missing Semester of Using Computer - 你缺失的那门计算机课（网页版）](https://github.com/criwits/missing-web/)
 
 
 

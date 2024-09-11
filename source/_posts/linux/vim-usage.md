@@ -355,9 +355,87 @@ make install
 
 [GitHub - bryant-video/neovim-tutorial](https://github.com/bryant-video/neovim-tutorial)
 
-一键配置 Neovim：[GitHub - LazyVim/LazyVim: Neovim config for the lazy](https://github.com/LazyVim/LazyVim)（思源一号超算无法使用）
+---
+
+#### LazyVim
+
+[轻松上手LazyVim：最强大功能的NeoVim编辑器！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1868QeaEtm/)
+
+- [LazyVim](https://github.com/LazyVim/LazyVim)：一键配置 Neovim（思源一号超算无法使用）
+
+- 默认 `<leader>` 键是 `<space>` 空格键
+- 点击 `<space>` 键，会弹出包含以 `<space>` 开头的所有可能的键盘映射的窗口
+
+- Lazyvim 预装插件/工具
 
 ```bash
-# 插件
-nvim-telescope/telescope.nvim   # 查找、筛选、预览
+williamboman/mason.nvim         # LSP
+folke/flash.nvim                # 代码导航（字符、单词跳转）
+nvim-neo-tree/neo-tree.nvim     # 文件系统管理（树状视图显示文件和目录结构）
+nvim-telescope/telescope.nvim   # 模糊查找（提供交互式界面）
+jesseduffield/lazygit           # git UI，非插件
+```
+
+- 相关命令
+
+```bash
+:                 # 打开命令窗口
+:LazyExtras       # 选择是否开启选定额外功能（如不同编程语言的插件推荐；开启会安装对应的插件）
+
+# tree-sitter 插件命令
+:TSInstall        # 安装编程语言 parser
+:TSUpate          # 更新
+```
+
+- 键位映射
+
+```bash
+# 通用
+<C-h>             # 跳转左侧窗口
+<C-l>             # 跳转右侧窗口
+<C-j>             # 跳转下方窗口
+<C-k>             # 跳转上方窗口
+<C-s>             # 保存文件
+<leader>-         # 向下拆分窗口
+<leader>|         # 向右拆分窗口
+<leader>wd        # 删除窗口
+<leader>bd        # 删除 buffer；b 指 buffer
+<leader>bb        # 切换到其他 buffer
+<leader>`         # 切换到其他 buffer
+[w                # 上一个 Warning
+]w                # 下一个 Warning
+<leader>us        # 切换拼写；u 指 UI 界面
+<leader>ul        # 切换行号
+<leader>uL        # 切换相对行号
+<leader>ub        # 切换背景
+<leader>uw        # 切换自动换行
+<leader>gg        # 打开 lazygit 窗口（根目录）；g 指 git
+<leader>gG        # 打开 lazygit 窗口（当前工作路径）
+<leader>ft        # 打开 Terminal
+<C-/>             # 隐藏 Terminal
+<leader>qq        # 退出所有（窗口、文件等）
+
+
+# telescope 插件
+<leader><space>   # 查找文件
+<leader>,         # 切换 buffer
+<leader>/         # Grep
+<leader>sg        # Grep
+<leader>:         # 命令历史
+<leader>fr        # 显示最近文件 
+<leader>gc        # 显示 git commit
+<leader>gs        # 显示 git status
+<leader>sc        # 命令历史
+
+# neo-tree 插件
+<leader>be        # 打开 buffer 目录树
+<leader>e         # 打开文件目录树
+
+
+# LSP
+gd                # 转到定义
+K                 # 悬停
+
+# flash 插件
+s                 # 字符查找
 ```

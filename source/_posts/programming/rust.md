@@ -214,6 +214,13 @@ cargo install-update -a     # 检查并更新所有安装的 packages
 
 - cargo-cache：cargo 缓存管理工具
 
+```bash
+cargo install cargo-cache  # 安装
+
+cargo cache                # 清理缓存
+cargo cache -n             # 不实际运行
+```
+
 - rust-binstall
 
 ```bash

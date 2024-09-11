@@ -62,7 +62,6 @@ code           # VSCode
     ],
 ```
 
-
 ---
 
 ### 快捷键
@@ -80,7 +79,6 @@ Ctrl + F4               # 关闭文件
 Crtl + P 或 Crtl + Tab  # 文件跳转
 Crtl + 点击图片          # 缩小图片
 ```
-
 
 ---
 
@@ -148,9 +146,8 @@ Crtl + 点击图片          # 缩小图片
 ---
 
 - surround 用法：
-	- `"test"` with cursor inside quotes type `cs"'` to end up with `'test'`
-	- `"test"` with cursor inside quotes type `ds"` to end up with `test`
-
+  - `"test"` with cursor inside quotes type `cs"'` to end up with `'test'`
+  - `"test"` with cursor inside quotes type `ds"` to end up with `test`
 
 ---
 
@@ -179,10 +176,9 @@ Crtl + 点击图片          # 缩小图片
 - 问题：当 root 中已有 conda 时，当前用户下的 conda 虚拟环境名称无法被 VSCode 的相关插件识别，可在设置中找到 `conda path` 选项，写入将当前用户下的 conda 路径
 
 - 其他 Python 相关插件：
-	- Black Formatter：Python 代码风格格式化（其他：yapf、autopep8 和 ruff）。
-	- autoDocstring：自动为 python 的函数和类写 docstring snippets。
-	- Jupyter：运行 Jupyter notebook。
-
+  - Black Formatter：Python 代码风格格式化（其他：yapf、autopep8 和 ruff）。
+  - autoDocstring：自动为 python 的函数和类写 docstring snippets。
+  - Jupyter：运行 Jupyter notebook。
 
 ---
 
@@ -200,7 +196,7 @@ Crtl + 点击图片          # 缩小图片
 
 - LaTeX Workshop：实时编译 LaTeX，有字数统计功能
 
-- Typst preview：预览 Typst 文件
+- Typst LSP：Typst 语言服务器
 
 - Markdown All in One：markdown 语法高亮，自动补全，**可生成目录，添加/更新章节序号**；[VSCode插件生成编号、目录、文件目录树](https://github.com/lc-1203/k8s-practice/blob/main/06-Tools%26Tips/Markdown/VSCode%E6%8F%92%E4%BB%B6%E7%94%9F%E6%88%90%E7%BC%96%E5%8F%B7%E3%80%81%E7%9B%AE%E5%BD%95%E3%80%81%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%A0%91.md)；暂无很好的 “ 中英文混排添加空格 ” 格式化的插件；会使用 Obsidian 中的 Linter 插件，可将 markdown 内容复制到 Obsidian 中进行格式化
 
@@ -223,6 +219,13 @@ Crtl + 点击图片          # 缩小图片
 }
 ```
 
+---
+
+### 前端相关
+
+- Live Server
+- CSS Peak
+- Auto Rename Tag：自动重命名标签 tag
 
 ---
 
@@ -230,11 +233,10 @@ Crtl + 点击图片          # 缩小图片
 
 - PicGo：图床
 - vscode-pdf：打开 pdf 文件（会与 LaTeX Workshop 插件冲突）
-- Material Icon Theme：文件、目录图标，美化用
 - Excel Viewer：查看 Excel 表格
+- Material Icon Theme：文件、目录图标，美化用
+- Front Matter CMS：管理 Front Matter
 - [VScode 插件推荐-状态栏篇\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HBsMejEJM/)
-
-
 
 ---
 
@@ -261,8 +263,6 @@ brew services start code-server
 # Now visit http://127.0.0.1:8080. Your password is in ~/.config/code-server/config.yaml
 ```
 
-
-
 ---
 
 ## 相关问题
@@ -284,12 +284,12 @@ The Pylance server crashed 5 times in the last 3 minutes. The server will not be
 ```
 
 - Remote-ssh 远程连接服务器，使用 `plt.show()` 打不开画图窗口：
-	- [python - Is there any way to show figures in VScode remote ssh (windows) - Stack Overflow](https://stackoverflow.com/questions/59063892/is-there-any-way-to-show-figures-in-vscode-remote-ssh-windows)
-	- 解决方法：保存图片再打开查看；或者在互动窗口中运行代码
+  - [python - Is there any way to show figures in VScode remote ssh (windows) - Stack Overflow](https://stackoverflow.com/questions/59063892/is-there-any-way-to-show-figures-in-vscode-remote-ssh-windows)
+  - 解决方法：保存图片再打开查看；或者在互动窗口中运行代码
 
 - vscode 加载图片错误：
-	- [visual studio code - Error loading webview: Error: Could not register service workers: TypeError: Failed to register a ServiceWorker for scope - Stack Overflow](https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai)
-	- 解决方法：清除相关文件缓存：进入 `C:\Users\XX\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
+  - [visual studio code - Error loading webview: Error: Could not register service workers: TypeError: Failed to register a ServiceWorker for scope - Stack Overflow](https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai)
+  - 解决方法：清除相关文件缓存：进入 `C:\Users\XX\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
 
 ```bash
 加载 Web 视图时出错: Error: Could not register service workers: InvalidStateError: Failed to register a ServiceWorker: The document is in an invalid state.

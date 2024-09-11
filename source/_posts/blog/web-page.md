@@ -223,6 +223,7 @@ mdbook serve --open
 	- GitHub Actions 形式；需 repo 状态为 public： [GitHub - linyuxuanlin/File-host: 资源共享仓库](https://github.com/linyuxuanlin/File-host)
 	- 手动创建（需在每个文件夹目录下创建 index.html 文件）：[GitHub - pranabdas/drive](https://github.com/pranabdas/drive)
 	- [GitHub - filebrowser/filebrowser: 📂 Web File Browser](https://github.com/filebrowser/filebrowser)
+	- [GitHub - xiaobaidadada/filecat: 简洁的Web文件浏览与服务器管理（服务器Linux面板）](https://github.com/xiaobaidadada/filecat)
 	- 可自建的文件分享平台：[GitHub - stonith404/pingvin-share: A self-hosted file sharing platform that combines lightness and beauty, perfect for seamless and efficient file sharing.](https://github.com/stonith404/pingvin-share)
 
 
