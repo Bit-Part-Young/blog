@@ -159,7 +159,7 @@ photofigcaption: true  # false
 # copy settings
 # copyright: Add the copyright information after copied content (複製的內容後面加上版權信息)
 copy:
-  enable: true
+  enable: false  # true
   copyright:
     enable: true  # false
     limit_count: 50
@@ -177,7 +177,7 @@ toc:
   scroll_percent: true
 
 post_copyright:
-  enable: false  # true
+  enable: true
   decode: false
   author_href:
   license: CC BY-NC-SA 4.0
