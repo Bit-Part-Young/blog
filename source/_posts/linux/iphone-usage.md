@@ -30,6 +30,10 @@ password:
 - 虚拟定位：爱思助手（i4Tools）
 - 安卓虚拟定位：[GitHub - ZCShou/GoGoGo](https://github.com/ZCShou/GoGoGo)
 
+- 国行 iPhone 使用 Apple Intelligence：
+	- [Apple Intelligence 可以在国行 iPhone 上使用啦 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/302439)
+	- [GitHub - straight-tamago/misakaX](https://github.com/straight-tamago/misakaX)
+
 - iPhone 实况照片转视频：[如何在 iPhone 上将实况照片转换为视频 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/105029)
 
 - iPhone 去除开屏广告：

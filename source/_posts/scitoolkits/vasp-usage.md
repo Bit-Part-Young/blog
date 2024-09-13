@@ -63,6 +63,13 @@ LDAUJ
 非自洽计算：特殊 K 点
 
 
+METAGGA
+
+SCAN (Strongly constrained and appropriately normed)
+
+[METAGGA - VASP Wiki](https://www.vasp.at/wiki/index.php/METAGGA)
+
+
 
 ---
 
@@ -121,7 +128,7 @@ GW 计算
 
 
 
-VASP 计算流程：[VASP的计算流程 | Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
+VASP 计算流程：[VASP的计算流程 - Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
 
 
  - NCORE: 指定单个轨道计算所使用的核数量

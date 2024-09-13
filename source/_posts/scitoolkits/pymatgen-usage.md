@@ -518,23 +518,24 @@ EwaldSummation 是 pymatgen 库中的一个类，用于计算离子晶体的 Ewa
 Structure 类相关属性和方法
 ```python
 # 属性
-num_sites   # 原子数
-formula 
-compsition
-volume
-frac_coords
-cart_coords
+num_sites                # 原子数
+composition.num_atoms    # 原子数
+formula                  # 化学式
+compsition               # 成分
+composition.items()      # 
+volume                   # 体积
+frac_coords              # 分数坐标
+cart_coords              # Cartesian 坐标
 symbol_set
-composition.items()
-composition.num_atoms
-lattice
-density
-center_of_mass  # 质心
+lattice                  # 点阵
+density                  # 密度
+center_of_mass           # 质心
 
 # 方法
-remove_species()
-replace_species()
-get_space_group_info()
+remove_species()         # 删除元素种类
+replace_species()        # 替换元素种类
+get_space_group_info()   # 获取空间群信息
+from_spacegroup()        # 
 ```
 
 

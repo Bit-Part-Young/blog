@@ -68,14 +68,18 @@ Rust 练习：
 
 ```bash
 # 方式 1
-curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+brew install rust       # macOS
 
 # 方式 2
-curl -sS https://webi.sh/rustlang | sh
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+
+rustup self uninstall   # 卸载
 
 # 加速安装：将 Rust 安装源设置国内源
-
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+
+# 方式 3
+curl -sS https://webi.sh/rustlang | sh
 ```
 
 
@@ -190,7 +194,6 @@ rand = "0.3"
 hammer = { version = "0.5.0"}
 color = { git = "https://github.com/bjz/color-rs" }
 geometry = { path = "crates/geometry" }
-
 ```
 
 

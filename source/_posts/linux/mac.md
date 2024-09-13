@@ -163,6 +163,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 ### 软件/程序安装及设置
 
 - 网络上下载的程序安装包安装到 Mac 上，需将包（`*.app`）移动到 Applications 里；卸载：直接将其移到废纸篓
+- `.pkg` 格式：安装包；`.dmg`：portable 版本
 - [macOS 破解软件、游戏 - appstorrent.ru](https://appstorrent.ru/)
 - [🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
 - [GitHub - hzlzh/Best-App: 收集&推荐优秀的 Apps/硬件/技巧/周边等](https://github.com/hzlzh/Best-App)
@@ -177,13 +178,14 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 - 包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：Alfred 5、[Raycast](https://www.raycast.com/)
-- 系统资源监控：iStat Menus、RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)、[glances](https://github.com/nicolargo/glances)
+- 系统资源监控：iStat Menus、RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)
 - 限制电池最大充电量：[bclm](https://github.com/zackelia/bclm)、AlDente
 - 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
 - 垃圾清理：CleanMyMac X（完整版本需收费；有破解版）、Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
 - 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
 - 软件卸载：Pearcleaner
 - 软件更新：Latest（一般）
+- Applite：macOS 的第三方应用管理器，可以一键下载、更新、卸载应用
 - 窗口管理：Rectangle、Loop
 - 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
 - 菜单栏管理：Ice、Bartender
@@ -251,7 +253,8 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 压缩、解压缩工具：The Unarchiver
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
 - 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）、Maccy
-- 窗口平铺（tiling window manager）：[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)
+- 平铺式窗口管理器（tiling window manager）：[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)、[AeroSpace](https://github.com/nikitabobko/AeroSpace)（类似 i3）
+- RSS 阅读器：quick-rss（国区 Mac App Store）、Fluent Reader
 - 编程语言 API 下载、查看：Dash
 - 构型可视化：VESTA、OVITO
 - 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（to-do 清单）
@@ -421,17 +424,17 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirror.sjtu.edu.cn/homebrew-bottles/bottle
 - 相关命令：[Homebrew 备忘清单 &  homebrew cheatsheet &  Quick Reference](https://quickref.me/zh-CN/docs/homebrew.html)
 
 ```bash
-brew install <package>         # 安装
-brew install --cask <package>  # 安装 GUI 程序
+brew install <package>         # 安装程序
+brew install --cask <package>  # 安装软件（GUI）
 brew uninstall <package>       # 卸载
 brew search <package>          # 查找
-# 显示安装包相关信息 是否安装，依赖，头文件、库路径等
-brew info <package>
-brew list          # 列出已安装的包
-brew list --casks  # 仅列出已安装的软件
-brew doctor        # 诊断
-brew outdated      # 列出可以升级的包
-brew upgrade [package]  # 升级
+brew info <package>            # 显示安装包相关信息（是否安装，依赖，头文件、库路径等）
+brew list                      # 列出安装的程序、软件
+brew list --casks              # 仅列出已安装的软件
+brew doctor                    # 诊断
+brew outdated                  # 列出可以升级的包
+brew upgrade [package]         # 升级
+brew pin <package>             # 锁定（避免升级）
 
 # 忽视依赖关系卸载
 brew uninstall --ignore-dependencies <package>
@@ -443,12 +446,29 @@ brew cleanup -n           # 查看可清理的旧版本包
 brew cleanup              # 清理所有包的旧版本
 brew cleanup --prune=all  # 删除缓存
 
-brew pin <package>    # 锁定包
-brew unpin <package>  # 取消锁定
-
-# 取消 对 homebrew/core 仓库的关注
-brew untap homebrew/core
+brew tap <user/repo>      # 添加第三方软件仓库
 ```
+
+- 若通过 brew 安装的程序有以下提示，说明可以进行命令自动补全，需进行以下设置：
+	- [brew Shell Completion — Homebrew Documentation](https://docs.brew.sh/Shell-Completion)
+
+```bash
+zsh completions have been installed to: /opt/homebrew/share/zsh/site-functions
+
+
+# 方式 1；需放在 compinit 前
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# 方式 2；需放在 source oh-my-zsh.sh 前
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+```
+
 
 ---
 
@@ -474,6 +494,8 @@ brew install --cask font-maple
 # 中文字体
 brew install font-smiley-sans  # 得意黑
 brew install font-lxgw-wenkai  # 霞鹜文楷
+
+brew install fontconfig        # 需安装此才有 fc-list 等命令
 
 # Mac 字体路径
 /Library/Fonts   # 系统
@@ -560,6 +582,19 @@ menu:
   page_size: 9  # 候选词个数
 ```
 
+关闭切换输入法的 Ctrl + \` 快捷键：
+
+```yaml
+# 方案选单相关
+switcher:
+  caption: 「方案选单」
+  hotkeys:
+    - F4
+    # - Control+grave   # 注释掉
+    - Control+Shift+grave
+    # - Alt+grave
+```
+
 
 ---
 
@@ -610,7 +645,7 @@ conda install -c conda-forge numpy "libblas=*=*accelerate"
 conda install numpy "libblas=*=*accelerate"
 ```
 
-- Mac 的 gcc 和 g++ 编译器 默认是 clang 的；建议安装 gcc 套件，并设置软链接
+- Mac 的 gcc 和 g++ 编译器默认是 clang 的；建议安装 gcc 套件，并设置软链接
 
 ```bash
 ln -s /opt/homebrew/bin/g++-13 ~/bin/g++
@@ -642,7 +677,7 @@ make: *** [dumpana] Error 1
 set backspace=2
 ```
 
-- 查看 Macbook GPU 信息：
+- 查看 Mac GPU 信息：
 	- 系统设置 - 通用 - 系统报告 - 图形卡/显示器
 	- 运行命令：`system_profiler SPDisplaysDataType`
 

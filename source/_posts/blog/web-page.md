@@ -225,6 +225,7 @@ mdbook serve --open
 	- [GitHub - filebrowser/filebrowser: 📂 Web File Browser](https://github.com/filebrowser/filebrowser)
 	- [GitHub - xiaobaidadada/filecat: 简洁的Web文件浏览与服务器管理（服务器Linux面板）](https://github.com/xiaobaidadada/filecat)
 	- 可自建的文件分享平台：[GitHub - stonith404/pingvin-share: A self-hosted file sharing platform that combines lightness and beauty, perfect for seamless and efficient file sharing.](https://github.com/stonith404/pingvin-share)
+	- [GitHub - songquanpeng/go-file: 基于 Go 的文件分享工具，仅单可执行文件，开箱即用，内置图床和视频播放页面. File sharing tool based on Go.](https://github.com/songquanpeng/go-file)
 
 
 - 课程资料在线浏览（不是特别好用；会报错，暂无更新）：[GitHub - OrangeX4/GitNotes: 一个在浏览器上运行的笔记浏览应用, 用于浏览以 Markdown 书写的, 存放在 GitLab 或 GitHub 上的笔记.](https://github.com/OrangeX4/GitNotes)

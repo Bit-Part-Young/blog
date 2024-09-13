@@ -332,7 +332,8 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
 - 替代 `diff`：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
 - 替代 `top`：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
-- 检测 GPU（Nvidia 和 AMD 等）：[nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
+- 查看系统资源：[glances](https://github.com/nicolargo/glances)
+- 检测 GPU（Nvidia 和 AMD 等）：[nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)、[nvitop](https://github.com/XuehaiPan/nvitop)
 - 显示系统信息：[neofetch](https://github.com/dylanaraps/neofetch)、[neofetch-themes](https://github.com/Chick2D/neofetch-themes)、[fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）、[hyfetch](https://github.com/hykilpikonna/hyfetch)
 - 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
 - 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
@@ -373,6 +374,7 @@ Markdown 相关
 - 终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)
 - 将源代码生成美观图片：[silicon](https://github.com/Aloxaf/silicon)、[carbon](https://github.com/carbon-app/carbon)
 - 将输入的图片，使用几何形状重新绘制：[GitHub - fogleman/primitive: Reproducing images with geometric primitives.](https://github.com/fogleman/primitive)
+
 
 ---
 

@@ -10,6 +10,9 @@ summary: Vim 使用
 description: Vim 使用
 tags:
   - Vim
+  - Neovim
+  - LazyVim
+  - Plug
 categories:
   - Linux
 date: 2023-11-27 20:44:00
@@ -216,10 +219,10 @@ gUU          # 光标所在行转大写
 	- 块模式选中文本添加括号
 
 ```bash
-
 # 按键映射
 
 
+# 命令
 <silent>   # 不在命令行中显示执行（映射/命令）信息
 <bar>      # 管道符
 ```
@@ -363,28 +366,53 @@ make install
 
 - [LazyVim](https://github.com/LazyVim/LazyVim)：一键配置 Neovim（思源一号超算无法使用）
 
-- 默认 `<leader>` 键是 `<space>` 空格键
-- 点击 `<space>` 键，会弹出包含以 `<space>` 开头的所有可能的键盘映射的窗口
-
-- Lazyvim 预装插件/工具
+- 目录结构
 
 ```bash
-williamboman/mason.nvim         # LSP
+~/.config/nvim
+├── lua
+│   ├── config
+│   │   ├── autocmds.lua
+│   │   ├── keymaps.lua
+│   │   ├── lazy.lua
+│   │   └── options.lua
+│   └── plugins           # 自定义插件设置
+│       ├── spec1.lua
+│       ├── **
+│       └── spec2.lua
+└── init.lua
+```
+
+- 默认 `<leader>` 键是 `<space>` 空格键；`<localleader>` 键默认是 `\` 键（与特定文件类型或插件相关）
+- 点击 `<space>` 键，会弹出包含以 `<space>` 开头的所有可能的键盘映射的窗口
+
+- LazyVim 预装插件/工具
+	- 安装的插件路径：`~/.local/share/nvim/lazy`
+
+```bash
+williamboman/mason.nvim         # 编程语言 LSP 管理器
 folke/flash.nvim                # 代码导航（字符、单词跳转）
 nvim-neo-tree/neo-tree.nvim     # 文件系统管理（树状视图显示文件和目录结构）
 nvim-telescope/telescope.nvim   # 模糊查找（提供交互式界面）
 jesseduffield/lazygit           # git UI，非插件
+
+# 推荐插件
+abecodes/tabout.nvim            # 使用 Tab 键跳出括号
+lervag/vimtex                   # LaTeX 写作
 ```
 
 - 相关命令
 
 ```bash
 :                 # 打开命令窗口
-:LazyExtras       # 选择是否开启选定额外功能（如不同编程语言的插件推荐；开启会安装对应的插件）
+:LazyExtras       # 选择是否开启选定额外功能（以编程语言分类进行插件推荐；开启会安装对应的插件）
 
 # tree-sitter 插件命令
 :TSInstall        # 安装编程语言 parser
 :TSUpate          # 更新
+
+# mason 插件命令
+:Mason            # 打开 Mason 插件的界面
 ```
 
 - 键位映射
@@ -438,4 +466,78 @@ K                 # 悬停
 
 # flash 插件
 s                 # 字符查找
+```
+
+---
+
+- mason lsp 指定 python 解释器
+	- mason 安装的编程语言服务器路径：`~/.local/share/nvim/mason`
+
+```lua
+-- ~/.config/nvim/init.lua
+require('lspconfig').pyright.setup{
+    settings = {
+        python = {
+            pythonPath = "/path/python",  -- 替换 Python 解释器路径
+        }
+    }
+}
+```
+
+---
+
+- vimtex 插件使用
+	- 参考：[使用 Neovim 和 vimtex 高效撰写 LaTeX 学术论文 - 少数派](https://sspai.com/post/64080)
+	- 撰写中文文档，需在文档最上方添加 `%!TEX program = xelatex`，才能编译成功
+	- [Chinese is not supported and failed to compile · Issue #1369 · lervag/vimtex · GitHub](https://github.com/lervag/vimtex/issues/1369)
+	- [Compile Failed with the Chinese character · Issue #1982 · lervag/vimtex · GitHub](https://github.com/lervag/vimtex/issues/1982)
+
+```bash
+# vimtex 命令
+\ll         # 编译
+\lk         # 停止编译；或 第二次 \ll
+\lv         # 打开 PDF 查看器
+\lc         # 清除编译过程中生成的临时文件/辅助文件
+
+:help vimtex-tex-program  # 查看 vimtex 文档
+:help vimtex_view_method  # 查看具体设置
+```
+
+- vimtex 插件在 LazyVim 中的设置
+
+```lua
+-- ~/.config/nvim/lua/plugin/vimtex.lua
+return {
+    {
+      "lervag/vimtex",
+      lazy = false,
+      init = function()
+        -- 设置 pdf 阅读器；macOS 可设置为 skim
+        vim.g.vimtex_view_method = "skim"
+        vim.g.vimtex_view_general_options = '-r @line @pdf @tex'
+        -- 编译报错时不自动弹出错误窗口 :copen 手动打开
+        vim.g.vimtex_quickfix_mode = 0
+        -- 编译出现警告时，Quickfix 窗口在非焦点状态下打开，但不会自动切换到该窗口
+        vim.g.vimtex_quickfix_open_on_warning = 2
+        -- 指定 LaTeX 风格
+        vim.g.tex_flavor = "latex"
+        -- 使用 latexmk 进行编译
+        vim.g.vimtex_compiler_method = "latexmk"
+        -- latex 编译参数
+        vim.g.vimtex_compiler_latexmk = {  
+            options = {
+              '-xelatex',
+              '-pdf',
+              '-shell-escape',
+              '-verbose',
+              '-file-line-error',
+              '-synctex=1',
+              '-interaction=nonstopmode',
+            }
+        }
+      end,
+      -- 仅在编辑 tex/latex 文件时加载
+      ft = { "tex", "latex" },
+    },
+}  -- 最后一行不能有空行
 ```

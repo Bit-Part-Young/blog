@@ -581,6 +581,7 @@ Show 规则用于全局替换
 - presentation 制作：[touying](https://github.com/touying-typ/touying)、[polylux](https://github.com/andreasKroepelin/polylux)
 - 自动调整 content 尺寸：[GitHub - jdpieck/oasis-align: A Typst package to cleanly place content side by side with equal heights using automatic content sizing.](https://github.com/jdpieck/oasis-align)
 - 表格中的科学计数格式化（小数点自动对齐）：[GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
+- 生成 Typst package 的文档：[tidy](https://github.com/Mc-Zen/tidy)
 
 
 ---
