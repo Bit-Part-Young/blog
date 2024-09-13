@@ -171,6 +171,8 @@ localhost  # 主机名
 
 ## 其他
 
+- TCP/UDP 协议：均在传输层（待完善）
+
 - [Cloudflare浑身都是宝，普通用户能白嫖多少服务？盘点cloudflare的免费功能](https://mp.weixin.qq.com/s/ComwejsgG3f8W_AVJccwGQ)
 
 - [使用 GitHub Actions 通过 acme.sh 自动申请 SSL 证书](https://github.com/danbao/auto-ssl)

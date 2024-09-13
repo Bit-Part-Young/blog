@@ -27,12 +27,17 @@ password:
 
 
 
-[PRB 论文 issue](https://journals.aps.org/prb/issues/)
+[issue - Physical Review B](https://journals.aps.org/prb/issues/)
 
-[PRM 论文 issue](https://journals.aps.org/prmaterials/issues)
+[issue - Physical Review Materials](https://journals.aps.org/prmaterials/issues)（主要看 Structural and mechanical properties 分区文章）
 
 Elsevier 无 RSS、APS 有 RSS（效果一般）
 
+[issue - Acta Materialia](https://www.sciencedirect.com/journal/acta-materialia/issues)
+
+[issue - Computer Physics Communications](https://www.sciencedirect.com/journal/computer-physics-communications/issues)
+
+[issues - Scripta Materialia](https://www.sciencedirect.com/journal/scripta-materialia/issues)
 
 ---
 

@@ -85,7 +85,7 @@ Crtl + L              # 将底部内容移至最上方
 - [shell脚本基础 - cherry](https://jaav.com.cn/posts/1b2.html)
 - shell 脚本案例：[GitHub - jacobproject/Shell\_Scripts: Shell Scripts examples](https://github.com/jacobproject/Shell_Scripts)
 - [GitHub - bobbyiliev/introduction-to-bash-scripting: Free Introduction to Bash Scripting eBook](https://github.com/bobbyiliev/introduction-to-bash-scripting)
-
+- Shell 代码优化：[Advanced Shell Scripting Techniques](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)
 
 Bash 命令报错时，仍会继续执行后面的代码
 
@@ -802,4 +802,16 @@ export HISTIGNORE='pwd:ls:exit'
 ```bash
 cat -- -f
 cat -- --file
+```
+
+---
+
+- 防止覆盖文件
+
+```bash
+set -o noclobber     # 防止覆盖已存在的文件；拒绝覆写操作并显示一个错误
+
+echo "xxx" >| file   # 强制覆盖
+
+set +o noclobber     # 临时关闭
 ```

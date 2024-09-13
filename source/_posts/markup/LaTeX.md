@@ -252,6 +252,24 @@ tlmgr --version
 - [checkcites](https://gitlab.com/islandoftex/checkcites)：检查在 bib 文件中但未引用的参考文献（TeX Live 已安装该工具）
 - [GitHub - reproducible-reporting/bibsane](https://github.com/reproducible-reporting/bibsane)：与 checkcites 功能类似，性能提升版本
 
+- latexindent.pl（格式化缩进；TeX Live 已安装该工具）：[GitHub - cmhughes/latexindent.pl: Perl script to add indentation (leading horizontal space) to LaTeX files](https://github.com/cmhughes/latexindent.pl)
+	- [Mac 安装 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#mac)
+	- [快速开始 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-introduction.html#quick-start)
+
+```bash
+# macOS安装
+brew install perl
+brew install cpanm
+
+cpanm YAML::Tiny
+cpanm File::HomeDir
+
+
+# 使用
+latexindent main.tex              # 基本用法（默认缩进是 Tab）
+latexindent -l mod.yaml main.tex  # 根据 yaml 内容自定义缩进
+```
+
 - `makeglossaries`：Tex Live 自带，用于生成和管理文档中的术语表（glossaries）、缩略词表（acronyms）和符号表等
 
 - LaTeX 实现审阅效果：latexdiff（texlive 自带）
@@ -937,8 +955,6 @@ Afternoon& &used&used\\
 
 
 
-
-
 页眉页脚：fancyhdr 宏包，`\pagestyle`，将页眉页脚分为左中右三个部分，页眉页脚处的横线粗细可以定义，默认页眉为 0.4pt、页脚为 0pt
 
 页码：`\pagenumbering` 命令，有 arabic，\[Rr\]oman，\[Aa\]lph 五种页码形式
@@ -978,23 +994,46 @@ amsmath 允许用户在导言区用 `\DeclareMathOperator` 定义自己的算符
 #### 数学模式
 
 - 空格不起作用；不能有空行
-- 行内（inline）公式：`$...$`
-- 行间（display 独显）公式：
-	- 无编号：`\[...\]` 或 `equation*` 环境
-	- 编号：`equation` 环境
-	- 不要用 `$$...$$$`（为什么？）
+
+```latex
+$...$              % 行内（inline）公式
+
+% 行间（display 独显）公式
+\[...\]            % 无编号
+
+\begin{equation}   % 无编号
+\end{equation}
+
+\begin{equation}   % 有编号
+\end{equation}
+
+$$...$$            % 不要用（为什么？）
+
+
+% {\rm} \mathrm{} \text{} 之间的区别
+{\rm}              % 过时命令；将文本的字体改为罗马体
+\mathrm{}          % 在数学模式中将文本设置为直立的罗马体
+\text{}            % 来自 amsmath 宏包，在数学模式中插入正常文本；能自动调整字体大小和样式
+```
 
 
 ---
 
 #### 括号与定界符
 
-- 基本括号：
-	- `(...)`、`[...]`、`{...}`
-	- 绝对值、范数：`|...|` 或 `\vert...\vert`、`\Vert...\Vert`
-	- Dirac 符号：`\langle...\rangle`、`|...\rangle`
-- 自动调节大小：`\left(...\right)`
-- 手动调节大小：`\big`、`\Big`、`\bigg`、`\Bigg`；声明左中右，在命令后添加 `l`、`m` 或 `r`，如 `\bigl`
+```latex
+% 基本括号
+(...)  [...]  {...}
+
+% 绝对值、范数
+|...|  \vert...\vert  \Vert...\Vert
+
+% Dirac 符号
+\langle...\rangle  |...\rangle
+
+\left(...\right)          % 自动调节大小
+\big  \Big  \bigg  \Bigg  % 手动调节大小；声明左中右，在命令后添加 l、m 或 r，如 \bigl
+```
 
 ---
 

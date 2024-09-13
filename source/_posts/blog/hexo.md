@@ -33,7 +33,7 @@ password:
 	- 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
 	- butterfly 主题的预设功能比 matery 更丰富
 
-- 实例：
+- 博客网站实例：
 	- stun 主题：[OrangeX4's Blog](https://orangex4.cool/)
 	- butterfly 主题：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)（交大学生博客）
 
@@ -59,12 +59,12 @@ password:
 - 快速搭建（以 butterfly 主题为例）
 
 ```bash
-# 安装 hexo
+# 安装 Hexo
 npm install -g hexo-cli
 
-# 初始化
-hexo init hexo-project & cd $_  # 方式 1
-mkdir hexo-project & cd $_ & hexo init  # 方式 2
+# 项目初始化
+hexo init hexo-demo & cd $_  # 方式 1
+mkdir hexo-demo & cd $_ & hexo init  # 方式 2
 
 # 安装依赖
 npm i
@@ -72,6 +72,8 @@ npm i
 # 安装主题
 # 非 butterfly，建议将 theme 中的 .git 删除
 git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+# 拷贝主题配置文件到根目录；非 butterfly 不一定适用
+cp /butterfly/_config.yml _config.butterfly.yml
 
 # 安装主题依赖
 npm i hexo-theme-butterfly --save
@@ -82,36 +84,39 @@ npm i hexo-theme-butterfly --save
 ---
 
 - 目录结构
-	- `source/_posts/`: post 文件夹；md 文档可直接全部放于此，也可归类成子目录再放于此
 
-```text
+```bash
 ├── _config.yml   # 配置文件
 ├── package.json  # 应用信息
 ├── scaffolds/    # 模板文件夹
 ├── source/       # 源文件夹
-|   └── _posts/   # post 文件夹
+|   └── _posts/   # post 文件夹；md 文档可直接放于此，或归类成子目录
 └── themes/       # 主题文件夹
 ```
 
 ---
 
-
 - 配置文件
-	- `_config.yml`
-	- `themes/XXX/_config.yml`
 
-- `_config.yml` 修改内容：
-	- `title`：网站标题
-	- `subtitle`：副标题
-	- `description`：网站描述
-	- `keywords`：网站关键词
-	- `author`：作者
-	- `language`：语言
-	- `timezone`：时区
-	- `url`：网址；`https://username.github.io/repo`（project page）
-	- `theme`：主题；butterfly、hexo-theme-matery 等
+```bash
+# 配置文件
+_config.yml              # 全局配置文件
+themes/XXX/_config.yml   # 主题配置文件
 
-- `_config.theme.yml` 修改内容：自定义修改
+# _config.yml 基本内容
+title                    # 网站标题
+subtitle                 # 副标题
+description              # 网站描述
+keywords                 # 网站关键词
+author                   # 作者
+language                 # 语言
+timezone                 # 时区
+url                      # 网址
+theme                    # 主题；butterfly 等
+
+# _config.theme.yml` 内容
+# 自定义修改
+```
 
 
 ---
@@ -143,7 +148,7 @@ hexo clean  # hexo cl
 
 ### 部署
 
- - 设置 `_config.yml` 中 `deploy` 选项（需安装 hexo-deployer-git 插件）
+ - 设置 `_config.yml` 中的 `deploy` 选项（需安装 hexo-deployer-git 插件）
 
 ```yaml
 deploy:
@@ -155,7 +160,7 @@ deploy:
 
 ---
 
-- Github Actionsi：示例如下
+- Github Actions 示例
 
 ```yaml
 name: Hexo deploy
@@ -199,9 +204,9 @@ jobs:
 
 ### 插件
 
->[hexo 使用记录 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/tools/hexo/)
+- 参考：[hexo 使用记录 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/tools/hexo/)
 
-- hexo-generator-index/archive/category/tag：**初始化 hexo 项目会自动安装**；生成主页 / 归档 / 分类 / 标签文件夹
+- hexo-generator-index/archive/category/tag：初始化 Hexo 项目会自动安装；生成主页 / 归档 / 分类 / 标签文件夹
 
 - hexo-abbrlink：生成短链接，而非 post 中的 md 文件名
 
@@ -236,18 +241,18 @@ feed:
 top: true
 ```
 
-- hexo-algoliasearch 或 hexo-algolia：algolia 搜索；更美观（hexo butterfy，docusaurus 支持，mkdocs 将支持）
-
 - hexo-generator-search/searchdb：本地搜索设置
 
-- [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文统计与信息展示网页（可单个、全部论文）。
-	- 在页面添加论文概要图片，在 bib 文件中的对应条目下添加 `image` 参数
+- hexo-algoliasearch 或 hexo-algolia：algolia 搜索；更美观（hexo butterfy，docusaurus 支持，mkdocs 将支持）
+
+- [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文统计与信息展示网页（可单个、全部论文）
+	- 在页面添加论文概要图片，在 bib 文件中的论文对应条目下添加 `image` 参数
 
 
 
 ---
 
-## 主题相关设置
+## 主题设置
 
 - butterfly 主题文章置顶 front-matter 参数：`sticky`，数值越大，置顶优先级越大
 - matery 主题文章置顶 front-matter 参数：`top`，数值为 `true` 或 `false`
@@ -264,7 +269,7 @@ top: true
 - 目录
 - banner 图片
 - 文章封面（Front Matter 中 cover 参数值为空，表示随机封面）
-- 评论系统
+- 评论系统（暂无必要）
 - 搜索系统
 - 页面加载效果
 - post 元信息（分类、标签、时间、字数统计、需阅读时间等）
@@ -275,7 +280,11 @@ top: true
 - 图片懒加载
 - 相册（暂无必要）
 - 右下角功能按钮（深/浅色切换，直达页面顶部等功能）
-- 添加音乐、视频页面（音乐可全局吸底）
+- 音乐、视频页面（音乐可全局吸底）
+
+---
+
+自定义修改 Footer 页脚信息：`themes/butterfly/layout/includes/footer.pug`
 
 
 ---
@@ -284,7 +293,7 @@ top: true
 
 >[闪烁之狐](http://blinkfox.com/)
 
-已解决/实现：
+**已解决/实现**：
 
 - [x] 首页设置的音乐播放功能；文章内部音乐播放设置功能；如何设置单独页面音乐播放
 - [x] 单独视频页面效果如何制作（和单独相册页面类似，但简单一些；如何放入多个视频？）
@@ -337,7 +346,7 @@ top: true
 
 ---
 
-待解决/实现
+**待解决/实现**：
 
 - [ ] 博客底部的文章链接出现 2 个 hexo-demo，暂无法解决
 - [ ] CDN 加速

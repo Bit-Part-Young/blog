@@ -223,7 +223,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 - Markdown 笔记管理：Obsidian、Typora、MarkText
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
-- 书签工具：Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
+- 书签工具：Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）、[Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
 - 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
 - pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
 - 文献管理：Zotero
@@ -235,7 +235,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 - 网络代理：ClashX
 - 异地组网、内网穿透：Tailscale（跨平台）
-- 虚拟机：Parallels Desktop、VMware Fusion
+- 虚拟机：Parallels Desktop（收费）、VMware Fusion
 - 文件互传：LocalSend（跨平台）
 - 文件同步：[Syncthing](https://github.com/syncthing/syncthing)（跨平台）、交大云盘
 - 挂载云盘：AList、CloudMounter
