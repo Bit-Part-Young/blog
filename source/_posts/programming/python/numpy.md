@@ -20,21 +20,18 @@ password:
 
 # NumPy 使用
 
-### 介绍
+## 介绍
 
 数组对象：`numpy.ndarray`
 
----
 
-### 参考资料
+参考资料
 
 - [GitHub - rougier/numpy-100: 100 numpy exercises (with solutions)](https://github.com/rougier/numpy-100)
 - [NumPy的应用-1 - Python-100-Days](https://github.com/jackfrued/Python-100-Days/blob/master/Day66-80/68.NumPy%E7%9A%84%E5%BA%94%E7%94%A8-1.md)
 - [NumPy 介绍](https://mp.weixin.qq.com/s/RGVKqo-LGf0s3dETIPr8gQ)
 
 ```python
-np.savetxt()
-
 np.argsort()
 np.sort()
 
@@ -45,6 +42,15 @@ i, j = np.unravel_index(np.argmin(arr, axis=None), arr.shape)
 np.trapz()
 ```
 
+
+
+---
+
+## 使用
+
+### 工具
+
+- Eigen3 转换成 numpy：[GitHub - jrl-umi3218/Eigen3ToPython: Provide Eigen3 to numpy conversion](https://github.com/jrl-umi3218/Eigen3ToPython)
 
 
 ---
@@ -221,9 +227,10 @@ atol           # 绝对容忍值
 ```python
 np.save("*.npy")
 np.savez("*.npz")
+np.savetxt()
 
-np.dump()  # 保存数组到二进制文件中
-np.tofile()  # 将数组写入文件中
+np.dump()         # 保存数组到二进制文件中
+np.tofile()       # 将数组写入文件中
 
 np.load()
 np.loadtxt()

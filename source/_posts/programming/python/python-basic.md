@@ -26,11 +26,7 @@ password:
 
 - 解释性的脚本语言：通过解释器来直接运行，不需要编译链接成二进制文件
 - 动态类型语言：类型在运行时确定，不需要通过代码明文规定
-- 面向对象语言：python 中一切皆对象
-
-1. **Python 和 OpenMP**: Python 本身并不直接支持 OpenMP。OpenMP 主要用于 C/C++ 或 Fortran 等语言。然而，你可以通过 Cython 或其他扩展来在 Python 中使用 OpenMP。
-2. **GIL（Global Interpreter Lock）**: Python 的 GIL 是一个互斥锁，它防止多个线程同时执行 Python 字节码。这意味着即使使用多线程，标准的 Python 解释器也无法实现真正的并行执行。不过，某些操作（如 I/O 或某些库函数）可以释放 GIL。
-
+- 面向对象语言：Python 中一切皆对象
 
 
 ---
@@ -39,15 +35,15 @@ password:
 
 - [GitHub - lijin-THU/notes-python: 中文 Python 笔记](https://github.com/lijin-THU/notes-python)（Python 2 版本）
 
-- Python 速查表
-	- [Python 3 备忘清单 & python cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/python.html)
-	- [GitHub - gto76/python-cheatsheet: Comprehensive Python Cheatsheet](https://github.com/gto76/python-cheatsheet)
-
-- [GitHub - piglei/one-python-craftsman: 来自一位 Pythonista 的编程经验分享，内容涵盖编码技巧、最佳实践与思维模式等方面。](https://github.com/piglei/one-python-craftsman)
-
-- 《编程不难》书籍源码：[GitHub - Visualize-ML/Book1\_Python-For-Beginners: Book\_1](https://github.com/Visualize-ML/Book1_Python-For-Beginners)
-
 - [Python 基础语法 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/python/basic/)
+
+- Python 速查表
+	- [Python 3 备忘清单](https://wangchujiang.com/reference/docs/python.html)
+	- [GitHub - gto76/python-cheatsheet](https://github.com/gto76/python-cheatsheet)
+
+- [GitHub - piglei/one-python-craftsman: 来自一位 Pythonista 的编程经验分享](https://github.com/piglei/one-python-craftsman)
+
+- 《编程不难》书籍源码：[GitHub - Visualize-ML/Book1\_Python-For-Beginners](https://github.com/Visualize-ML/Book1_Python-For-Beginners)
 
 - [GitHub - scruel/pcc\_3e\_slides: 《Python 编程：从入门到实践（第三版）》的官方配套图解讲义资源](https://github.com/scruel/pcc_3e_slides)
 
@@ -57,15 +53,16 @@ password:
 
 ---
 
-## 安装
+## 使用
+
+### 安装
 
 建议使用 Miniconda3 安装
 
 
-
 ---
 
-## 运行
+### 运行
 
 - 在终端运行 Python 脚本
 
@@ -73,10 +70,10 @@ password:
 python script.py
 ```
 
-- 在终端中直接执行 Python 代码，用于快速测试一些代码片段或进行简单的计算
+- 在终端执行 Python 代码，用于快速测试一些代码片段或进行简单的计算
 
 ```bash
-python -c 'import matplotlib; print(matplotlib.matplotlib_fname())'
+python -c "print('hello world')"
 ```
 
 - 在终端中使用 Python 模块：`python -m`，通常用于运行可以作为脚本执行的模块，如 `venv`、`pip` 等；[Python's many command-line utilities - Python Morsels](https://www.pythonmorsels.com/cli-tools/)
@@ -104,10 +101,23 @@ python --help-env
 - Python 编译器，可输出可执行文件或扩展模块：[GitHub - Nuitka/Nuitka](https://github.com/Nuitka/Nuitka)
 
 
-
 ---
 
-## 工具
+### 工具
+
+- Python 版本管理工具：[GitHub - pyenv/pyenv: Simple Python version management](https://github.com/pyenv/pyenv)
+
+- 包管理工具（支持 Python、C++）：[GitHub - prefix-dev/pixi: Package management made easy](https://github.com/prefix-dev/pixi)
+
+- Python 包管理工具：[GitHub - python-poetry/poetry: Python packaging and dependency management made easy](https://github.com/python-poetry/poetry)
+
+- Python docstring 格式化：[GitHub - PyCQA/docformatter: Formats docstrings to follow PEP 257](https://github.com/PyCQA/docformatter)
+
+- Python GitLab API：[GitHub - python-gitlab/python-gitlab: A python wrapper for the GitLab API.](https://github.com/python-gitlab/python-gitlab)
+
+- Python 多线程：[GitHub - sybrenjansen/mpire: A Python package for easy multiprocessing, but faster than multiprocessing](https://github.com/sybrenjansen/mpire)
+
+- 数据科学 Python（内容感觉一般）：[GitHub - khuyentran1401/Efficient Python tricks and tools for data scientists](https://github.com/khuyentran1401/Efficient_Python_tricks_and_tools_for_data_scientists)
 
 - 将 Python 的计算公式转换成 LaTeX（只能是简单的公式）：[GitHub - connorferster/handcalcs](https://github.com/connorferster/handcalcs)
 
@@ -117,9 +127,29 @@ python --help-env
 
 - Turtle 模块绘制树：[GitHub - Wandrys-dev/FloweringTree: Little tree drawn in Python and Turtle🌲](https://github.com/Wandrys-dev/FloweringTree)
 
-- Python docstring 格式化：[GitHub - PyCQA/docformatter: Formats docstrings to follow PEP 257](https://github.com/PyCQA/docformatter)
+- 实现按 Tab 键命令自动补全（支持 bash 和 zsh）：[GitHub - kislyuk/argcomplete: Python and tab completion, better together.](https://github.com/kislyuk/argcomplete)
 
-- 包管理工具（支持 Python、C++）：[GitHub - prefix-dev/pixi: Package management made easy](https://github.com/prefix-dev/pixi)
+```bash
+# 安装
+pip install argcomplete
+activate-global-python-argcomplete
+
+# 激活命令自动补全
+eval "$(register-python-argcomplete my-python-app)"
+```
+
+- 构建 CLI 工具
+	- [GitHub - tiangolo/typer](https://github.com/tiangolo/typer)
+	- [GitHub - google/python-fire](https://github.com/google/python-fire)
+	- click：使用装饰器来设置命令的参数和选项
+
+```python
+import click
+@click.command()
+
+@click.argument()
+@click.option()
+```
 
 
 
@@ -382,6 +412,9 @@ del d[key]              # 删除键值
 d.update(d2)            # 字典更新
 d2 = {key: value, **d}  # 在字典首插入键值对
 
+# 有序字典
+from collections import OrderedDict
+
 # 将字典字符串还原成 dict
 import ast; ast.literal_eval(str(d1))
 
@@ -562,23 +595,25 @@ def func(...):
 def func(a, b):
     ...
 
-func(1, 3)            # 位置参数
-func(a=1, b=3)        # 关键字参数；顺序可以打乱
+func(1, 3)              # 位置参数
+func(a=1, b=3)          # 关键字参数；顺序可以打乱
 
 def func(a, b=3):
     ...
 
-func(1)               # 默认参数
+func(1)                 # 默认参数
 
-def func(a, *args):
+def func(*args):
     ...
 
-func(1, 3, 5)         # 可变数量的位置参数
+func(1, 3, 5)           # 可变数量的位置参数
+func(*[1, 3, 5])      
 
-def func(a, **args):
+def func(**args):
     ...
 
-func(1, b=3, c=5)     # 可变数量的关键字参数
+func(a=1, b=3, c=5)     # 可变数量的关键字参数
+func(**{"a": 1, "b": 3, "c": 5})
 ```
 
 
@@ -616,71 +651,35 @@ def f(a):
 - 函数的返回值为一个字符串
 - 每次读入一行（即读到换行为止
 
+```python
+
+```
+
 
 ---
 
 #### 高阶函数
 
-- 接收函数作为参数的函数被称为高阶函数
-- 比较常用的有 map、filter
+- 高阶函数：接收函数作为参数的函数；常用的有 `map()`、`filter()`
+- `map()`：接收两个参数，一个是函数，一个是 `Iterable`，`map()` 将传入的函数依次作用到序列的每个元素，并把结果作为新的 `Iterator` 返回
 
-```python
-list(map(lambda x: x*2, [1, 2]))
-## [2, 4]
-list(filter(lambda x: x>1, [1, 2, 3]))
-## [2, 3]
-
-list(map(str, [1, 2, 3]))
-## ["1", "2", "3"]
-```
-
-
-变量可以指向函数（函数本身可以赋值给变量）
-```python
-f = abs
-```
-
-
-函数名也是变量（函数名是指向函数的变量）
-```python
-abs = 10
-abs(-10)  # 会报错
-```
-
-
-高阶函数：一个函数就接收另一个函数作为参数
 ```python
 def add(x, y, f):
     return f(x) + f(y)
 
-
 print(add(-5, 6, abs))
+
+list(map(lambda x: x * 2, [1, 2]))        # [2, 4]
+list(map(str, [1, 2, 3]))                 # ["1", "2", "3"]
+list(filter(lambda x: x > 1, [1, 2, 3]))  # [2, 3]
 ```
-
-
-
-`map()`：接收两个参数，一个是函数，一个是 `Iterable`，`map` 将传入的函数依次作用到序列的每个元素，并把结果作为新的 `Iterator` 返回
-```python
-```
-
-
-函数中的可变参数和字典参数（参数传入机制），可增加代码的灵活性
 
 ```python
-def func(*args):
-    pass
+f = abs       # 变量可以指向函数（函数本身可以赋值给变量）
 
-def func(**kwargs):
-    pass
-
-# 以下两个函数参数传入效果等效
-func(*[1, 2, 3])  # 传入可迭代对象  
-func(1, 2, 3)  # 传入多个参数
-
-func(**{'dog': 1, 'cat': 2, 'fish': 3})  # 传入可迭代对象  
-func(dog=1, cat=2, fish=3)  # 传入多个参数
+abs = 10      # 函数名也是变量（函数名是指向函数的变量）
+abs(-10)      # 会报错
 ```
-
 
 
 ---
@@ -1032,23 +1031,244 @@ class ClassName:
 
 ---
 
-## 其他
+## 常用内置模块
+
+### os
 
 ```python
-# 有序字典
-from collections import OrderedDict
+import os
+
+# 获取 用户根目录路径
+os.path.expanduser("~")  # 展开 ~
+os.getenv("HOME")        # 获取环境变量
+os.environ["HOME"]
+
+os.getcwd()           # 当前路径
+os.listdir()          # 列出当前路径下的目录/文件
+os.chdir()            # 切换路径
+os.walk()             # 遍历路径
+os.rename(old, new)   # 重命名文件
+os.mkdirs()           # 创建单层级目录
+os.makedirs()         # 创建多层级目录；exist_ok=True 目录已存在时，命令不会报错
+
+os.path.exists()      # 检查路径是否存在
+os.path.basename()    # 获取文件路径的文件部分
+os.path.dirname()     # 获取文件路径的目录部分
+os.path.abspath()     # 获取绝对路径
+os.path.join()        # 将各个部分合并成一个路径
+
+
+```
+
+
+---
+
+### argparse
+
+单个命令行参数解析
+
+```python
+import argparse
+
+parser = argparse.ArgumentParser(
+    description="XXX",
+    epilog="XXX",
+)
+
+# 单个命令行参数解析
+parser.add_argument(
+    "-f",
+    "--file",
+    type=str,
+    default=...,
+    help=...,
+)
+args = parser.parse_args()
+```
+
+---
+
+多个子命令的命令行参数解析
+
+```python
+import argparse
+
+parser = argparse.ArgumentParser(
+    description="XXX",
+    epilog="XXX",
+)
+
+# 多个子命令的命令行参数解析
+subparsers = parser.add_subparsers()
+
+parser_generate = subparsers.add_parser("generate", help="generate atomate optimization workflows.")
+parser_generate.add_argument(
+	"-c",
+	"--character",
+	metavar="wf_character",
+	type=str,
+	help="the character of workflow. eg. optimization, static."
+	)
+parser_generate.set_defaults(func=wf_relaxation_submit)
+
+parser_get_data = subparsers.add_parser("get_data", help="get data from mongodb.")
+parser_get_data.add_argument(
+	"-c",
+	"--character",
+	metavar="wf_character",
+	type=str,
+	help="the character of workflow. eg. optimization, static."
+	)
+parser_get_data.set_defaults(func=get_data_mongodb)
+
+args = parser.parse_args()
+
+if hasattr(args, 'func'):
+	if args.func == wf_relaxation_submit:
+		return args.func(args.character)
+	elif args.func == get_data_mongodb:
+		return args.func(args.character)
+```
+
+
+---
+
+### sys
+
+```python
+import sys
+sys.path.append()            # 添加目录到模块搜索路径
+
+
+# sys.argv 命令行参数解析
+# sys.argv[0] 是文件名
+def add_two_num(a, b):
+    return a + b
+
+
+if __name__ == "__main__":
+    a = int(sys.argv[1])
+    b = int(sys.argv[2])
+
+    print(add_two_num(a, b))
+```
+
+
+---
+
+### shutil
+
+```python
+import shutil
+
+shutil.copy()        # 拷贝文件
+shutil.copytree()    # 拷贝目录
+```
+
+
+---
+
+### pathlib
+
+```python
+from pathlib import Path
+
+THIS_DIR = Path(__file__).parent
+```
+
+
+---
+
+### subprocess
+
+```python
+# 执行 Shell 命令
+import subprocess
+
+subprocess.run(
+    command,   # Shell 命令
+    shell=True,
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.STDOUT,
+    text=True,
+    capture_output=True,
+)
+```
+
+
+---
+
+### re
+
+```python
+import re
+
+re.match()
+```
+
+正则表达式语法
+
+```bash
+# 符号       # 描述                          
+.           # 匹配除了换行符之外的任意字符              
+^           # 匹配字符串的开始                    
+$           # 匹配字符串的结束                    
+*           # 匹配前面的子表达式零次或多次              
++           # 匹配前面的子表达式一次或多次              
+?           # 匹配前面的子表达式零次或一次              
+{n}         # 精确匹配 n 次                    
+{n,}        # 匹配 n 次以上                    
+{n,m}       # 匹配 n 至 m 次                  
+[abc]       # 匹配方括号内的任一字符                 
+[^abc]      # 匹配不在方括号内的任一字符               
+\d          # 匹配数字，等价于 [0-9]            
+\D          # 匹配非数字，等价于 [^0-9]          
+\s          # 匹配任何空白字符，等价于 [\t\n\r\f\v] 
+\S          # 匹配任何非空白字符                   
+\w          # 匹配字母数字，等价于 [a-zA-Z0-9_]   
+\W          # 匹配非字母数字                     
+\b          # 单词边界                        
+```
+
+
+---
+
+### threading
+
+```python
+import threading
+```
+
+
+---
+
+### multiprocessing
+
+```python
+import multiprocessing
+```
+
+
+
+---
+
+## 其他
+
+Python 本身并不直接支持 OpenMP。OpenMP 主要用于 C/C++ 或 Fortran 等语言
+
+GIL（Global Interpreter Lock）: 互斥锁，它防止多个线程同时执行 Python 字节码。这意味着即使使用多线程，标准的 Python 解释器也无法实现真正的并行执行。不过，某些操作（如 I/O 或某些库函数）可以释放 GIL
+
+---
+
+```python
+
 
 # copy() 与 deepcopy() 的区别
-copy()      # 浅复制，原对象和复制对象可能共享内部对象
-deepcopy()  # 深复制，原对象和复制对象是完全独立的，不共享内部对象
+copy()        # 浅复制，原对象和复制对象可能共享内部对象
+deepcopy()    # 深复制，原对象和复制对象是完全独立的，不共享内部对象
+
 
 # == 与 is 的区别
-==      # 检查是否相等
-is      # 检查值是否相同
-
-
-# 添加目录到模块搜索路径
-import sys
-
-sys.path.append()
+==            # 检查是否相等
+is            # 检查值是否相同
 ```

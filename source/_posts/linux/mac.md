@@ -612,7 +612,7 @@ menu:
   page_size: 9  # 候选词个数
 ```
 
-关闭切换输入法的 Ctrl + \` 快捷键：
+关闭切换输入法的 Ctrl + \` 快捷键（与 VSCode 中的切换终端快捷键冲突）：
 
 ```yaml
 # 方案选单相关
@@ -630,19 +630,21 @@ switcher:
 
 #### Safari 浏览器插件
 
-- 去广告：AdGuard
+- 去广告：AdGuard、AdBlock
 - 合并标签页：OneTab
 - 使用 Vim 快捷键操作网页内容：Vimlike
 - 视频倍速：Accelerate
 - 中英文翻译：沉浸式翻译、无官方的 DeepL（有非官方的，不是很好用）、沙拉查词翻译（无官方）
 - 油猴（需收费，有破解版；很多油猴脚本未适配 Safari）
-- 网络代理：[如何在safari上实现类SwitchyOmega代理切换功能](https://www.youtube.com/watch?v=pAY8pNou9Gk)
+- 网页深色模式：Noir
+- B 站相关插件：[Safari：安装指南 · Issue #679 · BewlyBewly/BewlyBewly · GitHub](https://github.com/BewlyBewly/BewlyBewly/issues/679)
+- 网络代理：
+	- [在 Mac 上使用 Safari 浏览器设置代理服务器 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/safari/ibrw1053/mac)
+	- [如何在safari上实现类SwitchyOmega代理切换功能](https://www.youtube.com/watch?v=pAY8pNou9Gk)
 
 ```bash
 sudo apachectl start
 ```
-
-- B 站相关插件：[\[Safari\]：安装指南 · Issue #679 · BewlyBewly/BewlyBewly · GitHub](https://github.com/BewlyBewly/BewlyBewly/issues/679)
 
 
 ---

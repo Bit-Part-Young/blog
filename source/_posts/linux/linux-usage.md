@@ -41,6 +41,7 @@ WIP...
 - [GitHub - dibingfa/flash-linux0.11-talk: 你管这破玩意叫操作系统源码 — 像小说一样品读 Linux 0.11 核心代码](https://github.com/dibingfa/flash-linux0.11-talk)
 - Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
 
+- Linux 软件：[Office & Productivity Apps - AlternativeTo](https://alternativeto.net/category/productivity/)
 
 
 ---
