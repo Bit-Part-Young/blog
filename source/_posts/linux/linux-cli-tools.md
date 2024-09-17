@@ -325,10 +325,10 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)、[navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
-- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
+- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）、[peco](https://github.com/peco/peco)（交互式）
 - 替代 `sed`：[sd](https://github.com/chmln/sd)
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
-- 替代 `find`：[fd](https://github.com/sharkdp/fd)
+- 替代 `find`：[fd](https://github.com/sharkdp/fd)（cargo 安装时为 `fd-find`）
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
 - 替代 `diff`：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
 - 替代 `top`：[btop](https://github.com/aristocratos/btop)、[htop](https://github.com/htop-dev/htop)
@@ -429,6 +429,11 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 ```bash
 # turm 安装
 cargo install turm
+
+# peco 安装与使用
+brew install peco  # 安装
+
+cat file | peco    # 基本使用
 
 
 ncdu -o ncdu.txt  # 输出信息到文件中

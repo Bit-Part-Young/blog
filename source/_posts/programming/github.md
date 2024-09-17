@@ -133,11 +133,13 @@ Pull Requests 流程:
 
 ### GitHub Pages
 
-- GitHub Pages 介绍
-	- GitHub 提供的免费静态网页托管服务，类似的还有 Gitee Pages 和 GitLab Pages；商用：Vercel、Netlify、Cloudflare Pages 等
-	- GitHub 会为每个用户/组织分配一个二级域名 `username.github.io`
-	- 创建一个名为 `username.github.io` 的 repo，会作为主页，通过 `username.github.io` 即可访问 repo 内存放的静态网页
-	- 对于其他 repo（可无限创建），也可以开启 Pages 功能，通过 `username.github.io/repo-name` 访问，静态页面来源也需要指定
+GitHub Pages 介绍
+
+- GitHub 提供的免费静态网页托管服务，类似的还有 Gitee Pages 和 GitLab Pages；商用：Vercel、Netlify、Cloudflare Pages 等
+- GitHub 会为每个用户/组织分配一个二级域名 `username.github.io`
+- 创建一个名为 `username.github.io` 的 repo，会作为主页，通过 `username.github.io` 即可访问 repo 内存放的静态网页
+- 对于其他 repo（可无限创建），也可以开启 Pages 功能，通过 `username.github.io/repo-name` 访问，静态页面来源也需要指定
+- 部署时自动创建 gh-pages 分支：[GitHub - peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011049337.png)
 

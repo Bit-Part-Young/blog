@@ -35,6 +35,15 @@ password:
 
 ## 使用
 
+### 工具
+
+- 不是太好用：[GitHub - lux-org/lux: Automatically visualize your pandas dataframe via a single print! 📊 💡](https://github.com/lux-org/lux)
+
+- [GitHub - Kanaries/pygwalker: PyGWalker: Turn your pandas dataframe into an interactive UI for visual analysis](https://github.com/Kanaries/pygwalker/)
+
+
+---
+
 ### 创建 Dataframe / Series
 
 ```python

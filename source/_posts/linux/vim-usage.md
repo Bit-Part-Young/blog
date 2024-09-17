@@ -364,7 +364,7 @@ make install
 
 [轻松上手LazyVim：最强大功能的NeoVim编辑器！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1868QeaEtm/)
 
-- [LazyVim](https://github.com/LazyVim/LazyVim)：一键配置 Neovim（思源一号超算无法使用）
+- [LazyVim](https://github.com/LazyVim/LazyVim)：一键配置 Neovim（思源一号超算无法使用；GLIBC 版本不满足要求）
 
 - 目录结构
 
@@ -388,8 +388,10 @@ make install
 
 - LazyVim 预装插件/工具
 	- 安装的插件路径：`~/.local/share/nvim/lazy`
+	- 安装了相关代码格式化工具后，在文件保存退出时会自动运行
 
 ```bash
+folke/which-key.nvim            # 键入时弹窗显示可用的键绑定
 williamboman/mason.nvim         # 编程语言 LSP 管理器
 folke/flash.nvim                # 代码导航（字符、单词跳转）
 nvim-neo-tree/neo-tree.nvim     # 文件系统管理（树状视图显示文件和目录结构）
@@ -399,6 +401,7 @@ jesseduffield/lazygit           # git UI，非插件
 # 推荐插件
 abecodes/tabout.nvim            # 使用 Tab 键跳出括号
 lervag/vimtex                   # LaTeX 写作
+chomosuke/typst-preview.nvim    # 预览 Typst 文档
 ```
 
 - 相关命令
@@ -411,8 +414,14 @@ lervag/vimtex                   # LaTeX 写作
 :TSInstall        # 安装编程语言 parser
 :TSUpate          # 更新
 
-# mason 插件命令
+# Mason 插件命令
 :Mason            # 打开 Mason 插件的界面
+i                 # 安装
+X                 # 卸载
+
+# typst-preview 插件
+:TypstPreview        # 打开预览
+:TypstPreview slide  # slide 模式
 ```
 
 - 键位映射
@@ -432,6 +441,7 @@ lervag/vimtex                   # LaTeX 写作
 <leader>`         # 切换到其他 buffer
 [w                # 上一个 Warning
 ]w                # 下一个 Warning
+<leader>l         # Lazy
 <leader>us        # 切换拼写；u 指 UI 界面
 <leader>ul        # 切换行号
 <leader>uL        # 切换相对行号
@@ -470,8 +480,9 @@ s                 # 字符查找
 
 ---
 
-- mason lsp 指定 python 解释器
-	- mason 安装的编程语言服务器路径：`~/.local/share/nvim/mason`
+- Mason LSP 指定 Python 解释器
+	- Mason 安装的 LSP 路径：`~/.local/share/nvim/mason`
+	- 本人安装的编程语言 LSP：Python、Shell、Fortran、LaTeX、Typst
 
 ```lua
 -- ~/.config/nvim/init.lua

@@ -213,6 +213,25 @@ cargo install cargo-update  # 安装
 
 cargo install-update -l     # 列出所有安装的 packages 
 cargo install-update -a     # 检查并更新所有安装的 packages 
+
+
+# 可能会遇到 pkg-config、openssl 未安装的问题
+sudo apt install pkg-config  # Ubuntu
+sudo apt install libssl-dev
+
+./configure --prefix=$HOME/local/pkg-config --with-internal-glib
+make
+make install
+
+export PATH=$HOME/local/pkg-config/bin:$PATH
+
+./config --prefix=$HOME/local/openssl --openssldir=$HOME/local/openssl no-zlib
+make
+make install
+
+export OPENSSL_DIR=$HOME/local/openssl
+export PATH=${OPENSSL_DIR}/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/local/openssl/lib:$LD_LIBRARY_PATH
 ```
 
 - cargo-cache：cargo 缓存管理工具

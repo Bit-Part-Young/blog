@@ -53,11 +53,13 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 	- Typst 示例：[Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
 	- [GitHub - OrangeX4/typst-talk: 并不复杂的 Typst 讲座 Typst is Simple](https://github.com/OrangeX4/typst-talk)
 	- [GitHub - typst-doc-cn/tutorial: Typst中文教程](https://github.com/typst-doc-cn/tutorial)
-	- [The Raindrop-Blue Book (Typst中文教程)](https://typst-doc-cn.github.io/tutorial/)
+	- [The Raindrop-Blue Book (Typst中文教程) - 网页版](https://typst-doc-cn.github.io/tutorial/)
 	- [GitHub - qjcg/awesome-typst: Awesome Typst Links](https://github.com/qjcg/awesome-typst)
 	- [GitHub - typst-cn/awesome-typst-cn: Awesome Typst 列表中文版](https://github.com/typst-cn/awesome-typst-cn)
 
 - Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://github.com/typst/typst/discussions)
+
+- [Typst Forum](https://forum.typst.app/)
 
 - [LaTeX 用户指南 – Typst 中文文档](https://typst-doc-cn.github.io/docs/guides/guide-for-latex-users/)
 
@@ -89,7 +91,7 @@ scoop install main/typst   # Win
 
 - VSCode 插件：
 	- typst-lsp：具有语言服务器 + 代码格式化（不再继承）等功能
-	- tinymist：代码格式化
+	- tinymist：语法高亮，代码补全，代码格式化，即时预览等功能
 
 - [typst-upgrade](https://github.com/Coekjan/typst-upgrade)：检查并升级 Typst packages
 

@@ -238,7 +238,7 @@ ssh-keygen -t rsa
 
 - 密钥对生成方式有 ssh-keygen 和 putty（ppk 格式，WinSCP 软件密钥验证需该格式），其中后者可通过 Mobaxterm 软件中 tool 工具中的 MobaKeyGen 来生成（在空白处乱按加快生成速度；将生成的公钥保存成 file.pub，私钥保存成 file.ppk）。
 
-- 设置服务器别名：编辑或创建 `~/.ssh/config`（或 `C:\User\username\.ssh\config
+- 设置服务器别名：编辑或创建 `~/.ssh/config`（或 `C:\User\XXX\.ssh\config`）
 
 ```bash
 Host alias
@@ -279,6 +279,8 @@ Host SiYuan
 设置完成后，只需输入以下内容即可实现服务器、超算 SSH 登录：
 
 ```bash
+ssh Master
+
 ssh Manager
 
 ssh Pi

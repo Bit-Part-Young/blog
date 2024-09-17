@@ -22,47 +22,11 @@ password:
 
 ## 介绍
 
-ipython： 按 tab 键可补全可用 method 或 attributes；在函数或 method 后添加 `?` 可以查看其 docstring
+什么是 Python
 
-在 jupyter notebook 中使用 Python 时，在函数或 method 后添加 `??` 可以查看其 docstring
-
-[GitHub - gto76/python-cheatsheet: Comprehensive Python Cheatsheet](https://github.com/gto76/python-cheatsheet)
-
-终端 python 查看模块和函数帮助文档
-
-```python
-import numpy as np
-
-help(numpy)
-help(np)
-help(np.array)
-
-print(np.array.__doc__)
-```
-
-终端 python 查看模块和包的成员
-
-```python
-import numpy as np
-dir(np)
-
-print(np.__all__)
-```
-
-注：和 `dir()` 函数相比，`__all__` 变量在查看指定模块成员时，它不会显示模块中的特殊成员，同时还会根据成员的名称进行排序显示
-
----
-
-什么是 python
 - 解释性的脚本语言：通过解释器来直接运行，不需要编译链接成二进制文件
 - 动态类型语言：类型在运行时确定，不需要通过代码明文规定
 - 面向对象语言：python 中一切皆对象
-
->[Python 基础语法 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/python/basic/)
-
-
->[GitHub - scruel/pcc\_3e\_slides: 《Python 编程：从入门到实践（第三版）》的官方配套图解讲义资源](https://github.com/scruel/pcc_3e_slides)
-
 
 1. **Python 和 OpenMP**: Python 本身并不直接支持 OpenMP。OpenMP 主要用于 C/C++ 或 Fortran 等语言。然而，你可以通过 Cython 或其他扩展来在 Python 中使用 OpenMP。
 2. **GIL（Global Interpreter Lock）**: Python 的 GIL 是一个互斥锁，它防止多个线程同时执行 Python 字节码。这意味着即使使用多线程，标准的 Python 解释器也无法实现真正的并行执行。不过，某些操作（如 I/O 或某些库函数）可以释放 GIL。
@@ -71,35 +35,9 @@ print(np.__all__)
 
 ---
 
-`copy()` 与 `deepcopy()` 的区别
-
-- 使用 `copy()` 进行浅复制时，原对象和复制对象可能共享内部对象。
-- 使用 `deepcopy()` 进行深复制时，原对象和复制对象是完全独立的，不共享内部对象。
-
-
----
-
-
-
-在不打包的情况下使用其他路径的脚本
-```python
-import os
-import sys
-
-# 将脚本模板所在的目录添加到系统路径
-home_path = os.getenv("HOME")
-plot_scripts_path = os.path.join(home_path, "scripts/pdepp/2-plot-scripts")
-sys.path.append(plot_scripts_path)
-
-from va_elastic_prop_plot import elastic_prop_plot
-```
-
-
----
-
 ### 参考资料
 
-- [GitHub - lijin-THU/notes-python: 中文 Python 笔记](https://github.com/lijin-THU/notes-python)
+- [GitHub - lijin-THU/notes-python: 中文 Python 笔记](https://github.com/lijin-THU/notes-python)（Python 2 版本）
 
 - Python 速查表
 	- [Python 3 备忘清单 & python cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/python.html)
@@ -109,53 +47,11 @@ from va_elastic_prop_plot import elastic_prop_plot
 
 - 《编程不难》书籍源码：[GitHub - Visualize-ML/Book1\_Python-For-Beginners: Book\_1](https://github.com/Visualize-ML/Book1_Python-For-Beginners)
 
+- [Python 基础语法 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/python/basic/)
+
+- [GitHub - scruel/pcc\_3e\_slides: 《Python 编程：从入门到实践（第三版）》的官方配套图解讲义资源](https://github.com/scruel/pcc_3e_slides)
+
 - Python tips and tools：[GitHub - pablovegan/Python-tips-tools: Short Python tips and tools talk for the Superconducting Qubit Technology school at Benasque 2023.](https://github.com/pablovegan/Python-tips-tools)
-
-
-
-
-
-python classmethod 静态方法
-
-在 Python 中，`@classmethod` 是一个装饰器，用于定义类方法（classmethods）。类方法是与类相关联的方法，而不是与类的实例相关联的方法。类方法可以通过类本身进行调用，而不需要创建类的实例。
-
-类方法使用装饰器 `@classmethod` 来标记，通常以 `cls` 作为第一个参数，表示类本身。类方法可以访问类的属性和调用其他类方法，但不能直接访问实例属性，因为类方法不具有对实例的引用。
-
-以下是一个具体的例子，展示了如何使用类方法：
-```python
-class MyClass:
-    counter = 0
-
-    def __init__(self, name):
-        self.name = name
-
-    @classmethod
-    def increase_counter(cls):
-        cls.counter += 1
-
-    @classmethod
-    def get_counter(cls):
-        return cls.counter
-
-# 创建两个实例
-obj1 = MyClass("Object 1")
-obj2 = MyClass("Object 2")
-
-# 调用类方法增加计数器的值
-MyClass.increase_counter()
-MyClass.increase_counter()
-
-# 获取计数器的值
-print(MyClass.get_counter())  # 输出: 2
-
-```
-
-在上述示例中，我们定义了一个名为 `MyClass` 的类，其中包含一个类属性 `counter` 和两个类方法 `increase_counter` 和 `get_counter`。类方法 `increase_counter` 通过 `cls` 参数来增加类属性 `counter` 的值。类方法 `get_counter` 通过 `cls` 参数返回类属性 `counter` 的值。
-
-我们创建了两个 `MyClass` 的实例 `obj1` 和 `obj2`，但并没有使用它们来调用类方法。相反，我们直接使用类名 `MyClass` 调用了类方法 `increase_counter` 两次，以增加计数器的值。最后，我们使用类名 `MyClass` 调用了类方法 `get_counter` 来获取计数器的值，并打印出结果为 `2`。
-
-需要注意的是，类方法不需要实例化对象就可以调用，它们是与类本身相关联的方法。
-
 
 
 
@@ -164,6 +60,7 @@ print(MyClass.get_counter())  # 输出: 2
 ## 安装
 
 建议使用 Miniconda3 安装
+
 
 
 ---
@@ -190,13 +87,21 @@ python -m venv venv
 
 # 安装 package
 python -m pip install <package>
+
+# 启动 HTTP 服务；可用于临时接收文件
+python -m SimpleHTTPServer port  # python2
+python -m http.server port       # python3
 ```
 
-- 查看 python 环境变量
+- 查看 Python 环境变量
 
 ```bash
 python --help-env
 ```
+
+- Python 在线编译器：[Python Online Compiler with all Modules and Versions](https://pythononlinecompiler.com/)
+
+- Python 编译器，可输出可执行文件或扩展模块：[GitHub - Nuitka/Nuitka](https://github.com/Nuitka/Nuitka)
 
 
 
@@ -204,15 +109,46 @@ python --help-env
 
 ## 工具
 
-- 将 python 的计算公式转换成 LaTeX（一般，只能是简单的公式）：[GitHub - connorferster/handcalcs](https://github.com/connorferster/handcalcs)
+- 将 Python 的计算公式转换成 LaTeX（只能是简单的公式）：[GitHub - connorferster/handcalcs](https://github.com/connorferster/handcalcs)
+
 - 打印 Python objects：[GitHub - gaogaotiantian/objprint](https://github.com/gaogaotiantian/objprint)
+
 - 将打印的内容以表格的形式呈现：[GitHub - astanin/python-tabulate](https://github.com/astanin/python-tabulate)
+
+- Turtle 模块绘制树：[GitHub - Wandrys-dev/FloweringTree: Little tree drawn in Python and Turtle🌲](https://github.com/Wandrys-dev/FloweringTree)
+
+- Python docstring 格式化：[GitHub - PyCQA/docformatter: Formats docstrings to follow PEP 257](https://github.com/PyCQA/docformatter)
+
+- 包管理工具（支持 Python、C++）：[GitHub - prefix-dev/pixi: Package management made easy](https://github.com/prefix-dev/pixi)
 
 
 
 ---
 
 ## 语法
+
+### 查看帮助
+
+注：和 `dir()` 函数相比，`__all__` 变量在查看指定模块成员时，它不会显示模块中的特殊成员，同时还会根据成员的名称进行排序显示
+
+```python
+import numpy as np
+
+# 查看模块/包的方法、属性（成员）
+dir(np)
+print(np.__all__)
+
+
+# 查看模块/包及其方法、属性的帮助文档
+help(numpy)
+help(np)
+
+help(np.array)
+print(np.array.__doc__)
+```
+
+
+---
 
 ### 变量
 
@@ -287,8 +223,6 @@ float(1.0)     # 将字符串转换为浮点数
 "{y} {0}".format("a", y=1)
 # 指定格式
 "{:.2f}".format(3.1415)
-
-
 ```
 
 f-string：一种用于格式化输出字符串的简洁方式；基本语法为：在字符串前加上 `f` 或 `F`，然后在字符串中用 `{}` 包含变量或表达式
@@ -343,7 +277,6 @@ bool(...)    # 非零数字、非空字符串都是 True
 
 内部元素不要求同一类型
 
-
 ```python
 lst = []
 
@@ -366,8 +299,6 @@ lst[1] = item     # 修改元素
 lst.append()      # 列表末尾加入元素
 
 
-
-
 # 列表拼接
 lst3 = lst + lst2 # 直接相加，不改变原列表，得到新的列表
 lst.extend(lst2)  # 把一个列表接到当前列表后面
@@ -380,7 +311,6 @@ sorted(lst)      # 临时排序，返回排序好的新列表
 
 lst.reverse()   # 永久反转
 lst[::-1]       # 返回反转的列表
-
 
 
 # 统计
@@ -400,9 +330,8 @@ for i in range(10):
 
 lst1 = [x*y for x in l1 for y in l2]
 
-lst2 = [... for ... in ... if ...]
+lst = [i**2 for i in range(10) if i % 2 == 0]
 ```
-
 
 
 ---
@@ -410,6 +339,8 @@ lst2 = [... for ... in ... if ...]
 #### 元组
 
 可以看成元素不可变的列表，内部也可以包含不同类型的元素
+
+注：元组的生成速度比列表快很多，遍历速度快一点，索引速度差不多
 
 ```python
 t = (10, 1, 3, 5, 9)
@@ -421,8 +352,12 @@ t = (10,)     # 单个元素的元组
 t = (10)      # 单个值，类型为 int
 
 tuple(lst)   # 将列表转换为元组
-```
 
+# 使用和列表推导类似的方法生成元组
+tuple(i**2 for i in range(1, 10))
+# 只写 () 则只是生成器表达式
+(i**2 for i in range(1, 10))
+```
 
 
 ---
@@ -438,20 +373,22 @@ d.values()
 d.items()
 
 # 访问键 key 对应的值；可读取、修改
-d[key]               # 若 key 不存在，会抛出异常
-d.get(key)           # 返回 None
-d.get(key, default)  # 返回 default 值
-
-d[key] = value       # 添加键值
-
-del d[key]           # 删除键值
-
-d.update(d2)         # 字典更新
-
+d[key]                  # 若 key 不存在，会抛出异常
+d.get(key)              # 返回 None
+d.get(key, default)     # 返回 default 值
+   
+d[key] = value          # 添加键值
+del d[key]              # 删除键值
+d.update(d2)            # 字典更新
 d2 = {key: value, **d}  # 在字典首插入键值对
+
+# 将字典字符串还原成 dict
+import ast; ast.literal_eval(str(d1))
 
 {k: v for k, v in d.items()}
 
+# 使用和列表推导类似的方法生成字典
+{key: value for key in ... for value in ... }
 
 # 遍历所有键
 for key in d.keys():
@@ -461,7 +398,7 @@ for key in d.keys():
 for value in d.values():
     ...
 
-# 遍历键值对；item 为一个元组
+# 遍历键值对；item 为元组
 for item in d.items():
     ... 
 
@@ -593,98 +530,56 @@ for a, b in zip(lst1, lst2):
 
 ---
 
-#### 生成元组/字典
-
-- 可以使用和列表推导类似的方法生成元组和字典
-- 生成元组的时候要用 tuple()
-    - 只写 () 的话则只是生成器表达式
-- 生成字典时循环前用 : 将键值隔开
-
-```python
-tuple(i**2 for i in range(1, 10))
-
-(i**2 for i in range(1, 10))
-## ^  generator object
-
-{a: b for a in ... for b in ... }
-
-```
-
-
----
-
 ### 函数
 
-- 使用 def 关键字来定义函数
-- 先函数名，然后括号列出参数，下面接代码块
-- 使用 return 返回
-    - 没有 return 运行到结尾，返回 None
-    - 只有 return，返回 None
-    - return 后接内容，返回内容
-    - return 的值类型不要求一致
-    - return 可以返回多个值（利用元组）
+#### 函数定义与返回值
 
-
-函数定义
+- 使用 `def` 关键字来定义函数；先函数名，然后括号列出参数，下面接代码块
+- 使用 `return` 返回
+    - 没有 `return` 运行到结尾，返回 None
+    - 只有 `return`，返回 None
+    - `return` 后接内容，返回内容
+    - `return` 的值类型不要求一致
+    - `return` 可以返回多个值（利用元组）
 
 ```python
-def func(arg1, arg2):
+# 函数定义与返回值
+def func(...):
     ...
 
-def func(arg1, arg2):
-    ...
     return ...
-
-def func(arg1, arg2):
-    ...
-    return ..., ...
+    #                  没有 return
+    # return           只有 return
+    # return ..., ...  返回多个值
 ```
 
 
 ---
 
-函数参数
-
-- 括号中要列出参数名，供函数体内使用
-- 可以在参数后接等号赋默认值
-    - 使用默认值的参数在调用时可以不用传
-- 利用 * 来接收任意多参数
-    - 接收进来是一个元组
-    - * 参数后面不能再有其它非关键字参数
-- 利用 ** 来接收任意多关键字参数
-    - 接收进来是一个字典
-
-
----
-
-
-函数调用
-
-- 通过 函数名 ( 参数 ) 来调用函数，得到返回值
-- 直接传参的话要将参数与定义对应上
-- 通过关键字传参（参数名）可以打乱顺序
-- 带有默认值的参数如果不传则使用默认值
-- 如果读任意多关键字参数，则多余的读到字典中
+#### 函数参数与调用
 
 ```python
 def func(a, b):
     ...
 
-func(1, 2) # a = 1, b = 2
-func(b=1, a=2) # a = 2, b = 1
+func(1, 3)            # 位置参数
+func(a=1, b=3)        # 关键字参数；顺序可以打乱
 
-def func2(a, **b):
+def func(a, b=3):
     ...
 
-func2(a=1, b=2, c=3)
-## a = 1, b = {"b": 2, "c": 3}
+func(1)               # 默认参数
 
+def func(a, *args):
+    ...
+
+func(1, 3, 5)         # 可变数量的位置参数
+
+def func(a, **args):
+    ...
+
+func(1, b=3, c=5)     # 可变数量的关键字参数
 ```
-
-
----
-
-`==` 检查是否相等，`is` 检查值是否相同
 
 
 ---
@@ -695,7 +590,6 @@ func2(a=1, b=2, c=3)
 - lambda 输入 : 输出表达式
 - 可以有多个输入
 - 可以将一个函数赋值给一个变量
-
 
 ```python
 lambda a: a**2 + 2*a + 1
@@ -715,13 +609,12 @@ def f(a):
 
 ---
 
-用户输入
+#### 用户输入
 
 - 读取用户输入使用内置的 input 函数
 - 函数参数为要显示的提示符，例如 input(“> “)
 - 函数的返回值为一个字符串
 - 每次读入一行（即读到换行为止
-
 
 
 ---
@@ -794,25 +687,32 @@ func(dog=1, cat=2, fish=3)  # 传入多个参数
 
 ### 类
 
-在类的初始化函数中对参数的类型进行判别并抛出异常
-```python
-isinstance()
-```
-
-
-`dir()`：查看类的（实例）所有的属性和方法；函数的所有参数
-
-
 - 类可以看成包含一些**属性**和**方法**的框架
+
 - 根据类来创建对象 -> 实例化
-- 用 class 关键字来定义类
-- 类中的函数 -> 方法
-    - 特殊方法 **init**，在类实例化的时候会被自动调用
-    - 其它一般的方法第一个参数都要为 “self”，调用的时候会自动传入
+
+- 用 class 关键字来定义类，类的名称 ClassName 通常采用 `CamelCase` 记法
+
+- 类的方法：实例方法、类方法、静态方法
+
+- 实例方法：必须有 `self` 作为第一个参数（`self` 可以写成别的，如 `this` 或 `s` 等），用于访问实例属性和其他方法
+
+- 类方法：
+	- 使用 `@classmethod` 装饰器；通常以 `cls` 作为第一个参数，表示类本身
+	- 类方法是与类相关联的方法，而不是与类的实例相关联的方法
+	- 可访问类的属性和调用其他类方法，但不能直接访问实例属性（不具有对实例的引用）
+	- 可通过类本身进行调用，而不需要创建类的实例
+
+- 静态方法：使用 `@staticmethod` 装饰器；不接收 `self` 或 `cls` 作为参数；适用于与类相关但不需要访问类或实例属性的方法
+
+- 构造方法：`__init__()`，在类实例化时会被自动调用；用于设置实例属性
+
 
 
 ```python
 class ClassName():
+    """docstring"""
+
     a = 1
 
     def __init__(self, arg1, arg2):
@@ -822,21 +722,55 @@ class ClassName():
     def method(self):
         print(self.arg1, self.arg2, self.a)
 
+    def __str__():
+        ...
+
+    def __repr__():
+        ...
+
     @property
 
     @staticmethod
 
     @classmethod
 
-obj = ClassName(2, 3)
-obj.method() # 2 3 1
-print(obj.a, obj.arg1) # 1 2
-
-# 直接写在类中的是属性，也可以通过为 self.\<name> 赋值的形式创建属性
-# 用类似函数调用的形式实例化类，参数为 **init** 方法的参数
-# 直接通过 .\<method> .\<attribute> 的形式调用方法 / 获取属性
+obj = ClassName(2, 3)     # 实例化
+obj.method()              # 使用实例方法 
+print(obj.a, obj.arg1)    # 访问类属性
 ```
 
+
+```python
+dir()       # 查看类的（实例）所有的属性和方法；函数的所有参数
+
+isinstance()    # 在类的初始化函数中对参数的类型进行判别并抛出异常
+
+# 装饰器
+@property       # 将方法伪装成属性；只读不可写
+@attr.setter    # 将属性变成可写
+
+# 特殊方法
+__init__()
+__str__()
+__repr__()
+__len__()
+__add__()
+
+# 特殊属性
+__class__
+__name__
+```
+
+
+---
+
+### 继承与多态
+
+- 继承：允许一个类（子类）继承另一个类（父类）的属性和方法，实现代码重用和扩展。Python 支持单继承和多继承
+
+- 方法重写：子类可以重写父类的方法，以实现不同的行为
+
+- 多态：指的是不同类的对象可以通过相同的接口调用不同的实现。结合继承和方法重写实现
 
 
 ---
@@ -852,19 +786,17 @@ print(obj.a, obj.arg1) # 1 2
 
 类装饰器
 
+- [ ] reader writer 装饰器
+
 
 
 ---
 
 ### 文件 IO
 
-- with … as …: 开启一个上下文管理器
-- 常用在文件 open 上
-    - with 块开始自动打开
-    - with 块结束自动结束
-- with 块结束后变量仍会留存
+- `with ... as ...`: 开启一个上下文管理器（常用在文件 open 上）
 
-
+- `with` 块开始自动打开，`with` 块结束自动结束；`with` 块结束后变量仍会留存
 
 ```python
 with open("file", "r", encoding="utf-8") as f:
@@ -873,17 +805,13 @@ with open("file", "r", encoding="utf-8") as f:
 
 print(f.closed)  # True
 
-```
-
-
-行读取
-```python
+# 行读取
 with open(file, "r") as f:
 	lines = f.readlines()
 ```
 
+- 读写 json
 
-读写 json
 ```python
 import json
 
@@ -896,9 +824,8 @@ with open(json_fn, "r") as f:
 	json_data = json.load(f)
 ```
 
+- 读写 yaml
 
-
-读写 yaml
 ```python
 import yaml
 
@@ -910,7 +837,6 @@ with open(yaml_fn, "w") as f:
 with open(yaml_fn, 'r') as f:
 	yaml_data = yaml.safe_load(f)
 ```
-
 
 
 ---
@@ -968,43 +894,6 @@ with open(yaml_fn, 'r') as f:
 |      SysntaxWarning       |              可疑语法的警告              |
 |        UserWarning        |            用户代码生成的警告            |
 
----
-
-模块与导入
-
-- 模块可以是一个单独的 .py 文件，也可以是一个文件夹
-    - 文件夹相当于导入其下 **init**.py 文件
-- 模块中正常编写函数、类、语句
-- 通过 import 语句导入模块
-    - import code
-    - import code as cd
-    - from code import …
-    - from code import *
-- 导入时相当于运行了一遍导入的代码
-
-
-```python
-## code.py
-print("hello")
-def f():
-    print("call func in code.py")
-...
-
-```
-
-
-```python
-import code # hello
-code.f()
-import code as cd # hello
-cd.f()
-from code import f # hello
-f()
-from code import * # hello
-f()
-
-```
-
 
 ---
 
@@ -1038,53 +927,89 @@ $ python code.py # hello
 
 ---
 
-内部模块
+### 模块
 
-python 自带了很多实用的模块（标准库）
+#### 模块导入
 
-- os、sys：系统操作
-- math：数学运算
-- re：正则表达式
-- datetime：日期与时间
-- subprocess：子进程管理
-- argparse：命令行参数解析
-- logging：日志记录
-- hashlib：哈希计算
-- random：随机数
-- csv、json：数据格式解析
-- collections：更多类型
-- …
+- 模块可以是一个单独的 `.py` 文件，也可以是一个文件夹（相当于导入其下 `__init__.py` 文件）
+- 模块中正常编写函数、类、语句
+- 导入时相当于运行了一遍导入的代码
 
----
+```python
+# 模块导入
+import time 
+time.time()
 
-外部模块安装
+import time as tm 
+tm.time()
 
-- [pypi.org](https://pypi.org/) 上有极多别人写好了可以用的模块
-    - numpy 矩阵等科学计算、scipy 科学计算、matplotlib 作图……
-- 使用 pip 安装（pip / python -m pip）
-    - pip install pkg_name
-    - pip install pkg_name=… 指定版本
-    - pip install -r requirements.txt 安装 txt 文件中的所有包
-    - pip install … -i [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple) 换源
-    - pip list、pip show 命令查看安装的所有包 / 某个包的信息
-    - pip uninstall pkg_name 卸载包
-- pip 安装本地模块
-    - 目录下需要包含 setup.py / pyproject.toml
-    - pip install . 安装本地模块（复制到 site-packages 中）
-    - pip install -e . 可修改形式安装本地模块（在当前位置，可以直接修改代码）
+from time import time
+time()
 
+from time import *
+time()
+```
 
 ---
 
-文档字符串 docstring
+#### 内部模块
 
-- 模块开头的三引号字符串
-- 类、函数定义下面的三引号字符串
-- help(…) 的时候可以显示
-- obj.**doc** 表示这串字符串
-- 编辑器用来提示
-- 一些文档生成工具（sphinx 等）从中获取文档
+Python 自带了很多实用的模块（标准库）
 
+```python
+os sys         # 系统操作
+glob           # 文件模式匹配
+math           # 数学运算
+re             # 正则表达式
+datetime       # 日期与时间
+subprocess     # 子进程管理
+argparse       # 命令行参数解析
+logging        # 日志记录
+hashlib        # 哈希计算
+random         # 随机数
+csv json       # 数据格式解析
+typing         # 数据类型
+collections    # 更多类型
+tkinter        # Qt
+...
+```
+
+---
+
+#### 外部模块安装
+
+- 外部模块（包）可以在 [pypi.org](https://pypi.org/) 找
+
+- `-e` 编辑模式：创建指向项目源代码目录的链接（如 `site-package/package.egg-link` 文件指向源代码 `pacakge/` 目录）；**源代码的任何更改都会立即反映在 Python 环境中，无需重新安装，方便调试开发**
+
+```bash
+# 使用 pip 安装（pip / python -m pip）
+pip install <package>             # 安装
+pip install <package>=version     # 指定版本
+pip install -r requirements.txt   # 安装 txt 文件中的所有包
+pip list                          # 查看安装的所有包的信息
+pip show <package>                # 查看某个包的信息
+pip uninstall <package>           # 卸载包
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  # 换源安装
+
+
+# pip 安装本地模块
+# 目录下需要包含 setup.py / pyproject.toml
+pip install .            # 安装本地模块（拷贝到 site-packages 中）
+python setup.py install  # 效果同上
+pip install -e .         # 以编辑模式安装本地模块
+pip install git+url      # 使用 Git 从 GitHub 下载源码安装
+```
+
+
+---
+
+### 文档字符串 docstring
+
+- 模块开头、函数、类定义下面的三引号字符串
+- 使用 `help(...)` 或 `print(xxx.__doc__)` 显示 docstring
+- 使用编辑器 +LSP 时，悬停时会显示 docstirng 用来提示
+- 一些文档生成工具（Sphinx 等）从中获取文档
 
 ```python
 """
@@ -1095,10 +1020,35 @@ def func(...):
     """docstring for function"""
     ...
 
-class A():
+class ClassName:
     """docstring for class"""
     def __init__(self, ...):
         """docstring for method"""
         ...
 
+```
+
+
+
+---
+
+## 其他
+
+```python
+# 有序字典
+from collections import OrderedDict
+
+# copy() 与 deepcopy() 的区别
+copy()      # 浅复制，原对象和复制对象可能共享内部对象
+deepcopy()  # 深复制，原对象和复制对象是完全独立的，不共享内部对象
+
+# == 与 is 的区别
+==      # 检查是否相等
+is      # 检查值是否相同
+
+
+# 添加目录到模块搜索路径
+import sys
+
+sys.path.append()
 ```

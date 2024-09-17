@@ -29,6 +29,7 @@ WIP...
 ### 参考资料
 
 - bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
+- [Comprehensive Linux Cheatsheet](https://gto76.github.io/linux-cheatsheet/)
 - 在线的 Unix 和 Linux 手册页（man 页）：[Linux Man Pages Online](http://man.he.net/)
 - Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
 - 中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)

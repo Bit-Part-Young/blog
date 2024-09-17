@@ -173,6 +173,8 @@ localhost  # 主机名
 
 - TCP/UDP 协议：均在传输层（待完善）
 
+- [NGINX 配置 - 配置高性能、安全、稳定的NGINX服务器的最简单方法](https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN)
+
 - [Cloudflare浑身都是宝，普通用户能白嫖多少服务？盘点cloudflare的免费功能](https://mp.weixin.qq.com/s/ComwejsgG3f8W_AVJccwGQ)
 
 - [使用 GitHub Actions 通过 acme.sh 自动申请 SSL 证书](https://github.com/danbao/auto-ssl)
@@ -264,6 +266,8 @@ npm cache clean --force  # 强制删除 npm 缓存
 
 npm config get registry  # 查看源；npm 可改成 yarn
 npm config set registry  # 设置镜像源
+
+npm config set registry https://registry.npmmirror.com
 ```
 
 ---

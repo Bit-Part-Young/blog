@@ -62,6 +62,7 @@ password:
 - [GitHub - guanyingc/latex\_paper\_writing\_tips: Tips for Writing a Research Paper using LaTeX](https://github.com/guanyingc/latex_paper_writing_tips)
 - [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
 - [latex相关笔记 - 我是谁](https://yuhldr.github.io/posts/2dcfe2a6.html)
+- [国外教授的讲义都是自己用 LaTeX 打出来的吗？ - 知乎](https://www.zhihu.com/question/29227449)
 
 
 
@@ -257,7 +258,7 @@ tlmgr --version
 	- [快速开始 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-introduction.html#quick-start)
 
 ```bash
-# macOS安装
+# macOS 安装
 brew install perl
 brew install cpanm
 
@@ -266,8 +267,15 @@ cpanm File::HomeDir
 
 
 # 使用
-latexindent main.tex              # 基本用法（默认缩进是 Tab）
-latexindent -l mod.yaml main.tex  # 根据 yaml 内容自定义缩进
+latexindent main.tex              # 基本用法（默认缩进是制表符）
+latexindent -l latexindent.yaml -w -s main.tex
+# 参数
+-l             # 导入 yaml 配置文件
+-w             # 写入到文件中
+-s             # 备份
+
+# latexindent.yaml 内容
+defaultIndent: "  "       # 设置缩进为两个空格
 ```
 
 - `makeglossaries`：Tex Live 自带，用于生成和管理文档中的术语表（glossaries）、缩略词表（acronyms）和符号表等
@@ -755,7 +763,8 @@ Donald~E. Knuth
 - 传统方法：BibTeX 后端（gbt7714 宏包）
 
 ```latex
-\bibliographystyle{<style>}  % 指定样式
+\usepackage[sort&compress]{gbt7714}
+\bibliographystyle{<style>}  % 指定样式；gbt7714-numerical
 \renewcommand{\bibname}{参考文献}
 
 \cite{key1, key2}            % 引用文献
@@ -827,11 +836,10 @@ Donald~E. Knuth
 \end{itemize}
 ```
 
+
 ---
 
 ### 图片
-
-WIP...
 
 ```latex
 \usepackage{graphicx}
@@ -841,14 +849,15 @@ WIP...
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
 ```
 
+
 ---
 
 ### 表格
 
-- LaTeX 表格生成（可生成三线表）：[Create LaTeX tables online](https://www.tablesgenerator.com/)
+- LaTeX 表格生成：[Create LaTeX tables online](https://www.tablesgenerator.com/)（可生成三线表，在 `table style` 中选）
 
 ```latex
-\begin{tabular}
+\begin{tabular}{...}
     ...
 \end{tabular}
 ```
@@ -861,30 +870,36 @@ WIP...
 % 三线表
 \begin{tabular}{ccc}  
 \toprule        % 表格头部粗线  
-姓名& 学号& 性别 \\  
+姓名 & 学号 & 性别 \\  
 \midrule        % 表格中横线  
-1 &2 &3 \\  
-4 &5 &6 \\  
+1 & 2 & 3 \\  
+4 & 5 & 6 \\  
 \bottomrule     % 表格底部粗线  
 \end{tabular}  
 ```
 
-- 斜线表：`diagbox` 宏包；[CTAN: Package diagbox](https://ctan.org/pkg/diagbox/)
+- 斜线表：`diagbox` 宏包
 
 ```tex
 \usepackage{diagbox}
 
+\begin{tabular}{|c|c|c|}
+\hline
 % 斜线表头
-\centering
-\begin{tabular}{|l|ccc|}
+\diagbox{Header1}{Header2} & Column 1 & Column 2 \\
 \hline
-\diagbox{Time}{Room}{Day}
-&Mon&Tue&Wed\\
+Row 1                      & Data 1   & Data 2   \\
 \hline
-Morning&used&used&\\
-Afternoon& &used&used\\
+Row 2                      & Data 3   & Data 4   \\
 \hline
 \end{tabular}
+```
+
+- 长表格：`longtable` 宏包（跨页）
+
+```latex
+\usepackage{longtable}
+
 ```
 
 
@@ -894,12 +909,11 @@ Afternoon& &used&used\\
 
 - 图片和表格有时会很大，在插入的位置不一定放得下，因此需要浮动调整；两类浮动体环境 figure 和 table
 - 避免在文中使用「下图」、「上图」的说法，而是使用图表的编号，如：图 `~\ref{fig:fig1}`
-- `h` 当前位置 (here)，`t` 顶部 (top)，`b` 底部 (bottom)，`p` 单独成页 (p)。LaTeX 的默认参数是 tbp。
+- `h` 当前位置 (here)，`t` 顶部 (top)，`b` 底部 (bottom)，`p` 单独成页 (p)。LaTeX 的默认参数是 tbp
 - `!h` 表示忽略一些限制，H 表示强制（强烈不建议）
 - 图标题一般在下方，表标题一般在上方，即 `\caption{...}` 应放在 `\begin{tabular}` 前
 - `\label` 需写在 `\caption` 后面，否则交叉引用会出现问题
 - 可通过修改 `\figurename` 和 `\tablename` 的内容来修改标题的前缀，标题样式的定制功能由 caption 宏包提供
-- table 和 figure 两种浮动体分别有各自的生成目录的命令：`\listoftables` 和 `\listoffigures`
 
 
 ```latex
@@ -908,13 +922,19 @@ Afternoon& &used&used\\
 ```
 
 ```latex
+% 浮动表格
 \begin{table}[!htbp]
    ...
 \end{table}
 
+% 浮动图片
 \begin{figure}[!htbp]
    ...
 \end{figure}
+
+% 生成浮动表格、图片的目录
+\listoftables
+\listoffigures
 
 % 修改标题的前缀
 \renewcommand{\tablename}{newname}

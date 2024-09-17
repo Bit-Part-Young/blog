@@ -1,11 +1,11 @@
 ---
-title: pymatgen 安装与使用
+title: pymatgen 使用
 top: false
 cover: 
 toc: true
 mathjax: true
-summary: pymatgen 安装与使用
-description: pymatgen 安装与使用
+summary: pymatgen 使用
+description: pymatgen 使用
 tags:
   - pymatgen
 categories:
@@ -15,7 +15,7 @@ abbrlink: 124968
 password:
 ---
 
-# pymatgen 安装与使用
+# pymatgen 使用
 
 ## 介绍
 
@@ -48,7 +48,6 @@ password:
 ---
 
 ```python
-Kpoints.automatic_density()
 
 from pymatgen.analysis.diffusion.neb.pathfinder import IDPPSolver
 
@@ -483,10 +482,11 @@ read_neb()
 MITNEBSet class
 ```
 
+---
 
 复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
 
-
+---
 
 解析 VASP 计算目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
 
@@ -512,6 +512,10 @@ EwaldSummation 是 pymatgen 库中的一个类，用于计算离子晶体的 Ewa
 ## 常用模块
 
 ### pymatgen.core
+
+pymatgen 核心模块
+
+---
 
 #### structure
 
@@ -546,7 +550,6 @@ from_spacegroup()        #
 pymatgen 表面生成无法指定具体的层数（可以指定最第层数）：[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
 
 
-
 ```python
 # 获取指定晶面指数中的最大数值下其对称性非等同的所有晶面指数
 get_symmetrically_distinct_miller_indices()
@@ -554,15 +557,12 @@ get_symmetrically_distinct_miller_indices()
 # 获取指定晶面指数下其对称性等同的所有晶面指数
 get_symmetrically_equivalent_miller_indices()
 
-# 获取层间距
-get_d()
+get_d()      # 获取层间距
 
 SlabGenerator     # 类；构建指定晶面指数的 slab 模型
 
 get_slabs()       # 方法 - 类初始化后，获取所有的 slab 构型（数量含义为该 slab 模型下不同终端的数量）
 ```
-
-
 
 
 ---
@@ -583,14 +583,15 @@ Composition("LiFePO4").as_dict()
 ```python
 from pymatgen.core.periodic_table import Element
 
-# 元素周期表 TUI 绘制
-Element.print_periodic_table()
+# 属性
+electronic_structure   # 电子结构（可查看元素价电子排布）
+is_metal               # 是否为金属
 
-ele = Element("Nb")
+# 方法
 
-# 查看元素价电子排布
-ele.electronic_structure
-ele.is_metal
+
+# 静态方法
+print_periodic_table()     # 打印元素周期表
 ```
 
 
@@ -608,6 +609,10 @@ specie
 ---
 
 #### units
+
+```python
+
+```
 
 ---
 
@@ -646,34 +651,19 @@ from pymatgen.io.vasp.help import VaspDoc
 VaspDoc.get_incar_tags()
 VaspDoc.get_help("IBRION")
 
-# 需初始化
+# 实例方法（需初始化）
 VaspDoc().print_help("IBRION")
 # 展示 HTML 格式内容
 VaspDoc().print_jupyter_help("IBRION")
 ```
 
+
+---
+
 ### pymatgen.io.vasp.inputs
 
-`pymatgen/io.vasp/inputs.py`
-
-
-```python
-Incar(params: dict[str, Any] | None = None)
-from_file(filename)
-write_file(filename)
-
-Kpoints()
-from_file(filename)
-write_file(filename)
-
-Poscar(structure)
-from_file(filename)
-write_file(filename)
-
-Potcar(symbols)
-from_file(filename)
-write_file(filename)
-```
+- VASP 输入文件模块
+- 四种输入文件类都有 `from_file()`、`write_file()` 两种方法
 
 ---
 
@@ -681,39 +671,53 @@ write_file(filename)
 
 在解析 INCAR 文件时，得到的字典的键和值都是字符串，需要对 INCAR 中不同参数的键的值的类型进行正确的转换，因此定义了 `proc_val()` 函数。
 
+```python
+from pymatgen.io.vasp.inputs import Incar
+
+Incar(params: dict[str, Any] | None = None)
+```
 
 
 ---
 
 #### Kpoints
 
-automatic() length
-automatic_density() grid_density
-automatic_density_by_vol() reciprocal_density
+```python
+from pymatgen.io.vasp.inputs import Kpoints
+
+automatic()                 # length
+automatic_density()         # grid_density
+automatic_density_by_vol()  # reciprocal_density
 
 
+```
 
 
 ---
 
 #### Poscar
 
-WIP…
+```python
+from pymatgen.io.vasp.inputs import Poscar
+
+```
 
 
 ---
 
 #### Potcar
 
-读取和写入 POTCAR 文件的 object，由 PotcarSingle object 的列表组成
+读取和写入 POTCAR 文件的 object，由 PotcarSingle object （单个 POTCAR） 的列表组成
 
 
----
+```python
+from pymatgen.io.vasp.inputs import Potcar
 
-#### PotcarSingle
-
-单个 POTCAR object
-
+# 写入 POTCAR
+element_list = ["Ti", "Al"]
+pot = Potcar(element_list)
+pot.write_file("POTCAR")
+```
 
 
 ---
@@ -790,10 +794,14 @@ pymatgen 的 Oszicar 类的 `final_energy` 属性选择的是 `E0`；Vasprun 类
 Outcar 类能获取的较普适数据的属性和方法较少（主要是解析 Vasprun.xml 文件无法获取到的数据）
 
 ```python
-read_neb()
+from pymatgen.io.vasp.ouputs import Outcar
 
+
+# 方法
 read_pattern()
 read_table_pattern()
+
+read_neb()
 ```
 
 ```python
@@ -812,17 +820,22 @@ read_table_pattern()
 
 #### Oszicar
 
-WIP…
+```python
+from pymatgen.io.vasp.ouputs import Oszicar
+
+```
 
 
 ---
 
 #### Vasprun
 
-WIP…
-
 ```python
-ionic_steps
+from pymatgen.io.vasp.ouputs import Vasprun
+
+# 属性
+ionic_steps       # 离子步
+
 
 # 每个 ionic_step 所含的数据 dict key
 dict_keys(
@@ -847,6 +860,7 @@ dict_keys(
 #### structure_matcher
 
 结构相似度
+
 ```python
 from pymatgen.analysis.structure_matcher import StructureMatcher
 
@@ -943,9 +957,10 @@ pymatgen 电子结构相关分析很多都是建立在 vasprun.xml 文件中提�
 from pymatgen.analysis.phase_diagram import PDEntry, PhaseDiagram
 from pymatgen.core.composition import Composition
 
-entry = PDEntry(composition=, energy=)
+entry1 = PDEntry(composition=..., energy=...)
+...
 
-entries = [entry, entry, ...]
+entries = [entry1, entry2, ...]
 
 phasediagram = PhaseDiagram(entries)
 
@@ -983,12 +998,12 @@ from pymatgen.analysis.diffraction.xrd import XRDCalculator
 
 c = XRDCalculator()
 
-c.get_plot(structure)
+# 方法
+get_plot(structure)            # 绘制结构的 XRD
 
-# 获取衍射花样
-c.get_pattern(structure)
-c.get_pattern(structure).hkls
-c.get_pattern(structure).d_hkls
+get_pattern(structure)         # 获取衍射花样
+get_pattern(structure).hkls
+get_pattern(structure).d_hkls
 ```
 
 
@@ -1003,10 +1018,12 @@ from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 sga = SpacegroupAnalyzer(structure)
 
-# 查看 空间群与晶系之间的关系 源码
-sga.get_crystal_system()
-
-# symmetrized_structure = sga.get_symmetrized_structure()
+# 方法
+get_conventional_standard_structure()   # 获取单胞
+get_primitive_standard_structure()      # 获取原胞
+get_crystal_system()                    # 获取晶系（源码含空间群与晶系之间的关系） 
+get_symmetry_dataset()                  # 获取结构的对称性数据集
+get_symmetrized_structure()             # 获取对称性结构
 
 # 寻找构型中的等同原子
 symmetry_dataset = sga.get_symmetry_dataset()
@@ -1015,7 +1032,7 @@ symmetry_dataset['equivalent_atoms']
 
 空间群与晶系之间的关系：[Space group - Wikipedia](https://en.wikipedia.org/wiki/Space_group)
 
-```text
+```yaml
 1-2: "triclinic"
 3-15: "monoclinic"
 16-74: "orthorhombic"
@@ -1059,27 +1076,40 @@ WIP...
 pip install -U mp_api
 ```
 
-- 使用
+- 新 API 使用
 
 ```python
 # 新 API 模块导入
 from mp_api.client import MPRester
 
 with MPRester("api-key") as mpr:
-    ...
+	docs = mpr.materials.summary.search(...)
 
-# 查看可获取内容的字段，可用做筛选 query data 的参数
-mpr.summary.available_fields
+    # 查看可获取内容的字段，可用做筛选 query data 的参数
+    mpr.summary.available_fields
 
 
-mpr.materials.summary.search(...)
 # 参数
 material_ids=["mp-149"]  # 根据材料 ID
 chemsys="Si-O",          # 仅含 Si O 两种元素的材料
 elements=["Si", "O"]     # 至少含 Si O 两种元素的材料
 fields=["band_gap"]      # 字段
 is_stable=True           # 稳定材料
+
+
+# 常用字段
+material_id                # MP 对该材料标注的 ID；需 str()
+formula_pretty             # 化学式（约化）
+symmetry.crystal_system    # 晶系；需 str()
+symmetry.symbol            # 空间群
+nsites                     # 构型原子数
+energy_per_atom            # 能量/原子
+formation_energy_per_atom  # 形成能/原子
+energy_above_hull          # 形成能与在 hull 上的形成能差值
+is_stable                  # 材料是否是稳定的
 ```
+
+- 旧 API 使用
 
 ```python
 # 旧 API模块导入
@@ -1090,15 +1120,8 @@ with MPRester("api-key") as mpr:
     ...
 
 
-mpr.get_structure_by_material_id(...)
-
+get_structure_by_material_id()  # 根据材料 ID 获取结构
 
 get_download_info()  # 获取来自 NoMaD repository 的裸 VASP 输出文件链接
 get_gb_data()   # 获取晶界数据
-```
-
-使用旧 API 出现的 warning
-```bash
-***/lib/python3.11/site-packages/pymatgen/ext/matproj_legacy.py:166: UserWarning: You are using the legacy MPRester. This version of the MPRester will no longer be updated. To access the latest data with the new MPRester, obtain a new API key from https://materialsproject.org/api and consult the docs at https://docs.materialsproject.org/ for more information.
-  warnings.warn(
 ```

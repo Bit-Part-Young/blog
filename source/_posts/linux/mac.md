@@ -139,23 +139,30 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 快捷键：
 
-- 剪切移动文件：`command + C` 复制，然后 `command + option + V` 将其移动到目标目录
-- 删除文件：`command + delete`
-- `command + Space` - 聚焦搜索（没有 Alfred 的 `option + Space` 好用）
-- `Space` - 预览功能
-- `control + ⬅︎ / ➡︎` - 左右切换「空间」（有全屏的窗口的话）
-- `command + Q` - 退出程序（macOS 关闭窗口不是完全退出程序）
-- `command + ⬆️ / ⬇️` - 返回上一层文件夹；进入文件夹
-- `command + shift + G` 打开 “前往文件夹” 窗口
-- 打开 Alfred，输入 `Restart`、`Sleep`、`Shut down` 实现重启、睡眠、关机
-- 返回桌面 - `command + F3`
-- 更加细致地调节音量、亮度：`option + shift + F1/2/11/12`
-- `option + command + 5`：显示截图、录屏选项
-- `option + command + esc`：强制退出应用程序
-- `command + ~`：切换同一个程序下的窗口
-- 强制关机：按住 Touch ID 直到屏幕变黑并且电脑关闭
+```bash
+# 注：无 Windows 的 `Win + X` 等效快捷键
 
-注：无 Windows 的 `Win + X` 等效快捷键
+# 剪切移动文件：command + C 复制，然后 command + option + V 将其移动到目标目录
+
+# 强制关机：按住 Touch ID 直到屏幕变黑并且电脑关闭
+
+# 打开 Alfred，输入 Restart、Sleep、Shut down 实现重启、睡眠、关机
+
+command + delete             # 删除文件
+command + Space              # 聚焦搜索（没有 Alfred 的 option + Space 好用）
+Space                        # 预览功能
+command + Q                  # 退出程序（macOS 关闭窗口不是完全退出程序）
+command + ↑ / ️↓              # 返回上一层文件夹；进入文件夹
+control + ← / →︎              # 左右切换「空间」（有全屏的窗口的话）
+command + shift + G          # 打开 前往文件夹 窗口
+command + F3                 # 返回桌面
+option + shift + F1/2/11/12  # 更加细致地调节音量、亮度
+option + command + 5         # 显示截图、录屏选项
+option + command + esc       # 强制退出应用程序
+command + ~                  # 切换同一个程序下的窗口
+command + M                  # 将最前方的窗口最小化至程序坞（不会出现在切换窗口中）
+command + H                  # 隐藏最前方 App 的窗口（会出现在切换窗口中）
+```
 
 
 ---
@@ -313,9 +320,21 @@ kitty +kitten themes
 
 - iTerm2 字体设置：Prefrences - profiles - text
 
-- IINA 相关快捷键：
-	- 倍速播放：`command + ]` 1/2/4 倍速加快；`command + option + ]` 1.1 倍速加快
-	- 打开视频、音频、字幕面板： `control + command + V/A/S`
+- Bob 快捷键设置
+
+```bash
+command + option + D   # 划词翻译
+command + option + S   # 截图翻译
+command + option + A   # 输入翻译
+```
+
+- IINA 相关快捷键
+
+```bash
+command + ]                # 1/2/4 倍速
+command + option + ]       # 1.1 倍速
+control + command + V/A/S  # 打开视频、音频、字幕面板
+```
 
 - yabai 使用：[yabai - Mac 的窗口平铺管理软件 - KawaiHe - 博客园](https://www.cnblogs.com/kawaihe/p/yabai--mac-de-chuang-kou-ping-pu-guan-li-ruan-jian.html)
 
@@ -467,6 +486,17 @@ fi
 
 # 方式 2；需放在 source oh-my-zsh.sh 前
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+```
+
+- [使用 crontab 设置 Homebrew 自动更新 - Undefined443 - 博客园](https://www.cnblogs.com/Undefined443/p/18147055)
+
+```bash
+crotab -e  # 进入编辑
+
+# 输入以下内容：每天 20:00 自动运行 brew upgrade 命令
+0 20 * * * /opt/homebrew/bin/brew upgrade  && /opt/homebrew/bin/brew --prune=all
+
+mail       # cron 任务执行完成后若有输出会通过 Unix 邮件系统发送邮件
 ```
 
 

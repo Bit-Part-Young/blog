@@ -37,15 +37,20 @@ password:
 # Linux
 wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
+bash Miniconda3-latest-Linux-x86_64.sh
+
 # macOS
 brew install miniconda
-# or
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
 
-bash Miniconda3-latest-Linux-x86_64.sh
+# 超算平台
+module load miniconda
 ```
 
-- 按 `Enter` 键、输入 `yes`；自定义设置 Miniconda3 安装路径，如：`~/src/miniconda3`。快结束安装时，会提示 `Do you wish the installer to initialize Miniconda3` 是否 `conda initialize`，输入 `yes`，其会在 `~/.bashrc` 或 `~/.zshrc` 添加以下内容，以后每次登录可直接使用 `conda`。
+- 按 `Enter` 键，输入 `yes`：
+	- 自定义设置 Miniconda3 安装路径，如：`~/src/miniconda3`
+	- 快结束安装时，会提示 `Do you wish the installer to initialize Miniconda3`
+	- 输入 `yes`，其会在 `~/.bashrc` 或 `~/.zshrc` 添加以下内容，以后每次登录可直接使用 `conda`
+	- 若输入 `no`，可之后运行命令 `conda init bash/zsh`
 
 ```bash
 # >>> conda initialize >>>
@@ -62,16 +67,14 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
 ```
 
-- 安装完成后，登录会默认激活 base 环境，可通过以下命令取消（建议取消）。
+- 安装完成后，登录会默认激活 base 环境，可通过以下命令取消（建议取消）
 
 ```bash
 conda config --set auto_activate_base false
 ```
 
-- 超算平台可直接 `module load miniconda`，运行 `conda init bash` 会在 `~/.bashrc` 中添加 `conda initialize` 内容。
 
 
 ---
@@ -79,12 +82,13 @@ conda config --set auto_activate_base false
 ### 换源
 
 - conda 换源
-	- conda 默认使用官方源（conda-forge）进行 package 安装和更新，但经常下载速度较慢。可以通过更换国内镜像源（如 [清华镜像源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)）加速下载。
-	- 有些 package 及其最新版本只能通过官方源安装（如 compilers），因此有时需留意某些 package 的安装要求。
+	- conda 默认使用官方源（conda-forge）进行 package 安装和更新，但经常下载速度较慢。可以通过更换国内镜像源（如 [清华镜像源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)）加速下载
+	- 有些 package 及其最新版本只能通过官方源安装（如 compilers），因此有时需留意某些 package 的安装要求
 
 ---
 
 备份 `~/.condarc`，在 `~/.condarc` 中添加以下内容：
+
 ```shell
 channels:
   - defaults
@@ -104,18 +108,18 @@ custom_channels:
 ```
 
 conda 设置相关命令：
+
 ```bash
 # 查看 conda 相关设置
 conda config --show
 conda config --show-sources
-conda clean -i  # 清除索引缓存
 
 # 获取指定配置
 conda config --set key value
-conda config --add key value  # 添加
+conda config --add key value     # 添加
 conda config --remove key value  # 移除
-conda config --add channels <CHANNELNAME>  # 添加 conda 源
-conda config --remove channels <CHANNELNAME>  # 移除
+# key value
+channels <CHANNELNAME>           # conda 源
 ```
 
 
@@ -137,7 +141,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### 卸载
 
-- `rm -rf miniconda3`，将 `~/.bashrc` 或 `~/.zshrc` 中的 `conda initialize` 语句删除或注释，`source` 或重新登录使其生效。
+- `rm -rf miniconda3`，将 `~/.bashrc` 或 `~/.zshrc` 中的 `conda initialize` 语句删除或注释，`source` 或重新登录使其生效
 
 
 
@@ -147,7 +151,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### conda 环境变量
 
-写 shell 或 Python 相关脚本时可能会用到以下 conda 环境变量：
+写 Shell 或 Python 相关脚本时可能会用到以下 conda 环境变量：
 
 | 环境变量 | 说明 |
 |:------------:|:------------:|
@@ -197,9 +201,10 @@ miniconda3
 ---
 
 `base` 之外的虚拟环境 packages 路径：
+
 ```shell
 miniconda3/envs/<conda_env>/lib/pythonX.X/site-packages
-# or
+# or --user 安装
 ~/.conda/envs/<conda_env>/lib/pythonX.X/site-packages
 ```
 
@@ -234,37 +239,26 @@ conda remove -n <ENVNAME> --all
 conda rename -n <ENVNAME> <NEWENVNAME>
 
 # 从已有环境克隆新环境
-conda create --clone <ENVNAME> -n <NEW_ENVNAME>
+conda create --clone <ENVNAME> -n <NEWENVNAME>
 ```
 
 - packages 相关
 
 ```bash
-# 安装 package
-conda install <package>
-
-# 列出已安装 package
-conda list
-
-# 查看具体 package 信息
-conda list <package>
-
-# 更新 package
-conda update <package>
-
-# 搜索可用 package
-conda search numpy
+conda install <package>     # 安装 package
+conda list                  # 列出已安装 package
+conda list <package>        # 查看具体 package 信息
+conda update <package>      # 更新 package
+conda search <package>      # 搜索可用 package
 ```
 
-- 删除 pkgs 目录中的缓存的 packages（**清理空间常用**）
-	- 安装 packages 时的缓存路径:`~/.conda/pkgs/`
+- 删除未使用的 packages 和缓存（缓存路径 `~/.conda/pkgs/`**）
 
 ```bash
-conda clean -a
-
-conda clean -p
-# --dry-run 模拟运行，不实际删除
-conda clean -p --dry-run
+conda clean -i  # 删除索引缓存
+conda clean -p  # 删除未使用的 packages
+conda clean -a  # 删除所有
+--dry-run       # 模拟运行，不实际删除
 ```
 
 
@@ -275,30 +269,22 @@ conda clean -p --dry-run
 - 安装 package
 
 ```bash
-# PyPI 安装
-pip install <package>
-# 更新 package
+# 安装并更新 PyPI package
 pip install -U <package>
 
 # 本地安装
 pip install git+url
-pip install .
 pip install -r requirements.txt
-# editable mode
-pip install -e .
-python setup.py install
-python pip install ".[test]"
-
-# 示例
-git clone https://github.com/CederGroupHub/sparse-lm
-cd sparselm
 pip install .
+pip install -e .  # editable mode
+python setup.py install
+pip install ".[test]"
 ```
 
 - 常用 packages：多个 packages 一行命令安装可能出现报错，建议单个安装
 
 ```bash
-pip install pymatgen ase pyxtal scikit-learn ipython ipykernel tldr
+pip install -U pymatgen ase pyxtal scikit-learn ipython ipykernel tldr
 ```
 
 - 列出已安装 packages
@@ -349,8 +335,15 @@ deactivate  # 退出
 - 安装
 
 ```bash
-# Linux macOS 安装/更新
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# 安装
+# Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh 
+# macOS 
+brew install uv
+# cargo
+cargo install --git https://github.com/astral-sh/uv uv
+
+uv self update   # 更新
 ```
 
 - 使用

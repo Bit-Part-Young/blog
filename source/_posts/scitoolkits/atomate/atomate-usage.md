@@ -210,21 +210,24 @@ fi
 
 ---
 
-- 配置 pymatgen：VASP 赝势路径 + material project 网站 API
+- 配置 pymatgen：VASP 赝势路径 + Material Project 网站 API
 
 方式 1：新建 `~/.pmgrc.yaml` 或 `~/.config/.pmgrc.yaml` 文件，添加以下内容
+
 ```yaml
 PMG_VASP_PSP_DIR: <psp_dir>
 PMG_MAPI_KEY: <api_key>
 ```
 
 方式 2：使用 pmg 命令来生成配置文件
+
 ```bash
 pmg config --add PMG_VASP_PSP_DIR <psp_dir>
 pmg config --add PMG_MAPI_KEY <api_key>
 ```
 
 赝势目录结构：
+
 ```text
 pseudopotentials
 ├── POT_GGA_PAW_PBE
@@ -244,7 +247,16 @@ pseudopotentials
     └── ...
 ```
 
+```bash
+# pymatgen 寻找 POTCAR 的两种路径形式
+# 形式 1 所有元素 POTCAR 在一个目录下
+pseudopotentialsPOT_GGA_PAW_PBE/POTCAR.XXX
+# 形式 2 元素 POTCAR 按元素分类在子目录下
+pseudopotentialsPOT_GGA_PAW_PBE/XXX/POTCAR
+```
+
 注：若 `<psp_dir>` 赝势目录下没有 `POT_GGA_PAW_PBE` 名称目录，可设置软链接：
+
 ```bash
 ln -s PBE_folder POT_GGA_PAW_PBE
 ```
