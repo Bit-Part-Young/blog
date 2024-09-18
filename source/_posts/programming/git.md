@@ -113,6 +113,7 @@ WIP...
 
 ### 工具
 
+- VSCode 插件 GitLens：增强 Git 使用
 - Git 操作 TUI 工具：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)
 - [onefetch](https://github.com/o2sh/onefetch)：展示本地 Git 仓库的项目详情和代码统计等内容
 - [gita](https://github.com/nosarthur/gita)：管理多个 Git repo

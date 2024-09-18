@@ -125,6 +125,8 @@ shellcheck [option] script.sh
 -f   # 指定输出格式 checkstyle, diff, gcc, json, json1, quiet, tty
 ```
 
+- VSCode 中的 shellcheck、shell-format 插件不是很好用（建议直接使用其命令行工具）
+
 - Bash LSP：[GitHub - bash-lsp/bash-language-server](https://github.com/bash-lsp/bash-language-server)（依赖 ShellCheck 和 shfmt，可集成在 Vim 或 Neovim 中）
 
 ```bash

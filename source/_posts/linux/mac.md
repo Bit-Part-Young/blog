@@ -320,6 +320,8 @@ kitty +kitten themes
 
 - iTerm2 字体设置：Prefrences - profiles - text
 
+- iTerm2 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
+
 - Bob 快捷键设置
 
 ```bash
@@ -684,7 +686,7 @@ ln -s /opt/homebrew/bin/g++-13 ~/bin/g++
 ln -s /opt/homebrew/bin/gcc-13 ~/bin/gcc
 ```
 
-- clang 没有 `fopenmp` 选项
+- clang 不支持 `fopenmp` 选项
 
 ```bash
 clang: error: unsupported option '-fopenmp'
@@ -735,6 +737,8 @@ brew install openjdk  # 安装 Java
 - 在 Mac 本地运行 SD：[GitHub - MochiDiffusion/MochiDiffusion: Run Stable Diffusion on Mac natively](https://github.com/MochiDiffusion/MochiDiffusion)
 
 - [国行Mac电脑如何开启Apple Intelligence\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV198p4e2Eg7)
+
+- 将图片转成 HEIF/HEIC 格式：[GitHub - biodranik/HEIF: Mac OS X: Convert any image to HEIF/HEIC format](https://github.com/biodranik/HEIF)
 
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
 	- 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel

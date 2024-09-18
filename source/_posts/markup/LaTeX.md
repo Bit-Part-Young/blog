@@ -238,7 +238,8 @@ tlmgr --version
 ### 工具
 
 - VSCode 插件：
-	- LaTeX Workshop 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
+	- LaTeX Workshop：语法高亮、实时编译 LaTeX，有字数统计功能 
+		- 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
 	- LaTeX Utilities
 	- Overleaf Workshop
 
@@ -1644,6 +1645,7 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 
 - arxiv 模板：[GitHub - kourgeorge/arxiv-style: A Latex style and template for paper preprints (based on NIPS style)](https://github.com/kourgeorge/arxiv-style)
 
+- 论文回复模板：[GitHub - mschroen/review\_response\_letter: Template for Latex and/or Pandoc to quickly write reviews and (author) response letters](https://github.com/mschroen/review_response_letter)
 
 
 ---

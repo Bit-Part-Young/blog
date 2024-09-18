@@ -128,6 +128,15 @@ isort .
 ruff
 ```
 
+- VSCode 设置 black-formatter 的单行字符长度限制：[vscode 配置 python black 格式化单行长度 - Ainsliaea - 博客园](https://www.cnblogs.com/ainsliaea/p/17647847.html)
+
+```json
+    "black-formatter.args": [
+        "--line-length",
+        "79"
+    ],
+```
+
 
 
 ---
@@ -173,6 +182,8 @@ python package 模板参考
 
 ### 配置文件
 
+[GitHub - abravalheri/validate-pyproject: Validation library for simple check on \`pyproject.toml\`](https://github.com/abravalheri/validate-pyproject)
+
 有 3 种文件格式（需要用到的一些文件：`requirements.txt` `README.md` `MANIFEST.in` 等）：
 
 - `setup.cfg`（适用于不需要复杂构建逻辑的项目）
@@ -189,7 +200,7 @@ from setuptools import find_packages
 # from setuptools import setup, find_packages
 
 setup(
-    name="package_name",
+    name="Package Name",
     version="0.0.1",
     description="description",
     long_description=open("README.md").read(),
@@ -375,12 +386,7 @@ MODEL_DATA_PATH = pkg_resources.resource_filename("pdepp", "data/model")
 
 ### 发布到 PyPI
 
-- [ ] PyPI 自动发布 CI、自动发布 release CI
-参考：[workflow-sandbox/.github/workflows/release.yml at master · rpanderson/workflow-sandbox · GitHub](https://github.com/rpanderson/workflow-sandbox/blob/master/.github/workflows/release.yml)
-
-
-
-- 在 [PyPI](https://pypi.org/)，[TestPyPI](https://test.pypi.org/)（可选） 注册账号；注册好并登录后需先设置 2FA（安卓端可以使用 Google 身份验证器 app），之后创建 `~/.pypirc` 配置文件（建议使用 API 的形式，而非用户名、密码的形式）
+- 在 [PyPI](https://pypi.org/)，[TestPyPI](https://test.pypi.org/)（可选） 注册账号；注册好并登录后需先设置 2FA（安卓端可使用 Google 身份验证器 app），之后创建 `~/.pypirc` 配置文件（建议使用 API 的形式，而非用户名、密码的形式）
 
 - 配置文件 `.pypirc` 示例
 
@@ -428,6 +434,14 @@ twine check dist/*
 ```bash
 twine upload dist/*
 ```
+
+---
+
+- [ ] PyPI 自动发布 CI、自动发布 release CI
+参考：[workflow-sandbox/.github/workflows/release.yml at master · rpanderson/workflow-sandbox · GitHub](https://github.com/rpanderson/workflow-sandbox/blob/master/.github/workflows/release.yml)
+
+[GitHub - pypa/gh-action-pypi-publish: The blessed GitHub Action, for publishing your distribution files to PyPI: https://github.com/marketplace/actions/pypi-publish](https://github.com/pypa/gh-action-pypi-publish)
+
 
 
 ---
