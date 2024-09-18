@@ -34,6 +34,8 @@ password:
 
 - [Setting up C/C++ compiler • C and C++ Programing](https://pranabdas.github.io/c-cpp/)
 
+- [cppreference.com](https://en.cppreference.com/w/)（页面可转换成中文）
+
 - [C++ 面向对象 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/c_cpp/oop/)
 
 - [序言 现代 C++ 教程: 高速上手 C++ 11/14/17/20 - Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/zh-cn/00-preface/)
@@ -51,7 +53,6 @@ password:
 
 [【四、静态库与动态库（共享库）】揭开链接库的神秘面纱：手把手教你制作静态链接库与动态链接库\_Mindtechnist的博客-CSDN博客](https://blog.csdn.net/qq_43471489/article/details/124546183)
 
-
 >[GitHub - parallel101/course: 高性能并行编程与优化 - 课件](https://github.com/parallel101/course)
 
 >[双笙子佯谬的个人空间-双笙子佯谬个人主页-哔哩哔哩视频](https://space.bilibili.com/263032155)
@@ -66,11 +67,6 @@ password:
 
 
 - [C 语言教程 - 网道](https://wangdoc.com/clang/)
-
-
-
-命令行参数
->[c++ - What does int argc, char \*argv[] mean? - Stack Overflow](https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean)
 
 
 
@@ -174,9 +170,12 @@ gdb main.o
 ```cpp
 #include <cstdio>          // C 标准 IO
 #include <bits/stdc++.h>   // 导入整个 C++ 标准库
-#include <iomanip>         // 设置精度 setprecision
 
 using namespace std     // 命名空间；不建议，可能会导致命名冲突
+
+
+#define a 1        // 宏常量
+const int a = 1;   // 声明常量
 
 
 // 浮点数比较，用 == 很危险
@@ -184,6 +183,8 @@ if (abs(a - b) < 1e-9)
 {  
     // a and b are equal  
 }
+
+
 ```
 
 
@@ -195,6 +196,39 @@ if (abs(a - b) < 1e-9)
 
 字符用单引号，字符串用双引号（相当于字符数组）
 
+```cpp
+
+sizeof(int)   // 查看数据类型所占内存大小
+sizeof(a)
+
+// 字符型
+char ch = 'a';
+
+// 字符串型
+char str1[] = "Hello World";  // C 风格
+
+#include <string>
+
+string str2 = "Hello World";  // C++ 风格
+
+
+// 布尔类型
+bool flag = true;
+```
+
+
+---
+
+### 数组
+
+```cpp
+// 一维数组定义
+int array1[5] = {1};
+int array2[5] = {1, 2, 3, 4, 5};
+int array3[] = {1, 2, 3, 4, 5};
+int array4[5] = {};
+int array5[5] = {1, 2};
+```
 
 ---
 
@@ -203,7 +237,32 @@ if (abs(a - b) < 1e-9)
 #### if 条件
 
 ```cpp
+if (condition)  // if 后面不加分号
+{
+    // commands
+}
 
+if (condition)
+{
+    // commands
+}
+else
+{
+    // commands
+}
+
+if (condition1)
+{
+    // commands
+}
+else if (condition2)
+{
+    // commands
+}
+else
+{
+    // commands
+}
 ```
 
 
@@ -223,6 +282,41 @@ for (element_declaration : range_expression) {
 }
 ```
 其中，element_declaration 是一个变量，用于存储每次迭代中的元素值。range_expression 是一个表示要遍历的容器或对象的表达式。
+
+
+---
+
+### 文件 IO
+
+```cpp
+#include <fstream>      // 文件流
+
+```
+
+
+---
+
+### 格式化输出
+
+```cpp
+// 方式 1
+#include <iomanip>
+
+setprecision()   // 设置精度 
+setw()           // 设置宽度
+
+
+// 方式 2
+#include <cstdio>
+
+printf()
+
+
+// 方式 3
+#include <format> // C++20 引入的头文件
+
+format()
+```
 
 
 ---
@@ -257,6 +351,7 @@ WIP...
 
 函数重载
 
+运算符重载
 
 ---
 
@@ -270,6 +365,10 @@ C++ 新特性
 
 T 表示参数类型
 
+```cpp
+template <class T>
+```
+
 函数模板
 
 
@@ -280,7 +379,48 @@ T 表示参数类型
 
 ---
 
+### 其他
+
+字符串转整数：
+
+`stoi()`（标准库中的函数）
+`atoi()`（C 风格的函数）
+
+---
+
+解析命令行参数：[c++ - What does int argc, char \*argv[] mean? - Stack Overflow](https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean)
+
+```cpp
+#include <iostream>
+
+int main(int count, char* args[]) {
+    std::cout << "参数个数: " << count << std::endl;
+    for (int i = 0; i < count; ++i) {
+        std::cout << "参数 " << i << ": " << args[i] << std::endl;
+    }
+    return 0;
+}
+
+```
+
+
+
+---
+
 ## 库
+
+- `<iostream>`：基本输入输出流；`cin`, `cout`, `cerr`, `endl`
+
+- `<fstream>`：文件输入输出流；`ifstream`, `ofstream`, `fstream`
+
+- `<sstream>`：字符串流；`istringstream`, `ostringstream`, `stringstream`
+
+- `<cmath>`：提供数学函数支持；`sin()`, `cos()`, `exp()`, `log()`, `sqrt()`
+
+- `<ctime>`：传统的 C 语言日期和时间函数；`time()`,
+
+
+---
 
 ### string
 
@@ -327,6 +467,10 @@ array
 ><https://eigen.tuxfamily.org/dox/GettingStarted.html>
 
 - 安装：下载源代码，可放到任意路径下
+
+```bash
+brew install eigen  # macOS；头文件 /opt/homebrew/include/eigen3
+```
 
 - 编译
 
