@@ -135,8 +135,6 @@ cd /d c:
 
 - `win + R`，输入 `dxdiag`，查看系统信息
 
-- 个人惠普笔记本型号：[惠普 Pavilion 畅游人 Power - 15-cb074tx 产品规格 - HP®客户支持](https://support.hp.com/cn-zh/document/c05549489)
-
 - 在文件资源管理器输入 `%LocalAppData%`，进入 C 盘的 AppData 路径
 
 - Windows 端查看防火墙是否允许 ICMP 请求（ping 请求）：控制面板 - 系统安全 - 允许应用通过 Windows 防火墙 - “文件和打印机共享” 相关选项，更改设置，勾选

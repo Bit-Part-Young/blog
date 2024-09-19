@@ -63,6 +63,8 @@ yy           # 拷贝当前页面的 URL 到剪切板
 # 规则列表网址
 https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 
+# 规则列表格式 选择 AutoProxy
+
 # 个人使用切换规则
 # 域名                    # 代理方式
 *openai.com               # 代理
@@ -75,31 +77,43 @@ pubs.aip.org              # 直接连接
 www.sciencedirect.com     # 直接连接
 ```
 
+
 ---
 
 ### 其他插件
 
 - 让 [网页版微信](https://wx.qq.com/) 可用：[GitHub - lqzhgood/wechat-need-web](https://github.com/lqzhgood/wechat-need-web?tab=readme-ov-file)
-- Adblock Plus：广告拦截；[GitHub - sbwml/halflife-list: ABP/ublock 广告过滤规则（每周一早上9点更新）](https://github.com/sbwml/halflife-list)
+
+- AdBlock Plus：广告拦截；[GitHub - sbwml/halflife-list: ABP/ublock 广告过滤规则（每周一早上9点更新）](https://github.com/sbwml/halflife-list)
+
 - Zotero Connector：保存网页中的文献到 Zotero 中
+
 - OneTab：当标签页很多时，可以一键收起全部标签页，节省内存
+
 - [沉浸式翻译](https://immersivetranslate.com/docs/) 网页翻译；百度翻译 API 申请：[百度翻译 | 沉浸式翻译](https://immersivetranslate.com/docs/services/baidu/)
+
 - DeepL 翻译：网页翻译
+
 - 沙拉查词：网页翻译
+
 - Dark Reader：深色模式
+
 - easyScholar：显示文献期刊排名；也可以下载 2021 年前的文献
+
 - Copy As Plain Text：去除选中内容的所有格式，转换成普通文本
+
 - Global Speed：全局网页视频速度控制
+
 - [GitHub - 027xiguapi/code-box: 本插件可以用于CSDN/知乎/脚本之家/博客园等网站,实现无需登录一键复制代码;支持选中代码;或者代码右上角按钮的一键复制;解除关注博主即可阅读全文提示;去除登录弹窗;去除跳转APP弹窗.](https://github.com/027xiguapi/code-box)
+	- 建议取消知乎的 “关闭登录弹窗”，否则无法打开收藏的弹窗
+
 - IDM Integration Module：IDM 下载集成模块；嗅探下载网页视频
+
 - 隐藏浏览器插件（会把插件关掉）：[GitHub - cunzaizhuyi/up-mode-extension: This is a browser extension that protects the author's privacy by hiding pinned browser extensions.](https://github.com/cunzaizhuyi/up-mode-extension)
+
 - LeechBlock：防止摸鱼时间过长
 
----
-
 - Notion Boost：使网页版 Notion page 侧边栏生成目录
-- Bing Unchained - Use new Bing in Chrome：实现在 Chrome 中使用 new Bing；已失效，可使用 [New Bing Anywhere (Bing Chat GPT-4)](https://chrome.google.com/webstore/detail/new-bing-anywhere-bing-ch/hceobhjokpdbogjkplmfjeomkeckkngi/related)
-- WebChatGPT：使 ChatGPT 具备互联网访问功能（不是很好用）
 
 
 
@@ -108,19 +122,28 @@ www.sciencedirect.com     # 直接连接
 ## 油猴插件
 
 - 需在 Chrome 中安装 Tampermonkey 插件（油猴插件管理器）；[Greasy Fork - 安全、实用的用户脚本大全](https://greasyfork.org/zh-CN)
-- [jAccount 验证码在线 ResNet 高速高精度毫秒级识别](https://greasyfork.org/zh-CN/scripts/432645-jaccount-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9C%A8%E7%BA%BF-resnet-%E9%AB%98%E9%80%9F%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%AF%AB%E7%A7%92%E7%BA%A7%E8%AF%86%E5%88%AB)：自动填写验证码。
-- 上海交通大学 Canvas 平台课程播放器插件：Canvas 平台视频播放器功能增强；[上海交通大学 Canvas 平台课程视频播放器至尊版焕然一新插件](https://greasyfork.org/zh-CN/scripts/432918-%E4%B8%8A%E6%B5%B7%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6-canvas-%E5%B9%B3%E5%8F%B0%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E8%87%B3%E5%B0%8A%E7%89%88%E7%84%95%E7%84%B6%E4%B8%80%E6%96%B0%E6%8F%92%E4%BB%B6)
-- [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD)：加速 git clone。
 
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401082135895.png)
+- [jAccount 验证码在线 ResNet 高速高精度毫秒级识别](https://greasyfork.org/zh-CN/scripts/432645)：自动填写验证码
 
-- GitHub 主页还原至原来的 feed：[Github Old Feed](https://greasyfork.org/zh-CN/scripts/474728)（会无法显示 follow 的用户 fork 的 repo 动态）、[old-github-feed](https://github.com/Gerrit0/old-github-feed)
-- [沉浸式翻译](https://greasyfork.org/zh-CN/scripts/457196)
-- [KeepChatGPT](https://greasyfork.org/zh-CN/scripts/462804-keepchatgpt)：使网页版 ChatGPT 更稳定。
-- [链接助手](https://greasyfork.org/zh-CN/scripts/422773)：文本转链接；百度网盘密码自动填写
-- AC baidu 重定向：去广告，优化排列等。
-- CSDN 广告过滤
+- [上海交通大学 Canvas 平台课程视频播放器至尊版焕然一新插件](https://greasyfork.org/zh-CN/scripts/432918)
+
+- [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245)：加速 git clone
+
+- GitHub 主页还原至原来的 feed：
+	- [Github Old Feed](https://greasyfork.org/zh-CN/scripts/474728)（会无法显示 follow 的用户 fork 的 repo 动态）
+	- [old-github-feed](https://github.com/Gerrit0/old-github-feed)
+
+- [GitHub 的链接在新标签页打开](https://greasyfork.org/zh-CN/scripts/447005)
+
 - [新标签页打开链接](https://greasyfork.org/zh-CN/scripts/429714)
+
+- [沉浸式翻译](https://greasyfork.org/zh-CN/scripts/457196)
+
+- [链接助手](https://greasyfork.org/zh-CN/scripts/422773)：文本转链接；百度网盘密码自动填写
+
+- AC baidu 重定向：去广告，优化排列等。
+
+- CSDN 广告过滤
 
 - 知乎相关：
 	- [知乎修改器🤜持续更新🤛努力实现功能最全的知乎配置插件](https://greasyfork.org/zh-CN/scripts/423404)

@@ -56,16 +56,15 @@ vimtutor    # 查看 Vim 教程
 	- [vim.txt - awesome-cheatsheets](https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt)
 	- [A Great Vim Cheat Sheet](https://vimsheet.com/)
 
+- 三种模式：命令模式（Command mode）、插入模式（Insert mode）、底线命令模式（Last line mode）
 
-vim 中 j 和 gj 快捷键之间的区别：`j` 和 `gj` 都用于向下移动光标，但 `gj` 在处理折行文本时表现不同（前者不考虑，后者考虑），更视觉友好。
+- 启动时进入的是命令模式； `i/a/o` 进入插入模式；`esc` 键退出插入模式，切换到命令模式；`:` 切换到底线命令模式，以在最底行输入命令
 
-
-- 三种模式：命令模式（Command mode）、输入模式（Insert mode）、底线命令模式（Last line mode）
-- 启动时进入的是命令模式； `i/a/o` 进入输入模式；`esc` 键退出输入模式，切换到命令模式；`:` 切换到底线命令模式，以在最底行输入命令
+- `j` 和 `gj` 快捷键之间的区别：`j` 和 `gj` 都用于向下移动光标，但 `gj` 在处理折行文本时表现不同（前者不考虑，后者考虑），更视觉友好
 
 ---
 
-进入输入模式快捷键
+进入插入模式快捷键
 
 ```bash
 i          # 从光标所在处输入
@@ -112,6 +111,7 @@ $ / [End]   # 移动到该行行尾
 gg          # 移动到第一行
 G           # 移动到最后一行
 nG          # 移动到第 n 行；n 为数字
+:n          # 移动到第 n 行
 n<Enter>    # 向下移动 n 行；<Enter> 为 Enter 键
 H           # 移动到屏幕的最上方
 M           # 移动到屏幕的中央
@@ -164,7 +164,7 @@ bdw          # 删除光标所在的一个单词（同 daw）
 # 撤回/重复
 u           # 恢复前一个动作
 Ctrl + r    # 重做上一个动作
-.           # 重复前一个动作（普通模式，替换操作无法重复）
+.           # 重复前一个动作（替换操作无法重复）
 &           # 重复前一个替换操作
 
 # 分屏
@@ -188,11 +188,9 @@ gUU          # 光标所在行转大写
 其他快捷键
 
 ```bash
-:5m3        # 将第 5 行剪切并粘贴到第 3 行下方
-> + Enter   # 该行首右移一个 Tab 距离
->4 + Enter  # 4 行行首右移一个 Tab 距离
-
-
+:5m3           # 将第 5 行剪切并粘贴到第 3 行下方
+> + Enter      # 该行首右移一个 Tab 距离
+>4 + Enter     # 4 行行首右移一个 Tab 距离
 ```
 
 
@@ -219,7 +217,33 @@ gUU          # 光标所在行转大写
 	- 块模式选中文本添加括号
 
 ```bash
+syntax on                     # 开启语法高亮              
+set number                    # 开启行号                    
+set relativenumber            # 开启相对行号                
+set cursorline                # 高亮本行                    
+set laststatus=3              # 开启状态栏                  
+set tabstop=                  # 设置 Tab 大小                 
+set softtabstop=              # 设置 Tab 大小                 
+set shiftwidth=               # 设置 indent 大小              
+set autoindent                # 设置自动缩进                
+set smartindent               # 更智能的自动缩进            
+set list                      # 显示 list 字符                
+set listchars=                # 设置 list 字符的内容          
+set wildmenu                  # cmdline 补全                 
+set ignorecase                # 搜索时忽略大小写            
+set smartcase                 # 搜索输入大写时不会忽略大小写
+set ttimeoutline=             # 更快的响应时间              
+set notimeout
+set conceallevel=0            # 取消特殊字符隐藏            
+
+
 # 按键映射
+(nore)map
+n(nore)map
+i(nore)map
+v(nore)map
+t(nore)map
+o(nore)map
 
 
 # 命令

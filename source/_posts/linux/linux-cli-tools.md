@@ -178,6 +178,7 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 	- zsh-completions（自动补全）
 	- zsh-syntax-highlighting（高亮）
 	- zsh-autosuggestions（建议）
+	- forgit（交互式 git；需确保安装了 fzf）
 	- zsh prompt（可选）：[spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt)
 	- [starship](https://github.com/starship/starship): Shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
 
@@ -187,6 +188,7 @@ git clone --depth=1 https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/p
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
 git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/fast-syntax-highlighting && \
+git clone --depth 1 https://github.com/wfxr/forgit.git ${ZSH_CUSTOM}/plugins/forgit && \
 git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM}/plugins/zsh-vi-mode && \
 git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM}/plugins/you-should-use && \
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k && \
@@ -221,24 +223,33 @@ p10k configure  # 配置 powerlevel10k
 
 ```bash
 # 内置插件
-x          # 解压任意格式压缩
-z          # 目录自动跳转，模糊匹配最近进入过的目录
-git        # 丰富的 git alias
+x                  # 解压任意格式压缩
+z                  # 目录自动跳转，模糊匹配最近进入过的目录
+git                # 丰富的 git alias
+docker             # docker alias；会拖慢 source ~/.zshrc 速度
+docker-compose     # docker-compose alias
+brew               # brew alias
+colored-man-pages  # 命令帮助页彩色化
+
+# docker 插件需如下设置
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # 外置插件
 zsh-syntax-highlighting
 zsh-autosuggestions
 zsh-completions
 zsh-fast-syntax-highlighting
+forgit
 zsh-you-should-use
-zsh-vi-mode  # Crtl + [ 进入 Normal mode
+zsh-vi-mode           # Crtl + [ 进入 Normal mode
 zsh-lovers
 zsh-git-prompt
 
-# bash 插件
+# Bash 插件
 bash-git-prompt       # 效果还不错
-bash-language-server  # 有 Bash IDE 的 VSCode 插件
-bash-completion
+bash-language-server  # Bash LSP
+bash-completion       # Bash 自动补全
 bash-snippets         # 有 cheat 等可执行命令
 ```
 
@@ -324,8 +335,8 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - Shell：nushell、fish 体验（没有 zsh 好用）
 - 替代 `man`：[tldr](https://github.com/tldr-pages/tldr)（有时会失效）、[eg](https://github.com/srsudar/eg)、[navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
-- 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)（可下载 x86_64-unknown-linux-gnu 二进制版本）、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与.gitignore 结合）
-- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）、[peco](https://github.com/peco/peco)（交互式）
+- 替代 `ls`：[lsd](https://github.com/lsd-rs/lsd)、[exa](https://github.com/ogham/exa)、[eza](https://github.com/eza-community/eza)（可以与 .gitignore 结合）
+- 替代 `grep`：[ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）、[peco](https://github.com/peco/peco)（交互式）、[ripgrep-all](https://github.com/phiresky/ripgrep-all)（可在 PDF、E-Books、Office 文档、压缩文件等查找内容）
 - 替代 `sed`：[sd](https://github.com/chmln/sd)
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)（cargo 安装时为 `fd-find`）
@@ -451,6 +462,28 @@ cd ~/.fzf && git pull && ./install
 # -g 过滤搜索
 rg 'content' -g '!docs/'  # 排除
 rg 'content' -g '*.py'    # 包含
+
+
+# ripgrep-all 安装与使用
+brew install pandoc poppler ffmpeg  # 需提前安装
+brew install rga
+
+rga 'XXX' file.pdf  # 使用；文件后缀可以是 docx、zip、epub 等
+
+# 与 fzf 集成；写入 ~/.{bash,zsh}rc 中
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
 
 
 # eg 安装

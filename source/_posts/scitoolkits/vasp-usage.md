@@ -842,6 +842,8 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 #### OUTCAR
 
+[VASP学习记录(六)：VASP的输出文件OUTCAR](https://zhuanlan.zhihu.com/p/579705300)
+
 给出 VASP 计算过程的具体输出，包括：
 - 输入参数的总结。
 - 电子步、KS 本征值信息。

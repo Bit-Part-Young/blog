@@ -211,6 +211,8 @@ mdbook serve --open
 
 - WordPress 博客系统：[保姆级搭建wordpress博客教程（docker版）\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Nf4y127gj)
 
+- [GitHub - mazzzystar/tinymind: Tinymind - Write and sync your blog & memo data with GitHub](https://github.com/mazzzystar/tinymind)
+
 
 
 ---

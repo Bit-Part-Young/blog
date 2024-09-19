@@ -260,6 +260,8 @@ topgrade               # 使用
 topgrade -n            # 不实际运行
 ```
 
+- 在 Rust 中使用 REPL 和 Jupyter 内核：[GitHub - evcxr/evcxr](https://github.com/evcxr/evcxr)
+
 
 ---
 

@@ -40,6 +40,7 @@ WIP...
 - Linux 设置：[Setting up Linux • Linux tutorial](https://pranabdas.github.io/linux/setup)
 - [GitHub - dibingfa/flash-linux0.11-talk: 你管这破玩意叫操作系统源码 — 像小说一样品读 Linux 0.11 核心代码](https://github.com/dibingfa/flash-linux0.11-talk)
 - Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
+- [Linux 教程 - Note/wiki/linux\_teach.md at master · Kicamon/Note · GitHub](https://github.com/Kicamon/Note/blob/master/wiki/linux_teach.md)
 
 - Linux 软件：[Office & Productivity Apps - AlternativeTo](https://alternativeto.net/category/productivity/)
 
@@ -121,13 +122,6 @@ Linux 系统文件颜色
 
 ---
 
-登录 Shell 与非登录 Shell
-
-- 登录 Shell：物理登录到系统上（如在登录界面输入用户名和密码）或远程登录（如 SSH）
-- 非登录 Shell：打开新终端窗口或启动新 Shell（如输入 `bash` 命令）
-
----
-
 SSH 配置
 
 - 用户配置：`~/.ssh/config`
@@ -140,14 +134,30 @@ SSH 配置
 - 切换到用户：`su username`
 - 切换到 root：
 	- `sudo -i` 或 `sudo su` 只需输入当前用户密码
-	- `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，需通过 `sudo passwd root` 给 root 创建密码
+	- `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，通过 `sudo passwd root` 给 root 创建密码
 
 ---
 
-```bash
-# 设置 root 密码
-sudo passwd root
+创建新用户
 
+```bash
+# 方式 1
+sudo useradd -m newuser        # -m 表示为新用户创建主目录，默认位置在 /home/newuser
+sudo passwd newuser            # 为新用户设置密码
+
+# 方式 2
+sudo adduser newuser           # 系统会提示输入一些信息，如密码、全名等，按提示操作即可
+
+sudo usermod -aG sudo newuser  # 可选；将新用户添加到 sudo 组，以便赋予管理员权限
+
+su - newuser                   # 切换到新用户
+```
+
+---
+
+其他
+
+```bash
 # 安装 ifconfig
 sudo apt install net-tools
 

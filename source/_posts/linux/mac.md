@@ -322,6 +322,18 @@ kitty +kitten themes
 
 - iTerm2 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
 
+- 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 - 高级 - 持续时间缩短成 1.5
+	- [In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
+
+- Alfred 搜索内容设置：Features - Default Results，可以勾选 Essential 和 Extras 中的所有内容（文件夹、文本文件、文档、图片、压缩文件等）
+
+```bash
+open XXX      # 打开文件
+find XXX      # 打开该文件在 Finder 中的路径
+in XXX        # 根据文件中的内容查找文件
+tags XXX      # 根据文件 tag 查找文件
+```
+
 - Bob 快捷键设置
 
 ```bash
@@ -416,9 +428,9 @@ precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
 - Termius 集成 SFTP（可以查看远程文件内容）
 
 - iTerm2 安装 Shell Integration：
-	- 登录远程服务器，iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传
+	- 登录远程服务器：iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传
 	- [使用iTerm2管理SSH服务器 – 爪哇堂 JavaTang](https://www.javatang.com/archives/2021/11/29/13063392.html)
-	- 可以在终端查看图片和 gif 图（imgls）
+	- 可以在终端查看图片和 gif 图（imgls、imgcat 等）
 	- [Features - iTerm2 - macOS Terminal Replacement](https://iterm2.com/features.html)
 
 
@@ -633,18 +645,29 @@ switcher:
 #### Safari 浏览器插件
 
 - 去广告：AdGuard、AdBlock
+
 - 合并标签页：OneTab
+
 - 使用 Vim 快捷键操作网页内容：Vimlike
+
 - 视频倍速：Accelerate
+
 - 中英文翻译：沉浸式翻译、无官方的 DeepL（有非官方的，不是很好用）、沙拉查词翻译（无官方）
+
 - 油猴（需收费，有破解版；很多油猴脚本未适配 Safari）
+
 - 网页深色模式：Noir
+
 - B 站相关插件：[Safari：安装指南 · Issue #679 · BewlyBewly/BewlyBewly · GitHub](https://github.com/BewlyBewly/BewlyBewly/issues/679)
+
 - 网络代理：
-	- [在 Mac 上使用 Safari 浏览器设置代理服务器 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/safari/ibrw1053/mac)
+	- 从 Chrome 上的 SwitchyOmega 插件中，选择一个情景模式，导出 pac 文件（页面右上方），可重命名为 `proxy.pac`
 	- [如何在safari上实现类SwitchyOmega代理切换功能](https://www.youtube.com/watch?v=pAY8pNou9Gk)
+	- [在 Mac 上使用 Safari 浏览器设置代理服务器 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/safari/ibrw1053/mac)
 
 ```bash
+sudo cp proxy.pac /Library/WebServer/Documents
+
 sudo apachectl start
 ```
 

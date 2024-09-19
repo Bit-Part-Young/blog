@@ -84,12 +84,12 @@ password:
 ![different schemes of texlive](https://i.stack.imgur.com/Edat8.png)
 
 ```bash
-# 查看 TeX Live 指南
-texdoc texlive-en
+texdoc texlive-en          # 查看 TeX Live 指南
 texdoc texlive-zh
 
-# 查看宏包、文档类帮助文档
-texdoc package/class
+texdoc package/class       # 查看宏包、文档类帮助文档
+
+texdoc symbols             # 查看符号表
 ```
 
 
@@ -112,9 +112,9 @@ tar -xzvf nstall-tl-unx.tar.gz
 cd install-tl-*
 
 # 安装
-perl ./install-tl --scheme=full  # 或 medium small
-# --no-interaction 参数：不进行交互
-# -gui  启用 GUI 安装程序
+perl ./install-tl --scheme=full    # 或 medium small
+--no-interaction    # 不进行交互
+-gui                #  启用 GUI 安装程序 
 
 # 安装完成后，添加环境变量
 export MANPATH=$HOME/src/texlive/2023/texmf-dist/doc/man
@@ -224,8 +224,8 @@ tlmgr --version
 	- LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
 - Overleaf 使用：
-	- Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 overleaf，实现版本控制（交大版的 overleaf 无此功能)
-	- Overleaf 可以使用 Vim（**组合键**选项）
+	- Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 Overleaf，实现版本控制（交大版的 Overleaf 无此功能)
+	- Overleaf 可以使用 Vim 快捷键（**组合键**选项）
 
 - TeXstudio：工具 - 清理辅助文件
 
@@ -238,7 +238,7 @@ tlmgr --version
 ### 工具
 
 - VSCode 插件：
-	- LaTeX Workshop：语法高亮、实时编译 LaTeX，有字数统计功能 
+	- LaTeX Workshop：语法高亮、实时编译 LaTeX，有字数统计功能
 		- 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
 	- LaTeX Utilities
 	- Overleaf Workshop
@@ -253,6 +253,25 @@ tlmgr --version
 
 - [checkcites](https://gitlab.com/islandoftex/checkcites)：检查在 bib 文件中但未引用的参考文献（TeX Live 已安装该工具）
 - [GitHub - reproducible-reporting/bibsane](https://github.com/reproducible-reporting/bibsane)：与 checkcites 功能类似，性能提升版本
+
+- 格式化 LaTeX 文档：[GitHub - WGUNDERWOOD/tex-fmt: An extremely fast LaTeX formatter written in Rust](https://github.com/WGUNDERWOOD/tex-fmt)
+
+```bash
+cargo install tex-fmt   # 安装
+
+tex-fmt main.tex        # 格式化并覆写
+--check                 # 检查是否被正确格式化
+--print                 # 输出到 STDOUT
+--keep                  # 不自动换行
+--stdin                 # 从 STDIN 读入，输出到 STDOUT
+
+
+% tex-fmt: skip        # 跳过该行
+
+% tex-fmt: off         # 不格式化该段内容
+...
+% tex-fmt: on
+```
 
 - latexindent.pl（格式化缩进；TeX Live 已安装该工具）：[GitHub - cmhughes/latexindent.pl: Perl script to add indentation (leading horizontal space) to LaTeX files](https://github.com/cmhughes/latexindent.pl)
 	- [Mac 安装 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#mac)
@@ -281,7 +300,7 @@ defaultIndent: "  "       # 设置缩进为两个空格
 
 - `makeglossaries`：Tex Live 自带，用于生成和管理文档中的术语表（glossaries）、缩略词表（acronyms）和符号表等
 
-- LaTeX 实现审阅效果：latexdiff（texlive 自带）
+- LaTeX 实现审阅效果：latexdiff（Tex Live 自带）
 	- 使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
 	- 若 tex 多个文件嵌套，会复杂许多
 
@@ -590,9 +609,9 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 - 引入 ctex 宏包
 
 ```latex
-\documentclass{ctexart}
+\documentclass{ctexart}   % 方式 1
 
-\documentclass{article}
+\documentclass{article}   % 方式 2
 \usepackage{ctex}
 ```
 
@@ -1007,6 +1026,8 @@ Row 2                      & Data 3   & Data 4   \\
 amsmath 允许用户在导言区用 `\DeclareMathOperator` 定义自己的算符，其中带星号的命令定义带上下限的算符
 
 ```latex
+\usepackage{amsmath, amssymb, amsfonts}  % 常用数学宏包
+
 \DeclareMathOperator{\diff}{d\!} % 定义微分运算符
 ```
 
@@ -1014,46 +1035,108 @@ amsmath 允许用户在导言区用 `\DeclareMathOperator` 定义自己的算符
 
 #### 数学模式
 
+[math mode - Differences between \\stackrel and \\stackbin - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/39225/differences-between-stackrel-and-stackbin)
+
 - 空格不起作用；不能有空行
+- 取消公式编号：在环境名后加 `*`
 
 ```latex
-$...$              % 行内（inline）公式
+$...$                       % 行内（inline）公式
+\(...\)
 
 % 行间（display 独显）公式
-\[...\]            % 无编号
+\[                          % 无编号
+    ...
+\]
+$$                          % 不要用（为什么？）
+    ...
+$$
 
-\begin{equation}   % 无编号
+\begin{equation*}           % 无编号
+    ...
+\end{equation*}
+
+\begin{equation}            % 有编号
+    ...
 \end{equation}
 
-\begin{equation}   % 有编号
-\end{equation}
+\quad                       % 插入空格
+\qquad
+\hspace
+\,                          % 相当于 3/18 \quad
 
-$$...$$            % 不要用（为什么？）
+% 常用数学字体命令
+\mathrm{}
+\mathit{}
+\mathtt{}
+\mathsf{}
+\mathbf{}
+\mathcal{}
+\mathbb{}
 
+\frac{}{}                   % 分式
+\tfrac{}{}                  % \frac 行内公式等价于 \tfrac
+\dfrac{}{}                  % 行间公式等价于 \dfrac
 
-% {\rm} \mathrm{} \text{} 之间的区别
-{\rm}              % 过时命令；将文本的字体改为罗马体
-\mathrm{}          % 在数学模式中将文本设置为直立的罗马体
-\text{}            % 来自 amsmath 宏包，在数学模式中插入正常文本；能自动调整字体大小和样式
+\binom{}{}                  % 二项式系数
+\tbinom{}{}                 % 小型
+\dbinom{}{}                 % 大型
+
+^{}                         % 上下标
+_{}
+
+'                           % 导数
+\prime
+
+\overline{}                 % 上、下划线
+\underline{}
+
+\overbrace{}                % 上、下大括号
+\underbrace{}
+
+\sqrt{}                     % 根式
+\sqrt[n]{}
+
+\sum                        % 求和、积分；针对于行内行间公式取不同的尺寸, 上下限位置也可能不同
+\int
+
+\underset{}{}               % 在数学符号的下/上方添加标记或符号
+\overset{}{}
+\stackrel{}{}               % 相比 \underset 是过时的
+
+%% 在数学模式中插入普通文本
+% \rm{} \mathrm{} \text{} 之间的区别
+\rm{}                       % 过时命令；将文本的字体改为罗马体
+\mathrm{}                   % 在数学模式中将文本设置为直立的罗马体
+\text{}                     % 来自 amsmath 宏包，在数学模式中插入正常文本；能自动调整字体大小和样式
+\mbox{}
 ```
-
 
 ---
 
 #### 括号与定界符
 
 ```latex
-% 基本括号
-(...)  [...]  {...}
+(...)                     % 基本括号
+[...]
+{...}
 
-% 绝对值、范数
-|...|  \vert...\vert  \Vert...\Vert
+|...|                     % 绝对值、范数
+\vert...\vert  
+\Vert...\Vert
 
-% Dirac 符号
-\langle...\rangle  |...\rangle
+\langle...\rangle         % Dirac 符号
+|...\rangle
 
-\left(...\right)          % 自动调节大小
-\big  \Big  \bigg  \Bigg  % 手动调节大小；声明左中右，在命令后添加 l、m 或 r，如 \bigl
+\left(...\right)          % 自动调节括号大小
+\big  \Big  \bigg  \Bigg  % 手动调节括号大小，1.5 2 2.5 3 倍；声明左中右，在命令后添加 l、m 或 r，如 \bigl
+
+% 自带定界符的矩阵环境
+pmatrix                   % 圆括号
+bmatrix                   % 方括号
+Bmatrix                   % 花括号
+vmatrix                   % 绝对值
+Vmatrix                   % 带范数
 ```
 
 ---
@@ -1074,60 +1157,15 @@ $$...$$            % 不要用（为什么？）
 
 #### 多行公式
 
-- `multline multline*` 多行公式，没有对齐操作，只给一个公式编号
-- `gather gather*` 多个公式，可添加多个公式编号
-- `align align*` 多个公式对齐，但只能对齐公式内部的一个部分
-- `flalign flalign*` 多个公式对齐，可对公式内的多个部分
-- `split` 分割公式
-
-- 取消公式编号，在环境名加 `*` 即可实现
-
->`gathered` 和 `gather` 的区别是放在了一个 `minipage` 里，`aligned` 也是 `minipage` 的问题
+`align` 与 `aligned` 的区别：后者允许在数学环境内嵌套使用（如 `equation`）；`gather` 与 `gathered` 同理
 
 ```latex
-\usepackage{amsmath,amssymb,amsfonts}  % 常用数学宏包
-
+multline         % 多行公式，不对齐，只给一个公式编号
+gather           % 多个公式，可添加多个公式编号
+align            % 多个公式对齐，只能对齐公式内部的一个部分
+flalign          % 多个公式对齐，可对齐公式内的多个部分
+split            % 分割公式
 ```
-
-```latex
-texdoc symbols % 查看符号表
-```
-
-- 在数学模式中输入普通文本：`\mbox{文本}` 或 `\text{文本}`
-- 在数学模式中插入 空格：`\quad, \qquad, \hspace`，使用 `\,` 等价 `3/18 \quad`
-
-- 数学公式书写：行内 `$ ··· $`，行间：`\[ ··· \]`，
-
-- 常用数学字体命令：`\mathrm, \mathit, \mathtt, \mathsf, \mathbf, \mathcal，\mathbb`
-
-- 数学公式中的函数名最好用正体, 一般通过函数名命令输入，`LaTeX` 中的函数命令都是斜杆 `\` 开始自定义新的函数名 (需 `amsmath` 宏包)，`\DeclareMathOperator{\函数名命令}{函数名}`：注意像这样的命令只能放置在导言区。
-
-
-
-- 角标：上标 `ˆ{···}`, 下标 `_{···}`，若实现导数 → 可以直接使用右单引号 `'` 或 `\prime`
-
-- 分式：`\frac → 普通分式， \tfrac → \textstyle， \dfrac → \displaystyle`。注意到 `\frac` 在行内公式中等价于 `\tfrac`, 在行间公式中等价于 `\dfrac`；二项式系数: `\binom, \tbinom, \dbinom`；根式:`\sqrt{···}或\sqrt[n]{···}`
-
-- 求和与积分：求和 `\sum` ，积分 `\int`，针对于行内行间公式取不同的尺寸, 上下限位置也可能不同，这里举个例子，行间公式 `$$ \sum_{i=1}^{n} xˆi $$或\[\]` 可以等价于行内公式的 `$ \displaystyle\sum_{i=1}^{n} xˆi $或\(\)`
-
-- 上、下划线：`\overline{…}，\underline{…}`；
-
-- 上、下大括号：`\overbrace{…}，\underbrace{…}`
-
-- 堆积：`\stackrel{上位符号}{基位符号}`，大家可能不懂，例下这样等号上有条件 `def`
-
-
-- 定界符：`LaTeX` 中常用的定界符 `( ) [ ] | / \ { } ∥ ⌊ ⌋ ⌈ ⌉ ⟨ ⟩ ↑ ↓ ↕ ⇑ ⇓ ⇕`；定界符可以放大: `\big (1.5 倍), \Big (2 倍), \bigg (2.5 倍), \Bigg (3 倍)`
-
-- 定界符的自适应放大：`\left, \right`，比如 `\left(, \right)` 产生小括号，中括号为 `\left[…\right]`，大括号为 `\left\{…\right\}`，尖括号为 `\left<…\right>`， 绝对值为 `\left|…\right|`， 范数为 `\left\|…\right\|`
-
-
-
-自带定界符的矩阵环境，包括：
-- 带圆括号 的 `pmatrix` 环境；
-- 带方括号 的 `bmatrix` 环境；
-- 带花括号 的 `Bmatrix` 环境；
-- 带绝对值界的 `vmatrix` 环境与带范数界的 `Vmatrix` .
 
 
 ---
@@ -1237,16 +1275,16 @@ TerminalVector 字体
 	pdftitle=...,            % PDF 标题
 	pdfauthor=...,           % PDF 作者
 	pdfsubject=...,          % PDF 主题 
-	pdfborder={0 0 0},
+	pdfborder={0 0 0},       % 
 	bookmarks=true,          % 显示书签
     bookmarksopen=true,      % 书签展开  
     bookmarksnumbered=true,  % 书签编号
     hidelinks=true,          % 隐藏链接方框
-    colorlinks=true,
+    colorlinks=true,         %
     urlcolor=...,            % 外部链接颜色
     linkcolor=...,           % 内部链接颜色
     citecolor=...,           % 文献引用颜色
-    filecolor=...,
+    filecolor=...,           % 
 }
 ```
 
@@ -1256,10 +1294,10 @@ TerminalVector 字体
 \usepackage{xcolor}
 
 % 自定义颜色
-\definecolor{keywordcolor}{RGB}{34,34,250}
+\definecolor{colorname}{RGB}{34,34,250}
 
 % 文本颜色
-{\color{color-name}{text}}
+{\color{colorname}{text}}
 \textcolor{red!70}{百分之70红色}
 ```
 
