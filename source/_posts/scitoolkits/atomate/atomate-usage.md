@@ -420,21 +420,21 @@ No READY jobs detected
 
 ### 测试
 
-WIP…
+WIP...
 
 
 ---
 
 ### 弛豫计算
 
-WIP…
+WIP...
 
 
 ---
 
 ### 静态计算
 
-WIP…
+WIP...
 
 
 ---
@@ -456,7 +456,7 @@ db.db["elasticity"]
 
 ---
 
-弹性常数计算 workflow 的 fw.name
+弹性常数计算 workflow 的 `fw.name`
 
 ```python
 Ni-elastic structure optimization--78
@@ -467,33 +467,55 @@ Analyze Elastic Data--71
 ```
 
 
+
 ---
 
 ## MongoDB Compass 使用
 
-### 连接数据库
+### 数据库连接
 
-- New connection - Advanced Connection Options - General: Connection String Scheme: mongodb: 填写 Host - Authentication: Authentication Method: Username/Password: 填写 Username、Password 和 Database，Authentication Mechanism 选择 Default
+- 连接数据库：New connection - Advanced Connection Options
+	- General: Connection String Scheme 选择 mongodb；填写 Host
+	- Authentication: Authentication Method 选择 Username/Password；填写 Username、Password 和 Database，Authentication Mechanism 选择 Default
 
 - 修改连接的 connection 名称：“New Connection” 有编辑选项
 
-MONGOSH 使用
+- [ ] MONGOSH 使用
+
 
 ---
 
+### 使用
+
+- MongoDB 中存储的每条数据称为 document，具体数据值通过字段查询（即 dict 中的 key 和 value）
+
+- 在 MongoDB Compass 软件中通过字段筛选 document，字段间通过 `.` 连接，示例
+
+```json
+{"tags.structure_id": "ICET-Training-No-00754"}
+```
+
+- atomate 连接 MongoDB，数据获取与筛选
 
 ```python
+import os
 from atomate.vasp.database import VaspCalcDb
 
-db_json_fn = ...
-atomate_db = VaspCalcDb.from_db_file(db_json_fn)
+# 方式 1
+db_json_path = ...
+# 方式 2 将 db.json 放入 ~/.{bash,zsh}rc 文件中
+db_json_path = os.getenv("DB_JSON_PATH")
+atomate_db = VaspCalcDb.from_db_file(db_json_path)
 
+# 弹性数据分析 colletion
 elasticity_collection = atomate_db.db["elasticity"]
-gibbs_collection = atomate_db.db['gibbs_tasks']
+# 吉布斯计算任务 collection
+gibbs_collection = atomate_db.db["gibbs_tasks"]
 
 # find() 可以使用 Projection Operators（以 $ 开头）
 query = {"task_label": "volume relaxation"}
 query = {"task_id": {"$gt": 18, "$lt": 44}}
+query = {"tags.solute": {"$in": solute_list}}
 query = {"completed_at": {"$regex": "2022-08-05 *"}}
 
 # 0: 不提取数据；1: 提取数据 
@@ -511,7 +533,7 @@ projection = {
     "tags": 1,
 }
 
-# 统计 筛选的 documents 数目
+# 统计满足筛选条件的 documents 数目
 # 方式 1
 count = atomate_db.collection.count_documents(query)
 # 方式 2
@@ -541,55 +563,59 @@ find() manual：[db.collection.find() - MongoDB Manual v7.0](https://www.mongodb
 
 >[https://github.com/hackingmaterials/atomate/issues/445](https://github.com/hackingmaterials/atomate/issues/445)
 
+---
+
+- document 常用数据
+
+```python
+# 输入构型
+input_structure_dict = document["input"]["structure"]
+# 输出构型
+output_structure_dict = document["output"]["structure"]
+structure = Structure.from_dict(...)
+
+# 能量
+energy = document["output"]["energy"]
+energy_pa = document["output"]["energy_per_atom"]
+
+# 计算耗时
+document["run_stats"]["overall"]["Elapsed time (sec)"]
+document["run_stats"]["overall"]["Total CPU time used (sec)"]
+
+# 每个 firework 计算目录路径；需通过简单的正则表达式处理
+dir_name = document["dir_name"]
+calc_path = (re.search("/dssg.*", dir_name)).group()
+
+# add_tags 中添加的一些 tag
+document["tags"]["XXX"]
+
+# 原子数
+natoms = document["nsites"]
+# 元素数
+nelements = document["nelements"]
+# 构型体积
+volume = document["output"]["structure"]["lattice"]["volume"]
+# 平均原子体积
+volume_pa = volume / natoms
+```
 
 ---
 
-
-mongodb 中的 atomate documet 数据无法直接全部写入到 json 文件中
-
-- 其 key 和 dict 涉及到 str 均使用单引号；
-- json 文件不识别 bool 变量？
-
+- MongoDB 中的 atomate documet 数据无法直接全部写入到 json 文件中
+	- 其 key 和 dict 涉及到 str 均使用单引号
+	- json 文件不识别 bool 变量？
 
 ```json
 '_id': ObjectId('62dbb72c531c489b7a006879')
 ```
 
 
-mongodb 中的结构用以下方法获取较合适（将结构 dict 转成单独的 json 文件）
-```python
-structure = Structure.from_dict()
-```
+---
 
+### 常见 workflow 的 document keys
 
-吉布斯自由能计算 wf 会生成 `gibbs_tasks` collection，其 document keys 如下
-```python
-dict_keys(
-    [
-        "_id",
-        "metadata",
-        "structure",
-        "formula_pretty",
-        "energies",
-        "volumes",
-        "pressure",
-        "poisson",
-        "mass",
-        "natoms",
-        "bulk_modulus",
-        "gibbs_free_energy",
-        "temperatures",
-        "optimum_volumes",
-        "debye_temperature",
-        "gruneisen_parameter",
-        "thermal_conductivity",
-        "anharmonic_contribution",
-        "success",
-    ]
-)
-```
+- 弛豫 wf
 
-结构优化 wf 生成的 document keys 如下
 ```json
 dict_keys(
     [
@@ -623,7 +649,7 @@ dict_keys(
 )
 ```
 
-`calcs_reversed` key 下（需添加 `[0]`）的 keys （含大部分同级下的 keys）
+`calcs_reversed` key 下的 keys （需添加 `[0]`；含大部分同级下的 keys）
 
 ```json
 dict_keys(
@@ -650,8 +676,7 @@ dict_keys(
 )
 ```
 
-
-弹性常数计算 wf 会生成弹性性质分析 `elasticity` collection，其 document keys 如下：
+- 弹性常数计算 wf 会生成弹性性质分析 `elasticity` collection
 
 ```json
 dict_keys(
@@ -671,84 +696,54 @@ dict_keys(
 )
 ```
 
-
-```json
-{
-  // 课题组服务器只能填写纯数字的 host port 形式
-  // MongoDB Compass 的登录相关信息也只能填该形式
-  "host": "202.121.180.16",
-  "port": 27017,
-  // 学校超算可以填字符串的 host port 形式
-  "host": "proxy.pi.sjtu.edu.cn",
-  "port": 37017,
-}
-```
-
-
-master db.json 问题：host 只能写数字的形式，siyuan 可以写字符串的形式
-```bash
-  File "/home/yangsl/src/miniconda3/envs/atomate_env/lib/python3.11/site-packages/pymongo/topology.py", line 269, in _select_servers_loop
-    raise ServerSelectionTimeoutError(
-pymongo.errors.ServerSelectionTimeoutError: proxy.pi.sjtu.edu.cn:37017: [Errno -2] Name or service not known, Timeout: 30s, Topology Description: <TopologyDescription id: 653cc2a8f1b06ed5cd32f2d0, topology_type: Unknown, servers: [<ServerDescription ('proxy.pi.sjtu.edu.cn', 37017) server_type: Unknown, rtt: None, error=AutoReconnect('proxy.pi.sjtu.edu.cn:37017: [Errno -2] Name or service not known')>]>
-```
-
-
-MongoDB 数据库连接失败（数据库服务未启动）
-
-```bash
-getaddrinfo ENOTFOUND
-```
-
-```bash
-Connection failed: 202.121.180.16:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 659a430b861c320565200565, topology_type: Unknown, servers: [<ServerDescription ('202.121.180.16', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('202.121.180.16:27017: [Errno 111] Connection refused')>]>
-```
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401091527481.png)
-
-
----
-
-MongoDB 中存储的每条数据称为 document，具体数据值通过字段查询（即 dict 中的 key 和 value）
-
-在 MongoDB Compass 软件中通过字段筛选 document，字段间通过 `.` 连接，示例
-
-```json
-{"tags.structure_id": "ICET-Training-No-00754"}
-```
-
-常用 keys：
+- 吉布斯自由能计算 wf 会生成 `gibbs_tasks` collection
 
 ```python
-# 输入构型
-document["input"]["structure"]
-# 输出构型
-document["output"]["structure"]
-
-# 能量
-document["output"]["energy"]
-document["output"]["energy_per_atom"]
-
-# 计算耗时
-document["run_stats"]["overall"]["Elapsed time (sec)"]
-document["run_stats"]["overall"]["Total CPU time used (sec)"]
-
-# 每个 firework 计算目录路径；需通过简单的正则表达式处理
-dir_name = document["dir_name"]
-calc_path = (re.search("/dssg.*", dir_name)).group()
-
-# add_tags 中添加的一些 tag
-document["tags"]["XXX"]
-
-# 必要性不是很大
-# 原子数
-document["nsites"]
-# 元素数
-document["nelements"]
-# 构型体积
-volume = document["output"]["structure"]["lattice"]["volume"]
-# 平均原子体积
-volume / document["nsites"]
+dict_keys(
+    [
+        "_id",
+        "metadata",
+        "structure",
+        "formula_pretty",
+        "energies",
+        "volumes",
+        "pressure",
+        "poisson",
+        "mass",
+        "natoms",
+        "bulk_modulus",
+        "gibbs_free_energy",
+        "temperatures",
+        "optimum_volumes",
+        "debye_temperature",
+        "gruneisen_parameter",
+        "thermal_conductivity",
+        "anharmonic_contribution",
+        "success",
+    ]
+)
 ```
 
 
 ---
+
+### 相关问题
+
+- master `db.json` 问题：host 只能写数字的形式，siyuan 可以写字符串的形式（在 MongoDB Compass 填写的 host 也需对应的形式）
+
+```bash
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: 
+```
+
+---
+
+- MongoDB 数据库连接失败（数据库服务未启动；XXX 指 host）
+
+```bash
+getaddrinfo ENOTFOUND XXX
+```
+
+```bash
+Connection failed: XXXX: [Errno 111] Connection refused, Timeout: 30s, Topology Description: 
+```

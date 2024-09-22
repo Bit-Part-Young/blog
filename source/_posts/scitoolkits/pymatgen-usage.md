@@ -475,7 +475,6 @@ pymatgen 典型工作流
 
 ```python
 # 待了解
-get_wigner_seitz_cell()
 
 read_neb()
 
@@ -519,19 +518,26 @@ pymatgen 核心模块
 
 #### structure
 
+有 IStructure 和 Structure 类，Structure 类继承自 IStructure
+
 Structure 类相关属性和方法
+
 ```python
+from pymatgen.core.structure import Structure
+
 # 属性
-num_sites                # 原子数
-composition.num_atoms    # 原子数
+num_sites                # 原子数；int
+composition.num_atoms    # 原子数；float
+n_elems                  # 元素数
+symbol_set               # 元素种类；tuple
+types_of_specie          # 元素种类；Element
 formula                  # 化学式
-compsition               # 成分
-composition.items()      # 
-volume                   # 体积
+compsition               # 成分；as_dict() 转换成字典形式
 frac_coords              # 分数坐标
 cart_coords              # Cartesian 坐标
-symbol_set
 lattice                  # 点阵
+       .abc              # 晶格常数
+volume                   # 体积
 density                  # 密度
 center_of_mass           # 质心
 
@@ -539,7 +545,11 @@ center_of_mass           # 质心
 remove_species()         # 删除元素种类
 replace_species()        # 替换元素种类
 get_space_group_info()   # 获取空间群信息
-from_spacegroup()        # 
+from_spacegroup()        # 根据空间群构建结构
+from_prototype()         # 通过原型结构快速构建结构
+to_cell()                # 获取单/原胞
+to_conventional()        # 获取单胞；调用 to_cell()
+to_primitive()           # 获取原胞；同上
 ```
 
 
@@ -603,6 +613,22 @@ print_periodic_table()     # 打印元素周期表
 # 属性
 coords
 specie
+```
+
+
+---
+
+#### lattice
+
+```python
+from pymatgen.core.lattice import Lattice
+
+# 属性
+reciprocal_lattice          # 倒易点阵
+
+# 方法
+get_wigner_seitz_cell()     # wigner seitz 原胞
+get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
 ```
 
 
@@ -1016,7 +1042,7 @@ get_pattern(structure).d_hkls
 ```python
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
-sga = SpacegroupAnalyzer(structure)
+sga_analyzer = SpacegroupAnalyzer(structure)
 
 # 方法
 get_conventional_standard_structure()   # 获取单胞
@@ -1086,7 +1112,7 @@ with MPRester("api-key") as mpr:
 	docs = mpr.materials.summary.search(...)
 
     # 查看可获取内容的字段，可用做筛选 query data 的参数
-    mpr.summary.available_fields
+    mpr.materials.summary.available_fields
 
 
 # 参数
@@ -1099,9 +1125,12 @@ is_stable=True           # 稳定材料
 
 # 常用字段
 material_id                # MP 对该材料标注的 ID；需 str()
+composition_reduced        # 成分（约化）；需 as_dict()
 formula_pretty             # 化学式（约化）
-symmetry.crystal_system    # 晶系；需 str()
-symmetry.symbol            # 空间群
+structure                  # 结构
+symmetry
+  .crystal_system          # 晶系；需 str()
+  .symbol                  # 空间群
 nsites                     # 构型原子数
 energy_per_atom            # 能量/原子
 formation_energy_per_atom  # 形成能/原子

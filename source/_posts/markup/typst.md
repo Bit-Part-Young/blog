@@ -116,6 +116,9 @@ typst-upgrade -d file.typ    # --dry-run 不实际运行
 
 - 预览 Typst 的 Neovim 插件：[GitHub - chomosuke/typst-preview.nvim: Low latency typst preview for Neovim](https://github.com/chomosuke/typst-preview.nvim)
 
+- Mac 端 Typst 编辑器（还在开发中）：[Textique](https://textique.app/)
+
+- iPad 端 Typst 编辑器：[GitHub - iXORTech/Typstify: A Typst Editor for iPad](https://github.com/iXORTech/Typstify)
 
 
 ---

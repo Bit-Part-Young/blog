@@ -348,8 +348,9 @@ onlinelibrary.wiley.com
 - Potplayer：媒体播放器
 	- [基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
 
-- Quicklook：快速预览文件的工具，按空格键即可实现预览且可以复制文件内容
-	- 类似于 Mac 的空格键；有插件可实现预览 office 套件文件，但效果不是很好
+- QuickLook：快速预览文件的工具，按空格键即可实现预览且可以复制文件内容
+	- 类似于 Mac 的空格键；有插件可实现预览 Office 套件文件，但效果不是很好
+	- [GitHub - QL-Win/QuickLook.Plugin.OfficeViewer: Word, Excel, and PowerPoint plugin for QuickLook.](https://github.com/QL-Win/QuickLook.Plugin.OfficeViewer)
 
 - Rime 输入法引擎 + 雾凇拼音
 	- [Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)

@@ -119,11 +119,13 @@ www.sciencedirect.com     # 直接连接
 
 ---
 
-## 油猴插件
+## 油猴脚本
 
-- 需在 Chrome 中安装 Tampermonkey 插件（油猴插件管理器）；[Greasy Fork - 安全、实用的用户脚本大全](https://greasyfork.org/zh-CN)
+- [x] 油猴脚本如何同步（通用 - 将新手改成初学者或高级；同步脚本，同步类型选择浏览器同步，WebDAV 不知为何同步失败）
 
-- [jAccount 验证码在线 ResNet 高速高精度毫秒级识别](https://greasyfork.org/zh-CN/scripts/432645)：自动填写验证码
+- 需在 Chrome 中安装 Tampermonkey 插件（油猴脚本管理器）；[Greasy Fork - 安全、实用的用户脚本大全](https://greasyfork.org/zh-CN)
+
+- [jAccount 验证码在线 ResNet 高速高精度毫秒级识别](https://greasyfork.org/zh-CN/scripts/432645)
 
 - [上海交通大学 Canvas 平台课程视频播放器至尊版焕然一新插件](https://greasyfork.org/zh-CN/scripts/432918)
 

@@ -38,8 +38,9 @@ password:
 - [Python 基础语法 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/python/basic/)
 
 - Python 速查表
-	- [Python 3 备忘清单](https://wangchujiang.com/reference/docs/python.html)
+	- [Python Cheatsheet - Python Cheatsheet](https://www.pythoncheatsheet.org/)
 	- [GitHub - gto76/python-cheatsheet](https://github.com/gto76/python-cheatsheet)
+	- [Python 3 备忘清单](https://wangchujiang.com/reference/docs/python.html)
 
 - [GitHub - piglei/one-python-craftsman: 来自一位 Pythonista 的编程经验分享](https://github.com/piglei/one-python-craftsman)
 
@@ -48,6 +49,8 @@ password:
 - [GitHub - scruel/pcc\_3e\_slides: 《Python 编程：从入门到实践（第三版）》的官方配套图解讲义资源](https://github.com/scruel/pcc_3e_slides)
 
 - Python tips and tools：[GitHub - pablovegan/Python-tips-tools: Short Python tips and tools talk for the Superconducting Qubit Technology school at Benasque 2023.](https://github.com/pablovegan/Python-tips-tools)
+
+- [Python Cookbook 3rd Edition Documentation — python3-cookbook 3.0.0 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/)
 
 
 
@@ -195,113 +198,6 @@ _ = 3          # 临时变量
 ---
 
 ### 数据类型
-
-#### 字符串
-
-```python
-str = "hello, world"
-
-str1 + str2     # 字符串相加/拼接
-str * 3         # 字符串与数字相乘
-len(str)        # 字符串长度 
-
-
-## 方法
-# 分割
-str.split(sep)    # 按照给定分隔符进行分割得到列表，默认空白
-
-# 连接
-lst = ["1", "2", "3"]
-" ".join(lst)
-
-# 替换
-str.replace(old, new)
-
-# 大小写转换
-str.upper()     # 转为大写
-str.lower()     # 转为小写
-str.title()     # 首字母大写
-
-# 去除多余空格
-str.strip()     # 去除两端多余空格
-str.lstrip()    # 删除左侧空格
-str.rstrip()    # 删除右侧空格
-
-
-# 多行字符串 用一对 """ 或 ''' 生成
-str = """hello, world.
-it is a nice day."""
-
-# 代码太长，进行换行
-str = "hello, world." \
-      "it is a nice day."
-
-str(1)         # 转换为字符串
-repr(1)        # 同上
-int("1")       # 将字符串转换为整数
-float(1.0)     # 将字符串转换为浮点数
-
-
-# 格式化字符串
-# format() 方法
-"{} {} {}".format("a", "b", "c")
-# 用数字指定传入参数位置
-"{2} {1} {0}".format("a", "b", "c")
-# 指定传入参数名称
-"{x} {y}".format(y="a", x=1.0)
-# 可一起混用
-"{y} {0}".format("a", y=1)
-# 指定格式
-"{:.2f}".format(3.1415)
-```
-
-f-string：一种用于格式化输出字符串的简洁方式；基本语法为：在字符串前加上 `f` 或 `F`，然后在字符串中用 `{}` 包含变量或表达式
-
-```python
-a = 5
-b = 10
-result = f"{a} + {b}: {a + b}."
-
-# 转义大括号 需写两个 {{
-print(f"awk '{{print $0}}' file")
-
-
-## 格式化语法 f-string format() 通用
-# 宽度填充
-:[填充字符][对齐方式][宽度]  # < 左对齐，> 右对齐，^ 居中
-
-# 字符截断
-:.n                       # 只显示字符串的前 n 个字符
-
-# 数值符号
-:+                        # 正数加正号、负数加负号
-:-                        # 原样
-:                         # 正数加空格、负数加负号（: 跟的是空格）
-
-# 数值精度
-:[宽度].[精度]f            # 没有精度默认为 6
-
-:[填充字符][宽度]d          # 格式化整数
-```
-
-
----
-
-#### 布尔类型
-
-- 运算
-    - 可以使用 & | 来表示与和或（但并不会短路）
-    - 一般使用 and or not 进行与 / 或 / 非运算（会短路）
-
-```python
-True
-False
-
-bool(...)    # 非零数字、非空字符串都是 True
-```
-
-
----
 
 #### 列表
 
@@ -467,6 +363,112 @@ s.pop()           # 弹出元素
 ```
 
 
+---
+
+#### 字符串
+
+```python
+str = "hello, world"
+
+str1 + str2     # 字符串相加/拼接
+str * 3         # 字符串与数字相乘
+len(str)        # 字符串长度 
+
+
+## 方法
+# 分割
+str.split(sep)    # 按照给定分隔符进行分割得到列表，默认空白
+
+# 连接
+lst = ["1", "2", "3"]
+" ".join(lst)
+
+# 替换
+str.replace(old, new)
+
+# 大小写转换
+str.upper()     # 转为大写
+str.lower()     # 转为小写
+str.title()     # 首字母大写
+
+# 去除多余空格
+str.strip()     # 去除两端多余空格
+str.lstrip()    # 删除左侧空格
+str.rstrip()    # 删除右侧空格
+
+
+# 多行字符串 用一对 """ 或 ''' 生成
+str = """hello, world.
+it is a nice day."""
+
+# 代码太长，进行换行
+str = "hello, world." \
+      "it is a nice day."
+
+str(1)         # 转换为字符串
+repr(1)        # 同上
+int("1")       # 将字符串转换为整数
+float(1.0)     # 将字符串转换为浮点数
+
+
+# 格式化字符串
+# format() 方法
+"{} {} {}".format("a", "b", "c")
+# 用数字指定传入参数位置
+"{2} {1} {0}".format("a", "b", "c")
+# 指定传入参数名称
+"{x} {y}".format(y="a", x=1.0)
+# 可一起混用
+"{y} {0}".format("a", y=1)
+# 指定格式
+"{:.2f}".format(3.1415)
+```
+
+f-string：一种用于格式化输出字符串的简洁方式；基本语法为：在字符串前加上 `f` 或 `F`，然后在字符串中用 `{}` 包含变量或表达式
+
+```python
+a = 5
+b = 10
+result = f"{a} + {b}: {a + b}."
+
+# 转义大括号 需写两个 {{
+print(f"awk '{{print $0}}' file")
+
+
+## 格式化语法 f-string format() 通用
+# 宽度填充
+:[填充字符][对齐方式][宽度]  # < 左对齐，> 右对齐，^ 居中
+
+# 字符截断
+:.n                       # 只显示字符串的前 n 个字符
+
+# 数值符号
+:+                        # 正数加正号、负数加负号
+:-                        # 原样
+:                         # 正数加空格、负数加负号（: 跟的是空格）
+
+# 数值精度
+:[宽度].[精度]f            # 没有精度默认为 6
+
+:[填充字符][宽度]d          # 格式化整数
+```
+
+
+---
+
+#### 布尔类型
+
+- 运算
+    - 可以使用 & | 来表示与和或（但并不会短路）
+    - 一般使用 and or not 进行与 / 或 / 非运算（会短路）
+
+```python
+True
+False
+
+bool(...)    # 非零数字、非空字符串都是 True
+```
+
 
 ---
 
@@ -476,9 +478,11 @@ s.pop()           # 弹出元素
 
 ```python
 # 判断元素是否在列表中
-value in lst：# 如果在则值为 True
+if value in lst：      # 如果在则值为 True
+    ...
 
-value not in lst：# 如果在则为 False
+if value not in lst：  # 如果在则为 False
+    ...
 ```
 
 
@@ -591,6 +595,9 @@ def func(...):
 
 #### 函数参数与调用
 
+- 在 Python 中，`*args` 和 `**kwargs` 是用来传递可变数量参数的机制，允许编写灵活的函数（在 Matplotlib 包中这两个参数出现的概率较大，绘图所需参数很多）
+- 单个 `*` 星号用于指定所有后续参数必须作为关键字参数传递
+
 ```python
 def func(a, b):
     ...
@@ -609,11 +616,21 @@ def func(*args):
 func(1, 3, 5)           # 可变数量的位置参数
 func(*[1, 3, 5])      
 
-def func(**args):
+def func(**kwargs):
     ...
 
 func(a=1, b=3, c=5)     # 可变数量的关键字参数
 func(**{"a": 1, "b": 3, "c": 5})
+
+def func(*args, **kwargs):
+    ...
+
+func(1, 3, c=5, d=7)    # 混合使用
+
+def func(a, *, b, c):
+    ...
+
+func(1, b=3, c=5)       # 指定所有后续参数必须作为关键字参数传递
 ```
 
 

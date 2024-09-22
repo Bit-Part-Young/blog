@@ -1021,7 +1021,12 @@ Row 2                      & Data 3   & Data 4   \\
 
 ### 公式
 
->[LaTeX Math Wikibook](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+参考：
+
+- [LaTeX 公式排版超级备忘录 - 各类场景全覆盖](https://mp.weixin.qq.com/s/tHdjIXvViUk-kbNnoRi7dg)
+- [LaTeX Math Wikibook](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
+---
 
 amsmath 允许用户在导言区用 `\DeclareMathOperator` 定义自己的算符，其中带星号的命令定义带上下限的算符
 
@@ -1702,7 +1707,53 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 
 - 去除超链接、交叉引用中的方框：[hyperref - Remove ugly borders around clickable cross-references and hyperlinks - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks)
 
-- [ ] LaTeX 如何在每个章节最后生成参考文献（好像不行）
+- [x] LaTeX 如何在每个章节最后生成参考文献
+
+[subdividing - biblatex: reference both by chapter and at the end of the book - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/199336/biblatex-reference-both-by-chapter-and-at-the-end-of-the-book)
+
+```latex
+% 此方法使用 ctexart 文档类会报错
+\documentclass{article}
+\usepackage{ctex}
+\usepackage[
+    backend        = biber,
+    bibencoding    = utf8,
+    refsegment     = section,  % chapter
+    style          = gb7714-2015,
+    firstinits     = true,
+    isbn           = false,
+    doi            = false,
+    url            = false,
+    clearlang      = true,
+    defernumbers   = true,
+]{biblatex}
+\addbibresource{biblatex-examples.bib}
+
+\title{分节生成参考文献}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{第一节}
+
+第一节文献引用 \cite{wilde}。 
+
+\printbibliography[segment=\therefsegment,heading=subbibliography]
+
+\section{第二节}
+
+第二节文献引用 \cite{cicero}。
+
+\printbibliography[segment=\therefsegment,heading=subbibliography]
+
+\printbibliography
+
+\end{document}
+```
+
 
 - [x] 不同期刊的文献格式转换？（具体的期刊不行；可用不同期刊的 LaTeX 的模板）
 

@@ -66,6 +66,8 @@ password:
 
 - [GitHub - sunbliss/photorama: "PHOTORAMA" template for Jekyll](https://github.com/sunbliss/photorama)
 
+- [GitHub - hebingchang/boar-gallery-web: A gallery of Boar :)](https://github.com/hebingchang/boar-gallery-web)
+
 - [gallery-template · GitHub Topics · GitHub](https://github.com/topics/gallery-template)
 
 - 照片和视频自托管：[GitHub - immich-app/immich: High performance self-hosted photo and video management solution.](https://github.com/immich-app/immich)
@@ -121,6 +123,7 @@ http://machine_ip_address:2283/api  # 移动端登录
 - [GitHub - NianBroken/Personal\_Sakura\_Guide\_Page](https://github.com/NianBroken/Personal_Sakura_Guide_Page)
 - [NianBroken](https://www.nianbroken.top/)
 - [GitHub - KawaiiZapic/Present: 一个简洁的个人主页,支持显示博客文章.](https://github.com/KawaiiZapic/Present)
+- [GitHub - QNquenan/homepage-for-vue3: 基于Vue3的主页](https://github.com/QNquenan/homepage-for-vue3)
 
 
 
@@ -156,6 +159,7 @@ npm init slidev@0.41.0
 - [mdBook](https://github.com/rust-lang/mdBook)
 	- GitHub Actions 部署：[Automated Deployment: GitHub Actions · rust-lang/mdBook Wiki · GitHub](https://github.com/rust-lang/mdBook/wiki/Automated-Deployment%3A-GitHub-Actions)
 	- mdbook 加密：[GitHub - Wybxc/mdbook-pagecrypt: Encrypt your mdbook-built site with password protection.](https://github.com/Wybxc/mdbook-pagecrypt)
+	- mdBook 不能渲染 Jupyter Notebook（无相关插件）
 
 ```bash
 # 安装 mdbook

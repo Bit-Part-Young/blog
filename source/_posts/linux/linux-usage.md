@@ -44,6 +44,11 @@ WIP...
 
 - Linux 软件：[Office & Productivity Apps - AlternativeTo](https://alternativeto.net/category/productivity/)
 
+- [direnv](https://github.com/direnv/direnv)：Shell 扩展，可根据当前目录加载和卸载环境变量
+
+- 环境变量管理工具：[misc/bmod at master · yhli1016/misc · GitHub](https://github.com/yhli1016/misc/tree/master/bmod)
+
+
 
 ---
 

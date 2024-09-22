@@ -131,6 +131,8 @@ pip install -U gita
 brew install coreutils
 export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 brew install git-quick-stats
+
+brew install git-delta
 ```
 
 - [delta](https://github.com/dandavison/delta)：主要用于 Git 相关命令（diff、blame、show 等）的语法突出显示分页器
@@ -162,10 +164,10 @@ brew install git-extras
 git setup            # 初始化项目（等同于 git init + add + commit）
 git summary          # 输出 repo 总结
 git changelog        # 生成 History.md
-git commits-since    # 列出（默认为上周）date 以来的提交
-git count
-git count --all
-git undo
+git commits-since    # 列出（默认为上周）date 以来的提交记录；与 --since 参数用法一致
+git count            # 统计提交总数
+git count --all      # 依据作者统计提交总数
+git undo N           # 删除最新的 N 条提交记录
 ```
 
 
@@ -518,35 +520,29 @@ Git LFS(Git Large File Storage) ：
 
 ```bash
 # 安装
-sudo apt-get install git-lfs # Ubuntu
-brew install git-lfs # macOS
+sudo apt-get install git-lfs  # Ubuntu
+brew install git-lfs          # macOS
 
-git lfs install # 初始化
+git lfs install               # 初始化
 
-# 跟踪大文件 会生成 .gitattributes 文件
-git lfs track "*.pdf"
-
+git lfs track "*.pdf"         # 跟踪大文件 会生成 .gitattributes 文件
 git add .gitattributes
 git commit -m "add .gitattributes"
 
-# 查看当前已跟踪的 Git LFS File 类型
-git lfs track
+git lfs track                 # 查看当前已跟踪的 Git LFS File 类型
 
-# 拉取 LFS 文件
-git lfs pull
+git lfs pull                  # 拉取 LFS 文件
 
-git lfs clone repo # 克隆
+git lfs clone repo_url        # 克隆
 
-# 列出当前已通过 LFS 跟踪的所有文件
-git lfs ls-files
+git lfs ls-files              # 列出当前已通过 LFS 跟踪的所有文件
 
-# 取消跟踪并删除
-git lfs untrack "*.pdf"
+git lfs untrack "*.pdf"       # 取消跟踪并删除
 git rm --cached "*.pdf"
 
 # 将历史文件迁移到 LFS
 git lfs migrate import --include="*.dmg" --everything
-git push --force # 强制推送
+git push --force             # 强制推送
 ```
 
 
@@ -555,7 +551,7 @@ git push --force # 强制推送
 ### git-filter-repo
 
 - Git 历史重写工具
-- 运行 `git filter-repo` 后，会改变 `.git/config` 文件，只保留 `[core]` 参数信息，需重新添加远程 repo url 并强制推送
+- 执行 `git filter-repo` 命令后，会改变 `.git/config` 文件，只保留 `[core]` 参数信息，需重新添加远程 repo url 并强制推送
 
 ```bash
 # 安装
@@ -568,8 +564,8 @@ pip install -U git-filter-repo  # pip
 # 删除文件（及包含该文件的 commit 历史）
 git filter-repo --path-glob '*.jpg' --invert-paths
 
-# 重命名文件或目录
-git filter-repo --path old/path --to-path new/path
+# 重命名文件/目录
+git filter-repo --path old_path --to-path new_path
 
 # 替换作者信息
 git filter-repo --name-callback 'return name.replace(b"Old Name", b"New Name")'
@@ -578,7 +574,7 @@ git filter-repo --name-callback 'return name.replace(b"Old Name", b"New Name")'
 git filter-repo --strip-blobs-bigger-than 10M
 
 # 提取子目录
-git filter-repo --subdirectory-filter path/to/directory
+git filter-repo --subdirectory-filter path
 
 # 强制推送至远程 repo
 git push -f origin main
@@ -791,7 +787,7 @@ git pull --all          # pull 远程所有内容包括标签
 
 ### log
 
-日志 log
+查看 commit 记录/日志
 
 ```bash
 git log           # 查看提交日志
@@ -813,23 +809,27 @@ git log -1 --pretty="%ci" file
 git log -1 --diff-filter=A --follow --pretty="%ci" file
 
 # git log 常用参数
--p                # --patch；显示详细修改内容
---graph           # 显示分支结构
---stat            # 统计
---oneline         # 一行显示；commit id 8 个字符
---pretty=oneline  # 一行显示；完整 commit id
-        =%B       # 只显示 commit message
-        =%s       # commit message
-        =%H       # 完整 commit hash
-        =%h       # 缩写 commit hash
-		=%ci      # 提交日期（不受作者限制）
-		=%ad      # 作者提交日期（绝对时间）
-		=%ar      # 作者提交日期（相对时间）
-		=%an      # 作者名称
-		=%ad      # 作者邮箱
-		=%d       # 分支信息
--n N / HEAD~N     # 显示最新的前 N 条提交记录
---grep=pattern    # 查看给定 pattern 的提交记录
+-p                   # --patch；显示详细修改内容
+--graph              # 显示分支结构
+--stat               # 统计
+--oneline            # 一行显示；commit id 8 个字符
+--pretty=oneline     # 一行显示；完整 commit id
+        =%B          # 只显示 commit message
+        =%s          # commit message
+        =%H          # 完整 commit hash
+        =%h          # 缩写 commit hash
+		=%ci         # 提交日期（不受作者限制）
+		=%ad         # 作者提交日期（绝对时间）
+		=%ar         # 作者提交日期（相对时间）
+		=%an         # 作者名称
+		=%ad         # 作者邮箱
+		=%d          # 分支信息
+-n N / HEAD~N        # 显示最新的前 N 条提交记录
+--grep=pattern       # 筛选指定 pattern 的提交记录
+--date=short         # 日期格式
+--since="midnight"   # 当天一天
+--since="2024-09-17 00:00" --until="2024-09-18 00:00"  # 具体某一天
+--since="1 day ago"  # 一天以前；week month year
 ```
 
 

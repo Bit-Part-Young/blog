@@ -221,23 +221,35 @@ atol           # 绝对容忍值
 
 ### IO
 
-查看 numpy npy npz 格式文件 VSCode 插件：[vscode-numpy-viewer](https://github.com/haochengxia/vscode-numpy-viewer)
+- 查看 NumPy npy npz 格式文件的 VSCode 插件：[vscode-numpy-viewer](https://github.com/haochengxia/vscode-numpy-viewer)
 
+- npy、npz 格式区别：npy 只能存单个数组，npz 可存多个数组
 
 ```python
-np.save("*.npy")
-np.savez("*.npz")
-np.savetxt()
+np.save("*.npy", arr)   # 存储到 npy 文件格式
+np.savez("*.npz", ...)  # 存储到 npz 文件格式
+*args        # 位置参数，保存的数组将按顺序存储，名称为 arr_0 ...
+**kwds       # 关键字参数，给数组指定名称
 
-np.dump()         # 保存数组到二进制文件中
-np.tofile()       # 将数组写入文件中
+# 用关键字参数将数组存储到 npz 文件
+kwargs = {}
+for i in range(3):
+    kwargs[f"array_{i}"] = ...
+    np.savez("*.npz", **kwargs)
 
-np.load()
-np.loadtxt()
+np.load(file)           # 导入 npy npz 文件
 
-data.files
-# npz 格式文件导入并读取数据默认形式
+arr = np.load("*.npy")
+
+data = np.load("*.npz")
+data.files              # 返回存储数组的名称列表
 data["arr_0"]
+
+np.dump()               # 保存数组到二进制文件中
+np.tofile()             # 将数组写入文件中
+
+np.savetxt()
+np.loadtxt()
 ```
 
 

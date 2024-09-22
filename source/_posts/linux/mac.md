@@ -175,6 +175,8 @@ command + H                  # 隐藏最前方 App 的窗口（会出现在切�
 - [🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
 - [GitHub - hzlzh/Best-App: 收集&推荐优秀的 Apps/硬件/技巧/周边等](https://github.com/hzlzh/Best-App)
 - [GitHub - Louiszhai/tool: 开发效率提升：Mac生产力工具链推荐](https://github.com/Louiszhai/tool)
+- [r/MacApps - reddit](https://www.reddit.com/r/macapps/)
+- [Curated Collection of Free Apps : r/macapps - reddit](https://www.reddit.com/r/macapps/comments/1f6asg4/curated_collection_of_free_apps/)
 
 
 ---
@@ -184,32 +186,65 @@ command + H                  # 隐藏最前方 App 的窗口（会出现在切�
 **系统相关**
 
 - 包安装、管理工具：Homebrew
-- 文件搜索、程序启动工具：Alfred 5、[Raycast](https://www.raycast.com/)
-- 系统资源监控：iStat Menus、RunCat、[stats](https://github.com/exelban/stats)、[mactop](https://github.com/context-labs/mactop)、[asitop](https://github.com/tlkh/asitop)
-- 限制电池最大充电量：[bclm](https://github.com/zackelia/bclm)、AlDente
-- 电池电量：AirBattery（显示所有苹果产品设备电量）、Battery Buddy（可爱电池电量图标）
-- 垃圾清理：CleanMyMac X（完整版本需收费；有破解版）、Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
+- 文件搜索、程序启动工具：
+	- Alfred 5
+	- [Raycast](https://www.raycast.com/)
+- 系统资源监控：
+	- iStat Menus
+	- RunCat
+	- [stats](https://github.com/exelban/stats)
+	- [mactop](https://github.com/context-labs/mactop)
+	- [asitop](https://github.com/tlkh/asitop)
+- 限制电池最大充电量：
+	- [bclm](https://github.com/zackelia/bclm)
+	- AlDente
+- 电池电量：
+	- AirBattery（显示所有苹果产品设备电量）
+	- Battery Buddy（可爱电池电量图标）
+- 垃圾清理：
+	- CleanMyMac X（完整版本需收费；有破解版）
+	- Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
 - 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
 - 软件卸载：Pearcleaner
 - 软件更新：Latest（一般）
 - Applite：macOS 的第三方应用管理器，可以一键下载、更新、卸载应用
-- 窗口管理：Rectangle、Loop
+- 窗口管理：
+	- Rectangle
+	- Loop
 - 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
-- 菜单栏管理：Ice、Bartender
-- 快捷键提示：FlyKey、CheatSheet
+- 菜单栏管理：
+	- Ice
+	- Bartender
+- 快捷键提示：
+	- FlyKey
+	- CheatSheet
 - 右键增强：MouseBoost（右键助手）
 - 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
-- 鼠标滚轮方向切换：Mos、LinearMouse、Mac Mouse Fix
-- 输入法切换：自动切换输入法 Lite 版、[Input Source Pro](https://inputsource.pro/zh-CN)
+- 鼠标滚轮方向切换：
+	- Mos
+	- LinearMouse
+	- Mac Mouse Fix
+- 输入法切换：
+	- 自动切换输入法 Lite 版
+	- [Input Source Pro](https://inputsource.pro/zh-CN)
 - 可视化键盘输入：KeyCastr
 - 风扇控制：Mac Fan Control
 - 刘海屏相关：
-	- 将刘海屏当作 AirDrop：NotchDrop、Folder Hub
-	- 隐藏刘海屏：Only Switch（将菜单栏调成黑色）、zNotch（将菜单栏下移）、
+	- 将刘海屏当作 AirDrop：
+		- NotchDrop
+		- Folder Hub
+	- 隐藏刘海屏：
+		- Only Switch（将菜单栏调成黑色）
+		- zNotch（将菜单栏下移）
 	- 增加趣味：Notchmeister
-- 控制外置显示器亮度：MonitorControl、BetterDisplay（功能更强大，需付费）
+- 控制外置显示器亮度：
+	- MonitorControl
+	- BetterDisplay（功能更强大，需付费）
 - 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
-- Android 连接 Mac：Macdroid（需付费）、OpenMTP、Android 文件传输助手（有时无法识别）
+- Android 连接 Mac：
+	- Macdroid（需付费）
+	- OpenMTP
+	- Android 文件传输助手（有时无法识别）
 
 ---
 
@@ -217,9 +252,16 @@ command + H                  # 隐藏最前方 App 的窗口（会出现在切�
 
 - 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
 - 媒体库管理：Emby（海报墙）
-- 视频下载：Downie、Motrix、imFile
-- 截图：Snipaste（无 OCR）、Shottr（可长截图、OCR）
-- 图床：PicList（基于 PicGo 开发）、PicGo
+- 视频下载：
+	- Downie
+	- Motrix
+	- imFile
+- 截图：
+	- Snipaste（无 OCR）
+	- Shottr（可长截图、OCR）
+- 图床：
+	- PicList（基于 PicGo 开发）
+	- PicGo
 - 录屏：QuickRecorder
 - 抠图：鲜艺 AI 抠图
 - codye：将代码片段转换为精美图片（类似 carbon）
@@ -228,13 +270,23 @@ command + H                  # 隐藏最前方 App 的窗口（会出现在切�
 
 **文档写作**
 
-- Markdown 笔记管理：Obsidian、Typora、MarkText
+- Markdown 笔记管理：
+	- Obsidian
+	- Typora
+	- MarkText
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
-- 书签工具：Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）、[Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
+- 书签工具：
+	- Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
+	- [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
 - 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
-- pdf 阅读器：UPDF、skim、[sioyek](https://github.com/ahrm/sioyek)（支持部分 vim 快捷键）
+- PDF 阅读器：
+	- UPDF
+	- skim
+	- [sioyek](https://github.com/ahrm/sioyek)（有部分类似的 Vim 快捷键）
 - 文献管理：Zotero
-- 截图转 LaTeX 公式：[Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)、[snip2tex](https://github.com/shanto268/snip2tex)
+- 截图转 LaTeX 公式：
+	- [Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)
+	- [snip2tex](https://github.com/shanto268/snip2tex)
 
 ---
 
@@ -242,29 +294,73 @@ command + H                  # 隐藏最前方 App 的窗口（会出现在切�
 
 - 网络代理：ClashX
 - 异地组网、内网穿透：Tailscale（跨平台）
-- 虚拟机：Parallels Desktop（收费）、VMware Fusion
-- 文件互传：LocalSend（跨平台）
-- 文件同步：[Syncthing](https://github.com/syncthing/syncthing)（跨平台）、交大云盘
-- 挂载云盘：AList、CloudMounter
-- 远程控制：向日葵、TeamViewer Host、ToDesk
+- 虚拟机：
+	- Parallels Desktop（收费）
+	- VMware Fusion
+- 文件互传：
+	- LocalSend（跨平台；需设备在同一局域网下）
+	- [Blip](https://blip.net/)
+- 文件同步：
+	- [Syncthing](https://github.com/syncthing/syncthing)（跨平台）
+	- 交大云盘
+- 挂载云盘：
+	- AList
+	- CloudMounter（大多为国外云盘）
+- 远程控制：
+	- 向日葵
+	- TeamViewer Host
+	- ToDesk
 - 运行 Docker 容器、k8s 和 Linux：[orbstack](https://github.com/orbstack/orbstack)
 
 ---
 
 **其他**
 
-- 代码编辑器：VSCode、VSCode-Insiders（VSCode-Insdiers 的命令行启动工具需在官网上下载 CLI 版本，将其拷贝到 bin 目录中）
-- 终端模拟器：默认终端、iTerm2（最实用）、Tabby、Termius、kitty、[Warp](https://www.warp.dev/)（需注册；有 AI 功能）
-- 浏览器：Safari、Chrome、Arc、Zen
+- 代码编辑器：
+	- VSCode
+	- VSCode-Insiders
+- 终端模拟器：
+	- iTerm2（最实用）
+	- 默认终端
+	- Tabby
+	- Termius
+	- kitty
+	- [Warp](https://www.warp.dev/)（需注册；有 AI 功能）
+- 浏览器：
+	- Chrome
+	- Safari
+	- Arc
+	- Zen
 - 邮件服务：Mailspring 或 Mac 自带邮件程序
 - 压缩、解压缩工具：The Unarchiver
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
-- 剪贴板相关：[PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）;[GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）、Maccy
-- 平铺式窗口管理器（tiling window manager）：[yabai](https://github.com/koekeishiya/yabai)、[Amethyst](https://github.com/ianyh/Amethyst)、[AeroSpace](https://github.com/nikitabobko/AeroSpace)（类似 i3）
-- RSS 阅读器：quick-rss（国区 Mac App Store）、Fluent Reader
+- 剪贴板相关：
+	- [PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）
+	- [GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）
+	- Maccy
+- 平铺式窗口管理器（tiling window manager）：
+	- [yabai](https://github.com/koekeishiya/yabai)
+	- [Amethyst](https://github.com/ianyh/Amethyst)
+	- [AeroSpace](https://github.com/nikitabobko/AeroSpace)（类似 i3）
+- 右键压缩图片（需收费）：[Compress any image on macOS—Compress Image](https://compressimage.app/)
+- 将图像复制到剪贴板时，优化其大小：[Clop - Image, video, PDF and clipboard optimiser](https://lowtechguys.com/clop/)
+- RSS 阅读器：
+	- quick-rss（国区 Mac App Store）
+	- Fluent Reader
 - 编程语言 API 下载、查看：Dash
-- 构型可视化：VESTA、OVITO
-- 趣味 App：Ball、Bananabin、Desktop Goose（桌面宠物）、Eyeballs、FireBox、Logoer（修改左上角的苹果 logo）、Numi（计算器）、One Thing（在菜单栏显示文字）、Things（to-do 清单）
+- 构型可视化：
+	- VESTA
+	- OVITO
+- 趣味 App：
+	- Ball
+	- Bananabin
+	- Desktop Goose（桌面宠物）
+	- Eyeballs
+	- FireBox
+	- Logoer（修改左上角的苹果 logo）
+	- Numi（计算器）
+	- One Thing（在菜单栏显示文字）
+	- Things（to-do 清单）
 - 微信（Windows 端没有深色模式，macOS 有深色模式）等
 
 ---
@@ -283,21 +379,37 @@ command + H                  # 隐藏最前方 App 的窗口（会出现在切�
 
 - 在 macOS 中，由 Intel 芯片编译得到的程序在 Apple Silicon 芯片上通常可以运行，得益于 Apple 提供的 Rosetta 2 技术
 
+- macOS 安装交大版 Office：[Office 2021 - 微软Office办公软件 - 上海交通大学正版软件授权中心](https://software.sjtu.edu.cn/List/Office/2021)
+
 - Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
 
+- VSCode-Insdiers 的命令行启动工具安装：
+	- 方式 1：命令面板 - Install 'code-insiders' command in PATH（每次有升级会弹窗）
+	- 方式 2：在官网上下载 CLI 版本，将其拷贝到 bin 目录中
+
 - kitty 使用：
-	- 介绍：[kitty - Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/Kitty)；[Kitty基于GPU的终端工具 - Escape](https://www.escapelife.site/posts/8e342b57.html)
-	- Linux 安装路径：`~/.local/kitty.app`
-	- 配置文件路径：`~/.config/kitty/kitty.conf`
-	- kitty 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
-	- [ ] 如何将 kitty 的窗口信息放到上面，而非默认的下方
+	- 介绍：
+		- [kitty - Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/Kitty)
+		- [Kitty基于GPU的终端工具 - Escape](https://www.escapelife.site/posts/8e342b57.html)
+	- kitty 配置：
+		- [kitty.conf - kitty](https://sw.kovidgoyal.net/kitty/conf/)
+		- 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
+	- [ ] kitty 如何升级
+	- [x] 如何将 kitty 的窗口信息放到上面，而非默认的下方（设置 `tab_bar_edge` 参数）
+	- [Share your tab bar style · kovidgoyal/kitty · Discussion #4447 · GitHub](https://github.com/kovidgoyal/kitty/discussions/4447)
 
 ```bash
-kitty +kitten diff file1 file2
+~/.local/kitty.app              # Linux 安装路径
+~/.config/kitty/kitty.conf      # 配置文件路径
 
-kitty +kitten icat <figure>
-
-kitty +kitten themes
+kitty +kitten                   # 查看所有可用的 kittens
+kitty +kitten diff file1 file2  # 查看文件之间的差异
+kitty +kitten icat <figure>     # 查看图片
+kitty +kitten themes            # 查看可用主题
+kitty +kitten clipboard file    # 拷贝文件中的内容到剪贴板
+kitty +kitten clipboard -g      # 粘贴剪贴板的内容到 STDOUT
+cat file | kitty +kitten hints  # 使用键盘选中屏幕中的内容，默认 URL
+	kitty +kitten ssh server        # 连接远程服务器
 ```
 
 ---
@@ -844,9 +956,15 @@ export HOMEBREW_MACOS_VERSION=14.5
 
 ### 其他
 
-- 无法直接创建文件（可通过终端 `touch` 命令或安装 “超级右键”软件），只能创建文件夹
+- [ ] MacBook Air M3 第一次打开 Chrome 会无法打开，需强制退出后再打开才可以（重新卸载安装无效果）
 
-- 终端模拟器 ssh 连接远程服务器，打开 GUI 程序：[Enable X11 forward for ssh to load images from remote server on MacOS Mojave · GitHub](https://gist.github.com/fengyuentau/7c43c06fb563752b6947affaf4677f2a)
+- [ ] Mac 如何安装 Parallels Desktop20 最新破解版
+[PD虚拟机，Parallels Desktop 20.0.0最新中文版，支持Mac所有机型【永久使用】](https://mp.weixin.qq.com/s/iFvLMVxYekal87ZsBhQ9pA)
+
+
+- 无法直接创建文件（可通过终端 `touch` 命令或安装 “超级右键” 软件），只能创建文件夹
+
+- 终端模拟器 SSH 连接远程服务器，打开 GUI 程序：[Enable X11 forward for ssh to load images from remote server on MacOS Mojave · GitHub](https://gist.github.com/fengyuentau/7c43c06fb563752b6947affaf4677f2a)
 
 - Apple ID 相关问题：此 Apple ID 尚未在 app store 使用（弹出 “检查” 窗口时，会出现要求完善支付方式信息内容；macOS 11 在检查这步一直无法弹出后面的内容，将版本更新至最新无此问题）
 
