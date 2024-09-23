@@ -22,7 +22,8 @@ password:
 
 ## 介绍
 
-WIP...
+Python 绘图包。
+
 
 ---
 
@@ -34,15 +35,14 @@ WIP...
 - 在 Matplolib 中使用 LaTeX：[Use latex with matplotlib on HPCs where you can't sudo! · GitHub](https://gist.github.com/chiang-yuan/62fbcaae06bf77f793a8f9b5aed1ba70)
 
 
-matplotlib mplstyle 写法
 
 ```python
 from matplotlib.axes import Axes
 
-ax: Axes
-
 fig = plt.figure()
 ax = fig.subplots()
+
+ax: Axes    # ax 类型提示；VSCode 中 Matplotlib 高版本默认不显示其高亮
 
 # 查看下两者区别
 ax = plt.subplot()
@@ -56,7 +56,7 @@ ax.fill_between()
 ```
 
 
-matplotlib 图中的所有元素
+Matplotlib 图中的所有元素
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404091019401.png)
 
@@ -893,6 +893,12 @@ KeysView(RcParams({'_internal.classic_mode': False,
 ---
 
 ### 其他
+
+- [ ] 找到一个适合的 color cycle
+	- [GitHub - Billingegroup/bg-mpl-stylesheets: Matplotlib style sheets](https://github.com/Billingegroup/bg-mpl-stylesheets)
+	- [Changes to the default style — Matplotlib 3.9.2 documentation](https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html)
+
+- [ ] Matplotlib mplstyle 写法
 
 - hatch：填充样式
 

@@ -81,6 +81,10 @@ scoop install main/typst   # Win
 
 - 在线编辑器：[Web - Typst](https://typst.app/)
 
+- Mac 端 Typst 编辑器（还在开发中）：[Textique](https://textique.app/)
+
+- iPad 端 Typst 编辑器：[GitHub - iXORTech/Typstify: A Typst Editor for iPad](https://github.com/iXORTech/Typstify)
+
 
 
 ---
@@ -99,8 +103,9 @@ scoop install main/typst   # Win
 cargo install typst-upgrade  # 安装
 
 # file.typ 可改成 .
-typst-upgrade file.typ       # 更新 package 并写入文件
-typst-upgrade -d file.typ    # --dry-run 不实际运行
+typst-upgrade file.typ       # 更新 packages 并覆写文件
+# 参数
+-d                           # --dry-run 不实际运行
 ```
 
 - 代码格式化：
@@ -115,10 +120,6 @@ typst-upgrade -d file.typ    # --dry-run 不实际运行
 - 数学公式 OCR：[GitHub - ParaN3xus/typress: Typst Mathematical Expression OCR](https://github.com/ParaN3xus/typress)
 
 - 预览 Typst 的 Neovim 插件：[GitHub - chomosuke/typst-preview.nvim: Low latency typst preview for Neovim](https://github.com/chomosuke/typst-preview.nvim)
-
-- Mac 端 Typst 编辑器（还在开发中）：[Textique](https://textique.app/)
-
-- iPad 端 Typst 编辑器：[GitHub - iXORTech/Typstify: A Typst Editor for iPad](https://github.com/iXORTech/Typstify)
 
 
 ---
@@ -418,7 +419,6 @@ box()
 - 用法
 
 ```rust
-
 // 当天日期
 #datetime.today().display("[year]年[month]月[day]日")
 
@@ -440,6 +440,19 @@ box()
   ),
   lang: "zh"
 )
+```
+
+
+---
+
+### 表格
+
+```rust
+#table()
+
+
+// 导入 cell header，可单独控制其对齐方式
+#import table: cell, header
 ```
 
 
@@ -476,18 +489,17 @@ $Q = rho A v + C$
 // 行间公式 公式与 $$ 之间有空格 <eq1> 公式标签
 $ 7.32 beta + sum_(i=0)^nabla Q_i / 2 $ <eq1>
 
-// 公式引用
-@eq1
+@eq1                   // 公式引用
 
-// 分隔符匹配
-$
-abs(a + b), norm(a + b), floor(a + b), ceil(a + b), round(a + b)
-$
+lr()                   // 分隔符匹配
+mid()
+abs()
+norm()
+floor()
+ceil()
+round()
 
-// 向量
-$
-vec(a, b, c) + vec(1, 2, 3) = vec(a + 1, b + 2, c + 3)
-$
+vec()                 // 向量
 
 // 矩阵
 $
@@ -619,6 +631,7 @@ Show 规则用于全局替换
 	- [GitHub - nju-lug/nju-thesis-typst: 南京大学学位论文 Typst 模板 nju-thesis-typst](https://github.com/nju-lug/nju-thesis-typst)
 	- [GitHub - howardlau1999/sysu-thesis-typst: 中山大学学位论文 Typst 模板](https://github.com/howardlau1999/sysu-thesis-typst)
 	- [简易上海交通大学学位论文 Typst 模板](https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF)
+	- 机器学习领域的系列论文模板：[GitHub - daskol/typst-templates: A list of paper templates in the area of machine learning.](https://github.com/daskol/typst-templates)
 
 - Typst 文档编译 Github Actions：
 	- [build.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/build.yml)
@@ -641,7 +654,7 @@ Show 规则用于全局替换
 
 ## 相关问题
 
-- [ ] 目前的大语言模型都没有学习 Typst 内容（Claude 3.5 pro）
+- [ ] 目前的大语言模型都没有学习 Typst 内容（Claude 3.5 pro、GPT-o1）
 
 - [x] 标题后首段无法正确缩进：
 	- [Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)

@@ -535,11 +535,11 @@ figlet spt | toilet -f term --gay  # 彩色输出
 
 
 # mcfly 安装与配置
-brew install mcfly
-
+brew install mcfly        # macOS
+# Linux/macOS
 curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sh -s -- --git cantino/mcfly
 
-eval "$(mcfly init zsh)"
+eval "$(mcfly init zsh)"  # 配置
 
 
 # fastfetch Ubuntu 安装

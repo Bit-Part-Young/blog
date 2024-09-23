@@ -389,6 +389,7 @@ pipx run wenxian from 10.1063/5.0155600
 
 ris：Zotero 格式
 
+- 在线网页版：[Online RIS to BibTeX converter](https://www.bruot.org/ris2bib/)
 - [GitHub - harrisonlabollita/ris-2-bib: A command line tool to convert RIS files into bib files for LaTeX bibliographies](https://github.com/harrisonlabollita/ris-2-bib)
 - [GitHub - janberges/ris2bib: Convert bibliographies from RIS to BibTeX format](https://github.com/janberges/ris2bib)
 
@@ -448,11 +449,11 @@ latexmk --xelatex main.tex
 
 - 用 Makefile 编译 LaTeX 文档
 	- [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
-	- [Makefile](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
+	- [latex-/Makefile at master · mage-tianxie/latex- · GitHub](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
 
 - 使用 Github Actions 自动编译
 	- [GitHub - xu-cheng/latex-action: :octocat: GitHub Action to compile LaTeX documents](https://github.com/xu-cheng/latex-action)
-	- [tex.yml](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)（不是很好用）
+	- [Linear-Algebra-Left-Undone/.github/workflows/tex.yml at new · yhwu-is/Linear-Algebra-Left-Undone · GitHub](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)（不是很好用）
 
 - 使用 GitHub Actions 将编译的 pdf 文档作为 release 发布：[release.yml](https://github.com/sjtug/SJTUThesis/blob/master/.github/workflows/release.yml)
 
@@ -473,8 +474,18 @@ latexmk --xelatex main.tex
 >[.latexmkrc](https://github.com/cohsh/.dotfiles/blob/main/latex/.latexmkrc)
 
 ```bash
-latexmk -c  # 删除编译过程中的临时文件
-latexmk -C  # 会删除 pdf 文件
+latexmk 
+latexmk 
+
+# 常用参数
+-c                         # 删除辅助文件
+-C                         # 删除辅助文件 + PDF
+-time                      # 显示执行时间统计信息
+-file-line-error           #  显示详细的错误位置
+-halt-on-error             # 遇到错误时停止执行
+-interaction=nonstopmode   # 不暂停，一直运行到结束
+-pvc
+-silent                    # 安静模式
 ```
 
 [.latexmkrc](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
@@ -562,23 +573,25 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 - LaTeX 模板相关文件格式：`.sty`、`.cls`、`bst`、`bib`
 - LaTeX 编译过程中生成相当多的辅助文件和日志，一些功能如交叉引用、参考文献、目录、索引等，需要先通过编译生成辅助文件，然后再次编译时读入辅助文件得到正确的结果，所以复杂的 LaTeX 源代码可能要编译多次
 
-|  文件类型  |                 说明                  |
-| :----: | :---------------------------------: |
-| `.sty` |           宏包文件；宏包名称与文件名一致           |
-| `.cls` |          文档类文件；文档类名称与文件名一致          |
-| `.bst` |         BibTeX 用到的参考文献格式模板          |
-| `.bib` |          BibTeX 参考文献数据库文件           |
-| `.log` |         排版引擎生成的日志文件，供排查错误使用         |
-| `.aux` |      主辅助文件，记录交叉引用、目录、参考文献的引用等       |
-| `.toc` |               目录记录文件                |
-| `.lof` |              图形目录记录文件               |
-| `.lot` |              表格目录记录文件               |
-| `.bbl` |         BibTeX 生成的参考文献记录文件          |
-| `.blg` |           BibTeX 生成的日志文件            |
-| `.idx` |        供 makeindex 处理的索引记录文件        |
-| `.ind` | makeindex 处理 `.idx` 生成的用于排版的格式化索引文件 |
-| `.ilg` |          makeindex 生成的日志文件          |
-| `.out` |      hyperref 宏包生成的 pdf 书签记录文件      |
+```bash
+# 文件类型                   说明                  
+.sty        # 宏包文件；宏包名称与文件名一致           
+.cls        # 文档类文件；文档类名称与文件名一致          
+.bst        # BibTeX 用到的参考文献格式模板          
+.bib        # BibTeX 参考文献数据库文件           
+.log        # 排版引擎生成的日志文件，供排查错误使用         
+.aux        # 主辅助文件，记录交叉引用、目录、参考文献的引用等       
+.toc        # 目录记录文件                
+.lof        # 图形目录记录文件               
+.lot        # 表格目录记录文件               
+.bbl        # BibTeX 生成的参考文献记录文件          
+.blg        # BibTeX 生成的日志文件            
+.idx        # 供 makeindex 处理的索引记录文件        
+.ind        # makeindex 处理 .idx 生成的用于排版的格式化索引文件 
+.ilg        # makeindex 生成的日志文件          
+.out        # hyperref 宏包生成的 pdf 书签记录文件      
+```
+
 
 ---
 
@@ -590,7 +603,7 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 \documentclass{article}  % 指明文档类型
 
 % 导言区：设置文档样式
-\usepackage{...}     % 调用宏包
+\usepackage{...}         % 调用宏包
 \newcommand{...}         % 自定义命令
 
 \begin{document}
@@ -662,7 +675,7 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 - 换行：行末的换行符视为一个空格；但连续两个换行符，也就是空行，会将文字分段。多个空行被视为一个空行。也可以在行末使用 `\par` 命令分段。
 
 - 中文的标点符号（绝大多数为非 ASCII 字符）使用中文输入法输入即可，一般不需要过多留意；而输入西文标点符号时，有不少地方需要留意
-	- 西文排版中经常会出现连字（ligatures），常见的有 ff/fi/fl/ffi/ffl
+	- 西文排版中经常会出现连字（ligatures），常见的有 `ff/fi/fl/ffi/ffl`
 	- 单引号 ' 和 ' 分别用 \` 和 ' 输入；双引号 “ 和 ” 分别用 \`\` 和 '' 输入
 	- 三种长度的横线：连字号 `-` 用来组成复合词；短破折号 `--` 用来连接数字表示范围；长破折号 `---` 用来连接单词，语义上类似中文的破折号
 	- 英文省略号用 `\ldots`
@@ -675,11 +688,9 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 \# \$ \% \& \{ \} \_
 \^{}  \~{}  \textbackslash
 
-dif{}f{}icult  f{}ind  % 连字
-
+dif{}f{}icult  f{}ind          % 连字
 ``Please press the `x' key.''  % 单引号、双引号
-
-\ldots  \ldots{}  % 省略号
+\ldots  \ldots{}               % 省略号
 
 % 三种长度的横线
 daughter-in-law, X-rated \\
@@ -710,15 +721,16 @@ yes---or no?
 Fig.~2a \\
 Donald~E. Knuth
 
-% 断行
-\\[length]  \newline
+\\[length]         % 断行
+\newline
 
-% 换页
-\newpage  \clearpage
+\newpage           % 换页
+\clearpage
 
-% 数字 n 代表适合/不适合的程度；0-4，缺省为 4
-\linebreak[n] \nolinebreak[n]
-\pagebreak[n] \nopagebreak[n]
+\linebreak[n]      % 数字 n 代表适合/不适合的程度；0-4，缺省为 4
+\nolinebreak[n]
+\pagebreak[n]
+\nopagebreak[n]
 ```
 
 
@@ -765,10 +777,13 @@ Donald~E. Knuth
 - titlepage 环境，生成不带页眉页脚的一页；生成自定义的标题页以替代 `\maketitle` 命令
 
 ```latex
-\title  \author  \date
-\date{\today}  \date{}
+\title{}           % 标题
+\author{}          % 作者
+\date{}            % 日期
+\date{\today}      % 当天日期
+\date{}            % 不显示日期
 
-\maketitle
+\maketitle         % 生成标题页
 ```
 
 
@@ -921,6 +936,20 @@ Row 2                      & Data 3   & Data 4   \\
 \usepackage{longtable}
 
 ```
+
+- 其他
+
+>[horizontal alignment - How to align table headers differently than all other table cells? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/2924/how-to-align-table-headers-differently-than-all-other-table-cells)
+
+```latex
+\multicolumn{1}{c}{}   % 单独控制表格 cell 的对齐方式
+
+% 定义新的列类型
+% p 可改成 m
+% \centering 可改成 \raggedleft \raggedright
+\newcolumntype{C}{>{\centering\arraybackslash}p{3cm}}
+```
+
 
 
 ---

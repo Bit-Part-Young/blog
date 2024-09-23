@@ -1266,6 +1266,26 @@ import multiprocessing
 ```
 
 
+---
+
+### dataclasses
+
+使用 `@dataclass` 装饰器可以自动为类生成几个魔法方法，包括 `__init__()`、`__repr__()`、`__eq__()` 等
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class InventoryItem:
+    name: str
+    unit_price: float
+    quantity_on_hand: int = 0
+
+    def total_cost(self) -> float:
+        return self.unit_price * self.quantity_on_hand
+```
+
+
 
 ---
 

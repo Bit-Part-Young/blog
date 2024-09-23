@@ -189,14 +189,14 @@ miniconda3
 
 部分目录含义：
 
-| 目录名称 | 说明 |
-|:---------------:|:------:|
-| `bin/` | 存储可执行文件 |
-| `envs/` | 存储各个虚拟环境 |
-| `pkgs/` | 存储下载的 package，以便在安装和更新时使用 |
-| `condabin/` | 中的辅助脚本和可执行文件用于配置和管理 miniconda3 |
-| `etc/` | 含配置文件，允许自定义和配置 miniconda3 的行为，`etc/profile.d/conda.sh` |
-| `shell/` | 用于配置 Shell 提示符，提供有关当前环境和激活的环境的信息 |
+```bash
+bin/          # 可执行文件目录
+envs/         # 存储虚拟环境目录
+pkgs/         # 存储下载的 package，以便在安装和更新时使用
+condabin/     # 其中的辅助脚本和可执行文件用于配置和管理 miniconda3
+etc/          # 含配置文件，允许自定义和配置 miniconda3 的行为，etc/profile.d/conda.sh 
+shell/        # 用于配置 Shell 提示符，提供有关当前环境和激活的环境的信息
+```
 
 ---
 
@@ -204,7 +204,7 @@ miniconda3
 
 ```shell
 miniconda3/envs/<conda_env>/lib/pythonX.X/site-packages
-# or --user 安装
+# --user 安装
 ~/.conda/envs/<conda_env>/lib/pythonX.X/site-packages
 ```
 
@@ -255,10 +255,10 @@ conda search <package>      # 搜索可用 package
 - 删除未使用的 packages 和缓存（缓存路径 `~/.conda/pkgs/`**）
 
 ```bash
-conda clean -i  # 删除索引缓存
-conda clean -p  # 删除未使用的 packages
-conda clean -a  # 删除所有
---dry-run       # 模拟运行，不实际删除
+conda clean -i     # 删除索引缓存
+conda clean -p     # 删除未使用的 packages
+conda clean -a     # 删除所有
+--dry-run          # 模拟运行，不实际删除
 ```
 
 
@@ -284,7 +284,7 @@ pip install ".[test]"
 - 常用 packages：多个 packages 一行命令安装可能出现报错，建议单个安装
 
 ```bash
-pip install -U pymatgen ase pyxtal scikit-learn ipython ipykernel tldr
+pip install -U ipython ipykernel pymatgen ase pyxtal
 ```
 
 - 列出已安装 packages

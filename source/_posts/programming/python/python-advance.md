@@ -53,8 +53,10 @@ Callable                 # 指定对象是可调用的，如函数或实现了 _
 ```python
 from typing import List, Tuple, Dict, Set, Union, Literal
 import numpy as np
+import pandas as pd
 
-arr: np.ndarray  # 无法指定其维数
+arr: np.ndarray     # NumPy 数组类型提示；无法指定其维数
+df: pd.DataFrame    # Pandas 数据帧类型提示
 
 num: int = 5
 

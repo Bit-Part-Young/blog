@@ -237,7 +237,7 @@ top: true
 
 - hexo-generator-search/searchdb：本地搜索设置
 
-- hexo-algoliasearch 或 hexo-algolia：algolia 搜索；更美观（hexo butterfy，docusaurus 支持，mkdocs 将支持）
+- hexo-algoliasearch 或 hexo-algolia：Algolia 搜索；更美观（Hexo butterfy，Docusaurus 支持，MkDocs 将支持）
 
 - [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文统计与信息展示网页（可单个、全部论文）
 	- 在页面添加论文概要图片，在 bib 文件中的论文对应条目下添加 `image` 参数
@@ -271,7 +271,7 @@ top: true
 - banner 图片
 - 文章封面（Front Matter 中 cover 参数值为空，表示随机封面）
 - 评论系统（暂无必要）
-- 搜索系统
+- 搜索系统（Algolia）
 - 页面加载效果
 - post 元信息（分类、标签、时间、字数统计、需阅读时间等）
 - 侧边栏（butterfly）
@@ -282,10 +282,12 @@ top: true
 - 相册（暂无必要）
 - 右下角功能按钮（深/浅色切换，直达页面顶部等功能）
 - 音乐、视频页面（音乐可全局吸底）
+- [ ] 添加 RSS 订阅功能
 
 ---
 
 自定义修改 Footer 页脚信息：`themes/butterfly/layout/includes/footer.pug`
+
 
 
 ---

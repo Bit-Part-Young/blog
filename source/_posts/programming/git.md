@@ -213,8 +213,9 @@ git push -u origin main
 
 ### 开发使用
 
->[GitHub - firstcontributions/first-contributions: 🚀✨ Help beginners to contribute to open source projects](https://github.com/firstcontributions/first-contributions)
+- [GitHub - DeepSourceCorp/good-first-issue: Make your first open-source contribution.](https://github.com/DeepSourceCorp/good-first-issue)
 
+- [GitHub - firstcontributions/first-contributions: 🚀✨ Help beginners to contribute to open source projects](https://github.com/firstcontributions/first-contributions)
 
 ```bash
 # 对于二次开发 repo 人员，在新分支上进行操作

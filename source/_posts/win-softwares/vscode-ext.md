@@ -21,7 +21,7 @@ password:
 
 ## 介绍
 
-- 代码编辑器，有丰富的插件
+- 代码编辑器，有非常丰富的插件
 
 - VSCode 连接远程服务器，点击打开的文件，会立马跳转到相应的目录中，定位文件相比 MobaXterm 更便捷，便于下载文件到本地
 
@@ -150,9 +150,12 @@ Crtl + 点击图片          # 缩小图片
 ### Python
 
 - 集成插件；可识别 conda 创建的 Python 虚拟环境
+
 - 其中的 Pylance 插件是 Python 的语言服务器（LSP），可实现自动补全，跳转到定义，自动解析类、函数等功能，非常好用
+
 - isort 插件可对 import 的相关模块进行排序
-- 转到某个类或函数的定义所在脚本时，代码编辑区上方会显示该类或函数的绝对路径，可点击该类或函数的名字，查看该类中所有的方法和属性（该函数平级的其他函数），点击跳转想要查看的方法/函数、属性即可，也可查看其他的类，会很简便
+
+- 转到某个类或函数的定义所在脚本时，代码编辑区上方会显示该类或函数的绝对路径，可点击该类或函数的名字，查看该类中所有的方法和属性（该函数平级的其他函数），点击跳转想要查看的方法/函数、属性即可，也可查看其他的类，会很方便
 
 - 其他 Python 相关插件：
 	- Black Formatter：代码格式化（其他：yapf、autopep8 和 ruff）
@@ -161,7 +164,7 @@ Crtl + 点击图片          # 缩小图片
 
 - 问题：当 root 中已有 conda 时，当前用户下的 conda 虚拟环境名称无法被识别，可在设置中找到 `conda path` 选项，写入将当前用户下的 conda 路径
 
-- Python 设置：脚本文件保存自动格式化
+- Python 脚本文件保存自动格式化设置：
 
 ```json
 {
@@ -187,16 +190,25 @@ Crtl + 点击图片          # 缩小图片
 
 - WakaTime：统计编程项目 Codinig 数据
 
-- TabOut：跳出括号（函数、列表、字典和字符串等）
+- TabOut：跳出括号（函数、列表、字典中的括号和字符串中的引号）
 
 - Rainbow CSV：高亮 CSV 和 TSV 文件
+
+- TODO Highlight：高亮文件中的 `TODO`、`FIXME` 等
+
+- Todo Tree：以树形显示文件中的 `TODO`、`FIXME` 等
+
+
+---
+
+### Markdown 相关
 
 - Markdown All in One：
 	- 语法高亮，自动补全，**可生成目录，添加/更新章节序号**
 	- [VSCode插件生成编号、目录、文件目录树](https://github.com/lc-1203/k8s-practice/blob/main/06-Tools%26Tips/Markdown/VSCode%E6%8F%92%E4%BB%B6%E7%94%9F%E6%88%90%E7%BC%96%E5%8F%B7%E3%80%81%E7%9B%AE%E5%BD%95%E3%80%81%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%A0%91.md)
 	- 暂无很好的 “中英文混排添加空格” 格式化的插件；使用 Obsidian 中的 Linter 插件，将 Markdown 内容复制到 Obsidian 中进行格式化
 
-- Markdown PDF：将 markdown 文档导出成 pdf 文件，**需要本地或终端支持中文字符，不支持公式**
+- Markdown PDF：将 markdown 文档导出成 pdf 文（需本地或终端支持中文字符，不支持公式）
 
 - Markdownlint：Markdown 语法风格格式化
 
@@ -235,13 +247,13 @@ Crtl + 点击图片          # 缩小图片
 
 ---
 
-## code-server
+## Code Server
 
 >[Code Server 是什么？\_51CTO博客\_code server](https://blog.51cto.com/phyger/5156445)
 
 >[GitHub - coder/code-server: VS Code in the browser](https://github.com/coder/code-server)
 
-- 浏览器或远程使用 vscode 进行开发；服务器平台为 Linux 和 macOS，不支持 Windows；可脚本、二进制安装
+- 浏览器或远程使用 VSCode 进行开发；服务器平台为 Linux 和 macOS，不支持 Windows；可脚本、二进制安装
 
 - 将 `bind-addr` 改成 `0.0.0.0:8080`，可使用 `http://<ip>:8080` 的形式登录，在同一局域网下，不同电脑可以直接访问；不在同一局域网下，需使用内网穿透使其远程访问
 
@@ -282,16 +294,12 @@ GitHub Copilot could not connect to server. Extension activation failed: "Timed 
 The Pylance server crashed 5 times in the last 3 minutes. The server will not be restarted. See the output for more information.
 ```
 
-- Remote-ssh 远程连接服务器，使用 `plt.show()` 打不开画图窗口：
+- Remote-SSH 远程连接服务器，使用 `plt.show()` 打不开画图窗口：
 	- [python - Is there any way to show figures in VScode remote ssh (windows) - Stack Overflow](https://stackoverflow.com/questions/59063892/is-there-any-way-to-show-figures-in-vscode-remote-ssh-windows)
 	- 解决方法：保存图片再打开查看；或者在互动窗口中运行代码
 
-- vscode 加载图片错误：
+- VSCode 加载图片错误：
 	- [visual studio code - Error loading webview: Error: Could not register service workers: TypeError: Failed to register a ServiceWorker for scope - Stack Overflow](https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai)
 	- 解决方法：清除相关文件缓存：进入 `C:\Users\XX\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
-
-```bash
-加载 Web 视图时出错: Error: Could not register service workers: InvalidStateError: Failed to register a ServiceWorker: The document is in an invalid state.
-```
 
 - VSCode terminal profile 无法使用 zsh：[VSCode terminal task not using zsh profile · Issue #143061 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/143061)
