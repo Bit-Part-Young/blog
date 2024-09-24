@@ -151,6 +151,18 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
     - 忽略空白和新行（需先开启 Line author information 选项，可选）
     - Windows 与 Linux 中的文件权限两者不同，在 Windows 上使用 git 插件时，可在该 repo 中输入 `git config core.fileMode false` 命令以忽略文件权限变化
 
+- Linter：md 文档自动格式化
+	- 不会处理代码块中的内容格式
+	- 中日韩文与数字和英文之间的空格：由单个空格分隔
+	- 标题空行：标题前后均有一个空行
+	- 移除末尾空格
+	- 移除字符前后空格
+
+```bash
+，,!！?？;；:：)）”]》    # 移除字符后的空格
+¿¡‘“([（《              # 移除字符前的空格
+```
+
 - Remotely Save：数据同步；支持 S3、Dropbox、WebDAV（常用，推荐 Infini Cloud）、Onedrive 远程服务。相关设置：
     - 填写服务器地址、用户和密码信息
     - 启动后自动运行一次：启动后第 1 秒运行一次

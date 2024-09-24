@@ -252,11 +252,11 @@ which       # 查看可执行命令所在路径
 cut         # 剪切命令
 clear       # 清屏
 reset       # 重置终端
-dirname
-basename
-chmod
-chown
-time
+dirname     # 获取文件路径的目录部分
+basename    # 获取文件路径的文件部分
+chmod       # 变更文件或目录的权限
+chown       # 变更文件或目录的拥有者或所属群组
+time        # 统计指定命令运行耗时
 |           # 管道符
 >  >>       # 标准输出流重定向
 <           # 标准输入流重定向
@@ -278,11 +278,12 @@ ls -1 | grep -v 'XXX*'  # ls 不列出特定的文件/目录
 
 cd -                    # 返回上一次的目录
 
-mkdir -p xxx/xxx        # 创建多级目录
+mkdir  xxx/xxx          # 会报错
+mkdir -p xxx/xxx        # 创建多级目录；不会报错
 
 tail -n +2 file         # 从第二行开始输出内容
 
-# 建议设置 
+# 建议设置的命令 alias 
 alias mv="mv -v"
 alias cp="cp -v"
 alias rm="rm -v"
@@ -346,11 +347,9 @@ bzcat    # 查看 .bz2 文件
 给文件/目录设置软/字符链接（**需绝对路径**）
 
 ```bash
-ln -s path/src path/des
-
-# -f force 创建新链接前删除与之同名的文件或链接
-# 在当前目录创建与目标文件同名的符号链接
-ln -s -f .tmux/.tmux.conf
+ln -s SRC DEST
+# 参数
+-f force    # 创建新链接前删除与之同名的文件或链接
 ```
 
 
@@ -432,9 +431,6 @@ find . -type f -name "*.txt" -or -name "*.pdf"
 # 查找 tar.gz 文件并删除
 find . -type f -name "*.tar.gz" -exec rm {} +
 
-# 找到含下划线的 Python 脚本，并将其换成连字符输出
-fes=$(find . -maxdepth 2 -type f -name "*_*.py"); for f in ${fes}; do echo ${f//_/-}; done
-
 
 # 安装 locate
 sudo apt install mlocate
@@ -455,6 +451,9 @@ strings libstdc++.so.6 | grep GLIBCXX
 
 文本处理工具
 
+- macOS 中需在使用 `i\` `a\`、`c\` 命令时，需在 `\` 后换行
+- macOS 在使用 `-i` 选项时，需在后面添加 `''`
+
 ```bash
 # 命令格式
 sed [options] 'command' file(s)
@@ -468,18 +467,18 @@ sed [options] 'command' file(s)
 s              # 替换指定字符串
 d              # 删除行
 p              # 打印行
-a              # 在行后添加文本
-i              # 在行前插入文本
-c              # 替换行
+a\             # 在行后添加文本
+i\             # 在行前插入文本
+c\             # 替换行
 ```
 
 示例：
 
 ```bash
 # 替换指定字符串
-sed 's/old/new/' file  # 只替换每行第一个匹配的
-sed 's/old/new/g' file  # 标志 g 全局替换
-sed 's/old/new/Ng' file  # 从第 N 处匹配开始替换
+sed 's/old/new/' file      # 只替换每行第一个匹配的
+sed 's/old/new/g' file     # 标志 g 全局替换
+sed 's/old/new/Ng' file    # 从第 N 处匹配开始替换
 
 # 定界符
 # / 在 sed 中作为定界符使用，可使用其他任意的定界符
@@ -487,28 +486,27 @@ sed 's:old:new:g' file
 sed 's|old|new|g' file
 
 # 在行后添加文本
-sed '1a\content' file  # 在第 1 行添加内容
-sed -i '$a\content' file  # 在最后一行添加内容
+sed '1a\xxx' file          # 在第 1 行添加内容
 
 # 在行前插入文本
-sed '1i\content' file  # 在第 1 行前插入内容
-sed '/pattern/i\content' file  # 在匹配内容所在行前插入内容
+sed '1i\content' file      # 在第 1 行前插入内容
+sed '/xxx/i\content' file  # 在匹配内容所在行前插入内容
 
 # 删除行
-sed '/cat/d' file  # 删除含 cat 的行
-sed '$d' file  # 删除最后一行
-sed 'N,Md' file  # 删除第 N-M 行
-sed '/^$/d' file  # 删除空白行
+sed '/cat/d' file          # 删除含 cat 的行
+sed '$d' file              # 删除最后一行
+sed 'N,Md' file            # 删除第 N-M 行
+sed '/^$/d' file           # 删除空白行
 
-# 打印行
-sed -n 4p file  # 打印第 4 行
-sed -n 4,8p file  # 打印第 4-8 行
+# 打印行；这里的 command 可不加引号
+sed -n 4p file             # 打印第 4 行
+sed -n 4,8p file           # 打印第 4-8 行
 
 # 替换行
-sed '1c\content' file  # 替换第 1 行内容
+sed '1c\xxx' file          # 替换第 1 行内容
 
-# 组合多个命令
-sed -e '1d' -e '/pattern/d' file  # 删除多行
+# 组合多个命令 -e
+sed -e '1d' -e '$d' file   # 删除多行
 ```
 
 
@@ -554,15 +552,15 @@ sed -e '1d' -e '/pattern/d' file  # 删除多行
 
 ```bash
 # awk 中的变量
-$0        # 所有字段
-$n        # 第 n 个字段
-NR        # 记录行号
-NF        # 记录字段数（列数）
-FNR       # 记录文件数
+$0             # 所有字段
+$n             # 第 n 个字段
+NR             # 记录行号
+NF             # 记录字段数（列数）
+FNR            # 记录文件数
 
 # awk 中的模式
-BEGIN     # 在 awk 开始读取输入数据流之前执行一些初始化操作
-END       # 在 awk 读取完输入数据流之后执行一些最终操作
+BEGIN          # 在 awk 开始读取输入数据流之前执行一些初始化操作
+END            # 在 awk 读取完输入数据流之后执行一些最终操作
 
 # 语法
 BEGIN {
@@ -580,16 +578,13 @@ END {
 
 ```bash
 awk '{ print NR, $0 }' file  # 输出文件内容并显示行号 
-
 awk 'END { print NR }' file  # 统计行数
+awk '$3 == 0' file           # 输出第三列为 0 的行
+awk 'NR % 2 == 1' file       # 打印奇数行
+awk '{ print $NF }' file     # 输出最后一列
 
-awk '{ nf = nf + NF } END { print nf }' file  # 返回总字段数
-
-awk '$3 == 0' file  # 输出第三列为 0 的行
-
-awk 'NR % 2 == 1' file  # 打印奇数行
-
-awk '{ print $NF }' file  # 输出最后一列
+# 返回总字段数
+awk '{ nf = nf + NF } END { print nf }' file  
 
 # 输出最后一行
 awk 'END { print $0 }' file
@@ -599,13 +594,17 @@ awk '{ last = $0 } END { print last }' file
 awk '{printf "%s ", $2}' file
 awk '{ names = names $2 " " } END { print names }' file
 
-awk '{printf "%s", $0} END {print ""}' file  # 将所有行输出成 1 行
+# 将所有行输出成 1 行
+awk '{printf "%s", $0} END {print ""}' file
 
-awk '{ temp = $1; $1 = $2; $2 = temp; print }' file  # 第 1、2 列交换
+# 第 1、2 列交换
+awk '{ temp = $1; $1 = $2; $2 = temp; print }' file
 
-awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}'  # 逆向排列
+# 逆向排列
+awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}'
 
-awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat  # 列拼接文件
+# 列拼接文件
+awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat
 
 # 去除重复行（包括空行）
 awk '!seen [$0]++' file

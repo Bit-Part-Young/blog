@@ -175,7 +175,7 @@ $$x(t + \Delta t) = x(t) + v(t) \Delta t + 0.5 * a(t) * {\Delta t}^2$$
 
 $$a(t + \Delta t) = f(x(t+\Delta t))$$
 
-$$ v(t + \Delta t) = v(t) + 0.5 *( a(t) + a(t + \Delta t)) * \Delta t$$
+$$ v(t + \Delta t) = v(t) + 0.5 *(a(t) + a(t + \Delta t)) * \Delta t$$
 
 实际计算：推进半步（减少变量存储 4 个变量，位置 1 速度 1 加速度 2；减少为 3 个变量）
 
@@ -486,7 +486,7 @@ min_style fire
 
 
 
-mpirun lmp -in in.file -sf opt -sc none ( -sf opt -sc none 表示导入优化的包)
+mpirun lmp -in in.file -sf opt -sc none (-sf opt -sc none 表示导入优化的包)
 
 
 

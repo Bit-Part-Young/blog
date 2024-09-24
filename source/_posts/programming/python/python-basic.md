@@ -52,6 +52,8 @@ password:
 
 - [Python Cookbook 3rd Edition Documentation — python3-cookbook 3.0.0 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/)
 
+- [Tagged:"Writing Faster Python" - Sebastian Witowski](https://switowski.com/tags/writing-faster-python/)
+
 
 
 ---
@@ -491,7 +493,7 @@ if value not in lst：  # 如果在则为 False
 #### 条件语句
 
 - 类三目运算符写法 a if condition else b
-    - 类似其它语言中的 condition? a : b
+    - 类似其它语言中的 condition? a: b
 
 
 ---
@@ -793,9 +795,27 @@ __name__
 
 ### 装饰器
 
-装饰器
+装饰器：作用对象是函数，作用是在调用函数之前和之后，为函数添加额外功能
 
 函数装饰器
+
+对函数使用装饰器，会导致函数的 `__name__`、`__doc__` 等属性发生改变，保留原函数的名称等属性，需通过使用内置模块 functools 中的 wraps 来保留函数的元信息
+
+```python
+from functools import wraps
+
+def XXX(func):  
+    @wraps(func)
+    def wrapper():  
+        func()  
+
+        ...
+
+    return wrapper
+
+@XXX
+def ...
+```
 
 
 
@@ -861,54 +881,54 @@ with open(yaml_fn, 'r') as f:
 
 >[Python进阶笔记.md](https://github.com/LiuQixuan/PythonLearningNote/blob/master/Python%20%E8%BF%9B%E9%98%B6%E7%AC%94%E8%AE%B0.md)
 
-|         异常名称          |                   描述                   |
-|:-------------------------:|:----------------------------------------:|
-|       BaseException       |            所有异常 K 的基类             |
-|        SystemExit         |              解释器请求退出              |
-|     KeyboardInterrupt     |            用户自行中断执行^C            |
-|         Exception         |              常规错误的基类              |
-|       StopIteration       |                迭代器溢出                |
-|       GeneratorExit       |         生成器发生异常后通知退出         |
-|       StandardError       |           所有标准异常类的基类           |
-|      ArithmeticError      |          所有数值计算错误的基类          |
-|    FloattingPointError    |               浮点计算错误               |
-|       OverflowError       |               数值运算溢出               |
-|     ZeroDivisionError     |                 除零错误                 |
-|      AssertionError       |               断言语句失败               |
-|      AttributeError       |              对象缺失该属性              |
-|         EOFError          |       没有内建输入，到达 EOF 标记        |
-|     EnvironmentError      |            操作系统错误的基类            |
-|          IOError          |            输入/输出操作失败             |
-|          OSError          |               操作系统错误               |
-|       WindowsError        |               系统调用失败               |
-|        ImportError        |            导入模块/对象失败             |
-|        LookupError        |            无效数据查询的基类            |
-|        IndexError         |             序列中没有此索引             |
-|         KeyError          |              映射中没有此键              |
-|        MemoryError        | 内存溢出（对于 Python 解释起来说非致命） |
-|         NameError         |            未声明/初始化对象             |
-|     UnboundLocalError     |          访问未初始化的本地变量          |
-|      ReferenceError       |  试图访问已被回收器回收的对象（弱引用）  |
-|       RuntimeError        |              一般运行时错误              |
-|    NotImplementedError    |              尚未实现的方法              |
-|        SyntaxError        |             Python 语法错误              |
-|     IndentationError      |                 缩进错误                 |
-|         TabError          |            Tab 和 Space 混用             |
-|        SystemError        |           一般的解释器系统错误           |
-|         TypeError         |             对类型无效的操作             |
-|        ValueError         |              传入无效的参数              |
-|       UnicodeError        |             Unicode 相关错误             |
-|    UnicodeDecodeError     |           Unicode 解码时的错误           |
-|    UnicodeEncodeError     |           Unicode 编码时的错误           |
-|   UnicodeTranslateError   |           Unicode 转码时的错误           |
-|          Warning          |                警告的基类                |
-|    DeprecationWarning     |          关于被弃用的特性的警告          |
-|       FutureWarning       |      关于构造将来语义会有改变的警告      |
-|      OverflowWarning      |  旧的关于自动提升为长整型 (long) 的警告  |
-| pendingDeprecationWarning |         关于特性将会被废弃的警告         |
-|      RuntimeWarning       |          可疑的运行时行为的警告          |
-|      SysntaxWarning       |              可疑语法的警告              |
-|        UserWarning        |            用户代码生成的警告            |
+```bash
+BaseException              # 所有异常的基类
+SystemExit                 # 解释器请求退出
+KeyboardInterrupt          # 用户自行中断执行 ^C
+Exception                  # 常规错误的基类
+StopIteration              # 迭代器溢出
+GeneratorExit              # 生成器发生异常后通知退出
+StandardError              # 所有标准异常类的基类
+ArithmeticError            # 所有数值计算错误的基类
+FloattingPointError        # 浮点计算错误
+OverflowError              # 数值运算溢出
+ZeroDivisionError          # 除零错误
+AssertionError             # 断言语句失败
+AttributeError             # 对象缺失该属性
+EOFError                   # 没有内建输入，到达 EOF 标记
+EnvironmentError           # 操作系统错误的基类
+IOError                    # 输入/输出操作失败
+OSError                    # 操作系统错误
+WindowsError               # 系统调用失败
+ImportError                # 导入模块/对象失败
+LookupError                # 无效数据查询的基类
+IndexError                 # 序列中没有此索引
+KeyError                   # 映射中没有此键
+MemoryError                # 内存溢出
+NameError                  # 未声明/初始化对象
+UnboundLocalError          # 访问未初始化的本地变量
+ReferenceError             # 试图访问已被回收器回收的对象（弱引用）
+RuntimeError               # 一般运行时错误
+NotImplementedError        # 尚未实现的方法
+SyntaxError                # Python 语法错误
+IndentationError           # 缩进错误
+TabError                   # Tab 和 Space 混用
+SystemError                # 一般的解释器系统错误
+TypeError                  # 对类型无效的操作
+ValueError                 # 传入无效的参数
+UnicodeError               # Unicode 相关错误
+UnicodeDecodeError         # Unicode 解码时的错误
+UnicodeEncodeError         # Unicode 编码时的错误
+UnicodeTranslateError      # Unicode 转码时的错误
+Warning                    # 警告的基类
+DeprecationWarning         # 关于被弃用的特性的警告
+FutureWarning              # 关于构造将来语义会有改变的警告
+OverflowWarning            # 旧的关于自动提升为长整型 (long) 的警告
+pendingDeprecationWarning  # 关于特性将会被废弃的警告
+RuntimeWarning             # 可疑的运行时行为的警告
+SysntaxWarning             # 可疑语法的警告
+UserWarning                # 用户代码生成的警告
+```
 
 
 ---

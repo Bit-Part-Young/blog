@@ -186,7 +186,7 @@ make intel_cpu
 
 相关报错
 
-- `make mpi` 编译报错：对 `dgelsd_`（LAPACK 里的东西 ） 未定义的引用；改用 `make intel_cpu`
+- `make mpi` 编译报错：对 `dgelsd_`（LAPACK 里的东西） 未定义的引用；改用 `make intel_cpu`
 
 ```text
 /usr/bin/ld: gibbs_multireplica.o: in function `LAMMPS_NS::GibbsMultiReplica::inverse(double*, double*, double*, double)':

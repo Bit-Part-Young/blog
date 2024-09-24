@@ -307,7 +307,7 @@ O 相晶体学信息：晶体结构：三元有序 orthorhombic；空间群：Cm
 一些结构的 prototype
 
 | Prototype | Strukturbericht designation | Pearson symbol | Space group number | Space group symbol |
-| :---------: | :--------: | :------: | :-----: | :-----: |
+|:---------: |:--------: |:------: |:-----: |:-----: |
 |      W     |              A2               |      cI2          |      229              |            Im-3m        |
 
 BCC：j[AFLOW Prototype: A\_cI2\_229\_a](https://www.aflowlib.org/prototype-encyclopedia/A_cI2_229_a.html)

@@ -278,6 +278,14 @@ brew services start code-server
 
 ## 相关问题
 
+- 关掉 VSCode 的声音：[How to turn off (or on) sounds from Visual Studio Code? - Stack Overflow](https://stackoverflow.com/questions/54173462/how-to-turn-off-or-on-sounds-from-visual-studio-code)
+
+```json
+{
+    "editor.accessibilitySupport": "off",
+}
+```
+
 - WSL1 无法安装插件：[Installing extensions to WSL VS Code Server gives \`EACCES: Permission Denied\` · Issue #90164 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/90164)
 
 - GitHub Copilot 无法连接服务器：[GitHub Copilot could not connect to server. Extension activation failed: "Timed out waiting for authentication provider to register" · community · Discussion #11324 · GitHub](https://github.com/orgs/community/discussions/11324)

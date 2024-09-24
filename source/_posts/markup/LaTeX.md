@@ -676,7 +676,7 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 
 - 中文的标点符号（绝大多数为非 ASCII 字符）使用中文输入法输入即可，一般不需要过多留意；而输入西文标点符号时，有不少地方需要留意
 	- 西文排版中经常会出现连字（ligatures），常见的有 `ff/fi/fl/ffi/ffl`
-	- 单引号 ' 和 ' 分别用 \` 和 ' 输入；双引号 “ 和 ” 分别用 \`\` 和 '' 输入
+	- 单引号 ' 和 ' 分别用 \` 和 ' 输入；双引号 “和” 分别用 \`\` 和 '' 输入
 	- 三种长度的横线：连字号 `-` 用来组成复合词；短破折号 `--` 用来连接数字表示范围；长破折号 `---` 用来连接单词，语义上类似中文的破折号
 	- 英文省略号用 `\ldots`
 
@@ -1536,7 +1536,7 @@ tocbibind     % 支持将目录、参考文献、索引本身写入目录项
 ```
 
 `\pagenumbering` 默认参数是阿拉伯数字
->arabic: 阿拉伯数字；roman: 小写罗马数字；Roman: 大写罗马数字；alpha: 小写英文字母 ；Alpha: 大写英文字母
+>arabic: 阿拉伯数字；roman: 小写罗马数字；Roman: 大写罗马数字；alpha: 小写英文字母；Alpha: 大写英文字母
 
 
 假设在前言部分采用罗马数字，在剩余的正文部分用阿拉伯数字，则在前言部分使用命令 `\pagestyle{roman}`，随后在新的章节后面采用 `\chapter{…}\pagenumbering{arabic}`，还可以在后面接 `\setcounter{page}{number}` 来设定起始页码.

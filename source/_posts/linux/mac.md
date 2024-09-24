@@ -58,8 +58,8 @@ password:
 
 - 不同的 macOS 版本对应的操作设置会有不同，建议在官网上查询
 - macOS 对大小写不敏感，Linux 和 Windows 对大小写敏感
-- MacBook 中的大部分程序的**设置快捷键**都是 `command + ,`
-- MacBook 接入鼠标 ，滚轮控制的上下滚动与 Windows 相反（可借助 Mos 软件使其保持一致）
+- MacBook 中的大部分程序的**设置快捷键**都是 `command +,`
+- MacBook 接入鼠标，滚轮控制的上下滚动与 Windows 相反（可借助 Mos 软件使其保持一致）
 - [修改用户名](https://support.apple.com/zh-cn/102547)：需创建另一个用户，登录该用户，在其系统设置中修改原用户名
 - [删除用户](https://support.apple.com/zh-cn/guide/mac-help/mchlp1557/mac)
 - [Apple ID 申请](https://support.apple.com/zh-cn/108647)
@@ -111,7 +111,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 #### 访达相关
 
 - 访达：显示路径栏和状态栏，鼠标靠近路径栏，右键可以拷贝路径名称
-- 隐藏 “最近使用” ：访达 - 设置 - 边栏 - 取消勾选 “最近使用”
+- 隐藏 “最近使用”：访达 - 设置 - 边栏 - 取消勾选 “最近使用”
 - 文件夹用图标展示时，右键 - 查看显示选项 - 勾选 “显示项目简介” 和 “用作默认”
 - 访达可以打开多个标签页，打开多个窗口时，可以合并所有窗口
 - 右键文件，选择快速操作，有 “创建 PDF”、“转换图像”、“移除背景”等操作
@@ -162,6 +162,21 @@ option + command + esc       # 强制退出应用程序
 command + ~                  # 切换同一个程序下的窗口
 command + M                  # 将最前方的窗口最小化至程序坞（不会出现在切换窗口中）
 command + H                  # 隐藏最前方 App 的窗口（会出现在切换窗口中）
+```
+
+
+---
+
+#### 颜色标签
+
+```bash
+# 常用目录颜色标签设置标准
+Red               # 重要/科研相关
+Orange            # 个人项目
+Yellow            # 照片/docker app
+Green             # 个人记录/科研、编程参考书目/
+Blue              # 下载目录
+Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 ```
 
 
@@ -910,15 +925,21 @@ For pkg-config to find lapack you may need to set:
 
 ## 相关问题
 
-### VSCode-Insiders 相关
+### VSCode Insiders 相关
 
-- 如何将 vscode-insiders 从 Downloads 放入到 Applications（可直接拖到侧边栏的 Applications 中）：[Moving VS Code Insiders ARM to programs "folder" on M1 mac makes it unable to start (crashes/exits immediately). Can only start from "downloads" folder · Issue #113751 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/113751)
-- 切换不同的实例窗口：双指点击 vscode 软件 logo，会显示不同窗口，选中其中一个
+- 将 Vscode Insiders 从 Downloads 放入到 Applications
+	- 可直接拖到侧边栏的 Applications 中
+	- [Moving VS Code Insiders ARM to programs "folder" on M1 mac makes it unable to start (crashes/exits immediately). Can only start from "downloads" folder · Issue #113751 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/113751)
+
 - 终端切换（Windows 端的快捷键无法切换）
-	- 上下关系 - `shift + command + [ / ]`
-	- 左右关系 - `option + command + Left ⬅︎ / Right ➡︎`
 	- 命令面板 - 聚焦下一终端组 / 在终端组聚焦下一终端
-- Mac 的 vsocde 系列中的 Vim 插件快捷键无法连续移动：[GitHub - VSCodeVim/Vim: :star: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim#mac)
+
+```bash
+shift + command + [ / ]     # 上下关系
+option + command + ← /︎ →    # 左右关系
+```
+
+- Mac 的 VSCode 系列中的 Vim 插件快捷键无法连续移动：[GitHub - VSCodeVim/Vim: :star: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim#mac)
 
 ```bash
 $ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
@@ -931,7 +952,9 @@ $ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool fal
 ### 软件安装问题
 
 - 身份不明开发者：按住 `Control` 键，点击 App，弹出的窗口会有打开按钮；[Mac如何打开身份不明开发者的程序？ - 知乎](https://www.zhihu.com/question/52623818)
+
 - [Apple 无法检查 App 是否包含恶意软件 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchleab3a043/mac)
+
 - 文件已损坏：[PicGo arm64文件已损坏](https://github.com/Molunerfinn/PicGo/issues/1055)
 
 ```bash
@@ -956,7 +979,9 @@ export HOMEBREW_MACOS_VERSION=14.5
 
 ### 其他
 
-- [ ] MacBook Air M3 第一次打开 Chrome 会无法打开，需强制退出后再打开才可以（重新卸载安装无效果）
+- [ ] BetterTouchTool 如何使用
+
+- [ ] MacBook Air M3 第一次打开 Chrome 会无法打开，需强制退出后再打开才可以（重新卸载安装无效果；有时可以第一次直接打开）
 
 - [ ] Mac 如何安装 Parallels Desktop20 最新破解版
 [PD虚拟机，Parallels Desktop 20.0.0最新中文版，支持Mac所有机型【永久使用】](https://mp.weixin.qq.com/s/iFvLMVxYekal87ZsBhQ9pA)

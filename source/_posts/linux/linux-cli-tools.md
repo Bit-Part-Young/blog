@@ -37,6 +37,7 @@ password:
 - [命令行常用工具的替代品 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2022/01/cli-alternative-tools.html)
 - [GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
 - 有意思/搞笑的 GitHub repo：[GitHub - terremoth/awesome-hilarious-repos: Awesome hilarious github repositories](https://github.com/terremoth/awesome-hilarious-repos)
+- [My Favorite CLI Tools](https://switowski.com/blog/favorite-cli-tools/)
 
 
 
@@ -483,11 +484,11 @@ brew install peco  # 安装
 cat file | peco    # 基本使用
 
 
-ncdu -o ncdu.txt  # 输出信息到文件中
+ncdu -o ncdu.txt   # 输出信息到文件中
 
 
 # navi 使用
-navi repo browse  # 按需添加 cheatsheet git repo 以增加丰富性
+navi repo browse   # 按需添加 cheatsheet git repo 以增加丰富性
 
 
 # 升级 fzf
@@ -528,9 +529,9 @@ brew install eg-examples
 
 
 # figlet toilet 相关用法
-showfigfonts   # 查看可用字体
-figlet spt
-figlet -c spt  # 居中 
+showfigfonts      # 查看可用字体
+figlet spt        # 生成字符 logo
+figlet -c spt     # 居中 
 figlet spt | toilet -f term --gay  # 彩色输出
 
 

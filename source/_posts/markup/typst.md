@@ -94,8 +94,9 @@ scoop install main/typst   # Win
 ### 工具
 
 - VSCode 插件：
-	- typst-lsp：具有语言服务器 + 代码格式化（不再继承）等功能
-	- tinymist：语法高亮，代码补全，代码格式化，即时预览等功能
+	- Typst LSP：具有语言服务器 + 代码格式化（不再继承）等功能
+	- Tinymist Typst：语法高亮，代码补全，代码格式化，即时预览、单词统计等功能
+	- 两者不兼容：[Faitl to activate typst-lsp: command 'typst-lsp.pinMainToCurrent' already exists · Issue #513 · nvarner/typst-lsp · GitHub](https://github.com/nvarner/typst-lsp/issues/513)
 
 - [typst-upgrade](https://github.com/Coekjan/typst-upgrade)：检查并升级 Typst packages
 
@@ -656,6 +657,15 @@ Show 规则用于全局替换
 
 - [ ] 目前的大语言模型都没有学习 Typst 内容（Claude 3.5 pro、GPT-o1）
 
+- [ ] Typst 中暂无 latexdiff 替代工具
+
+- [x] Mac 中的 VSCode Typst 相关插件无法处理相对路径情况，会报错；Windows 上的正常
+	- 解决方法：在子目录下创建根目录模板文件的符号链接（暂时解决方法）
+
+```rust
+#import "../template.typ": *   // 报错
+```
+
 - [x] 标题后首段无法正确缩进：
 	- [Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
 	- [首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
@@ -720,9 +730,6 @@ Show 规则用于全局替换
 }
 ```
 
-- [ ] Typst 中暂无 latexdiff 替代工具
-
-- [x] Mac 中的 VSCode typst preview 无法处理相对路径情况 `#import "../template.typ": *`，会报错（应该是 bug，已修复）；windows 上的正常
 
 - [ ] 自己电脑的中文字体在 Typst 已是加粗 bold 状态，如何恢复 regular
 

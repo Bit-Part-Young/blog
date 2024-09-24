@@ -242,7 +242,7 @@ int main() {
 
 ### 任务列表
 
-- 也称 checklist；`- [ ]` 插入未完成任务，`- [x]` 插入已完成任务
+- 也称 checklist；`- []` 插入未完成任务，`- [x]` 插入已完成任务
 - GitHub、Obsidian 会自动加上 checkbox 支持修改
 
 ```markdown

@@ -132,7 +132,7 @@ http://machine_ip_address:2283/api  # 移动端登录
 ## 学术首页
 
 - [GitHub - academicpages/academicpages.github.io: Github Pages template for academic personal websites, forked from mmistakes/minimal-mistakes](https://github.com/academicpages/academicpages.github.io)
-
+- [GitHub - samueldy/samueldy.github.io: Public professional website](https://github.com/samueldy/samueldy.github.io)
 
 
 ---

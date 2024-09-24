@@ -278,6 +278,9 @@ pre-commit sample-config
 # 手动运行钩子
 pre-commit run
 pre-commit run --all-files
+
+# 删除钩子
+rm .git/hooks/pre-commit
 ```
 
 ---

@@ -313,7 +313,7 @@ top: true
 - [x] 设置评论系统
 	- 采用 waline（**可以实现不登录即可提交评论，也可以登录提交评论**）[快速上手 - Waline](https://waline.js.org/guide/get-started/)
 	- valine 无人维护更新
-	- 使用 gitalk 遇到的一些问题：其他人登录评论系统会出现 “ 网络错误 ”；所需要的权限过多
+	- 使用 gitalk 遇到的一些问题：其他人登录评论系统会出现 “网络错误”；所需要的权限过多
 
 - [x] `hexo d` 后，CNAME 文件会被删除 [hexo部署后，CNAME会被自动删除，怎么办？ - 知乎](https://www.zhihu.com/question/28814437)：将需要上传至 GitHub 的内容放在 source 目录，例如 CNAME、favicon.ico、images 等
 
@@ -329,7 +329,7 @@ top: true
 - 博客文章输入的值为 SHA256 加密前的原值
 - 有破解的方法
 
-- [x] 背景颜色：修改前：`#4cbf30` , `#0f9d58`；现在的：`#d9ed92` `#99d98c`；修改后：`48cae4` `0096c7`
+- [x] 背景颜色：修改前：`#4cbf30`, `#0f9d58`；现在的：`#d9ed92` `#99d98c`；修改后：`48cae4` `0096c7`
 
 - [x] 博客插入音乐、B 站视频 [hexo博客插入b站视频 - Lyz](https://blog.liguapi.top/2022/03/07/page-1/)
 

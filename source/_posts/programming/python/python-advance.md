@@ -450,9 +450,7 @@ twine upload dist/*
 
 ## Jupyter Notebook
 
-- 在 Jupyter Notebook 中使用 Python 时，在函数或 类的方法 后添加 `??` 可以查看其 docstring
-
-- 在 Ipython 中按 Tab 键可补全可用的类的方法和属性；在函数或类的方法后添加 `?` 可以查看其 docstring
+- 在 Jupyter Notebook 中使用 Python 时，在函数或类的方法后添加 `??` 可以查看其 docstring
 
 - 代替 Jupyter Notebook：[GitHub - marimo-team/marimo](https://github.com/marimo-team/marimo)
 
@@ -462,13 +460,37 @@ twine upload dist/*
 
 %timeit         # 计时
 
-! ls            # 运行 Bash 命令
-%%bash
+!ls             # 运行 Bash 命令
+%%bash          # 运行 Bash 命令；在 cell 开头添加此行
 ```
 
 - VSCode，在 Python 脚本中的代码前添加 `# %%`，可以像 Jupyter Notebook 一样运行一段代码；添加 `# %% [markdown]`，可编写 Markdown
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401291949924.png)
+
+
+---
+
+### IPython
+
+- [25 IPython Tips for Your Next Advent of Code](https://switowski.com/blog/25-ipython-tips-for-your-next-advent-of-code/)
+
+- 在 Ipython 中按 Tab 键可补全可用的类的方法和属性；在函数或类的方法后添加 `?` 可以查看其 docstring
+
+```bash
+XXX?               # 一个问号；查看类或函数的 docstring
+XXX??              # 两个问号；查看类或函数的源码
+os.*dir*?          # 通配符搜索函数
+%edit              # 进入编辑器写代码；保存并退出时运行代码
+%edit -p           # 打开上次的文件
+%pdb               # 自动开启调试
+%xmode             # 输出异常的模式：Minimal、Plain、Context、Verbose
+%save file.py 1-4  # 将 IPython 中的 session 内容保存成 Python 文件
+%whos              # 列出所有变量
+%paste             # 粘贴时可清除当剪贴板中的 Python 代码中的 ">" 符号，使得代码不会报错
+%%ruby             # 执行其他编程语言的代码
+%rerun ~N/         # 运行之前的第 N 个 session 中的代码
+```
 
 
 ---

@@ -19,7 +19,7 @@ password:
 
 # 图片格式转换
 
-## 图片、pdf 互相转换
+## 图片、PDF 互相转换
 
 - eps 转 pdf：
 	- ps2pdf，Linux 自带，将 ps/eps 格式转成 pdf
@@ -46,6 +46,7 @@ svg2pdf file.svg
 - svg 生成及格式转换：[Text to SVG AI Generator : Create unique SVG illustration from text](https://svg.la/text-to-svg/)
 
 
+
 ---
 
 ## ImageMagick 使用
@@ -53,13 +54,14 @@ svg2pdf file.svg
 >[利用Linux/shell中的命令编辑图片/视频和pdf文件](https://zhuanlan.zhihu.com/p/397857009)
 
 - ImageMagick 中的 convert 命令行工具，可实现多种图片格式转换
-	- 图片格式包括：tiff png jpg svg pdf 等
-	- pdf 转 png 的图片质量没有 pdf2image 高
+	- 图片格式包括：tiff、png、jpg、svg、pdf 等
+	- pdf 转 png 的图片质量没有 pdf2image 工具 高
 	- tiff 图片转换，会将 tiff 的所有图层输出出来（只要编号最小的即可）
+	- ImageMagick V7 版本 `magick` 或 `magick convert` 替换 `convert` 命令
 
-- ghostscript：处理 pdf 文件，可执行命令为 `gs`
+- ghostscript：处理 PDF 文件，可执行命令为 `gs`
 
-- 操作 pdf：[GitHub - Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF)（可使用 Docker 安装）
+- Docker 部署在线操作 PDF：[GitHub - Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF)（
 
 - pdftk M1 芯片安装：[pdftk MacOs M1 · GitHub](https://gist.github.com/u1i/d8d4422ce770ffaad4619eb7e9d040f4)
 
@@ -68,8 +70,11 @@ svg2pdf file.svg
 https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg
 ```
 
+- 图片操作
+
 ```bash
-# ImageMagick V7 版本 magick 或 magick convert 替换 convert
+# 创建 ImageMagick 默认 logo 图片
+convert logo: logo.png
 
 # 格式转换
 convert input.* output.*
@@ -80,9 +85,6 @@ convert -density 1000 input.pdf -quality 100 output.png
 # TIFF 格式压缩
 convert input.tif -compress LZW -quality 75 output.tif
 
-# 创建 ImageMagick 默认 logo 图片
-convert logo: logo.png
-
 # 裁切图片白边
 convert -trim input.png output.png
 
@@ -91,6 +93,13 @@ convert image1.png image2.png +append stack.png
 # 上下堆叠图片 -
 convert image1.png image2.png -append stack.png
 
+# 图片分割
+convert input.jpg -crop 3x3@ +repage +adjoin output_%d.jpg
+```
+
+- PDF 操作
+
+```bash
 # pdf 合并
 # 方式 1；会变模糊
 convert input1.pdf input2.pdf merged.pdf

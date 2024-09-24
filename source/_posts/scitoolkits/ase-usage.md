@@ -21,41 +21,156 @@ password:
 
 - [atomic simulation environment (ASE)](https://wiki.fysik.dtu.dk/ase)：一系列用于设置、操作、运行、可视化及分析原子模拟的工具和 Python 模块
 
-- ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与**核心** `Atoms` object 和 ASE 中的许多可用算法一起使用。
+- ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与**核心** `Atoms` object 和 ASE 中的许多可用算法一起使用
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202406022047963.png)
 
 - [ASE 版本 Release notes](https://wiki.fysik.dtu.dk/ase/releasenotes.html)：查看版本更新细节
 
-- 注：**ase 网站中的代码源码参数及注释与安装的 python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准**
+- 注意事项：
+	- ASE 网站中的源代码参数及注释与安装的 Python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准
+	- 无直接计算弹性常数的模块
+	- 很多变量的类型是 `np.ndarray`
+
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292017026.png)
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292018624.png)
 
 
-```python
-from ase.atoms import Atoms
-from ase.calculators.singlepoint import SinglePointCalculator
 
-results={"energy": -7.0}
-atoms.calc = SinglePointCalculator(atoms, **results)
-atoms.get_potential_energy()
+---
+
+### 参考资料
+
+- ase 教程（内容较详细）：[ASE tutorials](https://ase-workshop-2023.github.io/tutorial/)；源码：[GitHub - ASE-Workshop-2023/tutorial](https://github.com/ASE-Workshop-2023/tutorial)
+
+- ase 相关教程：[ASE Calculator — Atomistic Simulation Tutorial](https://docs.matlantis.com/atomistic-simulation-tutorial/en/1_5_ase_calculator.html)
+
+- [Atomic Simulation Environment (ASE) 基础用法](https://zhuanlan.zhihu.com/p/446086740)
+
+- ase tutorial：[ASE\_tutorial.ipynb](https://github.com/chenggroup/new-comer-tutorial/blob/master/python/ase/ASE_tutorial.ipynb)
+
+- ase md 模拟：[GitHub - PythonFZ/ase\_md\_example](https://github.com/PythonFZ/ase_md_example)
+
+- 弹性性质计算的 ASE 接口（弹性常数、EOS、声速；感觉一般）：[GitHub - jochym/Elastic: A module for ASE for elastic constants calculation.](https://github.com/jochym/Elastic)
+
+- 基于 PAW 和 ASE 的 DFT code：[GPAW: DFT and beyond within the projector-augmented wave method — GPAW](https://wiki.fysik.dtu.dk/gpaw/)
+
+- [GitHub - AlexBoucherr/ASExVASP: A serie of script to perform calculations on VASP using the ASE](https://github.com/AlexBoucherr/ASExVASP)
+
+- [GitHub - jkitchin/dft-book: A book on modeling materials using VASP, ase and vasp](https://github.com/jkitchin/dft-book)
+
+- ase 结构 2D 和 3D 渲染：[GitHub - chrisjsewell/ase-notebook: Highly configurable 2D (SVG) & 3D (threejs) visualisations for ASE/Pymatgen structures, within the Jupyter Notebook.](https://github.com/chrisjsewell/ase-notebook)
+
+- [GitHub - superstar54/x3dase: X3D for Atomic Simulation Environment](https://github.com/superstar54/x3dase)
+
+- ase symmetry 教程（内容一般）：[GitHub - ajjackson/ase-tutorial-symmetry: Tutorial notebook for symmetry features in ASE](https://github.com/ajjackson/ase-tutorial-symmetry)
+
+- lab5 有 ase NEB 计算：[labutil/samples at master · bkoz37/labutil · GitHub](https://github.com/bkoz37/labutil/tree/master/samples)
+
+
+---
+
+## 安装
+
+```bash
+pip install ase  # 安装
+ase test         # 测试；需安装 pytest
 ```
 
 
+
+---
+
+## 使用
+
+- CLI：[Command line tool — ASE documentation](https://wiki.fysik.dtu.dk/ase/cmdline.html)
+
+```bash
+# 开启 ase 补全（适用 bash，zsh 不行）
+ase completion >> ~/.bashrc
+
+# 列出 ase 可识别的构型文件格式
+ase info --formats
+
+# 列出 ase 的 calculators 以及是否被安装
+# 3.22.1 与 3.23.0 版本的输出格式有区别
+ase info --calculators
+
+# 构型转换
+ase convert -i vasp -o xyz -f -v POSCAR structure.xyz
+
+# 查看 db 文件内容 推荐
+ase db test.db
+
+-L N                         # 只显示前 N 行
+--offset N                   # 跳过前 N 行
+--show-keys                  # 显示所有 keys
+--show-values key1,key2,...  # 显示 key 的值；value为数值时，只显示首尾值，如 energy_pa: [-9.184..-5.855]
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202404111050491.png)
+
+---
+
+- crystal 构建
+
 ```python
-# ase rdf 计算
+# 方式 1；简单晶体构建
+from ase.build import bulk
+
+# 方式 2；手动构建
+from ase.atoms import Atoms
+
+# 方式 3；利用空间群构建
+from ase.spacegroup import crystal
+```
+
+---
+
+- 构型可视化（建议在 Jupyter Notebook 中使用）
+
+```python
+# 方式 1
+from ase.visualize.plot import plot_atoms
+
+plot_atoms(atoms)
+
+# 方式 2
+from ase.visualize import view
+
+view(atoms, viewer="ngl")
+```
+
+nglview 组件 效果图：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401201143207.png)
+
+---
+
+- rdf 计算
+
+```python
 from ase.geometry.analysis import Analysis
 
 # 添加 element 参数，可计算 partial rdf；默认计算 full rdf
 rdf = Analysis(images=...).get_rdf()
 ```
 
+---
 
-ase 缺陷计算 寻找最优的超胞形状
->[Tools for defect calculations — ASE documentation](https://wiki.fysik.dtu.dk/ase/tutorials/defects/defects.html#supercell-creation)
+- ase neb 方法：[Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
 
+- ase 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/phasediagram/phasediagram.html)
+
+- ase 缺陷计算 - 寻找最优的超胞形状：[Tools for defect calculations — ASE documentation](https://wiki.fysik.dtu.dk/ase/tutorials/defects/defects.html#supercell-creation)
+
+- [MAC版的ASE如何换轴的颜色 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=46950&extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline)
+
+- interface 构建（较简单情况）：[Interface building - Manipulating atoms — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/manipulating_atoms/manipulating_atoms.html#interface-building)
+
+- DOS、能带、EOS 计算：[Crystals and band structure — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut04_bulk/bulk.html)
 
 ```python
 # 添加真空层；单独使用该函数时，返回值为 None，即无效果
@@ -88,174 +203,14 @@ from ase.utils.ptable import ptable
 atoms = ptable()
 atoms.write("ptable.png")
 
-from ase.data import atomic_masses
-
 
 # 固定平面
 from ase.constraints import FixAtoms, FixedPlane
-
 ```
 
-
-ase 没有直接计算弹性常数的模块
-
-[MAC版的ASE如何换轴的颜色 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=46950&extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline)
-
-
-interface 构建（较简单情况）：[Interface building - Manipulating atoms — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/manipulating_atoms/manipulating_atoms.html#interface-building)
-
-DOS、能带、EOS 计算：[Crystals and band structure — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut04_bulk/bulk.html)
-
-
----
-
-### 参考资料
-
-ase 教程（内容较详细）
->[ASE tutorials](https://ase-workshop-2023.github.io/tutorial/)
-
-ase 进行 md 计算 package
->[GitHub - PythonFZ/ase\_md\_example](https://github.com/PythonFZ/ase_md_example)
-
-
-弹性张量相关，ASE 接口：[GitHub - jochym/Elastic: A module for ASE for elastic constants calculation.](https://github.com/jochym/Elastic)
-
-ase tutorial
->[ASE\_tutorial.ipynb](https://github.com/chenggroup/new-comer-tutorial/blob/master/python/ase/ASE_tutorial.ipynb)
-
-
-基于 PAW 和 ASE 的 DFT code
->[GPAW: DFT and beyond within the projector-augmented wave method — GPAW](https://wiki.fysik.dtu.dk/gpaw/)
-
-
-ase 相关脚本案例
->[GitHub - AlexBoucherr/ASExVASP: A serie of script to perform calculations on VASP using the ASE](https://github.com/AlexBoucherr/ASExVASP)
-
->[GitHub - jkitchin/dft-book: A book on modeling materials using VASP, ase and vasp](https://github.com/jkitchin/dft-book)
-
-
-ase 结构 2D 和 3D 渲染
->[GitHub - chrisjsewell/ase-notebook: Highly configurable 2D (SVG) & 3D (threejs) visualisations for ASE/Pymatgen structures, within the Jupyter Notebook.](https://github.com/chrisjsewell/ase-notebook)
-
->[GitHub - superstar54/x3dase: X3D for Atomic Simulation Environment](https://github.com/superstar54/x3dase)
-
-
-ase.lattice 有生成 graphene 和 graphite modules
->[ase/lattice/hexagonal.py · master · ase / ase · GitLab](https://gitlab.com/ase/ase/-/blob/master/ase/lattice/hexagonal.py)
-
->[Bravais lattices — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/lattice.html)
-
-
-ase symmetry 教程（内容一般）
->[GitHub - ajjackson/ase-tutorial-symmetry: Tutorial notebook for symmetry features in ASE](https://github.com/ajjackson/ase-tutorial-symmetry)
-
-
-表面吸附、EOS、弹性常数计算（ASE 中无计算弹性常数的模块和类）
->[GitHub - jochym/Elastic: A module for ASE for elastic constants calculation.](https://github.com/jochym/Elastic)
-
->[Calculation of elastic properties of crystals — Elastic v5.1.0 documentation](https://elastic.readthedocs.io/en/stable/)
-
-ase 模拟 md
->[simulator.py](https://github.com/PythonFZ/ase_md_example/blob/main/ase_md/simulator.py)
-
-
-ase 相关教程
->[ASE Calculator — Atomistic Simulation Tutorial](https://docs.matlantis.com/atomistic-simulation-tutorial/en/1_5_ase_calculator.html)
-
-
->[GitHub - ASE-Workshop-2023/tutorial: Tutorial site for the 2023 workshop "Open Science with the Atomic Simulation Environment"](https://github.com/ASE-Workshop-2023/tutorial)
-
-
----
-
-## 安装
-
-```bash
-pip install ase  # 安装
-
-ase test         # 测试；需安装 pytest
-```
-
-
----
-
-## 常用模块
+- 其他
 
 ```python
-from ase.cell import Cell
-
-# cell 参数转换成 cell matrix
-cell = Cell.fromcellpar([3.31, 3.31, 3.31, 90, 90, 90])
-cell[:]
-```
-
----
-
-构型可视化
-
-```python
-# 方式 1
-from ase.visualize.plot import plot_atoms
-
-plot_atoms(atoms)
-
-# 方式 2
-from ase.visualize import view
-
-view(atoms, viewer="ngl")
-```
-
-nglview，可在 jupyter notebook 中可视化构型
-```bash
-pip install nglview
-```
-
-
-nglview 效果图：
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401201143207.png)
-
----
-
-crystal 构建
-
-```python
-# 方式 1；最简单
-from ase.build import bulk
-
-# 方式 2
-from ase.atoms import Atoms
-
-# 方式 3
-from ase.spacegroup import crystal
-```
-
-```python
-from ase.spacegroup import Spacegroup
-
-spg = Spacegroup(152)
-
-# 查看等同原子坐标
-spg.equivalent_sites([0.4673, 0, 0.3333])
-```
-
-超胞
-```python
-# 方式 1
-supercell = atoms * (2, 2, 2)
-```
-
-
-`db.select(sort)` 中的 `sort` 为 含 key 的 str，含 `-` 时，降序
-
-
-ase neb 方法：[Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
-
-ase 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/phasediagram/phasediagram.html)
-
-
-```python
-
 from ase.build import sort
 
 # 按照 chemical symbols 排序生成新的 Atoms object
@@ -271,81 +226,54 @@ c = FixAtoms(mask=atoms.positions[:, 2] < 1.0)
 atoms.set_constraint(c)
 ```
 
-[Atomic Simulation Environment (ASE) 基础用法](https://zhuanlan.zhihu.com/p/446086740)
-
-
-```python
-# 执行 eos 计算，拟合体模量 B
-from ase.eos import calculate_eos
-from ase.units import kJ
-from ase.atoms import Atoms
-
-calc = ...
-atoms: Atoms = ...
-atoms.calc = calc
-eos = calculate_eos(atoms, trajectory="XXX.traj")
-v, e, B = eos.fit()
-print(B / kJ * 1.0e24, "GPa")
-```
 
 
 ---
 
-### CLI
-
->[Command line tool — ASE documentation](https://wiki.fysik.dtu.dk/ase/cmdline.html)
-
-开启 ase 补全（适用 bash，zsh 不行）
-
-```bash
-ase completion >> ~/.bashrc
-```
-
-```bash
-# 列出 ase 可识别的构型文件格式
-ase info --formats
-# 列出 ase 的 calculators 以及是否被安装
-# 3.22.1 与 3.23.0 版本的输出格式有区别
-ase info --calculators
-
-# 构型转换
-ase convert -i vasp -o xyz -f -v POSCAR structure.xyz
-```
-
-```bash
-# 查看 db 文件内容 推荐
-ase db test.db
-
--L N                         # 只显示前 N 行
---offset N                   # 跳过前 N 行
---show-keys                  # 显示所有 keys
---show-values key1,key2,...  # 显示 key 的值；value为数值时，只显示首尾值，如 energy_pa: [-9.18438289..-5.855563642]
-```
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202404111050491.png)
-
-
-
----
+## 常用模块
 
 ### ase.atoms
 
-[array methods of Atoms objects](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#working-with-the-array-methods-of-atoms-objects)
-
-Atom 和 Atoms 是 ASE 的两个基本 Object， Atoms 由 Atom 构成。
-本质上 Atoms 是 Atom 的 list，可以使用标序的方式来查看 Atom
-
-
-需添加 calculator 才能使用的 methods：[Adding a calculator](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#adding-a-calculator)
-
+- Atom 和 Atoms 是 ASE 的两个基本 Object， Atoms 由 Atom 构成
+- 本质上 Atoms 是 Atom 的 list，可以使用标序的方式来查看 Atom
+- [array methods of Atoms objects](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#working-with-the-array-methods-of-atoms-objects)
+- 需添加 calculator 才能使用的 methods：[Adding a calculator](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#adding-a-calculator)
 
 ```python
 # 属性
+symbols                  # 化学式；list() 得到原子对应化学符号列表
+positions                # 原子位置；笛卡尔坐标
+cell                     # 基矢
+cell[:]                  # 基矢；np.ndarray
+cell.array               # 同上
+cell.cellpar()           # 晶格参数（常数 + 角度）
+cell.lengths()           # 晶格常数
+cell.angles()            # 晶格角度
+numbers                  # 原子对应原子序数
+pbc                      # 周期性边界条件
 
-# 方法
-get_XXX()
-set_XXX()
+# 方法；主要分为获取和设置；部分方法和属性的功能相同
+get_xxx()
+set_xxx()
+
+todict()                 # 将原子信息写入 dict
+copy()                   # 拷贝
+wrap()                   # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
+write()                  # 写入构型格式文件
+edit()
+pop()
+
+get_pbc()                # 周期性边界条件
+get_cell()               # 基矢
+get_volume()             # 体积
+get_masses()             # 原子对应原子质量；np.ndarray
+get_atomic_numbers()     # 原子对应原子序数；np.ndarray
+get_positions()          # 笛卡尔坐标；wrap 参数默认为 False
+get_scaled_positions()   # 分数坐标；wrap 参数默认为 True
+get_chemical_formula()   # 化学式
+get_chemical_symbols()   # 化学符号列表
+get_distance()           # 两原子间的距离
+get_distances()          # 第 i 个原子与给定原子列表间的距离
 
 # 需添加 calculator 才能使用的方法
 get_potential_energy()
@@ -358,9 +286,9 @@ get_stress()
 from ase.atoms import Atoms
 from ase.formula import Formula
 
-atoms: Atoms
+atoms: Atoms      # 类型提示
 
-# 常用属性和方法
+# 晶体常用变量获取
 # 化学式
 formula = atoms.get_chemical_formula()
 # 成分 {'Al': 5, 'Ti': 1}
@@ -368,32 +296,16 @@ composition = Formula(formula).count()
 # 原子数
 natoms = len(atoms)
 # 元素种类数
-nele = len(set(atoms.get_chemical_symbols()))
+nelements = len(set(atoms.get_chemical_symbols()))
 
 # 构型中某一元素的浓度 
-conc = atoms.get_chemical_symbols().count('Pd') / len(atoms)
+concentration = atoms.get_chemical_symbols().count('Pd') / len(atoms)
 
 # 删除 H 原子
 del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
 
 # 生成 slab 模型；在指定轴两端各添加真空层 vacuum 数值并使原子位点居中
 center(vacuum=10.0, axis=2)
-
-copy()  # 拷贝
-
-# 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
-wrap()
-
-write()  # 写入构型格式文件
-
-# 分数坐标；wrap 参数默认为 True
-get_scaled_positions()
-# 笛卡尔坐标；wrap 参数默认为 False
-get_positions()
-positions
-
-get_distance()    # 两原子间的距离
-get_distances()   # 第 i 个原子与给定原子列表间的距离
 ```
 
 
@@ -412,11 +324,13 @@ get_distances()   # 第 i 个原子与给定原子列表间的距离
 from ase.build import bulk
 
 # 原胞
-primCell = bulk("Al", "fcc", a=4.05)
+atoms = bulk("Al", "fcc", a=4.05)
 # 单胞 cubic=True
-unitCell = bulk("Al", "fcc", a=4.05, cubic=True)
+atoms = bulk("Al", "fcc", a=4.05, cubic=True)
+
 # 超胞
-superCell = unitCell * (2, 2, 2)
+supercell = atoms * 2           # 方式 1
+supercell = atoms * (2, 2, 2)   # 方式 2
 ```
 
 ---
@@ -429,6 +343,41 @@ from ase.build import surface
 
 简单 bulk 模型的表面构建 示例代码
 
+
+
+---
+
+### ase.cell
+
+```python
+from ase.cell import Cell
+
+# cell 参数转换成基矢
+cell = Cell.fromcellpar([3.31, 3.31, 3.31, 90, 90, 90])
+cell[:]
+```
+
+---
+
+### ase.spacegroup
+
+```python
+from ase.spacegroup import Spacegroup
+
+spg = Spacegroup(152)
+
+# 查看等同原子坐标
+spg.equivalent_sites([0.4673, 0, 0.3333])
+```
+
+
+---
+
+### ase.lattice
+
+有生成 graphene 和 graphite 模块：[ase/lattice/hexagonal.py · master · ase / ase · GitLab](https://gitlab.com/ase/ase/-/blob/master/ase/lattice/hexagonal.py)
+
+[Bravais lattices — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/lattice.html)
 
 
 ---
@@ -486,7 +435,22 @@ from ase.io.xsd import read_xsd, write_xsd
 
 ### ase.eos
 
-获取平衡体积，能量和体模量
+- 执行 eos 计算，拟合体模量 B
+
+```python
+from ase.eos import calculate_eos
+from ase.units import kJ
+from ase.atoms import Atoms
+
+calc = ...
+atoms: Atoms = ...
+atoms.calc = calc
+eos = calculate_eos(atoms, trajectory="XXX.traj")
+v, e, B = eos.fit()
+print(B / kJ * 1.0e24, "GPa")
+```
+
+- 获取平衡体积，能量和体模量
 
 ```python
 from ase.eos import EquationOfState
@@ -504,10 +468,11 @@ ax.set_title(label=None)
 ```
 
 
-
 ---
 
 ### ase.db
+
+- `db.select(sort)` 中的 `sort` 为 含 key 的 str，含 `-` 时，降序
 
 ```python
 from ase.db import connect
@@ -557,7 +522,11 @@ for row in db.select("id<=10"):
     data = row.data
 	# 将 AtomsRow 转化成 Atoms
     atoms = row.toatoms()
-    db_output.write(atoms=atoms, key_value_pairs=key_value_pairs, data=data)
+    db_output.write(
+        atoms=atoms,
+        key_value_pairs=key_value_pairs,
+        data=data,
+    )
 ```
 
 
@@ -578,6 +547,19 @@ atoms.calc = calc
 opt = BFGS(atoms, trajectory='opt.traj')
 opt.run(fmax=0.05)
 ```
+
+```python
+# 设置单点能
+from ase.atoms import Atoms
+from ase.calculators.singlepoint import SinglePointCalculator
+
+results={"energy": -7.0}
+atoms.calc = SinglePointCalculator(atoms, **results)
+atoms.get_potential_energy()
+```
+
+
+---
 
 #### VASP
 
@@ -729,4 +711,14 @@ module load vasp/5.4.4-intel-2021.4.0
 ulimit -s unlimited
 
 python python-file-name.py
+```
+
+
+---
+
+### 其他
+
+```python
+from ase.data import atomic_masses
+
 ```

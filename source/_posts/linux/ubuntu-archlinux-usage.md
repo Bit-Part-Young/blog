@@ -570,7 +570,6 @@ fc-list  # 查看字体
 fc-list :lang=zh  # 查看中文字体
 ```
 
-
 - 字体设置
 	- 系统设置： Settings - Appearance - Fonts
 	- Chrome 浏览器设置：Settings - Appearance - Customize font

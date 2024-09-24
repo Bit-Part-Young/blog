@@ -140,7 +140,7 @@ localhost  # 主机名
 - GitHub Pages 部署：略
 
 - Vercel 部署：
-	- GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 repo（多于 5 个时，在 vercel 中只能显示 5 个 ）
+	- GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 repo（多于 5 个时，在 vercel 中只能显示 5 个）
 	- GitHub 登录 [Vercel](https://vercel.com/login) - 首页 - New project - Import Git Repository - Deploy
 	- 点击 Goto Dashboard 来到项目主页，选择顶部的 Settings，在 Project Name 中更改网站名称
 
@@ -162,8 +162,6 @@ localhost  # 主机名
 	- MkDocs 和 Hugo 框架由 Cloudflare Pages 部署
 
 - Vercel 部署 Vuepress 框架失败：将 Vuepress 框架选择成 Other；[vercel部署失败，提示Error: ENOENT: no such file or directory, stat '/vercel/path0/src' · Issue #11647 · DIYgod/RSSHub · GitHub](https://github.com/DIYgod/RSSHub/issues/11647)
-
-
 
 
 
@@ -193,6 +191,8 @@ localhost  # 主机名
 - 提供 DNS 查询的 API：[DNS.fish - Command-line DNS Record Lookup Tool](https://dns.fish/)
 
 - Cloudflare R2 需要先添加订阅（免费额度：10GB/月），建议使用 PayPal 方式，可以使用银联银行卡；添加 Bucket，之后可以添加文件或文件夹；管理 API Token
+
+- [ ] 如何进行 ICP 备案
 
 - [ ] 如何白嫖域名（限制较多，不建议）：[2024最新免费域名教程，可托管CF，零失败率，解决所有坑点。\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1by411B7Ko/)
 

@@ -513,7 +513,7 @@ url = https://user:token@gitee.com/user/repo.git
 
 ### Git LFS
 
-Git LFS(Git Large File Storage) ：
+Git LFS(Git Large File Storage)：
 
 - GitHub 推出的大文件存储服务，让 Git 只保存二进制文件的 hash，而二进制文件将会存在 Git LFS 服务器中。以减小 Git 仓库体积，加快仓库的克隆和拉取
 
@@ -590,7 +590,9 @@ git push -f origin main
 ### clone
 
 ```bash
-git clone --depth 1 <url>  # 浅克隆；只 clone 最新提交
+git clone  <url>           # 完整克隆（fresh/full clone）
+git clone --depth 1 <url>  # 浅克隆（shallow clone）；只 clone 最新提交
+git fetch --unshallow      # 更新本地仓库，使其包含完整的历史记录
 
 git clone -b <branch1> -b <branch2> <url>  # clone 多个分支
 ```
@@ -706,9 +708,9 @@ git branch -vv             # 列出 repo 所有分支信息
 ### checkout
 
 ```bash
-git checkout <Branch>     # 切换分支
-git checkout -b <Branch>  # 创建并切换新分支
-git checkout -            # 迅速切换到上一个分支
+git checkout <Branch>      # 切换分支
+git checkout -b <Branch>   # 创建并切换新分支
+git checkout -             # 迅速切换到上一个分支
 ```
 
 
@@ -724,8 +726,7 @@ git ls-remote origin    # 列出远程仓库的引用（分支和标签）
 git remote prune origin
 git remote prune origin --dry-run  # 不实际删除
 
-# 
-git remote rm origin
+git remote rm origin    # 
 ```
 
 
@@ -745,10 +746,11 @@ git status --short --branch
 ### reset
 
 ```bash
-git reset              # 撤销整个暂存区的 add 操作
-git reset HEAD~        # 撤回最新的 commit，保留代码修改；--hard 不保留
-          commit_hash  # 撤回到指定的 commit id 版本
-          file         # 撤销指定文件 add 操作
+git reset               # 撤销整个暂存区的 add 操作
+git reset HEAD~         # 撤回最新的 commit，保留代码修改
+git reset --hard HEAD~  # 不保留修改
+git reset commit_hash   # 撤回到指定的 commit id 版本
+git reset file          # 撤销指定文件 add 操作
 ```
 
 
@@ -765,22 +767,22 @@ git reset HEAD~        # 撤回最新的 commit，保留代码修改；--hard �
 
 ```bash
 # 查看标签
-git tag -ln                  # 列出标签及其注释
-git ls-remote --tags origin  # 列出远程 repo 的标签
-git show v1.0.0              # 查看具体标签信息
+git tag -ln                     # 列出标签及其注释
+git ls-remote --tags origin     # 列出远程 repo 的标签
+git show v1.0.0                 # 查看具体标签信息
 
 # 新建标签
 git tag -a v1.0.0 -m 'comment'  # 带注释
 
 # push 标签
-git push origin v1.0.0  # 特定标签
-git push origin --tags  # 所有标签
+git push origin v1.0.0          # 特定标签
+git push origin --tags          # 所有标签
 
 # 删除标签
 git tag -d v1.0.0                  # 本地
 git push origin :refs/tags/v1.0.0  # 远程
 
-git pull --all          # pull 远程所有内容包括标签
+git pull --all                  # pull 远程所有内容包括标签
 ```
 
 
@@ -842,6 +844,7 @@ git log -1 --diff-filter=A --follow --pretty="%ci" file
 git diff                      # 比较工作区和暂存区
 git diff <Branch>             # 比较工作区和分支
 git diff <Branch1> <Branch2>  # 比较两个分支
+git diff HEAD~N -- file       # 查看某个文件当前工作区与 HEAD~N 的差异
 
 # 查看工作区文件改动统计（个数，增加、删除行数）
 git diff --stat
@@ -861,7 +864,7 @@ git diff --staged --stat
 git diff --cached --stat
 
 # 常用参数
---name-only         # 只显示发生变化的文件名称
+--name-only         # 只显示发生变化的文件名
 --diff-filter=M     # 筛选只显示被修改的文件
 ```
 
@@ -871,7 +874,7 @@ git diff --cached --stat
 ### stash
 
 - 用于临时保存暂存区的未提交更改，返回工作区
-- 暂存项（stashes）遵循栈结构，即最近暂存的更改（编号为 `stash@{N}`）会被放置在栈的顶部（索引为 0）
+- 暂存项（stashes）遵循栈结构，即最近暂存的更改（编号为 `stash@{n}`）会被放置在栈的顶部（索引为 0）
 
 ```bash
 git stash                 # 将当前修改暂存到 stash 栈中
@@ -879,10 +882,11 @@ git stash -u              # 包括新增 untracked 文件
 git stash push -- file    # 指定单个文件
 git stash save 'message'  # 添加备注
 
-git stash list    # 列出所有 stash
-git stash pop     # 恢复 stash 中的最近一次暂存，并从 stash 栈中删除
-git stash apply   # 恢复 stash 中的最近一次暂存，不从 stash 栈中删除
-git stash show -p # 查看 stash 修改内容
+git stash list     # 列出所有 stash
+git stash pop      # 恢复 stash 中的最近一次暂存，并从 stash 栈中删除
+git stash apply    # 恢复 stash 中的最近一次暂存，不从 stash 栈中删除
+git stash show -p  # 查看 stash 修改内容
+git stash show --name-only  # 查看 stash 文件名
 git stash apply stash@{n}   # 恢复特定 stash
 git stash drop stash@{n}    # 删除特定 stash
 git stash clear             # 清空 stash
@@ -897,12 +901,9 @@ git stash branch <branch>   # 从 stash 中创建一个新的分支
 >[从工作区批量去除已删除文件](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%8E%BB%E9%99%A4%E5%A4%A7%E9%87%8F%E5%B7%B2%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6)
 
 ```bash
-# 从工作区批量去除已删除文件
-git rm $(git ls-files -d)
-
-# 删除 push 到远程 repo 的文件/目录
-git rm --cached file
-git rm -r --cached folder
+git rm $(git ls-files -d)     # 从工作区批量去除已删除文件
+git rm --cached file          # 删除远程 repo 的文件
+git rm -r --cached folder     # 删除远程 repo 的目录
 ```
 
 
@@ -915,14 +916,14 @@ git rm -r --cached folder
 - [GitHub - GitAlias/gitalias: Git alias commands for faster easier version control](https://github.com/GitAlias/gitalias)
 
 ```bash
-# 方式 1 命令行终端设置
+# 方式 1 命令行设置
 git config --global alias.p 'push'
 
 # 方式 2 直接在 ~/.gitconfig 添加
 [alias]
   p = push
   
-# oh-my-zsh 定义了 许多 git 命令的 alias
+# oh-my-zsh 中的内置 git 插件定义了 许多 git 命令的 alias
 alias | grep 'git subcommand'
 ```
 
@@ -934,8 +935,9 @@ alias | grep 'git subcommand'
 
 - 提交空文件夹：在空文件夹中创建 `.gitkeep` 文件
 
-- push 到多个远程 repo：[git-tips#文件推向3个git库](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
-	- 只能从 `origin` 里的一个 repo url pull 代码，默认为添加到 `origin` 的第一个地址，可在 `./.git/config` 文件中直接调整 repo url 顺序
+- push 到多个远程 repo（不能是浅克隆）
+	- [文件推向3个git库 - git-tips](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
+	- 只能从 `origin` 里的一个 repo url pull 代码，默认为添加到 `origin` 的第一个地址，可在 `.git/config` 文件中直接调整 repo url 顺序
 	- 可用此方法替代 Gitee 与 GitHub 之间互相同步的设置
 
 ```bash
@@ -945,6 +947,9 @@ git remote set-url --add origin url
 
 # 删除远程 repo url
 git remote set-url --delete origin url
+
+# 也可直接在 .git/config 添加/删除远程 repo url
+url = XXX
 ```
 
 ---
@@ -1071,8 +1076,11 @@ git filter-repo -f --commit-callback 'commit.committer_date = commit.author_date
 ## 相关问题
 
 - GitHub 和 Gitee 中的 md 文档无法渲染 `\begin{}` 等复杂 LaTeX 公式命令
+
 - GitHub 可以渲染 Front-Matter，Gitee 和 Typora 暂不行，但会将其包裹起来
+
 - [坑：ssh: connect to host github.com port 22: Connection refused - 知乎](https://zhuanlan.zhihu.com/p/521340971)
+
 - git 报错：`error: RPC failed; Failed to connect to github.com port 443: Couldn't connect to server`
 
 ```bash
