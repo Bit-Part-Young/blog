@@ -27,7 +27,7 @@ password:
 ### master
 
 - Linux 系统：Ubuntu 22.04，内核：5.19.0-43-generic
-- root 权限：无 ；无法使用 apt、apt-get、dpkg、snap 命令安装程序
+- root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
 - 任务调度系统：Slurm
 - CPU：Intel Xeon Platinum 8369B，共 64 核；CPU 信息查看：`cat /proc/cpuinfo`
 - GPU：2 $\times$ 24G RTX 3090；调用 GPU 时只能一整块调用，显存自动分配；GPU 信息、使用情况查看：`nvidia-smi`
@@ -153,7 +153,7 @@ model.to(device)
 ### manager
 
 - Linux 系统：Ubuntu 16.04；内核：4.15.0-120-generic
-- root 权限：无 ；无法使用 apt、apt-get、dpkg、snap 命令安装程序
+- root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
 - 任务调度系统：PBS
 - CPU：Intel Xeon E5520、Intel Xeon E5630（node 9）、Intel Xeon E5-2620（node 11）；共 100 核，共 12 个节点（node1~11 + manager；其中 node2，6，7，8 经常 down）
 - GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理任务）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）
@@ -306,7 +306,7 @@ ssh SiYuan
 
 - 安装 **Remote Development** 扩展，如上面的 `~/.ssh/config` 内容已设置好，会自动识别设置好的主机名（**config 文件所在路径可自定义**）。
 
-- VSCode 远程连接 manager（机子较老，10 余年历史） ，有时会导致其负载过高而崩溃，不建议长时间连接；vscode 远程连接 master（2023 年 5 月配置）暂无相关问题。
+- VSCode 远程连接 manager（机子较老，10 余年历史），有时会导致其负载过高而崩溃，不建议长时间连接；vscode 远程连接 master（2023 年 5 月配置）暂无相关问题。
 
 - 在超算上使用 python 插件中的 pylance 语言服务器（LSP）以及 jupyter 插件，常会出现 pylance 崩溃的问题（Pi 稍微稳定些），因为超算的登录节点资源有限，建议将 pylance 换成 jedi（功能不及 pylance），会稍微稳定些；建议不在超算平台上使用 jupyter notebook。master 暂无相关问题。
 
@@ -1598,7 +1598,7 @@ WIP...
 
 ## 交我算常见问题总结
 
-以下是使用 “ 交我算 ” 过程中可能遇到的常见问题总结：
+以下是使用 “交我算” 过程中可能遇到的常见问题总结：
 
 ---
 
@@ -1612,7 +1612,7 @@ WIP...
 
 **致谢模版**
 
-- “ 交我算 ” 用户在发布科研成果或论文时，应标注 “本论文的计算结果得到了上海交通大学交我算平台的支持和帮助”（The computations in this paper were run on the π 2.0 (or Siyuan Mark-I) cluster supported by the Center for High Performance Computing at Shanghai Jiao Tong University）. 论文发表后，欢迎将见刊论文通过邮件发送到 hpc@sjtu.edu.cn。
+- “交我算” 用户在发布科研成果或论文时，应标注 “本论文的计算结果得到了上海交通大学交我算平台的支持和帮助”（The computations in this paper were run on the π 2.0 (or Siyuan Mark-I) cluster supported by the Center for High Performance Computing at Shanghai Jiao Tong University）. 论文发表后，欢迎将见刊论文通过邮件发送到 hpc@sjtu.edu.cn。
 
 ---
 

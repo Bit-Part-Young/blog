@@ -97,6 +97,7 @@ scoop install main/typst   # Win
 	- Typst LSP：具有语言服务器 + 代码格式化（不再继承）等功能
 	- Tinymist Typst：语法高亮，代码补全，代码格式化，即时预览、单词统计等功能
 	- 两者不兼容：[Faitl to activate typst-lsp: command 'typst-lsp.pinMainToCurrent' already exists · Issue #513 · nvarner/typst-lsp · GitHub](https://github.com/nvarner/typst-lsp/issues/513)
+	- [x] Tinymist 如何实时更新编译的预览 pdf（设置 "Tinymist Export PDF" 为 "onType"）
 
 - [typst-upgrade](https://github.com/Coekjan/typst-upgrade)：检查并升级 Typst packages
 

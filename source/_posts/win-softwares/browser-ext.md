@@ -33,7 +33,11 @@ password:
 
 ### Vimium
 
-- 使用 Vim 快捷键浏览网页；[vimium的日常](https://coffee1993.github.io/2016/03/16/vimium%E7%9A%84%E6%97%A5%E5%B8%B8/)
+- 使用 Vim 快捷键浏览网页
+
+- [ ] 暂无法在 Chrome 商店网页使用快捷键：[Make vimium work in Chrome WebStore and PDF viewer · Issue #3340 · philc/vimium · GitHub](https://github.com/philc/vimium/issues/3340)
+
+- [ ] 使用 BewlyBewly 插件的 B 站首页网页无法使用上下移动的快捷键
 
 ```bash
 # 快捷键

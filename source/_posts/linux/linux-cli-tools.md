@@ -343,7 +343,7 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 - 替代 `ls`：
 	- [lsd](https://github.com/lsd-rs/lsd)（可显示文件的 git 状态）
-	- [eza](https://github.com/eza-community/eza)（exa 的维护版本；可显示文件的 git 状态；可以与 .gitignore 结合）
+	- [eza](https://github.com/eza-community/eza)（exa 的维护版本；可显示文件的 git 状态）
 	- [exa](https://github.com/ogham/exa)（已不再更新）
 
 - 替代 `grep`：

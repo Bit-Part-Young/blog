@@ -240,45 +240,50 @@ atoms.set_constraint(c)
 - 需添加 calculator 才能使用的 methods：[Adding a calculator](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#adding-a-calculator)
 
 ```python
+from ase.atoms import Atoms
+
 # 属性
-symbols                  # 化学式；list() 得到原子对应化学符号列表
-positions                # 原子位置；笛卡尔坐标
-cell                     # 基矢
-cell[:]                  # 基矢；np.ndarray
-cell.array               # 同上
-cell.cellpar()           # 晶格参数（常数 + 角度）
-cell.lengths()           # 晶格常数
-cell.angles()            # 晶格角度
-numbers                  # 原子对应原子序数
-pbc                      # 周期性边界条件
+symbols                    # 化学式；list() 得到原子对应化学符号列表
+positions                  # 原子位置；笛卡尔坐标
+cell                       # 基矢
+cell[:]                    # 基矢；np.ndarray
+cell.array                 # 同上
+cell.cellpar()             # 晶格参数（常数 + 角度）
+cell.lengths()             # 晶格常数
+cell.angles()              # 晶格角度
+numbers                    # 原子对应原子序数
+pbc                        # 周期性边界条件
+info                       # 给 Atoms 设置信息；dict；可用于写入 extxyz 格式文件
 
 # 方法；主要分为获取和设置；部分方法和属性的功能相同
 get_xxx()
 set_xxx()
 
-todict()                 # 将原子信息写入 dict
-copy()                   # 拷贝
-wrap()                   # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
-write()                  # 写入构型格式文件
+todict()                   # 将原子信息写入 dict
+copy()                     # 拷贝
+wrap()                     # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
+write()                    # 写入构型格式文件
 edit()
 pop()
 
-get_pbc()                # 周期性边界条件
-get_cell()               # 基矢
-get_volume()             # 体积
-get_masses()             # 原子对应原子质量；np.ndarray
-get_atomic_numbers()     # 原子对应原子序数；np.ndarray
-get_positions()          # 笛卡尔坐标；wrap 参数默认为 False
-get_scaled_positions()   # 分数坐标；wrap 参数默认为 True
-get_chemical_formula()   # 化学式
-get_chemical_symbols()   # 化学符号列表
-get_distance()           # 两原子间的距离
-get_distances()          # 第 i 个原子与给定原子列表间的距离
+get_pbc()                  # 周期性边界条件
+get_cell()                 # 基矢
+get_volume()               # 体积
+get_masses()               # 原子对应原子质量；np.ndarray
+get_atomic_numbers()       # 原子对应原子序数；np.ndarray
+get_positions()            # 笛卡尔坐标；wrap 参数默认为 False
+get_scaled_positions()     # 分数坐标；wrap 参数默认为 True
+get_chemical_formula()     # 化学式
+get_chemical_symbols()     # 化学符号列表
+get_distance()             # 两原子间的距离
+get_distances()            # 第 i 个原子与给定原子列表间的距离
 
 # 需添加 calculator 才能使用的方法
-get_potential_energy()
-get_forces()
-get_stress()
+get_potential_energy()     # 总能量
+get_potential_energies()   # 每个原子的能量
+get_forces()               # 每个原子的受力
+get_stress()               # 应力张量
+get_stresses()             # 每个原子的应力张量
 ```
 
 

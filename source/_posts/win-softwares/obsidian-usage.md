@@ -169,7 +169,10 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
     - 同步配置文件夹：对于手机 - PC 端之间互相同步，开始可先开启，手机端同步到配置文件后，再将其关闭
     - Infini Cloud 服务器地址：`https://toi.teracloud.jp/dav/`
 
-- Auto Link Title：自动获取 URL 标题（实用性很高）；快捷键 `Crtl + Shift + E`；无法实现文档中的全部链接标题的获取，只能单个
+- Auto Link Title：自动获取 URL 标题（实用性很高）
+	- 快捷键 `Crtl + Shift + E`
+	- 无法实现文档中的全部链接标题的获取，只能单个
+	- 解析微信公众号、知乎标题失败：[auto link title 解析微信公众号标题失败？ - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/28627/3)
 
 - Advanced Tables：Markdown 表格增强；按 Tab 键自动补全 Markdown 表格所需格式
 
@@ -179,7 +182,7 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 
 - Vault Statistics：Vault 信息统计，包括文档数，文档中的字符和词数（出现在右下角）
 
-- Image Auto Upload Plugin：借助 PicGo/PicList 实现图片自动上传并转成图链
+- Image auto upload Plugin：借助 PicGo/PicList 实现图片自动上传并转成图链
 
 - Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式（**通过 Pandoc 导出，需安装并配置；含中文的 md 导出成 pdf 格式一般都会报错，建议手动写命令，其他格式可以成功导出**）
 

@@ -83,15 +83,6 @@ password:
 
 ![different schemes of texlive](https://i.stack.imgur.com/Edat8.png)
 
-```bash
-texdoc texlive-en          # 查看 TeX Live 指南
-texdoc texlive-zh
-
-texdoc package/class       # 查看宏包、文档类帮助文档
-
-texdoc symbols             # 查看符号表
-```
-
 
 ---
 
@@ -237,6 +228,16 @@ tlmgr --version
 
 ### 工具
 
+- texdoc：查看 LaTeX 相关文档
+
+```bash
+texdoc texlive-en          # 查看 TeX Live 指南
+texdoc texlive-zh
+texdoc package/class       # 查看宏包、文档类帮助文档
+texdoc symbols             # 查看符号表
+texdoc texcount            # 查看 texcount 文档
+```
+
 - VSCode 插件：
 	- LaTeX Workshop：语法高亮、实时编译 LaTeX，有字数统计功能
 		- 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
@@ -298,9 +299,16 @@ latexindent -l latexindent.yaml -w -s main.tex
 defaultIndent: "  "       # 设置缩进为两个空格
 ```
 
-- `makeglossaries`：Tex Live 自带，用于生成和管理文档中的术语表（glossaries）、缩略词表（acronyms）和符号表等
+- texcount：统计（Tex Live 自带）
 
-- LaTeX 实现审阅效果：latexdiff（Tex Live 自带）
+```bash
+texcount -man             # 查看 manual
+texcount -help-options    # 查看命令选项
+
+texcount main.tex
+```
+
+- latexdiff：LaTeX 实现审阅效果（Tex Live 自带）
 	- 使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
 	- 若 tex 多个文件嵌套，会复杂许多
 
@@ -311,6 +319,10 @@ sudo apt install latexdiff
 # macOS 安装
 brew install latexdiff
 ```
+
+- makeglossaries：Tex Live 自带，用于生成和管理文档中的术语表（glossaries）、缩略词表（acronyms）和符号表等
+
+- PyTeXMK（latexmk 替代工具）：[GitHub - YanMing-lxb/PyTeXMK: LaTeX 辅助编译命令行程序 LaTeX Auxiliary Compilation Command Line Tool](https://github.com/YanMing-lxb/PyTeXMK)
 
 - 生成多种格式文献引用：[BibGuru - A New FREE APA, Harvard, & MLA Citation Generator](https://www.bibguru.com/)
 
@@ -380,7 +392,6 @@ julia> arxiv2bib(arxiv)
 # wenxian 安装与使用
 pip install -U pipx
 pipx run wenxian from 10.1063/5.0155600
-
 ```
 
 ---
@@ -462,33 +473,34 @@ latexmk --xelatex main.tex
 
 #### latexmk
 
-`.latexmkrc` 文件：latexmk 配置文件；通常包含以下内容
-
-- 构建引擎的选择：如 pdfLaTeX、XeLaTeX 或 LuaLaTeX。
-- 构建参数：设置构建过程中的各种参数，如输出文件类型、编译次数、文件清理选项等。
-- 自定义构建规则：包括设置文件依赖关系、指定额外的编译步骤等。
-- 输出文件命名规则：定义输出文件的命名规则，以确保生成的文件按照特定的方式命名。
-- 文件监控选项：配置 latexmk 以在文件更改时自动重新构建文档，以提高工作效率。
-
-.latexmkrc 含义
->[.latexmkrc](https://github.com/cohsh/.dotfiles/blob/main/latex/.latexmkrc)
-
 ```bash
-latexmk 
-latexmk 
+latexmk [options] main.tex  # .tex 后缀名可省略
 
 # 常用参数
--c                         # 删除辅助文件
--C                         # 删除辅助文件 + PDF
--time                      # 显示执行时间统计信息
--file-line-error           #  显示详细的错误位置
--halt-on-error             # 遇到错误时停止执行
--interaction=nonstopmode   # 不暂停，一直运行到结束
--pvc
--silent                    # 安静模式
+-outdir                     # 输出目录
+-time                       # 显示执行时间统计信息
+-file-line-error            #  显示详细的错误位置
+-halt-on-error              # 遇到错误时停止执行
+-interaction=nonstopmode    # 不暂停，一直运行到结束
+-pvc                        # 预览文档并持续更新
+-silent                     # 安静模式
+
+latex -c                    # 删除辅助文件
+latex -C                    # 删除辅助文件 + PDF
 ```
 
-[.latexmkrc](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
+---
+
+`.latexmkrc` ：latexmk 配置文件；通常包含以下内容：
+
+- 构建引擎的选择：如 pdfLaTeX、XeLaTeX 或 LuaLaTeX
+- 构建参数：设置构建过程中的各种参数，如输出文件类型、编译次数、文件清理选项等
+- 自定义构建规则：包括设置文件依赖关系、指定额外的编译步骤等
+- 输出文件命名规则：定义输出文件的命名规则，以确保生成的文件按照特定的方式命名
+- 文件监控选项：配置 latexmk 以在文件更改时自动重新构建文档，以提高工作效率
+- 示例：
+	- [SJTUThesis/.latexmkrc at master · sjtug/SJTUThesis · GitHub](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
+	- [.dotfiles/latex/.latexmkrc at main · cohsh/.dotfiles · GitHub](https://github.com/cohsh/.dotfiles/blob/main/latex/.latexmkrc)
 
 ```bash
 # Set timezone.
@@ -513,6 +525,7 @@ $xdvipdfmx = 'xdvipdfmx -E -o %D %O %S';
 # Files to clean.
 $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 ```
+
 
 ---
 
@@ -574,7 +587,6 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 - LaTeX 编译过程中生成相当多的辅助文件和日志，一些功能如交叉引用、参考文献、目录、索引等，需要先通过编译生成辅助文件，然后再次编译时读入辅助文件得到正确的结果，所以复杂的 LaTeX 源代码可能要编译多次
 
 ```bash
-# 文件类型                   说明                  
 .sty        # 宏包文件；宏包名称与文件名一致           
 .cls        # 文档类文件；文档类名称与文件名一致          
 .bst        # BibTeX 用到的参考文献格式模板          
@@ -1349,7 +1361,7 @@ TerminalVector 字体
 \TeX  \LaTeX \LaTeXe
 ```
 
-- comment 宏包：用于将其中的文本视为注释，从而使这些文本不会在生成的文档中显示
+- comment 宏包：用于将其中的文本视为注释，从而使这些文本不会在生成的文档中显示（**有时会导致编译出错**）
 
 ```latex
 \usepackage{comment}
