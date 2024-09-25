@@ -34,8 +34,14 @@ code_word_wrap: true  # false
 # formal:
 #   icon: link || the description || color
 social:
-  fab fa-github: https://github.com/Bit-Part-Young || Github || '#24292e'
+  fab fa-github: https://github.com/Bit-Part-Young || GitHub || '#24292e'
   fas fa-envelope: mailto:3304839708@qq.com || Email || '#4a7dbe'
+  fas fa-rss: https://blog.seekanotherland.xyz/atom.xml || 订阅-ATOM
+  # fas fa-square-rss: /rss2.xml || 订阅-RSS2
+
+rss: 
+  - /atom.xml
+  # - /rss2.xml
 
 # Image (圖片設置)
 # --------------------------------------
