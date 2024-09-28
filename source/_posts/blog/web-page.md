@@ -135,20 +135,23 @@ http://machine_ip_address:2283/api  # 移动端登录
 - [GitHub - samueldy/samueldy.github.io: Public professional website](https://github.com/samueldy/samueldy.github.io)
 
 
+
 ---
 
 ## 幻灯片 Slides
 
 - [GitHub - slidevjs/slidev: Presentation Slides for Developers](https://github.com/slidevjs/slidev)
-- [使用 reveal-md 来写 Slides - Isshiki修's Notebook](https://note.isshikih.top/others/reveal-md2Slides/)
-- reveal-md 模板：
-	- [GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
-	- [GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)
+- [GitHub - stone-zeng/talks-slidev: Slidev sources for my talks](https://github.com/stone-zeng/talks-slidev)
 
 ```bash
 # slidev 安装
 npm init slidev@0.41.0
 ```
+
+- [使用 reveal-md 来写 Slides - Isshiki修's Notebook](https://note.isshikih.top/others/reveal-md2Slides/)
+- reveal-md 模板：
+	- [GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
+	- [GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)
 
 
 

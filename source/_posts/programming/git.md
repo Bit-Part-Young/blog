@@ -119,6 +119,7 @@ WIP...
 - [gita](https://github.com/nosarthur/gita)：管理多个 Git repo
 - 查看 Git repo 的统计信息：[GitHub - arzzen/git-quick-stats](https://github.com/arzzen/git-quick-stats)
 - 以 SQL 的方式查询 repo 的 Git 相关内容：[Git Query language](https://amrdeveloper.github.io/GQL/)
+- 根据 commit 记录生成 changelog：[GitHub - orhun/git-cliff: A highly customizable Changelog Generator that follows Conventional Commit specifications ⛰️](https://github.com/orhun/git-cliff)
 
 ```bash
 brew install lazygit  # macOS
@@ -232,7 +233,7 @@ git push origin feature  # 将本地的 feature 分支 push 至远程分支
 
 # 方式 1
 git checkout main      # 切换回主分支
-git pull origin main   # pull远程主分支
+git pull origin main   # pull 远程主分支
 git checkout feature   # 切换至 feature 分支
 git rebase main        # 将 main 分支合并到 feature 分支
 # 方式 2

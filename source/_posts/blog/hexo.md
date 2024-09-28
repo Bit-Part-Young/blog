@@ -282,7 +282,7 @@ top: true
 - 相册（暂无必要）
 - 右下角功能按钮（深/浅色切换，直达页面顶部等功能）
 - 音乐、视频页面（音乐可全局吸底）
-- [ ] 添加 RSS 订阅功能
+- [x] 添加 RSS 订阅功能：[为Butterfly主题添加RSS订阅 - InsectMk的个人空间](https://insectmk.cn/posts/d1271256/)
 
 ---
 

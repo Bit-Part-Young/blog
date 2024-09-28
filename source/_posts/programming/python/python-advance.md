@@ -37,7 +37,9 @@ numba：对循环、函数和 numpy 有加速作用，对 pandas 无效
 
 ## 类型提示
 
-类型提示（Type Hints），提高代码质量和可维护性
+[talks/PDF/2024-09-12-mypy.pdf at main · stone-zeng/talks · GitHub](https://github.com/stone-zeng/talks/blob/main/PDF/2024-09-12-mypy.pdf)
+
+类型提示/标注（Type Hints），提高代码质量和可维护性
 
 ```bash
 int, float, bool, str    # 基本 
@@ -51,6 +53,7 @@ Callable                 # 指定对象是可调用的，如函数或实现了 _
 
 
 ```python
+# Python 3.8 及之前版本？
 from typing import List, Tuple, Dict, Set, Union, Literal
 import numpy as np
 import pandas as pd
@@ -183,6 +186,8 @@ python package 模板参考
 ---
 
 ### 配置文件
+
+基于 imports 生成 `requirements.txt` 文件：[GitHub - bndr/pipreqs: pipreqs - Generate pip requirements.txt file based on imports of any project. Looking for maintainers to move this project forward.](https://github.com/bndr/pipreqs)
 
 [GitHub - abravalheri/validate-pyproject: Validation library for simple check on \`pyproject.toml\`](https://github.com/abravalheri/validate-pyproject)
 

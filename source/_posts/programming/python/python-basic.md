@@ -2,7 +2,7 @@
 title: Python 基础
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -1093,8 +1093,6 @@ os.path.basename()    # 获取文件路径的文件部分
 os.path.dirname()     # 获取文件路径的目录部分
 os.path.abspath()     # 获取绝对路径
 os.path.join()        # 将各个部分合并成一个路径
-
-
 ```
 
 
@@ -1102,7 +1100,13 @@ os.path.join()        # 将各个部分合并成一个路径
 
 ### argparse
 
-单个命令行参数解析
+命令行参数解析
+
+[GitHub - omni-us/jsonargparse: Implement minimal boilerplate CLIs derived from type hints and parse from command line, config files and environment variables](https://github.com/omni-us/jsonargparse)
+
+---
+
+- 单个命令行参数解析
 
 ```python
 import argparse
@@ -1125,7 +1129,7 @@ args = parser.parse_args()
 
 ---
 
-多个子命令的命令行参数解析
+- 多个子命令的命令行参数解析
 
 ```python
 import argparse

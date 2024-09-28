@@ -286,7 +286,7 @@ nav:
 
 - [ ] 字体修改（暂无必要）：TonyCrane 有 heti repo；[Changing the fonts - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/changing-the-fonts/#additional-fonts-mkdocsyml)
 - [ ] 将 docs 目录用脚本的形式写入到 mkdocs.yml 中的 nav 中：[weekly/main.py at main · howie6879/weekly · GitHub](https://github.com/howie6879/weekly/blob/main/main.py)（参考代码）
-- [ ] 添加 RSS 订阅功能（参考同上）
+- [x] 添加 RSS 订阅功能（Cloudflare 会失败）：[GitHub - Guts/mkdocs-rss-plugin: MkDocs plugin to generate a RSS feeds for created and updated pages, using git log and YAML frontmatter (page.meta).](https://github.com/guts/mkdocs-rss-plugin/)
 - [ ] 添加给部分笔记内容设置密码的功能（涉及课题组内部内容需要；必要性不是很大）
 
 

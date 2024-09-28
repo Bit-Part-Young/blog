@@ -220,6 +220,10 @@ tlmgr --version
 
 - TeXstudio：工具 - 清理辅助文件
 
+- LyX：
+	- 安装： [LyX - Download](https://www.lyx.org/Download)
+	- 使用：[【或许会是电子笔记入门参考】【秃头小人的电子笔记软件使用经历】满纸荒唐言，图君一哂 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/262187)
+
 
 
 ---
@@ -907,6 +911,16 @@ Donald~E. Knuth
 \begin{tabular}{...}
     ...
 \end{tabular}
+
+% 水平合并单元格
+% num 要合并的单元格数量
+% alignment 对齐方式
+% content 单元格中的内容
+\multicolumn{num}{alignment}{content}
+
+% 垂直合并单元格
+% width 单元格宽度，可使用 * 以自动调整宽度
+\multirow{num}{width}{content}
 ```
 
 - 三线表：`booktabs` 宏包
@@ -1143,8 +1157,14 @@ _{}
 \sqrt{}                     % 根式
 \sqrt[n]{}
 
-\sum                        % 求和、积分；针对于行内行间公式取不同的尺寸, 上下限位置也可能不同
-\int
+\sum                        % 求和；针对于行内行间公式取不同的尺寸, 上下限位置也可能不同
+\int                        % 积分
+\oint                       % 环路积分
+\iint                       % 双重积分
+
+\mathcal{}                  % 花体字；傅里叶变换 F、拉普拉斯变换 L和梅林变换 M，函数的阶 O
+
+\operatorname{}             % 正体字
 
 \underset{}{}               % 在数学符号的下/上方添加标记或符号
 \overset{}{}

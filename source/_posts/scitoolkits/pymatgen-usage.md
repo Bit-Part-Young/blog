@@ -487,15 +487,31 @@ MITNEBSet class
 
 ---
 
-解析 VASP 计算目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
+- 生成元素置换后的非等同结构（借助 bsym 包）：[bsym_examples](https://nbviewer.org/github/bjmorgan/bsym/blob/master/examples/bsym_examples.ipynb)
+
+```python
+from bsym.interface.pymatgen import unique_structure_substitutions
+
+subs_structures = unique_structure_substitutions(
+    structure=structure,
+    to_substitute="Nb",
+    site_distribution={"Al": 2, "Nb": 14},
+    verbose=True,
+    show_progress=True,
+)
+```
+
+---
+
+- 解析 VASP 计算目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
 
 ```python
 from atomate.vasp.drones import VaspDrone
 
 drone = VaspDrone()
-task_doc = drone.assimilate(path="./example_VASP_Al16Cr10")
+task_doc = drone.assimilate(path=)
 
-print(task_doc.keys())
+task_doc.keys()
 ```
 
 ---
@@ -960,7 +976,10 @@ from pymatgen.analysis.interfaces.zsl import ZSLGenerator
 #### elasticity
 
 ```python
+# 施加正应变/剪切应变，生成变形后的结构
+from pymatgen.analysis.elasticity import DeformedStructureSet
 
+DeformedStructureSet()
 ```
 
 
@@ -1114,8 +1133,11 @@ with MPRester("api-key") as mpr:
     # 查看可获取内容的字段，可用做筛选 query data 的参数
     mpr.materials.summary.available_fields
 
+    # 根据元素获取 ComputedStructureEntry
+    mpr.get_entries_in_chemsys()
 
-# 参数
+
+# search() 参数
 material_ids=["mp-149"]  # 根据材料 ID
 chemsys="Si-O",          # 仅含 Si O 两种元素的材料
 elements=["Si", "O"]     # 至少含 Si O 两种元素的材料
@@ -1123,18 +1145,18 @@ fields=["band_gap"]      # 字段
 is_stable=True           # 稳定材料
 
 
-# 常用字段
+# fields 参数常用字段
 material_id                # MP 对该材料标注的 ID；需 str()
 composition_reduced        # 成分（约化）；需 as_dict()
 formula_pretty             # 化学式（约化）
 structure                  # 结构
 symmetry
-  .crystal_system          # 晶系；需 str()
-  .symbol                  # 空间群
+        .crystal_system    # 晶系；需 str()
+        .symbol            # 空间群
 nsites                     # 构型原子数
 energy_per_atom            # 能量/原子
 formation_energy_per_atom  # 形成能/原子
-energy_above_hull          # 形成能与在 hull 上的形成能差值
+energy_above_hull          # 形成能与在 Hull 上的形成能差值
 is_stable                  # 材料是否是稳定的
 ```
 

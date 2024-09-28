@@ -68,6 +68,7 @@ localhost  # 主机名
 - 阿里云：[域名服务价格\_域名注册价格\_域名续费价格\_转入价格 - 阿里云](https://www.alibabacloud.com/zh/domain/pricing)
 - 华为云：[价格计算器\_pricing -华为云](https://www.huaweicloud.com/pricing.html#/domains)
 - 腾讯云：[域名价格 - 域名注册 - 腾讯云\_域名购买\_交易选购\_转入续费\_DNSPod](https://buy.cloud.tencent.com/domain/price)
+- Cloudflare 域名价格：[Cloudflare Domain Pricing](https://cfdomainpricing.com/)
 - `.top` 域名价格较便宜（￥20+/年），`.xyz` 较贵（￥70+/年）
 
 ---

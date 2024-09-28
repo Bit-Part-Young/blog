@@ -2,7 +2,7 @@
 title: Julia 基础
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -51,6 +51,7 @@ typeof()
 - 教程：[Julia语言入门](https://www.math.pku.edu.cn/teachers/lidf/docs/Julia/html/_book/index.html)
 - Julia 与其他语言的差异：[与其他语言的显著差异 · Julia中文文档](https://cn.julialang.org/JuliaZH.jl/latest/manual/noteworthy-differences/#Noteworthy-differences-from-Python)
 - Julia 速查表：[Julia 备忘清单 & julia cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/julia.html)
+- [GitHub - m3g/JuliaNotes.jl: A collection of examples and explanations about Julia](https://github.com/m3g/JuliaNotes.jl)
 - Julia 微积分笔记：[Calculus with Julia](https://jverzani.github.io/CalculusWithJuliaNotes.jl/)
 - [GitHub - RoyiAvital/Julia100Exercises: A set of introductory exercises for Julia. Based on \[100 NumPy Exercises\](https://github.com/rougier/numpy-100).](https://github.com/RoyiAvital/Julia100Exercises)
 - [GitHub - Leticia-maria/Introduction.jl](https://github.com/Leticia-maria/Introduction.jl)
@@ -98,7 +99,8 @@ versioninfo()
 	- 激活 Julia 环境：输入 “Julia: Activate This Environment”
 	- 更换 Julia 环境：输入 “Julia: Change Current Environment”
 	- 在 VSCode 中的 Jupyter Notebook 中运行 Julia 代码（只能是默认的 Julia 环境）
-	- [ ] 如何在 jupyter notebook 中的使用其他的 julia 环境
+	- [ ] 如何在 Jupyter Notebook 中的使用其他的 Julia 环境
+	- [ ] VSCode Julia 插件经常 crash
 
 ```json
 {
@@ -551,7 +553,7 @@ length(v1)
 
 
 
-范围：范围不是向量， 而是一种 “ 可遍历数据结构 “。 用 `collect()` 函数可以将范围转换成向量
+范围：范围不是向量， 而是一种 “可遍历数据结构 “。 用 `collect()` 函数可以将范围转换成向量
 ```julia
 1:5
 ## 1:5

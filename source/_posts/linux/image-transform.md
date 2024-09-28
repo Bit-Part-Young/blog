@@ -100,21 +100,22 @@ convert input.jpg -crop 3x3@ +repage +adjoin output_%d.jpg
 - PDF 操作
 
 ```bash
-# pdf 合并
+# PDF 合并
 # 方式 1；会变模糊
 convert input1.pdf input2.pdf merged.pdf
 # 方式 2；不会变模糊
 pdfunite input1.pdf input2.pdf merged.pdf
 
-# pdf 抽取
+# PDF 抽取
 pdftk input.pdf cat 5-10 output out.pdf
 
-# pdf 压缩
+# PDF 压缩
 ps2pdf input.pdf output.pdf
 ps2pdf -dPDFSETTINGS=/screen input.pdf output.pdf
+ps2pdf -dPDFSETTINGS=/ebook -dColorImageResolution=500 input.pdf output.pdf
 # -dPDFSETTINGS 参数有 /screen, /ebook, /prepress, /printer
-# /screen 压缩效果最好
-# -dPDFSETTINGS=/ebook -dColorImageResolution=250 组合使用 可产生介于 /ebook 和 /prepress 的效果
+# /screen 压缩效果最好（很糊）
+# 组合使用 可产生介于 /ebook 和 /prepress 的效果
 # https://www.ghostscript.com/doc/current/VectorDevices.htm#distillerparams
 ```
 

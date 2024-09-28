@@ -2,7 +2,7 @@
 title: Vim 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -217,24 +217,24 @@ gUU          # 光标所在行转大写
 	- 块模式选中文本添加括号
 
 ```bash
-syntax on                     # 开启语法高亮              
-set number                    # 开启行号                    
-set relativenumber            # 开启相对行号                
-set cursorline                # 高亮本行                    
-set laststatus=3              # 开启状态栏                  
-set tabstop=                  # 设置 Tab 大小                 
-set softtabstop=              # 设置 Tab 大小                 
-set shiftwidth=               # 设置 indent 大小              
-set autoindent                # 设置自动缩进                
-set smartindent               # 更智能的自动缩进            
-set list                      # 显示 list 字符                
-set listchars=                # 设置 list 字符的内容          
-set wildmenu                  # cmdline 补全                 
-set ignorecase                # 搜索时忽略大小写            
+syntax on                     # 开启语法高亮
+set number                    # 开启行号
+set relativenumber            # 开启相对行号
+set cursorline                # 高亮本行
+set laststatus=3              # 开启状态栏
+set tabstop=                  # 设置 Tab 大小；可将 tab 改为 space
+set softtabstop=              # 设置 Tab 大小
+set shiftwidth=               # 设置 indent 大小
+set autoindent                # 设置自动缩进
+set smartindent               # 更智能的自动缩进
+set list                      # 显示 list 字符
+set listchars=                # 设置 list 字符的内容
+set wildmenu                  # cmdline 补全
+set ignorecase                # 搜索时忽略大小写
 set smartcase                 # 搜索输入大写时不会忽略大小写
-set ttimeoutline=             # 更快的响应时间              
+set ttimeoutline=             # 更快的响应时间
 set notimeout
-set conceallevel=0            # 取消特殊字符隐藏            
+set conceallevel=0            # 取消特殊字符隐藏
 
 
 # 按键映射

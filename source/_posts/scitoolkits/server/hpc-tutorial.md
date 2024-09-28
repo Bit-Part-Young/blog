@@ -293,7 +293,7 @@ ssh SiYuan
 
 ### 客户端免密登录
 
-- 常用软件：MobaXterm、Tabby（学校有定制版） 等。
+- 常用软件：MobaXterm、Tabby（有 [交我算定制版客户端](https://docs.hpc.sjtu.edu.cn/login/tabby.html)） 等。
 
 - 免密登录操作：将 `id_rsa` 私钥文件所在路径添加到 Use private key 选项中（Bookmark settings 选项可以将默认的 Session name 改成自己想要的别名）。
 
@@ -827,6 +827,8 @@ rsync [OPTION]... [USER@]HOST:SRC DEST
 rsync [OPTION]... [USER@]HOST::SRC DEST
 rsync [OPTION]... SRC [USER@]HOST::DEST
 
+rsync -avuP ... ...    # 常用参数
+
 # 参数
 -v, --verbose      # 详细输出
 -q, --quiet        # 精简输出
@@ -844,8 +846,10 @@ rsync [OPTION]... SRC [USER@]HOST::DEST
 -exclude           # 排除指定的文件或目录
 -include           # 只包括指定的文件或目录
 -e, --rsh=COMMAND  # 指定使用 rsh、ssh 方式进行同步
--u，--update       # 仅进行更新
+-u, --update       # 仅进行更新
 --human-readable   # 显示输出文件大小以 KB、MB、GB 等表示
+--progress         # 显示传输进度
+-P                 # --partial --progress 的简写，不仅显示传输进度，还会在传输中断时保存部分传输的数据，方便下次继续传输
 ```
 
 

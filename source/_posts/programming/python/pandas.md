@@ -224,16 +224,17 @@ df[df["col1"].apply(lambda x: x > 0)]
 
 ### 其他
 
+- 按照特定的列顺序进行排列
+
 ```python
-# 列按照特定顺序进行排列
-df["solute_site"] = pd.Categorical(
-    df["solute_site"],
-    categories=solute_site_list,
+df["col1"] = pd.Categorical(
+    df["col1"],
+    categories=lst1,
     ordered=True,
 )
-df["solute"] = pd.Categorical(
-    df["solute"],
-    categories=solute_list,
+df["col2"] = pd.Categorical(
+    df["col2"],
+    categories=lst2,
     ordered=True,
 )
 
@@ -244,26 +245,24 @@ df.sort_values(
 )
 ```
 
+---
+
+- 参数 `inplace=True`：可使操作直接在 df 上执行，而非返回新的 DataFrame 对象
+
+- 参数 `ignore_index=True`：忽略索引
+
+- 参数 `axis=0` 表示为行，`axis=1` 表示为列
+
 ```python
-# index 重置
-# inplace=True 操作直接在 df 上执行，而非返回新的 DataFrame 对象
-df.reset_index(inplace=True)
-
-# 行拼接，忽略索引
-pd.concat([df1, df2], axis=0, ignore_index=True)
-
-# 按照 列/行 排序，忽略索引
-df.sort_values(by=..., ignore_index=True)
+df.reset_index()                   # 索引 index 重置
+pd.concat([df1, df2], axis=...)    # 行/列 拼接
+df.sort_values(by=...)             # 按照 列/行 排序
+df.values.reshape(-1)              # 将数据转化成一维
+df.round()                         # 四舍五入；当 df 既有数值和字符串数据时，也可以使用
 ```
 
 
 ```python
-# 将数据转化成一维
-df.values.reshape(-1)
-
-# 当 df 既有数值和字符串数据时，也可以使用
-df.round()
-
 df.diff()
 
 df.unique()
@@ -271,6 +270,9 @@ df.nunique()
 
 df.nlargest()   # 查看排前 N 的数据
 df.nsmallest()  # 查看排后 N 的数据
+
+# df 数据合并
+pd.merge(df1, df2, how='outer')
 ```
 
 

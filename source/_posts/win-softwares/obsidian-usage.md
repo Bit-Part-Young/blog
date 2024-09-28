@@ -2,7 +2,7 @@
 title: Obsidian 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -23,6 +23,7 @@ password:
 
 - 本地笔记管理软件
 - [由此开始 - Obsidian 中文帮助 - Obsidian Publish](https://publish.obsidian.md/help-zh/)
+- [Obsidian 使用指南 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/308355/)
 
 
 ---
@@ -174,6 +175,9 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 	- 无法实现文档中的全部链接标题的获取，只能单个
 	- 解析微信公众号、知乎标题失败：[auto link title 解析微信公众号标题失败？ - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/28627/3)
 
+- Easy Typing：书写体验增强；功能包含编辑时自动格式化文本和符号编辑增强
+	- 快速生成特定编程语言的代码块： [有没有快捷的方式可以完成用来表示代码块的markdown字符的输入 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/22475)
+
 - Advanced Tables：Markdown 表格增强；按 Tab 键自动补全 Markdown 表格所需格式
 
 - Editing Toolbar：在文档编辑栏上方添加类似 Office 的工具栏
@@ -187,6 +191,14 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 - Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式（**通过 Pandoc 导出，需安装并配置；含中文的 md 导出成 pdf 格式一般都会报错，建议手动写命令，其他格式可以成功导出**）
 
 - floating toc：目录浮动体；[GitHub - PKM-er/obsidian-floating-toc-plugin](https://github.com/cumany/obsidian-floating-toc-plugin)
+
+- Outliner：限制列表层级；`Ctrl + A` 只选中本行条目
+
+- Show Whitespace：显示空白字符
+
+- Trim Whitespace：删除多余的空白字符
+
+- Editor Width Slider：调整编辑栏的宽度
 
 - Admonitions：和 GitHub 中的 alert 语法一样
 
@@ -216,6 +228,8 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 ---
 
 ## 相关问题
+
+- [ ] Obsidian 如何格式化代码块中的内容
 
 - VSCode 复制代码到 Obsidian，每行会产生多余空格
 	- [从visual studio code复制代码后 产生的unicode的空格问题 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/9332)

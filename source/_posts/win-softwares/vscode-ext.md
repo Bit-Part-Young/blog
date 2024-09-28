@@ -2,7 +2,7 @@
 title: VSCode 常用插件
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -51,6 +51,14 @@ code-insiders    # VSCode Insiders
     "editor.fontSize": 14,
     // 窗口缩放大小
     "window.zoomLevel": 0.5,
+}
+```
+
+- 删除行尾的多余空白字符（尾随空白）：[visual studio code - Remove trailing spaces automatically or with a shortcut - Stack Overflow](https://stackoverflow.com/questions/30884131/remove-trailing-spaces-automatically-or-with-a-shortcut)
+
+```json
+{
+    "files.trimTrailingWhitespace": true,
 }
 ```
 

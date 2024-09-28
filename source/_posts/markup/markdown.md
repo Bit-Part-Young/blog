@@ -2,7 +2,7 @@
 title: Markdown 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -262,13 +262,15 @@ int main() {
 ```text
 这是脚注[^1]
 
-[^1]: 脚注 1
+[^1]: 脚注1
 ```
 
 
 ---
 
 ## 其他
+
+- Markdown 加载不了 HEIC 格式的图片
 
 - Markdown 自定义图片大小：[markdown中插入图片怎么定义图片的大小或比例？ - 知乎](https://www.zhihu.com/question/23378396)
 
