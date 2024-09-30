@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# 从 Obsidian md 文档中更新 mkdocs-demo 的 notes md 文档
+# 用 rsync 从 Obsidian md 文档中更新 hexo-butterfly-demo 的 posts md 文档
 
 post_folders=(
-    "blog"
-    "linux"
-    "markup"
-    "programming"
-    "scitoolkits"
-    "PhD/sjtu"
-    "win-softwares"
+    blog
+    linux
+    markup
+    programming
+    scitoolkits
+    PhD/sjtu
+    win-softwares
 )
 
 repo_path="$HOME/scripts/sites/hexo-butterfly-demo"
@@ -25,8 +25,7 @@ for post_folder in "${post_folders[@]}"; do
     obsd_md_path="${obsd_path}/${post_folder}"
     post_md_path="${repo_path}/source/_posts"
 
-    rsync -av --existing "${obsd_md_path}" "${post_md_path}"
-
+    rsync -avuP --existing "${obsd_md_path}" "${post_md_path}"
 done
 
 
@@ -55,4 +54,4 @@ update_num(){
 }
 
 
-# update_num
+update_num
