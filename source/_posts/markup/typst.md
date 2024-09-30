@@ -2,7 +2,7 @@
 title: Typst 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -123,6 +123,8 @@ typst-upgrade file.typ       # 更新 packages 并覆写文件
 - 数学公式 OCR：[GitHub - ParaN3xus/typress: Typst Mathematical Expression OCR](https://github.com/ParaN3xus/typress)
 
 - 预览 Typst 的 Neovim 插件：[GitHub - chomosuke/typst-preview.nvim: Low latency typst preview for Neovim](https://github.com/chomosuke/typst-preview.nvim)
+
+- 将 Typst 公式渲染成 svg 或 png：[GitHub - xingjian-zhang/typst2img: A fast script to render your Typst formulas to svg and png. Integrate formulas to your slides in seconds!](https://github.com/xingjian-zhang/typst2img/?tab=readme-ov-file)
 
 
 ---
@@ -632,6 +634,8 @@ Show 规则用于全局替换
 - 作业模板
 	- [GitHub - gRox167/typst-assignment-template](https://github.com/gRox167/typst-assignment-template)
 	- [GitHub - OriginCode/typst-homework-template: Homework Template for Typst](https://github.com/OriginCode/typst-homework-template)
+
+- 试题模板（英文）：[GitHub - diquah/OpenBoard: Typst template and framework for creating professional and clean exams of any kind.](https://github.com/diquah/OpenBoard)
 
 - 论文模板
 	- [GitHub - lucifer1004/pkuthss-typst: Typst template for dissertations in Peking University (PKU).](https://github.com/lucifer1004/pkuthss-typst)

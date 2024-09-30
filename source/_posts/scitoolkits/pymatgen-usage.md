@@ -1,7 +1,7 @@
 ---
 title: pymatgen 使用
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: pymatgen 使用
@@ -1061,14 +1061,18 @@ get_pattern(structure).d_hkls
 ```python
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
-sga_analyzer = SpacegroupAnalyzer(structure)
+sga_analyzer = SpacegroupAnalyzer(structure, symprec=...,)
+# 默认对称性精度为 0.01
+# 弛豫后的结构，精度可适当放宽（0.1 为 MP 使用的精度）
 
 # 方法
 get_conventional_standard_structure()   # 获取单胞
 get_primitive_standard_structure()      # 获取原胞
-get_crystal_system()                    # 获取晶系（源码含空间群与晶系之间的关系） 
-get_symmetry_dataset()                  # 获取结构的对称性数据集
 get_symmetrized_structure()             # 获取对称性结构
+get_symmetry_dataset()                  # 获取结构的对称性数据集
+get_crystal_system()                    # 获取晶系（源码含空间群与晶系之间的关系） 
+get_space_group_number()                # 空间群编号（编号越小，对称性越低）
+get_space_group_symbol()                # 空间群符号
 
 # 寻找构型中的等同原子
 symmetry_dataset = sga.get_symmetry_dataset()

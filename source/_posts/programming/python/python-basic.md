@@ -318,6 +318,9 @@ import ast; ast.literal_eval(str(d1))
 
 {k: v for k, v in d.items()}
 
+# 没有内置方法直接通过 value 查找 key
+key_specific = [k for k, v in d.items() if v == value_specific][0]
+
 # 使用和列表推导类似的方法生成字典
 {key: value for key in ... for value in ... }
 

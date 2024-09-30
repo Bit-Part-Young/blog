@@ -2,7 +2,7 @@
 title: LaTeX 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -127,7 +127,7 @@ sudo rm -rf /Library/TeX
 sudo rm -rf /usr/local/texlive
 ```
 
-- MacTeX 本质上就是 TeXLive，只不过捆绑了 Ghostscript（处理 PS 图片文件转换成 pdf 文件） 和一些 GUI 程序，做成了便于安装的 pkg 包而已。pkg 包内的安装脚本会帮你设置好环境变量
+- MacTeX 本质上就是 TeX Live，只不过捆绑了 Ghostscript（处理 PS 图片文件转换成 pdf 文件） 和一些 GUI 程序（BibDesk、TeXShop、Tex Live Utility 等），做成了便于安装的 pkg 包而已。pkg 包内的安装脚本会设置好环境变量
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405070921146.png)
 
@@ -1750,6 +1750,9 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 - arxiv 模板：[GitHub - kourgeorge/arxiv-style: A Latex style and template for paper preprints (based on NIPS style)](https://github.com/kourgeorge/arxiv-style)
 
 - 论文回复模板：[GitHub - mschroen/review\_response\_letter: Template for Latex and/or Pandoc to quickly write reviews and (author) response letters](https://github.com/mschroen/review_response_letter)
+
+- [素颜版本的 LaTeX 学术海报 - LaTeX 工作室](https://www.latexstudio.net/index/details/index/mid/4268.html)
+
 
 
 ---

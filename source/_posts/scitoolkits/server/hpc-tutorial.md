@@ -288,6 +288,17 @@ ssh Pi
 ssh SiYuan
 ```
 
+- 可能会出现的问题
+	- SSH 私钥的权限过于开放：SSH 私钥文件应该只能被文件的拥有者读取和写入，而不能被其他用户访问
+	- 解决方法：`chmod 600 id_rsa`
+
+```bash
+Permissions 0444 for 'id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "id_rsa": bad permissions
+```
+
 
 ---
 
@@ -1555,11 +1566,9 @@ pip install .
 
 ---
 
-### texlive
+### Tex Live
 
-- texlive 版本：思源一号 2018；pi 2013；manager 2015；master 未安装；无 root 权限，无法安装 package
-- 可自定义安装路径
-- texlive 不同版本需要安装的 packages 数目：medium 约 1395 项；full 约 4543 项。
+- Tex Live 版本：思源一号 2018；Pi 2013；Manager 2015；Master 未安装
 
 ```bash
 # 添加 自定义安装路径 环境变量

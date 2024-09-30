@@ -2,7 +2,7 @@
 title: Git 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -936,8 +936,8 @@ alias | grep 'git subcommand'
 
 - 提交空文件夹：在空文件夹中创建 `.gitkeep` 文件
 
-- push 到多个远程 repo（不能是浅克隆）
-	- [文件推向3个git库 - git-tips](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
+- push 到多个远程 repo（**不能是浅克隆**）
+	- 参考： [文件推向3个git库 - git-tips](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
 	- 只能从 `origin` 里的一个 repo url pull 代码，默认为添加到 `origin` 的第一个地址，可在 `.git/config` 文件中直接调整 repo url 顺序
 	- 可用此方法替代 Gitee 与 GitHub 之间互相同步的设置
 
@@ -951,6 +951,16 @@ git remote set-url --delete origin url
 
 # 也可直接在 .git/config 添加/删除远程 repo url
 url = XXX
+```
+
+浅克隆时，push 到多个远程 repo 会出现如下报错：
+
+```bash
+remote: fatal: did not receive expected object XXX
+error: remote unpack failed: index-pack failed
+To github.com:user/repo.git
+ ! [remote rejected] main -> main (failed)
+error: failed to push some refs to 'github.com:user/repo.git'
 ```
 
 ---

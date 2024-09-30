@@ -91,7 +91,7 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### 系统设置相关
 
-- 修改系统语言：系统设置 - 语言和地区 - 简体中文，将其向上拖到第一个
+- 修改系统语言：系统设置 - 通用 - 语言与 地区 - 简体中文，将其向上拖到第一个
 - macOS 版本升级到最新：系统设置 - 通用 - 软件更新
 - 修改电脑名称：系统设置 - 通用 - 关于本机
 - 文本字体：系统设置 - 文本字体（使用 `MesloLGM Nerd Font`）
@@ -110,13 +110,19 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### 访达相关
 
-- 访达：显示路径栏和状态栏，鼠标靠近路径栏，右键可以拷贝路径名称
+- 访达中显示路径栏和状态栏：显示 - 显示路径栏和状态栏；鼠标靠近路径栏，右键可以拷贝路径名称
 - 隐藏 “最近使用”：访达 - 设置 - 边栏 - 取消勾选 “最近使用”
 - 文件夹用图标展示时，右键 - 查看显示选项 - 勾选 “显示项目简介” 和 “用作默认”
 - 访达可以打开多个标签页，打开多个窗口时，可以合并所有窗口
 - 右键文件，选择快速操作，有 “创建 PDF”、“转换图像”、“移除背景”等操作
 - 按住 `command` 键，可以将文件夹拖到工具栏中，实现快速访问
 - 更改同类型文件的默认打开方式：选中文件，右键 - 显示简介 - 打开方式，选择指定的默认应用程序，全部更改；[基础教程：如何更改 Mac 文件的默认打开方式 - 少数派](https://sspai.com/post/28394)
+- 隐藏文件夹
+
+```bash
+chflags hidder <path>      # 隐藏
+chflags nohidder <path>    # 取消隐藏
+```
 
 
 ---
@@ -445,9 +451,11 @@ cat file | kitty +kitten hints  # 使用键盘选中屏幕中的内容，默认 
 
 ---
 
-- iTerm2 字体设置：Prefrences - profiles - text
+- iTerm2 设置
+	- 字体：Prefrences - profiles - text
+	- 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
+	- [x] 如何存储 SSH 登录服务器的账号密码（无直接的方式，password manager 非直接存储 SSH 密码；kitty、Tabby 也是如此，Termius 可以）
 
-- iTerm2 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
 
 - 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 - 高级 - 持续时间缩短成 1.5
 	- [In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
