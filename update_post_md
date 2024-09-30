@@ -2,32 +2,31 @@
 
 # 从 Obsidian md 文档中更新 mkdocs-demo 的 notes md 文档
 
+post_folders=(
+    "blog"
+    "linux"
+    "markup"
+    "programming"
+    "scitoolkits"
+    "PhD/sjtu"
+    "win-softwares"
+)
+
 repo_path="$HOME/scripts/sites/hexo-butterfly-demo"
-post_md_path="${repo_path}/source/_posts"
 
-post_md_files=$(find "${post_md_path}" -type f -name "*.md")
-
-obsd_md_path="${HOME}/scripts/obsidian-md"
+obsd_path="${HOME}/scripts/obsidian-md"
 if [[ $HOSTNAME =~ "DESKTOP" ]]; then
-    obsd_md_path="/mnt/e/obsidian-md"
+    obsd_path="/mnt/e/obsidian-md"
 elif [[ $HOSTNAME =~ "LAPTOP" ]]; then
-    obsd_md_path="/mnt/d/obsidian-md"
+    obsd_path="/mnt/d/obsidian-md"
 fi
 
-obsd_md_files=$(find "${obsd_md_path}" -type f -name "*.md")
+for post_folder in "${post_folders[@]}"; do
+    obsd_md_path="${obsd_path}/${post_folder}"
+    post_md_path="${repo_path}/source/_posts"
 
-for post_md in $post_md_files; do
-    post_md_name=$(basename "${post_md}")
+    rsync -av --existing "${obsd_md_path}" "${post_md_path}"
 
-    if ! [[ $post_md_name =~ ^(index\.md|intro\.md|README\.md)$ ]]; then
-        for obsd_md in $obsd_md_files; do
-            obsd_md_name=$(basename "${obsd_md}")
-
-            if [[ "${post_md_name}" == "${obsd_md_name}" ]]; then
-                cp "${obsd_md}" "${post_md}"
-            fi
-        done
-    fi
 done
 
 
@@ -56,4 +55,4 @@ update_num(){
 }
 
 
-update_num
+# update_num
