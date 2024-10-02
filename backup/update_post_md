@@ -9,51 +9,48 @@ post_md_files=$(find "${post_md_path}" -type f -name "*.md")
 
 obsd_md_path="${HOME}/scripts/obsidian-md"
 if [[ $HOSTNAME =~ "DESKTOP" ]]; then
-    obsd_md_path="/mnt/e/obsidian-md"
+  obsd_md_path="/mnt/e/obsidian-md"
 elif [[ $HOSTNAME =~ "LAPTOP" ]]; then
-    obsd_md_path="/mnt/d/obsidian-md"
+  obsd_md_path="/mnt/d/obsidian-md"
 fi
 
 obsd_md_files=$(find "${obsd_md_path}" -type f -name "*.md")
 
 for post_md in $post_md_files; do
-    post_md_name=$(basename "${post_md}")
+  post_md_name=$(basename "${post_md}")
 
-    if ! [[ $post_md_name =~ ^(index\.md|intro\.md|README\.md)$ ]]; then
-        for obsd_md in $obsd_md_files; do
-            obsd_md_name=$(basename "${obsd_md}")
+  if ! [[ $post_md_name =~ ^(index\.md|intro\.md|README\.md)$ ]]; then
+    for obsd_md in $obsd_md_files; do
+      obsd_md_name=$(basename "${obsd_md}")
 
-            if [[ "${post_md_name}" == "${obsd_md_name}" ]]; then
-                cp "${obsd_md}" "${post_md}"
-            fi
-        done
-    fi
+      if [[ "${post_md_name}" == "${obsd_md_name}" ]]; then
+        cp "${obsd_md}" "${post_md}"
+      fi
+    done
+  fi
 done
 
-
-git_update(){
-    git status --short --branch
-    echo
-    git add "${post_md_path}"
-    git commit -m "update post mds"
-    echo
+git_update() {
+  git status --short --branch
+  echo
+  git add "${post_md_path}"
+  git commit -m "update post mds"
+  echo
 }
 
+update_num() {
+  cd "${repo_path}" || exit
 
-update_num(){
-    cd "${repo_path}" || exit
+  update_md_num=$(git status --short --branch | grep -c "\.md$")
 
-    update_md_num=$(git status --short --branch | grep -c "\.md$")
+  if [[ $update_md_num -eq 0 ]]; then
+    echo -e "\nNo post md files are updated."
+  else
+    echo -e "\n${update_md_num} post md file(s) is(are) updated."
+    git_update
+  fi
 
-    if [[ $update_md_num -eq 0 ]]; then
-        echo -e "\nNo post md files are updated."
-    else
-        echo -e "\n${update_md_num} post md file(s) is(are) updated."
-        git_update
-    fi
-
-    cd - > /dev/null 2>&1  || exit
+  cd - >/dev/null 2>&1 || exit
 }
-
 
 update_num
