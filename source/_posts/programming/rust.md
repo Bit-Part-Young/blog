@@ -2,7 +2,7 @@
 title: Rust 学习
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true

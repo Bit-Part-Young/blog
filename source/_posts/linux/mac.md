@@ -262,6 +262,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 	- MonitorControl
 	- BetterDisplay（功能更强大，需付费）
 - 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
+- 取消 macOS 的截图录屏权限的月提醒：[Amnesia](https://goodsnooze.gumroad.com/l/amnesia)
 - Android 连接 Mac：
 	- Macdroid（需付费）
 	- OpenMTP
@@ -777,7 +778,15 @@ switcher:
 
 ---
 
-#### Safari 浏览器插件
+#### Safari 浏览器
+
+- 下载的压缩文件的不自动解压：设置 - 通用 - 取消勾选 “自动打开 “安全” 文件”
+
+- [ ] 无痕浏览模式打开新标签页时如何保留原有标签页网站的登录信息（好像不行；Chrome 可以）
+
+---
+
+**插件推荐**：
 
 - 去广告：AdGuard、AdBlock
 

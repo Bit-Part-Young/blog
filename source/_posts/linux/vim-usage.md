@@ -380,7 +380,9 @@ make install
 
 ### 配置
 
-[GitHub - bryant-video/neovim-tutorial](https://github.com/bryant-video/neovim-tutorial)
+- [GitHub - bryant-video/neovim-tutorial](https://github.com/bryant-video/neovim-tutorial)
+- [GitHub - AstroNvim/AstroNvim: AstroNvim is an aesthetic and feature-rich neovim config that is extensible and easy to use with a great set of plugins](https://github.com/AstroNvim/AstroNvim)
+
 
 ---
 

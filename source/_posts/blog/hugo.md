@@ -1,7 +1,7 @@
 ---
 title: Hugo 框架
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: Hugo 框架
@@ -90,7 +90,7 @@ hugo --minify
 ├── archetypes/
 │   └── default.md
 ├── content/
-├── hugo.toml    # 配置文件
+├── hugo.toml         # 配置文件
 ├── static/
 └── themes/
 ```
@@ -133,3 +133,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 ```
+
+
+---
+
+### 其他
+
+- [x] Hugo 框架 PaperMod 主题博客创建（暂无必要）

@@ -666,20 +666,6 @@ def f(a):
 
 ---
 
-#### 用户输入
-
-- 读取用户输入使用内置的 input 函数
-- 函数参数为要显示的提示符，例如 input(“> “)
-- 函数的返回值为一个字符串
-- 每次读入一行（即读到换行为止
-
-```python
-
-```
-
-
----
-
 #### 高阶函数
 
 - 高阶函数：接收函数作为参数的函数；常用的有 `map()`、`filter()`
@@ -701,6 +687,43 @@ f = abs       # 变量可以指向函数（函数本身可以赋值给变量）
 
 abs = 10      # 函数名也是变量（函数名是指向函数的变量）
 abs(-10)      # 会报错
+```
+
+
+---
+
+#### main 函数
+
+- 防止导入时运行代码，只允许直接运行脚本时运行
+- 通过判断 `__name__`：若是直接运行，则其等于字符串 main；若是被导入的，则其等于模块名
+
+```python
+## script.py
+
+...
+
+if __name__ == "__main__":
+    print("hello")
+else:
+    print(__name__)
+
+
+import script           # 作为模块导入；输出 script
+$ python script.py      # 直接运行；输出 hello
+```
+
+
+---
+
+#### 用户输入
+
+- 读取用户输入使用内置的 input 函数
+- 函数参数为要显示的提示符，例如 input (“> “)
+- 函数的返回值为一个字符串
+- 每次读入一行（即读到换行为止
+
+```python
+
 ```
 
 
@@ -931,36 +954,6 @@ pendingDeprecationWarning  # 关于特性将会被废弃的警告
 RuntimeWarning             # 可疑的运行时行为的警告
 SysntaxWarning             # 可疑语法的警告
 UserWarning                # 用户代码生成的警告
-```
-
-
----
-
-main 函数
-
-- 防止导入时运行代码
-- 只允许直接运行脚本时运行
-- 通过判断 **name**
-    - 如果是直接运行，则其等于字符串 **main**
-    - 如果是被导入的，则其等于模块名
-
-```python
-## code.py
-...
-if __name__ == "__main__":
-    print("hello")
-else:
-    print(__name__)
-
-```
-
-```python
-import code # code
-```
-
-
-```bash
-$ python code.py # hello
 ```
 
 

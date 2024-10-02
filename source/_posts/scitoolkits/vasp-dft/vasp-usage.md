@@ -2,7 +2,7 @@
 title: VASP 使用
 top: true
 pin: true
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -554,10 +554,8 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 最大离子步步数；默认值为 0。
 
-- IBRION=0 时，必须提供 NSW 数值（ab-initio Molecular Dynamics(AIMD) 步数）；
-- 每个离子步会计算 Hellmann-Feynman 力和应力。
-
-
+- IBRION=0 时，必须提供 NSW 数值（ab-initio Molecular Dynamics(AIMD) 步数）
+- 每个离子步会计算 Hellmann-Feynman 力和应力
 
 
 ---
@@ -571,11 +569,13 @@ Tetrahedron method 需 k 点数目大于等于 4
 - 2：conjugate gradient algorithm 共轭梯度算法
 - 3：Damped molecular dynamics 算法
 - 5、6：利用有限差分（finite differences）计算二阶导数、海森矩阵和声子频率
-- 7、8：利用密度泛函扰动理论（density functional perturbation theory, DFPT）计算二阶导数、海森矩阵和声子频率。
+- 7、8：利用密度泛函扰动理论（density functional perturbation theory, DFPT）计算二阶导数、海森矩阵和声子频率
 
 
 - 除 0 外，其他算法都最终弛豫到局部能量最小值
 - 弛豫较困难时，推荐使用 IBRION=2；在从非常糟糕的初始猜测值开始的情况下，IBRION=3 通常有用；接近能量局部最小值，推荐使用 IBRION=1
+
+---
 
 ##### POTIM
 
@@ -691,7 +691,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### ADDGRID
 
-添加网格，默认值为.FALSE.；有助于降低力噪声。
+添加网格，默认值为.FALSE.；有助于降低力噪声
 
 
 
@@ -699,7 +699,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### SYMPREC
 
-决定 POSCAR 文件中的位置精度，默认值为 10-5。
+决定 POSCAR 文件中的位置精度，默认值为 10-5
 
 
 
@@ -747,17 +747,21 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 默认值：ISTART=0，则 ICHARG=2；否则 ICHARG=0
 
-- 0：从初始波函数计算电荷密度；
-- 1：从 CHGCAR 文件读取；
-- 2：如果 ISTART=0，取原子电荷密度的叠加；
-- +10：**非自洽计算（在整个电子最小化过程中电荷密度保持不变**）；
-- 11：从 CHGCAR 文件获取（能带绘制的）本征值或给定的电荷密度的态密度（density of states (DOS)）
+```bash
+0        # 从初始波函数计算电荷密度
+1        # 从 CHGCAR 文件读取
+2        # 若 ISTART=0，取原子电荷密度的叠加
++10      # 非自洽计算（在整个电子最小化过程中电荷密度保持不变）
+11       # 从 CHGCAR 文件获取（能带绘制的）本征值或给定的电荷密度的态密度（density of states (DOS)）
+```
+
 
 ---
 
 ##### MAGMOM
 
 磁矩
+
 
 ---
 

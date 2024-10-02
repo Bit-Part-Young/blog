@@ -1,7 +1,7 @@
 ---
 title: Hexo 框架
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: Hexo 框架
@@ -27,9 +27,10 @@ password:
 	- [matery](https://github.com/blinkfox/hexo-theme-matery)
 	- [icarus](https://github.com/ppoffice/hexo-theme-icarus)
 	- [volantis](https://github.com/volantis-x/hexo-theme-volantis/)
-	- [fluido](https://github.com/fluid-dev/hexo-theme-fluid)
+	- [fluid](https://github.com/fluid-dev/hexo-theme-fluid)
 	- [stun](https://github.com/liuyib/hexo-theme-stun)
 	- [maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
+	- [keep](https://github.com/XPoet/hexo-theme-keep)
 	- 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
 	- butterfly 主题的预设功能比 matery 更丰富
 

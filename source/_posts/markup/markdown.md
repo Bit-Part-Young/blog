@@ -30,6 +30,7 @@ password:
 - 参考资料：
 	- Markdown 语法及应用：[lec3.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec3.md)
 	- [GitHub - tchapi/markdown-cheatsheet: Markdown Cheatsheet for Github Readme.md](https://github.com/tchapi/markdown-cheatsheet)
+	- [GitHub - mzlogin/markdown-intro: Markdown Intro / Markdown 简介](https://github.com/mzlogin/markdown-intro) 
 
 
 

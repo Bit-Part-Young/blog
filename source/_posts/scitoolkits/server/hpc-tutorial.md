@@ -228,6 +228,10 @@ ssh username@armlogin.hpc.sjtu.edu.cn
 
 ### 终端 SSH 免密登录
 
+- 上海交通大学超算管理系统：[HAM](https://my.hpc.sjtu.edu.cn/login)
+
+- 交大超算登录现需要与 jAccount 绑定：[账号安全信息管理 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/accounts/security.html)
+
 - 无需输入用户名和密码即可登录，还可以作为服务器的别名来简化使用。免密登录需建立从远程主机（集群的登录节点）到本地主机的 SSH 信任关系。建立信任关系后，双方将通过 SSH 密钥对进行身份验证。
 
 - 在本地主机上生成的 SSH 密钥对，输入以下命令，**持续 Enter 即可**；将在 `~/.ssh`（或 `C:\User\username\.ssh`） 路径下生成密钥对文件 `id_rsa` 和 `id_rsa.pub`；将 `id_rsa.pub` 的内容（注意字符之间只有一个空格，复制后需注意）添加到远程主机的 `~/.ssh/authorized_keys` 文件中。
@@ -829,6 +833,13 @@ scp [OPTION]... SRC DEST
 scp [OPTION]... SRC [USER@]host:DEST
 scp [OPTION]... [USER@]HOST:SRC DEST
 
+# scp 参数
+-p                 # 保留文件属性
+-r                 # 以递归方式复制
+-q                 # 不显示复制进度
+-P                 # 指定远程主机的端口号
+
+
 # rsync 语法
 rsync [OPTION]... SRC DEST
 # 单个冒号：通过 ssh 或 rsh 协议连接远程主机
@@ -840,7 +851,7 @@ rsync [OPTION]... SRC [USER@]HOST::DEST
 
 rsync -avuP ... ...    # 常用参数
 
-# 参数
+# rsync 参数
 -v, --verbose      # 详细输出
 -q, --quiet        # 精简输出
 -a, --archive      # 归档模式，表示以递归方式传输文件，并保持所有文件属性，相当于 -rlptgoD
@@ -856,11 +867,13 @@ rsync -avuP ... ...    # 常用参数
 -delete            # 删除那些 DST 中 SRC 没有的文件
 -exclude           # 排除指定的文件或目录
 -include           # 只包括指定的文件或目录
+--existing         # 只更新目标路径中已存在的文件
 -e, --rsh=COMMAND  # 指定使用 rsh、ssh 方式进行同步
 -u, --update       # 仅进行更新
 --human-readable   # 显示输出文件大小以 KB、MB、GB 等表示
 --progress         # 显示传输进度
 -P                 # --partial --progress 的简写，不仅显示传输进度，还会在传输中断时保存部分传输的数据，方便下次继续传输
+-e "ssh -p 313"    # 指定 SSH 连接的端口号
 ```
 
 
@@ -962,7 +975,7 @@ tar -xzvf voro++-0.4.6.tar.gz
 cd voro++-0.4.6.tar.gz
 
 # 修改 config.mk 的 PREFIX 选项
-PREFIX=${HOME}/src/voro++
+PREFIX=${HOME}/local/voro
 
 make && make install
 ```
@@ -970,8 +983,8 @@ make && make install
 - 修改 latgen 中的 Makefile 文件内容（`INC`：voro++ 的头文件路径； `LIB`：库路径）
 
 ```bash
-VoroINC = -I${HOME}/src/voro++/include/voro++
-VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
+VoroINC = -I${HOME}/local/voro/include/voro++
+VoroLIB = -L${HOME}/local/voro/lib -lvoro++
 ```
 
 
@@ -993,12 +1006,12 @@ VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
 ```bash
 wget https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz
 
-./configure --prefix=${HOME}/src/gsl
+./configure --prefix=${HOME}/local/gsl
 
 make && make install
 
 # 将 gsl 的 lib 路径添加到 LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$HOME/src/gsl/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=$HOME/local/gsl/lib:${LD_LIBRARY_PATH}
 ```
 
 ---
@@ -1448,10 +1461,10 @@ make  # cmake --build .
 ```bash
 cp how_to_set_environment_variables ~/.vaspkit
 
-# 修改以下参数
-PBE_PATH
-VASPKIT_UTILITIES_PATH
-PYTHON_BIN  # 可选
+# 自定义参数
+PBE_PATH                   # PBE 赝势路径
+VASPKIT_UTILITIES_PATH     # vaspkit 工具路径
+PYTHON_BIN                 # python 路径；可选
 ```
 
 - 赝势：可拷贝 master 或 manager 上的赝势上传到超算自己的用户目录下；赝势格式如下：

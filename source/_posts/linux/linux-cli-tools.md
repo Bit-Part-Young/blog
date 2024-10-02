@@ -83,7 +83,7 @@ make -j && make install
 ```bash
 wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/download -O zsh-5.9.tar.xz --no-check-certificate
 
-./configure --prefix="${HOME}/local" CPPFLAGS="-I${HOME}/local/include" LDFLAGS="-L${HOME}/local/lib"
+./configure --prefix="${HOME}/local/zsh" CPPFLAGS="-I${HOME}/local/ncurses/include" LDFLAGS="-L${HOME}/local/ncurses/lib"
 
 make -j && make install
 ```
@@ -189,11 +189,11 @@ git clone --depth=1 https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/p
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
 git clone --depth=1 https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/fast-syntax-highlighting && \
-git clone --depth 1 https://github.com/wfxr/forgit.git ${ZSH_CUSTOM}/plugins/forgit && \
-git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM}/plugins/zsh-vi-mode && \
-git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM}/plugins/you-should-use && \
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k && \
+git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM}/plugins/you-should-use
 # 可选
+# git clone --depth=1 https://github.com/wfxr/forgit.git ${ZSH_CUSTOM}/plugins/forgit && \
+# git clone --depth=1 https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM}/plugins/zsh-vi-mode && \
 # git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM}/themes/spaceship-prompt && \
 # ln -s ${ZSH_CUSTOM}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM}/themes/spaceship.zsh-theme
 
@@ -224,13 +224,13 @@ p10k configure  # 配置 powerlevel10k
 
 ```bash
 # 内置插件
-x                  # 解压任意格式压缩
-z                  # 目录自动跳转，模糊匹配最近进入过的目录
-git                # 丰富的 git alias
-docker             # docker alias；会拖慢 source ~/.zshrc 速度
-docker-compose     # docker-compose alias
-brew               # brew alias
-colored-man-pages  # 命令帮助页彩色化
+x                              # 解压任意格式压缩
+z                              # 目录自动跳转，模糊匹配最近进入过的目录
+git                            # 丰富的 git alias
+docker                         # docker alias；会拖慢 source ~/.zshrc 速度
+docker-compose                 # docker-compose alias
+brew                           # brew alias
+colored-man-pages              # 命令帮助页彩色化
 
 # docker 插件需如下设置
 zstyle ':completion:*:*:docker:*' option-stacking yes
@@ -243,15 +243,15 @@ zsh-completions
 zsh-fast-syntax-highlighting
 forgit
 zsh-you-should-use
-zsh-vi-mode           # Crtl + [ 进入 Normal mode
+zsh-vi-mode                    # Crtl + [ 进入 Normal mode
 zsh-lovers
 zsh-git-prompt
 
 # Bash 插件
-bash-git-prompt       # 效果还不错
-bash-language-server  # Bash LSP
-bash-completion       # Bash 自动补全
-bash-snippets         # 有 cheat 等可执行命令
+bash-git-prompt                # 效果还不错
+bash-language-server           # Bash LSP
+bash-completion                # Bash 自动补全
+bash-snippets                  # 有 cheat 等可执行命令
 ```
 
 
@@ -329,7 +329,7 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 
 ## 其他命令行工具
 
->ripgrep、lsd、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
+>lsd、ripgrep、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
 
 系统相关
 
@@ -502,7 +502,11 @@ ncdu -o ncdu.txt   # 输出信息到文件中
 navi repo browse   # 按需添加 cheatsheet git repo 以增加丰富性
 
 
-# 升级 fzf
+# fzf 安装、升级
+# 安装
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+# 升级
 cd ~/.fzf && git pull && ./install
 
 
