@@ -48,5 +48,5 @@ password:
 ## 相关问题
 
 - [ ] Zotero，将网页文献通过其插件导入到软件中时，出现以下内容：使用 ScienceDirect 保存时发生错误。改为尝试用 Embedded Metadata 保存
-	- [使用 ScienceDirect 保存时发生错误。改为尝试用 Embedded Metadata 保存。 - Zotero Forums](https://forums.zotero.org/discussion/118089/%E4%BD%BF%E7%94%A8-sciencedirect-%E4%BF%9D%E5%AD%98%E6%97%B6%E5%8F%91%E7%94%9F%E9%94%99%E8%AF%AF-%E6%94%B9%E4%B8%BA%E5%B0%9D%E8%AF%95%E7%94%A8-embedded-metadata-%E4%BF%9D%E5%AD%98)
-	- Chrome 浏览器出现以上问题，Safari 正常；但在请求 PDF 时，会出现 “There was a problem providing the content you requested” 的错误
+    - [使用 ScienceDirect 保存时发生错误。改为尝试用 Embedded Metadata 保存。 - Zotero Forums](https://forums.zotero.org/discussion/118089/%E4%BD%BF%E7%94%A8-sciencedirect-%E4%BF%9D%E5%AD%98%E6%97%B6%E5%8F%91%E7%94%9F%E9%94%99%E8%AF%AF-%E6%94%B9%E4%B8%BA%E5%B0%9D%E8%AF%95%E7%94%A8-embedded-metadata-%E4%BF%9D%E5%AD%98)
+    - Chrome 浏览器出现以上问题，Safari 正常；但在请求 PDF 时，会出现 “There was a problem providing the content you requested” 的错误

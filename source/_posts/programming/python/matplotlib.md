@@ -209,7 +209,7 @@ fig.subplots_adjust(hspace=0.0, wspace=0.0)
 # axs = axs.flatten()
 # axs 数组扁平化，利于 for 循环
 for i, ax in enumerate(axs.flat):
-	...
+    ...
 
     # 第二列的 y 轴坐标刻度不显示
      if i % 2 == 1:
@@ -403,10 +403,10 @@ plt.legend(props={"family": "SimHei"})
 ---
 
 - matplotlib joint 绘制（上、右两侧分别是 x, y 的直方图）
-	- [scientific-visualization-book/code/layout/standard-layout-2.py at master · rougier/scientific-visualization-book · GitHub](https://github.com/rougier/scientific-visualization-book/blob/master/code/layout/standard-layout-2.py)
-	- [seaborn.JointGrid — seaborn 0.13.2 documentation](https://seaborn.pydata.org/generated/seaborn.JointGrid.html)
-	- [seaborn.jointplot — seaborn 0.13.2 documentation](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
-	- [Scatter plot with histograms — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_hist.html)
+    - [scientific-visualization-book/code/layout/standard-layout-2.py at master · rougier/scientific-visualization-book · GitHub](https://github.com/rougier/scientific-visualization-book/blob/master/code/layout/standard-layout-2.py)
+    - [seaborn.JointGrid — seaborn 0.13.2 documentation](https://seaborn.pydata.org/generated/seaborn.JointGrid.html)
+    - [seaborn.jointplot — seaborn 0.13.2 documentation](https://seaborn.pydata.org/generated/seaborn.jointplot.html)
+    - [Scatter plot with histograms — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_hist.html)
 
 
 - 热图 heatmap / 关联图绘制：`plt.matshow()`，`seaborn.heatmap()`
@@ -895,8 +895,8 @@ KeysView(RcParams({'_internal.classic_mode': False,
 ### 其他
 
 - [ ] 找到一个适合的 color cycle
-	- [GitHub - Billingegroup/bg-mpl-stylesheets: Matplotlib style sheets](https://github.com/Billingegroup/bg-mpl-stylesheets)
-	- [Changes to the default style — Matplotlib 3.9.2 documentation](https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html)
+    - [GitHub - Billingegroup/bg-mpl-stylesheets: Matplotlib style sheets](https://github.com/Billingegroup/bg-mpl-stylesheets)
+    - [Changes to the default style — Matplotlib 3.9.2 documentation](https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html)
 
 - [ ] Matplotlib mplstyle 写法
 

@@ -33,18 +33,18 @@ MkDocs：文档、笔记、博客框架。
 - Mkdocs 首页写法参考：[notebook/docs/index.md at main · IsshikiHugh/notebook · GitHub](https://github.com/IsshikiHugh/notebook/blob/main/docs/index.md)
 
 - 配置文件参考：
-	- 官方配置文件：[mkdocs.yml - mkdocs-material - squidfunk - GitHub](https://github.com/squidfunk/mkdocs-material/blob/master/mkdocs.yml)
-	- [mkdocs.yml - notebook - HobbitQia - GitHub](https://github.com/HobbitQia/notebook/blob/note1/mkdocs.yml)
-	- [mkdocs.yml - note - TonyCrane](https://github.com/TonyCrane/note/blob/master/mkdocs.yml)
-	- [mkdocs.yml - TuringCourses - ZJU-Turing - GitHub](https://github.com/ZJU-Turing/TuringCourses/blob/master/mkdocs.yml)
-	- [mkdocs.yml | chenggroup.github.io - chenggroup - GitHub](https://github.com/chenggroup/chenggroup.github.io/blob/master/mkdocs.yml)
+    - 官方配置文件：[mkdocs.yml - mkdocs-material - squidfunk - GitHub](https://github.com/squidfunk/mkdocs-material/blob/master/mkdocs.yml)
+    - [mkdocs.yml - notebook - HobbitQia - GitHub](https://github.com/HobbitQia/notebook/blob/note1/mkdocs.yml)
+    - [mkdocs.yml - note - TonyCrane](https://github.com/TonyCrane/note/blob/master/mkdocs.yml)
+    - [mkdocs.yml - TuringCourses - ZJU-Turing - GitHub](https://github.com/ZJU-Turing/TuringCourses/blob/master/mkdocs.yml)
+    - [mkdocs.yml | chenggroup.github.io - chenggroup - GitHub](https://github.com/chenggroup/chenggroup.github.io/blob/master/mkdocs.yml)
 
 - 参考笔记站点搭建 repo：
-	- [GitHub - IsshikiHugh/zju-cs-asio: 收集各类与 ZJU-CS 有关的网站形式的资料。](https://github.com/IsshikiHugh/zju-cs-asio)
-	- [鹤翔万里的笔记本](https://note.tonycrane.cc/)
-	- [Welcome to HobbitQia's Notebook! - HobbitQia的笔记本](https://note.hobbitqia.cc/)
-	- [图灵班学习指南](https://zju-turing.github.io/TuringCourses/)
-	- [GitHub - CS-ZIJI/F-MkDocs-Template: The uniform MkDocs template for course notes/tutorials.](https://github.com/CS-ZIJI/F-MkDocs-Template)
+    - [GitHub - IsshikiHugh/zju-cs-asio: 收集各类与 ZJU-CS 有关的网站形式的资料。](https://github.com/IsshikiHugh/zju-cs-asio)
+    - [鹤翔万里的笔记本](https://note.tonycrane.cc/)
+    - [Welcome to HobbitQia's Notebook! - HobbitQia的笔记本](https://note.hobbitqia.cc/)
+    - [图灵班学习指南](https://zju-turing.github.io/TuringCourses/)
+    - [GitHub - CS-ZIJI/F-MkDocs-Template: The uniform MkDocs template for course notes/tutorials.](https://github.com/CS-ZIJI/F-MkDocs-Template)
 
 
 
@@ -146,7 +146,7 @@ theme:
     logo: material/notebook-outline  # 自定义 logo
     repo: fontawesome/brands/github-alt
     admonition: # 自定义 admonition
-	# https://github.com/IsshikiHugh/notebook/blob/main/mkdocs.yaml
+    # https://github.com/IsshikiHugh/notebook/blob/main/mkdocs.yaml
       info: fontawesome/solid/anchor
       note: fontawesome/solid/pen-nib
       abstract: fontawesome/solid/list
@@ -178,11 +178,11 @@ theme:
       toggle:
         icon: material/weather-night  # 月亮
         name: Switch to light mode
-		
+        
   features:
     - navigation.footer  # 页面底部显示 “上一页、下一页”
     - navigation.tabs    # 导航栏
-	
+    
   custom_dir: overrides  # 指定自定义模板和静态文件的目录路径
 
 plugins:  # 插件
@@ -248,7 +248,7 @@ extra:  # 添加 social link
     - name: Home
       icon: fontawesome/solid/house-chimney
       link: url
-	  
+      
 nav:
   - Home: 
     - index.md

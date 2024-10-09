@@ -52,9 +52,9 @@ password:
 
 - 修改软件源以加速 package 下载
 - 镜像源文件:
-	- Debian/Ubuntu - `/etc/apt/sources.list`；Ubuntu 软件源镜像：[ubuntu - 清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
-	- Fedora/RHEL/CentOS - `/etc/yum.repos.d/` 或 `/etc/dnf/dnf.conf`
-	- Arch Linux - `/etc/pacman.d/mirrorlist`
+    - Debian/Ubuntu - `/etc/apt/sources.list`；Ubuntu 软件源镜像：[ubuntu - 清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+    - Fedora/RHEL/CentOS - `/etc/yum.repos.d/` 或 `/etc/dnf/dnf.conf`
+    - Arch Linux - `/etc/pacman.d/mirrorlist`
 
 
 ```bash
@@ -246,9 +246,9 @@ GNOME 桌面扩展推荐：
 >[KDE常用桌面插件总结 - pipci - 博客园](https://www.cnblogs.com/pipci/p/14861412.html)
 
 - GNOME 与 KDE 的区别：
-	- GNOME 使用 GDM3 显示管理器；KDE 使用 SDDM (Simple Desktop Display Manager) 显示管理器
-	- GNOME 主要使用 GTK 构建 GUI 工具，KDE 使用 Qt
-	- KDE 默认终端 Konsole，默认文本编辑器 Kate
+    - GNOME 使用 GDM3 显示管理器；KDE 使用 SDDM (Simple Desktop Display Manager) 显示管理器
+    - GNOME 主要使用 GTK 构建 GUI 工具，KDE 使用 Qt
+    - KDE 默认终端 Konsole，默认文本编辑器 Kate
 
 ```bash
 sudo apt install kde-plasma-desktop
@@ -571,9 +571,9 @@ fc-list :lang=zh  # 查看中文字体
 ```
 
 - 字体设置
-	- 系统设置： Settings - Appearance - Fonts
-	- Chrome 浏览器设置：Settings - Appearance - Customize font
-	- Obsidian 设置：设置 - 外观 - 字体 - 界面、正文、代码字体
+    - 系统设置： Settings - Appearance - Fonts
+    - Chrome 浏览器设置：Settings - Appearance - Customize font
+    - Obsidian 设置：设置 - 外观 - 字体 - 界面、正文、代码字体
 
 
 ---
@@ -608,8 +608,8 @@ xrandr
 ### 相关问题
 
 - 用户无 sudo 权限：
-	- 问题：`xxx is not in the sudoers file`
-	- 解决方法：切换到 root 用户，修改 `/etc/sudoers` 内容
+    - 问题：`xxx is not in the sudoers file`
+    - 解决方法：切换到 root 用户，修改 `/etc/sudoers` 内容
 
 ```bash
 # User privilege specification

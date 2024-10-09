@@ -42,7 +42,7 @@ GitHub Pages 默认框架。
 - 文章置顶 Front Matter 参数：`top`，数值为 `true` 或 `false`（默认排序顺序是日期新的排在上方）
 - md 文档中的 URL 链接 title 中不能有 `|`，否则会渲染代码块的形式
 - md 文档中不能使用双大括号，否则被其包括的内容不会出现
-	- Jekyll 框架的问题：[Non Liquid custom markdown Double Curly Brackets being treated as Liquid · Issue #7965 · jekyll/jekyll · GitHub](https://github.com/jekyll/jekyll/issues/7965)
+    - Jekyll 框架的问题：[Non Liquid custom markdown Double Curly Brackets being treated as Liquid · Issue #7965 · jekyll/jekyll · GitHub](https://github.com/jekyll/jekyll/issues/7965)
 - 渲染 checklist 时，会无法渲染 bullet list
 
 

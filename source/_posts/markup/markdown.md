@@ -28,9 +28,9 @@ password:
 - 扩展语法包括：表格、脚注、任务列表、公式、流程图等
 
 - 参考资料：
-	- Markdown 语法及应用：[lec3.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec3.md)
-	- [GitHub - tchapi/markdown-cheatsheet: Markdown Cheatsheet for Github Readme.md](https://github.com/tchapi/markdown-cheatsheet)
-	- [GitHub - mzlogin/markdown-intro: Markdown Intro / Markdown 简介](https://github.com/mzlogin/markdown-intro) 
+    - Markdown 语法及应用：[lec3.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec3.md)
+    - [GitHub - tchapi/markdown-cheatsheet: Markdown Cheatsheet for Github Readme.md](https://github.com/tchapi/markdown-cheatsheet)
+    - [GitHub - mzlogin/markdown-intro: Markdown Intro / Markdown 简介](https://github.com/mzlogin/markdown-intro) 
 
 
 
@@ -45,14 +45,14 @@ password:
 - 下载 md 文档中的 online 图片：[GitHub - YellowAndGreen/Md-ImgLocalize: Download and convert all online images to local images in markdown files.](https://github.com/YellowAndGreen/Md-ImgLocalize)
 
 - CSV 内容转成 Markdown 表格：
-	- 还可以 Excel 内容：[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
-	- 还可以转 LaTeX 表格等：[Convert CSV to Markdown Table - Table Convert Online](https://tableconvert.com/csv-to-markdown)
-	- [GitHub - lzakharov/csv2md](https://github.com/lzakharov/csv2md)
-	- [GitHub - astanin/python-tabulate](https://github.com/astanin/python-tabulate)
+    - 还可以 Excel 内容：[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
+    - 还可以转 LaTeX 表格等：[Convert CSV to Markdown Table - Table Convert Online](https://tableconvert.com/csv-to-markdown)
+    - [GitHub - lzakharov/csv2md](https://github.com/lzakharov/csv2md)
+    - [GitHub - astanin/python-tabulate](https://github.com/astanin/python-tabulate)
 
 - 检查 markdown 文件中的链接是否失效
-	- [GitHub - gaurav-nelson/github-action-markdown-link-check: Check all links in markdown files if they are alive or dead. 🔗✔️](https://github.com/gaurav-nelson/github-action-markdown-link-check)
-	- [GitHub - UmbrellaDocs/linkspector: Uncover broken links in your content.](https://github.com/UmbrellaDocs/linkspector)
+    - [GitHub - gaurav-nelson/github-action-markdown-link-check: Check all links in markdown files if they are alive or dead. 🔗✔️](https://github.com/gaurav-nelson/github-action-markdown-link-check)
+    - [GitHub - UmbrellaDocs/linkspector: Uncover broken links in your content.](https://github.com/UmbrellaDocs/linkspector)
 
 - 配置 markdownlint：[crawlee-python/.markdownlint.yaml at master · apify/crawlee-python · GitHub](https://github.com/apify/crawlee-python/blob/master/.markdownlint.yaml)
 
@@ -168,8 +168,8 @@ no-inline-html: false
 ### 代码块
 
 - 三个 \` 或 \~ 围起来构成代码块（\~ 或 \` 可以加语言名称）
-	- 带有高亮支持的软件会对其进行高亮显示
-	- 不加（或加 `text`）不进行高亮
+    - 带有高亮支持的软件会对其进行高亮显示
+    - 不加（或加 `text`）不进行高亮
 
 ~~~markdown
 ```c
@@ -214,9 +214,9 @@ int main() {
 ```
 
 - 目录用：`[section name](#section)`
-	- Typora 软件可直接使用 `[TOC]` 生成目录；GitHub 和 Gitee 不识别 `[TOC]`
-	- Gitee 会自动在左侧生成目录，GitHub 需手动生成
-	- 当涉及到 `.` 时，可忽略，涉及到空格时，需用 `-` 连字符连接，涉及到大写字母，需将其小写）
+    - Typora 软件可直接使用 `[TOC]` 生成目录；GitHub 和 Gitee 不识别 `[TOC]`
+    - Gitee 会自动在左侧生成目录，GitHub 需手动生成
+    - 当涉及到 `.` 时，可忽略，涉及到空格时，需用 `-` 连字符连接，涉及到大写字母，需将其小写）
 
 ```markdown
 - [一级标题](#一级标题)
@@ -290,8 +290,8 @@ int main() {
 ```
 
 - 表情 emoji
-	- Markdown emoji cheatsheet：[GitHub - ikatyang/emoji-cheat-sheet: A markdown version emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet)
-	- [📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍](https://emojipedia.org/)
+    - Markdown emoji cheatsheet：[GitHub - ikatyang/emoji-cheat-sheet: A markdown version emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet)
+    - [📙 Emojipedia — 😃 Home of Emoji Meanings 💁👌🎍😍](https://emojipedia.org/)
 
 - Markdown 中带圆圈的数字编号，没有相应语法，直接复制粘贴
 

@@ -137,8 +137,8 @@ brew install git-delta
 ```
 
 - [delta](https://github.com/dandavison/delta)：主要用于 Git 相关命令（diff、blame、show 等）的语法突出显示分页器
-	- 安装包为 git-delta，可执行命令为 delta
-	- 使用：在 `~/.gitconfig` 中添加以下设置
+    - 安装包为 git-delta，可执行命令为 delta
+    - 使用：在 `~/.gitconfig` 中添加以下设置
 
 ```bash
 [core]
@@ -155,7 +155,7 @@ brew install git-delta
 ```
 
 - Git 扩展：[GitHub - tj/git-extras](https://github.com/tj/git-extras)
-	- git extras 命令功能中文翻译：[git-extras-zh/Commands.zh.md](https://github.com/chinanf-boy/git-extras-zh/blob/master/Commands.zh.md)
+    - git extras 命令功能中文翻译：[git-extras-zh/Commands.zh.md](https://github.com/chinanf-boy/git-extras-zh/blob/master/Commands.zh.md)
 
 ```bash
 # 安装
@@ -286,8 +286,8 @@ git rebase feature               # 同上
 - 忽略文件：写入在 `.gitignore` 文件中的文件/目录会被忽略掉
 - 可在 repo 根目录及其子目录分别创建
 - 常用 `.gitignore` 模板：
-	- [GitHub - github/gitignore: A collection of useful .gitignore templates](https://github.com/github/gitignore)
-	- [gitignore.io - 为你的项目创建必要的 .gitignore 文件](https://www.toptal.com/developers/gitignore)
+    - [GitHub - github/gitignore: A collection of useful .gitignore templates](https://github.com/github/gitignore)
+    - [gitignore.io - 为你的项目创建必要的 .gitignore 文件](https://www.toptal.com/developers/gitignore)
 
 
 ---
@@ -310,16 +310,16 @@ git rebase feature               # 同上
 
 # 配置特定文件类型的差异（diff）显示策略
 # 并非将文件转换为文本文件，只是尝试以文本方式进行显示
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
+*.doc   diff=astextplain
+*.DOC   diff=astextplain
+*.docx  diff=astextplain
+*.DOCX  diff=astextplain
+*.dot   diff=astextplain
+*.DOT   diff=astextplain
+*.pdf   diff=astextplain
+*.PDF   diff=astextplain
+*.rtf   diff=astextplain
+*.RTF   diff=astextplain
 
 *.md linguist-documentation=false linguist-detectable=true
 *.md linguist-language=Markdown
@@ -344,10 +344,10 @@ Git 子模块（submodule）：允许将一个 Git repo 嵌套在另一个 Git r
 
 ```bash
 [submodule "submodule"]  # 子模块名称
-	path = submodule  # 子模块在 repo 中的相对路径
-	url = git@github.com:user/submodule.git  # 子模块 url
-	branch = main  # 分支名
-	# 浅克隆
+    path = submodule  # 子模块在 repo 中的相对路径
+    url = git@github.com:user/submodule.git  # 子模块 url
+    branch = main  # 分支名
+    # 浅克隆
     shallow = true
     depth = 1
 ```
@@ -404,8 +404,8 @@ git config --global credential.helper 'store --file ~/.my-credentials'
 >[配置同时使用 Gitlab、Github、Gitee(码云) 共存的开发环境 - 简书](https://www.jianshu.com/p/68578d52470c)
 
 - 多账号 ssh 配置作用：
-	- 多账号管理：通过配置 config 文件，可以方便地管理访问多个仓库时使用的不同账号
-	- 通过 ssh 协议，免密克隆远程仓库及 git 操作
+    - 多账号管理：通过配置 config 文件，可以方便地管理访问多个仓库时使用的不同账号
+    - 通过 ssh 协议，免密克隆远程仓库及 git 操作
 
 - 生成密钥，将 `id_rsa.gitee.pub` 和 `id_rsa.github.pub` 文件中的内容添加到 Github 和 Gitee 中的 SSH keys（SSH 公钥）中
 
@@ -461,8 +461,8 @@ Welcome to GitLab, XXX!
 ```
 
 - **注意事项**：
-	- `~/.ssh/config` 文件出现 `Bad owner or permissions` 错误的解决办法：文件权限问题，设置 config 文件权限为 `600`
-	- 超算平台中的登陆节点禁止对外的 ssh，无法使用 git 交互环境，建议在本地或者实验室工作站（manager 和 master）使用；超算平台进行以上设置会出现以下报错：
+    - `~/.ssh/config` 文件出现 `Bad owner or permissions` 错误的解决办法：文件权限问题，设置 config 文件权限为 `600`
+    - 超算平台中的登陆节点禁止对外的 ssh，无法使用 git 交互环境，建议在本地或者实验室工作站（manager 和 master）使用；超算平台进行以上设置会出现以下报错：
 
 ```bash
 ssh: connect to host github.com port 22: Network is unreachable
@@ -506,8 +506,8 @@ url = https://user:token@gitee.com/user/repo.git
 
 - Gitee 可以直接从 GitHub 和 GitLab 中导入 repo
 - 参考：
-	- [仓库镜像管理（Gitee<->Github 双向同步） - Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)
-	- [Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
+    - [仓库镜像管理（Gitee<->Github 双向同步） - Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)
+    - [Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
 
 
 ---
@@ -826,12 +826,12 @@ git log -1 --diff-filter=A --follow --pretty="%ci" file
         =%s          # commit message
         =%H          # 完整 commit hash
         =%h          # 缩写 commit hash
-		=%ci         # 提交日期（不受作者限制）
-		=%ad         # 作者提交日期（绝对时间）
-		=%ar         # 作者提交日期（相对时间）
-		=%an         # 作者名称
-		=%ae         # 作者邮箱
-		=%d          # 分支信息
+        =%ci         # 提交日期（不受作者限制）
+        =%ad         # 作者提交日期（绝对时间）
+        =%ar         # 作者提交日期（相对时间）
+        =%an         # 作者名称
+        =%ae         # 作者邮箱
+        =%d          # 分支信息
 -n N / HEAD~N        # 显示最新的前 N 条提交记录
 --grep=pattern       # 筛选指定 pattern 的提交记录
 --date=short         # 日期格式
@@ -941,9 +941,9 @@ alias | grep 'git subcommand'
 - 提交空文件夹：在空文件夹中创建 `.gitkeep` 文件
 
 - push 到多个远程 repo（**不能是浅克隆**）
-	- 参考： [文件推向3个git库 - git-tips](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
-	- 只能从 `origin` 里的一个 repo url pull 代码，默认为添加到 `origin` 的第一个地址，可在 `.git/config` 文件中直接调整 repo url 顺序
-	- 可用此方法替代 Gitee 与 GitHub 之间互相同步的设置
+    - 参考： [文件推向3个git库 - git-tips](https://github.com/jaywcjlove/git-tips#%E6%96%87%E4%BB%B6%E6%8E%A8%E5%90%913%E4%B8%AAgit%E5%BA%93)
+    - 只能从 `origin` 里的一个 repo url pull 代码，默认为添加到 `origin` 的第一个地址，可在 `.git/config` 文件中直接调整 repo url 顺序
+    - 可用此方法替代 Gitee 与 GitHub 之间互相同步的设置
 
 ```bash
 # 添加远程 repo url
@@ -970,8 +970,8 @@ error: failed to push some refs to 'github.com:user/repo.git'
 ---
 
 - git clone 部分内容：[如何使用 Git 只克隆部分文件 | 猎人杂货铺](https://hunterx.xyz/git-sparse-checkout.html#more)
-	- `git sparse-checkout` - 可实现只克隆或检出指定文件夹，不下载所有内容
-	- `--filter=blob:none` - 只获取元数据，不下载原始数据部分
+    - `git sparse-checkout` - 可实现只克隆或检出指定文件夹，不下载所有内容
+    - `--filter=blob:none` - 只获取元数据，不下载原始数据部分
 
 ```bash
 # 方式 1 速度更快
@@ -1023,8 +1023,8 @@ gitmoji-cli：git commit 时使用 emoji
 ---
 
 - 新建空分支：
-	- GitHub 中的 gh-pages 分支为特殊分支，可与主分支无关联（push 时会自动启用 Github Actions）
-	- **其他命名的分支暂无法实现与主分支无关联**；[git - Create empty branch on GitHub - Stack Overflow](https://stackoverflow.com/questions/34100048/create-empty-branch-on-github)
+    - GitHub 中的 gh-pages 分支为特殊分支，可与主分支无关联（push 时会自动启用 Github Actions）
+    - **其他命名的分支暂无法实现与主分支无关联**；[git - Create empty branch on GitHub - Stack Overflow](https://stackoverflow.com/questions/34100048/create-empty-branch-on-github)
 
 ```bash
 git switch --orphan <new branch>

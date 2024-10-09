@@ -91,8 +91,8 @@ make -j && make install
 ---
 
 - Windows：
-	- 两种方式：WSL + zsh，Git Bash + zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
-	- Windows Terminal 以及 VSCode 本地设置默认终端为 Git Bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
+    - 两种方式：WSL + zsh，Git Bash + zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
+    - Windows Terminal 以及 VSCode 本地设置默认终端为 Git Bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
 
 下载 zsh 包；复制 `etc/`、`usr/` 到 Git 安装目录中；打开 Git Bash，执行命令 `zsh`
 
@@ -124,14 +124,14 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
         "list":
         [
             // 添加项
-	        {
+            {
                 "guid" : "{5D1F95DF-36E8-56AD-C203-EA75CE06422C}",
                 "name" : "Git Bash",
                 "commandline" : "D:\\Scoop\\apps\\git\\current\\bin\\bash.exe --login -i",
                 "icon" : "D:\\Scoop\\apps\\git\\current\\usr\\share\\git\\git-for-windows.ico",
                 "startingDirectory": "C:\\Users\\XXX\\Desktop"
             },
-		    // ...
+            // ...
         ],
     },
 }
@@ -175,13 +175,13 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 ```
 
 - 插件下载：
-	- powerlevel10k（主题）
-	- zsh-completions（自动补全）
-	- zsh-syntax-highlighting（高亮）
-	- zsh-autosuggestions（建议）
-	- forgit（交互式 git；需确保安装了 fzf）
-	- zsh prompt（可选）：[spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt)
-	- [starship](https://github.com/starship/starship): Shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
+    - powerlevel10k（主题）
+    - zsh-completions（自动补全）
+    - zsh-syntax-highlighting（高亮）
+    - zsh-autosuggestions（建议）
+    - forgit（交互式 git；需确保安装了 fzf）
+    - zsh prompt（可选）：[spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt)
+    - [starship](https://github.com/starship/starship): Shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
 
 ```bash
 # github 源
@@ -334,25 +334,25 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 系统相关
 
 - Shell：个人感觉没有 zsh 好用
-	- nushell
-	- fish
+    - nushell
+    - fish
 
 - 替代 `man`：
-	- [tldr](https://github.com/tldr-pages/tldr)（有时会失效）
-	- [eg](https://github.com/srsudar/eg)
-	- [navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
+    - [tldr](https://github.com/tldr-pages/tldr)（有时会失效）
+    - [eg](https://github.com/srsudar/eg)
+    - [navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
 
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 
 - 替代 `ls`：
-	- [lsd](https://github.com/lsd-rs/lsd)（可显示文件的 git 状态）
-	- [eza](https://github.com/eza-community/eza)（exa 的维护版本；可显示文件的 git 状态）
-	- [exa](https://github.com/ogham/exa)（已不再更新）
+    - [lsd](https://github.com/lsd-rs/lsd)（可显示文件的 git 状态）
+    - [eza](https://github.com/eza-community/eza)（exa 的维护版本；可显示文件的 git 状态）
+    - [exa](https://github.com/ogham/exa)（已不再更新）
 
 - 替代 `grep`：
-	- [ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
-	- [peco](https://github.com/peco/peco)（交互式）
-	- [ripgrep-all](https://github.com/phiresky/ripgrep-all)（命令 `rga`；可在 PDF、E-Books、Office 文档、压缩文件等查找内容）
+    - [ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
+    - [peco](https://github.com/peco/peco)（交互式）
+    - [ripgrep-all](https://github.com/phiresky/ripgrep-all)（命令 `rga`；可在 PDF、E-Books、Office 文档、压缩文件等查找内容）
 
 - 替代 `sed`：[sd](https://github.com/chmln/sd)
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
@@ -361,21 +361,21 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 替代 `diff`：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
 
 - 替代 `top`：
-	- [btop](https://github.com/aristocratos/btop)
-	- [htop](https://github.com/htop-dev/htop)
+    - [btop](https://github.com/aristocratos/btop)
+    - [htop](https://github.com/htop-dev/htop)
 
 - 查看系统资源：[glances](https://github.com/nicolargo/glances)
 
 - 监测 GPU（Nvidia 和 AMD 等）：
-	- [nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
-	- [nvitop](https://github.com/XuehaiPan/nvitop)
+    - [nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
+    - [nvitop](https://github.com/XuehaiPan/nvitop)
 
 - 监测 CPU 压力：[GitHub - amanusk/s-tui: Terminal-based CPU stress and monitoring utility](https://github.com/amanusk/s-tui)
 
 - 显示系统信息：
-	- [neofetch](https://github.com/dylanaraps/neofetch)、[neofetch-themes](https://github.com/Chick2D/neofetch-themes)
-	- [fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
-	- [hyfetch](https://github.com/hykilpikonna/hyfetch)
+    - [neofetch](https://github.com/dylanaraps/neofetch)、[neofetch-themes](https://github.com/Chick2D/neofetch-themes)
+    - [fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
+    - [hyfetch](https://github.com/hykilpikonna/hyfetch)
 
 - 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
 - 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
@@ -388,8 +388,8 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 Markdown 相关
 
 - 终端 Markdown 渲染：
-	- [frogmouth](https://github.com/Textualize/frogmouth)
-	- [glow](https://github.com/charmbracelet/glow)
+    - [frogmouth](https://github.com/Textualize/frogmouth)
+    - [glow](https://github.com/charmbracelet/glow)
 - [GitHub - swsnr/mdcat: cat for markdown](https://github.com/swsnr/mdcat)
 - 以 PPT 形式查看 md 文档：[GitHub - maaslalani/slides: Terminal based presentation tool](https://github.com/maaslalani/slides)
 
@@ -399,12 +399,12 @@ Markdown 相关
 
 - 模糊文件查找：[fzf](https://github.com/junegunn/fzf)
 - 终端文件管理器：
-	- [yazi](https://github.com/sxyazi/yazi)
-	- [superfile](https://github.com/MHNightCat/superfile)
-	- [nnn](https://github.com/jarun/nnn)
-	- [joshuto](https://github.com/kamiyaa/joshuto)
-	- [ranger](https://github.com/ranger/ranger)
-	- [lf](https://github.com/gokcehan/lf)（效果一般）
+    - [yazi](https://github.com/sxyazi/yazi)
+    - [superfile](https://github.com/MHNightCat/superfile)
+    - [nnn](https://github.com/jarun/nnn)
+    - [joshuto](https://github.com/kamiyaa/joshuto)
+    - [ranger](https://github.com/ranger/ranger)
+    - [lf](https://github.com/gokcehan/lf)（效果一般）
 - 文件传输：[GitHub - schollz/croc](https://github.com/schollz/croc)
 - [f2](https://github.com/ayoisaiah/f2)：文件批量重命名
 
@@ -423,8 +423,8 @@ Markdown 相关
 
 - 终端显示图片（效果一般）：[GitHub - SilinMeng0510/imgcatr: cat for images, by RUST 🦀️](https://github.com/SilinMeng0510/imgcatr)
 - 将源代码生成美观图片：
-	- [silicon](https://github.com/Aloxaf/silicon)
-	- [carbon](https://github.com/carbon-app/carbon)
+    - [silicon](https://github.com/Aloxaf/silicon)
+    - [carbon](https://github.com/carbon-app/carbon)
 - 将输入的图片，使用几何形状重新绘制：[GitHub - fogleman/primitive: Reproducing images with geometric primitives.](https://github.com/fogleman/primitive)
 
 
@@ -437,20 +437,20 @@ Markdown 相关
 - 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
 - 文本编辑器（类似 Vim）：[helix](https://github.com/helix-editor/helix)
 - 趣味小工具：
-	- cowsay（牛说）
-	- sl（火车）
-	- fortune（幸运饼干；格言）
-	- lolcat
-	- boxes
-	- cmatrix（黑客帝国类似的矩阵效果）
-	- asciiquarium（水族馆）
+    - cowsay（牛说）
+    - sl（火车）
+    - fortune（幸运饼干；格言）
+    - lolcat
+    - boxes
+    - cmatrix（黑客帝国类似的矩阵效果）
+    - asciiquarium（水族馆）
 
 
 ---
 
 - fzf 进阶用法
-	- [fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
-	- [Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
+    - [fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
+    - [Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
 
 ```bash
 # 搜索整个 apt package；回车安装
@@ -461,7 +461,7 @@ fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 ```
 
 - 用 fzf-tab 替代 zsh 的自动补全：[GitHub - Aloxaf/fzf-tab](https://github.com/Aloxaf/fzf-tab)
-	- 需将 fzf-tab 写在 zsh-autosuggestions、fast-syntax-highlighting 插件前，compinit 后
+    - 需将 fzf-tab 写在 zsh-autosuggestions、fast-syntax-highlighting 插件前，compinit 后
 
 ```bash
 # 安装
@@ -524,17 +524,17 @@ rga 'XXX' file.pdf  # 使用；文件后缀可以是 docx、zip、epub 等
 
 # 与 fzf 集成；写入 ~/.{bash,zsh}rc 中
 rga-fzf() {
-	RG_PREFIX="rga --files-with-matches"
-	local file
-	file="$(
-		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
-				--phony -q "$1" \
-				--bind "change:reload:$RG_PREFIX {q}" \
-				--preview-window="70%:wrap"
-	)" &&
-	echo "opening $file" &&
-	xdg-open "$file"
+    RG_PREFIX="rga --files-with-matches"
+    local file
+    file="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+            fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+                --phony -q "$1" \
+                --bind "change:reload:$RG_PREFIX {q}" \
+                --preview-window="70%:wrap"
+    )" &&
+    echo "opening $file" &&
+    xdg-open "$file"
 }
 
 

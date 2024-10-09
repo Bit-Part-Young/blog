@@ -22,8 +22,8 @@ password:
 ## 图片、PDF 互相转换
 
 - eps 转 pdf：
-	- ps2pdf，Linux 自带，将 ps/eps 格式转成 pdf
-	- epstopdf，Tex Live 中的 tool（生成的 pdf 文件相比 ps2pdf 生成的空白较少）
+    - ps2pdf，Linux 自带，将 ps/eps 格式转成 pdf
+    - epstopdf，Tex Live 中的 tool（生成的 pdf 文件相比 ps2pdf 生成的空白较少）
 
 - pdf 转 jpg/png 等格式：[GitHub - Belval/pdf2image: A python module that wraps the pdftoppm utility to convert PDF to PIL Image object](https://github.com/Belval/pdf2image)
 
@@ -54,10 +54,10 @@ svg2pdf file.svg
 >[利用Linux/shell中的命令编辑图片/视频和pdf文件](https://zhuanlan.zhihu.com/p/397857009)
 
 - ImageMagick 中的 convert 命令行工具，可实现多种图片格式转换
-	- 图片格式包括：tiff、png、jpg、svg、pdf 等
-	- pdf 转 png 的图片质量没有 pdf2image 工具 高
-	- tiff 图片转换，会将 tiff 的所有图层输出出来（只要编号最小的即可）
-	- ImageMagick V7 版本 `magick` 替换 `magick convert` 或 `convert` 命令
+    - 图片格式包括：tiff、png、jpg、svg、pdf 等
+    - pdf 转 png 的图片质量没有 pdf2image 工具 高
+    - tiff 图片转换，会将 tiff 的所有图层输出出来（只要编号最小的即可）
+    - ImageMagick V7 版本 `magick` 替换 `magick convert` 或 `convert` 命令
 
 - ghostscript：处理 PDF 文件，可执行命令为 `gs`
 

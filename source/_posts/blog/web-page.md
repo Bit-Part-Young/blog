@@ -38,15 +38,15 @@ password:
 - [GitHub - AmruthPillai/Reactive-Resume: A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!](https://github.com/AmruthPillai/Reactive-Resume)
 
 - Jekyll 框架：
-	- [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)
-	- [GitHub - yaoyao-liu/minimal-light](https://github.com/yaoyao-liu/minimal-light/)
-	- minimal 主题相关示例：
-		- [GitHub - juliayang/juliayang.github.io](https://github.com/juliayang/juliayang.github.io)
-		- [Julia H. Yang - Computational materials scientist](https://juliayang.github.io/)
-		- [GitHub - yaoyao-liu/yaoyao-liu.github.io: My homepage's source code](https://github.com/yaoyao-liu/yaoyao-liu.github.io)
-		- [yaoyao-liu homepage](https://www.cs.jhu.edu/~yyliu/)（本人 CV 采用此框架及主题）
-	- [GitHub - RayeRen/acad-homepage.github.io](https://github.com/RayeRen/acad-homepage.github.io)，示例：[Yi Ren (任意) - Homepage](https://rayeren.github.io/)
-	- [GitHub - sharu725/online-cv](https://github.com/sharu725/online-cv)
+    - [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)
+    - [GitHub - yaoyao-liu/minimal-light](https://github.com/yaoyao-liu/minimal-light/)
+    - minimal 主题相关示例：
+        - [GitHub - juliayang/juliayang.github.io](https://github.com/juliayang/juliayang.github.io)
+        - [Julia H. Yang - Computational materials scientist](https://juliayang.github.io/)
+        - [GitHub - yaoyao-liu/yaoyao-liu.github.io: My homepage's source code](https://github.com/yaoyao-liu/yaoyao-liu.github.io)
+        - [yaoyao-liu homepage](https://www.cs.jhu.edu/~yyliu/)（本人 CV 采用此框架及主题）
+    - [GitHub - RayeRen/acad-homepage.github.io](https://github.com/RayeRen/acad-homepage.github.io)，示例：[Yi Ren (任意) - Homepage](https://rayeren.github.io/)
+    - [GitHub - sharu725/online-cv](https://github.com/sharu725/online-cv)
 
 
 
@@ -150,8 +150,8 @@ npm init slidev@0.41.0
 
 - [使用 reveal-md 来写 Slides - Isshiki修's Notebook](https://note.isshikih.top/others/reveal-md2Slides/)
 - reveal-md 模板：
-	- [GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
-	- [GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)
+    - [GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
+    - [GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)
 
 
 
@@ -160,9 +160,9 @@ npm init slidev@0.41.0
 ## 在线 Book / 文档
 
 - [mdBook](https://github.com/rust-lang/mdBook)
-	- GitHub Actions 部署：[Automated Deployment: GitHub Actions · rust-lang/mdBook Wiki · GitHub](https://github.com/rust-lang/mdBook/wiki/Automated-Deployment%3A-GitHub-Actions)
-	- mdbook 加密：[GitHub - Wybxc/mdbook-pagecrypt: Encrypt your mdbook-built site with password protection.](https://github.com/Wybxc/mdbook-pagecrypt)
-	- mdBook 不能渲染 Jupyter Notebook（无相关插件）
+    - GitHub Actions 部署：[Automated Deployment: GitHub Actions · rust-lang/mdBook Wiki · GitHub](https://github.com/rust-lang/mdBook/wiki/Automated-Deployment%3A-GitHub-Actions)
+    - mdbook 加密：[GitHub - Wybxc/mdbook-pagecrypt: Encrypt your mdbook-built site with password protection.](https://github.com/Wybxc/mdbook-pagecrypt)
+    - mdBook 不能渲染 Jupyter Notebook（无相关插件）
 
 ```bash
 # 安装 mdbook
@@ -182,19 +182,19 @@ mdbook serve --open
 - [GitBook](https://www.gitbook.com/)
 
 - Jupyter Book 形式：[Built with Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
-	- GitHub Actions 部署：[GitHub Pages and Actions](https://jupyterbook.org/en/stable/publish/gh-pages.html)
-	- 案例：
-		- [GitHub - JaGeo/TutorialAtomate2Forcefields: Tutorial to learn basic features of atomate2](https://github.com/JaGeo/TutorialAtomate2Forcefields)
-		- [Testing M3GNet for Random Structure Searching — Test M3GNet for random structure searching](https://zhubonan.github.io/airss-m3gnet-test/root.html)
+    - GitHub Actions 部署：[GitHub Pages and Actions](https://jupyterbook.org/en/stable/publish/gh-pages.html)
+    - 案例：
+        - [GitHub - JaGeo/TutorialAtomate2Forcefields: Tutorial to learn basic features of atomate2](https://github.com/JaGeo/TutorialAtomate2Forcefields)
+        - [Testing M3GNet for Random Structure Searching — Test M3GNet for random structure searching](https://zhubonan.github.io/airss-m3gnet-test/root.html)
 
 - [GitHub - jaywcjlove/idoc: :book: Simple document generation tool! Dependence Node.js run.](https://github.com/jaywcjlove/idoc)
 
 - Quarto Docs（基于 Pandoc）：[GitHub - quarto-dev/quarto-cli: Open-source scientific and technical publishing system built on Pandoc.](https://github.com/quarto-dev/quarto-cli)
-	- 案例：[How to Script with OVITO - How To Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO/)
+    - 案例：[How to Script with OVITO - How To Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO/)
 
 - Sphinx 框架主题：
-	- [GitHub - mgeier/insipid-sphinx-theme](https://github.com/mgeier/insipid-sphinx-theme)
-	- [GitHub - pradyunsg/furo](https://github.com/pradyunsg/furo)
+    - [GitHub - mgeier/insipid-sphinx-theme](https://github.com/mgeier/insipid-sphinx-theme)
+    - [GitHub - pradyunsg/furo](https://github.com/pradyunsg/furo)
 
 - docsify：[docsify](https://docsify.js.org/#/zh-cn/)
 
@@ -231,12 +231,12 @@ mdbook serve --open
 - 论文发表情况网页：[GitHub - PhasesResearchLab/PublicationsList](https://github.com/PhasesResearchLab/PublicationsList)
 
 - 网页文件夹（分享文件）
-	- GitHub Actions 形式；需 repo 状态为 public： [GitHub - linyuxuanlin/File-host: 资源共享仓库](https://github.com/linyuxuanlin/File-host)
-	- 手动创建（需在每个文件夹目录下创建 index.html 文件）：[GitHub - pranabdas/drive](https://github.com/pranabdas/drive)
-	- [GitHub - filebrowser/filebrowser: 📂 Web File Browser](https://github.com/filebrowser/filebrowser)
-	- [GitHub - xiaobaidadada/filecat: 简洁的Web文件浏览与服务器管理（服务器Linux面板）](https://github.com/xiaobaidadada/filecat)
-	- 可自建的文件分享平台：[GitHub - stonith404/pingvin-share: A self-hosted file sharing platform that combines lightness and beauty, perfect for seamless and efficient file sharing.](https://github.com/stonith404/pingvin-share)
-	- [GitHub - songquanpeng/go-file: 基于 Go 的文件分享工具，仅单可执行文件，开箱即用，内置图床和视频播放页面. File sharing tool based on Go.](https://github.com/songquanpeng/go-file)
+    - GitHub Actions 形式；需 repo 状态为 public： [GitHub - linyuxuanlin/File-host: 资源共享仓库](https://github.com/linyuxuanlin/File-host)
+    - 手动创建（需在每个文件夹目录下创建 index.html 文件）：[GitHub - pranabdas/drive](https://github.com/pranabdas/drive)
+    - [GitHub - filebrowser/filebrowser: 📂 Web File Browser](https://github.com/filebrowser/filebrowser)
+    - [GitHub - xiaobaidadada/filecat: 简洁的Web文件浏览与服务器管理（服务器Linux面板）](https://github.com/xiaobaidadada/filecat)
+    - 可自建的文件分享平台：[GitHub - stonith404/pingvin-share: A self-hosted file sharing platform that combines lightness and beauty, perfect for seamless and efficient file sharing.](https://github.com/stonith404/pingvin-share)
+    - [GitHub - songquanpeng/go-file: 基于 Go 的文件分享工具，仅单可执行文件，开箱即用，内置图床和视频播放页面. File sharing tool based on Go.](https://github.com/songquanpeng/go-file)
 
 
 - 课程资料在线浏览（不是特别好用；会报错，暂无更新）：[GitHub - OrangeX4/GitNotes: 一个在浏览器上运行的笔记浏览应用, 用于浏览以 Markdown 书写的, 存放在 GitLab 或 GitHub 上的笔记.](https://github.com/OrangeX4/GitNotes)
@@ -246,14 +246,14 @@ mdbook serve --open
 - [Excalidraw - 在线手写风作图](https://excalidraw.com/)
 
 - 左右拖拽实现图片对比效果：
-	- [GitHub - kylewetton/image-compare-viewer: Compare before and after images, for grading and other retouching for instance. Vanilla JS, zero dependencies.](https://github.com/kylewetton/image-compare-viewer)
-	- [Image Compare Viewer](https://image-compare-viewer.netlify.app/)
-	- [GitHub - CodeSteppe/image-compare](https://github.com/CodeSteppe/image-compare)
+    - [GitHub - kylewetton/image-compare-viewer: Compare before and after images, for grading and other retouching for instance. Vanilla JS, zero dependencies.](https://github.com/kylewetton/image-compare-viewer)
+    - [Image Compare Viewer](https://image-compare-viewer.netlify.app/)
+    - [GitHub - CodeSteppe/image-compare](https://github.com/CodeSteppe/image-compare)
 
 - 简单网站点击量设置：[Free Hit Counters for your website or your blog - Free and without ads - Toolbox for webmaster](https://www.websiteout.net/counter.php)
 
 - 会议 workshop 网页模板：
-	- [GitHub - carpentries/workshop-template: The Carpentries Workshop Template](https://github.com/carpentries/workshop-template)
-	- [GitHub - DigitaleGesellschaft/jekyll-theme-conference: Jekyll template for a conference website containing program, speaker, talks and room overview](https://github.com/DigitaleGesellschaft/jekyll-theme-conference)
+    - [GitHub - carpentries/workshop-template: The Carpentries Workshop Template](https://github.com/carpentries/workshop-template)
+    - [GitHub - DigitaleGesellschaft/jekyll-theme-conference: Jekyll template for a conference website containing program, speaker, talks and room overview](https://github.com/DigitaleGesellschaft/jekyll-theme-conference)
 
 - 生命重要时间线网页：[GitHub - cheeaun/life: Life - a timeline of important events in my life](https://github.com/cheeaun/life)

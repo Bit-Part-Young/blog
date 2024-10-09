@@ -25,8 +25,8 @@ password:
 - LaTeX 是一种使用 TeX 程序作为排版引擎的格式（format），可以粗略地将它理解成是对 TeX 的一层封装；与汉字 “拉泰赫” 或 “雷泰赫” 的发音相近
 
 - 优缺点：
-	- 优点：专注于内容本身，排版（typesetting）效果好，数学公式排版强大，跨平台开源...
-	- 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得...
+    - 优点：专注于内容本身，排版（typesetting）效果好，数学公式排版强大，跨平台开源...
+    - 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得...
 
 - TeX 发行版：TeX Live / MacTeX（macOS 下定制的 TeX Live 版本）
 - TeX 编辑器：TeXstudio（Windows）、TeXShop（MacTeX 自带）、Texifier（macOS；有破解版）
@@ -73,8 +73,8 @@ password:
 ### 介绍
 
 - 安装参考：
-	- [GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
-	- [GitHub - AlphaZTX/LaTeX-tutorials](https://github.com/AlphaZTX/LaTeX-tutorials)（含 TeXstudio 使用）
+    - [GitHub - OsbertWang/install-latex-guide-zh-cn: 一份简短的关于 LaTeX 安装的介绍](https://github.com/OsbertWang/install-latex-guide-zh-cn)
+    - [GitHub - AlphaZTX/LaTeX-tutorials](https://github.com/AlphaZTX/LaTeX-tutorials)（含 TeXstudio 使用）
 
 - TeX Live 2024 版本已有 sjtutex 文档类
 - TeX Live 不同版本（basic small medium full）之间的区别：[installing - Minimal TeXLive installation - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/397174/minimal-texlive-installation)
@@ -210,19 +210,19 @@ tlmgr --version
 - Mac 端：TeXShop
 
 - 在线 LaTeX 编辑器
-	- [网页版 Overleaf](https://www.overleaf.com/)；桌面端 Overleaf：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
-	- [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
-	- LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
+    - [网页版 Overleaf](https://www.overleaf.com/)；桌面端 Overleaf：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
+    - [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
+    - LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
 - Overleaf 使用：
-	- Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 Overleaf，实现版本控制（交大版的 Overleaf 无此功能)
-	- Overleaf 可以使用 Vim 快捷键（**组合键**选项）
+    - Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 Overleaf，实现版本控制（交大版的 Overleaf 无此功能)
+    - Overleaf 可以使用 Vim 快捷键（**组合键**选项）
 
 - TeXstudio：工具 - 清理辅助文件
 
 - LyX：
-	- 安装： [LyX - Download](https://www.lyx.org/Download)
-	- 使用：[【或许会是电子笔记入门参考】【秃头小人的电子笔记软件使用经历】满纸荒唐言，图君一哂 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/262187)
+    - 安装： [LyX - Download](https://www.lyx.org/Download)
+    - 使用：[【或许会是电子笔记入门参考】【秃头小人的电子笔记软件使用经历】满纸荒唐言，图君一哂 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/262187)
 
 
 
@@ -243,16 +243,16 @@ texdoc texcount            # 查看 texcount 文档
 ```
 
 - VSCode 插件：
-	- LaTeX Workshop：语法高亮、实时编译 LaTeX，有字数统计功能
-		- 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
-	- LaTeX Utilities
-	- Overleaf Workshop
+    - LaTeX Workshop：语法高亮、实时编译 LaTeX，有字数统计功能
+        - 设置：[GitHub - EthanDeng/vscode-latex: LaTeX 编译环境配置：Visual Studio Code 配置简介](https://github.com/EthanDeng/vscode-latex)
+    - LaTeX Utilities
+    - Overleaf Workshop
 
 - [GitHub - tectonic-typesetting/tectonic: A modernized, complete, self-contained TeX/LaTeX engine, powered by XeTeX and TeXLive.](https://github.com/tectonic-typesetting/tectonic)
 
 - LaTeX OCR：
-	- [GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
-	- [公式识别](https://www.simpletex.cn/ai/latex_ocr)
+    - [GitHub - lukas-blecher/LaTeX-OCR: pix2tex: Using a ViT to convert images of equations into LaTeX code.](https://github.com/lukas-blecher/LaTeX-OCR)
+    - [公式识别](https://www.simpletex.cn/ai/latex_ocr)
 
 - Markdown 宏包：[以 Markdown 撰写文稿，以 LaTeX 排版](https://liam.page/2020/03/30/writing-manuscript-in-Markdown-and-typesetting-with-LaTeX/)
 
@@ -279,8 +279,8 @@ tex-fmt main.tex        # 格式化并覆写
 ```
 
 - latexindent.pl（格式化缩进；TeX Live 已安装该工具）：[GitHub - cmhughes/latexindent.pl: Perl script to add indentation (leading horizontal space) to LaTeX files](https://github.com/cmhughes/latexindent.pl)
-	- [Mac 安装 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#mac)
-	- [快速开始 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-introduction.html#quick-start)
+    - [Mac 安装 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#mac)
+    - [快速开始 — latexindent.pl 3.24.4 documentation](https://latexindentpl.readthedocs.io/en/latest/sec-introduction.html#quick-start)
 
 ```bash
 # macOS 安装
@@ -313,8 +313,8 @@ texcount main.tex
 ```
 
 - latexdiff：LaTeX 实现审阅效果（Tex Live 自带）
-	- 使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
-	- 若 tex 多个文件嵌套，会复杂许多
+    - 使用：`latexdiff old.tex new.tex > diff.tex`，编译 `diff.tex`
+    - 若 tex 多个文件嵌套，会复杂许多
 
 ```bash
 # Ubuntu 安装
@@ -369,7 +369,7 @@ bibtex-tidy refs.bib \
     --remove-empty-fields \
     --remove-dupe-fields \
     --tidy-comments
-	
+    
 # bib 中一些不需要的条目
 sed -i '/abstract = {/d' xxx.bib
 sed -i '/doi = {/d' xxx.bib
@@ -449,8 +449,8 @@ xelatex -shell-escape -synctex=1 %.tex
 ---
 
 - 含参考文献的文档编译：[LaTeX 参考文献输出](https://mp.weixin.qq.com/s/_comduqz-XOm7u6ArlP4KQ)
-	- BibTeX 后端：`xe-bib-xe-xe` 编译顺序
-	- biber 后端 + biblatex 宏包：使用 `latexmk` 或 `xe-biber-xe-xe` 编译顺序
+    - BibTeX 后端：`xe-bib-xe-xe` 编译顺序
+    - biber 后端 + biblatex 宏包：使用 `latexmk` 或 `xe-biber-xe-xe` 编译顺序
 
 ```bash
 # 可以略去扩展名
@@ -465,12 +465,12 @@ latexmk --xelatex main.tex
 ---
 
 - 用 Makefile 编译 LaTeX 文档
-	- [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
-	- [latex-/Makefile at master · mage-tianxie/latex- · GitHub](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
+    - [GitHub - yhwu-is/Linear-Algebra-Left-Undone: 线性代数：未竟之美](https://github.com/yhwu-is/Linear-Algebra-Left-Undone)
+    - [latex-/Makefile at master · mage-tianxie/latex- · GitHub](https://github.com/mage-tianxie/latex-/blob/master/Makefile)
 
 - 使用 Github Actions 自动编译
-	- [GitHub - xu-cheng/latex-action: :octocat: GitHub Action to compile LaTeX documents](https://github.com/xu-cheng/latex-action)
-	- [Linear-Algebra-Left-Undone/.github/workflows/tex.yml at new · yhwu-is/Linear-Algebra-Left-Undone · GitHub](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)（不是很好用）
+    - [GitHub - xu-cheng/latex-action: :octocat: GitHub Action to compile LaTeX documents](https://github.com/xu-cheng/latex-action)
+    - [Linear-Algebra-Left-Undone/.github/workflows/tex.yml at new · yhwu-is/Linear-Algebra-Left-Undone · GitHub](https://github.com/yhwu-is/Linear-Algebra-Left-Undone/blob/new/.github/workflows/tex.yml)（不是很好用）
 
 - 使用 GitHub Actions 将编译的 pdf 文档作为 release 发布：[release.yml](https://github.com/sjtug/SJTUThesis/blob/master/.github/workflows/release.yml)
 
@@ -505,8 +505,8 @@ latex -C                    # 删除辅助文件 + PDF
 - 输出文件命名规则：定义输出文件的命名规则，以确保生成的文件按照特定的方式命名
 - 文件监控选项：配置 latexmk 以在文件更改时自动重新构建文档，以提高工作效率
 - 示例：
-	- [SJTUThesis/.latexmkrc at master · sjtug/SJTUThesis · GitHub](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
-	- [.dotfiles/latex/.latexmkrc at main · cohsh/.dotfiles · GitHub](https://github.com/cohsh/.dotfiles/blob/main/latex/.latexmkrc)
+    - [SJTUThesis/.latexmkrc at master · sjtug/SJTUThesis · GitHub](https://github.com/sjtug/SJTUThesis/blob/master/.latexmkrc)
+    - [.dotfiles/latex/.latexmkrc at main · cohsh/.dotfiles · GitHub](https://github.com/cohsh/.dotfiles/blob/main/latex/.latexmkrc)
 
 ```bash
 # Set timezone.
@@ -693,10 +693,10 @@ $clean_ext = 'bbl glo gls hd loa run.xml thm xdv synctex.gz';
 - 换行：行末的换行符视为一个空格；但连续两个换行符，也就是空行，会将文字分段。多个空行被视为一个空行。也可以在行末使用 `\par` 命令分段。
 
 - 中文的标点符号（绝大多数为非 ASCII 字符）使用中文输入法输入即可，一般不需要过多留意；而输入西文标点符号时，有不少地方需要留意
-	- 西文排版中经常会出现连字（ligatures），常见的有 `ff/fi/fl/ffi/ffl`
-	- 单引号 ' 和 ' 分别用 \` 和 ' 输入；双引号 “和” 分别用 \`\` 和 '' 输入
-	- 三种长度的横线：连字号 `-` 用来组成复合词；短破折号 `--` 用来连接数字表示范围；长破折号 `---` 用来连接单词，语义上类似中文的破折号
-	- 英文省略号用 `\ldots`
+    - 西文排版中经常会出现连字（ligatures），常见的有 `ff/fi/fl/ffi/ffl`
+    - 单引号 ' 和 ' 分别用 \` 和 ' 输入；双引号 “和” 分别用 \`\` 和 '' 输入
+    - 三种长度的横线：连字号 `-` 用来组成复合词；短破折号 `--` 用来连接数字表示范围；长破折号 `---` 用来连接单词，语义上类似中文的破折号
+    - 英文省略号用 `\ldots`
 
 - 拉丁文扩展与重音
 
@@ -830,7 +830,7 @@ Donald~E. Knuth
 - 现代方法：biber 后端 + biblatex 宏包（国家标准：biblatex-gb7714-2015 宏包）
 
 - biblatex 宏包：支持以 `key=value` 形式指定选项，包括参考文献样式 style、参考文献著录排序的规则 sorting
-	- biblatex 使用的参考文献样式分为著录样式（bibliography style）和引用样式（citation style），分别以 `.bbx` 和 `.cbx` 为扩展名。参考文献的样式在调用宏包时使用 style 选项指定，或者使用 bibstyle 或 citestyle 分别指定
+    - biblatex 使用的参考文献样式分为著录样式（bibliography style）和引用样式（citation style），分别以 `.bbx` 和 `.cbx` 为扩展名。参考文献的样式在调用宏包时使用 style 选项指定，或者使用 bibstyle 或 citestyle 分别指定
 
 ```tex
 % 参考文献相关设置
@@ -845,10 +845,10 @@ Donald~E. Knuth
     isbn          = false,          % controls whether the fields isbn/issn/isrn are printed
     block         = par,
     doi           = false,          % do not show doi
-	url           = false,
-	eprint        = false,
+    url           = false,
+    eprint        = false,
     giveninits    = false,
-	gbnamefmt     = lowercase,      % 姓名大小写由输入信息确定
+    gbnamefmt     = lowercase,      % 姓名大小写由输入信息确定
     gbpub         = false,          % 禁用出版信息缺失处理
 ]{biblatex}
 \renewcommand*{\bibfont}{\small}
@@ -1063,8 +1063,8 @@ Row 2                      & Data 3   & Data 4   \\
 \usepackage{fancyhdr}
 \pagestyle{fancy}
     \fancyhf{}  % 清空页眉页脚的设置
-	\fancyhead[position]{}  % 设置页眉
-	\fancyfoot[position]{}  % 设置页脚
+    \fancyhead[position]{}  % 设置页眉
+    \fancyfoot[position]{}  % 设置页脚
     \lhead{}  % 分别设置页眉左中右内容
     \chead{}
     \rhead{}
@@ -1214,12 +1214,12 @@ Vmatrix                   % 带范数
 #### 符号与数学字体
 
 - 符号
-	- 最常用的额外字体包：amssymb
+    - 最常用的额外字体包：amssymb
 
 - 数学字体
-	- 「Times New Roman」：newtxmath 宏包
-	- 不要用 times 和 mathptmx 宏包
-	- 加粗：使用 bm 宏包的 `\bm` 命令（`\mathbf` 只有直立的字母）
+    - 「Times New Roman」：newtxmath 宏包
+    - 不要用 times 和 mathptmx 宏包
+    - 加粗：使用 bm 宏包的 `\bm` 命令（`\mathbf` 只有直立的字母）
 
 - 新方案：unicode-math 宏包
 
@@ -1285,8 +1285,8 @@ fc-list :lang=zh
 ```
 
 - 解决 Tex Gyre Termes 字体报错问题：
-	- 在当前项目路径下创建 tutgtermes.fd 和 texgyretermes.fontspec 文件
-	- 参考：[texlive - How to install font Tex Gyre Termes - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/470456/how-to-install-font-tex-gyre-termes)
+    - 在当前项目路径下创建 tutgtermes.fd 和 texgyretermes.fontspec 文件
+    - 参考：[texlive - How to install font Tex Gyre Termes - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/470456/how-to-install-font-tex-gyre-termes)
 
 
 - NewComputerModern：[NewComputerModern 字体](https://mp.weixin.qq.com/s/McLeFYLOxygRoXyqDgdF7A)
@@ -1343,11 +1343,11 @@ TerminalVector 字体
 ```latex
 \usepackage{hyperref}
 \hypersetup{
-	pdftitle=...,            % PDF 标题
-	pdfauthor=...,           % PDF 作者
-	pdfsubject=...,          % PDF 主题 
-	pdfborder={0 0 0},       % 
-	bookmarks=true,          % 显示书签
+    pdftitle=...,            % PDF 标题
+    pdfauthor=...,           % PDF 作者
+    pdfsubject=...,          % PDF 主题 
+    pdfborder={0 0 0},       % 
+    bookmarks=true,          % 显示书签
     bookmarksopen=true,      % 书签展开  
     bookmarksnumbered=true,  % 书签编号
     hidelinks=true,          % 隐藏链接方框
@@ -1488,9 +1488,9 @@ tocbibind     % 支持将目录、参考文献、索引本身写入目录项
 - 命令：`\verb` 后用两个同样的符号将抄录内容括住（不能是星号）
 - 环境：`verbatim`
 - `\verb` 以及 `verbatim` 环境很脆弱，不能隐式地用于自定义环境，也一般不能用作命令的参数。
-	- 宏包 `verbatim` 提供了更多的抄录支持
-	- 宏包 `fancyvrb` 提供 `\SaveVerb`, `\UseVerb` 命令，以及便于实现居中的 `BVerbatim` 环境（置于 `center` 环境内即可）
-	- 宏包 `shortverb` 支持以一对符号代替 `\verb` 命令
+    - 宏包 `verbatim` 提供了更多的抄录支持
+    - 宏包 `fancyvrb` 提供 `\SaveVerb`, `\UseVerb` 命令，以及便于实现居中的 `BVerbatim` 环境（置于 `center` 环境内即可）
+    - 宏包 `shortverb` 支持以一对符号代替 `\verb` 命令
 
 
 ```latex
@@ -1717,7 +1717,7 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 ### LaTeX 可定制的一些命令和参数
 
 - 标题名称/前后缀：可以用 `\renewcommand` 来修改
-	- 使用 ctex 宏包或文档类时，表中的标题会修改为中文标题
+    - 使用 ctex 宏包或文档类时，表中的标题会修改为中文标题
 - 长度：可用 `\setlength` 来修改
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407191919074.png)
@@ -1738,19 +1738,19 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 - cls 文档类文件内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
 
 - 简历
-	- [GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
-	- 用的是 tectonic 引擎：[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
-	- [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
-	- [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
-	- 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
-	- [GitHub - ml-evs/CV: My TeX CV built with moderncv.](https://github.com/ml-evs/CV)
-	- [A Customised CurVe CV - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/a-customised-curve-cv/mvmbhkwsnmwv)
-	- [GitHub - rasenior/CV: CV using CurVe in LaTeX](https://github.com/rasenior/CV)
+    - [GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
+    - 用的是 tectonic 引擎：[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
+    - [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
+    - [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
+    - 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
+    - [GitHub - ml-evs/CV: My TeX CV built with moderncv.](https://github.com/ml-evs/CV)
+    - [A Customised CurVe CV - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/a-customised-curve-cv/mvmbhkwsnmwv)
+    - [GitHub - rasenior/CV: CV using CurVe in LaTeX](https://github.com/rasenior/CV)
 
 - 国自然基金 LaTeX 模板：
-	- [GitHub - Ruzim/NSFC-application-template-latex: 国家自然科学基金申请书正文（面上项目）LaTeX 模板（非官方）](https://github.com/Ruzim/NSFC-application-template-latex)
-	- 青基：[GitHub - QijingZheng/QZ\_ExcellentYoungScientistsFund\_2024](https://github.com/QijingZheng/QZ_ExcellentYoungScientistsFund_2024)
-	- [NSFC - overleaf 版](https://www.overleaf.com/project/6372028b9049e7ce5ea603fc)
+    - [GitHub - Ruzim/NSFC-application-template-latex: 国家自然科学基金申请书正文（面上项目）LaTeX 模板（非官方）](https://github.com/Ruzim/NSFC-application-template-latex)
+    - 青基：[GitHub - QijingZheng/QZ\_ExcellentYoungScientistsFund\_2024](https://github.com/QijingZheng/QZ_ExcellentYoungScientistsFund_2024)
+    - [NSFC - overleaf 版](https://www.overleaf.com/project/6372028b9049e7ce5ea603fc)
 
 - 某课题组论文 manuscript 模板：[GitHub - CapraLab/lab-manuscript-template: An academic manuscript template with writing tips in both LaTeX and MS Word format generated by the Capra Lab (2/2022)](https://github.com/CapraLab/lab-manuscript-template)
 
@@ -1775,8 +1775,8 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 ```
 
 - 下划线 `\newcommand` 及粗细设置
-	- [underline - Why does \\uline sometimes render thicker and darker (inconsistent with underlining in the rest of the text)? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/537907/why-does-uline-sometimes-render-thicker-and-darker-inconsistent-with-underlini)
-	- [Fixing the length of underline text - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/482835/fixing-the-length-of-underline-text)
+    - [underline - Why does \\uline sometimes render thicker and darker (inconsistent with underlining in the rest of the text)? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/537907/why-does-uline-sometimes-render-thicker-and-darker-inconsistent-with-underlini)
+    - [Fixing the length of underline text - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/482835/fixing-the-length-of-underline-text)
 
 - 去除超链接、交叉引用中的方框：[hyperref - Remove ugly borders around clickable cross-references and hyperlinks - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/823/remove-ugly-borders-around-clickable-cross-references-and-hyperlinks)
 

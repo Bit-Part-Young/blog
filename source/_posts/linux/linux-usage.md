@@ -71,9 +71,9 @@ WIP...
 - [Bash 脚本如何创建临时文件：mktemp 命令和 trap 命令教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2019/12/mktemp.html)
 
 - Linux 配置文件：
-	- [GitHub - skwp/dotfiles](https://github.com/skwp/dotfiles)
-	- [GitHub - yutkat/dotfiles](https://github.com/yutkat/dotfiles)（内含一键安装脚本，可参考写法）
-	- 备份 dotfiles：[GitHub - deadc0de6/dotdrop: Save your dotfiles once, deploy them everywhere](https://github.com/deadc0de6/dotdrop)
+    - [GitHub - skwp/dotfiles](https://github.com/skwp/dotfiles)
+    - [GitHub - yutkat/dotfiles](https://github.com/yutkat/dotfiles)（内含一键安装脚本，可参考写法）
+    - 备份 dotfiles：[GitHub - deadc0de6/dotdrop: Save your dotfiles once, deploy them everywhere](https://github.com/deadc0de6/dotdrop)
 
 - Bash 脚本，用来生成 Markdown 表格：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
 
@@ -138,8 +138,8 @@ SSH 配置
 
 - 切换到用户：`su username`
 - 切换到 root：
-	- `sudo -i` 或 `sudo su` 只需输入当前用户密码
-	- `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，通过 `sudo passwd root` 给 root 创建密码
+    - `sudo -i` 或 `sudo su` 只需输入当前用户密码
+    - `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，通过 `sudo passwd root` 给 root 创建密码
 
 ---
 
@@ -813,8 +813,8 @@ nmon                   # 监控系统资源（应该不常用）
 ### 其他
 
 - 命令提示符：环境变量 `PS1`
-	- [note/Linux系统管理/PS1：配置命令提示符.md at main · zze326/note · GitHub](https://github.com/zze326/note/blob/main/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/PS1%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6.md)；
-	- [命令提示符 - Bash 脚本教程 - 网道](https://wangdoc.com/bash/prompt)
+    - [note/Linux系统管理/PS1：配置命令提示符.md at main · zze326/note · GitHub](https://github.com/zze326/note/blob/main/Linux%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/PS1%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4%E6%8F%90%E7%A4%BA%E7%AC%A6.md)；
+    - [命令提示符 - Bash 脚本教程 - 网道](https://wangdoc.com/bash/prompt)
 
 - ETA（Estimated Time of Arrival，预计到达时间）是 Linux 系统中一个常见的术语，用于估计正在运行的进程或任务剩余执行时间。
 
@@ -828,4 +828,4 @@ lsr() { find "${@:-.}" -print0 | sort -z | xargs -0 ls --color=auto -dlha; }
 ```
 
 - zsh 与 bash 之间的一些区别：
-	- zsh 数组索引从 1 开始， bash 从 0 开始
+    - zsh 数组索引从 1 开始， bash 从 0 开始

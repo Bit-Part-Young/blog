@@ -24,13 +24,13 @@ password:
 - [ATAT 官网](https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/)、[manual pdf](https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/manual.pdf)、[ATAT • User Forum](https://brown.edu/Departments/Engineering/Labs/avdw//forum/index.php)（论坛不活跃）
 - 最早开发 CE 的工具，现在使用 ATAT 大多是其 mcsqs 模块，用其处理 CE 的不多（ECI 拟合算法默认为最小二乘法，拟合速度较慢，已有文献中的构型计算数最多也是在 3000 以内）
 - ATAT 模块
-	- mmaps (MIT Multicomponent Ab initio Phase Stability code)；maps 的多主元（multicomponent）版本
-	- memc2 (Multicomponent Eazy Monte Carlo Code)；emc2 的多主元版本
-	- phb (PHase Boundary code)；没有多主元版本；其他工具可以处理多主元体系
-	- cvmclus (Cluster Variation Method CLUSter generator code)
-	- genstr：枚举结构
-	- mcsqs
-	- corrdump
+    - mmaps (MIT Multicomponent Ab initio Phase Stability code)；maps 的多主元（multicomponent）版本
+    - memc2 (Multicomponent Eazy Monte Carlo Code)；emc2 的多主元版本
+    - phb (PHase Boundary code)；没有多主元版本；其他工具可以处理多主元体系
+    - cvmclus (Cluster Variation Method CLUSter generator code)
+    - genstr：枚举结构
+    - mcsqs
+    - corrdump
 
 
 ATAT 和 ICET 枚举得到的结构是一一对应的（相同）
@@ -85,9 +85,9 @@ make install
 - POSCAR 转 lat.in：vaspkit 414 选项（1.5.0 版本及以上没有该选项），atomkit 107 选项
 
 - str.out 格式转 POSCAR：
-	- [GitHub - c-niu/sqs2poscar: A c++ code to convert bestsqs.out from mcsqs (ATAT) to POSCAR for VASP.](https://github.com/c-niu/sqs2poscar)
-	- [sqs2poscar - web](https://albertlinda.com/sqs_to_poscar.html)
-	- ATAT 自带可执行命令
+    - [GitHub - c-niu/sqs2poscar: A c++ code to convert bestsqs.out from mcsqs (ATAT) to POSCAR for VASP.](https://github.com/c-niu/sqs2poscar)
+    - [sqs2poscar - web](https://albertlinda.com/sqs_to_poscar.html)
+    - ATAT 自带可执行命令
 
 ```bash
 str2poscar < str.out > POSCAR

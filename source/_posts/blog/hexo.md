@@ -22,26 +22,26 @@ password:
 - 官网：[Hexo](https://hexo.io/)
 
 - 主题：
-	- [Hexo 框架主题集合](https://hexo.io/themes/)
-	- [butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
-	- [matery](https://github.com/blinkfox/hexo-theme-matery)
-	- [icarus](https://github.com/ppoffice/hexo-theme-icarus)
-	- [volantis](https://github.com/volantis-x/hexo-theme-volantis/)
-	- [fluid](https://github.com/fluid-dev/hexo-theme-fluid)
-	- [stun](https://github.com/liuyib/hexo-theme-stun)
-	- [maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
-	- [keep](https://github.com/XPoet/hexo-theme-keep)
-	- 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
-	- butterfly 主题的预设功能比 matery 更丰富
+    - [Hexo 框架主题集合](https://hexo.io/themes/)
+    - [butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
+    - [matery](https://github.com/blinkfox/hexo-theme-matery)
+    - [icarus](https://github.com/ppoffice/hexo-theme-icarus)
+    - [volantis](https://github.com/volantis-x/hexo-theme-volantis/)
+    - [fluid](https://github.com/fluid-dev/hexo-theme-fluid)
+    - [stun](https://github.com/liuyib/hexo-theme-stun)
+    - [maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
+    - [keep](https://github.com/XPoet/hexo-theme-keep)
+    - 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
+    - butterfly 主题的预设功能比 matery 更丰富
 
 - 博客网站实例：
-	- stun 主题：[OrangeX4's Blog](https://orangex4.cool/)
-	- butterfly 主题：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)（交大学生博客）
+    - stun 主题：[OrangeX4's Blog](https://orangex4.cool/)
+    - butterfly 主题：[Risc\_lt的杂货铺 - Code/Life Balence](https://risc-lt.github.io/)（交大学生博客）
 
 - 参考资料：
-	- [Hexo 入门](https://blog.17lai.site/posts/40300608/#Hexo%E5%85%A5%E9%97%A8%E7%AF%87)
-	- [Hexo 压缩静态文件 - Argvchs の小窝](https://argvchs.github.io/2022/08/27/hexo-minify-static-files/)
-	- [资源压缩部署加速网站访问](https://ninojay.top/hexoplugin/hexo-all-minifier/)（A4 主题）
+    - [Hexo 入门](https://blog.17lai.site/posts/40300608/#Hexo%E5%85%A5%E9%97%A8%E7%AF%87)
+    - [Hexo 压缩静态文件 - Argvchs の小窝](https://argvchs.github.io/2022/08/27/hexo-minify-static-files/)
+    - [资源压缩部署加速网站访问](https://ninojay.top/hexoplugin/hexo-all-minifier/)（A4 主题）
 
 
 
@@ -241,7 +241,7 @@ top: true
 - hexo-algoliasearch 或 hexo-algolia：Algolia 搜索；更美观（Hexo butterfy，Docusaurus 支持，MkDocs 将支持）
 
 - [hexo-tag-publications](https://github.com/njzjz/hexo-tag-publications)：由 bib 文件生成论文统计与信息展示网页（可单个、全部论文）
-	- 在页面添加论文概要图片，在 bib 文件中的论文对应条目下添加 `image` 参数
+    - 在页面添加论文概要图片，在 bib 文件中的论文对应条目下添加 `image` 参数
 
 
 
@@ -312,9 +312,9 @@ top: true
 - [x] 屏蔽网页源码（单纯的屏蔽鼠标右键和键盘事件；慎重添加）
 
 - [x] 设置评论系统
-	- 采用 waline（**可以实现不登录即可提交评论，也可以登录提交评论**）[快速上手 - Waline](https://waline.js.org/guide/get-started/)
-	- valine 无人维护更新
-	- 使用 gitalk 遇到的一些问题：其他人登录评论系统会出现 “网络错误”；所需要的权限过多
+    - 采用 waline（**可以实现不登录即可提交评论，也可以登录提交评论**）[快速上手 - Waline](https://waline.js.org/guide/get-started/)
+    - valine 无人维护更新
+    - 使用 gitalk 遇到的一些问题：其他人登录评论系统会出现 “网络错误”；所需要的权限过多
 
 - [x] `hexo d` 后，CNAME 文件会被删除 [hexo部署后，CNAME会被自动删除，怎么办？ - 知乎](https://www.zhihu.com/question/28814437)：将需要上传至 GitHub 的内容放在 source 目录，例如 CNAME、favicon.ico、images 等
 
@@ -372,5 +372,5 @@ top: true
 - [ ] 换装、对话的看板娘（有些复杂；暂无必要）[GitHub - stevenjoezhang/live2d-widget: 把萌萌哒的看板娘抱回家 (ノ≧∇≦)ノ | Live2D widget for web platform](https://github.com/stevenjoezhang/live2d-widget)
 - [ ] 为 Hexo 博客中的 Markdown 添加卡片式链接支持 [为 Hexo 博客中的 Markdown 添加卡片式链接支持 - OrangeX4's Blog](https://orangex4.cool/post/hexo-link-card/)
 - [ ] “关于” 页面添加简历
-	- [ ] [GitHub - godweiyang/hexo-theme-sungod: 一款定制化的Hexo博客主题](https://github.com/godweiyang/hexo-theme-sungod)
-	- [ ] [韦阳的博客](https://godweiyang.com/)
+    - [ ] [GitHub - godweiyang/hexo-theme-sungod: 一款定制化的Hexo博客主题](https://github.com/godweiyang/hexo-theme-sungod)
+    - [ ] [韦阳的博客](https://godweiyang.com/)

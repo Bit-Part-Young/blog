@@ -293,8 +293,8 @@ ssh SiYuan
 ```
 
 - 可能会出现的问题
-	- SSH 私钥的权限过于开放：SSH 私钥文件应该只能被文件的拥有者读取和写入，而不能被其他用户访问
-	- 解决方法：`chmod 600 id_rsa`
+    - SSH 私钥的权限过于开放：SSH 私钥文件应该只能被文件的拥有者读取和写入，而不能被其他用户访问
+    - 解决方法：`chmod 600 id_rsa`
 
 ```bash
 Permissions 0444 for 'id_rsa' are too open.
@@ -336,24 +336,24 @@ Load key "id_rsa": bad permissions
 >[Slurm 作业调度系统 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/slurm.html)
 
 - 常用命令：
-	- `sbatch` - 任务提交
-	- `squeue` - 查看排队任务状态
-	- `scancel` - 删除任务
-	- `scontrol` - 查看任务参数
-	- `sinfo` - 查看集群状态
+    - `sbatch` - 任务提交
+    - `squeue` - 查看排队任务状态
+    - `scancel` - 删除任务
+    - `scontrol` - 查看任务参数
+    - `sinfo` - 查看集群状态
 
 - 节点状态：
-	- `drain` - 节点故障
-	- `alloc` - 节点在用
-	- `idle` - 节点可用
-	- `down` - 节点下线
-	- `mix` - 节点部分占用，但仍有剩余资源
+    - `drain` - 节点故障
+    - `alloc` - 节点在用
+    - `idle` - 节点可用
+    - `down` - 节点下线
+    - `mix` - 节点部分占用，但仍有剩余资源
 
 - 作业状态：
-	- `R`- 正在运行
-	- `PD` - 正在排队
-	- `CG` - 即将完成
-	- `CD` - 已完成
+    - `R`- 正在运行
+    - `PD` - 正在排队
+    - `CG` - 即将完成
+    - `CD` - 已完成
 
 
 ```bash
@@ -1025,7 +1025,7 @@ export LD_LIBRARY_PATH=$HOME/local/gsl/lib:${LD_LIBRARY_PATH}
 
 ---
 
-- master 平台编译
+- Master 平台编译
 
 修改 Makefile 文件内容（voro++、gsl 的 `INC` 和 `LIB`），编译
 
@@ -1190,17 +1190,17 @@ make -j3 -f Makefile.macos atomsk
 ### VASP.5.4.4
 
 - 参考：
-	- [Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
-	- [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)、
-	- [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
+    - [Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
+    - [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)、
+    - [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
 - VASP.5.4.4 源代码目录结构：
-	- `arch`：针对不同架构的 Makefile 模板，如 `makefile.include.linux_intel`
-	- `bin`：编译后的可执行程序文件目录
-	- `build`：编译时自动复制 src 目录内源码后执行编译的目录
-	- `src`：源码目录
-	- `lib`：库目录，对应以前的 vasp.lib 目录
-	- `CUDA`：GPU CUDA 代码目录
+    - `arch`：针对不同架构的 Makefile 模板，如 `makefile.include.linux_intel`
+    - `bin`：编译后的可执行程序文件目录
+    - `build`：编译时自动复制 src 目录内源码后执行编译的目录
+    - `src`：源码目录
+    - `lib`：库目录，对应以前的 vasp.lib 目录
+    - `CUDA`：GPU CUDA 代码目录
 
 ```text
 vasp.X.X.X (root directory)
@@ -1217,10 +1217,10 @@ vasp.X.X.X (root directory)
 ---
 
 - 安装步骤：
-	- VASP.5.4.4 安装包：manager: `/opt`，master: `/opt/software`；将其拷贝到自己的用户目录下打包压缩，上传至超算平台）
-	- 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
-	- `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功；
-	- 将 `vasp_std` 设置软链接
+    - VASP.5.4.4 安装包：manager: `/opt`，master: `/opt/software`；将其拷贝到自己的用户目录下打包压缩，上传至超算平台）
+    - 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
+    - `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功；
+    - 将 `vasp_std` 设置软链接
 
 ```bash
 # 导入 oneapi 套件
@@ -1251,8 +1251,8 @@ wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF
 
 # 配置 intel 版本
 ./configure --enable-parallel --enable-fortran --enable-cxx --enable-unsupported \
-		    CC=mpiicc FC=mpiifort CXX=mpiicpc \
-		    --prefix=${HOME}/local/hdf5
+            CC=mpiicc FC=mpiifort CXX=mpiicpc \
+            --prefix=${HOME}/local/hdf5
 
 make
 make install
@@ -1275,8 +1275,8 @@ h5cc -show
 ---
 
 - 使用
-	- HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
-	- Pandas 的 read_hdf() 不太好用
+    - HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
+    - Pandas 的 read_hdf() 不太好用
 
 ```bash
 h5ls data.h5     # 显示 Group 列表

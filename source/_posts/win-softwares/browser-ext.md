@@ -109,7 +109,7 @@ www.sciencedirect.com     # 直接连接
 - Global Speed：全局网页视频速度控制
 
 - [GitHub - 027xiguapi/code-box: 本插件可以用于CSDN/知乎/脚本之家/博客园等网站,实现无需登录一键复制代码;支持选中代码;或者代码右上角按钮的一键复制;解除关注博主即可阅读全文提示;去除登录弹窗;去除跳转APP弹窗.](https://github.com/027xiguapi/code-box)
-	- 建议取消知乎的 “关闭登录弹窗”，否则无法打开收藏的弹窗
+    - 建议取消知乎的 “关闭登录弹窗”，否则无法打开收藏的弹窗
 
 - IDM Integration Module：IDM 下载集成模块；嗅探下载网页视频
 
@@ -136,8 +136,8 @@ www.sciencedirect.com     # 直接连接
 - [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245)：加速 git clone
 
 - GitHub 主页还原至原来的 feed：
-	- [Github Old Feed](https://greasyfork.org/zh-CN/scripts/474728)（会无法显示 follow 的用户 fork 的 repo 动态）
-	- [old-github-feed](https://github.com/Gerrit0/old-github-feed)
+    - [Github Old Feed](https://greasyfork.org/zh-CN/scripts/474728)（会无法显示 follow 的用户 fork 的 repo 动态）
+    - [old-github-feed](https://github.com/Gerrit0/old-github-feed)
 
 - [GitHub 的链接在新标签页打开](https://greasyfork.org/zh-CN/scripts/447005)
 
@@ -152,8 +152,8 @@ www.sciencedirect.com     # 直接连接
 - CSDN 广告过滤
 
 - 知乎相关：
-	- [知乎修改器🤜持续更新🤛努力实现功能最全的知乎配置插件](https://greasyfork.org/zh-CN/scripts/423404)
-	- 知乎增强：移除登录弹窗、屏蔽首页视频、默认收起回答、快捷收起回答/评论（左键两侧）等。
+    - [知乎修改器🤜持续更新🤛努力实现功能最全的知乎配置插件](https://greasyfork.org/zh-CN/scripts/423404)
+    - 知乎增强：移除登录弹窗、屏蔽首页视频、默认收起回答、快捷收起回答/评论（左键两侧）等。
 
 ```bash
 # 个人 知乎增强油猴插件自定义屏蔽关键词

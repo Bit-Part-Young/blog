@@ -244,8 +244,8 @@ simulation box/cell/domain：模拟盒子
 
 
 - 周期性边界条件
-	- 可以消除自由表面的影响；模拟无穷大的体系
-	- **自己的原子之间引入了人为的相互作用**；限制了声子波长；
+    - 可以消除自由表面的影响；模拟无穷大的体系
+    - **自己的原子之间引入了人为的相互作用**；限制了声子波长；
 
 实现：
 
@@ -366,9 +366,9 @@ $$
 总体步骤：
 - 计算 bulk 的总能量（获取平衡常数及该平衡常数下的构型的 energy/ atom）
 - 计算 slab 的总能量
-	- 切表面
-	- 弛豫表面
-	- 计算弛豫表面的总能量
+    - 切表面
+    - 弛豫表面
+    - 计算弛豫表面的总能量
 - 计算表面能
 
 
@@ -447,12 +447,12 @@ Hessian 矩阵通常很难求
 相关算法
 
 - 基于一阶导
-	- 最速下降法
-	- 共轭梯度法
+    - 最速下降法
+    - 共轭梯度法
 
 
 - 基于一阶和二阶导
-	- BFGS
+    - BFGS
 
 
 ```bash
@@ -594,14 +594,14 @@ E_K = \frac{3}{2}Nk_BT=\frac{1}{2}\sum m_i v^2_i
 $$
 
 - Velocity scaling（对速度标定）
-	- isokinetics 算法：速度重置，较野蛮；实际体系的温度演化不符合热力学统计规律，不是很好的控温方法
-	- Berendsen 算法：比 isokinetics 好很多，能给出部分合理的热力学统计温度
+    - isokinetics 算法：速度重置，较野蛮；实际体系的温度演化不符合热力学统计规律，不是很好的控温方法
+    - Berendsen 算法：比 isokinetics 好很多，能给出部分合理的热力学统计温度
 - Stochastic thermostat（引入一些随机过程）
-	- Andersen 算法
-	- Langevin 算法：LAMMPS 中有
+    - Andersen 算法
+    - Langevin 算法：LAMMPS 中有
 - Extended Langrangian（扩展拉格朗日）
-	- Nose-Hoover 算法
-	- Nose-Hoover chain 算法
+    - Nose-Hoover 算法
+    - Nose-Hoover chain 算法
 
 
 

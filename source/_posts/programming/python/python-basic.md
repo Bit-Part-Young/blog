@@ -38,9 +38,9 @@ password:
 - [Python 基础语法 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/python/basic/)
 
 - Python 速查表
-	- [Python Cheatsheet - Python Cheatsheet](https://www.pythoncheatsheet.org/)
-	- [GitHub - gto76/python-cheatsheet](https://github.com/gto76/python-cheatsheet)
-	- [Python 3 备忘清单](https://wangchujiang.com/reference/docs/python.html)
+    - [Python Cheatsheet - Python Cheatsheet](https://www.pythoncheatsheet.org/)
+    - [GitHub - gto76/python-cheatsheet](https://github.com/gto76/python-cheatsheet)
+    - [Python 3 备忘清单](https://wangchujiang.com/reference/docs/python.html)
 
 - [GitHub - piglei/one-python-craftsman: 来自一位 Pythonista 的编程经验分享](https://github.com/piglei/one-python-craftsman)
 
@@ -144,9 +144,9 @@ eval "$(register-python-argcomplete my-python-app)"
 ```
 
 - 构建 CLI 工具
-	- [GitHub - tiangolo/typer](https://github.com/tiangolo/typer)
-	- [GitHub - google/python-fire](https://github.com/google/python-fire)
-	- click：使用装饰器来设置命令的参数和选项
+    - [GitHub - tiangolo/typer](https://github.com/tiangolo/typer)
+    - [GitHub - google/python-fire](https://github.com/google/python-fire)
+    - click：使用装饰器来设置命令的参数和选项
 
 ```python
 import click
@@ -742,10 +742,10 @@ $ python script.py      # 直接运行；输出 hello
 - 实例方法：必须有 `self` 作为第一个参数（`self` 可以写成别的，如 `this` 或 `s` 等），用于访问实例属性和其他方法
 
 - 类方法：
-	- 使用 `@classmethod` 装饰器；通常以 `cls` 作为第一个参数，表示类本身
-	- 类方法是与类相关联的方法，而不是与类的实例相关联的方法
-	- 可访问类的属性和调用其他类方法，但不能直接访问实例属性（不具有对实例的引用）
-	- 可通过类本身进行调用，而不需要创建类的实例
+    - 使用 `@classmethod` 装饰器；通常以 `cls` 作为第一个参数，表示类本身
+    - 类方法是与类相关联的方法，而不是与类的实例相关联的方法
+    - 可访问类的属性和调用其他类方法，但不能直接访问实例属性（不具有对实例的引用）
+    - 可通过类本身进行调用，而不需要创建类的实例
 
 - 静态方法：使用 `@staticmethod` 装饰器；不接收 `self` 或 `cls` 作为参数；适用于与类相关但不需要访问类或实例属性的方法
 
@@ -869,7 +869,7 @@ print(f.closed)  # True
 
 # 行读取
 with open(file, "r") as f:
-	lines = f.readlines()
+    lines = f.readlines()
 ```
 
 - 读写 json
@@ -881,10 +881,10 @@ json_fn = ...
 data = {}
 
 with open(json_fn, "w") as f:
-	json.dump(data, f, indent=2)
+    json.dump(data, f, indent=2)
 
 with open(json_fn, "r") as f:
-	json_data = json.load(f)
+    json_data = json.load(f)
 ```
 
 - 读写 yaml
@@ -896,10 +896,10 @@ yaml_fn = ...
 yaml_data = {}
 
 with open(yaml_fn, "w") as f:
-	yaml.safe_dump(yaml_data, f, sort_keys=False)
+    yaml.safe_dump(yaml_data, f, sort_keys=False)
 
 with open(yaml_fn, 'r') as f:
-	yaml_data = yaml.safe_load(f)
+    yaml_data = yaml.safe_load(f)
 ```
 
 
@@ -1142,31 +1142,31 @@ subparsers = parser.add_subparsers()
 
 parser_generate = subparsers.add_parser("generate", help="generate atomate optimization workflows.")
 parser_generate.add_argument(
-	"-c",
-	"--character",
-	metavar="wf_character",
-	type=str,
-	help="the character of workflow. eg. optimization, static."
-	)
+    "-c",
+    "--character",
+    metavar="wf_character",
+    type=str,
+    help="the character of workflow. eg. optimization, static."
+    )
 parser_generate.set_defaults(func=wf_relaxation_submit)
 
 parser_get_data = subparsers.add_parser("get_data", help="get data from mongodb.")
 parser_get_data.add_argument(
-	"-c",
-	"--character",
-	metavar="wf_character",
-	type=str,
-	help="the character of workflow. eg. optimization, static."
-	)
+    "-c",
+    "--character",
+    metavar="wf_character",
+    type=str,
+    help="the character of workflow. eg. optimization, static."
+    )
 parser_get_data.set_defaults(func=get_data_mongodb)
 
 args = parser.parse_args()
 
 if hasattr(args, 'func'):
-	if args.func == wf_relaxation_submit:
-		return args.func(args.character)
-	elif args.func == get_data_mongodb:
-		return args.func(args.character)
+    if args.func == wf_relaxation_submit:
+        return args.func(args.character)
+    elif args.func == get_data_mongodb:
+        return args.func(args.character)
 ```
 
 

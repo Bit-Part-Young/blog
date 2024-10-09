@@ -2,7 +2,7 @@
 title: Shell 编程
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -134,8 +134,8 @@ npm i -g bash-language-server
 ```
 
 - 命令行解析：
-	- `shift` 命令和 `while` 循环手动解析参数
-	- [getoptions](https://github.com/ko1nksm/getoptions)、[argparse-bash](https://github.com/nhoffman/argparse-bash)（这两个感觉都一般）
+    - `shift` 命令和 `while` 循环手动解析参数
+    - [getoptions](https://github.com/ko1nksm/getoptions)、[argparse-bash](https://github.com/nhoffman/argparse-bash)（这两个感觉都一般）
 
 
 
@@ -331,8 +331,8 @@ ${str^}    # 首字母大写
 ---
 
 - 大括号 `{}` 处理字符串：
-	- 主要利用 Bash 的参数展开（parameter expansion）功能来实现
-	- 参考：[Bash笔记](https://zhuanlan.zhihu.com/p/524196855)
+    - 主要利用 Bash 的参数展开（parameter expansion）功能来实现
+    - 参考：[Bash笔记](https://zhuanlan.zhihu.com/p/524196855)
 
 ```bash
 # 基于模式匹配进行字符串剪裁
@@ -378,9 +378,9 @@ val=`expr 2 \* 3`
 ---
 
 - 算术扩展：`(())`
-	- 只能计算整数；会自动忽略内部的空格；支持常用运算符；指出逻辑运算符；支持赋值运算
-	- `++` 和 `--` 这两个运算符有前缀和后缀的区别。作为前缀是先运算后返回值，作为后缀是先返回值后运算
-	- 在 `$((...))` 里面使用字符串，Bash 会认为那是一个变量名
+    - 只能计算整数；会自动忽略内部的空格；支持常用运算符；指出逻辑运算符；支持赋值运算
+    - `++` 和 `--` 这两个运算符有前缀和后缀的区别。作为前缀是先运算后返回值，作为后缀是先返回值后运算
+    - 在 `$((...))` 里面使用字符串，Bash 会认为那是一个变量名
 
 ```bash
 # 运算符
@@ -396,8 +396,8 @@ echo $(( a=1 ))
 ---
 
 - 浮点数运算
-	- bash 不支持浮点运算，需借助 bc（basic calculator）, awk 处理
-	- [linux shell 实现 四则运算（整数及浮点） 简单方法 - 程默 - 博客园](https://www.cnblogs.com/chengmo/archive/2010/09/30/1839556.html)
+    - bash 不支持浮点运算，需借助 bc（basic calculator）, awk 处理
+    - [linux shell 实现 四则运算（整数及浮点） 简单方法 - 程默 - 博客园](https://www.cnblogs.com/chengmo/archive/2010/09/30/1839556.html)
 
 ```bash
 echo "5.01-4*2.0" | bc
@@ -564,7 +564,7 @@ esac
 # 语法
 # do 可以另起一行，删除分号
 for variable in list; do
-	command
+    command
 done
 
 
@@ -597,10 +597,10 @@ done
 
 # 99 乘法表
 for i in {1..9}; do
-	for j in $(seq $i); do 
-	    echo -n -e "$j*$i=$[j*i]\t"
+    for j in $(seq $i); do 
+        echo -n -e "$j*$i=$[j*i]\t"
     done
-	echo
+    echo
 done
 ```
 
@@ -617,7 +617,7 @@ done
 
 # 读取文件内容的每一行
 cat file.txt | while read line; do 
-	echo $line
+    echo $line
 done
 ```
 
@@ -693,9 +693,9 @@ command < file        # 将文件内容作为标准输入
 ---
 
 - Here 文档、字符串：
-	- Here 文档：一种输入多行字符串的方法；本质是重定向
-	- Here 文档内部会发生变量替换，同时支持反斜杠转义，但是不支持通配符扩展，双引号和单引号也失去语法作用，变成了普通字符
-	- Here 字符串：将字符串通过标准输入，传递给命令
+    - Here 文档：一种输入多行字符串的方法；本质是重定向
+    - Here 文档内部会发生变量替换，同时支持反斜杠转义，但是不支持通配符扩展，双引号和单引号也失去语法作用，变成了普通字符
+    - Here 字符串：将字符串通过标准输入，传递给命令
 
 ```bash
 # 语法 token 一般为 EOF
@@ -732,7 +732,7 @@ printf '==%.0s' {1..20}; printf '\n'
 
 # 定义函数
 repeat(){
-	for i in {1..20}; do echo -n "$1"; done
+    for i in {1..20}; do echo -n "$1"; done
 }
 
 repeat '-'; echo
@@ -769,8 +769,8 @@ echo "Hello, $NAME"
 ---
 
 - 操作历史
-	- 退出当前 Shell 的时候，Bash 会将用户在当前 Shell 的操作历史写入 `~/.bash_history` 文件
-	- `Ctrl + R` 快捷键，可以搜索操作历史，选择以前执行过的命令
+    - 退出当前 Shell 的时候，Bash 会将用户在当前 Shell 的操作历史写入 `~/.bash_history` 文件
+    - `Ctrl + R` 快捷键，可以搜索操作历史，选择以前执行过的命令
 
 ```bash
 echo $HISTFILE

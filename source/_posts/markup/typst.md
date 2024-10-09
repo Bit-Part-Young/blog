@@ -51,13 +51,13 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 - [Changelog – Typst Documentation](https://staging.typst.app/docs/changelog/)
 
 - 实用：
-	- [Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
-	- Typst 示例：[Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
-	- [GitHub - OrangeX4/typst-talk: 并不复杂的 Typst 讲座 Typst is Simple](https://github.com/OrangeX4/typst-talk)
-	- [GitHub - typst-doc-cn/tutorial: Typst中文教程](https://github.com/typst-doc-cn/tutorial)
-	- [The Raindrop-Blue Book (Typst中文教程) - 网页版](https://typst-doc-cn.github.io/tutorial/)
-	- [GitHub - qjcg/awesome-typst: Awesome Typst Links](https://github.com/qjcg/awesome-typst)
-	- [GitHub - typst-cn/awesome-typst-cn: Awesome Typst 列表中文版](https://github.com/typst-cn/awesome-typst-cn)
+    - [Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
+    - Typst 示例：[Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)
+    - [GitHub - OrangeX4/typst-talk: 并不复杂的 Typst 讲座 Typst is Simple](https://github.com/OrangeX4/typst-talk)
+    - [GitHub - typst-doc-cn/tutorial: Typst中文教程](https://github.com/typst-doc-cn/tutorial)
+    - [The Raindrop-Blue Book (Typst中文教程) - 网页版](https://typst-doc-cn.github.io/tutorial/)
+    - [GitHub - qjcg/awesome-typst: Awesome Typst Links](https://github.com/qjcg/awesome-typst)
+    - [GitHub - typst-cn/awesome-typst-cn: Awesome Typst 列表中文版](https://github.com/typst-cn/awesome-typst-cn)
 
 - Typst 讨论（较活跃）：[typst/typst · Discussions · GitHub](https://github.com/typst/typst/discussions)
 
@@ -96,11 +96,11 @@ scoop install main/typst   # Win
 ### 工具
 
 - VSCode 插件：
-	- Typst LSP：具有语言服务器 + 代码格式化（不再继承）等功能
-	- Tinymist Typst：语法高亮，代码补全，代码格式化，即时预览、单词统计等功能
-	- 两者不兼容：[Faitl to activate typst-lsp: command 'typst-lsp.pinMainToCurrent' already exists · Issue #513 · nvarner/typst-lsp · GitHub](https://github.com/nvarner/typst-lsp/issues/513)
-	- Tinymist 查看实时更新编译的预览 PDF：点击窗口 + 放大镜的图标（而非 PDF 的图标），源码和 PDF 可互相跳转
-	- 导出 PDF 设置：设置 "Tinymist Export PDF" 为 "onSave" 或 "onType"
+    - Typst LSP：具有语言服务器 + 代码格式化（不再继承）等功能
+    - Tinymist Typst：语法高亮，代码补全，代码格式化，即时预览、单词统计等功能
+    - 两者不兼容：[Faitl to activate typst-lsp: command 'typst-lsp.pinMainToCurrent' already exists · Issue #513 · nvarner/typst-lsp · GitHub](https://github.com/nvarner/typst-lsp/issues/513)
+    - Tinymist 查看实时更新编译的预览 PDF：点击窗口 + 放大镜的图标（而非 PDF 的图标），源码和 PDF 可互相跳转
+    - 导出 PDF 设置：设置 "Tinymist Export PDF" 为 "onSave" 或 "onType"
 
 - [typst-upgrade](https://github.com/Coekjan/typst-upgrade)：检查并升级 Typst packages
 
@@ -114,9 +114,9 @@ typst-upgrade file.typ       # 更新 packages 并覆写文件
 ```
 
 - 代码格式化：
-	- [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果感觉一般）
-	- [GitHub - Enter-tainer/typstyle: Beautiful and reliable typst code formatter](https://github.com/Enter-tainer/typstyle)
-	- [GitHub - antonWetzel/prettypst: Formatter for Typst](https://github.com/antonWetzel/prettypst)
+    - [GitHub - astrale-sharp/typstfmt](https://github.com/astrale-sharp/typstfmt)（效果感觉一般）
+    - [GitHub - Enter-tainer/typstyle: Beautiful and reliable typst code formatter](https://github.com/Enter-tainer/typstyle)
+    - [GitHub - antonWetzel/prettypst: Formatter for Typst](https://github.com/antonWetzel/prettypst)
 
 - Jupyter Notebook 转 Typst pdf：[GitHub - 8LWXpg/jupyter2typst: Jupyter to Typst converter with template support](https://github.com/8LWXpg/jupyter2typst)
 
@@ -211,8 +211,8 @@ Typst 为常用文档元素内置了语法标记，大多只是对应函数的�
 ---
 
 - 图片插入及引用：figure 及 image 函数
-	- image 函数支持的图片格式：png、jpg、gif、svg，不支持 tiff
-	- 不支持根目录的绝对路径？
+    - image 函数支持的图片格式：png、jpg、gif、svg，不支持 tiff
+    - 不支持根目录的绝对路径？
 
 ```rust
 @fig  // 图片引用
@@ -287,11 +287,11 @@ Typst 为常用文档元素内置了语法标记，大多只是对应函数的�
 ```
 
 - 参考文献 style 推荐：
-	- `gb-7714-2015-numeric`（**暂无自定义不显示参考文献特定内容，如 doi 的功能，BibTeX 可以**）
-	- `american-physics-society`
-	- `nature`
-	- `ieee`
-	- `american-chemical-society`
+    - `gb-7714-2015-numeric`（**暂无自定义不显示参考文献特定内容，如 doi 的功能，BibTeX 可以**）
+    - `american-physics-society`
+    - `nature`
+    - `ieee`
+    - `american-chemical-society`
 
 ---
 
@@ -626,41 +626,41 @@ Show 规则用于全局替换
 ## 模板
 
 - 简历 CV
-	- [GitHub - gaoachao/uniquecv-typst: A simple resume template written in Typst](https://github.com/gaoachao/uniquecv-typst)
-	- [GitHub - OrangeX4/Chinese-Resume-in-Typst: 使用 Typst 编写的中文简历, 语法简洁, 样式美观, 开箱即用, 可选是否显示照片](https://github.com/OrangeX4/Chinese-Resume-in-Typst)
-	- [GitHub - memset0/my-resume](https://github.com/memset0/my-resume)（repo 现为 private 状态）
-	- [GitHub - pavelzw/moderner-cv: moderncv in typst](https://github.com/pavelzw/moderner-cv)
-	- [GitHub - stuxf/basic-typst-resume-template: A basic resume for typst, designed to work well with ATS systems.](https://github.com/stuxf/basic-typst-resume-template)
-	- [GitHub - skyzh/chicv: A minimal and fully-customizable CV template for Typst.](https://github.com/skyzh/chicv)
-	- [GitHub - DawnEver/typst-academic-cv: Typst Template for Academic CV](https://github.com/DawnEver/typst-academic-cv)
+    - [GitHub - gaoachao/uniquecv-typst: A simple resume template written in Typst](https://github.com/gaoachao/uniquecv-typst)
+    - [GitHub - OrangeX4/Chinese-Resume-in-Typst: 使用 Typst 编写的中文简历, 语法简洁, 样式美观, 开箱即用, 可选是否显示照片](https://github.com/OrangeX4/Chinese-Resume-in-Typst)
+    - [GitHub - memset0/my-resume](https://github.com/memset0/my-resume)（repo 现为 private 状态）
+    - [GitHub - pavelzw/moderner-cv: moderncv in typst](https://github.com/pavelzw/moderner-cv)
+    - [GitHub - stuxf/basic-typst-resume-template: A basic resume for typst, designed to work well with ATS systems.](https://github.com/stuxf/basic-typst-resume-template)
+    - [GitHub - skyzh/chicv: A minimal and fully-customizable CV template for Typst.](https://github.com/skyzh/chicv)
+    - [GitHub - DawnEver/typst-academic-cv: Typst Template for Academic CV](https://github.com/DawnEver/typst-academic-cv)
 
 - 作业模板
-	- [GitHub - gRox167/typst-assignment-template](https://github.com/gRox167/typst-assignment-template)
-	- [GitHub - OriginCode/typst-homework-template: Homework Template for Typst](https://github.com/OriginCode/typst-homework-template)
+    - [GitHub - gRox167/typst-assignment-template](https://github.com/gRox167/typst-assignment-template)
+    - [GitHub - OriginCode/typst-homework-template: Homework Template for Typst](https://github.com/OriginCode/typst-homework-template)
 
 - 试题模板（英文）：[GitHub - diquah/OpenBoard: Typst template and framework for creating professional and clean exams of any kind.](https://github.com/diquah/OpenBoard)
 
 - 论文模板
-	- [GitHub - lucifer1004/pkuthss-typst: Typst template for dissertations in Peking University (PKU).](https://github.com/lucifer1004/pkuthss-typst)
-	- [GitHub - nju-lug/nju-thesis-typst: 南京大学学位论文 Typst 模板 nju-thesis-typst](https://github.com/nju-lug/nju-thesis-typst)
-	- [GitHub - howardlau1999/sysu-thesis-typst: 中山大学学位论文 Typst 模板](https://github.com/howardlau1999/sysu-thesis-typst)
-	- [简易上海交通大学学位论文 Typst 模板](https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF)
-	- 机器学习领域的系列论文模板：[GitHub - daskol/typst-templates: A list of paper templates in the area of machine learning.](https://github.com/daskol/typst-templates)
+    - [GitHub - lucifer1004/pkuthss-typst: Typst template for dissertations in Peking University (PKU).](https://github.com/lucifer1004/pkuthss-typst)
+    - [GitHub - nju-lug/nju-thesis-typst: 南京大学学位论文 Typst 模板 nju-thesis-typst](https://github.com/nju-lug/nju-thesis-typst)
+    - [GitHub - howardlau1999/sysu-thesis-typst: 中山大学学位论文 Typst 模板](https://github.com/howardlau1999/sysu-thesis-typst)
+    - [简易上海交通大学学位论文 Typst 模板](https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF)
+    - 机器学习领域的系列论文模板：[GitHub - daskol/typst-templates: A list of paper templates in the area of machine learning.](https://github.com/daskol/typst-templates)
 
 - Typst 文档编译 Github Actions：
-	- [build.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/build.yml)
-	- [GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
+    - [build.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/build.yml)
+    - [GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
 
 - 论文海报 poster：[Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
 
 - Elsevier 期刊模板
-	- 预印版：[GitHub - maucejo/elsearticle](https://github.com/maucejo/elsearticle)、[elsarticle preprint - Typst.app](https://typst.app/project/rFAXkf0lxIp1Paj1l-gKTr)
-	- 正式出版：[elsarticle formal - Typst.app](https://typst.app/project/rrn_CcZC2mSFvKWd9vuVgT)
+    - 预印版：[GitHub - maucejo/elsearticle](https://github.com/maucejo/elsearticle)、[elsarticle preprint - Typst.app](https://typst.app/project/rFAXkf0lxIp1Paj1l-gKTr)
+    - 正式出版：[elsarticle formal - Typst.app](https://typst.app/project/rrn_CcZC2mSFvKWd9vuVgT)
 
 - 用 Typst 创建 online books：[GitHub - Myriad-Dreamin/shiroa: shiroa is a simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/shiroa)
 
 - 将 Typst 内容渲染成网页
-	- [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
+    - [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
 
 
 
@@ -673,15 +673,15 @@ Show 规则用于全局替换
 - [ ] Typst 中暂无 latexdiff 替代工具
 
 - [x] Mac 中的 VSCode Typst 相关插件无法处理相对路径情况，会报错；Windows 上的正常
-	- 解决方法：在子目录下创建根目录模板文件的符号链接（暂时解决方法）
+    - 解决方法：在子目录下创建根目录模板文件的符号链接（暂时解决方法）
 
 ```rust
 #import "../template.typ": *   // 报错
 ```
 
 - [x] 标题后首段无法正确缩进：
-	- [Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
-	- [首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
+    - [Behavior of first line indentation in paragraphs seems limiting · Issue #311 · typst/typst · GitHub](https://github.com/typst/typst/issues/311)
+    - [首段无法自动缩进 · Issue #12 · shuosc/SHU-Bachelor-Thesis-Typst · GitHub](https://github.com/shuosc/SHU-Bachelor-Thesis-Typst/issues/12)
 
 ```rust
 #set par(

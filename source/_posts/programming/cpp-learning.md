@@ -26,9 +26,9 @@ password:
 ### 参考资料
 
 - 速查表
-	- [C++ 备忘清单 & cpp cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/cpp.html)
-	- [C++ Cheat Sheets & Infographics - hacking C++](https://hackingcpp.com/cpp/cheat_sheets.html)
-	- [GitHub - mortennobel/cpp-cheatsheet: Modern C++ Cheatsheet](https://github.com/mortennobel/cpp-cheatsheet)
+    - [C++ 备忘清单 & cpp cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/cpp.html)
+    - [C++ Cheat Sheets & Infographics - hacking C++](https://hackingcpp.com/cpp/cheat_sheets.html)
+    - [GitHub - mortennobel/cpp-cheatsheet: Modern C++ Cheatsheet](https://github.com/mortennobel/cpp-cheatsheet)
 
 - Effective Modern C++ 中文翻译版：[简介 - Effective Modern C++](https://cntransgroup.github.io/EffectiveModernCppChinese/)
 
@@ -63,9 +63,9 @@ password:
 >[GitHub - asartori86/advanced\_programming\_2021](https://github.com/asartori86/advanced_programming_2021)
 
 - CPP-Primer
-	- [GitHub - applenob/Cpp\_Primer\_Practice: 搞定C++:punch:。C++ Primer 中文版第5版学习仓库，包括笔记和课后练习答案。](https://github.com/applenob/Cpp_Primer_Practice)
-	- [GitHub - minyez/cpp-primer-plus-6th: C++学习. 笔记和习题解答](https://github.com/minyez/cpp-primer-plus-6th)
-	- [GitHub - yanghan234/CppPrimerNotes: My reading notes of C++ Primer, 5th Edition](https://github.com/yanghan234/CppPrimerNotes)
+    - [GitHub - applenob/Cpp\_Primer\_Practice: 搞定C++:punch:。C++ Primer 中文版第5版学习仓库，包括笔记和课后练习答案。](https://github.com/applenob/Cpp_Primer_Practice)
+    - [GitHub - minyez/cpp-primer-plus-6th: C++学习. 笔记和习题解答](https://github.com/minyez/cpp-primer-plus-6th)
+    - [GitHub - yanghan234/CppPrimerNotes: My reading notes of C++ Primer, 5th Edition](https://github.com/yanghan234/CppPrimerNotes)
 
 
 - [C 语言教程 - 网道](https://wangdoc.com/clang/)

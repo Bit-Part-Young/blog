@@ -28,9 +28,9 @@ password:
 - [ASE 版本 Release notes](https://wiki.fysik.dtu.dk/ase/releasenotes.html)：查看版本更新细节
 
 - 注意事项：
-	- ASE 网站中的源代码参数及注释与安装的 Python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准
-	- 无直接计算弹性常数的模块
-	- 很多变量的类型是 `np.ndarray`
+    - ASE 网站中的源代码参数及注释与安装的 Python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准
+    - 无直接计算弹性常数的模块
+    - 很多变量的类型是 `np.ndarray`
 
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292017026.png)
@@ -494,11 +494,11 @@ db.count("vasp_calc=Yes")      # 添加 selection 筛选条件
 # selection 可以是 id 或其他 AtomsRow 中的 key
 # 注：字符与符号之间不能有空格
 for row in db.select("id<=5"):
-	...
+    ...
 
 # 筛选 id>=5, id<=10 的所有结构
 for row in db.select("id>=5, id<=10"):
-	...
+    ...
 
 # 单个 AtomsRow
 row = db.get(id=10)            # id 从 1 开始
@@ -515,7 +515,7 @@ db_output = connect(db_output_fn)
 for row in db.select("id<=10"):
     key_value_pairs = row.key_value_pairs
     data = row.data
-	# 将 AtomsRow 转化成 Atoms
+    # 将 AtomsRow 转化成 Atoms
     atoms = row.toatoms()
     db_output.write(
         atoms=atoms,

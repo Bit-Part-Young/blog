@@ -30,9 +30,9 @@ Docusaurus：文档龙/多库龙。
 - Docusaurus 与其他框架的对比：[Comparison with other tools - Docusaurus](https://docusaurus.io/docs#comparison-with-other-tools)
 
 - 示例站点
-	- [GitHub - MADICES/MADICES.github.io](https://github.com/MADICES/MADICES.github.io)
-	- [Setting up Fortran • Fortran Tutorial](https://pranabdas.github.io/fortran/)
-	- [互联网冲浪指南 | 数字生活 DigitalLife](https://wiki.404lab.top/)
+    - [GitHub - MADICES/MADICES.github.io](https://github.com/MADICES/MADICES.github.io)
+    - [Setting up Fortran • Fortran Tutorial](https://pranabdas.github.io/fortran/)
+    - [互联网冲浪指南 | 数字生活 DigitalLife](https://wiki.404lab.top/)
 
 
 
@@ -94,8 +94,8 @@ npx docusaurus --version
 - 手动：`USE_SSH=true npm run deploy`
 
 - GitHub Actions：
-	- 用哪个包管理工具（npm、yarn、pnpm）安装依赖、构建，需在 Github Actions 修改为对应的命令
-	- 部署及站点 URL 设置：在 `docusaurus.config.js` 中添加、修改如下设置：
+    - 用哪个包管理工具（npm、yarn、pnpm）安装依赖、构建，需在 Github Actions 修改为对应的命令
+    - 部署及站点 URL 设置：在 `docusaurus.config.js` 中添加、修改如下设置：
 
 ```js
   // Set the production url of your site here
@@ -164,12 +164,12 @@ jobs:
 配置文件 `docusaurus.config.js` 常用参数：
 
 - `presets` - 预定义配置，如 `docs`、`blog` 和 `theme` 参数灯
-	- `docs` - 配置文档，如文件夹路径 `path`、侧边栏 `sidebarPath` 等
-	- `blog` - 配置博客，如文件夹的路径等
+    - `docs` - 配置文档，如文件夹路径 `path`、侧边栏 `sidebarPath` 等
+    - `blog` - 配置博客，如文件夹的路径等
 
 - `themeConfig` - 主题配置，如 `navbar`、`footer`、浅/深色模式等
-	- `navbar` - 配置顶部导航栏，如导航栏条目对应的侧边栏
-	- `footer` - 配置页脚，如链接、copyright
+    - `navbar` - 配置顶部导航栏，如导航栏条目对应的侧边栏
+    - `footer` - 配置页脚，如链接、copyright
 
 
 ---
@@ -177,8 +177,8 @@ jobs:
 #### 侧边栏生成
 
 - 自动生成侧边栏默认是按 md 文档标题的字母顺序排列的
-	- 可在 md 文档中添加 `sidebar_position` front matter 自定义调整标题的前后位置
-	- 可在 `_category_.json` 文件中添加 `position` 参数自定义调整子目录文档在整个标题的前后位置
+    - 可在 md 文档中添加 `sidebar_position` front matter 自定义调整标题的前后位置
+    - 可在 `_category_.json` 文件中添加 `position` 参数自定义调整子目录文档在整个标题的前后位置
 
 ```js
 // 方式 1 自动生成
@@ -231,14 +231,14 @@ scitoolSidebar: [
 #### 首页内容修改
 
 - 去掉首页中间的下半部分，自定义上半部分
-	- 参考：[GitHub - anitabi/navi.anitabi.cn: 动画巡礼帮助文档](https://github.com/anitabi/navi.anitabi.cn)
-	- 下半部分：`src/components/HomepageFeatures/index.js`，注释 FeatureList 相关内容
-	- 上半部分：`src/pages/index.js`，修改 button 属性的文字内容
+    - 参考：[GitHub - anitabi/navi.anitabi.cn: 动画巡礼帮助文档](https://github.com/anitabi/navi.anitabi.cn)
+    - 下半部分：`src/components/HomepageFeatures/index.js`，注释 FeatureList 相关内容
+    - 上半部分：`src/pages/index.js`，修改 button 属性的文字内容
 
 - 首页内容使用 md 文档（本地预览不会报错、build 会报错）
-	- [Docs Introduction | Docusaurus](https://docusaurus.io/docs/next/docs-introduction#home-page-docs)
-	- [docusaurus - How to set "Docs" as the main page - Stack Overflow](https://stackoverflow.com/questions/61999271/how-to-set-docs-as-the-main-page)
-	- 先在 `docusaurus.config.js` 中的 `docs` 选项中添加 `routeBasePath: '/'` 参数，之后在 docs 目录下的任意 md 文件中添加 `slug: /` front matter，之后再删掉 `src/pages/index.js` 文件
+    - [Docs Introduction | Docusaurus](https://docusaurus.io/docs/next/docs-introduction#home-page-docs)
+    - [docusaurus - How to set "Docs" as the main page - Stack Overflow](https://stackoverflow.com/questions/61999271/how-to-set-docs-as-the-main-page)
+    - 先在 `docusaurus.config.js` 中的 `docs` 选项中添加 `routeBasePath: '/'` 参数，之后在 docs 目录下的任意 md 文件中添加 `slug: /` front matter，之后再删掉 `src/pages/index.js` 文件
 
 
 ---

@@ -24,11 +24,11 @@ password:
 - Macbook Air 轻便；续航强；音响音质好；触控板功能丰富...
 
 - 明确 Macbook 购买机型：
-	- [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
-	- [2024年苹果 MacBook 选购指南(MacBook Air/Pro 的 M123/Pro/Max/Ultra有什么区别，13/14/15/16寸怎么选)](https://www.zhihu.com/tardis/zm/art/378347974?source_id=1003)
+    - [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
+    - [2024年苹果 MacBook 选购指南(MacBook Air/Pro 的 M123/Pro/Max/Ultra有什么区别，13/14/15/16寸怎么选)](https://www.zhihu.com/tardis/zm/art/378347974?source_id=1003)
 
 - macOS 可以运行的游戏：[Mac能玩哪些游戏？实测5种游玩方式\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Vy421a7Rd)
-	- 运行 Windows 3A 游戏：使用 Game Porting Toolkit
+    - 运行 Windows 3A 游戏：使用 Game Porting Toolkit
 
 
 ---
@@ -69,9 +69,9 @@ password:
 - **MacBook 合盖不休眠**：系统设置 - 电池 - 勾选 “使用电源适配器供电且显示器关闭时，防止自动进入睡”
 
 - 接入 Windows 键盘，进行修饰键的键位重映射：
-	- Alt（相当于 option 键）和 Win 键（相当于 command 键）互换，Fn 和 Ctrl 键无法互换（联想 USB 薄膜键盘）；
-	- [Mac电脑 + Windows机械键盘？功能键映射了解一下说起 Mac 电脑最独特的地方的话，就是它的操作系统了。mac - 掘金](https://juejin.cn/post/6948294239960694797)；
-	- [在 Mac 上更改修饰键的行为 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchlp1011/mac)
+    - Alt（相当于 option 键）和 Win 键（相当于 command 键）互换，Fn 和 Ctrl 键无法互换（联想 USB 薄膜键盘）；
+    - [Mac电脑 + Windows机械键盘？功能键映射了解一下说起 Mac 电脑最独特的地方的话，就是它的操作系统了。mac - 掘金](https://juejin.cn/post/6948294239960694797)；
+    - [在 Mac 上更改修饰键的行为 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchlp1011/mac)
 
 - 程序坞呼出时长设置：
 
@@ -207,65 +207,65 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 - 包安装、管理工具：Homebrew
 - 文件搜索、程序启动工具：
-	- Alfred 5
-	- [Raycast](https://www.raycast.com/)
+    - Alfred 5
+    - [Raycast](https://www.raycast.com/)
 - 系统资源监控：
-	- iStat Menus
-	- RunCat
-	- [stats](https://github.com/exelban/stats)
-	- [mactop](https://github.com/context-labs/mactop)
-	- [asitop](https://github.com/tlkh/asitop)
+    - iStat Menus
+    - RunCat
+    - [stats](https://github.com/exelban/stats)
+    - [mactop](https://github.com/context-labs/mactop)
+    - [asitop](https://github.com/tlkh/asitop)
 - 限制电池最大充电量：
-	- [bclm](https://github.com/zackelia/bclm)
-	- AlDente
+    - [bclm](https://github.com/zackelia/bclm)
+    - AlDente
 - 电池电量：
-	- AirBattery（显示所有苹果产品设备电量）
-	- Battery Buddy（可爱电池电量图标）
+    - AirBattery（显示所有苹果产品设备电量）
+    - Battery Buddy（可爱电池电量图标）
 - 垃圾清理：
-	- CleanMyMac X（完整版本需收费；有破解版）
-	- Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
+    - CleanMyMac X（完整版本需收费；有破解版）
+    - Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
 - 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
 - 软件卸载：Pearcleaner
 - 软件更新：Latest（一般）
 - Applite：macOS 的第三方应用管理器，可以一键下载、更新、卸载应用
 - 窗口管理：
-	- Rectangle
-	- Loop
+    - Rectangle
+    - Loop
 - 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
 - 菜单栏管理：
-	- Ice
-	- Bartender
+    - Ice
+    - Bartender
 - 快捷键提示：
-	- FlyKey
-	- CheatSheet
+    - FlyKey
+    - CheatSheet
 - 右键增强：MouseBoost（右键助手）
 - 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
 - 鼠标滚轮方向切换：
-	- Mos
-	- LinearMouse
-	- Mac Mouse Fix
+    - Mos
+    - LinearMouse
+    - Mac Mouse Fix
 - 输入法切换：
-	- 自动切换输入法 Lite 版
-	- [Input Source Pro](https://inputsource.pro/zh-CN)
+    - 自动切换输入法 Lite 版
+    - [Input Source Pro](https://inputsource.pro/zh-CN)
 - 可视化键盘输入：KeyCastr
 - 风扇控制：Mac Fan Control
 - 刘海屏相关：
-	- 将刘海屏当作 AirDrop：
-		- NotchDrop
-		- Folder Hub
-	- 隐藏刘海屏：
-		- Only Switch（将菜单栏调成黑色）
-		- zNotch（将菜单栏下移）
-	- 增加趣味：Notchmeister
+    - 将刘海屏当作 AirDrop：
+        - NotchDrop
+        - Folder Hub
+    - 隐藏刘海屏：
+        - Only Switch（将菜单栏调成黑色）
+        - zNotch（将菜单栏下移）
+    - 增加趣味：Notchmeister
 - 控制外置显示器亮度：
-	- MonitorControl
-	- BetterDisplay（功能更强大，需付费）
+    - MonitorControl
+    - BetterDisplay（功能更强大，需付费）
 - 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
 - 取消 macOS 的截图录屏权限的月提醒：[Amnesia](https://goodsnooze.gumroad.com/l/amnesia)
 - Android 连接 Mac：
-	- Macdroid（需付费）
-	- OpenMTP
-	- Android 文件传输助手（有时无法识别）
+    - Macdroid（需付费）
+    - OpenMTP
+    - Android 文件传输助手（有时无法识别）
 
 ---
 
@@ -274,15 +274,15 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
 - 媒体库管理：Emby（海报墙）
 - 视频下载：
-	- Downie
-	- Motrix
-	- imFile
+    - Downie
+    - Motrix
+    - imFile
 - 截图：
-	- Snipaste（无 OCR）
-	- Shottr（可长截图、OCR）
+    - Snipaste（无 OCR）
+    - Shottr（可长截图、OCR）
 - 图床：
-	- PicList（基于 PicGo 开发）
-	- PicGo
+    - PicList（基于 PicGo 开发）
+    - PicGo
 - 录屏：QuickRecorder
 - 抠图：鲜艺 AI 抠图
 - codye：将代码片段转换为精美图片（类似 carbon）
@@ -292,22 +292,22 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 **文档写作**
 
 - Markdown 笔记管理：
-	- Obsidian
-	- Typora
-	- MarkText
+    - Obsidian
+    - Typora
+    - MarkText
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
 - 书签工具：
-	- Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
-	- [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
+    - Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
+    - [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
 - 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
 - PDF 阅读器：
-	- UPDF
-	- skim
-	- [sioyek](https://github.com/ahrm/sioyek)（有部分类似的 Vim 快捷键）
+    - UPDF
+    - skim
+    - [sioyek](https://github.com/ahrm/sioyek)（有部分类似的 Vim 快捷键）
 - 文献管理：Zotero
 - 截图转 LaTeX 公式：
-	- [Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)
-	- [snip2tex](https://github.com/shanto268/snip2tex)
+    - [Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)
+    - [snip2tex](https://github.com/shanto268/snip2tex)
 
 ---
 
@@ -316,21 +316,21 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 网络代理：ClashX
 - 异地组网、内网穿透：Tailscale（跨平台）
 - 虚拟机：
-	- Parallels Desktop（收费）
-	- VMware Fusion
+    - Parallels Desktop（收费）
+    - VMware Fusion
 - 文件互传：
-	- LocalSend（跨平台；需设备在同一局域网下）
-	- [Blip](https://blip.net/)
+    - LocalSend（跨平台；需设备在同一局域网下）
+    - [Blip](https://blip.net/)
 - 文件同步：
-	- [Syncthing](https://github.com/syncthing/syncthing)（跨平台）
-	- 交大云盘
+    - [Syncthing](https://github.com/syncthing/syncthing)（跨平台）
+    - 交大云盘
 - 挂载云盘：
-	- AList
-	- CloudMounter（大多为国外云盘）
+    - AList
+    - CloudMounter（大多为国外云盘）
 - 远程控制：
-	- 向日葵
-	- TeamViewer Host
-	- ToDesk
+    - 向日葵
+    - TeamViewer Host
+    - ToDesk
 - 运行 Docker 容器、k8s 和 Linux：[orbstack](https://github.com/orbstack/orbstack)
 
 ---
@@ -338,50 +338,50 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 **其他**
 
 - 代码编辑器：
-	- VSCode
-	- VSCode-Insiders
+    - VSCode
+    - VSCode-Insiders
 - 终端模拟器：
-	- iTerm2（最实用）
-	- 默认终端
-	- Tabby
-	- Termius
-	- kitty
-	- [Warp](https://www.warp.dev/)（需注册；有 AI 功能）
+    - iTerm2（最实用）
+    - 默认终端
+    - Tabby
+    - Termius
+    - kitty
+    - [Warp](https://www.warp.dev/)（需注册；有 AI 功能）
 - 浏览器：
-	- Chrome
-	- Safari
-	- Arc
-	- Zen
+    - Chrome
+    - Safari
+    - Arc
+    - Zen
 - 邮件服务：Mailspring 或 Mac 自带邮件程序
 - 压缩、解压缩工具：The Unarchiver
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
 - 剪贴板相关：
-	- [PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）
-	- [GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）
-	- Maccy
+    - [PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）
+    - [GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）
+    - Maccy
 - 平铺式窗口管理器（tiling window manager）：
-	- [yabai](https://github.com/koekeishiya/yabai)
-	- [Amethyst](https://github.com/ianyh/Amethyst)
-	- [AeroSpace](https://github.com/nikitabobko/AeroSpace)（类似 i3）
+    - [yabai](https://github.com/koekeishiya/yabai)
+    - [Amethyst](https://github.com/ianyh/Amethyst)
+    - [AeroSpace](https://github.com/nikitabobko/AeroSpace)（类似 i3）
 - 右键压缩图片（需收费）：[Compress any image on macOS—Compress Image](https://compressimage.app/)
 - 将图像复制到剪贴板时，优化其大小：[Clop - Image, video, PDF and clipboard optimiser](https://lowtechguys.com/clop/)
 - RSS 阅读器：
-	- quick-rss（国区 Mac App Store）
-	- Fluent Reader
+    - quick-rss（国区 Mac App Store）
+    - Fluent Reader
 - 编程语言 API 下载、查看：Dash
 - 构型可视化：
-	- VESTA
-	- OVITO
+    - VESTA
+    - OVITO
 - 趣味 App：
-	- Ball
-	- Bananabin
-	- Desktop Goose（桌面宠物）
-	- Eyeballs
-	- FireBox
-	- Logoer（修改左上角的苹果 logo）
-	- Numi（计算器）
-	- One Thing（在菜单栏显示文字）
-	- Things（to-do 清单）
+    - Ball
+    - Bananabin
+    - Desktop Goose（桌面宠物）
+    - Eyeballs
+    - FireBox
+    - Logoer（修改左上角的苹果 logo）
+    - Numi（计算器）
+    - One Thing（在菜单栏显示文字）
+    - Things（to-do 清单）
 - 微信（Windows 端没有深色模式，macOS 有深色模式）等
 
 ---
@@ -405,19 +405,19 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
 
 - VSCode-Insdiers 的命令行启动工具安装：
-	- 方式 1：命令面板 - Install 'code-insiders' command in PATH（每次有升级会弹窗）
-	- 方式 2：在官网上下载 CLI 版本，将其拷贝到 bin 目录中
+    - 方式 1：命令面板 - Install 'code-insiders' command in PATH（每次有升级会弹窗）
+    - 方式 2：在官网上下载 CLI 版本，将其拷贝到 bin 目录中
 
 - kitty 使用：
-	- 介绍：
-		- [kitty - Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/Kitty)
-		- [Kitty基于GPU的终端工具 - Escape](https://www.escapelife.site/posts/8e342b57.html)
-	- kitty 配置：
-		- [kitty.conf - kitty](https://sw.kovidgoyal.net/kitty/conf/)
-		- 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
-	- [ ] kitty 如何升级
-	- [x] 如何将 kitty 的窗口信息放到上面，而非默认的下方（设置 `tab_bar_edge` 参数）
-	- [Share your tab bar style · kovidgoyal/kitty · Discussion #4447 · GitHub](https://github.com/kovidgoyal/kitty/discussions/4447)
+    - 介绍：
+        - [kitty - Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/Kitty)
+        - [Kitty基于GPU的终端工具 - Escape](https://www.escapelife.site/posts/8e342b57.html)
+    - kitty 配置：
+        - [kitty.conf - kitty](https://sw.kovidgoyal.net/kitty/conf/)
+        - 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
+    - [ ] kitty 如何升级
+    - [x] 如何将 kitty 的窗口信息放到上面，而非默认的下方（设置 `tab_bar_edge` 参数）
+    - [Share your tab bar style · kovidgoyal/kitty · Discussion #4447 · GitHub](https://github.com/kovidgoyal/kitty/discussions/4447)
 
 ```bash
 ~/.local/kitty.app              # Linux 安装路径
@@ -430,35 +430,35 @@ kitty +kitten themes            # 查看可用主题
 kitty +kitten clipboard file    # 拷贝文件中的内容到剪贴板
 kitty +kitten clipboard -g      # 粘贴剪贴板的内容到 STDOUT
 cat file | kitty +kitten hints  # 使用键盘选中屏幕中的内容，默认 URL
-	kitty +kitten ssh server        # 连接远程服务器
+    kitty +kitten ssh server        # 连接远程服务器
 ```
 
 ---
 
  - Termius 设置：
-	- [ ] Termius 无法复制粘贴
-	- 跨平台，多端数据记录同步；有学生认证
-	- 可 ssh 远程连接和 sftp 远程文件传输
-	- 可保存并显示历史命令
-	- 字体设置：设置 - Terminal - Text Size 上方，选择 “Meslo”
-	- 连接本地终端：Hosts - TERMINAL
-	- 可保存自定义 Theme；不错的预设 Theme：
-		- Monokai
-		- Pro
-		- Solarized Dark（个人主要采用该 Theme）
-		- Atom One Dark
-		- Tokyo Night
+    - [ ] Termius 无法复制粘贴
+    - 跨平台，多端数据记录同步；有学生认证
+    - 可 ssh 远程连接和 sftp 远程文件传输
+    - 可保存并显示历史命令
+    - 字体设置：设置 - Terminal - Text Size 上方，选择 “Meslo”
+    - 连接本地终端：Hosts - TERMINAL
+    - 可保存自定义 Theme；不错的预设 Theme：
+        - Monokai
+        - Pro
+        - Solarized Dark（个人主要采用该 Theme）
+        - Atom One Dark
+        - Tokyo Night
 
 ---
 
 - iTerm2 设置
-	- 字体：Prefrences - profiles - text
-	- 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
-	- [x] 如何存储 SSH 登录服务器的账号密码（无直接的方式，password manager 非直接存储 SSH 密码；kitty、Tabby 也是如此，Termius 可以）
+    - 字体：Prefrences - profiles - text
+    - 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
+    - [x] 如何存储 SSH 登录服务器的账号密码（无直接的方式，password manager 非直接存储 SSH 密码；kitty、Tabby 也是如此，Termius 可以）
 
 
 - 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 - 高级 - 持续时间缩短成 1.5
-	- [In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
+    - [In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
 
 - Alfred 搜索内容设置：Features - Default Results，可以勾选 Essential 和 Extras 中的所有内容（文件夹、文本文件、文档、图片、压缩文件等）
 
@@ -505,20 +505,20 @@ keyNotFound(code: "CHWA")
 - [Cannot install MarkText 0.17.0rc2-arm64 on M1 MacBook Air · Issue #2983 · marktext/marktext · GitHub](https://github.com/marktext/marktext/issues/2983)
 
 - LocalSend 连接 SJTU WiFi 无法互相发现设备，使用手机热点可以
-	- SJTU 的公共 WiFi 不支持局域网下设备互相发现（AP 隔离，导致不能正常使用）
-	- [连SJTU wifi，ios和windows怎么互传文件呢？ - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/248270)
-	- AP 隔离：种将同一无线网络中各个设备 “隔离开来” 的功能，确保它们只能与互联网或路由器通信，而不能直接相互通信。
+    - SJTU 的公共 WiFi 不支持局域网下设备互相发现（AP 隔离，导致不能正常使用）
+    - [连SJTU wifi，ios和windows怎么互传文件呢？ - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/248270)
+    - AP 隔离：种将同一无线网络中各个设备 “隔离开来” 的功能，确保它们只能与互联网或路由器通信，而不能直接相互通信。
 
 - Tailscale 安装与配置：
-	- [部署TailScale实现异地组网+全内网设备远程访问！一次上手Tailscale！轻松打通内外网！群晖、威联通NAS部署Tailscale内网穿透！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768?p=1)
-	- [TailScale子网路由配置，实现使用原生内网IP远程访问，异地组网更加优雅！TailScale Subnet Router使用教程！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768/?p=2)
-	- [ ] macOS `tailscale ssh` 无法使用（sandbox 原因）
-	- IPv6 不需要做穿透，外网也能连：[IPv6 不需要做穿透，外网也能连 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/214653)
-	- 交大接入有线网会分配一个公网 IPv6 地址
+    - [部署TailScale实现异地组网+全内网设备远程访问！一次上手Tailscale！轻松打通内外网！群晖、威联通NAS部署Tailscale内网穿透！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768?p=1)
+    - [TailScale子网路由配置，实现使用原生内网IP远程访问，异地组网更加优雅！TailScale Subnet Router使用教程！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768/?p=2)
+    - [ ] macOS `tailscale ssh` 无法使用（sandbox 原因）
+    - IPv6 不需要做穿透，外网也能连：[IPv6 不需要做穿透，外网也能连 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/214653)
+    - 交大接入有线网会分配一个公网 IPv6 地址
 
 - AList docker-compose 部署，挂载网盘时出现 `tcp XXX: connect: connection refused`：[挂载阿里云盘报错 · alist-org/alist · Discussion #1063 · GitHub](https://github.com/alist-org/alist/discussions/1063)
-	- [GitHub - DDS-Derek/xiaoya-alist: 小雅Alist的相关周边](https://github.com/DDS-Derek/xiaoya-alist)
-	- [x] AList macOS 本地存储路径写法 `/Users/XXX/XXX`，报路径不存在的错：正确写法：把本地路径挂载到 Docker 里，AList 里应该填 Docker 内的路径（可以挂载多个本地路径）
+    - [GitHub - DDS-Derek/xiaoya-alist: 小雅Alist的相关周边](https://github.com/DDS-Derek/xiaoya-alist)
+    - [x] AList macOS 本地存储路径写法 `/Users/XXX/XXX`，报路径不存在的错：正确写法：把本地路径挂载到 Docker 里，AList 里应该填 Docker 内的路径（可以挂载多个本地路径）
 
 ```yaml
 {
@@ -528,13 +528,13 @@ keyNotFound(code: "CHWA")
 ```
 
 - 将网盘（如阿里云盘）挂载到本地磁盘
-	- 将网盘挂载到 AList
-	- rclone（macOS、Linux）；RaiDrive（Windows、Linux）
+    - 将网盘挂载到 AList
+    - rclone（macOS、Linux）；RaiDrive（Windows、Linux）
 
 - 使用 rclone 将 AList 挂载到本地磁盘（看影视不流畅，效果一般）：
-	- 参考：[如何在 macOS 使用 AList + RCLONE 把网盘挂载到本地](https://zhuanlan.zhihu.com/p/612368639)
-	- 去对应官网下载 rclone（Homebrew 安装的 rclone 无法使用 mount 命令）和 macfuse
-	- [M1/M2/M3芯片 Mac 在“恢复”模式中启用系统扩展教程 - 我爱MAC](https://www.52mac.com/soft/13613-1-1.html)
+    - 参考：[如何在 macOS 使用 AList + RCLONE 把网盘挂载到本地](https://zhuanlan.zhihu.com/p/612368639)
+    - 去对应官网下载 rclone（Homebrew 安装的 rclone 无法使用 mount 命令）和 macfuse
+    - [M1/M2/M3芯片 Mac 在“恢复”模式中启用系统扩展教程 - 我爱MAC](https://www.52mac.com/soft/13613-1-1.html)
 
 ```bash
 rclone config  # 配置
@@ -549,8 +549,8 @@ rclone mount AList:/ /Users/XXX/AList --cache-dir /tmp --allow-other --vfs-cache
 #### 终端模拟器集成 SFTP
 
 - tabby 集成 SFTP（无法查看远程文件内容）
-	- 在 “设置 - 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
-	- 在当前目录下打开 SFTP 面板：[Shell working directory reporting · Eugeny/tabby Wiki · GitHub](https://github.com/Eugeny/tabby/wiki/Shell-working-directory-reporting)
+    - 在 “设置 - 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
+    - 在当前目录下打开 SFTP 面板：[Shell working directory reporting · Eugeny/tabby Wiki · GitHub](https://github.com/Eugeny/tabby/wiki/Shell-working-directory-reporting)
 
 ```bash
 # bash ~/.bash_profile
@@ -563,10 +563,10 @@ precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
 - Termius 集成 SFTP（可以查看远程文件内容）
 
 - iTerm2 安装 Shell Integration：
-	- 登录远程服务器：iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传
-	- [使用iTerm2管理SSH服务器 – 爪哇堂 JavaTang](https://www.javatang.com/archives/2021/11/29/13063392.html)
-	- 可以在终端查看图片和 gif 图（imgls、imgcat 等）
-	- [Features - iTerm2 - macOS Terminal Replacement](https://iterm2.com/features.html)
+    - 登录远程服务器：iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传
+    - [使用iTerm2管理SSH服务器 – 爪哇堂 JavaTang](https://www.javatang.com/archives/2021/11/29/13063392.html)
+    - 可以在终端查看图片和 gif 图（imgls、imgcat 等）
+    - [Features - iTerm2 - macOS Terminal Replacement](https://iterm2.com/features.html)
 
 
 ---
@@ -576,8 +576,8 @@ precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
 - 大部分开源命令行工具、程序、库和 GUI 程序（cask，不太推荐用该方式，有时下载速度很慢，建议直接官网下载）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）
 
 - 安装 Homebrew：
-	- [安装和使用 Homebrew - 韬秧道](https://blog.tauyoung.top/article/Homebrew/)
-	- [homebrew - 清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
+    - [安装和使用 Homebrew - 韬秧道](https://blog.tauyoung.top/article/Homebrew/)
+    - [homebrew - 清华大学镜像](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
 
 ```bash
 # 安装
@@ -618,7 +618,7 @@ brew tap <user/repo>      # 添加第三方软件仓库
 ```
 
 - 若通过 brew 安装的程序有以下提示，说明可以进行命令自动补全，需进行以下设置：
-	- [brew Shell Completion — Homebrew Documentation](https://docs.brew.sh/Shell-Completion)
+    - [brew Shell Completion — Homebrew Documentation](https://docs.brew.sh/Shell-Completion)
 
 ```bash
 zsh completions have been installed to: /opt/homebrew/share/zsh/site-functions
@@ -688,9 +688,9 @@ brew install fontconfig        # 需安装此才有 fc-list 等命令
 
 - 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
 - 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)
-	- 卸载 GUI，直接将 TeX 移入废纸篓
-	- 卸载 TeX Distribution
-	- 卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
+    - 卸载 GUI，直接将 TeX 移入废纸篓
+    - 卸载 TeX Distribution
+    - 卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
 ```bash
 brew install --cask mactex-no-gui  # 不建议
@@ -804,9 +804,9 @@ switcher:
 - B 站相关插件：[Safari：安装指南 · Issue #679 · BewlyBewly/BewlyBewly · GitHub](https://github.com/BewlyBewly/BewlyBewly/issues/679)
 
 - 网络代理：
-	- 从 Chrome 上的 SwitchyOmega 插件中，选择一个情景模式，导出 pac 文件（页面右上方），可重命名为 `proxy.pac`
-	- [如何在safari上实现类SwitchyOmega代理切换功能](https://www.youtube.com/watch?v=pAY8pNou9Gk)
-	- [在 Mac 上使用 Safari 浏览器设置代理服务器 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/safari/ibrw1053/mac)
+    - 从 Chrome 上的 SwitchyOmega 插件中，选择一个情景模式，导出 pac 文件（页面右上方），可重命名为 `proxy.pac`
+    - [如何在safari上实现类SwitchyOmega代理切换功能](https://www.youtube.com/watch?v=pAY8pNou9Gk)
+    - [在 Mac 上使用 Safari 浏览器设置代理服务器 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/safari/ibrw1053/mac)
 
 ```bash
 sudo cp proxy.pac /Library/WebServer/Documents
@@ -828,17 +828,17 @@ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools
 ```
 
 - coreutils 工具
-	- `coreutils` (GNU Core Utilities) 包含了很多基本的文件、shell 和文本操作工具
-	- macOS 中的一些命令的参数没有 Ubuntu 的全（如 `du`）
-	- 通过在命令前加 `g` 来调用 GNU 版本的命令（如 `gdu`）
+    - `coreutils` (GNU Core Utilities) 包含了很多基本的文件、shell 和文本操作工具
+    - macOS 中的一些命令的参数没有 Ubuntu 的全（如 `du`）
+    - 通过在命令前加 `g` 来调用 GNU 版本的命令（如 `gdu`）
 
 ```bash
 brew install coreutils
 ```
 
 - 安装性能提升的 NumPy：
-	- [Option to install numpy built with Apple's Accelerate BLAS implementation · Issue #253 · conda-forge/numpy-feedstock · GitHub](https://github.com/conda-forge/numpy-feedstock/issues/253)
-	- NumPy、SciPy 和 Matlab 支持 AMX 单元加速：[一次讲透！工科生用Mac，体验如何？\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1YJ4m1M7bD)
+    - [Option to install numpy built with Apple's Accelerate BLAS implementation · Issue #253 · conda-forge/numpy-feedstock · GitHub](https://github.com/conda-forge/numpy-feedstock/issues/253)
+    - NumPy、SciPy 和 Matlab 支持 AMX 单元加速：[一次讲透！工科生用Mac，体验如何？\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1YJ4m1M7bD)
 
 ```bash
 conda install -c conda-forge numpy "libblas=*=*accelerate"
@@ -878,8 +878,8 @@ set backspace=2
 ```
 
 - 查看 Mac GPU 信息：
-	- 系统设置 - 通用 - 系统报告 - 图形卡/显示器
-	- 运行命令：`system_profiler SPDisplaysDataType`
+    - 系统设置 - 通用 - 系统报告 - 图形卡/显示器
+    - 运行命令：`system_profiler SPDisplaysDataType`
 
 - 查看网线 IP 地址：系统设置 - 网络 - USB XXX LAN，IP 地址
 
@@ -907,7 +907,7 @@ brew install openjdk  # 安装 Java
 - 将图片转成 HEIF/HEIC 格式：[GitHub - biodranik/HEIF: Mac OS X: Convert any image to HEIF/HEIC format](https://github.com/biodranik/HEIF)
 
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
-	- 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel
+    - 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel
 
 - macOS 中终端下安全删除文件工具（可恢复）：[GitHub - hotoo/rm-trash](https://github.com/hotoo/rm-trash)
 
@@ -944,11 +944,11 @@ For pkg-config to find lapack you may need to set:
 ### VSCode Insiders 相关
 
 - 将 Vscode Insiders 从 Downloads 放入到 Applications
-	- 可直接拖到侧边栏的 Applications 中
-	- [Moving VS Code Insiders ARM to programs "folder" on M1 mac makes it unable to start (crashes/exits immediately). Can only start from "downloads" folder · Issue #113751 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/113751)
+    - 可直接拖到侧边栏的 Applications 中
+    - [Moving VS Code Insiders ARM to programs "folder" on M1 mac makes it unable to start (crashes/exits immediately). Can only start from "downloads" folder · Issue #113751 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/113751)
 
 - 终端切换（Windows 端的快捷键无法切换）
-	- 命令面板 - 聚焦下一终端组 / 在终端组聚焦下一终端
+    - 命令面板 - 聚焦下一终端组 / 在终端组聚焦下一终端
 
 ```bash
 shift + command + [ / ]     # 上下关系

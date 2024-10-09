@@ -166,9 +166,9 @@ Crtl + 点击图片          # 缩小图片
 - 转到某个类或函数的定义所在脚本时，代码编辑区上方会显示该类或函数的绝对路径，可点击该类或函数的名字，查看该类中所有的方法和属性（该函数平级的其他函数），点击跳转想要查看的方法/函数、属性即可，也可查看其他的类，会很方便
 
 - 其他 Python 相关插件：
-	- Black Formatter：代码格式化（其他：yapf、autopep8 和 ruff）
-	- autoDocstring：自动为 Python 的函数和类写 docstring snippets
-	- Jupyter：运行 Jupyter Notebook
+    - Black Formatter：代码格式化（其他：yapf、autopep8 和 ruff）
+    - autoDocstring：自动为 Python 的函数和类写 docstring snippets
+    - Jupyter：运行 Jupyter Notebook
 
 - 问题：当 root 中已有 conda 时，当前用户下的 conda 虚拟环境名称无法被识别，可在设置中找到 `conda path` 选项，写入将当前用户下的 conda 路径
 
@@ -212,9 +212,9 @@ Crtl + 点击图片          # 缩小图片
 ### Markdown 相关
 
 - Markdown All in One：
-	- 语法高亮，自动补全，**可生成目录，添加/更新章节序号**
-	- [VSCode插件生成编号、目录、文件目录树](https://github.com/lc-1203/k8s-practice/blob/main/06-Tools%26Tips/Markdown/VSCode%E6%8F%92%E4%BB%B6%E7%94%9F%E6%88%90%E7%BC%96%E5%8F%B7%E3%80%81%E7%9B%AE%E5%BD%95%E3%80%81%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%A0%91.md)
-	- 暂无很好的 “中英文混排添加空格” 格式化的插件；使用 Obsidian 中的 Linter 插件，将 Markdown 内容复制到 Obsidian 中进行格式化
+    - 语法高亮，自动补全，**可生成目录，添加/更新章节序号**
+    - [VSCode插件生成编号、目录、文件目录树](https://github.com/lc-1203/k8s-practice/blob/main/06-Tools%26Tips/Markdown/VSCode%E6%8F%92%E4%BB%B6%E7%94%9F%E6%88%90%E7%BC%96%E5%8F%B7%E3%80%81%E7%9B%AE%E5%BD%95%E3%80%81%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%A0%91.md)
+    - 暂无很好的 “中英文混排添加空格” 格式化的插件；使用 Obsidian 中的 Linter 插件，将 Markdown 内容复制到 Obsidian 中进行格式化
 
 - Markdown PDF：将 markdown 文档导出成 pdf 文（需本地或终端支持中文字符，不支持公式）
 
@@ -311,11 +311,11 @@ The Pylance server crashed 5 times in the last 3 minutes. The server will not be
 ```
 
 - Remote-SSH 远程连接服务器，使用 `plt.show()` 打不开画图窗口：
-	- [python - Is there any way to show figures in VScode remote ssh (windows) - Stack Overflow](https://stackoverflow.com/questions/59063892/is-there-any-way-to-show-figures-in-vscode-remote-ssh-windows)
-	- 解决方法：保存图片再打开查看；或者在互动窗口中运行代码
+    - [python - Is there any way to show figures in VScode remote ssh (windows) - Stack Overflow](https://stackoverflow.com/questions/59063892/is-there-any-way-to-show-figures-in-vscode-remote-ssh-windows)
+    - 解决方法：保存图片再打开查看；或者在互动窗口中运行代码
 
 - VSCode 加载图片错误：
-	- [visual studio code - Error loading webview: Error: Could not register service workers: TypeError: Failed to register a ServiceWorker for scope - Stack Overflow](https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai)
-	- 解决方法：清除相关文件缓存：进入 `C:\Users\XX\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
+    - [visual studio code - Error loading webview: Error: Could not register service workers: TypeError: Failed to register a ServiceWorker for scope - Stack Overflow](https://stackoverflow.com/questions/67698176/error-loading-webview-error-could-not-register-service-workers-typeerror-fai)
+    - 解决方法：清除相关文件缓存：进入 `C:\Users\XX\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
 
 - VSCode terminal profile 无法使用 zsh：[VSCode terminal task not using zsh profile · Issue #143061 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/143061)

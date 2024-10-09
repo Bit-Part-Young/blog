@@ -27,12 +27,12 @@ password:
 - Vitepress 框架官网：[VitePress - 由 Vite 和 Vue 驱动的静态站点生成器](https://vitepress.dev/zh/)
 
 - Vuepress 框架主题：
-	- [reco 1.x 版本](http://v1.vuepress-reco.recoluan.com/)
-	- [reco 2.x 版本](https://github.com/vuepress-reco/vuepress-theme-reco)（功能偏冗余）
-	- [vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope)
+    - [reco 1.x 版本](http://v1.vuepress-reco.recoluan.com/)
+    - [reco 2.x 版本](https://github.com/vuepress-reco/vuepress-theme-reco)（功能偏冗余）
+    - [vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope)
 
 - 参考资料：
-	- [GitHub - vuepress/awesome-vuepress: 🎉 A curated list of awesome things related to VuePress](https://github.com/vuepress/awesome-vuepress)
+    - [GitHub - vuepress/awesome-vuepress: 🎉 A curated list of awesome things related to VuePress](https://github.com/vuepress/awesome-vuepress)
 
 
 
@@ -162,7 +162,7 @@ jobs:
 - 参考配置：[awesome-fenix/.vuepress/config.js at master · fenixsoft/awesome-fenix · GitHub](https://github.com/fenixsoft/awesome-fenix/blob/master/.vuepress/config.js)
 
 - `docs/.vuepress/config.js` 文件常用参数设置
-	- md 文档中的 title front matter 会与正文的一级标题均会渲染，导致重复，其他框架不会有该情况
+    - md 文档中的 title front matter 会与正文的一级标题均会渲染，导致重复，其他框架不会有该情况
 
 ```js
 module.exports = {
@@ -276,15 +276,15 @@ export default defineConfig({
 ```
 
 - Vitepress 与 Vuepress 框架中 sidebar 参数配置差异
-	- text - title, collapsed - collapsable, items - children, link - path
-	- 多级子目录下，Vitepress 框架下不能有 index.md 文件，而 Vuepress 框架允许有
+    - text - title, collapsed - collapsable, items - children, link - path
+    - 多级子目录下，Vitepress 框架下不能有 index.md 文件，而 Vuepress 框架允许有
 
 - reco v1.x 版本配置参考：[Vuepress-theme-reco-v1.x 新手指北之Hello烤鸭 | latte and cat](https://blog.latteandcat.cn/blogs/frontend/2023/theme-reco-1.x.html)
 
 - reco v1.x 版本常用参数设置：
-	- 有分类、标签和时间轴功能，因此可不用设置 docs 子目录的导航栏
-	- 会预设一些插件（如 一键从页面底部到顶部）
-	- **md 文档的目录侧边栏可自动生成，docs 的侧边栏仍需手动生成，较繁琐**
+    - 有分类、标签和时间轴功能，因此可不用设置 docs 子目录的导航栏
+    - 会预设一些插件（如 一键从页面底部到顶部）
+    - **md 文档的目录侧边栏可自动生成，docs 的侧边栏仍需手动生成，较繁琐**
 
 ```js
   // 移动端优化

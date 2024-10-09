@@ -74,12 +74,12 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 - 确定 WSL 版本（1 or 2），下载合适的发行版（不同版本的 Ubuntu，WSLArch 等），设置账号和密码
 - 确认一些基本程序是否已安装，如 git、wget、curl 等；若未安装，需手动安装
 - `git clone https://gitee.com/yangsl306/dotfiles.git`，进行配置
-	- 换源（Ubuntu 为 `/etc/apt/sources.list`，WSLArch 等）
-	- git 及 多账号 ssh 配置（`~/.gitconfig`、`~/.ssh/config`、`id_rsa.github`、`id_rsa.gitee`）
-	- 安装、配置 zsh（`.zshrc`）
-	- 配置 vim
-	- 安装 Miniconda3，换源（`.condarc`）
-	- 若安装的是 WSL 2，进行网络代理设置（`wslproxy`）
+    - 换源（Ubuntu 为 `/etc/apt/sources.list`，WSLArch 等）
+    - git 及 多账号 ssh 配置（`~/.gitconfig`、`~/.ssh/config`、`id_rsa.github`、`id_rsa.gitee`）
+    - 安装、配置 zsh（`.zshrc`）
+    - 配置 vim
+    - 安装 Miniconda3，换源（`.condarc`）
+    - 若安装的是 WSL 2，进行网络代理设置（`wslproxy`）
 
 
 ---
@@ -220,7 +220,7 @@ default=myuser
 ---
 
 - WSL 可被分配的最大内存：WSL 2 在可用内存允许的情况下可以分配更大的内存量，而 WSL 1 的可用内存通常受到一定限制，约为 4 GB
-	- [WSL2高级使用 - 我是谁](https://yuhldr.github.io/posts/2411.html)
+    - [WSL2高级使用 - 我是谁](https://yuhldr.github.io/posts/2411.html)
 
 ```bash
 [wsl2]  

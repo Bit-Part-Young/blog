@@ -50,12 +50,12 @@ password:
 - 命令行版本的 GitHub Dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
 
 - 管理 GitHub Stars（以下两个项目均会获取 GitHub public data）
-	- [GitHub - cfour-hi/gitstars: Github Starred Repositories Manager](https://github.com/cfour-hi/gitstars)
-	- [GitHub - nieheyong/starflare: A web app helps you manage your GitHub stars simply and efficiently](https://github.com/nieheyong/starflare)
+    - [GitHub - cfour-hi/gitstars: Github Starred Repositories Manager](https://github.com/cfour-hi/gitstars)
+    - [GitHub - nieheyong/starflare: A web app helps you manage your GitHub stars simply and efficiently](https://github.com/nieheyong/starflare)
 
 - 显示/自定义 GitHub 通知：
-	- [GitHub - qiweiii/github-custom-notifier: Web Extension - Allows you to customize GitHub notifications](https://github.com/qiweiii/github-custom-notifier)
-	- [GitHub - 0x2E/GitStatus: Show GitHub notifications on menubar (macOS 13.0+)](https://github.com/0x2E/GitStatus)
+    - [GitHub - qiweiii/github-custom-notifier: Web Extension - Allows you to customize GitHub notifications](https://github.com/qiweiii/github-custom-notifier)
+    - [GitHub - 0x2E/GitStatus: Show GitHub notifications on menubar (macOS 13.0+)](https://github.com/0x2E/GitStatus)
 
 - 生成 changelog：[GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
 
@@ -196,7 +196,7 @@ GitHub contribution 可视化：
 - [GitHub - yoshi389111/github-profile-3d-contrib: This GitHub Action creates a GitHub contribution calendar on a 3D profile image.](https://github.com/yoshi389111/github-profile-3d-contrib)
 - [Leticia-maria/.github/workflows/profile-3d.yml at main · Leticia-maria/Leticia-maria · GitHub](https://github.com/Leticia-maria/Leticia-maria/blob/main/.github/workflows/profile-3d.yml)
 - 贪吃蛇（只能使用 public contributions，见 [Issue #88](https://github.com/Platane/snk/issues/88)）：[snk](https://github.com/Platane/snk)
-	- 实例：[github-contribution-grid-snake.yml](https://github.com/hotoo/hotoo/blob/main/.github/workflows/github-contribution-grid-snake.yml)
+    - 实例：[github-contribution-grid-snake.yml](https://github.com/hotoo/hotoo/blob/main/.github/workflows/github-contribution-grid-snake.yml)
 - （未测试）[GitHub - jasineri/gitartwork: Gitartwork on user's contribution graph](https://github.com/jasineri/gitartwork)
 
 ---
@@ -299,8 +299,8 @@ repos:
     rev:  # 版本
     hooks:  # 列出要使用的具体钩子
       - id:  # 钩子唯一标识
-	    args:  # 可选 传递给钩子的额外参数
-		language_version: # 编程语言版本 如 python3.11
+        args:  # 可选 传递给钩子的额外参数
+        language_version: # 编程语言版本 如 python3.11
 ```
 
 ---
@@ -325,7 +325,7 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.2
     hooks:
-	  # Run the linter.
+      # Run the linter.
       - id: ruff
         args: [ --fix ]
         types_or: [ python, pyi, jupyter ]

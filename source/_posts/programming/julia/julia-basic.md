@@ -66,8 +66,8 @@ typeof()
 ## 安装
 
 - 二进制版本下载：
-	- [julia-releases - 清华大学镜像站](https://mirror.tuna.tsinghua.edu.cn/julia-releases/bin/)
-	- [Download Julia](https://julialang.org/downloads/)
+    - [julia-releases - 清华大学镜像站](https://mirror.tuna.tsinghua.edu.cn/julia-releases/bin/)
+    - [Download Julia](https://julialang.org/downloads/)
 
 ```bash
 brew install Julia  # macOS
@@ -96,11 +96,11 @@ versioninfo()
 - 代码格式化：JuliaFormatter
 
 - Julia VSCode 插件：需设置 Julia 二进制文件路径，才能使用查看 API、在 REPL 中执行代码等功能
-	- 激活 Julia 环境：输入 “Julia: Activate This Environment”
-	- 更换 Julia 环境：输入 “Julia: Change Current Environment”
-	- 在 VSCode 中的 Jupyter Notebook 中运行 Julia 代码（只能是默认的 Julia 环境）
-	- [ ] 如何在 Jupyter Notebook 中的使用其他的 Julia 环境
-	- [ ] VSCode Julia 插件经常 crash
+    - 激活 Julia 环境：输入 “Julia: Activate This Environment”
+    - 更换 Julia 环境：输入 “Julia: Change Current Environment”
+    - 在 VSCode 中的 Jupyter Notebook 中运行 Julia 代码（只能是默认的 Julia 环境）
+    - [ ] 如何在 Jupyter Notebook 中的使用其他的 Julia 环境
+    - [ ] VSCode Julia 插件经常 crash
 
 ```json
 {
@@ -161,7 +161,7 @@ julia> include("script.jl")  # REPL 下
 - 进入 pkg，执行 `activate .`，激活该目录使其成为 “活动项目”；添加 package（会生成 `Project.toml` 项目文件及 `Manifest.toml` 清单文件）
 
 - 使用他人的项目
-	- 注：若项目包含 manifest，则以该 manifest 给出的相同状态安装包；否则，将解析与项目兼容的最新版本的依赖项
+    - 注：若项目包含 manifest，则以该 manifest 给出的相同状态安装包；否则，将解析与项目兼容的最新版本的依赖项
 
 ```bash
 # 克隆
@@ -183,8 +183,8 @@ Activating project at `~/Example.jl`
 ### 包管理
 
 - 参考：
-	- [Julia Packages](https://juliapackages.com/)
-	- [2. 入门 · Pkg.jl](https://cn.julialang.org/Pkg.jl/dev/getting-started/)
+    - [Julia Packages](https://juliapackages.com/)
+    - [2. 入门 · Pkg.jl](https://cn.julialang.org/Pkg.jl/dev/getting-started/)
 
 - 键入 `]` 进入 pkg（交互式包管理模式； `BACKSPACE` 或 `Crtl + C` 键退出）
 
@@ -224,7 +224,7 @@ julia> Pkg.add("Example")
 . 
 ├── Project.toml 
 └── src 
-	└── HelloWorld.jl
+    └── HelloWorld.jl
 ```
 
 
@@ -374,7 +374,7 @@ f(1.1)
 
 ```julia
 function func(x, y, z)
-	...
+    ...
 end
 
 function foo(x, y)
@@ -394,13 +394,13 @@ foo(Int(x), Int(y))
 ```julia
 # mysd: Input numeric vector x, output its sample standard deviation.
 function mysd(x)
-	n = length(x)
-	mx = sum(x) / n
-	s = 0.0
-	for z in x
-		s += (z - mx)^2
-	end
-	sqrt(s / (n-1))
+    n = length(x)
+    mx = sum(x) / n
+    s = 0.0
+    for z in x
+        s += (z - mx)^2
+    end
+    sqrt(s / (n-1))
 end
 
 
@@ -492,12 +492,12 @@ end
 ```julia
 # 方式1
 for i in 1:10
-	println(i)
+    println(i)
 end
 
 # 方式2
 for i in 1:10
-	println(i)
+    println(i)
 end
 ```
 
@@ -508,7 +508,7 @@ end
 ```julia
 arr=collect(1:5)
 for (idx, val) in enumerate(arr) 
-	println("the $idx-th element is $val") 
+    println("the $idx-th element is $val") 
 end
 ```
 

@@ -50,8 +50,8 @@ Ctrl + Shift + Tab  # 向左切换
 - CMD 与 PowerShell 的区别：PowerShell 是 CMD 的升级版；支持管道操作；支持 Tab（命令）补全（CMD 支持路径、文件名参数补全）
 
 - PowerShell 设置别名：
-	- [给 PowerShell 带来 zsh 的体验](https://zhuanlan.zhihu.com/p/137251716)
-	- [GitHub - PowerShell/PSReadLine: A bash inspired readline implementation for PowerShell](https://github.com/PowerShell/PSReadLine)
+    - [给 PowerShell 带来 zsh 的体验](https://zhuanlan.zhihu.com/p/137251716)
+    - [GitHub - PowerShell/PSReadLine: A bash inspired readline implementation for PowerShell](https://github.com/PowerShell/PSReadLine)
 
 ```powershell
 notepad $Profile  # 打开 PowerShell 的配置文件
@@ -123,15 +123,15 @@ cd /d c:
 - [Windows特殊文件夹,用这么多年电脑,竟然不知道？\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ou4m1F7sD)
 
 - 在指定路径下打开 CMD、PowerShell
-	- 点击当前路径栏并输入 `cmd`
-	- 在当前路径中，在空白处按住 shift 键并点击鼠标右键，在菜单栏中选择 “在此处打开 Powershell 窗口”
+    - 点击当前路径栏并输入 `cmd`
+    - 在当前路径中，在空白处按住 shift 键并点击鼠标右键，在菜单栏中选择 “在此处打开 Powershell 窗口”
 
 - Windows 版本还原程序：MediaCreationTool
 
 - Office 套件快捷键：`Alt + N`，上方菜单栏会出现每种操作选项的快捷键
 
 - Adobe Acrobat 快捷键：[Adobe Acrobat 中的键盘快捷键](https://helpx.adobe.com/cn/acrobat/using/keyboard-shortcuts.html)
-	- 启用单键快捷方式：编辑，首选项 -- 一般，选择 “使用单键加速键访问工具” 选项
+    - 启用单键快捷方式：编辑，首选项 -- 一般，选择 “使用单键加速键访问工具” 选项
 
 - `win + R`，输入 `dxdiag`，查看系统信息
 

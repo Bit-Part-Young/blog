@@ -286,9 +286,9 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 - [手摸手教你安装激活最新的Typora1.8.10\_typora1.8.10 linux 激活-CSDN博客](https://blog.csdn.net/qq_37636739/article/details/136338284)
 
 - Theme 主题：
-	- [GitHub - liangjingkanji/DrakeTyporaTheme: 十二种主题风格 - Material Google JetBrains Vue Juejin Purple Ayu Dark](https://github.com/liangjingkanji/DrakeTyporaTheme)
-	- [GitHub - Soanguy/typora-theme-autumnus: Typora theme for 中文](https://github.com/Soanguy/typora-theme-autumnus)
-	- [GitHub - Keldos-Li/typora-latex-theme: 将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.](https://github.com/Keldos-Li/typora-latex-theme)
+    - [GitHub - liangjingkanji/DrakeTyporaTheme: 十二种主题风格 - Material Google JetBrains Vue Juejin Purple Ayu Dark](https://github.com/liangjingkanji/DrakeTyporaTheme)
+    - [GitHub - Soanguy/typora-theme-autumnus: Typora theme for 中文](https://github.com/Soanguy/typora-theme-autumnus)
+    - [GitHub - Keldos-Li/typora-latex-theme: 将Typora伪装成LaTeX的中文样式主题，本科生轻量级课程论文撰写的好帮手。This is a theme disguising Typora into Chinese LaTeX style.](https://github.com/Keldos-Li/typora-latex-theme)
 
 - 侧边栏大纲视图允许折叠和展开：[Typora强烈推荐的两个设置\_typora如何变成双窗口-CSDN博客](https://blog.csdn.net/haojie_duan/article/details/113747929)
 
@@ -305,10 +305,10 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 ## 其他常用软件
 
 - Listary：一款实用的文件搜索、程序启动工具
-	- 与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`
+    - 与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`
 
 - MobaXterm：远程服务器连接工具；可自动识别已安装的 WSL
-	- [ ] Mobaxterm 左侧文件目录无法随右侧终端命令实时改变（暂无法解决）
+    - [ ] Mobaxterm 左侧文件目录无法随右侧终端命令实时改变（暂无法解决）
 
 - WinSCP：远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些
 
@@ -319,18 +319,18 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 - Snipaste：截图软件，可以截图、**贴图**、标注；可以获取颜色的 rgb 值等
 
 - PicGo：图床工具
-	- 相关设置：设置 GitHub 图床；开启时间戳重命名；禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
+    - 相关设置：设置 GitHub 图床；开启时间戳重命名；禁用 `Crtl + Shift + P` 快捷键（与 VSCode 和 Obsidian 中的快捷键有冲突）
 
 - PicList：图床工具，基于 PicGo 开发
 
 - Notepad++：文本编辑器；直接关闭软件不会删除未保存的内容，可用做临时记录（最新版本的 Windows 的记事本也可以）
-	- 自动换行设置：“视图” -- 勾选 “自动换行”
-	- 文件每行末尾显示 `CRLF`：“视图” -- “显示符号” -- 取消勾选 “显示行尾符”
-	- 该软件开发者涉及辱华，建议使用其他替代工具（Notepad--）
+    - 自动换行设置：“视图” -- 勾选 “自动换行”
+    - 文件每行末尾显示 `CRLF`：“视图” -- “显示符号” -- 取消勾选 “显示行尾符”
+    - 该软件开发者涉及辱华，建议使用其他替代工具（Notepad--）
 
 - Internet Download Manager：简称 IDM，下载工具，可嗅探到网页中任何可下载的东西（如文件、视频、音频等）并自动分类归档。一些配置：
-	- 选项 - 常规设置 - 接管以下浏览器，仅 chrome 和 firefox（取消勾选 edge，因其会经常提示下载更新包）
-	- 选项 - 文件类型 - 以下站点不自动下载
+    - 选项 - 常规设置 - 接管以下浏览器，仅 chrome 和 firefox（取消勾选 edge，因其会经常提示下载更新包）
+    - 选项 - 文件类型 - 以下站点不自动下载
 
 ```text
 pdf.sciencedirectassets.com
@@ -346,15 +346,15 @@ onlinelibrary.wiley.com
 - Mathpix：LaTeX OCR 识别；使用教育邮箱，可增加 Mathpix 使用次数；支持临时邮箱
 
 - Potplayer：媒体播放器
-	- [基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
+    - [基于PotPlayer和madVR的播放器教程 | VCB-Studio - the chosen one](http://lbj007.headns.com/archives/479/)
 
 - QuickLook：快速预览文件的工具，按空格键即可实现预览且可以复制文件内容
-	- 类似于 Mac 的空格键；有插件可实现预览 Office 套件文件，但效果不是很好
-	- [GitHub - QL-Win/QuickLook.Plugin.OfficeViewer: Word, Excel, and PowerPoint plugin for QuickLook.](https://github.com/QL-Win/QuickLook.Plugin.OfficeViewer)
+    - 类似于 Mac 的空格键；有插件可实现预览 Office 套件文件，但效果不是很好
+    - [GitHub - QL-Win/QuickLook.Plugin.OfficeViewer: Word, Excel, and PowerPoint plugin for QuickLook.](https://github.com/QL-Win/QuickLook.Plugin.OfficeViewer)
 
 - Rime 输入法引擎 + 雾凇拼音
-	- [Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)
-	- [小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
+    - [Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)
+    - [小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
 
 - 调节显示器亮度：Twinkle Tray（部分显示器设备无效）
 
@@ -380,5 +380,5 @@ onlinelibrary.wiley.com
 - [GitHub - the1812/Malware-Patch: 阻止中国流氓软件的管理员授权. / Prevent UAC authorization of Chinese malware.](https://github.com/the1812/Malware-Patch)
 
 - [pdf-bookmark](https://github.com/ifnoelse/pdf-bookmark)：给 pdf 生成目录， README 中有详细的操作介绍。
-	- 生成目录内容时，中文可能会出现乱码的情况，可直接将 china-pub 中书籍详情页完整目录复制到 pdf-bookmark 目录编辑框中
-	- pdf 的目录可在京东、当当、读秀、图书馆联盟、豆瓣图书中找到并复制过来，但需带页码
+    - 生成目录内容时，中文可能会出现乱码的情况，可直接将 china-pub 中书籍详情页完整目录复制到 pdf-bookmark 目录编辑框中
+    - pdf 的目录可在京东、当当、读秀、图书馆联盟、豆瓣图书中找到并复制过来，但需带页码

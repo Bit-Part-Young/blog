@@ -41,11 +41,11 @@ password:
 - [GitHub - computron/pymatgen\_tutorials: Tutorials for using the pymatgen library](https://github.com/computron/pymatgen_tutorials)
 
 - material project workshop:
-	- 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
-	- 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
-	- 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
-	- 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
-	- 注：workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面；workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
+    - 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
+    - 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
+    - 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
+    - 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
+    - 注：workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面；workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 ---
 
@@ -152,10 +152,10 @@ from pymatgen.ext.matproj ...
 - `MSONable` 类：MSON（Monty JSON）；MSONable 对象必须实现 `as_dict()` 方法，该方法须返回可序列化为 JSON 的字典，且须支持无参数。静态方法 `from_dict()`，从 `as_dict()` 方法生成的字典中重建对象。`as_dict()` 方法应该包含 `@module` 和 `@class` 键，这将允许 MontyEncoder 动态反序列化该类。
 
 - `Molecule` 与 `Structure` 类
-	- `Molecule` 类的输入参数：`species` 和 `coords`，关键字参数有：`charge`、 `spin_multiplicity`、 `validate_proximity` 和 `site_properties`
-	- `Structure` 类还需指定 `lattice` 输入参数
-	- `Molecule` 类的 `coords` 参数值需是 Cartesian 坐标形式，`Structure` 类可以是 Cartesian 和分数两种坐标形式
-	- `Molecule` 本质上是 Site objects 的列表；`Structure` 本质上是 PeriodicSites objects 的列表；可以像 list 一样操作 `Molecule` 和 `Structure`
+    - `Molecule` 类的输入参数：`species` 和 `coords`，关键字参数有：`charge`、 `spin_multiplicity`、 `validate_proximity` 和 `site_properties`
+    - `Structure` 类还需指定 `lattice` 输入参数
+    - `Molecule` 类的 `coords` 参数值需是 Cartesian 坐标形式，`Structure` 类可以是 Cartesian 和分数两种坐标形式
+    - `Molecule` 本质上是 Site objects 的列表；`Structure` 本质上是 PeriodicSites objects 的列表；可以像 list 一样操作 `Molecule` 和 `Structure`
 
 - monty 包：对 json/yaml/msgpack 等文件格式进行 serialization
 
@@ -898,8 +898,8 @@ from pymatgen.analysis.interfaces.zsl import ZSLGenerator
 - 减少表面/界面（surfaces）晶格向量并计算表面/界面的面积
 - 在最大允许面积内生成所有超晶格变换
 - 对于每个超晶格集：
-	- 减少超晶格矢量
-	- 检查 film 和 substrate 表面超晶格之间的长度和角度
+    - 减少超晶格矢量
+    - 检查 film 和 substrate 表面超晶格之间的长度和角度
 
 `pymatgen.analysis.interfaces.coherent_interfaces` 模块 - 提供了存储、生成和操作材料界面的类
 
@@ -954,10 +954,10 @@ phasediagram.get_decomposition()   # 获取特定构型成分分解成哪些稳�
 
 # label 字体大小无法修改 可能会导致有重叠
 ax = phasediagram.get_plot(
-	backend="matplotlib",      # 绘图后端；ploty 或 matplotlib
-	show_unstable=False,       # 是否显示非稳定构型
-	# label_stable=False,      # 是否显示 label
-	)
+    backend="matplotlib",      # 绘图后端；ploty 或 matplotlib
+    show_unstable=False,       # 是否显示非稳定构型
+    # label_stable=False,      # 是否显示 label
+    )
 
 ax.figure.savefig()
 ```
@@ -1062,14 +1062,14 @@ enumerated = enum.apply_transformation(structure, return_ranked_list=100)  # ret
 ### API
 
 - 参考：
-	- [新版和老版Materials Project API使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/10/b438dad131c8.html)
-	- [利用Materials Project的API下载结构文件](https://zhuanlan.zhihu.com/p/618452536)
+    - [新版和老版Materials Project API使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/10/b438dad131c8.html)
+    - [利用Materials Project的API下载结构文件](https://zhuanlan.zhihu.com/p/618452536)
 
 - 调用 MP API 获取 MP 数据
 
 - pymatgen 新 API：
-	- API Key 获取：[Materials Project - API](https://materialsproject.org/api)
-	- 官方教程：[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
+    - API Key 获取：[Materials Project - API](https://materialsproject.org/api)
+    - 官方教程：[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
 
 - 安装
 
@@ -1084,7 +1084,7 @@ pip install -U mp_api
 from mp_api.client import MPRester
 
 with MPRester("api-key") as mpr:
-	docs = mpr.materials.summary.search(...)
+    docs = mpr.materials.summary.search(...)
 
     # 查看可获取内容的字段，可用做筛选 query data 的参数
     mpr.materials.summary.available_fields

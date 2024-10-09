@@ -121,29 +121,29 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 - [Obsidian-插件推荐（20230630更新） - 知乎](https://zhuanlan.zhihu.com/p/353449575)
 
 - Obsidian LaTeX 相关插件（建议在 VSCode 中书写 LaTeX 公式）：
-	- [GitHub - RyotaUshio/obsidian-math-booster](https://github.com/RyotaUshio/obsidian-math-booster)
-	- [GitHub - artisticat1/obsidian-latex-suite](https://github.com/artisticat1/obsidian-latex-suite)
+    - [GitHub - RyotaUshio/obsidian-math-booster](https://github.com/RyotaUshio/obsidian-math-booster)
+    - [GitHub - artisticat1/obsidian-latex-suite](https://github.com/artisticat1/obsidian-latex-suite)
 
 - 整合 Obsidian 与 Zotero 的插件（可尝试）：[GitHub - PKM-er/obsidian-zotlit](https://github.com/PKM-er/obsidian-zotlit)
 
 ---
 
 - 外观：
-	- 推荐使用 Blut Topaz、Border、[AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) 主题（后两者会出现卡顿情况）
-	- AnuPpuccin 使用 CSS：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入 “设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
-	- Blut Topaz 主题效果图：
+    - 推荐使用 Blut Topaz、Border、[AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) 主题（后两者会出现卡顿情况）
+    - AnuPpuccin 使用 CSS：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入 “设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
+    - Blut Topaz 主题效果图：
 
 ![vault-screenshot.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202312120853566.png)
 
 ---
 
 - [Vimrc Support](https://github.com/esm7/obsidian-vimrc-support)：支持设置 `.vimrc` 配置文件（实用性很高；需在编辑器选项中打开 Vim 模式）
-	- [08\_obsidian01.md](https://github.com/alexzhang1030/full-keyboard/blob/0cb16b4d9fbc2d8e589b38fad14308220d184d72/docs/08_obsidian01.md)
-	- [obsidian-vimrc-support\_readme.md](https://github.com/PKM-er/Pkmer-Docs/blob/84e53b107bff5fe3f4f76f54d909275625acf17d/10-Obsidian/Obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/Readme/obsidian-vimrc-support_readme.md?plain=1#L3)
-	- [.obsidian.vimrc](https://github.com/conneroisu/conneroisu-obsidian-vimrc/blob/main/.obsidian.vimrc)
+    - [08\_obsidian01.md](https://github.com/alexzhang1030/full-keyboard/blob/0cb16b4d9fbc2d8e589b38fad14308220d184d72/docs/08_obsidian01.md)
+    - [obsidian-vimrc-support\_readme.md](https://github.com/PKM-er/Pkmer-Docs/blob/84e53b107bff5fe3f4f76f54d909275625acf17d/10-Obsidian/Obsidian%E7%A4%BE%E5%8C%BA%E6%8F%92%E4%BB%B6/Readme/obsidian-vimrc-support_readme.md?plain=1#L3)
+    - [.obsidian.vimrc](https://github.com/conneroisu/conneroisu-obsidian-vimrc/blob/main/.obsidian.vimrc)
     - 个人 `.obsidian.vimrc` 设置：[.obsidian.vimrc · Falling Slowly/obsidian-config - Gitee.com](https://gitee.com/yangsl306/obsidian-config/blob/main/.obsidian.vimrc)
     - [ ] 状态栏 powerline 设置不起作用：[vimrc support里面提到可以定制状态栏成powerline风格，但是无效 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/23660)
-	- [ ] Obsidian Vim 插件无法使用重复替换操作的快捷键
+    - [ ] Obsidian Vim 插件无法使用重复替换操作的快捷键
 
 - Obsidian Git：Git 插件以实现版本控制 + 云同步。相关设置：
     - 自动 commit 和 push（称为备份）时间间隔设置为 30min（在文件最后一次改变后的 30min，可避免在编辑文件时自动备份；也可以设置成最后一次 commit 后的 30min；二选一）
@@ -153,11 +153,11 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
     - Windows 与 Linux 中的文件权限两者不同，在 Windows 上使用 git 插件时，可在该 repo 中输入 `git config core.fileMode false` 命令以忽略文件权限变化
 
 - Linter：md 文档自动格式化
-	- 不会处理代码块中的内容格式
-	- 中日韩文与数字和英文之间的空格：由单个空格分隔
-	- 标题空行：标题前后均有一个空行
-	- 移除末尾空格
-	- 移除字符前后空格
+    - 不会处理代码块中的内容格式
+    - 中日韩文与数字和英文之间的空格：由单个空格分隔
+    - 标题空行：标题前后均有一个空行
+    - 移除末尾空格
+    - 移除字符前后空格
 
 ```bash
 ，,!！?？;；:：)）”]》    # 移除字符后的空格
@@ -171,12 +171,12 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
     - Infini Cloud 服务器地址：`https://toi.teracloud.jp/dav/`
 
 - Auto Link Title：自动获取 URL 标题（实用性很高）
-	- 快捷键 `Crtl + Shift + E`
-	- 无法实现文档中的全部链接标题的获取，只能单个
-	- 解析微信公众号、知乎标题失败：[auto link title 解析微信公众号标题失败？ - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/28627/3)
+    - 快捷键 `Crtl + Shift + E`
+    - 无法实现文档中的全部链接标题的获取，只能单个
+    - 解析微信公众号、知乎标题失败：[auto link title 解析微信公众号标题失败？ - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/28627/3)
 
 - Easy Typing：书写体验增强；功能包含编辑时自动格式化文本和符号编辑增强
-	- 快速生成特定编程语言的代码块： [有没有快捷的方式可以完成用来表示代码块的markdown字符的输入 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/22475)
+    - 快速生成特定编程语言的代码块： [有没有快捷的方式可以完成用来表示代码块的markdown字符的输入 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/22475)
 
 - Advanced Tables：Markdown 表格增强；按 Tab 键自动补全 Markdown 表格所需格式
 
@@ -229,11 +229,13 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 
 ## 相关问题
 
+- [x] 按 Tab 键不输入制表符，而是输入制表符宽度对应的空格数：设置 - 编辑器 - 取消勾选 “使用制表符”
+
 - [ ] Obsidian 如何格式化代码块中的内容
 
 - VSCode 复制代码到 Obsidian，每行会产生多余空格
-	- [从visual studio code复制代码后 产生的unicode的空格问题 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/9332)
-	- 解决方法：使用 `Ctrl + Shift + V` 粘贴
-	- 新版 VSCode，该问题已解决？
+    - [从visual studio code复制代码后 产生的unicode的空格问题 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/9332)
+    - 解决方法：使用 `Ctrl + Shift + V` 粘贴
+    - 新版 VSCode，该问题已解决？
 
 - [ ] Obsidian 光标在 N 级标题行时会被黏住

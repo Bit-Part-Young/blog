@@ -72,8 +72,8 @@ MS - build - find symmetry 找到对称性
 
 - 文件保存路径不要有中文
 - 出现很卡顿的情况
-	- 解决方法：tool - option - graphhics，勾选 disable graphic（取消硬件加速）
-	- 输入法的兼容性打开
+    - 解决方法：tool - option - graphhics，勾选 disable graphic（取消硬件加速）
+    - 输入法的兼容性打开
 
 ---
 

@@ -33,8 +33,8 @@ localhost  # 主机名
 ```
 
 - 查看是否有 IPv6 地址：
-	- [IPv6 测试](https://test-ipv6.com/)
-	- [ipv6 test](https://ipv6-test.com/)
+    - [IPv6 测试](https://test-ipv6.com/)
+    - [ipv6 test](https://ipv6-test.com/)
 
 
 
@@ -90,17 +90,17 @@ localhost  # 主机名
 - 注册/登录 Cloudflare 账号
 
 - 添加域名到 Cloudflare
-	- 点击 Dashboard 中的 “Add Site”，输入你的域名
+    - 点击 Dashboard 中的 “Add Site”，输入你的域名
 
 - 选择计划：选择 “Free Plan”，确认
 
 - Cloudflare 检查现有 DNS 记录
-	- Cloudflare 会自动扫描你的域名的现有 DNS 记录并尝试导入它们。
-	- 核对导入的记录，确保重要记录如 MX, CNAME, A 记录等都正确无误。
+    - Cloudflare 会自动扫描你的域名的现有 DNS 记录并尝试导入它们。
+    - 核对导入的记录，确保重要记录如 MX, CNAME, A 记录等都正确无误。
 
 - 更新域名服务器
-	- Cloudflare 会提供一对新的 DNS 服务器地址
-	- 登录到你的域名注册商，导航至 DNS 管理页面，将现有的 DNS 服务器地址更换为 Cloudflare 提供的地址，保存更改
+    - Cloudflare 会提供一对新的 DNS 服务器地址
+    - 登录到你的域名注册商，导航至 DNS 管理页面，将现有的 DNS 服务器地址更换为 Cloudflare 提供的地址，保存更改
 
 - 等待 DNS 更改生效：DNS 更改可能需要一些时间（1 小时到 48 小时，通常小于 1 小时，10 分钟以内）来全球生效
 
@@ -120,11 +120,11 @@ localhost  # 主机名
 
 - 准备一个域名，该域名需要使用 Cloudflare 提供的 DNS
 - Vercel 项目（假如为 xxx） - 设置 - 域名配置，新增域名
-	- 若已有域名如 seekanotherland.xyz，可以新增的域名为 xxx.seekanotherland.xyz
-	- 可以将该域名重定向到 xxx.vercel.app，也可以不重定向（建议不重定向）
+    - 若已有域名如 seekanotherland.xyz，可以新增的域名为 xxx.seekanotherland.xyz
+    - 可以将该域名重定向到 xxx.vercel.app，也可以不重定向（建议不重定向）
 
 - 按照 Vercel 的要求，为域名添加 CNAME 记录
-	- 在 Cloudflare 面板中的 DNS 中添加记录，cname.vercel-dns.com 对应的 IPV4 地址为 76.76.21.21
+    - 在 Cloudflare 面板中的 DNS 中添加记录，cname.vercel-dns.com 对应的 IPV4 地址为 76.76.21.21
 
 
 
@@ -141,26 +141,26 @@ localhost  # 主机名
 - GitHub Pages 部署：略
 
 - Vercel 部署：
-	- GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 repo（多于 5 个时，在 vercel 中只能显示 5 个）
-	- GitHub 登录 [Vercel](https://vercel.com/login) - 首页 - New project - Import Git Repository - Deploy
-	- 点击 Goto Dashboard 来到项目主页，选择顶部的 Settings，在 Project Name 中更改网站名称
+    - GitHub - Settings - Integrations - Applicaitons - 配置 Vercel，Repository access，在 Only select repositories 选择 repo（多于 5 个时，在 vercel 中只能显示 5 个）
+    - GitHub 登录 [Vercel](https://vercel.com/login) - 首页 - New project - Import Git Repository - Deploy
+    - 点击 Goto Dashboard 来到项目主页，选择顶部的 Settings，在 Project Name 中更改网站名称
 
 - Netlify 部署：
-	- GitHub 登录 [Netlify](https://app.netlify.com/)- 首页 - Add new site 中的 Import an existing project，点击 GitHub，与 GitHub 关联，选择仓库 Deploy - 项目主页，选择 Site settings，点击 Change site name 更改网站名称
-	- 域名设置：[稳定性超过GitHub的美国netlify静态主机\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1wG411J7XX/)
-	- [【CI/CD】Github Actions部署网站到Netlify\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1PG4y1r7DR)
+    - GitHub 登录 [Netlify](https://app.netlify.com/)- 首页 - Add new site 中的 Import an existing project，点击 GitHub，与 GitHub 关联，选择仓库 Deploy - 项目主页，选择 Site settings，点击 Change site name 更改网站名称
+    - 域名设置：[稳定性超过GitHub的美国netlify静态主机\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1wG411J7XX/)
+    - [【CI/CD】Github Actions部署网站到Netlify\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1PG4y1r7DR)
 
 - Cloudfale Pages 部署：
-	- [Cloudflare Pages 自动化部署 Github 项目指南 | Indie Hacker Tools](https://indiehackertools.net/blog/cloudflare-pages-guide-automating-deployment-of-github-projects)
-	- [Hi , Cloudflare Pages :: 木木木木木](https://immmmm.com/hi-cloudflare/)
+    - [Cloudflare Pages 自动化部署 Github 项目指南 | Indie Hacker Tools](https://indiehackertools.net/blog/cloudflare-pages-guide-automating-deployment-of-github-projects)
+    - [Hi , Cloudflare Pages :: 木木木木木](https://immmmm.com/hi-cloudflare/)
 
 - Vercel 部署时忽略 GitHub Actions 生成的 gh-pages 分支：[Vercel deploy忽略指定分支 | Oragekk's Blog](https://oragekk.me/tutorial/CI_CD/vercel-deploy.html)；选择 preject - Settings - Git - Ignored Build Step，选择 Only build production
 
 - Cloudflare Pages 部署时忽略 GitHub Actions 生成的 gh-pages 分支：选择 preject - 设置 - 构建与部署，禁用预览分支的自动部署
 
 - 个人部署设置：
-	- Hexo、Jekyll、Docusaurus、Vuepress 和 Vitepress 框架等其他前端代码由 Vercel 部署
-	- MkDocs 和 Hugo 框架由 Cloudflare Pages 部署
+    - Hexo、Jekyll、Docusaurus、Vuepress 和 Vitepress 框架等其他前端代码由 Vercel 部署
+    - MkDocs 和 Hugo 框架由 Cloudflare Pages 部署
 
 - Vercel 部署 Vuepress 框架失败：将 Vuepress 框架选择成 Other；[vercel部署失败，提示Error: ENOENT: no such file or directory, stat '/vercel/path0/src' · Issue #11647 · DIYgod/RSSHub · GitHub](https://github.com/DIYgod/RSSHub/issues/11647)
 
@@ -183,11 +183,11 @@ localhost  # 主机名
 - 优选 IP：[CloudflareSpeedTest](https://github.com/XIU2/CloudflareSpeedTest)
 
 - 反向代理：
-	- nginx：[【nginx入门】nginx反向代理与负载均衡教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Bx411Z7Do/)
-	- [GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
+    - nginx：[【nginx入门】nginx反向代理与负载均衡教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Bx411Z7Do/)
+    - [GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
 
 - 自动获得公网 IPv4 或 IPv6 地址，并解析到对应的域名服务：[GitHub - jeessy2/ddns-go](https://github.com/jeessy2/ddns-go)
-	- [外网访问家庭内网的两大最优方案，零基础教程 远程控制家庭电脑 ，公网访问家庭局域网\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV15T421X7aa)
+    - [外网访问家庭内网的两大最优方案，零基础教程 远程控制家庭电脑 ，公网访问家庭局域网\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV15T421X7aa)
 
 - [搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
 

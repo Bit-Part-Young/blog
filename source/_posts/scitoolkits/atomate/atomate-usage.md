@@ -334,7 +334,7 @@ ValueError: Fireworks was not able to connect to MongoDB.
 -d            # all 会显示 firework 之间的关联
               # count 统计数目
               # ids 统计 id
-			  # more 输出中的 _exception 字段会显示 custodian 的相关 warning 或报错
+              # more 输出中的 _exception 字段会显示 custodian 的相关 warning 或报错
 
 # 查看 fireworks 报告
 lpad report
@@ -475,8 +475,8 @@ Analyze Elastic Data--71
 ### 数据库连接
 
 - 连接数据库：New connection - Advanced Connection Options
-	- General: Connection String Scheme 选择 mongodb；填写 Host
-	- Authentication: Authentication Method 选择 Username/Password；填写 Username、Password 和 Database，Authentication Mechanism 选择 Default
+    - General: Connection String Scheme 选择 mongodb；填写 Host
+    - Authentication: Authentication Method 选择 Username/Password；填写 Username、Password 和 Database，Authentication Mechanism 选择 Default
 
 - 修改连接的 connection 名称：“New Connection” 有编辑选项
 
@@ -602,8 +602,8 @@ volume_pa = volume / natoms
 ---
 
 - MongoDB 中的 atomate documet 数据无法直接全部写入到 json 文件中
-	- 其 key 和 dict 涉及到 str 均使用单引号
-	- json 文件不识别 bool 变量？
+    - 其 key 和 dict 涉及到 str 均使用单引号
+    - json 文件不识别 bool 变量？
 
 ```json
 '_id': ObjectId('62dbb72c531c489b7a006879')

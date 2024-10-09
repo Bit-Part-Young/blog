@@ -23,7 +23,7 @@ password:
 - Miniconda3： Python 环境管理工具，轻量级 Anaconda 发行版；与完整的 Anaconda 发行版相比，Miniconda 只包含了最基本的组件，体积小，推荐在课题组服务器中安装与使用。
 
 - 参考资料
-	- [Conda备忘清单 & conda cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/conda.html)
+    - [Conda备忘清单 & conda cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/conda.html)
 
 
 
@@ -47,10 +47,10 @@ module load miniconda
 ```
 
 - 按 `Enter` 键，输入 `yes`：
-	- 自定义设置 Miniconda3 安装路径，如：`~/src/miniconda3`
-	- 快结束安装时，会提示 `Do you wish the installer to initialize Miniconda3`
-	- 输入 `yes`，其会在 `~/.bashrc` 或 `~/.zshrc` 添加以下内容，以后每次登录可直接使用 `conda`
-	- 若输入 `no`，可之后运行命令 `conda init bash/zsh`
+    - 自定义设置 Miniconda3 安装路径，如：`~/src/miniconda3`
+    - 快结束安装时，会提示 `Do you wish the installer to initialize Miniconda3`
+    - 输入 `yes`，其会在 `~/.bashrc` 或 `~/.zshrc` 添加以下内容，以后每次登录可直接使用 `conda`
+    - 若输入 `no`，可之后运行命令 `conda init bash/zsh`
 
 ```bash
 # >>> conda initialize >>>
@@ -82,8 +82,8 @@ conda config --set auto_activate_base false
 ### 换源
 
 - conda 换源
-	- conda 默认使用官方源（conda-forge）进行 package 安装和更新，但经常下载速度较慢。可以通过更换国内镜像源（如 [清华镜像源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)）加速下载
-	- 有些 package 及其最新版本只能通过官方源安装（如 compilers），因此有时需留意某些 package 的安装要求
+    - conda 默认使用官方源（conda-forge）进行 package 安装和更新，但经常下载速度较慢。可以通过更换国内镜像源（如 [清华镜像源](https://mirror.tuna.tsinghua.edu.cn/help/anaconda/)）加速下载
+    - 有些 package 及其最新版本只能通过官方源安装（如 compilers），因此有时需留意某些 package 的安装要求
 
 ---
 

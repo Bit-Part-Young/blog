@@ -35,9 +35,9 @@ password:
 - 不插电源看是否能开机（大部分品牌笔记本有运输模式，正常不能开机）
 - 跳过联网：`Shift + F10` 或 `Fn + Shift + F10`，命令行输入 `oobe\bypassnro`，可以不设置密码
 - U 盘拷贝图吧工具箱，查看笔记本相关信息
-	- 硬件信息（处理器、显卡、屏幕、磁盘、网卡、内存等品牌信息）
-	- 电脑开机时间
-	- 磁盘通电、使用时间
+    - 硬件信息（处理器、显卡、屏幕、磁盘、网卡、内存等品牌信息）
+    - 电脑开机时间
+    - 磁盘通电、使用时间
 
 ---
 
@@ -92,8 +92,8 @@ password:
 - Linux 相关：git、vim、neovim、lsd、fzf、ripgrep 等
 
 - 字体：
-	- Code 字体：Meslo-NF、JetBrains-Mono
-	- 中文字体：得意黑、霞鹜文楷
+    - Code 字体：Meslo-NF、JetBrains-Mono
+    - 中文字体：得意黑、霞鹜文楷
 
 ```powershell
 # Code 字体
@@ -170,7 +170,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 - [ ] 如何关闭 Office 模板（去除其广告）
 
 - [ ] VSCode 清理
-	- [ ] `AppData\Local\Temp\vscode-remote-wsl` 占用体积较大
-	- [ ] `\AppData\Roaming\Code\Service Worker` 占用体积较大
+    - [ ] `AppData\Local\Temp\vscode-remote-wsl` 占用体积较大
+    - [ ] `\AppData\Roaming\Code\Service Worker` 占用体积较大
 
 - [ ] Bose qc45 两侧如何清理

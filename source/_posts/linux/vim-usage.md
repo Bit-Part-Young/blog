@@ -52,9 +52,9 @@ vimtutor    # 查看 Vim 教程
 ### 快捷键
 
 - 快捷键 Cheat Sheet：
-	- [Vim Cheat Sheet - 中文](https://vim.rtorr.com/lang/zh_cn)
-	- [vim.txt - awesome-cheatsheets](https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt)
-	- [A Great Vim Cheat Sheet](https://vimsheet.com/)
+    - [Vim Cheat Sheet - 中文](https://vim.rtorr.com/lang/zh_cn)
+    - [vim.txt - awesome-cheatsheets](https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt)
+    - [A Great Vim Cheat Sheet](https://vimsheet.com/)
 
 - 三种模式：命令模式（Command mode）、插入模式（Insert mode）、底线命令模式（Last line mode）
 
@@ -196,9 +196,9 @@ di(            # 删除当前括号（ (、[、{、"、'）内的所有内容；
 宏操作
 
 - 宏录制：
-	- 按下 `q` 键，选择寄存器（如 `a-z`），开始录制（即按 `qa` 开始录制宏到寄存器 `a` 中，状态栏上显示 `recording @a`）
-	- 执行 Vim 操作
-	- 再次按 `q` 键结束录制（状态栏上的 `recording @a` 消失）
+    - 按下 `q` 键，选择寄存器（如 `a-z`），开始录制（即按 `qa` 开始录制宏到寄存器 `a` 中，状态栏上显示 `recording @a`）
+    - 执行 Vim 操作
+    - 再次按 `q` 键结束录制（状态栏上的 `recording @a` 消失）
 - 执行宏：`@a` 执行宏，`5@a` 重复执行宏
 
 
@@ -215,14 +215,14 @@ di(            # 删除当前括号（ (、[、{、"、'）内的所有内容；
 - 交大同学 Vim 配置：[GitHub - KinnariyaMamaTanha/KinaVim: My personal configuration of vim.](https://github.com/KinnariyaMamaTanha/KinaVim)
 
 - 个人 `.vimrc` 配置文件：[.vimrc · Falling Slowly/dotfiles](https://gitee.com/yangsl306/dotfiles/blob/main/.vimrc)
-	- 相对行号、高亮
-	- 缩进设置
-	- 打开文件返回到上次的编辑位置
-	- 插件安装与设置
-	- buffer 设置
-	- 删除行尾的空白符
-	- 块模式选中文本搜索
-	- 块模式选中文本添加括号
+    - 相对行号、高亮
+    - 缩进设置
+    - 打开文件返回到上次的编辑位置
+    - 插件安装与设置
+    - buffer 设置
+    - 删除行尾的空白符
+    - 块模式选中文本搜索
+    - 块模式选中文本添加括号
 
 ```bash
 syntax on                     # 开启语法高亮
@@ -421,8 +421,8 @@ make install
 - 点击 `<space>` 键，会弹出包含以 `<space>` 开头的所有可能的键盘映射的窗口
 
 - LazyVim 预装插件/工具
-	- 安装的插件路径：`~/.local/share/nvim/lazy`
-	- 安装了相关代码格式化工具后，在文件保存退出时会自动运行
+    - 安装的插件路径：`~/.local/share/nvim/lazy`
+    - 安装了相关代码格式化工具后，在文件保存退出时会自动运行
 
 ```bash
 folke/which-key.nvim            # 键入时弹窗显示可用的键绑定
@@ -515,8 +515,8 @@ s                 # 字符查找
 ---
 
 - Mason LSP 指定 Python 解释器
-	- Mason 安装的 LSP 路径：`~/.local/share/nvim/mason`
-	- 本人安装的编程语言 LSP：Python、Shell、Fortran、LaTeX、Typst
+    - Mason 安装的 LSP 路径：`~/.local/share/nvim/mason`
+    - 本人安装的编程语言 LSP：Python、Shell、Fortran、LaTeX、Typst
 
 ```lua
 -- ~/.config/nvim/init.lua
@@ -532,10 +532,10 @@ require('lspconfig').pyright.setup{
 ---
 
 - vimtex 插件使用
-	- 参考：[使用 Neovim 和 vimtex 高效撰写 LaTeX 学术论文 - 少数派](https://sspai.com/post/64080)
-	- 撰写中文文档，需在文档最上方添加 `%!TEX program = xelatex`，才能编译成功
-	- [Chinese is not supported and failed to compile · Issue #1369 · lervag/vimtex · GitHub](https://github.com/lervag/vimtex/issues/1369)
-	- [Compile Failed with the Chinese character · Issue #1982 · lervag/vimtex · GitHub](https://github.com/lervag/vimtex/issues/1982)
+    - 参考：[使用 Neovim 和 vimtex 高效撰写 LaTeX 学术论文 - 少数派](https://sspai.com/post/64080)
+    - 撰写中文文档，需在文档最上方添加 `%!TEX program = xelatex`，才能编译成功
+    - [Chinese is not supported and failed to compile · Issue #1369 · lervag/vimtex · GitHub](https://github.com/lervag/vimtex/issues/1369)
+    - [Compile Failed with the Chinese character · Issue #1982 · lervag/vimtex · GitHub](https://github.com/lervag/vimtex/issues/1982)
 
 ```bash
 # vimtex 命令

@@ -233,7 +233,7 @@ setup(
 from setuptools import setup, find_packages
 
 setup(
-	...
+    ...
     entry_points={
         "console_scripts": [
             "va_generation=pdepp.model_generation.vacancy:main",
@@ -289,8 +289,8 @@ dev =
 ```toml
 [build-system]
 requires = [
-	"setuptools>=65.0.0", 
-	"wheel",
+    "setuptools>=65.0.0", 
+    "wheel",
 ]
 build-backend = "setuptools.build_meta"
 

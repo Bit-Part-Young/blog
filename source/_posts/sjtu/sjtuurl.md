@@ -248,8 +248,8 @@ password: 984b04c6902141056353d1009c6774a458554ac1e735b0cb87e9f45a43fff078
 >[GitHub - skyzh/canvas\_grab: 🌐 One-click script to synchronize files from Canvas LMS.](https://github.com/skyzh/canvas_grab)
 
 - 有教学录像倍速播放油猴插件
-	- 最新的插件版本可以退出画中画，可将录屏大小调整至和录像视频一样大小，可随意拖动位置
-	- 倍速播放选择更多 21.12.01 添加
+    - 最新的插件版本可以退出画中画，可将录屏大小调整至和录像视频一样大小，可随意拖动位置
+    - 倍速播放选择更多 21.12.01 添加
 
 >[上海交通大学 Canvas 平台课程视频播放器至尊版焕然一新插件](https://greasyfork.org/zh-CN/scripts/432918)
 
