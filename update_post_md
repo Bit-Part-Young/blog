@@ -25,7 +25,7 @@ for post_folder in "${post_folders[@]}"; do
   obsd_md_path="${obsd_path}/${post_folder}"
   post_md_path="${repo_path}/source/_posts"
 
-  rsync -avuP --existing "${obsd_md_path}" "${post_md_path}"
+  rsync -auvP --existing --human-readable "${obsd_md_path}" "${post_md_path}"
 done
 
 git_update() {
