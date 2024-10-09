@@ -57,7 +57,7 @@ svg2pdf file.svg
 	- 图片格式包括：tiff、png、jpg、svg、pdf 等
 	- pdf 转 png 的图片质量没有 pdf2image 工具 高
 	- tiff 图片转换，会将 tiff 的所有图层输出出来（只要编号最小的即可）
-	- ImageMagick V7 版本 `magick` 或 `magick convert` 替换 `convert` 命令
+	- ImageMagick V7 版本 `magick` 替换 `magick convert` 或 `convert` 命令
 
 - ghostscript：处理 PDF 文件，可执行命令为 `gs`
 
@@ -131,3 +131,4 @@ ps2pdf -dPDFSETTINGS=/ebook -dColorImageResolution=500 input.pdf output.pdf
 - [GitHub - richhost/pixzip-lite: Easy to use batch image compression software. Powered by Svelte 🧡 Electron. 简单易用的批量图片压缩软件，使用 Svelte、Electron 构建。](https://github.com/richhost/pixzip-lite)
 - [iLoveIMG - 图像文件在线编辑工具](https://www.iloveimg.com/zh-cn)
 - [Compress JPG: Free Online Image Compressor | PNG, WebP & More - No Sign Up](https://compressjpg.io/)
+- 优化 PDF 文件体积：[GitHub - pts/pdfsizeopt: PDF file size optimizer](https://github.com/pts/pdfsizeopt)

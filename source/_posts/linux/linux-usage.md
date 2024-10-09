@@ -283,7 +283,7 @@ mkdir -p xxx/xxx        # 创建多级目录；不会报错
 
 tail -n +2 file         # 从第二行开始输出内容
 
-# 建议设置的命令 alias 
+# 建议设置的命令 alias
 alias mv="mv -v"
 alias cp="cp -v"
 alias rm="rm -v"
@@ -344,7 +344,7 @@ bzcat    # 查看 .bz2 文件
 
 #### ln
 
-给文件/目录设置软/字符链接（**需绝对路径**）
+给文件/目录设置字符（软）链接（**需绝对路径**）
 
 ```bash
 ln -s SRC DEST
@@ -577,14 +577,14 @@ END {
 常用功能 awk 命令实现
 
 ```bash
-awk '{ print NR, $0 }' file  # 输出文件内容并显示行号 
+awk '{ print NR, $0 }' file  # 输出文件内容并显示行号
 awk 'END { print NR }' file  # 统计行数
 awk '$3 == 0' file           # 输出第三列为 0 的行
 awk 'NR % 2 == 1' file       # 打印奇数行
 awk '{ print $NF }' file     # 输出最后一列
 
 # 返回总字段数
-awk '{ nf = nf + NF } END { print nf }' file  
+awk '{ nf = nf + NF } END { print nf }' file
 
 # 输出最后一行
 awk 'END { print $0 }' file
@@ -789,9 +789,9 @@ nmon                   # 监控系统资源（应该不常用）
 /lib              # 库文件
 /usr              # 包含用户程序和数据
   /usr/bin          # 用户二进制文件
-  /usr/sbin         # 
-  /usr/lib          # 
-  /usr/local        # 
+  /usr/sbin         #
+  /usr/lib          #
+  /usr/local        #
 /home             # 用户家目录
 /root             # root 用户家目录
 /var              # 变量/化文件

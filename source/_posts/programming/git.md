@@ -54,7 +54,7 @@ git check-ignore -v file
 
 # 同时删除本地和版本库中的文件
 # 等价于 rm + git add
-git rm 
+git rm
 # 将一个已暂存的新文件取消暂存
 git rm --cached
 
@@ -247,7 +247,7 @@ git push origin feature -f  # 推送更新
 
 # 对于 repo 所有者，将 feature 分支合并到 main 主分支
 git pull origin feature:feature  # 将远程 feature 分支 pull 到 本地 feature 分支
-git merge feature                # 将 feature 合并到主分支 
+git merge feature                # 将 feature 合并到主分支
 git rebase feature               # 同上
 ```
 
@@ -608,7 +608,7 @@ git config --list           # 列出 repo 配置
 git config --global --list  # 列出全局配置
 git config --list --show-origin  # 列出配置即对应配置文件路径
 
-# 全局设置 
+# 全局设置
 git config --global user.name "username"
 git config --global user.email "user@email.com"
 # 其他
@@ -727,7 +727,7 @@ git ls-remote origin    # 列出远程仓库的引用（分支和标签）
 git remote prune origin
 git remote prune origin --dry-run  # 不实际删除
 
-git remote rm origin    # 
+git remote rm origin    #
 ```
 
 
@@ -767,23 +767,25 @@ git reset file          # 撤销指定文件 add 操作
 - 示例：v1.0.0、v1.0.0-beta
 
 ```bash
+# 拉取标签
+git pull --all                     # 拉取远程所有内容包括标签
+git fetch --tags                   # 拉取标签
+
 # 查看标签
-git tag -ln                     # 列出标签及其注释
-git ls-remote --tags origin     # 列出远程 repo 的标签
-git show v1.0.0                 # 查看具体标签信息
+git tag -ln                        # 列出标签及其注释
+git ls-remote --tags origin        # 列出远程仓库标签
+git show v1.0.0                    # 查看具体标签信息
 
 # 新建标签
-git tag -a v1.0.0 -m 'comment'  # 带注释
+git tag -a v1.0.0 -m 'comment'     # 带注释
 
 # push 标签
-git push origin v1.0.0          # 特定标签
-git push origin --tags          # 所有标签
+git push origin v1.0.0             # 特定标签
+git push origin --tags             # 所有标签
 
 # 删除标签
 git tag -d v1.0.0                  # 本地
 git push origin :refs/tags/v1.0.0  # 远程
-
-git pull --all                  # pull 远程所有内容包括标签
 ```
 
 
@@ -803,7 +805,7 @@ git rev-list --count [branch]  # 统计 repo 中指定分支的提交总数
 
 # 较为简洁美观的 git log 输出样式
 git log --oneline --graph --all
-git log --oneline --graph --stat  
+git log --oneline --graph --stat
 # 源于 zsh git alias
 git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
 
@@ -923,7 +925,7 @@ git config --global alias.p 'push'
 # 方式 2 直接在 ~/.gitconfig 添加
 [alias]
   p = push
-  
+
 # oh-my-zsh 中的内置 git 插件定义了 许多 git 命令的 alias
 alias | grep 'git subcommand'
 ```
@@ -1023,8 +1025,8 @@ gitmoji-cli：git commit 时使用 emoji
 	- **其他命名的分支暂无法实现与主分支无关联**；[git - Create empty branch on GitHub - Stack Overflow](https://stackoverflow.com/questions/34100048/create-empty-branch-on-github)
 
 ```bash
-git switch --orphan <new branch> 
-git commit --allow-empty -m "init" 
+git switch --orphan <new branch>
+git commit --allow-empty -m "init"
 git push -u origin <new branch>
 ```
 

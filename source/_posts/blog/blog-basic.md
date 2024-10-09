@@ -1,7 +1,7 @@
 ---
 title: 博客搭建基础
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: 博客搭建基础
@@ -177,6 +177,8 @@ localhost  # 主机名
 - [Cloudflare浑身都是宝，普通用户能白嫖多少服务？盘点cloudflare的免费功能](https://mp.weixin.qq.com/s/ComwejsgG3f8W_AVJccwGQ)
 
 - [使用 GitHub Actions 通过 acme.sh 自动申请 SSL 证书](https://github.com/danbao/auto-ssl)
+
+- [GitHub - BitAUR/Puff: 开源、快速、便捷、基于Go的域名监控程序。](https://github.com/bitaur/puff)
 
 - 优选 IP：[CloudflareSpeedTest](https://github.com/XIU2/CloudflareSpeedTest)
 

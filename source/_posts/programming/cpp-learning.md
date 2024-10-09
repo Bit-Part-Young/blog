@@ -2,7 +2,7 @@
 title: C++ 学习
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -35,6 +35,8 @@ password:
 - [Setting up C/C++ compiler • C and C++ Programing](https://pranabdas.github.io/c-cpp/)
 
 - [cppreference.com](https://en.cppreference.com/w/)（页面可转换成中文）
+
+- [GitHub - parallel101/cppguidebook: 小彭老师领衔编写，现代C++的中文百科全书](https://github.com/parallel101/cppguidebook)
 
 - [C++ 面向对象 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/c_cpp/oop/)
 

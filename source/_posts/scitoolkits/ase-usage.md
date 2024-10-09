@@ -440,7 +440,7 @@ from ase.io.xsd import read_xsd, write_xsd
 
 ### ase.eos
 
-- 执行 eos 计算，拟合体模量 B
+- 执行 EOS 计算并拟合，得到体模量
 
 ```python
 from ase.eos import calculate_eos
@@ -455,7 +455,7 @@ v, e, B = eos.fit()
 print(B / kJ * 1.0e24, "GPa")
 ```
 
-- 获取平衡体积，能量和体模量
+- 根据 E-V 数据进行 EOS 拟合，获取平衡体积，能量和体模量；并绘制 EOS 拟合曲线
 
 ```python
 from ase.eos import EquationOfState

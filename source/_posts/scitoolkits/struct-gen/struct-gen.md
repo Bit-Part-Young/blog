@@ -1,7 +1,7 @@
 ---
 title: 结构建模
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: 结构建模
@@ -49,43 +49,46 @@ password:
 - [VESTA](https://jp-minerals.org/vesta/en/download.html)
 - VMD
 
+---
+
+VESTA 相关：
+
+- [VESTA 使用](https://mp.weixin.qq.com/s/wTxztn1RDWCG4cjVaA3E0A)
+- 当 POSCAR 中的原子坐标有负值时，可使用 VESTA 导出使其变为正。
+- 无法读取 `.poscar` 格式构型文件（Materials Project），OVITO 可以，建议将其统一为 `.vasp`
+- VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffraction Pattern - Calculate, Plot
+
+---
+
+OVITO 相关：
+
+- OVITO 2.9 版本的 Python script 功能可以免费使用，其他需要 Pro 版本
+- [OVITO 识别结构的几种方法](https://mp.weixin.qq.com/s/Jh9lQKRbpFyhUnu8aHJSog)
+- 选中某层原子：表达式选取 Expression selection
+- 计算层间距：可以尝试 Histogram add modification
+
+---
+
+将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）
+
+
 
 ---
 
 ### 分析工具
 
-crysinfo 程序（孔老师程序）：6a 选项 查看 Assign Wyckoff letter（等同位点）
-
-结构原型分析
->[GitHub - chuanxun/StructurePrototypeAnalysisPackage: Structure Prototype Analysis Package can analyze symmetry and compare similarity of a large number of atomic structures.](https://github.com/chuanxun/StructurePrototypeAnalysisPackage)
+- crysinfo 程序（孔老师）：6a 选项查看 Assign Wyckoff letter（等同位点）
+- 结构原型分析：[GitHub - chuanxun/StructurePrototypeAnalysisPackage: Structure Prototype Analysis Package can analyze symmetry and compare similarity of a large number of atomic structures.](https://github.com/chuanxun/StructurePrototypeAnalysisPackage)
 
 
 ---
-
-VESTA 相关：
-
-- 当 POSCAR 中的原子坐标有负值时，可使用 VESTA 导出使其变为正。
-- 无法读取 `.poscar` 格式构型文件（Materials Project），OVITO 可以，建议将其统一为 `.vasp`
-
-OVITO 2.9 版本的 Python script 功能可以免费使用，其他需要 Pro 版本
-
-将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）
-
-VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffraction Pattern - Calculate, Plot
-
-[VESTA 使用](https://mp.weixin.qq.com/s/wTxztn1RDWCG4cjVaA3E0A)
-
-ovito 选中某层原子：表达式选取 Expression selection
-
-
-ovito 计算层间距：可以尝试 Histogram add modification
 
 
 ---
 
 ## 构型文件格式
 
-- `.pdb`：Protein Data Bank，可以用 VMD 软件（Win、Linux、macOS 版本都有）打开
+- `.pdb`：Protein Data Bank，可以用 VMD 软件（跨平台）打开
 - `.xsd`：Material Studio 构型文件格式
 - `.cell`：CASTEP 的输入构型文件格式
 - `.cif`：部分该格式文件晶体学信息很全
@@ -130,6 +133,8 @@ vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
 [如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
 
 [[建模与可视化] 求助Si和α-Al2O3材料界面计算的界面搭建问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-47013-1-1.html)
+
+[GitHub - aguang5241/Interface-Maker: A python3 code to create slabs and interfaces for first-principles calculations.](https://github.com/aguang5241/Interface-Maker)
 
 在 latgen、VASPKIT 和 MS 中，称为 build layer
 

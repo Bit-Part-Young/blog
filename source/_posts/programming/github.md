@@ -2,7 +2,7 @@
 title: GitHub 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -46,16 +46,22 @@ password:
 ### 工具
 
 - 汉化插件：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
-- 命令行版本的 GitHub dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
+
+- 命令行版本的 GitHub Dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
+
 - 管理 GitHub Stars（以下两个项目均会获取 GitHub public data）
 	- [GitHub - cfour-hi/gitstars: Github Starred Repositories Manager](https://github.com/cfour-hi/gitstars)
 	- [GitHub - nieheyong/starflare: A web app helps you manage your GitHub stars simply and efficiently](https://github.com/nieheyong/starflare)
+
 - 显示/自定义 GitHub 通知：
 	- [GitHub - qiweiii/github-custom-notifier: Web Extension - Allows you to customize GitHub notifications](https://github.com/qiweiii/github-custom-notifier)
 	- [GitHub - 0x2E/GitStatus: Show GitHub notifications on menubar (macOS 13.0+)](https://github.com/0x2E/GitStatus)
+
 - 生成 changelog：[GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
 
-- 用 nbviewer 浏览 GitHub 中的 ipynb 文件
+- 用 [nbviewer](https://nbviewer.org/) 浏览 GitHub 仓库中的 ipynb 文件
+
+- [【工具自荐】一键查看 github 仓库树形图 · Issue #5272 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/5272)
 
 
 ---
