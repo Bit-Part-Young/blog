@@ -496,18 +496,16 @@ INCAR 参数名称写错，VASP 会忽略，不影响
 平面波截断能；收敛性测试指标之一；默认值为 POTCAR 文件中最大的 ENMAX 值
 
 
-
-
 ---
 
 ##### PREC
 
 计算精度
 
-- Accurate：
-- Normal：
-
-
+```bash
+Accurate
+Normal
+```
 
 
 ---
@@ -516,11 +514,13 @@ INCAR 参数名称写错，VASP 会忽略，不影响
 
 轨道分数占据的展宽（平滑处理）方法
 
-N：Methfessel-Paxton order N（默认 1）
-- 0：Gaussian
-- -1：Fermi
-- -4：tetrahedron
-- -5：Blöchl 纠正的 tetrahedron
+```bash
+N        # N为数字；Methfessel-Paxton order N（默认 1）
+0        # Gaussian
+-1       # Fermi
+-4       # tetrahedron
+-5       # Blöchl 纠正的 tetrahedron
+```
 
 
 注：
@@ -562,18 +562,24 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### IBRION
 
-决定离子如何更新和移动
+- 决定离子如何更新和移动
 
-- -1：NSW=-1 或 0，不更新；0：其他情况，执行分子动力学
-- 1：RMM-DIIS 算法
-- 2：conjugate gradient algorithm 共轭梯度算法
-- 3：Damped molecular dynamics 算法
-- 5、6：利用有限差分（finite differences）计算二阶导数、海森矩阵和声子频率
-- 7、8：利用密度泛函扰动理论（density functional perturbation theory, DFPT）计算二阶导数、海森矩阵和声子频率
-
+- 默认值：-1（NSW=-1 或 0）；0（其他情况，执行分子动力学）
 
 - 除 0 外，其他算法都最终弛豫到局部能量最小值
+
 - 弛豫较困难时，推荐使用 IBRION=2；在从非常糟糕的初始猜测值开始的情况下，IBRION=3 通常有用；接近能量局部最小值，推荐使用 IBRION=1
+
+```bash
+-1          # 不更新；离子不移动
+0           # 分子动力学 AIMD
+1           # RMM-DIIS / quasi-Newton 算法
+2           # conjugate gradient algorithm 共轭梯度算法
+3           # Damped molecular dynamics 算法
+5 6         # 利用有限差分（finite differences）计算二阶导数、海森矩阵和声子频率
+7 8         # 利用密度泛函扰动理论（density functional perturbation theory, DFPT）计算二阶导数、海森矩阵和声子频率
+```
+
 
 ---
 
@@ -588,9 +594,10 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 电子最小化算法/选择 GW 计算类型
 
-- Fast：初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
-- Normal：blocked-Davidson 算法
-
+```bash
+Fast           # 初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
+Normal         # blocked-Davidson 算法
+```
 
 
 ---
@@ -608,15 +615,11 @@ Tetrahedron method 需 k 点数目大于等于 4
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152120807.png)
 
 
-
-
-
 ---
 
 ##### EDIFFG
 
 离子步收敛条件
-
 
 
 ---
@@ -627,49 +630,51 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 
 
-
 ---
 
 ##### NELM
 
-每个离子步中的最大电子步数
+- 每个离子步中的最大电子步数
 
-默认值：60
+- 默认值：60
 
 
 ---
 
 ##### NELMIN
 
-每个离子步中的最小电子步数
-
-
+- 每个离子步中的最小电子步数
 
 
 ---
 
 ##### LREAL
 
-决定投影算子是在实空间还是在倒空间求值。
+- 决定投影算子是在实空间还是在倒空间求值
 
-.FALSE.（倒空间）；AUTO；.TRUE.
-
-
+```bash
+.FALSE.     # 倒空间
+.TRUE.
+AUTO
+```
 
 
 ---
 
 ##### LCHARG
 
-决定电荷密度是否写入 CHGCAR 和 CHG 文件中；默认值为.TRUE.。
+- 决定电荷密度是否写入 CHGCAR 和 CHG 文件中
 
+- 默认值：.TRUE.
 
 
 ---
 
 ##### LWAVE
 
-决定运行结束后波函数是否写入 WAVECAR 文件中；默认值为.TRUE.。
+- 决定运行结束后波函数是否写入 WAVECAR 文件中
+
+- 默认值：.TRUE.
 
 
 
@@ -691,15 +696,17 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### ADDGRID
 
-添加网格，默认值为.FALSE.；有助于降低力噪声
+- 添加网格；有助于降低力噪声
 
+- 默认值：.FALSE.
 
 
 ---
 
 ##### SYMPREC
 
-决定 POSCAR 文件中的位置精度，默认值为 10-5
+- 决定 POSCAR 文件中的位置精度
+- 默认值：10-5
 
 
 
@@ -708,9 +715,10 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### ISTART
 
-初始化轨道；确定是否读取 WAVECAR 文件
+- 初始化轨道；确定是否读取 WAVECAR 文件
 
-默认值：1（如果 WAVECAR 文件存在）否则 0
+- 默认值：1（如果 WAVECAR 文件存在）否则 0
+
 
 ---
 
@@ -736,7 +744,13 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### ISPIN
 
-是否考虑自旋极化：1 - 不考虑；2 - 考虑
+- 是否考虑自旋极化
+
+```bash
+1    # 不考虑
+2    # 考虑
+```
+
 
 
 ---
@@ -767,11 +781,14 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ##### NWRITE
 
-决定往 OUTCAR 文件中写入多少内容
-
-- 可选值：0-4
-- 默认值：2；3 写入的内容最详细；4 只用于 debugging
+- 决定往 OUTCAR 文件中写入多少内容
+- 可选值：0-4；默认值：2
 - 长时间的 MD 运行，建议 NWRITE 设置为 0 或 1；短时间运行设置为 2
+
+```bash
+3      # 写入的内容最详细
+4      # 只用于 debugging
+```
 
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307162218175.png)
@@ -805,7 +822,8 @@ Tetrahedron method 需 k 点数目大于等于 4
     - 值：4 表示将计算任务分成 4 个部分进行并行计算。
 
 
->[README.md](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
+>[13\_vasp/V2PC/README.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
+
 
 ---
 

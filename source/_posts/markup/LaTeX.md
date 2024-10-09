@@ -334,6 +334,8 @@ brew install latexdiff
 
 - [GitHub - teatimeguest/setup-texlive-action: A GitHub Action to set up TeX Live](https://github.com/teatimeguest/setup-texlive-action)
 
+- 将 Microsoft Excel 中的表格转换为 LaTeX 代码：[CTAN: Package Excel2LaTeX](https://www.ctan.org/pkg/excel2latex)
+
 
 ---
 
@@ -834,11 +836,11 @@ Donald~E. Knuth
 % 参考文献相关设置
 \usepackage[
     backend       = biber,
+    style         = gb7714-2015,
     defernumbers  = true,
     sorting       = ymdnt,          % Year in descending order
     sorting       = ynt,            % Year in ascending order
     maxbibnames   = 3,              % No. of listed names
-    style         = gb7714-2015,
     citestyle     = numeric-comp,
     isbn          = false,          % controls whether the fields isbn/issn/isrn are printed
     block         = par,
@@ -846,10 +848,12 @@ Donald~E. Knuth
 	url           = false,
 	eprint        = false,
     giveninits    = false,
+	gbnamefmt     = lowercase,      % 姓名大小写由输入信息确定
+    gbpub         = false,          % 禁用出版信息缺失处理
 ]{biblatex}
 \renewcommand*{\bibfont}{\small}
-\setlength{\bibitemsep}{0pt}
-\addbibresource{refs.bib}  % 需要加文件名后缀
+\setlength{\bibitemsep}{0pt}        % 文献条目间距
+\addbibresource{refs.bib}           % 导入参考文献数据库；需添加 bib 后缀
 
 
 \cite{key1, key2}   % 默认引用参考文献条目 
@@ -1761,6 +1765,8 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 ---
 
 ## 问题
+
+- [ ] 如何将自定义命令参数设置为 key-value 形式
 
 - 开启 draft 模式：不编译图片，在图片位置显示占位符，以加快编译速度
 

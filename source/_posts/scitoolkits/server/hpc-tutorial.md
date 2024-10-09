@@ -810,7 +810,7 @@ slurm_load_jobs error: Slurm backup controller in standby mode
 参考：
 
 - [数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
-- 提高数据传输速度：[数据传输技巧 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportskills.html)
+- 提高数据传输速度（利用外部指令并发多个 scp/rsync 进程）：[数据传输技巧 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportskills.html)
 
 超算进行数据传输一般在 data 节点上进行。超算传输节点：
 
@@ -826,6 +826,7 @@ sydata.hpc.sjtu.edu.cn  # 思源一号
 
 - scp：Secure Copy，基于 SSH 协议进行文件传输，不支持增量传输
 - rsync：支持 SSH 协议或 rsync 协议、增量传输、支持本地和远程同步、支持断点续传
+- rsync 显示整体进度：[Overall Progress with rsync - Dave Dribin’s Blog](https://www.dribin.org/dave/blog/archives/2024/01/21/rsync-overall-progress/)
 
 ```bash
 # scp 语法
@@ -834,11 +835,13 @@ scp [OPTION]... SRC [USER@]host:DEST
 scp [OPTION]... [USER@]HOST:SRC DEST
 
 # scp 参数
--p                 # 保留文件属性
--r                 # 以递归方式复制
--q                 # 不显示复制进度
--P                 # 指定远程主机的端口号
+-p                   # 保留文件属性
+-r                   # 以递归方式复制
+-q                   # 不显示复制进度
+-P                   # 指定远程主机的端口号
 
+
+brew install rsync   # macOS；默认版本为 2.X.X
 
 # rsync 语法
 rsync [OPTION]... SRC DEST
@@ -849,31 +852,37 @@ rsync [OPTION]... [USER@]HOST:SRC DEST
 rsync [OPTION]... [USER@]HOST::SRC DEST
 rsync [OPTION]... SRC [USER@]HOST::DEST
 
-rsync -avuP ... ...    # 常用参数
+# 示例
+# 在超算终端，向 Master 传输数据
+rsync -avuP --human-readable -e "ssh -p 313" SRC user@202.120.55.11:DEST
+# 在 Master 终端，向 Master 传输数据
+rsync -auvP --human-readable user@sydata.hpc.sjtu.edu.cn:SRC DEST
 
 # rsync 参数
--v, --verbose      # 详细输出
--q, --quiet        # 精简输出
--a, --archive      # 归档模式，表示以递归方式传输文件，并保持所有文件属性，相当于 -rlptgoD
--r, --recursive    # 递归模式
--l, --links        # 处理符号链接保持符号链接的属性
--p, --perms        # 保持文件权限
--t, --times        # 保持文件时间戳
--g, --group        # 保持文件所属组
--o, --owner        # 保持文件所有者
--D, --devices      # 保持设备文件（块设备和字符设备）
--z, --compress     # 传输时进行压缩处理 
--n, --dry-run      # 不实际运行，显示哪些文件将被传输
--delete            # 删除那些 DST 中 SRC 没有的文件
--exclude           # 排除指定的文件或目录
--include           # 只包括指定的文件或目录
---existing         # 只更新目标路径中已存在的文件
--e, --rsh=COMMAND  # 指定使用 rsh、ssh 方式进行同步
--u, --update       # 仅进行更新
---human-readable   # 显示输出文件大小以 KB、MB、GB 等表示
---progress         # 显示传输进度
--P                 # --partial --progress 的简写，不仅显示传输进度，还会在传输中断时保存部分传输的数据，方便下次继续传输
--e "ssh -p 313"    # 指定 SSH 连接的端口号
+-v, --verbose       # 详细输出
+-q, --quiet         # 精简输出
+-a, --archive       # 归档模式，表示以递归方式传输文件，并保持所有文件属性，相当于 -rlptgoD
+-r, --recursive     # 递归模式
+-l, --links         # 保持符号链接的属性
+-L, --copy-links    # 复制符号链接指向的实际文件/目录，而非符号链接
+-p, --perms         # 保持文件权限
+-t, --times         # 保持文件时间戳
+-g, --group         # 保持文件所属组
+-o, --owner         # 保持文件所有者
+-D, --devices       # 保持设备文件（块设备和字符设备）
+-z, --compress      # 传输时进行压缩处理 
+-n, --dry-run       # 不实际运行，显示哪些文件将被传输
+-delete             # 删除那些 DST 中 SRC 没有的文件
+-exclude            # 排除指定的文件或目录
+-include            # 只包括指定的文件或目录
+--existing          # 只更新目标路径中已存在的文件
+-e, --rsh=COMMAND   # 指定使用 rsh、ssh 方式进行同步
+-u, --update        # 仅进行更新
+--human-readable    # 显示输出文件大小以 KB、MB、GB 等表示
+--progress          # 显示传输进度
+-P                  # --partial --progress 的简写，不仅显示传输进度（单个文件），还会在传输中断时保存部分传输的数据，方便下次继续传输
+-e "ssh -p 313"     # 指定 SSH 连接的端口号
+--info=progress2    # 显示整体的传输进度，避免与 -v --progress 参数一起使用
 ```
 
 

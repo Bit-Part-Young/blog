@@ -800,13 +800,15 @@ git log           # 查看提交日志
 git reflog        # 查看所有分支的所有操作记录
 
 git shortlog -s -n             # 统计作者提交次数
+# 在作者后面添加邮箱
+git log --pretty=format:'%an <%ae>' | sort | uniq -c | sort -nr
 git rev-list --count --all     # 统计 repo 中的总提交次数
 git rev-list --count [branch]  # 统计 repo 中指定分支的提交总数
 
 # 较为简洁美观的 git log 输出样式
 git log --oneline --graph --all
 git log --oneline --graph --stat
-# 源于 zsh git alias
+# 参考 zsh git alias
 git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat
 
 # 获取文件最后一次修改的时间
@@ -828,7 +830,7 @@ git log -1 --diff-filter=A --follow --pretty="%ci" file
 		=%ad         # 作者提交日期（绝对时间）
 		=%ar         # 作者提交日期（相对时间）
 		=%an         # 作者名称
-		=%ad         # 作者邮箱
+		=%ae         # 作者邮箱
 		=%d          # 分支信息
 -n N / HEAD~N        # 显示最新的前 N 条提交记录
 --grep=pattern       # 筛选指定 pattern 的提交记录

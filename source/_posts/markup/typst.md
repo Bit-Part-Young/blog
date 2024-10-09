@@ -48,6 +48,8 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 
 - 官方 Doc：[Typst Documentation](https://typst.app/docs)
 
+- [Changelog – Typst Documentation](https://staging.typst.app/docs/changelog/)
+
 - 实用：
 	- [Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
 	- Typst 示例：[Typst Examples Book](https://sitandr.github.io/typst-examples-book/book)

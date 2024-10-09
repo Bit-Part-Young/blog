@@ -465,6 +465,8 @@ task_doc.keys()
 
 [【Pymatgen学习 2】Ewald方法计算静电能](https://zhuanlan.zhihu.com/p/708133858)
 
+[Ewald Summation - Qijing Zheng](http://staff.ustc.edu.cn/~zqj/posts/Ewald-Summation/)
+
 EwaldSummation 是 pymatgen 库中的一个类，用于计算离子晶体的 Ewald 总能量。Ewald 总能量是一种用于处理带电体系的长程库仑相互作用的技术，通常用于计算固体材料中的电势能。该方法将总能量分解为实空间、倒空间、点电荷修正和偶极修正部分，并进行相应的求和计算。
 
 

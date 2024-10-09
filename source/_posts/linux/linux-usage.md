@@ -405,16 +405,20 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 
 #### find
 
-查找文件；与另外两个命令对比：
-
-- `whereis`：查找程序的二进制文件、源代码文件和 man 手册路径
-- `locate`：通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
+查找文件
 
 ```bash
+# find 与另外两个命令对比
+whereis       # 查找程序的二进制文件、源代码文件和 man 手册路径
+locate        # 通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
+
 # 常用参数
 -name          # 按照文件名查找
 -iname         # 按照文件名查找，忽略大小写
--type          # 文件类型；f 普通文件，d 目录，l 软链接
+-type          # 文件类型
+      f        # 普通文件
+      d        # 目录
+      l        # 符号链接
 -maxdepth      # 目录最大深度
 -mindepth      # 目录最小深度
 -size          # 文件大小
