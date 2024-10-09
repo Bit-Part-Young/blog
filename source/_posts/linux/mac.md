@@ -13,7 +13,7 @@ tags:
 categories:
   - Linux
 date: 2023-12-15 14:45:00
-abbrlink: 8586
+abbrlink: 858625
 password:
 ---
 
@@ -27,8 +27,6 @@ password:
 	- [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
 	- [2024年苹果 MacBook 选购指南(MacBook Air/Pro 的 M123/Pro/Max/Ultra有什么区别，13/14/15/16寸怎么选)](https://www.zhihu.com/tardis/zm/art/378347974?source_id=1003)
 
-- 2024.08.19：M1 pro 电池健康 98%
-
 - macOS 可以运行的游戏：[Mac能玩哪些游戏？实测5种游玩方式\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Vy421a7Rd)
 	- 运行 Windows 3A 游戏：使用 Game Porting Toolkit
 
@@ -39,7 +37,7 @@ password:
 
 - Mac 相关汇总：[GitHub - jaywcjlove/awesome-mac](https://github.com/jaywcjlove/awesome-mac)
 - [Mac：终极配置教程 - BLOG](https://44maker.github.io/wiki/Mac/index.html)
-- [GitHub - maoxiaoke/setup-a-mac-for-frontend-dev: How I setup a Mac, with lots of productivity tools, step-by-step guide](https://github.com/maoxiaoke/setup-a-mac-for-frontend-dev)
+- [GitHub - maoxiaoke/setup-a-mac-for-frontend-dev](https://github.com/maoxiaoke/setup-a-mac-for-frontend-dev)
 - [GitHub - nikitavoloboev/my-mac: Apps/tools I use on macOS](https://github.com/nikitavoloboev/my-mac)
 - [GitHub - serhii-londar/open-source-mac-os-apps: 🚀 Awesome list of open source applications for macOS. https://t.me/s/opensourcemacosapps](https://github.com/serhii-londar/open-source-mac-os-apps)
 - [GitHub - itcharge/macOS-Tips: macOS 系统的使用技巧介绍、常用软件推荐、效率工具推荐。](https://github.com/itcharge/macOS-Tips)
@@ -47,6 +45,7 @@ password:
 - [大洋的朝九晚十的个人空间-大洋的朝九晚十个人主页-哔哩哔哩视频](https://space.bilibili.com/33734786)
 - [GitHub - macdao/ocds-guide-to-setting-up-mac: OCD's Guide to Setting up Mac](https://github.com/macdao/ocds-guide-to-setting-up-mac)
 - [摸鱼人的 macOS 工作流 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/282518)
+- [小张的分享中心首页 - 飞书云文档](https://qnswkjn28n.feishu.cn/wiki/T8uJwQH4YiIy7BkHyQpczpyDnug)
 
 
 
@@ -585,8 +584,8 @@ precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
 /bin/bash -c "$(curl -fsSL https://github.com/Homebrew/install/raw/master/install.sh)"
 
 # 交大镜像
-export HOMEBREW_BREW_GIT_REMOTE=https://mirrors.sjtug.sjtu.edu.cn/git/brew.git  
-export HOMEBREW_CORE_GIT_REMOTE=https://mirrors.sjtug.sjtu.edu.cn/git/homebrew-core.git  
+export HOMEBREW_BREW_GIT_REMOTE=https://mirrors.sjtug.sjtu.edu.cn/git/brew.git
+export HOMEBREW_CORE_GIT_REMOTE=https://mirrors.sjtug.sjtu.edu.cn/git/homebrew-core.git
 export HOMEBREW_BOTTLE_DOMAIN=https://mirror.sjtu.edu.cn/homebrew-bottles/bottles
 ```
 
@@ -661,7 +660,7 @@ mail       # cron 任务执行完成后若有输出会通过 Unix 邮件系统�
 ```bash
 # 查看可用 nerd font
 brew search '/font-.*-nerd-font/' | awk '{ print $1 }'
-	
+
 # 图标字体 nerd font
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask font-hack-nerd-font

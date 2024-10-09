@@ -877,10 +877,11 @@ with open(file, "r") as f:
 ```python
 import json
 
+json_fn = ...
 data = {}
 
 with open(json_fn, "w") as f:
-	json.dump(data, f, indent=4)
+	json.dump(data, f, indent=2)
 
 with open(json_fn, "r") as f:
 	json_data = json.load(f)
@@ -891,6 +892,7 @@ with open(json_fn, "r") as f:
 ```python
 import yaml
 
+yaml_fn = ...
 yaml_data = {}
 
 with open(yaml_fn, "w") as f:

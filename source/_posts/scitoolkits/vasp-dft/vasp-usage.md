@@ -85,10 +85,12 @@ SCAN (Strongly constrained and appropriately normed)
 - VASP Tutorial：[Category:Tutorials - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Tutorials)、[Tutorials](https://www.vasp.at/tutorials/latest/)
 - VASP Examples：[Category:Examples - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Examples)
 
+[VASP关键输入参数速查表 - VASPKIT与量化软件](http://vaspkit.cn/index.php/3.html)
+
 
 ---
 
-[VASP中POTCAR使用指南 | Jun's Blog](https://next.jun997.xyz/2022/04/14/ba8ff0b84c20.html)
+[VASP中POTCAR使用指南 - Jun's Blog](https://next.jun997.xyz/2022/04/14/ba8ff0b84c20.html)
 
 
 输入文件及参数介绍

@@ -268,6 +268,7 @@ direct
 空间群、磁性空间群
 [GitHub - DanPorter/spacegroups: Load spacegroup and magnetic spacegroup information](https://github.com/DanPorter/spacegroups)
 
+空间群：[Space Group Diagrams and Tables](http://img.chem.ucl.ac.uk/sgp/large/sgp.htm)
 
 晶体学课程内容
 >[GitHub - aronwalsh/Crystallography: Online resource for introduction to crystallography at Imperial College London (MATE40004)](https://github.com/aronwalsh/Crystallography)

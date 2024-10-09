@@ -1,7 +1,7 @@
 ---
 title: 期刊订阅
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: 期刊订阅
@@ -41,11 +41,19 @@ Elsevier 无 RSS、APS 有 RSS（效果一般）
 
 - [Issues - Computer Physics Communications](https://www.sciencedirect.com/journal/computer-physics-communications/issues)
 
+- [Issues - Computational Materials Science](https://www.sciencedirect.com/journal/computational-materials-science/issues)
+
 - [Issues - Scripta Materialia](https://www.sciencedirect.com/journal/scripta-materialia/issues)
 
 - [Issues - Physical Review B](https://journals.aps.org/prb/issues/)
 
 - [Issues - Physical Review Materials](https://journals.aps.org/prmaterials/issues)（主要看 Structural and mechanical properties 分区文章）
+
+- [Issues - Journal of Materials Science & Technology](https://www.sciencedirect.com/journal/journal-of-materials-science-and-technology/issues)
+
+- [Issues - Journal of Alloys and Compounds](https://www.sciencedirect.com/journal/journal-of-alloys-and-compounds/issues)
+
+- [Issues - Intermetallics](https://www.sciencedirect.com/journal/intermetallics/issues)
 
 
 ---
@@ -57,7 +65,7 @@ Elsevier 无 RSS、APS 有 RSS（效果一般）
 - Elsevier 文献连续下载/爬文献（10 篇以上），会开始机器人验证
 
 |                    期刊                     |          缩写          | 期刊等级 |                                        链接                                         |
-| :---------------------------------------: | :------------------: | :--: | :-------------------------------------------------------------------------------: |
+|:---------------------------------------: |:------------------: |:--: |:-------------------------------------------------------------------------------: |
 |              Acta Materialia              |  Acta / Acta Mater.  |  一区  |               https://www.sciencedirect.com/journal/acta-materialia               |
 |      Computational Materials Science      | Comput. Mater. Sci.  |  三区  |       https://www.sciencedirect.com/journal/computational-materials-science       |
 |      Computer Physics Communications      |          -           |  二区  |       https://www.sciencedirect.com/journal/computer-physics-communications       |
@@ -76,7 +84,7 @@ Elsevier 无 RSS、APS 有 RSS（效果一般）
 ### Nature 系列
 
 |             期刊              |            缩写            | 期刊等级 |                          链接                           |     |     |     |     |     |
-| :-------------------------: | :----------------------: | :--: | :---------------------------------------------------: | --- | --- | --- | --- | --- |
+|:-------------------------: |:----------------------: |:--: |:---------------------------------------------------: | --- | --- | --- | --- | --- |
 | npj computational materials | npj / npj Comput. Mater. |  一区  | https://www.nature.com/npjcompumats/research-articles |     |     |     |     |     |
 
 ---
@@ -84,7 +92,7 @@ Elsevier 无 RSS、APS 有 RSS（效果一般）
 ### APS 系列
 
 |        期刊         |           缩写           | 期刊等级 |                 链接                  |
-| :---------------: | :--------------------: | :--: | :---------------------------------: |
+|:---------------: |:--------------------: |:--: |:---------------------------------: |
 | PHYSICAL REVIEW B |   PRB / Phys. Rev. B   |  二区  | https://journals.aps.org/prb/recent |
 |                   | PRL / Phys. Rev. Lett. |  一区  |                                     |
 
@@ -111,5 +119,5 @@ Elsevier 无 RSS、APS 有 RSS（效果一般）
 ### arxiv 系列
 
 |      期刊      | 缩写  | 期刊等级 |                       链接                        |
-| :----------: | :-: | :--: | :---------------------------------------------: |
+|:----------: |:-: |:--: |:---------------------------------------------: |
 | 凝集态物理 · 材料科学 |  -  |  -   | https://arxiv.org/list/cond-mat.mtrl-sci/recent |

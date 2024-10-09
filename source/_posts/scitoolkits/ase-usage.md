@@ -320,17 +320,16 @@ center(vacuum=10.0, axis=2)
 
 #### bulk
 
->[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
+- 参考：[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
 
-
-简单 bulk 模型构建 示例代码
+- 简单 bulk 模型构建示例代码
 
 ```python
 from ase.build import bulk
 
 # 原胞
 atoms = bulk("Al", "fcc", a=4.05)
-# 单胞 cubic=True
+# 单胞
 atoms = bulk("Al", "fcc", a=4.05, cubic=True)
 
 # 超胞
@@ -338,16 +337,16 @@ supercell = atoms * 2           # 方式 1
 supercell = atoms * (2, 2, 2)   # 方式 2
 ```
 
+
 ---
 
 #### surface
 
+- 简单 bulk 模型的表面构建示例代码
+
 ```python
 from ase.build import surface
 ```
-
-简单 bulk 模型的表面构建 示例代码
-
 
 
 ---
@@ -422,10 +421,9 @@ from ase.io.vasp import read_vasp, write_vasp
 # VASP 输出文件格式
 from ase.io.vasp import read_vasp_out
 
-# material studio xsd 格式
+# Material Studio xsd 格式
 from ase.io.xsd import read_xsd, write_xsd
 ```
-
 
 `extxyz.py` 源代码相关 warning：
 
@@ -484,16 +482,13 @@ from ase.db import connect
 from ase.db.row import AtomsRow
 
 db_fn = ...
-db = connect(db_fn)
+db = connect(db_fn)            # 连接 db 文件
 
-# 给 db 添加元数据
-db.metadata = {...}
+db.metadata = {...}            # 给 db 添加元数据
 
-# 获取 db 文件中存储的结构数目
-len(db)
+len(db)                        # 获取 db 文件中存储的结构数目
 db.count()
-# 添加 selection 筛选条件
-db.count("vasp_calc=Yes")
+db.count("vasp_calc=Yes")      # 添加 selection 筛选条件
 
 # 筛选 id<=5 的所有结构
 # selection 可以是 id 或其他 AtomsRow 中的 key
@@ -506,17 +501,12 @@ for row in db.select("id>=5, id<=10"):
 	...
 
 # 单个 AtomsRow
-# id 从 1 开始
-row = db.get(id=10)
-# 获取 AtomsRow 的 keys
-print(row._keys)
-# 获取 AtomsRow 的 key_value_pairs
-print(row.key_value_pairs)
-# 根据 key 获取 value
-print(row.vasp_calc)
+row = db.get(id=10)            # id 从 1 开始
+row._keys                      # 获取 AtomsRow 的 keys
+row.key_value_pairs            # 获取 AtomsRow 的 key_value_pairs
+row.vasp_calc                  # 根据 key 获取 value
 
-# 单个 Atoms
-atoms_specific = db.get_atoms(id=10)
+atoms = db.get_atoms(id=10)    # 单个 Atoms
 
 # 将 db 中的 AtomsRow 的结构和数据写入到其他 db 文件
 db_output_fn = "..."
@@ -539,19 +529,82 @@ for row in db.select("id<=10"):
 
 ### ase.calculators
 
-effective medium theory (EMT)
+#### VASP
+
+- 参考：[VASP — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/vasp.html)
+
+- 设置 VASP 执行命令和赝势路径（在 `~/.{bash,zsh}rc` 或在 Python 脚本中设置相关环境变量）
+
+```bash
+export ASE_VASP_COMMAND="mpirun path/vasp_std"
+export VASP_PP_PATH=path/pp_path
+```
 
 ```python
-from gpaw import GPAW
-from ase.calculators.emt import EMT
+import os
+
+os.environ["ASE_VASP_COMMAND"] = ...
+os.environ["VASP_PP_PATH"] = ...
+```
+
+- ASE VASP Calculator 赝势不同泛涵目录命名
+
+```bash
+LDA:  $VASP_PP_PATH/potpaw/
+PBE:  $VASP_PP_PATH/potpaw_PBE/
+PW91: $VASP_PP_PATH/potpaw_GGA/
+
+# 查找元素 POTCAR 示例：potpaw_PBE/N/POTCAR
+```
+
+- 示例代码
+
+```python
+from ase.calculators.vasp import Vasp
 
 atoms = ...
-calc = GPAW(mode='lcao', basis='dzp', txt='gpaw.txt')
-atoms.calc = calc
 
-opt = BFGS(atoms, trajectory='opt.traj')
-opt.run(fmax=0.05)
+calc = Vasp(
+    istart=0,
+    icharg=2,
+    encut=400,
+    ismear=1,
+    sigma=0.2,
+    lreal="Auto",
+    kpts=[5, 5, 5],
+    ivdw=12,
+    ediff=1e-05,
+    lwave=False,
+    lcharg=False,
+    net_charge=...,     # 带电体系设置
+)
+
+atoms.set_calculator(calc)       # 执行 VASP 计算
+atoms.get_potential_energy()     # 获取能量
 ```
+
+
+---
+
+#### LAMMPS
+
+- 示例代码
+
+```python
+from ase.calculators.lammpsrun import LAMMPS
+
+parameters = {
+    "pair_style": "meam/c",
+    "pair_coeff": ["* * library.meam Au Au.meam Au"],
+}
+files = ["library.meam", "Au.meam"]
+calc = LAMMPS(parameters=parameters, files=files)
+```
+
+
+---
+
+#### 设置单点能
 
 ```python
 # 设置单点能
@@ -566,156 +619,18 @@ atoms.get_potential_energy()
 
 ---
 
-#### VASP
-
->[VASP — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/vasp.html)
-
-
-设置 VASP 执行命令和赝势路径
-```bash
-export ASE_VASP_COMMAND="mpirun path/vasp_std"
-export VASP_PP_PATH=path/pp_path
-```
-
-或者在脚本中添加如下命令以设置相关环境变量
-```python
-import os
-
-os.environ["ASE_VASP_COMMAND"] = ...
-os.environ["VASP_PP_PATH"] = ...
-```
-
-ASE VASP Calculator 赝势不同泛涵目录命名
-```bash
-LDA:  $VASP_PP_PATH/potpaw/
-PBE:  $VASP_PP_PATH/potpaw_PBE/
-PW91: $VASP_PP_PATH/potpaw_GGA/
-
-# 查找元素 POTCAR 示例：potpaw_PBE/N/POTCAR
-```
-
+effective medium theory (EMT)
 
 ```python
-from ase.calculators.vasp import Vasp
+from gpaw import GPAW
+from ase.calculators.emt import EMT
 
-calc = Vasp(
-    istart=0,
-    icharg=2,
-    encut=400,
-    ismear=1,
-    sigma=0.2,
-    lreal="Auto",
-    kpts=[5, 5, 5],
-    ivdw=12,
-    ediff=1e-05,
-    lwave=False,
-    lcharg=False,
-)
-```
+atoms = ...
+calc = GPAW(mode='lcao', basis='dzp', txt='gpaw.txt')
+atoms.calc = calc
 
-
----
-
-#### LAMMPS
-
-```python
-from ase.calculators.lammpsrun import LAMMPS
-
-parameters = {
-    "pair_style": "meam/c",
-    "pair_coeff": ["* * library.meam Au Au.meam Au"],
-}
-files = ["library.meam", "Au.meam"]
-calc = LAMMPS(parameters=parameters, files=files)
-```
-
-
-在 Pi 中用 ASE 的 VASP 的 Calculator
-
-申请节点运算（不写提交脚本）
-
-- `srun -p small -n 4 --pty /bin/bash`
-
----
-
-- `~/.bashrc` 文件添加内容
-
-```bash
-module purge
-module load intel-oneapi-compilers/2021.4.0
-module load intel-oneapi-mpi/2021.4.0
-module load intel-oneapi-mkl/2021.4.0
-
-export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
-export I_MPI_FABRICS=shm:ofi
-
-export ASE_VASP_COMMAND="srun --mpi=pmi2 /lustre/home/acct-mseklt/mseklt/yangsl/bin/vasp_std"
-```
-
----
-
-```bash
-python *.py
-```
-
-写提交脚本
-
-- `~/.bashrc` 文件添加内容
-
-```bash
-export ASE_VASP_COMMAND="srun --mpi=pmi2 /lustre/home/acct-mseklt/mseklt/yangsl/bin/vasp_std"
-```
-
----
-
-- `submit_ase.slurm` 脚本
-
-```bash
-#!/bin/bash
-
-#SBATCH -J vasp
-#SBATCH -p small
-#SBATCH -N 1
-#SBATCH --ntasks-per-node=4
-#SBATCH -o %j.out
-#SBATCH -e %j.err
-
-module purge
-
-module load intel-oneapi-compilers/2021.4.0
-module load intel-oneapi-mpi/2021.4.0
-module load intel-oneapi-mkl/2021.4.0
-
-export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
-export I_MPI_FABRICS=shm:ofi
-
-python python-file-name.py
-```
-
----
-
-- `sbatch submit_ase.slurm`
-
-在思源中用 ASE 的 VASP 的 Calculator
-
-- 提交脚本（`ase-submit-sy.slurm`）
-
-```bash
-#!/bin/bash
-
-#SBATCH -J ase
-#SBATCH -p 64c512g
-#SBATCH -N 1
-#SBATCH --ntasks-per-node=2
-#SBATCH --exclusive
-#SBATCH -o %j.out
-#SBATCH -e %j.err
-
-module load vasp/5.4.4-intel-2021.4.0
-
-ulimit -s unlimited
-
-python python-file-name.py
+opt = BFGS(atoms, trajectory='opt.traj')
+opt.run(fmax=0.05)
 ```
 
 

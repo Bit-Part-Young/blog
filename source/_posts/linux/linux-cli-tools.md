@@ -116,13 +116,13 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 ```json
 {
     // ...
-    // 添加项 
+    // 添加项
     // 默认启动为 Git Bash
     "defaultProfile": "{5D1F95DF-36E8-56AD-C203-EA75CE06422C}",
     // "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     // ...
-        "list": 
-        [			
+        "list":
+        [
             // 添加项
 	        {
                 "guid" : "{5D1F95DF-36E8-56AD-C203-EA75CE06422C}",
@@ -467,7 +467,7 @@ fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 # 安装
 git clone --depth 1 https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM}/plugins/fzf-tab
 
-# fzf-tab 配置；写入 ~/.zshrc 
+# fzf-tab 配置；写入 ~/.zshrc
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -546,7 +546,7 @@ brew install eg-examples
 # figlet toilet 相关用法
 showfigfonts      # 查看可用字体
 figlet spt        # 生成字符 logo
-figlet -c spt     # 居中 
+figlet -c spt     # 居中
 figlet spt | toilet -f term --gay  # 彩色输出
 
 

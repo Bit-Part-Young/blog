@@ -79,7 +79,7 @@ o          # 在光标所在的下一行处输入新的一行
 ```bash
 :q         # 退出（需文件没有改动）
 :q!        # 强制退出（不保存文件改动)
-:wq        # 保存后退出 
+:wq        # 保存后退出
 ZZ         # :q :wq 两个命令的结合
 :w file    # 保存成另一个文件
 
@@ -87,6 +87,7 @@ ZZ         # :q :wq 两个命令的结合
 :set nonu  # 显示行号
 
 :term      # 在 vim 中打开终端
+:r file    # 读入文件内容并插入
 ```
 
 ---
@@ -181,17 +182,24 @@ gu3w / gu3e  # 光标后面的3个单词转小写
 gU3w / gU3e  # 光标后面的3个单词转大写
 guu          # 光标所在行转小写
 gUU          # 光标所在行转大写
+
+# 其他
+:5m3           # 将第 5 行剪切并粘贴到第 3 行下方
+> + Enter      # 该行首右移一个 Tab 距离
+>4 + Enter     # 4 行行首右移一个 Tab 距离
+ddp            # 交换两行
+di(            # 删除当前括号（ (、[、{、"、'）内的所有内容；i 换成 a，删除括号本身
 ```
 
 ---
 
-其他快捷键
+宏操作
 
-```bash
-:5m3           # 将第 5 行剪切并粘贴到第 3 行下方
-> + Enter      # 该行首右移一个 Tab 距离
->4 + Enter     # 4 行行首右移一个 Tab 距离
-```
+- 宏录制：
+	- 按下 `q` 键，选择寄存器（如 `a-z`），开始录制（即按 `qa` 开始录制宏到寄存器 `a` 中，状态栏上显示 `recording @a`）
+	- 执行 Vim 操作
+	- 再次按 `q` 键结束录制（状态栏上的 `recording @a` 消失）
+- 执行宏：`@a` 执行宏，`5@a` 重复执行宏
 
 
 ---
@@ -486,7 +494,7 @@ X                 # 卸载
 <leader>/         # Grep
 <leader>sg        # Grep
 <leader>:         # 命令历史
-<leader>fr        # 显示最近文件 
+<leader>fr        # 显示最近文件
 <leader>gc        # 显示 git commit
 <leader>gs        # 显示 git status
 <leader>sc        # 命令历史
@@ -561,7 +569,7 @@ return {
         -- 使用 latexmk 进行编译
         vim.g.vimtex_compiler_method = "latexmk"
         -- latex 编译参数
-        vim.g.vimtex_compiler_latexmk = {  
+        vim.g.vimtex_compiler_latexmk = {
             options = {
               '-xelatex',
               '-pdf',
