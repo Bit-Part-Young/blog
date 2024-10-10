@@ -63,6 +63,8 @@ password:
 
 - [【工具自荐】一键查看 github 仓库树形图 · Issue #5272 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/5272)
 
+- [GitHub - zanjie1999/githubBackup: 备份Github所有仓库（包括私仓）纯shell实现](https://github.com/zanjie1999/githubBackup)
+
 
 ---
 
@@ -181,9 +183,11 @@ profile 实例参考：
 
 标准 README.md 文件写法：[GitHub - RichardLitt/standard-readme: A standard style for README files](https://github.com/RichardLitt/standard-readme)
 
+优秀 README.md 文件：[GitHub - matiassingers/awesome-readme: A curated list of awesome READMEs](https://github.com/matiassingers/awesome-readme)
+
 ---
 
-GitHub star history：[GitHub Star History](https://star-history.com/)
+GitHub Star history：[GitHub Star History](https://star-history.com/)
 
 ```markdown
 < img alt="Star History" loading="lazy" src="https://api.star-history.com/svg?repos=SamirPaulb/DSAlgo&type=Date">
@@ -198,9 +202,6 @@ GitHub contribution 可视化：
 - 贪吃蛇（只能使用 public contributions，见 [Issue #88](https://github.com/Platane/snk/issues/88)）：[snk](https://github.com/Platane/snk)
     - 实例：[github-contribution-grid-snake.yml](https://github.com/hotoo/hotoo/blob/main/.github/workflows/github-contribution-grid-snake.yml)
 - （未测试）[GitHub - jasineri/gitartwork: Gitartwork on user's contribution graph](https://github.com/jasineri/gitartwork)
-
----
-
 
 
 ---
@@ -361,6 +362,7 @@ repos:
 
 具体示例：
 
+- [GitHub - sdras/awesome-actions: A curated list of awesome actions to use on GitHub](https://github.com/sdras/awesome-actions)
 - 同步到 Gitee：[gitee.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/gitee.yml)、[hub-mirror-action](https://github.com/Yikun/hub-mirror-action)
 - 自动发布 Release：[release.yml](https://github.com/frostming/marko/blob/master/.github/workflows/release.yml)
 - 自动化发布 release：[GitHub - release-it/release-it: 🚀 Automate versioning and package publishing](https://github.com/release-it/release-it)
@@ -438,6 +440,8 @@ echo 'eval "$(gh copilot alias -- zsh)"' >> ~/.zshrc
 ---
 
 ## 相关问题
+
+- GitHub 桌面端不好用；移动端有探索功能
 
 - [x] 之前留言过的 GitHub issue，仍会收到后续通知， 如何关闭（在 GitHub 个人主页的 Notifications 处关闭）
 

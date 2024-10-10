@@ -47,7 +47,7 @@ password:
 
 - [OVITO](https://www.ovito.org/)
 - [VESTA](https://jp-minerals.org/vesta/en/download.html)
-- VMD
+- [VMD](https://www.ks.uiuc.edu/Research/vmd/)
 
 ---
 

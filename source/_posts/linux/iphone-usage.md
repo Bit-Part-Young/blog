@@ -1,7 +1,7 @@
 ---
 title: iPhone 使用
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: iPhone 使用
@@ -55,6 +55,8 @@ https://whatshub.top/module/adultraplus.module
     - [iPhone如何将照片中的视频导入到文件app - Apple 社区](https://discussionschinese.apple.com/thread/255235719)
 
 - [苹果iPhone手机交大VPN使用说明-上海交通大学网络信息中心](https://net.sjtu.edu.cn/info/1200/2668.htm)
+
+- 开源 iOS Apps 收录：[GitHub - dkhamsing/open-source-ios-apps: :iphone: Collaborative List of Open-Source iOS Apps](https://github.com/dkhamsing/open-source-ios-apps)
 
 - iOS 版本 Telegram 会无法显示含敏感内容的 Telegram，方法：登录网页版的 telegram，网址 `web.telegram.org`，Settings - Privacy and Security - Sensetive Content，打开（App 版没有 Sensetive Content 这一选项）
 

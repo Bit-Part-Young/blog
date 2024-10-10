@@ -28,7 +28,7 @@ WIP...
 
 ### 参考资料
 
-- bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
+- Bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
 - [Comprehensive Linux Cheatsheet](https://gto76.github.io/linux-cheatsheet/)
 - 在线的 Unix 和 Linux 手册页（man 页）：[Linux Man Pages Online](http://man.he.net/)
 - Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
@@ -47,6 +47,8 @@ WIP...
 - [direnv](https://github.com/direnv/direnv)：Shell 扩展，可根据当前目录加载和卸载环境变量
 
 - 环境变量管理工具：[misc/bmod at master · yhli1016/misc · GitHub](https://github.com/yhli1016/misc/tree/master/bmod)
+
+- 单行 Shell 命令：[Shell One Liner - GitHub - trimstray/the-book-of-secret-knowledge](https://github.com/trimstray/the-book-of-secret-knowledge#shell-one-liners-toc)
 
 
 
@@ -530,7 +532,7 @@ sed -e '1d' -e '$d' file   # 删除多行
 -C N           # N 数字；输出匹配行及之前后各 N 行
 -E             # 使用扩展正则表达式
 -o             # 只输出匹配到的部分
--v             # 反向匹配 即输出不匹配指定模式的行
+-v             # 反向匹配，即输出不匹配指定模式的行
 -I             # 跳过二进制文件 等同于 --binary-files=without-match
 --exclude-dir  # 排除目录
 --exclude      # 排除文件
@@ -540,6 +542,11 @@ sed -e '1d' -e '$d' file   # 删除多行
 -l             # 列出匹配内容前所属文件名
 -L             # 列出无匹配内容的文件名
 -m N           # 找到 N 行结果后停止查找，用来限制匹配行数
+
+egrep          # 等同于 grep -E
+
+grep -E 'word1|word2' file  # 匹配多个 pattern
+egrep 'word1|word2' file    # 同上 
 ```
 
 
@@ -769,6 +776,13 @@ env                    # 显示环境变量
 
 pstree                 # 将所有进程以树状图显示
 nmon                   # 监控系统资源（应该不常用）
+
+# 统计每个用户的进程数
+ps hax -o user | sort | uniq -c | sort -r
+
+# 在终端上打印一行由井号(#)组成的横条，其长度与终端的列数相同
+# 可作为视觉分隔线
+printf "%`tput cols`s" | tr ' ' '#'
 ```
 
 

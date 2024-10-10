@@ -57,7 +57,7 @@ command [ arg1 ... [ argN ]]
 
 ---
 
-Shell 快捷键
+Shell 终端快捷键
 
 ```bash
 TAB                   # 命令补全
@@ -65,17 +65,23 @@ Ctrl + C              # 中止命令
 Ctrl + D              # 键盘输入结束，可用于退出 Shell 窗口
 Crtl + A              # 光标移动到命令首
 Crtl + E              # 光标移动到命令尾
-Alt + B / Ctrl + ←    # 光标向左移动一个单词
-Alt + F / Ctrl + →    # 光标向右移动一个单词
+Alt + B               # 光标向左移动一个单词
+Ctrl + ←              # 同上
+Alt + F               # 光标向右移动一个单词
+Ctrl + →              # 同上
 Crtl + W              # 删除光标左方的单词
 Alt + D               # 删除光标右方的单词
 Crtl + R              # 搜索之前输入过的命令
 Crtl + G              # 退出历史搜索模式
 Crtl + ↓              # 跳转至底部
 Crtl + L              # 将底部内容移至最上方
+Ctrl + Z              # 将当前正在运行的前台进程暂停（挂起）并放到后台
+
+fg %n                 # n 为 job number；将挂起的进程回调到前台继续运行
+bg %n                 # 将挂起的进程在后台继续运行（不占用终端的输入和输出）
 ```
 
-注：Shell 脚本中，缩进的标准并没有一个严格的规定，常见的缩进宽度是 2 个或 4 个空格
+注：Shell 脚本中，缩进的标准并没有一个严格的规定，常见的缩进宽度是 2 个或 4 个空格（个人现采用 2 个空格的缩进宽度）
 
 
 ---
@@ -85,7 +91,7 @@ Crtl + L              # 将底部内容移至最上方
 - [Bash 脚本教程 - 网道](https://wangdoc.com/bash/)
 - 速查表：[Bash 备忘清单 & bash cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/bash.html)
 - [shell脚本基础 - cherry](https://jaav.com.cn/posts/1b2.html)
-- shell 脚本案例：[GitHub - jacobproject/Shell\_Scripts: Shell Scripts examples](https://github.com/jacobproject/Shell_Scripts)
+- Shell 脚本案例：[GitHub - jacobproject/Shell\_Scripts: Shell Scripts examples](https://github.com/jacobproject/Shell_Scripts)
 - [GitHub - bobbyiliev/introduction-to-bash-scripting: Free Introduction to Bash Scripting eBook](https://github.com/bobbyiliev/introduction-to-bash-scripting)
 - Shell 代码优化：[Advanced Shell Scripting Techniques](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)
 

@@ -852,7 +852,7 @@ ln -s /opt/homebrew/bin/g++-13 ~/bin/g++
 ln -s /opt/homebrew/bin/gcc-13 ~/bin/gcc
 ```
 
-- clang 不支持 `fopenmp` 选项
+- Clang 不支持 `fopenmp` 选项
 
 ```bash
 clang: error: unsupported option '-fopenmp'
@@ -904,10 +904,14 @@ brew install openjdk  # 安装 Java
 
 - [国行Mac电脑如何开启Apple Intelligence\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV198p4e2Eg7)
 
-- 将图片转成 HEIF/HEIC 格式：[GitHub - biodranik/HEIF: Mac OS X: Convert any image to HEIF/HEIC format](https://github.com/biodranik/HEIF)
+- 将图片转成 HEIF/HEIC 格式
+    - [GitHub - biodranik/HEIF: Mac OS X: Convert any image to HEIF/HEIC format](https://github.com/biodranik/HEIF)
+    - [GitHub - zanjie1999/png2heic: 自动转换图片到heic或webp 依赖ffmpeg mp4box exiftool](https://github.com/zanjie1999/png2heic)
+
+- [GitHub - zanjie1999/meDisplay: 使用任何设备(浏览器)作为mac的副屏(随航) 将Android平板用作Mac的第二台显示器](https://github.com/zanjie1999/meDisplay)
 
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
-    - 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel
+    - 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel（支持 uv）
 
 - macOS 中终端下安全删除文件工具（可恢复）：[GitHub - hotoo/rm-trash](https://github.com/hotoo/rm-trash)
 

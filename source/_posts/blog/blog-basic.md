@@ -189,6 +189,8 @@ localhost  # 主机名
 - 自动获得公网 IPv4 或 IPv6 地址，并解析到对应的域名服务：[GitHub - jeessy2/ddns-go](https://github.com/jeessy2/ddns-go)
     - [外网访问家庭内网的两大最优方案，零基础教程 远程控制家庭电脑 ，公网访问家庭局域网\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV15T421X7aa)
 
+- [GitHub - zanjie1999/cloudflare-api-v4-ddns: cloudflare 一键 ddns 脚本 (大陆可用)](https://github.com/zanjie1999/cloudflare-api-v4-ddns)
+
 - [搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
 
 - 提供 DNS 查询的 API：[DNS.fish - Command-line DNS Record Lookup Tool](https://dns.fish/)
@@ -215,6 +217,7 @@ SSL handshake failed Error code 525
 
 - Node.js： A JavaScript runtime built on Chrome's V8 JavaScript engine 是一个不依赖浏览器的 JavaScript 运行环境，大部分前端项目比如 Vue、React 和后端项目比如 Express、Koa 均依赖于 Node.js 生态系统；
 - Node.js 版本分支：`nodejs`（稳定版本，包括最新的功能和改进） 和 `nodejs-lts`（长期支持版本，LTS）
+- [GitHub - sindresorhus/awesome-nodejs: Delightful Node.js packages and resources](https://github.com/sindresorhus/awesome-nodejs)
 
 
 ---
@@ -303,9 +306,9 @@ corepack enable   # 开启
 corepack disable  # 取消
 ```
 
-npm 配置文件：.npmrc
+npm 配置文件：`.npmrc`
 
-```bashrc
+```bash
 auto-install-peers=true
 
 # 设置镜像源

@@ -1313,6 +1313,10 @@ class InventoryItem:
 
 ## 其他
 
+在编程语言中，"foo" 和 "bar" 被广泛应用于各种示例代码中，通常用于表示任意的变量、函数或数据结构。
+
+---
+
 Python 本身并不直接支持 OpenMP。OpenMP 主要用于 C/C++ 或 Fortran 等语言
 
 GIL（Global Interpreter Lock）: 互斥锁，它防止多个线程同时执行 Python 字节码。这意味着即使使用多线程，标准的 Python 解释器也无法实现真正的并行执行。不过，某些操作（如 I/O 或某些库函数）可以释放 GIL
@@ -1320,8 +1324,6 @@ GIL（Global Interpreter Lock）: 互斥锁，它防止多个线程同时执行 
 ---
 
 ```python
-
-
 # copy() 与 deepcopy() 的区别
 copy()        # 浅复制，原对象和复制对象可能共享内部对象
 deepcopy()    # 深复制，原对象和复制对象是完全独立的，不共享内部对象

@@ -826,6 +826,7 @@ sydata.hpc.sjtu.edu.cn  # 思源一号
 
 - scp：Secure Copy，基于 SSH 协议进行文件传输，不支持增量传输
 - rsync：支持 SSH 协议或 rsync 协议、增量传输、支持本地和远程同步、支持断点续传
+- 因安全策略升级，在集群的终端上不支持 scp/rsync 的远程传输功能，所以需要从用户本地终端使用 scp/rsync 命令：[数据传输方案和传输节点 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportsolution.html)
 - rsync 显示整体进度：[Overall Progress with rsync - Dave Dribin’s Blog](https://www.dribin.org/dave/blog/archives/2024/01/21/rsync-overall-progress/)
 
 ```bash
@@ -841,6 +842,7 @@ scp [OPTION]... [USER@]HOST:SRC DEST
 -P                   # 指定远程主机的端口号
 
 
+# rsync 安装
 brew install rsync   # macOS；默认版本为 2.X.X
 
 # rsync 语法
@@ -853,9 +855,9 @@ rsync [OPTION]... [USER@]HOST::SRC DEST
 rsync [OPTION]... SRC [USER@]HOST::DEST
 
 # 示例
-# 在超算终端，向 Master 传输数据
+# 在超算终端（Pi 可以，思源不可以），向 Master 传输数据
 rsync -avuP --human-readable -e "ssh -p 313" SRC user@202.120.55.11:DEST
-# 在 Master 终端，向 Master 传输数据
+# 在 Master 终端，向 Master 传输数据（Pi、思源都可以）
 rsync -auvP --human-readable user@sydata.hpc.sjtu.edu.cn:SRC DEST
 
 # rsync 参数

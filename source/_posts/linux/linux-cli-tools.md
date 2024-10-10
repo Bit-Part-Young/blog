@@ -10,6 +10,7 @@ summary: Linux 命令行工具
 description: Linux 命令行工具
 tags:
   - CLI
+  - 命令行
 categories:
   - Linux
 date: 2023-09-18 09:00:00
@@ -23,10 +24,12 @@ password:
 
 命令行工具安装方式：
 
-- Linux 端：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）
-- Windows 端：scoop、winget 等
-- Mac 端：brew；
-- 程序端：Python（pip、pipx、conda），Rust（cargo），Nodejs（npm）
+- 官网下载二进制文件
+- 包管理器
+    - Linux 端：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）
+    - Windows 端：scoop、winget 等
+    - Mac 端：brew
+    - 程序端：Python（pip、pipx、conda），Rust（cargo），Nodejs（npm），Go（go）
 - 从 [webinstall.dev](https://webinstall.dev/) 网站安装（后三者可以在无 root 权限情况下安装）
 - 源码编译安装
 
@@ -382,6 +385,7 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 安全替代 `rm` 的脚本：[trash.sh](https://github.com/qqAys/trash.sh)
 - [GitHub - theryangeary/choose: A human-friendly and fast alternative to cut and (sometimes) awk](https://github.com/theryangeary/choose)
 - 带宽：[bandwhich](https://github.com/imsnif/bandwhich)
+- Linux 经典命令增强：[X-CMD - 开源轻量级 POSIX 脚本，用于管理工具 (500+) 和提供经典命令扩展](https://cn.x-cmd.com/)
 
 ---
 
@@ -574,6 +578,11 @@ brew install starship  # macOS
 eval "$(starship init zsh)"   # zsh
 eval "$(starship init bash)"  # bash
 Invoke-Expression (&starship init powershell) # PowerShell
+
+
+# rename 文件重命名
+brew install rename
+sudo apt install rename
 
 
 # primitive 安装与使用

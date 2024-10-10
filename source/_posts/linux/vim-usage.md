@@ -32,6 +32,7 @@ password:
 ### 参考资料
 
 - Vim 相关汇总：[GitHub - akrawchyk/awesome-vim: The Vim plugin shortlist](https://github.com/akrawchyk/awesome-vim)
+- [GitHub - mhinz/vim-galore: All things Vim!](https://github.com/mhinz/vim-galore)
 - [GitHub - wsdjeg/vim-galore-zh\_cn: Vim 从入门到精通](https://github.com/wsdjeg/vim-galore-zh_cn)
 - [GitHub - yyq123/learn-vim](https://github.com/yyq123/learn-vim)
 - [GitHub - yangyangwithgnu/use\_vim\_as\_ide: use vim as IDE](https://github.com/yangyangwithgnu/use_vim_as_ide)
