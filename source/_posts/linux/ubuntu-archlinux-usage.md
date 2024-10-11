@@ -2,7 +2,7 @@
 title: Ubuntu、Arch Linux 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -607,8 +607,7 @@ xrandr
 
 ### 相关问题
 
-- 用户无 sudo 权限：
-    - 问题：`xxx is not in the sudoers file`
+- 用户无 sudo 权限：`xxx is not in the sudoers file`
     - 解决方法：切换到 root 用户，修改 `/etc/sudoers` 内容
 
 ```bash
@@ -627,6 +626,10 @@ timedatectl set-local-rtc 1
 ```
 
 - 连接校园网：[Linux设备连接校园SJTU无线网络说明-上海交通大学网络信息中心](https://net.sjtu.edu.cn/info/1215/2712.htm)
+
+- [ ] Nvidia 显卡驱动未识别/没有了，无法进入 Ubuntu 双系统
+
+- [ ] 如何删除 Ubuntu 双系统
 
 - [ ] Ubuntu23.04 设置交大 VPN 无作用
 
@@ -1010,6 +1013,3 @@ eog figure
 Ubuntu2204 的 Terminal 无法打开：[VirtualBox\_Ubuntu22.10\_Terminal无法打开\_虚拟机打不开终端\_gt29的博客-CSDN博客](https://blog.csdn.net/weixin_43959807/article/details/128872860)
 
 虚拟机使用主机代理：[Virtualbox+Uubntu16.04 NAT模式下使用宿主机代理上网 - 水中墨色 - 博客园](https://www.cnblogs.com/veraland/p/13490217.html)
-
-
----

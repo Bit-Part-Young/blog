@@ -159,7 +159,14 @@ brew install git-delta
 
 ```bash
 # 安装
-brew install git-extras
+brew install git-extras  # macOS
+
+# 编译安装
+git clone [https://github.com/tj/git-extras.git](https://github.com/tj/git-extras.git)
+cd git-extras
+git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
+make install PREFIX=$HOME/local/git--extras
+
 
 # 常用命令
 git setup            # 初始化项目（等同于 git init + add + commit）

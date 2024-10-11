@@ -844,6 +844,51 @@ dict_keys(
 
 ---
 
+### pymatgen.electronic_structure
+
+电子结构相关工具与分析
+
+```python
+import matplotlib.pyplot as plt
+from pymatgen.io.vasp.outputs import Vasprun
+from pymatgen.electronic_structure.plotter import (
+    BSDOSPlotter,
+    BSPlotter,
+    BSPlotterProjected,
+    DosPlotter,
+)
+
+# 获取能带数据
+bs_vasprun = Vasprun("./bs/vasprun.xml", parse_projected_eigen=True)
+bs_data = bs_vasprun.get_band_structure(line_mode=True)
+
+# 能带绘制
+bs_plot = BSPlotter(bs=bs_data)
+bs_plot.get_plot()
+
+# 获取态密度数据
+dos_vasprun=Vasprun("./dos/vasprun.xml")
+dos_data=dos_vasprun.complete_dos
+
+# 态密度（总）绘制
+dos_plot = DosPlotter(stack=False, sigma=0.5)
+dos_plot.add_dos("total dos", dos=dos_data)
+dos_plot.get_plot()
+
+# 态密度（投影到轨道 + 总）绘制
+pdos_plot = DosPlotter(stack=False, sigma=0.5)
+pdos_plot.add_dos("total dos", dos=dos_data)
+pdos_plot.add_dos_dict(dos_data.get_spd_dos())
+pdos_plot.get_plot()
+
+# 能带 + 态密度绘制
+bsdos_plot = BSDOSPlotter(bs_projection=None, dos_projection=None)
+bsdos_plot.get_plot(bs=bs_data, dos=dos_data)
+```
+
+
+---
+
 ### pymatgen.analysis
 
 #### structure_matcher

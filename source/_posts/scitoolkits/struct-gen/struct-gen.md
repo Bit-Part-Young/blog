@@ -279,6 +279,8 @@ direct
 
 [典型晶体结构类型 - 维基百科，自由的百科全书](https://zh.m.wikipedia.org/wiki/%E5%85%B8%E5%9E%8B%E6%99%B6%E4%BD%93%E7%BB%93%E6%9E%84%E9%A1%9E%E5%9E%8B)
 
+[七大晶系的XRD图谱（部分空间群）](https://mp.weixin.qq.com/s/fMCCPNzhQ0Fr2UNzSZPimg)
+
 二维晶体：10 种点群，17 种空间群（墙纸群 (wallpaper group)）
 
 

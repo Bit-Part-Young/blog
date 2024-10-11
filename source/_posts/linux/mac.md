@@ -352,6 +352,9 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Safari
     - Arc
     - Zen
+- 任务 To Do 清单
+    - Things（只限苹果产品）
+    - Microsoft To Do（跨平台）
 - 邮件服务：Mailspring 或 Mac 自带邮件程序
 - 压缩、解压缩工具：The Unarchiver
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
@@ -381,7 +384,6 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Logoer（修改左上角的苹果 logo）
     - Numi（计算器）
     - One Thing（在菜单栏显示文字）
-    - Things（to-do 清单）
 - 微信（Windows 端没有深色模式，macOS 有深色模式）等
 
 ---
@@ -401,6 +403,11 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 在 macOS 中，由 Intel 芯片编译得到的程序在 Apple Silicon 芯片上通常可以运行，得益于 Apple 提供的 Rosetta 2 技术
 
 - macOS 安装交大版 Office：[Office 2021 - 微软Office办公软件 - 上海交通大学正版软件授权中心](https://software.sjtu.edu.cn/List/Office/2021)
+
+- macOS Word 使用
+    - 深/浅色模式：设置 -- 常规 -- 个性化
+    - 录入 “□方框中打钩” 符号：插入 -- 高级符号 -- 选择 "Wingdings 2" 字体
+    - 手写电子签名制作：在纸上写签名，拍照，插入到 Word -- 图片格式，颜色，重新着色选择 “黑白 25” -- 截图保存
 
 - Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
 

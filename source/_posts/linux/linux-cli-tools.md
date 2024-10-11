@@ -76,7 +76,7 @@ brew install zsh      # macOS
 ```bash
 wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certificate
 
-./configure --prefix=${HOME}/local CXXFLAGS="-fPIC" CFLAGS="-fPIC"
+./configure --prefix=${HOME}/local/ncurses CXXFLAGS="-fPIC" CFLAGS="-fPIC"
 
 make -j && make install
 ```

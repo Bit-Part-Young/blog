@@ -466,12 +466,14 @@ GPU 作业请至 dgx2 队列或思源一号a100队列；
 - **192c6t 和 huge 大内存队列，核数有一定要求，且排队时间较长**
 
 192c6t 队列
+
 ```bash
 sbatch: error: The cpu demand is lower than 48. Please submit to huge or cpu partition.
 sbatch: error: Batch job submission failed: Unspecified error
 ```
 
 huge 队列
+
 ```bash
 sbatch: error: The cpu demand is lower than 6. Please submit to small partition.
 sbatch: error: Batch job submission failed: Unspecified error
@@ -508,12 +510,8 @@ module av [MODULE]      # 查看具体模块
 module load [MODULE]    # 加载相应软件模块
 module list             # 列出已加载模块
 module purge            # 清除所有已加载软件模块
-module show [MODULE]    # 列出该模块的信息，如路径、环境变量等
+module show [MODULE]    # 列出该模块的信息，如路径（lib 及 include 等）、环境变量等
 ```
-
-查看 module load 相关软件模块的 lib 和 include 路径方法：
-
-`module load boost` 相关版本后，使用 `module show boost` 命令可以查到 `boost` 的 `lib` 库位置，使用 `grep -rn "libboost_python" /path/to/lib/*` 命令检索相应的库文件
 
 ---
 
@@ -526,45 +524,46 @@ module show [MODULE]    # 列出该模块的信息，如路径、环境变量等
 计算节点是通过 proxy 节点代理进行网络访问的，因此一些软件需要特定的代理设置。需要找到软件的配置文件，修改软件的代理设置。
 
 ```bash
-# 查看代理
-echo $http_proxy $https_proxy $no_proxy
+echo $http_proxy $https_proxy $no_proxy  # 查看代理
 ```
 
 git、wget、curl 等软件支持通用变量，代理参数设置为：
+
 ```bash
 # 思源一号计算节点通用代理设置
 https_proxy=http://proxy2.pi.sjtu.edu.cn:3128
 http_proxy=http://proxy2.pi.sjtu.edu.cn:3128
 no_proxy=puppet,proxy,172.16.0.133,pi.sjtu.edu.cn
 
- # π2.0计算节点通用代理设置
+ # π2.0 计算节点通用代理设置
 http_proxy=http://proxy.pi.sjtu.edu.cn:3004/
 https_proxy=http://proxy.pi.sjtu.edu.cn:3004/
 no_proxy=puppet
 ```
 
 Python、MATLAB、Rstudio、fasterq-dump 等软件需要查询软件官网确定配置参数：
+
 ```bash
-### fasterq-dump文件，配置文件路径 ~/.ncbi/user-settings.mkfg
+### fasterq-dump 文件，配置文件路径 ~/.ncbi/user-settings.mkfg
 
 # 思源一号节点代理设置
 /tools/prefetch/download_to_cache = "true"
 /http/proxy/enabled = "true"
 /http/proxy/path = "http:/proxy2.pi.sjtu.edu.cn:3128"
 
-# π2.0节点代理设置
+# π2.0 节点代理设置
 /tools/prefetch/download_to_cache = "true"
 /http/proxy/enabled = "true"
 /http/proxy/path = "http://proxy.pi.sjtu.edu.cn:3004"
 
-### Python需要在代码里面指定代理设置，不同Python包代理参数可能不同
+### Python 需要在代码里面指定代理设置，不同Python包代理参数可能不同
 
 # 思源一号节点代理设置
 proxies = {
     'http': 'http://proxy2.pi.sjtu.edu.cn:3128',
     'https': 'http://proxy2.pi.sjtu.edu.cn:3128',
 }
-# π2.0节点代理设置
+# π2.0 节点代理设置
 proxies = {
     'http': 'http://proxy.pi.sjtu.edu.cn:3004',
     'https': 'http://proxy.pi.sjtu.edu.cn:3004',
@@ -575,7 +574,7 @@ proxies = {
 # 思源一号节点代理设置
 proxy2.pi.sjtu.edu.cn:3128
 
-# π2.0节点代理设置
+# π2.0 节点代理设置
 proxy.hpc.sjtu.edu.cn:3004
 ```
 
@@ -795,6 +794,8 @@ slurm_load_jobs error: Slurm backup controller in standby mode
 
 ### 相关问题
 
+- [查看作业资源信息 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/resource.html)
+
 - [x] `mpirun` 和 `srun` 的区别是什么？intel 编译套件？[srun和mpirun的区别](http://bbs.keinsci.com/thread-23497-1-1.html)
 
 - srun 是 slurm 作业调度系统的一个命令，mpirun 是 mpi（实现形式有 openmpi，mpich，intel mpi 等）的一个命令，两者在效率方面是无法直接比较的。
@@ -848,6 +849,7 @@ brew install rsync   # macOS；默认版本为 2.X.X
 # rsync 语法
 rsync [OPTION]... SRC DEST
 # 单个冒号：通过 ssh 或 rsh 协议连接远程主机
+# 若 ~/.ssh/config 中已为 [USER@]HOST 设置了别名和配置，则其可用别名简化
 rsync [OPTION]... SRC [USER@]host:DEST
 rsync [OPTION]... [USER@]HOST:SRC DEST
 # 两个冒号：通过 rsync 协议连接远程主机的 rsync 守护进程
@@ -1197,12 +1199,15 @@ make -j3 -f Makefile.macos atomsk
     - [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
 - VASP.5.4.4 源代码目录结构：
-    - `arch`：针对不同架构的 Makefile 模板，如 `makefile.include.linux_intel`
-    - `bin`：编译后的可执行程序文件目录
-    - `build`：编译时自动复制 src 目录内源码后执行编译的目录
-    - `src`：源码目录
-    - `lib`：库目录，对应以前的 vasp.lib 目录
-    - `CUDA`：GPU CUDA 代码目录
+
+```bash
+arch      # 针对不同架构的 Makefile 模板，如 makefile.include.linux_intel
+bin       # 编译后的可执行程序文件目录
+build     # 编译时自动复制 src 目录内源码后执行编译的目录
+src       # 源码目录
+lib       # 库目录，对应以前的 vasp.lib 目录
+CUDA      # GPU CUDA 代码目录
+```
 
 ```text
 vasp.X.X.X (root directory)
@@ -1219,7 +1224,7 @@ vasp.X.X.X (root directory)
 ---
 
 - 安装步骤：
-    - VASP.5.4.4 安装包：manager: `/opt`，master: `/opt/software`；将其拷贝到自己的用户目录下打包压缩，上传至超算平台）
+    - VASP.5.4.4 安装包：Manager: `/opt`，Master: `/opt/software`；将其拷贝到自己的用户目录下打包压缩，上传至超算平台）
     - 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
     - `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功；
     - 将 `vasp_std` 设置软链接
@@ -1235,6 +1240,7 @@ module load intel-oneapi-mkl/2021.4.0
 make veryclean
 rm bin/*
 
+# 拷贝适合架构的 Makefile 模板文件
 cp arch/makefile.include.linux_intel makefile.include
 
 # 编译；耗时 20-30 分钟
@@ -1278,7 +1284,7 @@ h5cc -show
 
 - 使用
     - HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
-    - Pandas 的 read_hdf() 不太好用
+    - Pandas 的 `read_hdf()` 不太好用
 
 ```bash
 h5ls data.h5     # 显示 Group 列表
@@ -1316,7 +1322,7 @@ h5dump data.h5   # 输出文件的详细结构和内容
 
 ---
 
-- 安装步骤：master 的 vasp.6.3.0 安装包在 `/opt/software` 下；将其拷贝到自己的目录下打包，上传至超算平台）
+- 安装步骤：Master 的 vasp.6.3.0 安装包在 `/opt/software` 下；将其拷贝到自己的目录下打包，上传至超算平台）
 
 ```bash
 # 导入 oneapi 套件；hdf5
@@ -1335,7 +1341,6 @@ cp arch/makefile.include.intel makefile.include
 
 make  # 或 make all, make std
 ```
-
 
 可能会出现以下报错：
 
@@ -1478,7 +1483,7 @@ VASPKIT_UTILITIES_PATH     # vaspkit 工具路径
 PYTHON_BIN                 # python 路径；可选
 ```
 
-- 赝势：可拷贝 master 或 manager 上的赝势上传到超算自己的用户目录下；赝势格式如下：
+- 赝势：可拷贝 Master 或 Manager 上的赝势上传到超算目录；赝势格式如下：
 
 ```text
 pseudopotentials
@@ -1491,16 +1496,12 @@ pseudopotentials
 - 使用教程：[Tutorials — VASPKIT 1.5 documentation](https://vaspkit.com/tutorials.html#quick-start)
 
 ```bash
-vaspkit -help  # 查看帮助
-
-vaspkit # 进入交互模式
-
-vaspkit < XXX.in  # 推荐此命令，适用于批处理
+vaspkit -help       # 查看帮助
+vaspkit             # 进入交互模式
+vaspkit < XXX.in    # 推荐此命令，适用于批处理
 
 echo -e "102\n2\n0.04\n" | vaspkit
 ```
-
-- vaspkit.1.5.0.Mac.Intel 版本可以在 Mac M1 上运行
 
 
 ---
@@ -1595,23 +1596,39 @@ pip install .
 - Tex Live 版本：思源一号 2018；Pi 2013；Manager 2015；Master 未安装
 
 ```bash
-# 添加 自定义安装路径 环境变量
+# 设置自定义安装路径，添加环境变量
 export TEXLIVE_INSTALL_PREFIX=$HOME/src/texlive
 export TEXLIVE_INSTALL_TEXDIR=$HOME/src/texlive/2023
 
-# 安装
+# 下载安装包
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
-tar -xzvf nstall-tl-unx.tar.gz
-cd install-tl-*
-# medium 或 small
-perl ./install-tl --scheme=full
-# 不进行交互
-# perl ./install-tl --scheme=full --no-interaction 
 
-# 安装完成后，再添加环境变量
-export MANPATH=$HOME/src/texlive/2023/texmf-dist/doc/man
-export INFOPATH=$HOME/src/texlive/2023/texmf-dist/doc/info
-export PATH=$HOME/src/texlive/2023/bin/x86_64-linux:$PATH
+tar -xzvf nstall-tl-unx.tar.gz
+
+cd install-tl-*
+
+# 安装
+perl ./install-tl --scheme=full    # 或 medium small
+--no-interaction    # 不进行交互
+-gui                #  启用 GUI 安装程序 
+
+# 安装完成后，添加环境变量
+export MANPATH=$HOME/local/texlive/2023/texmf-dist/doc/man
+export INFOPATH=$HOME/local/texlive/2023/texmf-dist/doc/info
+export PATH=$HOME/local/texlive/2023/bin/x86_64-linux:$PATH
+
+
+# 跨版本更新
+rm 2023/tlpkg/backups      # 删除包的备份
+cp -a 2023 2024            # 耗时较久
+
+# 更新 ~/.{bash,zsh}rc 中 TeX Live 环境变量的年份
+
+# 下载 update-tlmgr-latest.sh
+wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+sh update-tlmgr-latest.sh -- --upgrade
+
+tlmgr update --self --all  # 更新
 ```
 
 

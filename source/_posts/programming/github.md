@@ -116,7 +116,7 @@ Pull requests 页面（简称 PR）
 
 Pull Requests 流程:
 
-- Fork 该 Repo；
+- Fork（复刻） 该 Repo；
 - git clone fork 的 Repo 到本地，进行代码修改并提交，会出现提交的 commit 相对原 Repo 的前后关系；
 - 点击 “Contribute”，提 一个 Pull Request 给原来的 Repo；
 - 点击 “Sync fork”，同步原 Repo 最新代码。
@@ -156,7 +156,7 @@ GitHub Pages 介绍
 
 ### GitHub 个人首页
 
->美化 GitHub profile 教程：[GitHub - rzashakeri/beautify-github-profile](https://github.com/rzashakeri/beautify-github-profile)
+参考：美化 GitHub profile 教程：[GitHub - rzashakeri/beautify-github-profile](https://github.com/rzashakeri/beautify-github-profile)
 
 创建名为 username 的 repo，在 README.md 文档中添加内容即可生成个人首页（profile），可以添加 GitHub 统计信息以丰富并自定义 profile。
 
