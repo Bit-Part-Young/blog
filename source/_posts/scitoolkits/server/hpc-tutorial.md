@@ -796,11 +796,7 @@ slurm_load_jobs error: Slurm backup controller in standby mode
 
 - [查看作业资源信息 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/resource.html)
 
-- [x] `mpirun` 和 `srun` 的区别是什么？intel 编译套件？[srun和mpirun的区别](http://bbs.keinsci.com/thread-23497-1-1.html)
-
-- srun 是 slurm 作业调度系统的一个命令，mpirun 是 mpi（实现形式有 openmpi，mpich，intel mpi 等）的一个命令，两者在效率方面是无法直接比较的。
-- 当你用 slurm 作业调度系统的时候，你可以通过 srun 提交作业，提交的作业如果是 mpi 并行的，那么它会去调用相应的 mpirun 来运行作业，这两个就是这样一个关系
-- mpirun 用来并行任务
+- `mpirun` 和 `srun` 的区别：[srun和mpirun的区别](http://bbs.keinsci.com/thread-23497-1-1.html)；srun 是 Slurm 作业调度系统中的命令，用于启动和管理分布式并行作业；mpirun 是 MPI 环境中 （实现形式有 openmpi，mpich，intel mpi 等）的一个命令，与作业调度系统无关
 
 
 
@@ -817,7 +813,7 @@ slurm_load_jobs error: Slurm backup controller in standby mode
 
 ```bash
 data.hpc.sjtu.edu.cn    # Pi
-sydata.hpc.sjtu.edu.cn  # 思源一号
+sydata.hpc.sjtu.edu.cn  # 思源
 ```
 
 
@@ -828,7 +824,7 @@ sydata.hpc.sjtu.edu.cn  # 思源一号
 - scp：Secure Copy，基于 SSH 协议进行文件传输，不支持增量传输
 - rsync：支持 SSH 协议或 rsync 协议、增量传输、支持本地和远程同步、支持断点续传
 - 因安全策略升级，在集群的终端上不支持 scp/rsync 的远程传输功能，所以需要从用户本地终端使用 scp/rsync 命令：[数据传输方案和传输节点 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportsolution.html)
-- rsync 显示整体进度：[Overall Progress with rsync - Dave Dribin’s Blog](https://www.dribin.org/dave/blog/archives/2024/01/21/rsync-overall-progress/)
+- rsync 显示整体进度（不太好用）：[Overall Progress with rsync - Dave Dribin’s Blog](https://www.dribin.org/dave/blog/archives/2024/01/21/rsync-overall-progress/)
 
 ```bash
 # scp 语法
@@ -838,33 +834,40 @@ scp [OPTION]... [USER@]HOST:SRC DEST
 
 # scp 参数
 -p                   # 保留文件属性
+-v                   # 详细输出
 -r                   # 以递归方式复制
--q                   # 不显示复制进度
+-q                   # 安静模式；不显示进度或错误消息
 -P                   # 指定远程主机的端口号
+
+# 示例
+# 在超算传输节点终端，传输数据给 Master
+scp -v -P 313 SRC user@202.120.55.11:DEST
+# 在 Master 终端，传输数据给 Master
+scp -v user@sydata.hpc.sjtu.edu.cn:SRC DEST
 
 
 # rsync 安装
-brew install rsync   # macOS；默认版本为 2.X.X
+brew install rsync   # macOS 安装 3.X.X 新版本
 
 # rsync 语法
 rsync [OPTION]... SRC DEST
 # 单个冒号：通过 ssh 或 rsh 协议连接远程主机
 # 若 ~/.ssh/config 中已为 [USER@]HOST 设置了别名和配置，则其可用别名简化
-rsync [OPTION]... SRC [USER@]host:DEST
-rsync [OPTION]... [USER@]HOST:SRC DEST
+rsync [OPTION]... SRC [USER@]host:DEST     # 等效于上传文件到远程服务器
+rsync [OPTION]... [USER@]HOST:SRC DEST     # 等效于从远程服务器下载文件
 # 两个冒号：通过 rsync 协议连接远程主机的 rsync 守护进程
 rsync [OPTION]... [USER@]HOST::SRC DEST
 rsync [OPTION]... SRC [USER@]HOST::DEST
 
 # 示例
-# 在超算终端（Pi 可以，思源不可以），向 Master 传输数据
+# 在超算传输节点终端（Pi 可以，思源不可以），传输数据给 Master
 rsync -avuP --human-readable -e "ssh -p 313" SRC user@202.120.55.11:DEST
-# 在 Master 终端，向 Master 传输数据（Pi、思源都可以）
+# 在 Master 终端，传输数据给 Master（Pi、思源都可以）
 rsync -auvP --human-readable user@sydata.hpc.sjtu.edu.cn:SRC DEST
 
 # rsync 参数
 -v, --verbose       # 详细输出
--q, --quiet         # 精简输出
+-q, --quiet         # 安静模式
 -a, --archive       # 归档模式，表示以递归方式传输文件，并保持所有文件属性，相当于 -rlptgoD
 -r, --recursive     # 递归模式
 -l, --links         # 保持符号链接的属性
