@@ -95,7 +95,7 @@ OVITO 相关：
 
 注：
 
-- xyz 文件格式通过 ase 读取，其 pbc 为 false，且无晶格参数信息；posconv 转换成 xyz 文件格式会附加晶格参数信息
+- xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；posconv 转换成 xyz 文件格式会附加晶格参数信息
 
 vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
 

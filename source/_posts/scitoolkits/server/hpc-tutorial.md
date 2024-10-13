@@ -24,7 +24,7 @@ password:
 
 ## 服务器、超算介绍
 
-### master
+### Master
 
 - Linux 系统：Ubuntu 22.04，内核：5.19.0-43-generic
 - root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
@@ -150,14 +150,14 @@ model.to(device)
 
 ---
 
-### manager
+### Manager
 
 - Linux 系统：Ubuntu 16.04；内核：4.15.0-120-generic
 - root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
 - 任务调度系统：PBS
 - CPU：Intel Xeon E5520、Intel Xeon E5630（node 9）、Intel Xeon E5-2620（node 11）；共 100 核，共 12 个节点（node1~11 + manager；其中 node2，6，7，8 经常 down）
 - GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理任务）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）
-- 内存：登录、manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G；内存使用情况查看：`free -h`
+- 内存：登录、Manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G；内存使用情况查看：`free -h`
 - Intel 套件：Composer XE 2015
 - glibc 版本过低（编译安装新版本较为复杂）
 

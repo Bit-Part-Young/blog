@@ -556,7 +556,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 最大离子步步数；默认值为 0。
 
-- IBRION=0 时，必须提供 NSW 数值（ab-initio Molecular Dynamics(AIMD) 步数）
+- IBRION=0 时，必须提供 NSW 数值（AIMD 步数）
 - 每个离子步会计算 Hellmann-Feynman 力和应力
 
 
@@ -1304,7 +1304,7 @@ Tetrahedra
 
 #### PROCAR
 
-对于静态计算，PROCAR 文件含 spdand site projected wave function character of each orbital，由 LORBIT 和 RWIGS 参数控制。LORBIT>=10 时，不需要 RWIGS 参数。
+对于静态计算，PROCAR 文件含 spdand site projected wave function character of each orbital，由 LORBIT 和 RWIGS 参数控制。LORBIT>=10 时，不需要 RWIGS 参数
 
 ---
 
@@ -1335,14 +1335,14 @@ def remove_files():
 
 ### 静态计算
 
-WIP…
+WIP...
 
 
 ---
 
 ### 孤立原子计算
 
-WIP…
+WIP...
 
 ---
 
@@ -1410,20 +1410,38 @@ EDIFFG = -2E-02        (Ionic convergence, eV/AA)
 
 ### Bader 电荷计算
 
-WIP…
+WIP...
+
 
 ---
 
 ### AIMD 计算
 
-WIP…
+WIP...
+
+
+---
+
+### 弹性常数计算
+
+计算得到的弹性常数值不是很准确
+
+- [ ] Nb 计算得到的弹性常数 C44 < 0，为什么？
+
+```bash
+IBRION    =  6
+NFREE     =  4  # 4 或 2
+ISIF      =  3
+
+# NSW 的设置，非 0 即可，与其具体值关系不大
+```
 
 
 ---
 
 ### 功函数计算
 
-WIP…
+WIP...
 
 
 ---

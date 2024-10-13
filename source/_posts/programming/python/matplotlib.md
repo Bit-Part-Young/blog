@@ -2,7 +2,7 @@
 title: Matplotlib 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -22,7 +22,7 @@ password:
 
 ## 介绍
 
-Python 绘图包。
+Python 绘图包
 
 
 ---
@@ -51,8 +51,6 @@ fig, ax = plt.subplots()
 
 ax = fig.add_subplot()  # 返回 Axes object
 
-# 填充
-ax.fill_between()
 ```
 
 
@@ -185,6 +183,10 @@ ax.axhline()
 
 # 二维直方图
 ax.hist2d()
+
+
+# 填充
+ax.fill_between()
 ```
 
 
@@ -340,16 +342,16 @@ ax.plot(
 
 ### 设置
 
-- `ax.set()` ：设置轴属性，可接受多种参数；[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
+- `ax.set()`：设置轴属性，可接受多种参数；[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
 
 ```python
-xlim/ylim                    # x、y 轴范围
-xlabel/ylabel                # x、y 轴标签
-title                        # 图标题
-xticks/yticks                # x、y 轴刻度
-xticklabels/yticklabels      # x、y 轴刻度标签
-xscale/yscale                # x、y 轴比例
-facecolor                    # 轴背景颜色
+title                          # 图标题
+xlim / ylim                    # x、y 轴范围
+xlabel / ylabel                # x、y 轴标签
+xticks / yticks                # x、y 轴刻度
+xticklabels / yticklabels      # x、y 轴刻度标签
+xscale / yscale                # x、y 轴比例
+facecolor                      # 轴背景颜色
 
 ax.set_xlabel("x")
 ax.set_ylabel("y")
@@ -364,8 +366,8 @@ ax.set(xlabel="x", ylabel="y")
 `ax.legend()`
 
 ```python
-# label 不在图例上显示
-ax.plot(x, y, label="_nolegend_")
+ax.plot(x, y, label="_nolegend_")      # label 不在图例上显示
+ax.legend([])                          # 不显示图例
 
 # 图例
 ax.legend(ncols, loc, bbox_to_anchor, ...)
@@ -377,6 +379,7 @@ bbox_to_anchor      # 2-tuple floats，(x, y)；x≥1.0 时，图例在外面
 ```
 
 有将两个图例 label 放在一行的示例：[Legend Demo — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/text_labels_and_annotations/legend_demo.html)
+
 
 ---
 
@@ -893,6 +896,12 @@ KeysView(RcParams({'_internal.classic_mode': False,
 ---
 
 ### 其他
+
+```python
+# 调整 Figure 尺寸
+fig, ax = plt.subplots(figsize=(8, 6))
+fig.set_size_inches(8, 6)
+```
 
 - [ ] 找到一个适合的 color cycle
     - [GitHub - Billingegroup/bg-mpl-stylesheets: Matplotlib style sheets](https://github.com/Billingegroup/bg-mpl-stylesheets)

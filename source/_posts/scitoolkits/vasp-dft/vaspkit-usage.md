@@ -28,6 +28,9 @@ password:
 
 vaspkit 的能带结构数据获取前提是 K-path 是 Line-Mode 的
 
+[vaspkit pro](https://vaspkit.com/vaspkitpro.html) 有进阶功能（Structure Utility 是完全体）
+
+
 ---
 
 `utilities` 目录结构

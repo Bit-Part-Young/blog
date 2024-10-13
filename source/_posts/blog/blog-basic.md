@@ -71,6 +71,9 @@ localhost  # 主机名
 - Cloudflare 域名价格：[Cloudflare Domain Pricing](https://cfdomainpricing.com/)
 - `.top` 域名价格较便宜（￥20+/年），`.xyz` 较贵（￥70+/年）
 
+- [ ] 是否考虑转移到便宜的域名
+
+
 ---
 
 域名绑定：
@@ -200,6 +203,8 @@ localhost  # 主机名
 - [ ] 如何进行 ICP 备案
 
 - [ ] 如何白嫖域名（限制较多，不建议）：[2024最新免费域名教程，可托管CF，零失败率，解决所有坑点。\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1by411B7Ko/)
+
+- [ ] 如何租服务器
 
 - [ ] Cloudflare 代理域名 DNS 后，经常出现如下错误，如何解决（有时正常）
 

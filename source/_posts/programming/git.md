@@ -469,7 +469,7 @@ Welcome to GitLab, XXX!
 
 - **注意事项**：
     - `~/.ssh/config` 文件出现 `Bad owner or permissions` 错误的解决办法：文件权限问题，设置 config 文件权限为 `600`
-    - 超算平台中的登陆节点禁止对外的 ssh，无法使用 git 交互环境，建议在本地或者实验室工作站（manager 和 master）使用；超算平台进行以上设置会出现以下报错：
+    - 超算平台中的登陆节点禁止对外的 ssh，无法使用 git 交互环境，建议在本地或者实验室工作站（Manager 和 Master）使用；超算平台进行以上设置会出现以下报错：
 
 ```bash
 ssh: connect to host github.com port 22: Network is unreachable
@@ -719,6 +719,7 @@ git branch -vv             # 列出 repo 所有分支信息
 git checkout <Branch>      # 切换分支
 git checkout -b <Branch>   # 创建并切换新分支
 git checkout -             # 迅速切换到上一个分支
+git checkout -- file       # 撤回对某个文件的修改
 ```
 
 

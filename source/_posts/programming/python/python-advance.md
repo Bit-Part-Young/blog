@@ -2,7 +2,7 @@
 title: Python 进阶
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -39,11 +39,13 @@ numba：对循环、函数和 numpy 有加速作用，对 pandas 无效
 
 [talks/PDF/2024-09-12-mypy.pdf at main · stone-zeng/talks · GitHub](https://github.com/stone-zeng/talks/blob/main/PDF/2024-09-12-mypy.pdf)
 
-类型提示/标注（Type Hints），提高代码质量和可维护性
+- 类型提示/标注（Type Hints），提高代码质量和可维护性
+
+- 从 Python 3.9 开始，PEP 585 引入了对标准集合和其他几个类型的泛型版本的内置支持。这意味着你可以直接使用像 list、dict、set、tuple 等内置数据结构进行类型注解，而不必依赖于 typing 模块中的对应类型
 
 ```bash
-int, float, bool, str    # 基本 
-List, Tuple, Dict, Set   # 容器 
+int, float, bool, str    # 基本类型 
+list, tuple, dict, set   # 数据结构类型；对应 typing 模块中的 List, Tuple, Dict, Set 
 Optional                 # 可选，指定变量可以是某个类型或者是 None
 Type Aliases             # 类型别名，简化复杂的类型声明
 Union                    # 联合，允许变量是多个类型中的一个
@@ -53,7 +55,6 @@ Callable                 # 指定对象是可调用的，如函数或实现了 _
 
 
 ```python
-# Python 3.8 及之前版本？
 from typing import List, Tuple, Dict, Set, Union, Literal
 import numpy as np
 import pandas as pd

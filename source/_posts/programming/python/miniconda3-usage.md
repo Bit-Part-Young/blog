@@ -2,7 +2,7 @@
 title: Miniconda3 安装与使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -336,11 +336,11 @@ deactivate  # 退出
 
 ```bash
 # 安装
-# Linux
+# Linux 安装速度快
 curl -LsSf https://astral.sh/uv/install.sh | sh 
 # macOS 
 brew install uv
-# cargo
+# cargo 安装速度慢
 cargo install --git https://github.com/astral-sh/uv uv
 
 uv self update   # 更新

@@ -1420,6 +1420,8 @@ TerminalVector 字体
 ```
 
 - tcolorbox 宏包：创建彩色盒子
+    - [LaTeX tcolorbox宏包配色分享](https://zhuanlan.zhihu.com/p/336171630)
+    - [好看的LaTeX模板推荐下](https://www.zhihu.com/question/566659640/answer/3114010209)
 
 ```latex
 \usepackage{tcolorbox}
@@ -1577,7 +1579,6 @@ tocbibind     % 支持将目录、参考文献、索引本身写入目录项
 \newcommand{\tsuper}[1]{\textsuperscript{#1}}
 ```
 
-[LaTeX tcolorbox宏包配色分享](https://zhuanlan.zhihu.com/p/336171630)
 
 ---
 

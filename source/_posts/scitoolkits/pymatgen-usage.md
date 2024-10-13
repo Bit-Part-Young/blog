@@ -820,6 +820,8 @@ from pymatgen.io.vasp.ouputs import Oszicar
 
 #### Vasprun
 
+BSVasprun 类：Vasprun 的优化版本（继承至 Vasprun），只解析能带结构的本征值（忽略结构，参数等）
+
 ```python
 from pymatgen.io.vasp.ouputs import Vasprun
 
@@ -850,7 +852,8 @@ dict_keys(
 
 ```python
 import matplotlib.pyplot as plt
-from pymatgen.io.vasp.outputs import Vasprun
+from pymatgen.electronic_structure.core import OrbitalType
+from pymatgen.io.vasp.outputs import Vasprun, BSVasprun
 from pymatgen.electronic_structure.plotter import (
     BSDOSPlotter,
     BSPlotter,
@@ -872,14 +875,28 @@ dos_data=dos_vasprun.complete_dos
 
 # 态密度（总）绘制
 dos_plot = DosPlotter(stack=False, sigma=0.5)
-dos_plot.add_dos("total dos", dos=dos_data)
+dos_plot.add_dos("Total", dos=dos_data)
 dos_plot.get_plot()
 
 # 态密度（投影到轨道 + 总）绘制
 pdos_plot = DosPlotter(stack=False, sigma=0.5)
-pdos_plot.add_dos("total dos", dos=dos_data)
+pdos_plot.add_dos("Total", dos=dos_data)
 pdos_plot.add_dos_dict(dos_data.get_spd_dos())
 pdos_plot.get_plot()
+
+# 态密度（投影到元素 + 总）绘制
+edos_plot = DosPlotter(stack=False, sigma=0.5)
+edos_plot.add_dos("Total", dos=dos_data)
+edos_plot.add_dos_dict(dos_data.get_element_dos())
+edos_plot.get_plot()
+
+# 态密度（元素投影到轨道 + 总）绘制
+edos_plot = DosPlotter(stack=False, sigma=0.5)
+pdos_Nb = dos_data.get_element_spd_dos("Nb")
+dos_plot.add_dos("Nb(s)", dos=pdos_Nb[OrbitalType.s])
+dos_plot.add_dos("Nb(p)", dos=pdos_Nb[OrbitalType.p])
+dos_plot.add_dos("Nb(d)", dos=pdos_Nb[OrbitalType.d])
+edos_plot.get_plot()
 
 # 能带 + 态密度绘制
 bsdos_plot = BSDOSPlotter(bs_projection=None, dos_projection=None)

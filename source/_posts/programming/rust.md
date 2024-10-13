@@ -109,6 +109,8 @@ cargo install --list
 cargo add <lib>
 
 rustup update  # 更新 Rust 工具链
+
+cargo clean    # 删除当前目录下的 target/ 文件夹
 ```
 
 ---
