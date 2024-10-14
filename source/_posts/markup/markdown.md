@@ -30,7 +30,7 @@ password:
 - 参考资料：
     - Markdown 语法及应用：[lec3.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec3.md)
     - [GitHub - tchapi/markdown-cheatsheet: Markdown Cheatsheet for Github Readme.md](https://github.com/tchapi/markdown-cheatsheet)
-    - [GitHub - mzlogin/markdown-intro: Markdown Intro / Markdown 简介](https://github.com/mzlogin/markdown-intro) 
+    - [GitHub - mzlogin/markdown-intro: Markdown Intro / Markdown 简介](https://github.com/mzlogin/markdown-intro)
 
 
 
@@ -46,7 +46,7 @@ password:
 
 - CSV 内容转成 Markdown 表格：
     - 还可以 Excel 内容：[Table to Markdown - MarkDown Convert](https://markdown-convert.com/en/tool/table)
-    - 还可以转 LaTeX 表格等：[Convert CSV to Markdown Table - Table Convert Online](https://tableconvert.com/csv-to-markdown)
+    - 还可以转 LaTeX 表格等（可对数据进行操作）：[Convert CSV to Markdown Table - Table Convert Online](https://tableconvert.com/csv-to-markdown)
     - [GitHub - lzakharov/csv2md](https://github.com/lzakharov/csv2md)
     - [GitHub - astanin/python-tabulate](https://github.com/astanin/python-tabulate)
 

@@ -901,6 +901,12 @@ edos_plot.get_plot()
 # 能带 + 态密度绘制
 bsdos_plot = BSDOSPlotter(bs_projection=None, dos_projection=None)
 bsdos_plot.get_plot(bs=bs_data, dos=dos_data)
+
+# 对 get_plot() 返回的 Axes 对象进行进一步的操作
+ax = dos_plot.get_plot()
+ax.set_xlim(...)
+
+plt.savefig(...)    # 保存图片，可不使用 dos_plot.save_plot()
 ```
 
 

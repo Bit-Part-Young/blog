@@ -23,15 +23,16 @@ password:
 
 - 代码编辑器，有非常丰富的插件
 
-- VSCode 连接远程服务器，点击打开的文件，会立马跳转到相应的目录中，定位文件相比 MobaXterm 更便捷，便于下载文件到本地
+- 命令行启动
 
 ```bash
-# 命令行启动
 code             # VSCode
 code-insiders    # VSCode Insiders
 ```
 
-- 配置文件 `settings.json`：**分用户和远程设置**；配置文件中有设置但没安装的插件其命令不会有高亮
+- 配置：**分用户、远程设置和工作区**；配置文件中有设置但没安装的插件其命令不会有高亮
+    - 打开配置文件 `settings.json`：命令面板 -- 搜索 “Open Settings”
+    - 打开 GUI：设置菜单
 
 - VSCode 配置同步：[VSCode官方的配置同步方案\_vscode同步\_蝉沐风的码场的博客-CSDN博客](https://blog.csdn.net/chanmufeng/article/details/123028133)
 
@@ -39,33 +40,13 @@ code-insiders    # VSCode Insiders
 
 - VSCode 中类、函数、方法、属性等的图标：[IntelliSense in Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions)
 
-- VSCode 终端字体设置：[Change terminal font family to nerd font · Issue #81497 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/81497)
+- VSCode 连接远程服务器，点击打开的文件，会立马跳转到相应的目录中，文件定位相比 MobaXterm 更便捷迅速
 
-```json
-{
-    // 终端字体
-    "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
-    // 终端字体大小
-    "terminal.integrated.fontSize": 14,
-    // 编辑器字体大小
-    "editor.fontSize": 14,
-    // 窗口缩放大小
-    "window.zoomLevel": 0.5,
-}
-```
-
-- 删除行尾的多余空白字符（尾随空白）：[visual studio code - Remove trailing spaces automatically or with a shortcut - Stack Overflow](https://stackoverflow.com/questions/30884131/remove-trailing-spaces-automatically-or-with-a-shortcut)
-
-```json
-{
-    "files.trimTrailingWhitespace": true,
-}
-```
 
 
 ---
 
-### 快捷键
+## 快捷键
 
 ```bash
 Ctrl + /                # 单行注释
@@ -84,15 +65,39 @@ Crtl + 点击图片          # 缩小图片
 
 ---
 
+## 通用设置
+
+- 终端字体设置：[Change terminal font family to nerd font · Issue #81497 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/81497)
+- 删除行尾的多余空白字符（尾随空白）：[visual studio code - Remove trailing spaces automatically or with a shortcut - Stack Overflow](https://stackoverflow.com/questions/30884131/remove-trailing-spaces-automatically-or-with-a-shortcut)
+
+```json
+{
+    // 终端字体
+    "terminal.integrated.fontFamily": "MesloLGM Nerd Font",
+    // 终端字体大小
+    "terminal.integrated.fontSize": 14,
+    // 编辑器字体大小
+    "editor.fontSize": 14,
+    // 窗口缩放大小
+    "window.zoomLevel": 0.5,
+    // 删除尾随空白
+    "files.trimTrailingWhitespace": true,
+}
+```
+
+
+
+---
+
 ## 插件
 
 ### Vim
 
 - 官网：[GitHub - VSCodeVim/Vim: :star: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim)
 
-- 在 VSCode 中使用 Vim 快捷键；内置的一些 Vim 插件（常用）：airline、easymotion、surround
+- 在 VSCode 中使用 Vim 快捷键；内置的一些 Vim 插件（个人不常用）：airline、easymotion、surround
 
-- Vim 设置
+- 配置
 
 ```json
     // Vim 配置
@@ -194,13 +199,26 @@ Crtl + 点击图片          # 缩小图片
 
 - Remote Development：集成插件；可连接 WSL（自动识别）和远程服务器（若已设置别名，可自动识别）
 
-- Github Copilot (Chat)：辅助编写代码，如代码自动补全，可在代码和侧边栏中开启对话。目前主要用它进行（Github Copilot Chat 目前只有 VSCode Insider 版本才有）
+- Github Copilot (Chat)：辅助编写代码，如代码自动补全，可在代码和侧边栏中开启对话。目前主要用它进行代码补全
+
+- GitLens：Git 增强
+    - 关掉每行的 blame，关掉某些行上方的作者时间信息以及三个点
+        - [How to disable inline author link? · Issue #54 · gitkraken/vscode-gitlens](https://github.com/gitkraken/vscode-gitlens/issues/54)
+        - [visual studio code - VSCode three dots at the top of the editor - Stack Overflow](https://stackoverflow.com/questions/66294274/vscode-three-dots-at-the-top-of-the-editor)
+
+```json
+{
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.recentChange.enabled": false,
+    "gitlens.codeLens.authors.enabled": false,
+}
+```
 
 - WakaTime：统计编程项目 Codinig 数据
 
 - TabOut：跳出括号（函数、列表、字典中的括号和字符串中的引号）
 
-- Rainbow CSV：高亮 CSV 和 TSV 文件
+- Rainbow CSV：高亮 CSV 和 TSV 文件，优化视觉体验
 
 - TODO Highlight：高亮文件中的 `TODO`、`FIXME` 等
 
