@@ -346,6 +346,8 @@ supercell = atoms * (2, 2, 2)   # 方式 2
 
 ```python
 from ase.build import surface
+
+surface(atoms, )
 ```
 
 

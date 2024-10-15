@@ -49,6 +49,8 @@ password:
 - [VESTA](https://jp-minerals.org/vesta/en/download.html)
 - [VMD](https://www.ks.uiuc.edu/Research/vmd/)
 
+[如何实现结构原子可视化？](https://mp.weixin.qq.com/s/zfzZ7kRXsXKe9yhyLcPuYQ)
+
 ---
 
 VESTA 相关：

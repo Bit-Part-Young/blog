@@ -36,6 +36,19 @@ Perdew-Burke-Ernzerhof (PBE) 形式的 generalized gradient approximation (GGA) 
 
 投影缀加平面波赝势（PAW）方法（描述离子 - 电子相互作用）
 
+PAW (Projected Augmented Wave) 投影缀加波，是基于密度泛函理论（DFT）开发的描述电子、原子核行为的全电子方法
+
+APW 是增广平面波方法（Augmented Plane Wave），也是一种全电子方法，将电子分为软、硬两部分，前者用 PW 描述，后者用 LCAO 描述（Linear Combination of Atomic Orbitals，原子轨道的线性组合）
+
+PBE 是泛函，描述电子的交换 - 相关能的拟合函数，以 Perdew-Burke-Ernzerhof 三位开发者的名字缩写命名
+
+PW 是指平面波基组，用于展开波函数或者说原子、分子轨道
+
+PAW 是独立于 PBE 的理论方法，但是我们常常会见到 POTCAR 中称为 PAW-PBE 赝势，把三个概念放在一起了，意思实际上是针对不同的的泛函利用 PAW 方法相应调参优化得到的一致性赝势文件
+
+[PAW (Projected Augmented Wave) 全电子理论计算方法](https://mp.weixin.qq.com/s/CffWYOuyAhI2zosScO7IjQ)
+
+
 ---
 
 能带计算，ISMEAR=0？
@@ -306,14 +319,81 @@ EDIFFG = -2E-02        (Ionic convergence, eV/AA)
 
 ### Bader 电荷计算
 
-WIP...
+- 参考：
+    - [CsPbI3 电荷密度](https://mp.weixin.qq.com/s/eWQQwBizItEMej_ocDzoXw)
+    - [Bader电荷可视化](https://mp.weixin.qq.com/s/32R0egD3mZbY598lz6F5ig)
+
+- Bader 电荷：
+    - DFT 计算中常见的一种电荷分析方法，通过其对电荷的定义计算出每个原子在体系中得失电子的情况，即净电荷
+    - 又称为 atom-in-molecule (AIM) charge，是一种将空间中的电子密度的零通量分界面作为划分电荷所属相应原子的方法
+    - 通过处理 VASP 得到的 CHGCAR 或 Gaussian 格式的 cube 文件计算体系的 Bader 电荷
+    - 电荷的定义或者说划分方法会明显影响计算数值，所以不同的分析方法得到的绝对数值没有太大的意义，而是应该在不同体系之间横向比较
+
+- 计算：与静态计算类似；添加 `LAECHG` 参数，会生成 AECCAR0 AECCAR1 AECCAR2 三个文件
+
+```bash
+# INCAR 参数设置
+IBRION      = -1
+NSW         = 0
+LCHARG      = .TRUE.
+LAECHG      = .TRUE.      # Bader 计算
+
+
+# 输出文件
+# TODO: 待确认
+AECCAR0                   # 全电子中的芯电子部分
+AECCAR1                   # 自洽计算前的交叠原子电荷
+AECCAR2                   # 全电子中的价电子部分
+CHGCAR                    # 自洽计算后赝电子
+
+# 后处理
+chgsum.pl AECCAR0 AECCAR2     # 得到 CHGCAR_sum，包含了 VASP 中定义的原子总电荷密度
+bader CHGCAR -ref CHGCAR_sum  # 得到 BCF.dat、ACF.dat、AVF.dat
+
+# BCF.dat
+# TODO: 待确认
+# 电荷极大值序号和坐标；体积内的bader电荷积分；距离极大值最近的原子和距离
+
+# ACF.dat；包含了所有原子的价电子数信息
+# TODO: 待确认
+# 原子序号和坐标；价电荷数；到零通量面最小距离；原子体积）
+# 示例
+#         X           Y           Z       CHARGE      MIN DIST  ATOMIC VOL
+--------------------------------------------------------------------------------
+1    3.164973    3.164973   3.164973    8.129202     2.022066   50.790052
+2    0.000000    0.000000   0.000000   13.223566     1.494570   30.667423
+3    0.000000    0.000000   3.164973    7.549077     1.582486   57.390231
+4    3.164973    0.000000   0.000000    7.549079     1.582486   57.390910
+5    0.000000    3.164973   0.000000    7.549079     1.582486   57.390910
+--------------------------------------------------------------------------------
+VACUUM CHARGE:              0.0000
+VACUUM VOLUME:              0.0000
+ NUMBER OF ELECTRONS:        44.0000
+```
 
 
 ---
 
 ### AIMD 计算
 
-WIP...
+- 参考：
+    - [【VASP 基础 03】关于 VAPS 分子动力学的计算细节](https://zhuanlan.zhihu.com/p/1103173525)
+
+- 计算：
+
+```bash
+# INCAR 参数设置
+MDALGO      = 2
+SMASS       = 0
+
+TEBEG       = 
+TEEND       = 
+
+
+# 数据获取
+# 压强
+grep "external pressure" OUTCAR | awk '{print $4}'
+```
 
 
 ---
@@ -343,6 +423,10 @@ WIP...
 ---
 
 ### 其他
+
+- [ ] VASP 拉伸模拟
+
+SOC：自旋轨道耦合、旋轨耦合
 
 VASP INCAR 参数 `LSORBIT = T` 开启 SOC 时，需使用 `vasp_ncl`，使用 `vasp_std` 会出现以下报错
 

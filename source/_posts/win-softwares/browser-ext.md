@@ -2,7 +2,7 @@
 title: 浏览器常用插件
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -110,6 +110,8 @@ www.sciencedirect.com     # 直接连接
 
 - [GitHub - 027xiguapi/code-box: 本插件可以用于CSDN/知乎/脚本之家/博客园等网站,实现无需登录一键复制代码;支持选中代码;或者代码右上角按钮的一键复制;解除关注博主即可阅读全文提示;去除登录弹窗;去除跳转APP弹窗.](https://github.com/027xiguapi/code-box)
     - 建议取消知乎的 “关闭登录弹窗”，否则无法打开收藏的弹窗
+
+- 新标签页：[GitHub - XengShi/materialYouNewTab: A Simple New Tab ( browsers's home page ) inspired with Google's 'Material You' design](https://github.com/XengShi/materialYouNewTab)
 
 - IDM Integration Module：IDM 下载集成模块；嗅探下载网页视频
 

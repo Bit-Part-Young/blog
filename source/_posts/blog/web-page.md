@@ -1,7 +1,7 @@
 ---
 title: 网页推荐
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: 网页推荐
@@ -124,6 +124,7 @@ http://machine_ip_address:2283/api  # 移动端登录
 - [NianBroken](https://www.nianbroken.top/)
 - [GitHub - KawaiiZapic/Present: 一个简洁的个人主页,支持显示博客文章.](https://github.com/KawaiiZapic/Present)
 - [GitHub - QNquenan/homepage-for-vue3: 基于Vue3的主页](https://github.com/QNquenan/homepage-for-vue3)
+- [Biofy - 个性化主页 - 聚合社交信息 - 作品展示 - 数字名片](https://biofy.cn/)
 
 
 

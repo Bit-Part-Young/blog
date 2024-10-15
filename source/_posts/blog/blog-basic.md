@@ -246,10 +246,10 @@ source ~/.config/envman/PATH.env
 
 ```bash
 # 项目初始化
-npm init      # 引导创建 package.json 文件
+npm init         # 引导创建 package.json 文件
 
 # 项目快速初始化
-npm init -y   # 默认设置，跳过交互式设置
+npm init -y      # 默认设置，跳过交互式设置
 
 # 安装依赖
 npm install                    # 等同于 npm i
@@ -260,23 +260,25 @@ npm install <package>@version  # 安装特定 package 及版本
 npm install -g <package>       # 全局安装
 npm install -g pnpm yarn       # 安装 pnpm 和 yarn 包管理器
 
-npm uninstall    # 卸载
-npm search       # 搜索
-npm list         # 列出当前项目的所有依赖
-npm outdated     # 检查项目中的依赖是否有更新
-npm outdated -g  # 全局
+npm uninstall                  # 卸载
+npm search                     # 搜索
+npm list                       # 列出当前项目的所有依赖
+npm outdated                   # 检查项目中的依赖是否有更新
+npm outdated -g                # 全局
+npm update -g                  # 跟新全局的包
+npm outdated -g --depth=0      # 同上
 
-npm audit        # 检查项目依赖是否存在安全漏洞，并提供修复建议
+npm audit                      # 检查项目依赖是否存在安全漏洞，并提供修复建议
 npm audit fix
 npm audit fix --force
 
-npm prune                # 删除不在 package.json 文件中的依赖项
-npm run                  # 运行在 package.json 文件中定义的脚本命令
-npm cache verify         # 验证 npm 缓存，并删除旧的缓存内容
-npm cache clean --force  # 强制删除 npm 缓存
+npm prune                      # 删除不在 package.json 文件中的依赖项
+npm run                        # 运行在 package.json 文件中定义的脚本命令
+npm cache verify               # 验证 npm 缓存，并删除旧的缓存内容
+npm cache clean --force        # 强制删除 npm 缓存
 
-npm config get registry  # 查看源；npm 可改成 yarn
-npm config set registry  # 设置镜像源
+npm config get registry        # 查看源；npm 可改成 yarn
+npm config set registry        # 设置镜像源
 
 npm config set registry https://registry.npmmirror.com
 ```
