@@ -40,6 +40,9 @@ password:
 - 《如何使用 LaTeX 排版论文》讲稿：[GitHub - tuna/thulib-latex-talk](https://github.com/tuna/thulib-latex-talk)
 - [lshort-zh-cn.pdf](https://github.com/CTeX-org/lshort-zh-cn)
 - [GitHub - wklchris/Note-by-LaTeX: 《简单粗暴 LaTeX》出版图书开源仓库](https://github.com/wklchris/Note-by-LaTeX)
+- [LaTeX科技排版 - 华东师范大学](https://math.ecnu.edu.cn/~jypan/Latex/index.html)
+- [《科技论文排版技术》课程辅助教材 - Ultrafast Laser Lab - 天津大学](https://ull.tju.edu.cn/education/course/latex.html)
+- [GitHub - huangxg/lnotes: LaTeX Notes](https://github.com/huangxg/lnotes)
 - [LaTeX 备忘清单 & latex cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/latex.html)
 - LaTeX 排版简要介绍：[lec4.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec4.md)
 - 需设置网络代理：[LaTeX 科技文档排版](https://lvjr.bitbucket.io/latex.html)
@@ -53,7 +56,7 @@ password:
 - [1.1 Awesome-LaTeX-cn - Meiting Wang](https://meiting-wang.github.io/latex/begin1)
 - [GitHub - samcarter/tikzducks: A latex package to draw cute rubber ducks with TikZ](https://github.com/samcarter/tikzducks)
 - [LaTeX技巧 - Feng's Blog](https://blog.windsky.tech/2022/01/29/LaTeX-Notes/)
-- [常用 LaTeX 代码](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
+- [常用 LaTeX 代码 - LaTeX 工作室](https://flowus.cn/latex/share/66110e84-b24a-4cd5-b8a7-2ba2afb35a30)
 - [GitHub - learnlatex/learnlatex.github.io: Learn LaTeX online](https://github.com/learnlatex/learnlatex.github.io)
 - [分类: LaTeX - 智朋的个人博客](https://coffeelize.top/categories/LaTeX/)
 - 自定义列表环境：[LaTeX 自定义列表环境 - 智朋的个人博客](https://coffeelize.top/posts/18fc56c9.html)
@@ -925,19 +928,11 @@ Donald~E. Knuth
 - LaTeX 表格生成：[Create LaTeX tables online](https://www.tablesgenerator.com/)（可生成三线表，在 `table style` 中选）
 
 ```latex
+% tabular 环境
 \begin{tabular}{...}
     ...
 \end{tabular}
 
-% 水平合并单元格
-% num 要合并的单元格数量
-% alignment 对齐方式
-% content 单元格中的内容
-\multicolumn{num}{alignment}{content}
-
-% 垂直合并单元格
-% width 单元格宽度，可使用 * 以自动调整宽度
-\multirow{num}{width}{content}
 ```
 
 - 三线表：`booktabs` 宏包
@@ -973,24 +968,42 @@ Row 2                      & Data 3   & Data 4   \\
 \end{tabular}
 ```
 
-- 长表格：`longtable` 宏包（跨页）
+- 长表格：`longtable` 宏包（支持跨页）
 
 ```latex
 \usepackage{longtable}
 
+\begin{longtable}{...}
+    ...
+\end{longtable}
 ```
 
 - 其他
-
->[horizontal alignment - How to align table headers differently than all other table cells? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/2924/how-to-align-table-headers-differently-than-all-other-table-cells)
+    - [horizontal alignment - How to align table headers differently than all other table cells? - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/2924/how-to-align-table-headers-differently-than-all-other-table-cells)
 
 ```latex
-\multicolumn{1}{c}{}   % 单独控制表格 cell 的对齐方式
+\usepackage{multirow}                   % \multirow 需调用此宏包
+
+\multicolumn{num}{alignment}{content}   % 水平合并单元格
+% num 要合并的单元格数量
+% alignment 对齐方式
+% content 单元格中的内容
+
+\multirow{num}{width}{content}          % 垂直合并单元格
+% width 单元格宽度，可使用 * 以自动调整宽度
+
+\multicolumn{1}{c}{}                    % 单独控制表格 cell 的对齐方式
 
 % 定义新的列类型
 % p 可改成 m
 % \centering 可改成 \raggedleft \raggedright
 \newcolumntype{C}{>{\centering\arraybackslash}p{3cm}}
+
+% 调整 LaTeX 中默认的表格行距
+\usepackage{array}  
+\renewcommand{\arraystretch}{1.3}
+
+\usepackage{makecell}     % 在单元格内换行
 ```
 
 

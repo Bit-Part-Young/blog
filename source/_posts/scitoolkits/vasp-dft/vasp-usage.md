@@ -335,6 +335,7 @@ EDIFFG = -2E-02        (Ionic convergence, eV/AA)
     - [Bader电荷可视化](https://mp.weixin.qq.com/s/32R0egD3mZbY598lz6F5ig)
     - [电子结构分析【04】——差分电荷密度和电荷布居要如何分析？要点在这里](https://mp.weixin.qq.com/s/NLEP8tG6KWfLOgnKqA9L_g)
     - [差分电荷和Bader电荷分布 - Dong Fan's Blog](https://agrh.github.io/2019/08/06/ded/)
+    - [VASP视频教程-电荷差分与bader分析\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1L6pWeVESu)
 
 - Bader 电荷：
     - DFT 计算中常见的一种电荷分析方法，通过其对电荷的定义计算出每个原子在体系中得失电子的情况，即净电荷
@@ -416,9 +417,14 @@ grep "external pressure" OUTCAR | awk '{print $4}'
 
 ### ELF
 
-- 电子局域化函数
+- 参考：[VASP视频教程-电荷局域分析\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HP4iecEjM)
+
+- 电子局域化函数 (electron localization function, ELF)
+
+- 在自洽计算中添加/修改以下参数；计算结束后，得到 ELFCAR 文件；使用 VESTA 进行可视化；可将 ELF 图与构型视图叠放在一起，对照效果更好
 
 ```bash
+PREC        = Accurate
 LELF        = .TRUE.
 ```
 

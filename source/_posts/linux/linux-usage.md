@@ -50,6 +50,7 @@ WIP...
 
 - 单行 Shell 命令：[Shell One Liner - GitHub - trimstray/the-book-of-secret-knowledge](https://github.com/trimstray/the-book-of-secret-knowledge#shell-one-liners-toc)
 
+- SSH 配置管理：[GitHub - soulteary/ssh-config: 1MB size, 100% Coverage, Use more expressive YAML / JSON to manage your Config files. --- 1MB大小，100% 测试覆盖，使用更具表现力的YAML / JSON来管理您的配置文件。](https://github.com/soulteary/ssh-config)
 
 
 ---

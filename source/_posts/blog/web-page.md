@@ -201,6 +201,8 @@ mdbook serve --open
 
 - [GitHub - just-the-docs/just-the-docs: A modern, high customizable, responsive Jekyll theme for documentation with built-in search.](https://github.com/just-the-docs/just-the-docs)
 
+- [GitHub - thuliteio/doks: Everything you need to build a stellar documentation website. Fast, accessible, and easy to use.](https://github.com/thuliteio/doks)
+
 
 
 ---
@@ -209,9 +211,10 @@ mdbook serve --open
 
 - 将 Telegram Channel 转为微博客：[GitHub - ccbikai/BroadcastChannel: Turn your Telegram Channel into a MicroBlog.](https://github.com/ccbikai/BroadcastChannel)
 
-- [GitHub - EveSunMaple/Frosti: A clean, elegant, and fast static blog template! 🚀 Developed with Astro](https://github.com/EveSunMaple/Frosti)
-
-- [GitHub - lin-stephanie/astro-antfustyle-theme: A customizable, feature-rich Astro theme for blog and portfolio creation.](https://github.com/lin-stephanie/astro-antfustyle-theme)
+- Astro 框架：
+    - [GitHub - saicaca/fuwari: ✨A static blog template built with Astro.](https://github.com/saicaca/fuwari)
+    - [GitHub - EveSunMaple/Frosti: A clean, elegant, and fast static blog template! 🚀 Developed with Astro](https://github.com/EveSunMaple/Frosti)
+    - [GitHub - lin-stephanie/astro-antfustyle-theme: A customizable, feature-rich Astro theme for blog and portfolio creation.](https://github.com/lin-stephanie/astro-antfustyle-theme)
 
 - [GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
 

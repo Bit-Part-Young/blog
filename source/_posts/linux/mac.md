@@ -140,12 +140,14 @@ chflags nohidder <path>    # 取消隐藏
 
 #### 快捷键
 
-参考：[macOS常用快捷键.md](https://github.com/itcharge/macOS-Tips/blob/main/02%20-%20macOS%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.md)、[Mac 键盘快捷键 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/HT201236)
+- 参考：
+    - [macOS常用快捷键.md](https://github.com/itcharge/macOS-Tips/blob/main/02%20-%20macOS%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.md)
+    - [Mac 键盘快捷键 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/HT201236)
 
-快捷键：
+- 快捷键
 
 ```bash
-# 注：无 Windows 的 `Win + X` 等效快捷键
+# 注：无 Windows 的 Win + X 等效快捷键
 
 # 剪切移动文件：command + C 复制，然后 command + option + V 将其移动到目标目录
 
@@ -153,20 +155,20 @@ chflags nohidder <path>    # 取消隐藏
 
 # 打开 Alfred，输入 Restart、Sleep、Shut down 实现重启、睡眠、关机
 
-command + delete             # 删除文件
-command + Space              # 聚焦搜索（没有 Alfred 的 option + Space 好用）
 Space                        # 预览功能
+command + Space              # 聚焦搜索（没有 Alfred 的 option + Space 好用）
 command + Q                  # 退出程序（macOS 关闭窗口不是完全退出程序）
-command + ↑ / ️↓              # 返回上一层文件夹；进入文件夹
-control + ← / →︎              # 左右切换「空间」（有全屏的窗口的话）
-command + shift + G          # 打开 前往文件夹 窗口
-command + F3                 # 返回桌面
-option + shift + F1/2/11/12  # 更加细致地调节音量、亮度
-option + command + 5         # 显示截图、录屏选项
 option + command + esc       # 强制退出应用程序
+command + delete             # 删除文件
+command + ↑ / ️↓              # 返回上一层文件夹；进入文件夹
+control + ← / →︎              # 左右切换「空间」（有全屏窗口时）
+command + shift + G          # 打开 “前往文件夹” 窗口
 command + ~                  # 切换同一个程序下的窗口
 command + M                  # 将最前方的窗口最小化至程序坞（不会出现在切换窗口中）
 command + H                  # 隐藏最前方 App 的窗口（会出现在切换窗口中）
+option + shift + F1/2/11/12  # 更加细致地调节音量、亮度
+option + command + 5         # 显示截图、录屏选项
+command + F3                 # 返回桌面
 ```
 
 
@@ -300,9 +302,9 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Obsidian
     - Typora
     - MarkText
-    - fsnotes
+    - FSNotes（iOS/macOS 专用）
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
-- 书签工具：
+- 书签收藏工具：
     - Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
     - [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
 - 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）

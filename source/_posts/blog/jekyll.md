@@ -1,7 +1,7 @@
 ---
 title: Jekyll 框架
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: Jekyll 框架
@@ -33,6 +33,7 @@ GitHub Pages 默认框架。
 - [GitHub - just-the-docs/just-the-docs: A modern, high customizable, responsive Jekyll theme for documentation with built-in search.](https://github.com/just-the-docs/just-the-docs)
 - chirpy 主题（简洁博客）：[GitHub - cotes2020/jekyll-theme-chirpy: A minimal, responsive, and feature-rich Jekyll theme for technical writing.](https://github.com/cotes2020/jekyll-theme-chirpy)
 - [GitHub - vinitkumar/white-paper: Simple, elegant and clean jekyll theme.](https://github.com/vinitkumar/white-paper)
+- [GitHub - kitian616/jekyll-TeXt-theme](https://github.com/kitian616/jekyll-TeXt-theme)
 
 
 ---

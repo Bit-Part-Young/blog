@@ -258,11 +258,11 @@ df.sort_values(
 - 参数 `axis=0` 表示为行，`axis=1` 表示为列
 
 ```python
-df.reset_index()                   # 索引 index 重置
-pd.concat([df1, df2], axis=...)    # 行/列 拼接
-df.sort_values(by=...)             # 按照 列/行 排序
-df.values.reshape(-1)              # 将数据转化成一维
-df.round()                         # 四舍五入；当 df 既有数值和字符串数据时，也可以使用
+df.reset_index(drop=True, inplace=True)  # 重置行索引
+pd.concat([df1, df2], axis=...)          # 行/列 拼接
+df.sort_values(by=...)                   # 按照 列/行 排序
+df.values.reshape(-1)                    # 将数据转化成一维
+df.round()                               # 四舍五入；当 df 既有数值和字符串数据时，也可以使用
 ```
 
 

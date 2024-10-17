@@ -737,7 +737,7 @@ mpirun lmp -i in.test
 
 module purge
 
-# 该版本的 LAMMPS 只安装了 4 个 packages
+# 该版本的 LAMMPS 只安装了 4 个 packages；建议手动编译安装
 module load lammps/20230802-oneapi-2021.4.0
 
 mpirun lmp -in in.test
@@ -924,12 +924,12 @@ rsync -auvP --human-readable user@sydata.hpc.sjtu.edu.cn:SRC DEST
 
 ---
 
-### manager 与超算间的数据传输
+### Manager 与超算间的数据传输
 
 上传与下载：孔老师写的 upload 与 download 脚本
 
-- manager 与 Pi：`upload -s P` 或将 `P` 改成 `H` 或 `h`
-- manager 与思源一号：将 `P` 改成 `s`
+- Manager 与 Pi：`upload -s P` 或将 `P` 改成 `H` 或 `h`
+- Manager 与思源一号：将 `P` 改成 `s`
 
 ```bash
 # 上传
