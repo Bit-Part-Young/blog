@@ -65,6 +65,8 @@ password:
 
 - [GitHub - zanjie1999/githubBackup: 备份Github所有仓库（包括私仓）纯shell实现](https://github.com/zanjie1999/githubBackup)
 
+- 生成最近的 PR 为网页：[GitHub - leon-fong/prs: Explore historic Open Source Contributions](https://github.com/leon-fong/prs)
+
 
 ---
 

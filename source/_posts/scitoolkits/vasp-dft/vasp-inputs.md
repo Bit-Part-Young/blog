@@ -94,7 +94,7 @@ direct
 
 - 第二行内容：价电子数（与 VRHFIN、ZVAL 对应）
 
-- VRHFIN：该元素赝势的价电子排布
+- VRHFIN：该元素赝势的价电子排布（在写论文的计算 method 时会用到）
 
 ```text
 # POTCAR 中的 PBE 泛涵显示为 PE？
@@ -125,6 +125,7 @@ grep ENMAX POTCAR
 grep -A1 '  PAW_PBE' POTCAR
 ```
 
+赝势种类：模守恒赝势、超软赝势（它们应用在哪些体系？）
 
 - POTCAR 文件内容示例
 

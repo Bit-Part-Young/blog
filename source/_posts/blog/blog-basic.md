@@ -194,6 +194,8 @@ localhost  # 主机名
 
 - [GitHub - zanjie1999/cloudflare-api-v4-ddns: cloudflare 一键 ddns 脚本 (大陆可用)](https://github.com/zanjie1999/cloudflare-api-v4-ddns)
 
+- 查询 DNS 在全球各地的解析结果：[GitHub - ccbikai/DNS.Surf: Querying DNS Resolution Results in Different Regions Worldwide.](https://github.com/ccbikai/DNS.Surf)
+
 - [搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
 
 - 提供 DNS 查询的 API：[DNS.fish - Command-line DNS Record Lookup Tool](https://dns.fish/)

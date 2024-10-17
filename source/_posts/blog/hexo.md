@@ -31,6 +31,7 @@ password:
     - [stun](https://github.com/liuyib/hexo-theme-stun)
     - [maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
     - [keep](https://github.com/XPoet/hexo-theme-keep)
+    - [sea](https://github.com/hai-zou/hexo-theme-sea)
     - 下载 matery 主题后，需将其 `.git` 删除（否则 Github Actions 部署的内容为空白；matery 主题设置不是很灵活，不是很推荐；butterfly 不会，推荐该主题）
     - butterfly 主题的预设功能比 matery 更丰富
 

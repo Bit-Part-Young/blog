@@ -200,6 +200,17 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 
 - Editor Width Slider：调整编辑栏的宽度
 
+- Tasks：丰富的 checkbox
+
+```markdown
+- [>] 
+- [-] 
+- [i] 
+- [?] 
+- [!] 
+- [/] 
+```
+
 - Admonitions：和 GitHub 中的 alert 语法一样
 
 ```text

@@ -197,6 +197,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - [GitHub - Louiszhai/tool: 开发效率提升：Mac生产力工具链推荐](https://github.com/Louiszhai/tool)
 - [r/MacApps - reddit](https://www.reddit.com/r/macapps/)
 - [Curated Collection of Free Apps : r/macapps - reddit](https://www.reddit.com/r/macapps/comments/1f6asg4/curated_collection_of_free_apps/)
+- [产品中心-Better365\_产品中心](https://www.better365.cn/apps.html)
 
 
 ---
@@ -259,13 +260,17 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - 增加趣味：Notchmeister
 - 控制外置显示器亮度：
     - MonitorControl
-    - BetterDisplay（功能更强大，需付费）
+    - BetterDisplay（功能更强大，付费）
 - 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
 - 取消 macOS 的截图录屏权限的月提醒：[Amnesia](https://goodsnooze.gumroad.com/l/amnesia)
 - Android 连接 Mac：
-    - Macdroid（需付费）
+    - Macdroid（付费）
     - OpenMTP
     - Android 文件传输助手（有时无法识别）
+- 音量控制：SoundSource（付费）
+- 键盘键位映射：Karabiner-Elements
+- Dock 栏：DockDoor
+- 将网页放到屏幕侧边：SlidePad
 
 ---
 
@@ -295,6 +300,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Obsidian
     - Typora
     - MarkText
+    - fsnotes
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
 - 书签工具：
     - Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
@@ -347,6 +353,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Termius
     - kitty
     - [Warp](https://www.warp.dev/)（需注册；有 AI 功能）
+    - shell360（类似 Termius）
 - 浏览器：
     - Chrome
     - Safari
@@ -555,7 +562,7 @@ rclone mount AList:/ /Users/XXX/AList --cache-dir /tmp --allow-other --vfs-cache
 
 #### 终端模拟器集成 SFTP
 
-- tabby 集成 SFTP（无法查看远程文件内容）
+- Tabby 集成 SFTP（无法查看远程文件内容）
     - 在 “设置 - 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
     - 在当前目录下打开 SFTP 面板：[Shell working directory reporting · Eugeny/tabby Wiki · GitHub](https://github.com/Eugeny/tabby/wiki/Shell-working-directory-reporting)
 

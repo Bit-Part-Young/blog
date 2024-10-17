@@ -683,6 +683,16 @@ VaspDoc().print_jupyter_help("IBRION")
 from pymatgen.io.vasp.inputs import Incar
 
 Incar(params: dict[str, Any] | None = None)
+
+# 生成 INCAR文件示例
+incar_parameters = dict(
+    ISTART=0,
+    ISPIN=2,
+    ...
+)
+
+incar = Incar.from_dict(incar_parameters)
+incar.write_file("INCAR")
 ```
 
 
@@ -708,6 +718,13 @@ automatic_density_by_vol()  # reciprocal_density
 from pymatgen.io.vasp.inputs import Poscar
 
 
+# 属性
+structure                   # 关联的结构
+comment                     # POSCAR 文件开头的 comment string；# 开头会读取不了    
+natoms                      # 原子数目
+site_symbols                # 原子种类
+
+# 方法
 ```
 
 
@@ -721,10 +738,12 @@ from pymatgen.io.vasp.inputs import Poscar
 ```python
 from pymatgen.io.vasp.inputs import Potcar
 
+Potcar()
+
 # 写入 POTCAR
 element_list = ["Ti", "Al"]
-pot = Potcar(element_list)
-pot.write_file("POTCAR")
+potcar = Potcar(element_list)
+potcar.write_file("POTCAR")
 ```
 
 
@@ -1100,6 +1119,8 @@ symmetry_dataset['equivalent_atoms']
 
 - `standard_transformations` 和 `advanced_transformations` 定义的类，都有 `apply_transformation()` 方法
 
+- SQSTransformation 类中调用的是 ATAT 中的 mcsqs 工具或 ICET 中的 enumeration、monte carlo 模块
+
 ```python
 from pymatgen.transformations.standard_transformations import 
 from pymatgen.transformations.advanced_transformations import SQSTransformation
@@ -1108,6 +1129,10 @@ from pymatgen.transformations.advanced_transformations import SQSTransformation
 # 方法
 apply_transformation(structure)
 
+
+# 获取 sqs 结构；建议直接使用其调用的原生工具
+sqs = SQSTransformation([2, 2, 2])
+sqs.apply_transformation(structure)
 
 # 枚举无序结构
 # reference: https://github.com/luzihen/pymatgen_examples/blob/master/enumerate_ordering.py
@@ -1210,7 +1235,20 @@ from pymatgen.ext.matproj import MPRester
 # 从 MP 获取结构
 with MPRester("api-key") as mpr:
 
+    # 相关方法源码路径 pymatgen/ext/matproj_legacy.py
+    mpr.query()                         # 采用类 MongoDB 的 query 语法从 MP 中获取数据
     mpr.get_structure_by_material_id()  # 根据材料 ID 获取结构
-    mpr.get_download_info()             # 获取来自 NoMaD repository 的裸 VASP 输出文件链接
+    mpr.get_download_info()             # 获取来自 NoMaD repository 的裸 VASP 输出文件 URL
     mpr.get_gb_data()                   # 获取晶界数据
+    mpr.get_surface_data()              # 获取表面能数据
+
+# query 参数
+criteria                   # query 准则
+properties                 # 性质
+
+# properties 列表内容
+formula
+spacegroup
+formation_energy_per_atom
+elasticity
 ```

@@ -69,6 +69,11 @@ password:
 
 - lab5 有 ase NEB 计算：[labutil/samples at master · bkoz37/labutil · GitHub](https://github.com/bkoz37/labutil/tree/master/samples)
 
+- [原子建模之ASE篇\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1MbsdeZEwc)（主要生成纳米结构）
+
+- [CompMatBook/Chapter04/4\_2\_辅助建模软件ASE生成纳米结构.ipynb at main · stanfordbshan/CompMatBook · GitHub](https://github.com/stanfordbshan/CompMatBook/blob/main/Chapter04/4_2_%E8%BE%85%E5%8A%A9%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6ASE%E7%94%9F%E6%88%90%E7%BA%B3%E7%B1%B3%E7%BB%93%E6%9E%84.ipynb)
+
+
 
 ---
 
@@ -84,6 +89,8 @@ ase test         # 测试；需安装 pytest
 ---
 
 ## 使用
+
+### CLI
 
 - CLI：[Command line tool — ASE documentation](https://wiki.fysik.dtu.dk/ase/cmdline.html)
 
@@ -129,7 +136,9 @@ from ase.spacegroup import crystal
 
 ---
 
-- 构型可视化（建议在 Jupyter Notebook 中使用）
+### 构型可视化
+
+建议在 Jupyter Notebook 中使用
 
 ```python
 # 方式 1
@@ -262,6 +271,7 @@ set_xxx()
 todict()                   # 将原子信息写入 dict
 copy()                     # 拷贝
 wrap()                     # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
+rattle()
 write()                    # 写入构型格式文件
 edit()
 pop()
@@ -342,12 +352,20 @@ supercell = atoms * (2, 2, 2)   # 方式 2
 
 #### surface
 
-- 简单 bulk 模型的表面构建示例代码
+- 表面模型构建
+- 无法枚举出具有不同表面终端的所有表面
 
 ```python
 from ase.build import surface
 
-surface(atoms, )
+atoms = ...
+s = surface(lattice=atoms, indices=(1, 1, 0), layers=2, vacuum=10.0)
+
+# 参数
+lattice     # Atoms 对象
+indices     # 面指数
+layers      # 一个 layer 指不加真空层完整的 slab，而非 slab 中的具体的一个原子层
+vacuum      # 两端添加真空层
 ```
 
 

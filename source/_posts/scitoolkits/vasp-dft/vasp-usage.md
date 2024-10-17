@@ -142,6 +142,8 @@ GW 计算
 >[GitHub - hello-arun/tutorials: Tutorials of codes such as VASP, Quantum Espresso and Lammps](https://github.com/hello-arun/Tutorial-for-kids)
 
 
+[DFT磁性的计算(本例为用VASP计算FCC Ni的磁矩)](https://mp.weixin.qq.com/s/4ygwBJsAjVVQ3slPZeevhw)
+
 
 VASP 计算流程：[VASP的计算流程 - Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
 
@@ -308,26 +310,40 @@ EDIFFG = -2E-02        (Ionic convergence, eV/AA)
 
 ### 态密度、能带计算
 
-计算流程：
-- 弛豫计算（初始构型很好，可忽略此步）
-- 静态自洽计算
-- 非自洽计算（能带：ICHARG=11，k-path）
-- 非自洽计算（态密度：ICHARG=11，k 点密度变大）
+- 参考：
+    - [VASP视频教程-HSE06杂化泛函计算能带和分析\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV17i4jeqER4)
+
+- 计算流程：
+    - 弛豫计算（或结构优化；初始构型很好，可忽略此步）
+    - 静态自洽计算
+    - 态密度计算：非自洽计算（ICHARG=11，k 点密度变大）
+    - 能带计算：拷贝自洽计算生成的 WAVECAR 和 CHGCAR，非自洽计算（ICHARG=11，k-path）
+
+- 自洽与非自洽计算的区别：电子密度是否匹配；**不是静态与弛豫计算的区别！**
+
+- 开启自旋极化，DOS 会有上下两条线（上下对称、不对称的含义是什么）
 
 
 ---
 
 ### Bader 电荷计算
 
+- 程序：[Code: Bader Charge Analysis](https://theory.cm.utexas.edu/henkelman/code/bader/)
+
 - 参考：
     - [CsPbI3 电荷密度](https://mp.weixin.qq.com/s/eWQQwBizItEMej_ocDzoXw)
     - [Bader电荷可视化](https://mp.weixin.qq.com/s/32R0egD3mZbY598lz6F5ig)
+    - [电子结构分析【04】——差分电荷密度和电荷布居要如何分析？要点在这里](https://mp.weixin.qq.com/s/NLEP8tG6KWfLOgnKqA9L_g)
+    - [差分电荷和Bader电荷分布 - Dong Fan's Blog](https://agrh.github.io/2019/08/06/ded/)
 
 - Bader 电荷：
     - DFT 计算中常见的一种电荷分析方法，通过其对电荷的定义计算出每个原子在体系中得失电子的情况，即净电荷
     - 又称为 atom-in-molecule (AIM) charge，是一种将空间中的电子密度的零通量分界面作为划分电荷所属相应原子的方法
     - 通过处理 VASP 得到的 CHGCAR 或 Gaussian 格式的 cube 文件计算体系的 Bader 电荷
     - 电荷的定义或者说划分方法会明显影响计算数值，所以不同的分析方法得到的绝对数值没有太大的意义，而是应该在不同体系之间横向比较
+    - 电荷布居分析：统计每个原子带多少电荷的办法；Bader 电荷布居（Bader charge analysis）；还有 Mulliken 布居，Lodwin 布居，Hirshfield 布居等
+
+- 差分电荷密度：charge density difference；原子相互作用后（成键前后）的电荷密度与初始原子电荷密度之差；可分析在成键和成键电子耦合过程中的电荷移动以及成键极化方向等性质
 
 - 计算：与静态计算类似；添加 `LAECHG` 参数，会生成 AECCAR0 AECCAR1 AECCAR2 三个文件
 
@@ -398,6 +414,17 @@ grep "external pressure" OUTCAR | awk '{print $4}'
 
 ---
 
+### ELF
+
+- 电子局域化函数
+
+```bash
+LELF        = .TRUE.
+```
+
+
+---
+
 ### 弹性常数计算
 
 计算得到的弹性常数值不是很准确
@@ -444,6 +471,11 @@ pymatgen/io/vasp/outputs.py:161: UserWarning: Float overflow (*******) encounter
 warnings.warn("Float overflow (*******) encountered in vasprun")
 ```
 
+---
+
+红外光谱（Infrared Spectroscopy，IR）
+
+[VASP快速计算红外光谱(IR) 后处理软件vasprun推荐](https://mp.weixin.qq.com/s/LGUFL5t8vZi3iedjtFelJQ)
 
 
 ---
@@ -451,17 +483,8 @@ warnings.warn("Float overflow (*******) encountered in vasprun")
 
 **DFT 相关内容（梅师兄讲解）：**
 
-POTCAR 中的一些参数
-
-VRHFIN：该元素考虑的价电子（在写论文的计算 method 时会用到）
-
-赝势种类：模守恒赝势、超软赝势（它们应用在哪些体系？）
 
 没有磁性的构型添加自旋，计算速度会变慢（2 倍？），但并不会对计算的性质结果产生影响（可以检查添加自旋后的计算磁矩是否接近 0）
-
-能带计算：先正常/自洽计算，生成 WAVECAR 和 CHGCAR；后进行非自洽计算
-
-自洽与非自洽计算的区别：电子密度是否匹配；**不是静态与弛豫计算的区别！**
 
 vaspkit 在 KPOINTS 文件生成的选项中，若构型是六方等对称性不是很高的结构，若网格方式选择的是 MP，最后生成的 KPOINTS 文件中的网格方式还是 Gamma（会自动纠正）；推荐精度：0.03（梅）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 ka 值大于 30 或 33.33，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；**0.03 对应的 K 点密度是 1/0.03=33.33**。
 

@@ -51,6 +51,10 @@ password:
 
 [如何实现结构原子可视化？](https://mp.weixin.qq.com/s/zfzZ7kRXsXKe9yhyLcPuYQ)
 
+用于晶体、分子结构可视化的 Jupyter 组件：[GitHub - nglviewer/nglview: Jupyter widget to interactively view molecular structures and trajectories](https://github.com/nglviewer/nglview)
+
+[OpenMX Viewer](https://www.openmx-square.org/viewer/index.html)
+
 ---
 
 VESTA 相关：
@@ -114,6 +118,8 @@ vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
 
 - Springer Materials：[https://materials.springer.com/](https://materials.springer.com/)
 
+MP 等数据库中的结构文件有时对称性不一定正确，最好进行静态计算检验一下
+
 ---
 
 方法 2: 手动构建（对于复杂 Bulk 构型），需要以下晶体学信息
@@ -124,6 +130,8 @@ vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
 - 原子位置（Wyckoff position / atomic position）
 
 元素周期表里元素的晶体结构：[Periodic table (crystal structure) - Wikipedia](https://en.m.wikipedia.org/wiki/Periodic_table_(crystal_structure))
+
+根据以上晶体学信息，使用 Pyxtal 构建
 
 
 ---
@@ -154,6 +162,8 @@ VASPKIT 804 选项，会根据用户输入的错配度要求生成满足条件�
 
 >Aimsgb: An algorithm and open-source python library to generate periodic grain boundary structures: [https://doi.org/10.1016/j.commatsci.2018.08.029](https://doi.org/10.1016/j.commatsci.2018.08.029)
 
+[GitHub - ab5424/agility: Repository for the Atomistic Grain Boundary and Interface Utility.](https://github.com/ab5424/agility)
+
 CSL 重合位置点阵理论
 
 
@@ -171,7 +181,8 @@ twisted grain boundary 晶界面垂直于旋转轴
 
 ### 碳纳米管
 
->[Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
+- [Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
+- [VASP视频教程-搭建模型-用vnl或ms搭建模型卷曲纳米碳管\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV14M4ye8EVX)
 
 
 ---

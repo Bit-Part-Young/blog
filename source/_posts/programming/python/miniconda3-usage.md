@@ -357,6 +357,30 @@ uv pip install <package>   # 安装 package；与 pip 基本一致
 ```
 
 
+---
+
+### mamba
+
+- mamba：Conda 平替，在解析和安装包时比 Conda 快得多
+
+- micromamba 类似 miniconda，使用与 Conda 非常类似，配置文件可使用已存在的 `~/. condarc`；没有 base 环境
+
+```bash
+# 安装
+brew install micromamba        # macOS
+# Linux 只会安装可执行文件
+curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+
+# 配置根路径，虚拟环境将安装在 $MAMBA_ROOT_PREFIX/envs/
+export MAMBA_ROOT_PREFIX=${HOME}/opt/micromamba
+# 初始化当前 Shell
+eval "$(micromamba shell hook --shell zsh)"
+
+# 使用
+micromamba self-update         # 更新
+```
+
+
 
 ---
 

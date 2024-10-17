@@ -246,10 +246,10 @@ ssh-keygen -t rsa
 
 ```bash
 Host alias
-    HostName 
-    User 
-    Port 
-    IdentityFile 
+    HostName
+    User
+    Port
+    IdentityFile
 ```
 
 具体示例：
@@ -331,43 +331,39 @@ Load key "id_rsa": bad permissions
 
 ## 任务准备、提交、检查
 
+[超算中作业管理系统PBS/LSF/Slurm的常用命令 - Ji-Huan Guan](https://www.guanjihuan.com/archives/42460)
+
+---
+
 ### Slurm 任务调度系统
 
 >[Slurm 作业调度系统 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/slurm.html)
 
-- 常用命令：
-    - `sbatch` - 任务提交
-    - `squeue` - 查看排队任务状态
-    - `scancel` - 删除任务
-    - `scontrol` - 查看任务参数
-    - `sinfo` - 查看集群状态
-
-- 节点状态：
-    - `drain` - 节点故障
-    - `alloc` - 节点在用
-    - `idle` - 节点可用
-    - `down` - 节点下线
-    - `mix` - 节点部分占用，但仍有剩余资源
-
-- 作业状态：
-    - `R`- 正在运行
-    - `PD` - 正在排队
-    - `CG` - 即将完成
-    - `CD` - 已完成
-
-
 ```bash
-# 提交任务
-sbatch job.slurm
+# 常用命令
+sbatch job.slurm             # 提交作业
+squeue                       # 查看作业状态
+scancel                      # 删除作业
+scontrol                     # 查看作业详细状态
+         show job            # 所有作业详细状态
+         show job JOBID      # 指定作业详细状态
+sinfo                        # 查看集群状态
+      --partition=64c512g    # 查看特定队列
+# 节点状态
+drain                        # 节点故障
+alloc                        # 节点在用
+idle                         # 节点可用
+down                         # 节点下线
+mix                          # 节点部分占用，但仍有剩余资源
 
-# 查看作业参数
-scontrol show job
-scontrol show job JOB_ID
-# 参数包括
+# 作业状态
+R                            # 正在运行
+PD                           # 正在排队
+CG                           # 即将完成
+CD                           # 已完成
+
+# 详细状态内容
 UserId|WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime
-
-# 查看特定队列
-sinfo --partition=64c512g
 ```
 
 
@@ -375,13 +371,31 @@ sinfo --partition=64c512g
 
 ### PBS 任务调度系统
 
-- manager 为此作业调度系统。
-- 常用命令：`qsub` - 提交任务；`qdel` - 取消任务
+- Manager 为此作业调度系统
 - `submit` 命令是孔老师写的一个 PBS 任务提交脚本
 - `-nc` 参数含义：不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**
 - 提交任务命令会自动生成对应的 `PBS.batch` 脚本；当提交的任务出错时，修改 `PBS.batch` 脚本内容，之后可使用 `qsub PBS.batch` 命令提交任务
 
 ```bash
+#  常用命令
+pbsnodes               # 查看所有节点
+pbsnodes -l free       # 查看空闲节点
+pbsnodes XXX           # 查看某节点状态
+ssh XXX                # 转到某节点
+qsub script.pbs        # 提交作业
+qdel JOBID             # 删除作业
+qstat                  # 显示所有作业的状态
+      -u XXX           # 指定用户
+      -f JOBID         # 指定作业的详细状态
+      -a               # 所有作业的详细状态
+      -n               # 节点状态
+      -q / -Q          # 队列状态
+      -B               # 服务器状态
+      -r               # 正在运行的作业
+      -i               # 正在等待的作业
+      -x               # 已完成的作业
+
+
 # VASP 任务提交命令
 submit -nc -n 8 vasp
 submit -n 8 vasp
@@ -393,11 +407,17 @@ submit -n 8 lmp -in in.file
 # 或进入到计算节点本地运行
 ssh manager
 mpirun -n 1 lmp -in in.file
+
+
+# pbs 提交脚本内容
+#!/bin/sh
+#PBS -N task
+#PBS -l nodes=1:ppn=1
 ```
 
 ---
 
-manager 中与 PBS 相关的一些 alias 设置
+Manager 中与 PBS 相关的一些 alias 设置
 
 ```bash
 # 查看 q 相关命令 alias
@@ -670,7 +690,7 @@ mpirun ${HOME}/bin/vasp_std
 ```bash
 ulimit -s unlimited
 
-export OMP_NUM_THREADS=1 
+export OMP_NUM_THREADS=1
 export I_MPI_ADJUST_REDUCE=3
 ```
 
@@ -877,7 +897,7 @@ rsync -auvP --human-readable user@sydata.hpc.sjtu.edu.cn:SRC DEST
 -g, --group         # 保持文件所属组
 -o, --owner         # 保持文件所有者
 -D, --devices       # 保持设备文件（块设备和字符设备）
--z, --compress      # 传输时进行压缩处理 
+-z, --compress      # 传输时进行压缩处理
 -n, --dry-run       # 不实际运行，显示哪些文件将被传输
 -delete             # 删除那些 DST 中 SRC 没有的文件
 -exclude            # 排除指定的文件或目录
@@ -1226,7 +1246,7 @@ vasp.X.X.X (root directory)
 
 ---
 
-- 安装步骤：
+- 编译安装步骤：
     - VASP.5.4.4 安装包：Manager: `/opt`，Master: `/opt/software`；将其拷贝到自己的用户目录下打包压缩，上传至超算平台）
     - 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
     - `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功；
@@ -1255,42 +1275,34 @@ make  # make all
 
 ### HDF5
 
-- 安装步骤：
+- 编译安装步骤：
 
 ```bash
+# 编译安装
 wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_14_3/src/hdf5-1.14.3.tar.gz
 
-# 配置 intel 版本
+# 配置 Intel 版本
 ./configure --enable-parallel --enable-fortran --enable-cxx --enable-unsupported \
             CC=mpiicc FC=mpiifort CXX=mpiicpc \
             --prefix=${HOME}/local/hdf5
 
 make
 make install
-```
 
-未添加 `--enable-parallel` 参数会出现以下报错：
 
-```bash
+# 未添加 --enable-parallel 参数会出现以下报错：
 configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use --enable-unsupported to override this error.
 ```
-
-```bash
-# 显示 HDF5 的编译和配置详细信息
-h5cc -showconfig  # 或 h5c++ h5pcc
-
-# 显示用于编译 HDF5 的编译器命令行，包括链接的库和编译器标志
-h5cc -show
-```
-
----
 
 - 使用
     - HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
     - Pandas 的 `read_hdf()` 不太好用
 
 ```bash
-h5ls data.h5     # 显示 Group 列表
+h5cc -showconfig     # 或 h5c++ h5pcc；显示 HDF5 的编译和配置详细信息
+h5cc -show           # 显示用于编译 HDF5 的编译器命令行，包括链接的库和编译器标志
+
+h5ls data.h5         # 显示 Group 列表
 
 # vaspout.h5 示例
 input                    Group
@@ -1319,13 +1331,13 @@ h5dump data.h5   # 输出文件的详细结构和内容
        arch     bin     build      src     testsuite   tools
                                     |
                               -------------
-                             |      |      |       
+                             |      |      |
                             lib   parser  fftlib
 ```
 
 ---
 
-- 安装步骤：Master 的 vasp.6.3.0 安装包在 `/opt/software` 下；将其拷贝到自己的目录下打包，上传至超算平台）
+- 编译安装步骤：Master 的 VASP.6.3.0 安装包在 `/opt/software` 下；将其拷贝到自己的目录下打包，上传至超算平台）
 
 ```bash
 # 导入 oneapi 套件；hdf5
@@ -1372,7 +1384,7 @@ VASP + VTST：在 VASP 添加过渡态计算功能
 
 ---
 
-安装步骤：
+编译安装步骤：
 
 - 下载 VTST Code 和 VTST Scripts：[Download — Transition State Tools for VASP](https://theory.cm.utexas.edu/vtsttools/download.html)
 
@@ -1569,7 +1581,7 @@ git clone https://github.com/dgehringer/sqsgenerator.git
 conda activate sqsgen
 cd sqsgenerator
 
-SQS_Boost_INCLUDE_DIR="${CONDA_PREFIX}/include" \\                                
+SQS_Boost_INCLUDE_DIR="${CONDA_PREFIX}/include" \\
 SQS_Boost_LIBRARY_DIR_RELEASE="${CONDA_PREFIX}/lib" \\
 CMAKE_CXX_COMPILER="g++" \\
 CMAKE_CXX_FLAGS="-DNDEBUG -O2 -mtune=native -march=native" \\
@@ -1613,7 +1625,7 @@ cd install-tl-*
 # 安装
 perl ./install-tl --scheme=full    # 或 medium small
 --no-interaction    # 不进行交互
--gui                #  启用 GUI 安装程序 
+-gui                #  启用 GUI 安装程序
 
 # 安装完成后，添加环境变量
 export MANPATH=$HOME/local/texlive/2023/texmf-dist/doc/man

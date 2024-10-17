@@ -149,6 +149,8 @@ ruff
 
 ## 打包
 
+PyScaffold 包：创建、设置、管理 Python 项目的工具
+
 `MANIFEST.in` 文件：用于自定义和精确控制 Python 包的源码分发包的内容。
 >[MANIFEST.in | fastdataing](https://github.com/eastsheng/fastdataing/blob/main/MANIFEST.in)
 

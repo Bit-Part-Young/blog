@@ -2,7 +2,7 @@
 title: Windows 常用软件
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -305,10 +305,11 @@ with [[]]", "r", encoding="utf-8") as mdFile:
 ## 其他常用软件
 
 - Listary：一款实用的文件搜索、程序启动工具
-    - 与 Mac 的 Alfred 类似；快速切换目录 `CTRL+G`
+    - 与 Mac 的 Alfred 类似；快速切换到当前打开的目录 `CTRL + G`
 
-- MobaXterm：远程服务器连接工具；可自动识别已安装的 WSL
+- MobaXterm：远程服务器连接工具；集成 X11 和 SFTP；可自动识别已安装的 WSL
     - [ ] Mobaxterm 左侧文件目录无法随右侧终端命令实时改变（暂无法解决）
+    - [Mobaxterm: how to prevent ssh session from exiting? - Stack Overflow](https://stackoverflow.com/questions/57385896/mobaxterm-how-to-prevent-ssh-session-from-exiting)
 
 - WinSCP：远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些
 
@@ -329,8 +330,8 @@ with [[]]", "r", encoding="utf-8") as mdFile:
     - 该软件开发者涉及辱华，建议使用其他替代工具（Notepad--）
 
 - Internet Download Manager：简称 IDM，下载工具，可嗅探到网页中任何可下载的东西（如文件、视频、音频等）并自动分类归档。一些配置：
-    - 选项 - 常规设置 - 接管以下浏览器，仅 chrome 和 firefox（取消勾选 edge，因其会经常提示下载更新包）
-    - 选项 - 文件类型 - 以下站点不自动下载
+    - 选项 -- 常规设置 -- 接管以下浏览器，仅 Chrome 和 Firefox（取消勾选 Edge，因其会经常提示下载更新包）
+    - 选项 -- 文件类型 -- 以下站点不自动下载
 
 ```text
 pdf.sciencedirectassets.com

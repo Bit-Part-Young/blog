@@ -207,6 +207,12 @@ mdbook serve --open
 
 ## 其他类型博客
 
+- 将 Telegram Channel 转为微博客：[GitHub - ccbikai/BroadcastChannel: Turn your Telegram Channel into a MicroBlog.](https://github.com/ccbikai/BroadcastChannel)
+
+- [GitHub - EveSunMaple/Frosti: A clean, elegant, and fast static blog template! 🚀 Developed with Astro](https://github.com/EveSunMaple/Frosti)
+
+- [GitHub - lin-stephanie/astro-antfustyle-theme: A customizable, feature-rich Astro theme for blog and portfolio creation.](https://github.com/lin-stephanie/astro-antfustyle-theme)
+
 - [GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
 
 - Obsidian 数字花园博客设置教程：[使用Obsidian 打造个人数字花园完整教程](https://mp.weixin.qq.com/s/pvlfp59XjqftyJVPbEA4tA)

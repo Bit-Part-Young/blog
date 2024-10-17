@@ -2,7 +2,7 @@
 title: Pandas 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -164,7 +164,7 @@ df.mean()
 
 ---
 
-### 数据文件读取与保存
+### IO
 
 ```python
 pd.read_csv()
@@ -186,6 +186,10 @@ sheet_name          # 指定数据表的名称
 # 无 sep 参数
 
 df.to_csv()
+# 参数
+sep                 # 分隔符，默认是","；多个空格，可以使用 "\s+"
+index               # 是否写入行索引
+float_format        # 浮点数的格式化字符串
 ```
 
 
@@ -277,7 +281,7 @@ pd.merge(df1, df2, how='outer')
 
 
 ```python
-df.drop()
+df.drop()   # 去掉行/列数据
 
 # 统计该列出现的不同值及对应数目
 df.value_counts(sort=False)
