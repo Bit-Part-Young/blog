@@ -49,6 +49,10 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 - 官方 Doc：[Typst Documentation](https://typst.app/docs)
 
 - [Changelog – Typst Documentation](https://staging.typst.app/docs/changelog/)
+    - 0.12 版本更新内容：
+        - 设置每行的行号（论文写作中有用）
+        - layout 布局增强
+        - Typst 命令行增强
 
 - 实用：
     - [Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
@@ -619,6 +623,12 @@ Show 规则用于全局替换
 
 - Typst Logo：[fenjalien/Typst Logo](https://gist.github.com/fenjalien/1463a19ba2b91d061ed35e295494e0b3)
 
+- 将 Typst Documentation 网页内容下载到本地：[Offline Documentation PDF? - Discord](https://discord.com/channels/1054443721975922748/1295417383938428998)
+
+```text
+wget --recursive --no-parent --convert-links https://typst.app/docs/
+```
+
 
 
 ---
@@ -654,10 +664,12 @@ Show 规则用于全局替换
 - 论文海报 poster：[Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
 
 - Elsevier 期刊模板
-    - 预印版：[GitHub - maucejo/elsearticle](https://github.com/maucejo/elsearticle)、[elsarticle preprint - Typst.app](https://typst.app/project/rFAXkf0lxIp1Paj1l-gKTr)
+    - 预印版：
+        - [GitHub - maucejo/elsearticle](https://github.com/maucejo/elsearticle)
+        - [elsarticle preprint - Typst.app](https://typst.app/project/rFAXkf0lxIp1Paj1l-gKTr)
     - 正式出版：[elsarticle formal - Typst.app](https://typst.app/project/rrn_CcZC2mSFvKWd9vuVgT)
 
-- 用 Typst 创建 online books：[GitHub - Myriad-Dreamin/shiroa: shiroa is a simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/shiroa)
+- 创建 Online Books：[GitHub - Myriad-Dreamin/shiroa: shiroa is a simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/shiroa)
 
 - 将 Typst 内容渲染成网页
     - [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
@@ -668,7 +680,7 @@ Show 规则用于全局替换
 
 ## 相关问题
 
-- [ ] 目前的大语言模型都没有学习 Typst 内容（Claude 3.5 pro、GPT-o1）
+- [x] 目前的大语言模型都没有学习 Typst 内容（Claude 3.5 pro、GPT-o1 有） ✅ 2024-10-19
 
 - [ ] Typst 中暂无 latexdiff 替代工具
 
