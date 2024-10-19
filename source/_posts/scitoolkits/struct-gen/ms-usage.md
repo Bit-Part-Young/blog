@@ -69,29 +69,34 @@ password:
     - [如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
     - [How to build and optimize crystal structure of a compound - Part 01 - Materials studio (CASTEP)](https://www.youtube.com/watch?v=IMvzznBhEns)
     - [关于Material Studio和Vesta导出来的cif文件的差别](https://zhuanlan.zhihu.com/p/417605545)
+    - [Materials\_Studio建模锂电池材料Li3VO4\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1jL2EYBE23)
+    - [Materials\_Studio构建石墨烯抗冲击结构\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1MY28YdEqv)
 
 - 复杂结构 Bulk 模型构建：
     - 可通过其他程序构建（如 pymatgen、ase、pyxtal 等），使用 ase 保存成 xsd 格式文件，之后直接导入到 MS 中即可
     - 在 MS 中手动构建
+        - 构建晶体：Build -- Crystals, Build Crystal -- Space Group: Enter group、List; Lattice Parameters: Lengths
+        - 添加原子：Build -- Add Atoms: Element、a、b、c
 
 - 表面构建：表面构建过程中，可以调整 thickness（从最小值调整到 1.0），得到表面不同终端的数目和层间距
 
 - MS 中的构型文件可保存成 res 格式（对称性设为 P1），之后使用 posconv 可转换成其他格式
 
-- MS - build - find symmetry 找到对称性
+- MS -- Build -- find symmetry 找到对称性
 
 
 ---
 
 ### CASTEP
 
-CASTEP (Cambridge Serial Total Energy Package)
+- CASTEP (Cambridge Serial Total Energy Package)
 
-CASTEP 文件格式
+- CASTEP 文件格式
+
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202312262058798.png)
 
+- CASTEP 赝势路径
 
-CASTEP 赝势路径
 ```text
 BIOVIA\Materials Studio 19.1\share\Resources\Quantum\Castep\Potentials
 ```
@@ -102,6 +107,7 @@ BIOVIA\Materials Studio 19.1\share\Resources\Quantum\Castep\Potentials
 ### 相关问题
 
 - 文件保存路径不要有中文
+
 - 出现很卡顿的情况
-    - 解决方法：tool -- option -- graphhics，勾选 disable graphic（取消硬件加速）
+    - 解决方法：Tool -- Option -- Graphhics，勾选 Disable Graphic（取消硬件加速）
     - 输入法的兼容性打开

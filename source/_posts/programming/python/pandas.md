@@ -187,9 +187,26 @@ sheet_name          # 指定数据表的名称
 
 df.to_csv()
 # 参数
-sep                 # 分隔符，默认是","；多个空格，可以使用 "\s+"
 index               # 是否写入行索引
 float_format        # 浮点数的格式化字符串
+
+
+# 将数据（列表格式）写入 JSON 文件
+df = pd.DataFrame({
+    "A": [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+    "B": ["x", "y", "z"]
+})
+
+# 保存为 JSON 文件
+df.to_json("output.json", orient="records", lines=True)
+
+# 读取 JSON 文件
+pd.read_json("output.json", orient="records", lines=True)
+
+# 保存的 JSON 数据格式
+{"A":[1,2,3],"B":"x"}
+{"A":[4,5,6],"B":"y"}
+{"A":[7,8,9],"B":"z"}
 ```
 
 

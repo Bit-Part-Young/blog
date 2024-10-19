@@ -1,7 +1,7 @@
 ---
 title: MkDocs 框架
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: MkDocs 框架
@@ -27,10 +27,14 @@ MkDocs：文档、笔记、博客框架。
 ### 参考资料
 
 - MkDocs 相关 projects 和插件列表：[GitHub - mkdocs/catalog: :trophy: A list of awesome MkDocs projects and plugins.](https://github.com/mkdocs/catalog)
+
 - MKDocs 设置：[Setup - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/setup/)
+
 - [mkdocs 源码剖析 - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/analysis/mkdocs/)
+
 - 课题组 MKDocs Wiki 参考：[GitHub - ChiahsinChu/chenggroup.github.io: XMU Chenglab Wiki](https://github.com/ChiahsinChu/chenggroup.github.io)
-- Mkdocs 首页写法参考：[notebook/docs/index.md at main · IsshikiHugh/notebook · GitHub](https://github.com/IsshikiHugh/notebook/blob/main/docs/index.md)
+
+- MkDocs 首页写法参考：[notebook/docs/index.md at main · IsshikiHugh/notebook · GitHub](https://github.com/IsshikiHugh/notebook/blob/main/docs/index.md)
 
 - 配置文件参考：
     - 官方配置文件：[mkdocs.yml - mkdocs-material - squidfunk - GitHub](https://github.com/squidfunk/mkdocs-material/blob/master/mkdocs.yml)
@@ -275,10 +279,10 @@ nav:
     ```
 ```
 
-
 - i18n 设置：[mkdocs.yml](https://github.com/jiegec/kb/blob/main/mkdocs.yml)
 
 - MKDocs Admonitions 写法：[Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#usage)
+
 
 ---
 
@@ -299,5 +303,7 @@ nav:
 - MkDocs Material 未来会支持 Algolia 搜索
 
 - [x] MkDocs 中的 md 文档只能有一个一级标题，Hexo 可以多个（正常的 md 文档结构应是一个一级标题）
-- [x] 任务列表渲染成了圆圈样式（mkdocs 特殊方式）
+
+- [x] 任务列表渲染成了圆圈样式（MkDocs 特殊方式）
+
 - [x] MKDocs 中连续两行都是分割线，其中的一行分割线会被当作某级标题（为兼容所有博客框架，只添加一行分割线）

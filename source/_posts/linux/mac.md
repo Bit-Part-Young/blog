@@ -293,6 +293,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 录屏：QuickRecorder
 - 抠图：鲜艺 AI 抠图
 - codye：将代码片段转换为精美图片（类似 carbon）
+- 瀑布流图片查看器：FlowVision
 
 ---
 
@@ -412,6 +413,8 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 在 macOS 中，由 Intel 芯片编译得到的程序在 Apple Silicon 芯片上通常可以运行，得益于 Apple 提供的 Rosetta 2 技术
 
 - macOS 安装交大版 Office：[Office 2021 - 微软Office办公软件 - 上海交通大学正版软件授权中心](https://software.sjtu.edu.cn/List/Office/2021)
+
+- [Microsoft Office for Mac LTSC 2024 - 校园生活 / 正版软件 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/315947)
 
 - macOS Word 使用
     - 深/浅色模式：设置 -- 常规 -- 个性化
@@ -844,8 +847,8 @@ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools
 ```
 
 - coreutils 工具
-    - `coreutils` (GNU Core Utilities) 包含了很多基本的文件、shell 和文本操作工具
-    - macOS 中的一些命令的参数没有 Ubuntu 的全（如 `du`）
+    - `coreutils` (GNU Core Utilities) 包含了很多基本的文件、Shell 和文本操作工具
+    - macOS 中的一些基础命令的参数没有 Linux 的全（如 `du`）
     - 通过在命令前加 `g` 来调用 GNU 版本的命令（如 `gdu`）
 
 ```bash

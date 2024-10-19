@@ -154,6 +154,8 @@ plt.show()
 - `ax.set()`：设置轴属性，可接受多种参数；[matplotlib.axes.Axes.set](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set.html)
 
 ```python
+ax.set()
+
 # 参数
 title                          # 图标题
 xlim / ylim                    # x、y 轴范围
@@ -173,6 +175,8 @@ ax.set(xlabel="x", ylabel="y")
 
 ### 图例
 
+- 图例符号称为 handle
+
 有将两个图例 label 放在一行的示例：[Legend Demo — Matplotlib 3.9.2 documentation](https://matplotlib.org/stable/gallery/text_labels_and_annotations/legend_demo.html)
 
 ```python
@@ -183,8 +187,10 @@ ncols               # 图例排布列数
 loc                 # 图例位置
 columnspacing       # 图例之间的列间距；个人设置为 0.5
 labelspacing        # 图例之间的行间距；个人设置为 0.3
-handletextpad       # 图例符号与 label 文本间的间距；个人设置为 0.2
-frameonalpha        # 图例边框背景透明度
+handletextpad       # 图例符号与文本间的间距；个人设置为 0.2
+handlelength        # 图例符号长度
+frameon             # 是否开启图例边框
+framealpha          # 图例边框背景透明度
 bbox_to_anchor      # 2-tuple floats，(x, y)；x≥1.0 时，图例在外面
 
 

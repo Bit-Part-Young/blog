@@ -90,6 +90,8 @@ direct
 
 ## POTCAR
 
+- [Available pseudopotentials - VASP Wiki](https://www.vasp.at/wiki/index.php/Available_pseudopotentials)：含 PBE52、PBE54、PBE64 赝势介绍，赝势加后缀之间的区别
+
 - 赝势文件；包含计算体系中每个元素种类的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 
 - 第二行内容：价电子数（与 VRHFIN、ZVAL 对应）
@@ -113,6 +115,8 @@ PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/
 
 ```bash
 cat POTCAR.1 POTCAR.2 > POTCAR  # 多个元素种类的 POTCAR 文件合并
+
+grep -E 'TIT|VRHFIN|ENMAX|ZVAL' POTCAR
 
 grep TIT POTCAR
 
@@ -258,30 +262,70 @@ fractional
 
 ## INCAR
 
-注：第一个数值为默认值
+- 核心输入文件：用于指定 VASP 计算的参数、算法和设置
 
+- INCAR 准备的原则：**越简单越好，不知道的，不理解的就不往里面放**
 
-VASP 计算参数设置文件
+- INCAR 参数类型
+    - 通用参数：SYSTEM、PREC、ICHARG、ISTART
+    - 电子优化相关参数：ALGO、ENLM、NELMIN、EDIFF、ENCUT
+    - 离子优化相关参数：IBRION、POTIM、NSW、EDIFFG
+    - 态密度积分相关参数：ISMEAR、SIGMA、LORBIT
 
-
-电子优化相关参数：ALGO、ENLM、NELMIN、EDIFF、ENCUT
-
-离子优化相关参数：IBRION、POTIM、NSW、EDIFFG
-
-态密度积分相关参数：ISMEAR、SIGMA、LORBIT
-
-
+- 注意事项：
+    - 等号（=）前后可以有空格，也可以没有
+    - 不要使用 Tab，用空格替换 Tab
+    - INCAR 中的参数中的 L 开头表示逻辑数
+    - INCAR 参数名称写错，VASP 会忽略，不影响
+    - 参数设置的第一个数值为默认值，忽略后续同参数的数值设置
 
 ICHARG 随机初始化电子密度，积分值为电子数
-
-INCAR 中的参数中的 L 开头表示逻辑数
-INCAR 参数名称写错，VASP 会忽略，不影响
 
 ---
 
 ### SYSTEM
 
-- "title string"，对体系及要执行的计算进行注释；默认值为 "unknown system"
+- "title string"，对体系及要执行的计算进行注释说明；默认值为 "unknown system"
+
+- 可随便写；该行可有可没有
+
+
+---
+
+### ISTART
+
+- 初始化轨道；确定是否读取 WAVECAR 文件
+
+- 默认值：1（如果 WAVECAR 文件存在）否则 0
+
+
+---
+
+### ICHARG
+
+决定 VASP 如何构造初始电荷密度
+
+默认值：ISTART=0，则 ICHARG=2；否则 ICHARG=0
+
+```bash
+0        # 从初始波函数计算电荷密度
+1        # 从 CHGCAR 文件读取
+2        # 若 ISTART=0，取原子电荷密度的叠加
++10      # 非自洽计算（在整个电子最小化过程中电荷密度保持不变）
+11       # 从 CHGCAR 文件获取（能带绘制的）本征值或给定的电荷密度的态密度（density of states (DOS)）
+```
+
+
+---
+
+### ALGO
+
+电子最小化算法/选择 GW 计算类型
+
+```bash
+Fast           # 初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
+Normal         # blocked-Davidson 算法
+```
 
 
 ---
@@ -295,11 +339,14 @@ INCAR 参数名称写错，VASP 会忽略，不影响
 
 ### PREC
 
-计算精度
+- 计算精度；设置截断能、FFT grids 和 the projectors in real space ROPT 的精度的默认值
+
+- 默认值：Normal；推荐使用 Normal 或 Accurate
 
 ```bash
-Accurate
-Normal
+Normal             # 适用于大多数常规计算
+Accurate           # 适用于高精度（如精确的力、声子、应力张量，或需要计算二阶导）
+High               # High Medium Low 为弃用值
 ```
 
 
@@ -338,16 +385,20 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ### SIGMA
 
-默认值：0.2
-展宽宽度（单位：eV）
-对于金属，默认 SIGMA=0.2，但通常 SIGMA=0.05 就能满足要求
+- 展宽宽度（单位：eV）
+
+- 默认值：0.2
+
+- 对于金属，默认 SIGMA=0.2，但通常 SIGMA=0.05 就能满足要求
 
 
 ---
 
 ### NSW
 
-最大离子步步数；默认值为 0。
+- 最大离子步步数
+
+- 默认值：0
 
 - IBRION=0 时，必须提供 NSW 数值（AIMD 步数）
 - 每个离子步会计算 Hellmann-Feynman 力和应力
@@ -359,20 +410,27 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 - 决定离子如何更新和移动
 
-- 默认值：-1（NSW=-1 或 0）；0（其他情况，执行分子动力学）
+- 默认值：-1（NSW=-1 或 0）；0（其他情况，执行 AIMD）
 
 - 除 0 外，其他算法都最终弛豫到局部能量最小值
 
-- 弛豫较困难时，推荐使用 IBRION=2；在从非常糟糕的初始猜测值开始的情况下，IBRION=3 通常有用；接近能量局部最小值，推荐使用 IBRION=1
+- IBRION 选择
+    - 弛豫较困难时，推荐使用 IBRION=2
+    - 在从非常糟糕的初始猜测值开始的情况下，IBRION=3 通常有用
+    - 接近能量局部最小值，推荐使用 IBRION=1
 
 ```bash
 -1          # 不更新；离子不移动
 0           # 分子动力学 AIMD
+
+# 结构优化
 1           # RMM-DIIS / quasi-Newton 算法
 2           # conjugate gradient algorithm 共轭梯度算法
 3           # Damped molecular dynamics 算法
-5 6         # 利用有限差分（finite differences）计算二阶导数、海森矩阵和声子频率
-7 8         # 利用密度泛函扰动理论（density functional perturbation theory, DFPT）计算二阶导数、海森矩阵和声子频率
+
+# 计算声子模式；计算二阶导数、海森矩阵和声子频率
+5 6         # 有限差分（finite differences）；5 without symmetry, 6 with symmetry
+7 8         # 密度泛函扰动理论（density functional perturbation theory, DFPT）；7 without symmetry, 8 with symmetry
 ```
 
 
@@ -380,19 +438,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ### POTIM
 
-离子弛豫步宽/AIMD 步长
-
-
----
-
-### ALGO
-
-电子最小化算法/选择 GW 计算类型
-
-```bash
-Fast           # 初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
-Normal         # blocked-Davidson 算法
-```
+- 离子弛豫步宽/AIMD 步长
 
 
 ---
@@ -412,24 +458,24 @@ Normal         # blocked-Davidson 算法
 
 ---
 
-### EDIFFG
+### EDIFF
 
-离子步收敛条件
+- 电子步收敛条件
+
 
 
 ---
 
-### EDIFF
+### EDIFFG
 
-电子步收敛条件
-
+- 离子步收敛条件
 
 
 ---
 
 ### NELM
 
-- 每个离子步中的最大电子步数
+- 每个离子步中的最大电子步步数
 
 - 默认值：60
 
@@ -438,7 +484,9 @@ Normal         # blocked-Davidson 算法
 
 ### NELMIN
 
-- 每个离子步中的最小电子步数
+- 每个离子步中的最小电子步步数
+
+- 默认值：2；建议值设置在 4-8 之间
 
 
 ---
@@ -508,15 +556,6 @@ AUTO
 
 ---
 
-### ISTART
-
-- 初始化轨道；确定是否读取 WAVECAR 文件
-
-- 默认值：1（如果 WAVECAR 文件存在）否则 0
-
-
----
-
 ### ISYM
 
 决定 VASP 处理对称性的方式
@@ -546,23 +585,6 @@ AUTO
 2    # 考虑
 ```
 
-
-
----
-
-### ICHARG
-
-决定 VASP 如何构建初始电荷密度
-
-默认值：ISTART=0，则 ICHARG=2；否则 ICHARG=0
-
-```bash
-0        # 从初始波函数计算电荷密度
-1        # 从 CHGCAR 文件读取
-2        # 若 ISTART=0，取原子电荷密度的叠加
-+10      # 非自洽计算（在整个电子最小化过程中电荷密度保持不变）
-11       # 从 CHGCAR 文件获取（能带绘制的）本征值或给定的电荷密度的态密度（density of states (DOS)）
-```
 
 
 ---

@@ -36,6 +36,7 @@ password:
 - [GitHub - bchiang7/v4: Fourth iteration of my personal website built with Gatsby](https://github.com/bchiang7/v4)
 - Obsidian / Typora 简历：[GitHub - BingyanStudio/LapisCV: 📃 开箱即用的 Obsidian / Typora 简历](https://github.com/BingyanStudio/LapisCV)
 - [GitHub - AmruthPillai/Reactive-Resume: A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!](https://github.com/AmruthPillai/Reactive-Resume)
+- [GitHub - Riaz-404/Portfolio: Personal portfolio build with HTML, CSS & JavaScript](https://github.com/Riaz-404/Portfolio)
 
 - Jekyll 框架：
     - [GitHub - pages-themes/minimal](https://github.com/pages-themes/minimal)
@@ -196,6 +197,7 @@ mdbook serve --open
 - Sphinx 框架主题：
     - [GitHub - mgeier/insipid-sphinx-theme](https://github.com/mgeier/insipid-sphinx-theme)
     - [GitHub - pradyunsg/furo](https://github.com/pradyunsg/furo)
+    - 类 MkDocs Material：[GitHub - jbms/sphinx-immaterial: Adaptation of the popular mkdocs-material material design theme to the sphinx documentation system](https://github.com/jbms/sphinx-immaterial/)
 
 - docsify：[docsify](https://docsify.js.org/#/zh-cn/)
 

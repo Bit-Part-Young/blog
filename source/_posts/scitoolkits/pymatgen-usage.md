@@ -565,27 +565,44 @@ chemical_system
 
 #### periodic_table
 
+- 查看元素周期表中元素的信息；Element 类继承自 ElementBase
+
 ```python
 from pymatgen.core.periodic_table import Element
 
 # 属性
+Z                          # 原子序数
+number                     # 同上
+symbol                     # 元素符号
+long_name                  # 元素的长名称（单词）
+atomic_radius_calculated   # 计算的原子半径；经验值
+van_der_waals_radius       # 范德华半径；经验值
+ionic_radii                # 离子半径
 electronic_structure       # 电子结构（可查看元素价电子排布）
+n_electrons                # 电子数
+full_electronic_structure  # 完整的电子结构
+melting_point              # 熔点
+boiling_point              # 沸点
+liquid_range               # 液相范围
+bulk_modulus               # 体莫量
+youngs_modulus             # 杨氏模量
+ionization_energies        # 电离能
 is_metal                   # 是否为金属
+data                       # 所有的数据
 
 # 方法
 
 
 # 静态方法
 print_periodic_table()     # 打印元素周期表
-
-# Element
-average_ionic_radius
 ```
 
 
 ---
 
 #### sites
+
+- 原子位点
 
 ```python
 # 属性
@@ -597,6 +614,8 @@ specie
 ---
 
 #### lattice
+
+- 点阵
 
 ```python
 from pymatgen.core.lattice import Lattice
@@ -1096,8 +1115,8 @@ get_space_group_number()                # 空间群编号（编号越小，对�
 get_space_group_symbol()                # 空间群符号
 
 # 寻找构型中的等同原子
-symmetry_dataset = sga.get_symmetry_dataset()
-symmetry_dataset['equivalent_atoms']
+symmetry_dataset = sga_analyzer.get_symmetry_dataset()
+symmetry_dataset.equivalent_atoms
 ```
 
 空间群与晶系之间的关系：[Space group - Wikipedia](https://en.wikipedia.org/wiki/Space_group)

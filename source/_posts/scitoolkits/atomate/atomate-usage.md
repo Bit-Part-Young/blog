@@ -2,7 +2,7 @@
 title: atomate 安装与使用
 top: true
 pin: true
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -15,7 +15,7 @@ categories:
   - 科研工具
 date: 2023-06-18 18:30:30
 abbrlink: 120738
-password: 
+password:
 sticky: "99"
 ---
 
@@ -729,7 +729,9 @@ dict_keys(
 
 ### 相关问题
 
-- master `db.json` 问题：host 只能写数字的形式，siyuan 可以写字符串的形式（在 MongoDB Compass 填写的 host 也需对应的形式）
+- 新版 MongoDB Compass 可以修改一个页面下的 Document 条数（25-100）
+
+- Master `db.json` 问题：Host 只能写数字的形式，SiYuan 可以写字符串的形式（在 MongoDB Compass 填写的 Host 也需对应的形式）
 
 ```bash
     raise ServerSelectionTimeoutError(
@@ -738,7 +740,7 @@ pymongo.errors.ServerSelectionTimeoutError:
 
 ---
 
-- MongoDB 数据库连接失败（数据库服务未启动；XXX 指 host）
+- MongoDB 数据库连接失败（数据库服务未启动；XXX 指 Host）
 
 ```bash
 getaddrinfo ENOTFOUND XXX
