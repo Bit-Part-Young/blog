@@ -127,6 +127,8 @@ MP 等数据库中的结构文件有时对称性不一定正确，最好进行�
 
 [GitHub - aguang5241/Interface-Maker: A python3 code to create slabs and interfaces for first-principles calculations.](https://github.com/aguang5241/Interface-Maker)
 
+ [GitHub - rzk1/heterojunction: Create surfaces and heterojunctions from two crystal structures](https://github.com/rzk1/heterojunction)
+
 在 latgen、VASPKIT 和 MS 中，称为 build layer
 
 

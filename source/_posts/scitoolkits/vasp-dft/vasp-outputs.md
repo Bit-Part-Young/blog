@@ -20,7 +20,7 @@ password:
 
 # VASP 输出文件
 
-输出文件结构示例
+- 输出文件结构示例
 
 ```text
 .
@@ -43,8 +43,6 @@ password:
 ├── POTCAR
 ├── PROCAR
 ├── REPORT
-├── slurm-2675593.out
-├── sub.sh
 ├── vasprun.xml
 ├── WAVECAR
 └── XDATCAR
@@ -347,8 +345,6 @@ tot    0.727  0.000  0.013  0.000  0.000  0.000  0.000  0.000  0.000  0.740
 
 - xml 格式的输出文件（内容和 OUTCAR 文件类似）
 
-- pymatgen 有解析此文件的类
-
 
 ---
 
@@ -399,9 +395,17 @@ energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
 
 ---
 
-## PCDAT、XDATCAR
+### XDATCAR
 
-轨迹文件（AIMD 中每次输出步的离子构型）
+- 含每个离子步的构型（轨迹文件；AIMD 常用）
+
+
+---
+
+### PCDAT
+
+- 含对关联函数（pair correlation function；AIMD 常用）；对于 AIMD，写入平均对关联函数
+
 
 ---
 

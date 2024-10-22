@@ -40,12 +40,12 @@ password:
 
 - [GitHub - computron/pymatgen\_tutorials: Tutorials for using the pymatgen library](https://github.com/computron/pymatgen_tutorials)
 
-- material project workshop:
+- Material Project Workshop:
     - 2021：[The Materials Project Workshop](https://workshop.materialsproject.org/)
     - 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
     - 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
     - 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
-    - 注：workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面；workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
+    - 注：Workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面；workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 ---
 
@@ -864,8 +864,29 @@ BSVasprun 类：Vasprun 的优化版本（继承至 Vasprun），只解析能带
 from pymatgen.io.vasp.ouputs import Vasprun
 
 # 属性
-ionic_steps       # 离子步
+converged               # 检查离子步、电子步是否都收敛
+converged_electronic    # 检查电子步是否收敛
+converged_ionic         # 检查离子步是否收敛
+incar                   # INCAR 文件内容
+kpoints                 # KPOINTS 文件内容
+potcar_spec             # POTCAR 种类
+potcar_symbols          # POTCAR 符号
+vasp_version            # VASP 版本
+initial_structure       # 初始构型
+final_structure         # 最终构型
+structures              # 每个离子步构型
+final_energy            # 最终能量
+nionic_steps            # 离子步步数
+ionic_steps             # 每步离子步内容
+complete_dos            # 获取 DOS 数据
+tdos                    # 总态密度
+idos                    # 积分态密度
+pdos                    # 类型是列表；索引方式 pdos[atomindex][orbitalindex]
 
+# 方法
+as_dict()               # 将 解析的 vasprun.xml 数据转换为 dict
+get_computed_entry()    # 将 vasprun.xml 中的计算结果转换为 ComputedEntry 对象
+get_band_structure()    # 获取能带结构数据；line_mode=True
 
 # 每个 ionic_step 所含的数据 dict key
 dict_keys(
@@ -886,11 +907,13 @@ dict_keys(
 
 ### pymatgen.electronic_structure
 
-电子结构相关工具与分析
+- 电子结构相关工具与分析（能带和态密度）；可绘制能带、DOS、能带 + DOS
+
+- Plotter 类的 sigma 参数使绘制出的图平滑（参数值为多少较为合适，不破坏点线图的原本趋势变化）
 
 ```python
 import matplotlib.pyplot as plt
-from pymatgen.electronic_structure.core import OrbitalType
+from pymatgen.electronic_structure.core import OrbitalType, Orbital
 from pymatgen.io.vasp.outputs import Vasprun, BSVasprun
 from pymatgen.electronic_structure.plotter import (
     BSDOSPlotter,
@@ -945,6 +968,12 @@ ax = dos_plot.get_plot()
 ax.set_xlim(...)
 
 plt.savefig(...)    # 保存图片，可不使用 dos_plot.save_plot()
+
+
+# 提取具体的 TDOS 数据
+dos_vasprun.tdos.as_dict()["energies"]
+# 提取具体的原子位点 PDOS 数据；分 Spin.up 和 Spin.down
+os_vasprun.pdos[0][Orbital.s]
 ```
 
 

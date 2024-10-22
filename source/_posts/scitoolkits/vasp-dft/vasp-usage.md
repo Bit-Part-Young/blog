@@ -25,9 +25,6 @@ password: d93f517bc1345a0d8ff992410aca5dbc35f2e88087cdc5d9edb0c6d77d8a4c1a
 - VASP 全称：Vienna Ab-initio Simulation Package
 
 
-VASP ELFCAR 文件
-
-
 VASP6 用的赝势和 5.4.4 相同
 
 
@@ -47,6 +44,9 @@ PW 是指平面波基组，用于展开波函数或者说原子、分子轨道
 PAW 是独立于 PBE 的理论方法，但是我们常常会见到 POTCAR 中称为 PAW-PBE 赝势，把三个概念放在一起了，意思实际上是针对不同的的泛函利用 PAW 方法相应调参优化得到的一致性赝势文件
 
 [PAW (Projected Augmented Wave) 全电子理论计算方法](https://mp.weixin.qq.com/s/CffWYOuyAhI2zosScO7IjQ)
+
+
+含各种类型计算的通用 INCAR 文件： [GitHub - WMD-group/INCAR: A generic INCAR file for the density functional theory package VASP](https://github.com/WMD-group/INCAR)
 
 
 ---
@@ -100,8 +100,8 @@ SCAN (Strongly constrained and appropriately normed)
 
 [VASP关键输入参数速查表 - VASPKIT与量化软件](http://vaspkit.cn/index.php/3.html)
 
+- VASP 计算流程：[VASP的计算流程 - Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
 
----
 
 [VASP中POTCAR使用指南 - Jun's Blog](https://next.jun997.xyz/2022/04/14/ba8ff0b84c20.html)
 
@@ -145,8 +145,6 @@ GW 计算
 [DFT磁性的计算(本例为用VASP计算FCC Ni的磁矩)](https://mp.weixin.qq.com/s/4ygwBJsAjVVQ3slPZeevhw)
 
 
-VASP 计算流程：[VASP的计算流程 - Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
-
 
  - NCORE: 指定单个轨道计算所使用的核数量
  - NPAR: 指定同时并行处理的能带数
@@ -159,39 +157,28 @@ VASP 计算流程：[VASP的计算流程 - Jun's Blog](https://www.jun997.xyz/20
 
 ### 工具
 
-VASPMO：用于显示 VASP 计算的波函（或分子轨道）。它能够读取 VASP 的输出文件 PROCAR 和 CONTCAR，并产生 Gaussian 输出格式的输出文件，用于其它显示工具，如 Molekel、Chemcraft、Gabedit、Molden 和 JMol 等）读取，进而绘制和观看体系的分子轨道
+- VASPMO：用于显示 VASP 计算的波函（或分子轨道）。它能够读取 VASP 的输出文件 PROCAR 和 CONTCAR，并产生 Gaussian 输出格式的输出文件，用于其它显示工具，如 Molekel、Chemcraft、Gabedit、Molden 和 JMol 等）读取，进而绘制和观看体系的分子轨道
 
 
 ---
 
 ### 算例
 
-[VASP 官网案例——Calculate U for LSDA+U（线性响应方法求 U 值）](https://mp.weixin.qq.com/s/93nuu0ksVPH_MzuSKysqKA)
+- [VASP 官网案例——Calculate U for LSDA+U（线性响应方法求 U 值）](https://mp.weixin.qq.com/s/93nuu0ksVPH_MzuSKysqKA)
 
-内含表面能、层间距变化计算公式：[Ni 100 surface relaxation - VASP Wiki](https://www.vasp.at/wiki/index.php/Ni_100_surface_relaxation)
+- 内含表面能、层间距变化计算公式：[Ni 100 surface relaxation - VASP Wiki](https://www.vasp.at/wiki/index.php/Ni_100_surface_relaxation)
 
-石墨堆叠方向层间距确定：
-- GGA level 的半局域（semilocal）DFT 低估了长程色散相互作用，导致石墨晶格在堆叠方向上的错误高估：8.84Å（PBE）对 6.71Å（exp）。
-- 使用 Tchatchenko and Scheffler 方法（添加 IVDW 和 LVDW_EWALD 参数）考虑范德华力相互作用（van der Waals interactions）进行纠正
-
-NiO：反铁磁
-
-Ni(100) 表面的 DOS 计算，没有先进行 SCF 计算？
-Ni(100) 表面的能带结构计算，K-path 是 reziprok 方式，非 Line-Mode，vaspkit 和 pymatgen 无法获取数据，只能使用 p4vasp？
-
-Ni(111) 表面高精度单点能计算（截断能提高；用以计算吸附能、功函数（添加 LVHAR 参数））：[Ni 111 surface high precision - VASP Wiki](https://www.vasp.at/wiki/index.php/Ni_111_surface_high_precision)
-
->[Ex49 功函数（work function）的计算（一） | Learn VASP The Hard Way](https://www.bigbrosci.com/2018/09/03/ex49/)
-
-VASP wiki 中的示例 POSCAR 格式和 POTCAR 文件（PAW 格式）较老？
-
-[Fcc Ni DOS - VASP Wiki](https://www.vasp.at/wiki/index.php/Fcc_Ni_DOS)
+- 石墨堆叠方向层间距确定：
+    - GGA level 的半局域（semilocal）DFT 低估了长程色散相互作用，导致石墨晶格在堆叠方向上的错误高估：8.84Å（PBE）对 6.71Å（exp）。
+    - 使用 Tchatchenko and Scheffler 方法（添加 IVDW 和 LVDW_EWALD 参数）考虑范德华力相互作用（van der Waals interactions）进行纠正
 
 
-[Partial DOS of CO on Ni 111 surface - VASP Wiki](https://www.vasp.at/wiki/index.php/Partial_DOS_of_CO_on_Ni_111_surface)
+- Ni(111) 表面高精度单点能计算（截断能提高；用以计算吸附能、功函数（添加 LVHAR 参数））：[Ni 111 surface high precision - VASP Wiki](https://www.vasp.at/wiki/index.php/Ni_111_surface_high_precision)
 
+- 功函数相关
+    - [Partial DOS of CO on Ni 111 surface - VASP Wiki](https://www.vasp.at/wiki/index.php/Partial_DOS_of_CO_on_Ni_111_surface)
+    - [Ex49 功函数（work function）的计算（一） - Learn VASP The Hard Way](https://www.bigbrosci.com/2018/09/03/ex49/)
 
-VASP 官网算例中的部分 POSCAR 文件中没有元素符号行（第 6 行，不影响）
 
 - [ ] 振动频率计算的意义？NFREE 参数，振动 mode？
 >[表面吸附分子的振动自由能计算 - 知乎](https://zhuanlan.zhihu.com/p/397862258)
@@ -210,28 +197,18 @@ VASP 官网算例中的部分 POSCAR 文件中没有元素符号行（第 6 行�
 
 >[晶体高对称点 - 知乎](https://zhuanlan.zhihu.com/p/423772139)
 
+- AIMD 相关
+    - Si 熔化 AIMD 计算：[Liquid Si - Standard MD - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Standard_MD)
+    - Si 结晶 AIMD 计算（扩散系数及 PCF）：[Liquid Si - Freezing - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Freezing)
+    - 只有 1 个 K 点，可以用 vasp_gam 来运行，加快运行速度
+    - [利用分子动力学轨迹计算粒子运动的均方位移和扩散系数 - 知乎](https://zhuanlan.zhihu.com/p/542642528)
 
-Si 熔化 AIMD 计算：[Liquid Si - Standard MD - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Standard_MD)
-
-只有 1 个 K 点，可以用 vasp_gam 来运行，加快运行速度
-
-Pair correlation function 数据保存在 PCDAT 文件中
-
-
-Si 结晶 AIMD 计算（扩散系数及 PCF）：[Liquid Si - Freezing - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Freezing)
-
->[利用分子动力学轨迹计算粒子运动的均方位移和扩散系数 - 知乎](https://zhuanlan.zhihu.com/p/542642528)
-
-```bash
-#!/bin/bash
-
-for i in 800 900 1000 1100 1200 1300 1400 1500 1600 1700 1800 1900 2000; do
-    # awk 的作用是什么
-    awk <PCDAT.$i >pair.$i ' NR==8 {pcskal=$1} NR==9 {pcfein=$1} NR>=10036 {line=line+1; print (line-0.5)*pcfein/pcskal,$1} '
-done
-
-gnuplot -e "set terminal jpeg; set key left; set xlabel 'r (Ang)'; set ylabel 'PCF'; set style data lines; plot 'pair.2000','pair.1400','pair.800' " > pair.jpg
-```
+- 注意事项：
+    - VASP 官网算例中的部分 POSCAR 文件中没有元素符号行（第 6 行，不影响）
+    - VASP wiki 中的示例 POSCAR 格式和 POTCAR 文件（PAW 格式）较老？
+    - FCC Ni 及 Ni(100) 表面的 DOS 计算，没有先进行自洽计算
+    - Ni(100) 表面的能带结构计算，K-path 是 reziprok 方式，非 Line-Mode，vaspkit 和 pymatgen 无法获取数据，只能使用 p4vasp？
+    - NiO：反铁磁
 
 
 ---
@@ -246,7 +223,11 @@ gnuplot -e "set terminal jpeg; set key left; set xlabel 'r (Ang)'; set ylabel 'P
 
 ### 静态计算
 
-WIP...
+```bash
+IBRION  =  -1
+NSW     =  0
+ISIF    =  2
+```
 
 
 ---
@@ -255,11 +236,13 @@ WIP...
 
 WIP...
 
+
 ---
 
 ### 收敛性测试
 
 k 点和 ENCUT
+
 
 ---
 
@@ -312,16 +295,32 @@ EDIFFG = -2E-02        (Ionic convergence, eV/AA)
 
 - 参考：
     - [VASP视频教程-HSE06杂化泛函计算能带和分析\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV17i4jeqER4)
+    - [VASP+vaspkit计算能带结构+态密度 - 知乎](https://zhuanlan.zhihu.com/p/526969630)
 
 - 计算流程：
     - 弛豫计算（或结构优化；初始构型很好，可忽略此步）
     - 静态自洽计算
-    - 态密度计算：非自洽计算（ICHARG=11，k 点密度变大）
-    - 能带计算：拷贝自洽计算生成的 WAVECAR 和 CHGCAR，非自洽计算（ICHARG=11，k-path）
+    - 态密度计算：拷贝自洽计算生成的 WAVECAR 和 CHGCAR，非自洽计算（ICHARG=11，K 点密度变大）
+    - 能带计算：拷贝自洽计算生成的 WAVECAR 和 CHGCAR，非自洽计算（ICHARG=11，K-path）
 
 - 自洽与非自洽计算的区别：电子密度是否匹配；**不是静态与弛豫计算的区别！**
 
 - 开启自旋极化，DOS 会有上下两条线（上下对称、不对称的含义是什么）
+
+- 建议 NEDOS 数值稍微取密一些（多少较为合适）
+
+- 态密度相关输出文件：DOSCAR、PROCAR
+
+```bash
+# DOS 相关参数；可不用设置
+EMIN
+EMAX
+NEDOS
+
+
+grep 'NEDOS' OUTCAR          # 查看 NEDOS 数值
+grep 'EMIN' OUTCAR           # 查看 EMIN、EMAX 数值
+```
 
 
 ---
@@ -403,8 +402,8 @@ VACUUM VOLUME:              0.0000
 MDALGO      = 2
 SMASS       = 0
 
-TEBEG       = 
-TEEND       = 
+TEBEG       = 300
+TEEND       = 300
 
 
 # 数据获取
@@ -433,7 +432,11 @@ LELF        = .TRUE.
 
 ### 弹性常数计算
 
+[GitHub - haidi-ustc/VASP-Elastic: Extracts full elastic tensor from VASP OUTCAR and calculates some useful quantities](https://github.com/haidi-ustc/VASP-Elastic)
+
 计算得到的弹性常数值不是很准确
+
+- kBar=0.1GPa
 
 - [ ] Nb 计算得到的弹性常数 C44 < 0，为什么？
 
@@ -490,7 +493,7 @@ warnings.warn("Float overflow (*******) encountered in vasprun")
 **DFT 相关内容（梅师兄讲解）：**
 
 
-没有磁性的构型添加自旋，计算速度会变慢（2 倍？），但并不会对计算的性质结果产生影响（可以检查添加自旋后的计算磁矩是否接近 0）
+没有磁性的构型添加自旋，**计算速度会变慢（2 倍及以上）**，但并不会对计算的性质结果产生影响（可以检查添加自旋后的计算磁矩是否接近 0）
 
 vaspkit 在 KPOINTS 文件生成的选项中，若构型是六方等对称性不是很高的结构，若网格方式选择的是 MP，最后生成的 KPOINTS 文件中的网格方式还是 Gamma（会自动纠正）；推荐精度：0.03（梅）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 ka 值大于 30 或 33.33，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；**0.03 对应的 K 点密度是 1/0.03=33.33**。
 

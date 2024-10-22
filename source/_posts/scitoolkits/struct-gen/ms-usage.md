@@ -64,13 +64,14 @@ password:
 ### 建模
 
 - 参考：
-    - [VASP视频教程-搭建模型-用ms建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1QKt3e1E6p/?spm_id_from=333.999.0.0)
+    - [Materials\_Studio建模锂电池材料Li3VO4\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1jL2EYBE23)
+    - [Materials\_Studio构建石墨烯抗冲击结构\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1MY28YdEqv)
+    - [14-3-Materials\_Studio建模\_哔哩哔哩\_bilibili](https://b23.tv/Ip9oPhw)
+    - [VASP视频教程-搭建模型-用ms建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1QKt3e1E6p)
     - [Materials Studio学习](https://cndaqiang.github.io/2017/11/24/ms1/)
     - [如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
     - [How to build and optimize crystal structure of a compound - Part 01 - Materials studio (CASTEP)](https://www.youtube.com/watch?v=IMvzznBhEns)
     - [关于Material Studio和Vesta导出来的cif文件的差别](https://zhuanlan.zhihu.com/p/417605545)
-    - [Materials\_Studio建模锂电池材料Li3VO4\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1jL2EYBE23)
-    - [Materials\_Studio构建石墨烯抗冲击结构\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1MY28YdEqv)
 
 - 复杂结构 Bulk 模型构建：
     - 可通过其他程序构建（如 pymatgen、ase、pyxtal 等），使用 ase 保存成 xsd 格式文件，之后直接导入到 MS 中即可

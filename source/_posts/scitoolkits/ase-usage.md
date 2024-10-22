@@ -352,8 +352,10 @@ supercell = atoms * (2, 2, 2)   # 方式 2
 
 #### surface
 
+- Doc：[Surfaces — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/surface.html)
 - 表面模型构建
 - 无法枚举出具有不同表面终端的所有表面
+- 特定、常见的简单晶体结构表面函数，支持吸附位点
 
 ```python
 from ase.build import surface
@@ -364,7 +366,7 @@ s = surface(lattice=atoms, indices=(1, 1, 0), layers=2, vacuum=10.0)
 # 参数
 lattice     # Atoms 对象
 indices     # 面指数
-layers      # 一个 layer 指不加真空层完整的 slab，而非 slab 中的具体的一个原子层
+layers      # 一个 layer 指不加真空层一个完整单元的 slab，而非 slab 中的具体的一个原子层，在此基础 * n
 vacuum      # 两端添加真空层
 ```
 

@@ -1493,7 +1493,7 @@ make  # cmake --build .
 cp how_to_set_environment_variables ~/.vaspkit
 
 # 自定义参数
-PBE_PATH                   # PBE 赝势路径
+PBE_PATH                   # PBE 赝势路径；需是完整路径，不能使用环境变量
 VASPKIT_UTILITIES_PATH     # vaspkit 工具路径
 PYTHON_BIN                 # python 路径；可选
 ```

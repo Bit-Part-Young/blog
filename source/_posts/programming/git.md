@@ -747,6 +747,9 @@ git remote rm origin    #
 git status
 
 git status --short --branch
+
+# 删除未跟踪的文件
+gsb | grep -E '^\s*[?][?]' | awk '{print $2}' |  xargs rm -rf
 ```
 
 

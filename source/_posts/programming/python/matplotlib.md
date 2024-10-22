@@ -225,14 +225,11 @@ plt.legend(props={"family": "SimHei"})
 
 ### 配色
 
-[scripts/scripts/python/color.py at master · yh-phys/scripts · GitHub](https://github.com/yh-phys/scripts/blob/master/scripts/python/color.py)
+- [SciencePlots/scienceplots/styles/color at master · garrettj403/SciencePlots · GitHub](https://github.com/garrettj403/SciencePlots/tree/master/scienceplots/styles/color)
+- [Gallery · garrettj403/SciencePlots Wiki · GitHub](https://github.com/garrettj403/SciencePlots/wiki/Gallery#color-cycles)
 
-[审稿人也会爱的配色\~科研配色收藏第9期 - 知乎](https://zhuanlan.zhihu.com/p/698897001)
-
-```python
-"#4F4FFE"
-"#CE3D32"
-```
+- [scripts/scripts/python/color.py at master · yh-phys/scripts · GitHub](https://github.com/yh-phys/scripts/blob/master/scripts/python/color.py)
+- [审稿人也会爱的配色\~科研配色收藏第9期 - 知乎](https://zhuanlan.zhihu.com/p/698897001)
 
 ```python
 import matplotlib.pyplot as plt
@@ -252,6 +249,10 @@ prop_cycle_list = [
     "#bcbd22",
     "#17becf",
 ]
+
+
+"#4F4FFE"
+"#CE3D32"
 ```
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404091017405.png)

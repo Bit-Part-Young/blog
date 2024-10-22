@@ -92,7 +92,9 @@ direct
 
 - [Available pseudopotentials - VASP Wiki](https://www.vasp.at/wiki/index.php/Available_pseudopotentials)：含 PBE52、PBE54、PBE64 赝势介绍，赝势加后缀之间的区别
 
-- 赝势文件；包含计算体系中每个元素种类的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
+- 赝势文件；包含计算体系中每种元素的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
+
+- PBE 赝势可分为：无后缀、\_pv、\_sv、\_d 和数字后缀，即 semi-core 的 p、s、d 当做价态处理
 
 - 第二行内容：价电子数（与 VRHFIN、ZVAL 对应）
 
@@ -129,7 +131,7 @@ grep ENMAX POTCAR
 grep -A1 '  PAW_PBE' POTCAR
 ```
 
-赝势种类：模守恒赝势、超软赝势（它们应用在哪些体系？）
+赝势种类：模守恒赝势、超软赝势 USPP（它们应用在哪些体系？）
 
 - POTCAR 文件内容示例
 
@@ -330,6 +332,39 @@ Normal         # blocked-Davidson 算法
 
 ---
 
+### LREAL
+
+- 决定投影算子是在实空间还是在倒空间求值
+
+- 默认值：.FALSE.
+
+```bash
+.FALSE.     # 倒空间
+.TRUE.
+AUTO
+```
+
+
+---
+
+### LCHARG
+
+- 决定电荷密度是否写入 CHGCAR 和 CHG 文件中
+
+- 默认值：.TRUE.
+
+
+---
+
+### LWAVE
+
+- 决定运行结束后波函数是否写入 WAVECAR 文件中
+
+- 默认值：.TRUE.
+
+
+---
+
 ### ENCUT
 
 - 平面波截断能；收敛性测试指标之一；默认值为 POTCAR 文件中最大的 ENMAX 值
@@ -389,7 +424,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 - 默认值：0.2
 
-- 对于金属，默认 SIGMA=0.2，但通常 SIGMA=0.05 就能满足要求
+- 对于金属，默认 0.2，但通常 0.05 就能满足要求
 
 
 ---
@@ -486,53 +521,18 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 - 每个离子步中的最小电子步步数
 
-- 默认值：2；建议值设置在 4-8 之间
-
-
----
-
-### LREAL
-
-- 决定投影算子是在实空间还是在倒空间求值
-
-```bash
-.FALSE.     # 倒空间
-.TRUE.
-AUTO
-```
-
-
----
-
-### LCHARG
-
-- 决定电荷密度是否写入 CHGCAR 和 CHG 文件中
-
-- 默认值：.TRUE.
-
-
----
-
-### LWAVE
-
-- 决定运行结束后波函数是否写入 WAVECAR 文件中
-
-- 默认值：.TRUE.
-
+- 默认值：2；推荐值设置在 4-8 之间
 
 
 ---
 
 ### LORBIT
 
-和适当的 RWIGS 一起，决定 PROCAR 或 PROOUT 文件是否被写入。LORBIT>=10 时，不需要 RWIGS 标签。默认值为 None。
+- 和适当的 RWIGS 一起，决定 PROCAR 或 PROOUT 文件是否被写入。LORBIT>=10 时，不需要 RWIGS 标签
 
-
+- 默认值：None
 
 ![LORBIT-tag.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307151730319.png)
-
-
-
 
 
 ---
@@ -550,8 +550,6 @@ AUTO
 
 - 决定 POSCAR 文件中的位置精度
 - 默认值：10-5
-
-
 
 
 ---
@@ -586,7 +584,6 @@ AUTO
 ```
 
 
-
 ---
 
 ### MAGMOM
@@ -599,7 +596,9 @@ AUTO
 ### NWRITE
 
 - 决定往 OUTCAR 文件中写入多少内容
-- 可选值：0-4；默认值：2
+
+- 默认值：2；可选值：0-4
+
 - 长时间的 MD 运行，建议 NWRITE 设置为 0 或 1；短时间运行设置为 2
 
 ```bash
@@ -607,10 +606,26 @@ AUTO
 4      # 只用于 debugging
 ```
 
+- f+l 表示第一步和最后一步离子步，表示 f 第一个离子步，i 表示每个离子步，e 表示每个电子步，X 表示适用时（when applicable）
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307162218175.png)
 
-其中，f+l 表示第一步和最后一步离子步，表示 f 第一个离子步，i 表示每个离子步，e 表示每个电子步，X 表示适用时（when applicable）。
+
+---
+
+### EMIN 、EMAX
+
+- DOS 能量的上下范围
+
+
+---
+
+### NEDOS
+
+- DOS 和介电函数的网格点数目
+
+- 默认值：301
+
 
 ---
 

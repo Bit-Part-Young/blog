@@ -105,3 +105,5 @@ atomkit 0.9.0 版本功能介绍
 能带绘制需要用到的数据文件：`REFORMATTED_BAND.dat`、`KLABELS`
 
 态密度绘制需要用到的数据文件：`TDOS.dat`
+
+没有绘制总的 s、p、d 轨道的 PDOS 选项
