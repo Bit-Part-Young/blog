@@ -33,6 +33,7 @@ WIP...
 - 在线的 Unix 和 Linux 手册页（man 页）：[Linux Man Pages Online](http://man.he.net/)
 - Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
 - 中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)
+- [GitHub - ustclug/Linux201-docs: Linux 201 进阶教程阅读资料](https://github.com/ustclug/Linux201-docs)
 - [GitHub - linuxhitchhiker/THGLG: Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
 - [GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
 - [真有人用Linux？（Linux下的工作、科研、学习与生活） - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/281312)
@@ -51,6 +52,9 @@ WIP...
 - 单行 Shell 命令：[Shell One Liner - GitHub - trimstray/the-book-of-secret-knowledge](https://github.com/trimstray/the-book-of-secret-knowledge#shell-one-liners-toc)
 
 - SSH 配置管理：[GitHub - soulteary/ssh-config: 1MB size, 100% Coverage, Use more expressive YAML / JSON to manage your Config files. --- 1MB大小，100% 测试覆盖，使用更具表现力的YAML / JSON来管理您的配置文件。](https://github.com/soulteary/ssh-config)
+
+- `rm` 的安全替代：[GitHub - MilesCranmer/rip2: A safe and ergonomic alternative to rm](https://github.com/MilesCranmer/rip2)
+
 
 
 ---
@@ -763,13 +767,18 @@ y              # 高亮运行状态为 running 的进程
 o              # 小写字母 O；筛选 PID，输入筛选条件（如 COMMAND=bash）
 ```
 
-- 文件行数统计
+- wc：统计文件的行数、字数和字节数（或字符数）
 
 ```bash
-grep -c '' file
-awk 'END { print NR }' file
-wc -l file
-sed -n '$=' file
+wc file        # 基本使用
+# 参数
+-l             # 只显示行数
+-w             # 只显示单词数
+-c             # 只显示字节数
+-m             # 只显示字符数
+
+# 输出内容示例
+10   35  240 file
 ```
 
 - 其他
@@ -800,6 +809,12 @@ ps hax -o user | sort | uniq -c | sort -r
 # 在终端上打印一行由井号(#)组成的横条，其长度与终端的列数相同
 # 可作为视觉分隔线
 printf "%`tput cols`s" | tr ' ' '#'
+
+# 文件行数统计
+grep -c '' file
+awk 'END { print NR }' file
+wc -l file
+sed -n '$=' file
 ```
 
 

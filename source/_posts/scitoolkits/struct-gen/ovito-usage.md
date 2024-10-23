@@ -64,6 +64,9 @@ Common neighbor analysis          # CNA
     - 表达式选择：`Occupancy==0` 空位，`Occupancy>0` 间隙原子
     - 分配颜色：给空位和间隙原子分别分配颜色
 
+- [14-5-Ovito可视化\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1kryVYtEcT)
+- [Ovito可视化堆垛层错、缺陷和原子应力\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ieyqYnEiq/)
+
 
 
 ---

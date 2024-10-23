@@ -462,6 +462,8 @@ twine upload dist/*
 
 - 代替 Jupyter Notebook：[GitHub - marimo-team/marimo](https://github.com/marimo-team/marimo)
 
+- 在终端中运行 Jupyter：[GitHub - joouha/euporie: Jupyter notebooks in the terminal](https://github.com/joouha/euporie)
+
 ```python
 # 魔法命令
 %autosave 500   # 每 500s 自动保存

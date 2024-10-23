@@ -82,20 +82,22 @@ df.tail()
 
 df.count()
 
+df.astype(float)        # 设置数据类型
 
-df.dtypes
-df.shape
-df.size
-df.index
-df.columns
-df.values
-df.ndim
+
+df.dtypes               # 数据类型
+df.shape                # m 行 n 列
+df.size                 # 
+df.index                # 行索引
+df.columns              # 列名
+df.values               # 数值
+df.ndim                 # 维度
 
 # Series 属性
 ser.is_unique
 
 
-df.corr()  # Pearson 相关系数矩阵
+df.corr()               # Pearson 相关系数矩阵
 ```
 
 
@@ -103,12 +105,12 @@ df.corr()  # Pearson 相关系数矩阵
 索引
 ```python
 # Series 索引
-ser[1]      # 整数索引
-ser["a"]    # 标签索引
+ser[1]             # 整数索引
+ser["a"]           # 标签索引
 
 
-df.loc[]     # 基于标签索引；闭区间
-df.iloc[]    # 基于整数位置索引；半开区间
+df.loc[]           # 基于标签索引；闭区间
+df.iloc[]          # 基于整数位置索引；半开区间
 
 # 选择单列
 df["col1"]
@@ -122,8 +124,8 @@ df.loc[:, ["col1", "col2"]]
 df.iloc[:, [2:5]]
 
 # 选择行
-df.loc[1:3]  # 行标签索引默认是整数 0 - N-1，此时写法和 iloc 类似
-df.loc[["a", "b", "c"]]
+df.loc[1:3]        # 行标签索引默认是整数 0 - N-1，此时写法和 iloc 类似
+df.loc[["a", "b"]]
 df.iloc[1:3]
 
 # 选择行和列
@@ -167,7 +169,7 @@ df.mean()
 ### IO
 
 ```python
-pd.read_csv()
+pd.read_csv()       # 从 csv 文件读取数据
 
 # 参数
 sep                 # 分隔符，默认是","；多个空格，可以使用 "\s+"
@@ -178,14 +180,14 @@ index_col           # 用作行索引（标签）的列
 usecols             # 需要加载的列，可以使用序号或者列名
 
 
-pd.read_excel()
+pd.read_excel()     # 从 excel 文件读取数据
 
 # 参数
 sheet_name          # 指定数据表的名称
 # header skiprows 等参数同上
 # 无 sep 参数
 
-df.to_csv()
+df.to_csv()         # 保存成 csv 文件
 # 参数
 index               # 是否写入行索引
 float_format        # 浮点数的格式化字符串

@@ -2,7 +2,7 @@
 title: NumPy 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -250,6 +250,9 @@ np.tofile()             # 将数组写入文件中
 
 np.savetxt()
 np.loadtxt()
+
+# 从普通文本中读取数据
+np.genfromtxt()
 ```
 
 
