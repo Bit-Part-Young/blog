@@ -10,9 +10,9 @@ summary: VASP 输入文件
 description: VASP 输入文件
 tags:
   - VASP
-  - DFT
 categories:
   - 科研工具
+  - VASP
 date: 2024-10-14 11:01:30
 abbrlink: 410103
 password:
@@ -20,13 +20,28 @@ password:
 
 # VASP 输入文件
 
+包括 INCAR、POSCAR、KPOINTS 和 POTCAR4 个输入文件。
+
+
+
+---
+
 ## POSCAR
 
-构型文件，需至少包含体系的几何信息（晶格常数、基矢、元素种类及其数目）和原子位置（以及分子动力学计算时原子的初始速度（不常用））；**生成 POSCAR 文件是 VASP 计算的起点**；可以手动生成，也可以从一些在线晶体学数据库（Material Project、aflow、icsd 等）中获取。
+- 构型文件；生成 POSCAR 文件是 VASP 计算的起点
 
-第二行值如果为负数，表示体积
+- 需至少包含体系的几何信息（晶格常数、基矢、元素种类及对应原子数目）和原子位置（以及 AIMD 计算时原子的初始速度（不常用））；可手动生成，也可从一些在线晶体学数据库（Material Project、aflow、icsd 等）中获取
+    - 第 1 行：Comment line 注释行；可对体系进行描述，也可空着
+    - 第 2-5 行：Scaling factor and lattice，缩放因子和基矢；与体系的晶格常数符合即可；第二行值如果为负数，表示体积
+    - 第 6-7 行：Ion species and numbers，元素种类（VASP4 可没有该行）及对应原子数目；**元素种类的顺序需与 POTCAR 文件中的一致**；
+    - 第 8-N 行：Ion positions 原子坐标；Direct（首字母大写或只写 D 均可）表示分数坐标，Cartesian（或 C）表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定）
+    - 原子坐标信息之后是原子的初始速度信息
 
-例子：
+- 注意事项：
+    - VASP 根据 POSCAR 文件确定体系的对称性。原子位置精度不够（位数太少）是一个常见错误。为更好地利用 VASP 中的对称性，强烈建议在 POSCAR 文件中指定至少 7 位有效数字的原子位置（和晶格参数，最好多一些）
+
+- 示例：
+
 ```text
 Cubic BN
 3.57
@@ -38,24 +53,20 @@ B N
 Direct
 0.00 0.00 0.00
 0.25 0.25 0.25
-```
 
 
-- 第 1 行：注释行（Comment line）；可以对体系进行描述，也可以空着
-- 第 2-5 行：缩放因子和基矢（Scaling factor and lattice）；只要与体系的晶格常数符合即可
-- 第 6-7 行：元素种类（optional，这行可以没有，VASP4 版本没有）及对应数目（Ion species and numbers）；**元素种类的顺序需与 POTCAR 文件中的一致**；
-- 第 8-N 行：原子坐标信息（Ion positions）；Direct（首字母大小写以及只写 D 均可）表示分数坐标，Cartesian（同上）表示笛卡尔坐标（如果第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定）
-- 原子坐标信息之后是原子的初始速度信息
+MgO Fm-3m (No. 225)
+1.0
+ 2.606553 0.000000 1.504894
+ 0.868851 2.457482 1.504894
+ 0.000000 0.000000 3.009789
+ Mg O
+ 1 1
+direct
+ 0.000000 0.000000 0.000000 Mg
+ 0.500000 0.500000 0.500000 O
 
 
-
-注：VASP 根据 POSCAR 文件确定体系的对称性。原子位置精度不够（位数太少）是一个常见错误。为更好地利用 VASP 中的对称性，强烈建议在 POSCAR 文件中指定至少 7 位有效数字的原子位置（和晶格参数，最好多一些）
-
-
-
-
-其他一些例子
-```text
 Cubic BN
 3.57
 0.00000000 0.50000000 0.50000000
@@ -71,21 +82,6 @@ direct
 
 
 
-```txt
-MgO Fm-3m (No. 225)
-1.0
- 2.606553 0.000000 1.504894
- 0.868851 2.457482 1.504894
- 0.000000 0.000000 3.009789
- Mg O
- 1 1
-direct
- 0.000000 0.000000 0.000000 Mg
- 0.500000 0.500000 0.500000 O
-```
-
-
-
 ---
 
 ## POTCAR
@@ -96,44 +92,31 @@ direct
 
 - PBE 赝势可分为：无后缀、\_pv、\_sv、\_d 和数字后缀，即 semi-core 的 p、s、d 当做价态处理
 
-- 第二行内容：价电子数（与 VRHFIN、ZVAL 对应）
-
-- VRHFIN：该元素赝势的价电子排布（在写论文的计算 method 时会用到）
-
-```text
-# POTCAR 中的 PBE 泛涵显示为 PE？
-LEXCH  = PE
-
-GGA = PE
-```
-
-POTCAR：RCORE 代表最大截止半径，单位是波尔 bohr
-
-PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
-
-赝势目录中每个类型的泛函目录中有一个 data_base 文件，里面包含每个赝势对应元素 3 种可能结构的基态能量数据
-
-- 数据获取
-
 ```bash
-cat POTCAR.1 POTCAR.2 > POTCAR  # 多个元素种类的 POTCAR 文件合并
+# 多个元素种类的 POTCAR 文件合并
+cat POTCAR.1 POTCAR.2 > POTCAR    
 
+
+# POTCAR 文件中的关键参数
+ZVAL                     # 价电子数；与 VRHFIN 及第二行内容对应
+VRHFIN                   # 该元素赝势的价电子排布（在写论文的计算 method 时会用到）
+LEXCH                    # 泛涵；PE
+RCORE                    # 最大截止半径，单位是波尔 bohr
+ENMAX                    # cutoff 取值一般为 1.3 * ENMAX
+
+
+#  信息获取
 grep -E 'TIT|VRHFIN|ENMAX|ZVAL' POTCAR
-
-grep TIT POTCAR
-
-grep VRHFIN POTCAR
-
-grep ZVAL POTCAR
-
-grep ENMAX POTCAR
 
 grep -A1 '  PAW_PBE' POTCAR
 ```
 
-赝势种类：模守恒赝势、超软赝势 USPP（它们应用在哪些体系？）
+- 注意事项：
+    - 赝势种类：模守恒赝势、超软赝势 USPP（它们应用在哪些体系？）
+    - 赝势目录中每个类型的泛函目录中有一个 data_base 文件，里面包含每个赝势对应元素 3 种可能结构的基态能量数据
+    - PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
 
-- POTCAR 文件内容示例
+- POTCAR 文件内容示例：
 
 ```text
   PAW_PBE Cu 22Jun2005
@@ -202,14 +185,22 @@ END of PSCTR-controll parameters
 ```
 
 
+
 ---
 
 ## KPOINTS
 
-设置布里渊区 k 点网格采样大小或计算能带结构时沿高对称方向的 k 点；对 k 点进行收敛性测试是许多电子最小化计算的基本任务之一。
+- 设置布里渊区 K 点网格采样大小或计算能带结构时沿高对称方向的 K 点
 
+- 对 K 点进行收敛性测试是许多电子最小化计算的基本任务之一
 
-常规 k 点网格
+- 常规 K 点网格
+    - 第 1 行：注释行
+    - 第 2 行：设置 K 点数目，0 表示 k 点网格自动生成
+    - 第 3 行：K 点网格划分方式（Monkhorst-Pack 和 Gamma 方法）
+    - 第 4 行：3 个方向上具体的网格划分数目
+    - 第 5 行：格
+
 ```text
 Regular k-point mesh
 0              ! 0 -> determine number of k points automatically
@@ -218,25 +209,14 @@ Gamma          ! generate a Gamma centered mesh
 0  0  0        ! optional shift of the mesh (s_1, s_2, s_3)
 ```
 
+- 注意事项：
+    - Monkhorst-Pack 网格的收敛速度可能快于 Γ- 中心网格；同时需注意避免使用 Monkhorst-Pack 网格破坏对称性。
+    - 对于 HCP 结构，采用 Gamma 方法
 
-- 第 1 行：注释行
-- 第 2 行：设置 k 点数目，0 表示 k 点网格自动生成
-- 第 3 行：k 点网格划分方式（Monkhorst-Pack 和 Gamma 方法）
-- 第 4 行：3 个方向上具体的网格划分数目
-- 第 5 行：
-
-
-
-注：Monkhorst-Pack 网格的收敛速度可能快于 Γ- 中心网格；同时需注意避免使用 Monkhorst-Pack 网格破坏对称性。
-
-对于 hcp 结构，采用 Gamma 方法
-
-
-
-
-能带计算
-当性质依赖于 k 矢量时，通常沿高对称性路径将属性可视化。线模式（line mode）表示在布里渊区用户定义的点之间生成 k 点。最常用的情况是分析电子带结构。
-
+- 能带计算：当性质依赖于 K 矢量时，通常沿高对称性路径将性质可视化；线模式（line mode）表示在布里渊区用户定义的点之间生成 K 点，最常用的情况是分析能带结构
+    - 第 1 行：注释行
+    - 第 2 行：设置 K 点数目，非 0 数字表示每条线之间划分的 K 点数目
+    - 第 3 行：生成 K 点方式
 
 ```text
 k points along high symmetry lines
@@ -254,11 +234,6 @@ fractional
 ```
 
 
-- 第 1 行：注释行
-- 第 2 行：设置 k 点数目，非 0 数字表示每条线之间划分的 k 点数目
-- 第 3 行：生成 k 点方式
-
-
 
 ---
 
@@ -269,10 +244,11 @@ fractional
 - INCAR 准备的原则：**越简单越好，不知道的，不理解的就不往里面放**
 
 - INCAR 参数类型
-    - 通用参数：SYSTEM、PREC、ICHARG、ISTART
-    - 电子优化相关参数：ALGO、ENLM、NELMIN、EDIFF、ENCUT
+    - 通用参数：SYSTEM、PREC、ISTART、ICHARG
+    - 电子优化相关参数：ALGO、ENLM、NELMIN、ENCUT、EDIFF
     - 离子优化相关参数：IBRION、POTIM、NSW、EDIFFG
     - 态密度积分相关参数：ISMEAR、SIGMA、LORBIT
+    - 态密度相关参数：EMIN 、EMAX、NEDOS
 
 - 注意事项：
     - 等号（=）前后可以有空格，也可以没有
@@ -281,15 +257,16 @@ fractional
     - INCAR 参数名称写错，VASP 会忽略，不影响
     - 参数设置的第一个数值为默认值，忽略后续同参数的数值设置
 
-ICHARG 随机初始化电子密度，积分值为电子数
 
 ---
 
 ### SYSTEM
 
-- "title string"，对体系及要执行的计算进行注释说明；默认值为 "unknown system"
+- title string，对体系及要执行的计算进行注释说明
 
-- 可随便写；该行可有可没有
+- 默认值：unknown system
+
+- 可随便写；该参数可有可没有
 
 
 ---
@@ -298,23 +275,23 @@ ICHARG 随机初始化电子密度，积分值为电子数
 
 - 初始化轨道；确定是否读取 WAVECAR 文件
 
-- 默认值：1（如果 WAVECAR 文件存在）否则 0
+- 默认值：1（若 WAVECAR 文件存在）否则 0
 
 
 ---
 
 ### ICHARG
 
-决定 VASP 如何构造初始电荷密度
+- 决定 VASP 如何构造初始电荷密度；其积分值为电子数
 
-默认值：ISTART=0，则 ICHARG=2；否则 ICHARG=0
+- 默认值：ISTART=0，则 ICHARG=2；否则 ICHARG=0
 
 ```bash
-0        # 从初始波函数计算电荷密度
-1        # 从 CHGCAR 文件读取
-2        # 若 ISTART=0，取原子电荷密度的叠加
-+10      # 非自洽计算（在整个电子最小化过程中电荷密度保持不变）
-11       # 从 CHGCAR 文件获取（能带绘制的）本征值或给定的电荷密度的态密度（density of states (DOS)）
+0              # 从初始波函数计算电荷密度
+1              # 从 CHGCAR 文件读取
+2              # 若 ISTART=0，取原子电荷密度的叠加
++10            # 非自洽计算（在整个电子最小化过程中电荷密度保持不变）
+11             # 从 CHGCAR 文件获取（能带绘制用）本征值或给定的电荷密度的态密度（DOS）
 ```
 
 
@@ -322,11 +299,14 @@ ICHARG 随机初始化电子密度，积分值为电子数
 
 ### ALGO
 
-电子最小化算法/选择 GW 计算类型
+- 确定电子最小化算法，或选择 GW 计算类型
+
+- 默认值：Normal
 
 ```bash
-Fast           # 初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
 Normal         # blocked-Davidson 算法
+Fast           # 混合算法，初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
+Damped         # damped velocity friction 算法
 ```
 
 
@@ -339,7 +319,7 @@ Normal         # blocked-Davidson 算法
 - 默认值：.FALSE.
 
 ```bash
-.FALSE.     # 倒空间
+.FALSE.        # 倒空间
 .TRUE.
 AUTO
 ```
@@ -379,9 +359,9 @@ AUTO
 - 默认值：Normal；推荐使用 Normal 或 Accurate
 
 ```bash
-Normal             # 适用于大多数常规计算
-Accurate           # 适用于高精度（如精确的力、声子、应力张量，或需要计算二阶导）
-High               # High Medium Low 为弃用值
+Normal         # 适用于大多数常规计算
+Accurate       # 适用于高精度（如精确的力、声子、应力张量，或需要计算二阶导）
+High           # High Medium Low 为弃用值
 ```
 
 
@@ -389,31 +369,28 @@ High               # High Medium Low 为弃用值
 
 ### ISMEAR
 
-轨道分数占据的展宽（平滑处理）方法
+- 轨道分数占据的展宽（平滑处理）方法
 
 ```bash
-N        # N为数字；Methfessel-Paxton order N（默认 1）
-0        # Gaussian
--1       # Fermi
--4       # tetrahedron
--5       # Blöchl 纠正的 tetrahedron
+N              # N 为数字；Methfessel-Paxton order N（默认 1）
+0              # Gaussian
+-1             # Fermi
+-4             # tetrahedron
+-5             # Blöchl 纠正的 tetrahedron
 ```
 
-
-注：
-- DOS 和非常精确的总能计算（金属的非弛豫），使用 ISEMAR=-5
-- 对于金属弛豫，使用 ISMEAR=1 或 ISMEAR=2 以及合适的 SIGMA 值（熵项小于 1meV/atom），合理值通常为 SIGMA=0.2（默认）
-- 对于半导体或绝缘体，使用 ISEMAR=-5，胞太大或只使用 1-2 个 k 点，使用 ISMEAR=0 以及 SIGMA=0.03-0.05
+- 注意事项：
+    - DOS 和非常精确的总能计算（金属的非弛豫），使用 ISEMAR=-5
+    - 对于金属弛豫，使用 ISMEAR=1 或 ISMEAR=2 以及合适的 SIGMA 值（熵项小于 1meV/atom），合理值通常为 SIGMA=0.2（默认）
+    - 对于半导体或绝缘体，使用 ISEMAR=-5，胞太大或只使用 1-2 个 k 点，使用 ISMEAR=0 以及 SIGMA=0.03-0.05
+    - Tetrahedron method 需 K 点数目大于等于 4
 
 >tetrahedron 方法，忽略 SIGMA 参数
 
-
-Tetrahedron method 需 k 点数目大于等于 4
-```text
+```bash
  VERY BAD NEWS! internal error in subroutine IBZKPT:
  Tetrahedron method fails for NKPT<4. NKPT =       1
 ```
-
 
 
 ---
@@ -455,17 +432,17 @@ Tetrahedron method 需 k 点数目大于等于 4
     - 接近能量局部最小值，推荐使用 IBRION=1
 
 ```bash
--1          # 不更新；离子不移动
-0           # 分子动力学 AIMD
+-1             # 不更新；离子不移动
+0              # 分子动力学 AIMD
 
 # 结构优化
-1           # RMM-DIIS / quasi-Newton 算法
-2           # conjugate gradient algorithm 共轭梯度算法
-3           # Damped molecular dynamics 算法
+1              # RMM-DIIS / quasi-Newton 算法
+2              # conjugate gradient algorithm 共轭梯度算法
+3              # Damped molecular dynamics 算法
 
 # 计算声子模式；计算二阶导数、海森矩阵和声子频率
-5 6         # 有限差分（finite differences）；5 without symmetry, 6 with symmetry
-7 8         # 密度泛函扰动理论（density functional perturbation theory, DFPT）；7 without symmetry, 8 with symmetry
+5 6            # 有限差分（finite differences）；5 without symmetry, 6 with symmetry
+7 8            # 密度泛函扰动理论（density functional perturbation theory, DFPT）；7 without symmetry, 8 with symmetry
 ```
 
 
@@ -473,20 +450,18 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ### POTIM
 
-- 离子弛豫步宽/AIMD 步长
+- 离子弛豫步宽或 AIMD 步长
 
 
 ---
 
 ### ISIF
 
-决定在弛豫及分子动力学运行中胞的体积、形状或原子位置是否发生改变以及应力张量是否计算。
+- 决定在弛豫及分子动力学运行中胞的体积、形状或原子位置是否发生改变以及应力张量是否计算
 
+- 默认值：0：IBRION=0 时；2：其他情况
 
-- 0：IBRION=0 时；2：其他情况
-- 应力张量计算相对耗时，因此在 AIMD 中将其关掉；力总是会进行计算。
-
-
+- 应力张量计算相对耗时，因此在 AIMD 中将其关掉；力总是会进行计算
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152120807.png)
 
@@ -549,14 +524,15 @@ Tetrahedron method 需 k 点数目大于等于 4
 ### SYMPREC
 
 - 决定 POSCAR 文件中的位置精度
-- 默认值：10-5
+
+- 默认值：$10^{-5}$
 
 
 ---
 
 ### ISYM
 
-决定 VASP 处理对称性的方式
+- 决定 VASP 处理对称性的方式
 
 
 - 默认值：1：若 VASP 用 USPPs 运行；3：若 `LHFCALC=.TRUE.`；2：其他情况
@@ -579,8 +555,8 @@ Tetrahedron method 需 k 点数目大于等于 4
 - 是否考虑自旋极化
 
 ```bash
-1    # 不考虑
-2    # 考虑
+1              # 不考虑
+2              # 考虑
 ```
 
 
@@ -588,7 +564,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 ### MAGMOM
 
-磁矩
+- 设置磁矩
 
 
 ---
@@ -606,7 +582,7 @@ Tetrahedron method 需 k 点数目大于等于 4
 4      # 只用于 debugging
 ```
 
-- f+l 表示第一步和最后一步离子步，表示 f 第一个离子步，i 表示每个离子步，e 表示每个电子步，X 表示适用时（when applicable）
+- f+l 表示第一步和最后一步离子步， f 表示第个离子步，i 表示每个离子步，e 表示每个电子步，X 表示适用时（when applicable）
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307162218175.png)
 
@@ -655,3 +631,10 @@ Tetrahedron method 需 k 点数目大于等于 4
 
 
 >[13\_vasp/V2PC/README.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
+
+
+其他
+
+```bash
+GGA = PE
+```

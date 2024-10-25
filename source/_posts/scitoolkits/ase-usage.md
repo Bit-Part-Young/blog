@@ -73,6 +73,8 @@ password:
 
 - [CompMatBook/Chapter04/4\_2\_辅助建模软件ASE生成纳米结构.ipynb at main · stanfordbshan/CompMatBook · GitHub](https://github.com/stanfordbshan/CompMatBook/blob/main/Chapter04/4_2_%E8%BE%85%E5%8A%A9%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6ASE%E7%94%9F%E6%88%90%E7%BA%B3%E7%B1%B3%E7%BB%93%E6%9E%84.ipynb)
 
+- 内容一般（能带计算 ASE Python 代码部分可参考）： [GitHub - WMD-group/ASE-Tutorials: Examples of using the Atomic Simulation Environment](https://github.com/WMD-group/ASE-Tutorials)
+
 
 
 ---

@@ -10,12 +10,12 @@ summary: VASP 使用
 description: VASP 使用
 tags:
   - VASP
-  - DFT
 categories:
   - 科研工具
+  - VASP
 date: 2023-07-03 15:56:30
 abbrlink: 265634
-password: d93f517bc1345a0d8ff992410aca5dbc35f2e88087cdc5d9edb0c6d77d8a4c1a
+password:
 ---
 
 # VASP 使用
@@ -204,6 +204,7 @@ GW 计算
     - [利用分子动力学轨迹计算粒子运动的均方位移和扩散系数 - 知乎](https://zhuanlan.zhihu.com/p/542642528)
 
 - 注意事项：
+    - VASP 官网计算示例
     - VASP 官网算例中的部分 POSCAR 文件中没有元素符号行（第 6 行，不影响）
     - VASP wiki 中的示例 POSCAR 格式和 POTCAR 文件（PAW 格式）较老？
     - FCC Ni 及 Ni(100) 表面的 DOS 计算，没有先进行自洽计算

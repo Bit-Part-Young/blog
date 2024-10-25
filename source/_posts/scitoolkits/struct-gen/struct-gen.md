@@ -40,6 +40,9 @@ password:
 
 - [GitHub - orex/supercell: The program allows you to create regular structure supercell from cif file with partial occupancy and/or substitutions.](https://github.com/orex/supercell)
 
+- [GitHub - dkratzert/StructureFinder: A crystal structure finder written in PyQt5 and Python3](https://github.com/dkratzert/StructureFinder)
+
+
 
 ---
 
@@ -75,64 +78,69 @@ password:
 
 ## 构型文件格式
 
-- `.pdb`：Protein Data Bank，可以用 VMD 软件（跨平台）打开
-- `.xsd`：Material Studio 构型文件格式
-- `.cell`：CASTEP 的输入构型文件格式
-- `.cif`：部分该格式文件晶体学信息很全
+```bash
+.pdb           # Protein Data Bank，可以用 VMD 软件（跨平台）打开
+.xsd           # Material Studio 构型文件格式
+.cell          # CASTEP 的输入构型文件格式
+.cif           # 部分该格式文件晶体学信息很全
+.xsf           # XCrySDen
 
-注：
 
-- xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；posconv 转换成 xyz 文件格式会附加晶格参数信息
 
-vaspkit 可以将 xsd 文件转换成 POSCAR（1-106）
+# xyz 格式内容示例
+2
 
-- [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
+Nb      0.000000000000000      0.000000000000000      0.000000000000000
+Nb      1.660000000000000      1.660000000000000      1.660000000000000
+
+# posconv xyz 格式内容示例
+2
+# BCC(001) cell with dimension 1 x 1 x 1 and a = 3.32
+Nb    0.000000000000000    0.000000000000000    0.000000000000000 crystal_vector  1    3.320000000000000    0.000000000000000    0.000000000000000
+Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector  2    0.000000000000000    3.320000000000000    0.000000000000000
+```
+
+- 注意事项：
+    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息
+    - vaspkit 可以将 xsd 文件转换成 POSCAR
+    - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
 
 
 ---
 
 ## 结构建模
 
-### 复杂 Bulk 结构
-
-方法 1：在文献中查找该结构的晶体学信息，若提到 protype structure（原型结构），可在数据库（ICSD、MP、Aflow、Springer Materials 等）中找对应原型结构的 cif 文件（需留意 Wyckoff position 是否一致或接近），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
-
+- 元素周期表里元素的晶体结构：[Periodic table (crystal structure) - Wikipedia](https://en.m.wikipedia.org/wiki/Periodic_table_(crystal_structure))
 - Springer Materials：[https://materials.springer.com/](https://materials.springer.com/)
+- MP 等数据库中的结构文件有时对称性不一定正确，最好进行静态计算检验一下
 
-MP 等数据库中的结构文件有时对称性不一定正确，最好进行静态计算检验一下
 
 ---
 
-方法 2: 手动构建（对于复杂 Bulk 构型），需要以下晶体学信息
+### 复杂结构
 
-- 晶体结构（crystal structure）
-- 点阵参数 （lattice parameter）
-- 空间群（space group number）
-- 原子位置（Wyckoff position / atomic position）
+- 方法 1：在文献中查找该结构的晶体学信息，若提到 protype structure（原型结构），可在数据库（ICSD、MP、Aflow、Springer Materials 等）中找到对应原型结构的 cif 文件（需留意 Wyckoff position 是否一致或接近），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
 
-元素周期表里元素的晶体结构：[Periodic table (crystal structure) - Wikipedia](https://en.m.wikipedia.org/wiki/Periodic_table_(crystal_structure))
-
-根据以上晶体学信息，使用 Pyxtal 构建
+- 方法 2: 手动构建，需以下晶体学信息：晶体结构（crystal structure）、点阵参数（lattice parameter）、空间群（space group number）、原子位置（Wyckoff letter & Wyckoff position）；使用 Pyxtal 或 Material Studio 构建
 
 
 ---
 
 ### 界面/异质结
 
-[Materials Studio 入门到精通【16】简单界面模型的建立 - 知乎](https://zhuanlan.zhihu.com/p/346859236)
+- [Materials Studio 入门到精通【16】简单界面模型的建立 - 知乎](https://zhuanlan.zhihu.com/p/346859236)
 
-[如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
+- [如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
 
-[[建模与可视化] 求助Si和α-Al2O3材料界面计算的界面搭建问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-47013-1-1.html)
+- [[建模与可视化] 求助Si和α-Al2O3材料界面计算的界面搭建问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-47013-1-1.html)
 
-[GitHub - aguang5241/Interface-Maker: A python3 code to create slabs and interfaces for first-principles calculations.](https://github.com/aguang5241/Interface-Maker)
+- [GitHub - aguang5241/Interface-Maker: A python3 code to create slabs and interfaces for first-principles calculations.](https://github.com/aguang5241/Interface-Maker)
 
- [GitHub - rzk1/heterojunction: Create surfaces and heterojunctions from two crystal structures](https://github.com/rzk1/heterojunction)
+- [GitHub - rzk1/heterojunction: Create surfaces and heterojunctions from two crystal structures](https://github.com/rzk1/heterojunction)
 
-在 latgen、VASPKIT 和 MS 中，称为 build layer
+- 在 latgen、VASPKIT 和 MS 中，称为 build layer
 
-
-VASPKIT 804 选项，会根据用户输入的错配度要求生成满足条件的系列界面构型 POSCAR 文件，并输出 log 信息
+- VASPKIT 804 选项，会根据用户输入的错配度要求生成满足条件的系列界面构型 POSCAR 文件，并输出 log 信息
 
 
 ---
@@ -143,9 +151,7 @@ VASPKIT 804 选项，会根据用户输入的错配度要求生成满足条件�
 
 - aimsgb 程序：[aimsgb documentation](https://aimsgb-docs.readthedocs.io/)、[aimsgb - GitHub](https://github.com/ksyang2013/aimsgb)
 
->Aimsgb: An algorithm and open-source python library to generate periodic grain boundary structures: [https://doi.org/10.1016/j.commatsci.2018.08.029](https://doi.org/10.1016/j.commatsci.2018.08.029)
-
-[GitHub - ab5424/agility: Repository for the Atomistic Grain Boundary and Interface Utility.](https://github.com/ab5424/agility)
+- [GitHub - ab5424/agility: Repository for the Atomistic Grain Boundary and Interface Utility.](https://github.com/ab5424/agility)
 
 CSL 重合位置点阵理论
 
@@ -172,9 +178,9 @@ twisted grain boundary 晶界面垂直于旋转轴
 
 ### 石墨烯
 
->[Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
+- [Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
 
-二维；六方结构；最近邻原子间距约为 1.42 埃
+- 二维；六方结构；最近邻原子间距约为 1.42 埃
 
 注：
 - 对于六方结构，其中的原子位置坐标随基矢的选择会有些许不同，但本质一样都是一样的；
@@ -227,7 +233,7 @@ direct
 
 ### 石墨
 
-六方结构；z 轴方向长度约为 6.7 埃
+- 六方结构；z 轴方向长度约为 6.7 埃
 
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152230723.png)
@@ -293,10 +299,10 @@ O 相晶体学信息：晶体结构：三元有序 orthorhombic；空间群：Cm
 
 ---
 
-结构原型百科全书：[aflow.org/prototype-encyclopedia/](http://aflow.org/prototype-encyclopedia/)
+- 结构原型百科全书：[aflow.org/prototype-encyclopedia/](http://aflow.org/prototype-encyclopedia/)
 
 
-常见结构的空间群符号：
+- 常见结构的空间群符号：
 
 |    结构    | 空间群符号 | 空间群 number |
 |:----------:|:----------:|:------------:|
@@ -308,13 +314,13 @@ O 相晶体学信息：晶体结构：三元有序 orthorhombic；空间群：Cm
 | 立方钙钛矿 (perovskite CaTiO3) |      Pm-3m      |              |
 | CsCl           |      Pm-3m      |              |
 
-一些结构的 prototype
+- 一些结构的 prototype
 
 | Prototype | Strukturbericht designation | Pearson symbol | Space group number | Space group symbol |
-|:---------: |:--------: |:------: |:-----: |:-----: |
-|      W     |              A2               |      cI2          |      229              |            Im-3m        |
+|:-------: |:-------------------------: |:------------: |:----------------: |:----------------: |
+|     W     |             A2              |      cI2       |        229         |       Im-3m        |
 
-BCC：j[AFLOW Prototype: A\_cI2\_229\_a](https://www.aflowlib.org/prototype-encyclopedia/A_cI2_229_a.html)
+BCC：[AFLOW Prototype: A\_cI2\_229\_a](https://www.aflowlib.org/prototype-encyclopedia/A_cI2_229_a.html)
 
 FCC：[AFLOW Prototype: A\_cF4\_225\_a](https://www.aflowlib.org/prototype-encyclopedia/A_cF4_225_a.html)
 

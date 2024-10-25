@@ -703,6 +703,10 @@ plt.clf()           # 清除当前 Figure
 
 fig.savefig()       # Figure 对象的方法
 plt.savefig()       # 更加通用的命令；适用于没有明确的 Figure 对象时
+
+
+# 插入内嵌图
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 ```
 
 

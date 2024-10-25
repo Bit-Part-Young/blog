@@ -26,6 +26,7 @@ password:
 - 集成 Materials Project REST API、Crystallography Open Database 等其他外部数据源
 - 代码文档详细
 
+
 ---
 
 ### 参考资料
@@ -45,42 +46,7 @@ password:
     - 2018~2020：[Releases · materialsproject/workshop](https://github.com/materialsproject/workshop/releases)
     - 2017：[GitHub - materialsproject/workshop-2017: Assets for the 2017 Materials Project workshop](https://github.com/materialsproject/workshop-2017)
     - 2016：[GitHub - materialsproject/workshop-2016: Assets for the Materials Project workshop in Aug 2016](https://github.com/materialsproject/workshop-2016)
-    - 注：Workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面；workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
-
----
-
-```python
-from pymatgen.analysis.diffusion.neb.pathfinder import IDPPSolver
-
-from pymatgen.analysis.defects.generators import SubstitutionGenerator
-
-subs = SubstitutionGenerator(structure, "Bi")
-
-# 晶界相关
-from pymatgen.core.interface import GrainBoundary, GrainBoundaryGenerator
-```
-
-[求助：过渡态计算新版pymatgen中找不到iddp插值方法 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-19704-1-1.html)
-
-```python
-# 过渡态 NEB
-from pymatgen.analysis import transition_state
-```
-
-确保 VASP 计算符合 MP 数据：[GitHub - materialsproject/pymatgen-io-validation: Comprehensive input/output validator. Made with the initial purpose of ensuring calculations in the MP Database are compatible; now generalized.](https://github.com/materialsproject/pymatgen-io-validation)
-
-里面有讲到 IEEE 标准
-[Elastic Constants | Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/elasticity)
-
-pymatgen 中的 LLL reduction 是什么含义
-
-pymatgen 键长计算（并非只是简单的计算原子对之间的距离）
-
-
-- [x] pymatgen 如何获取可用的 POTCAR 种类；较难：一般是指定泛函类型
-
-- [x] pymatgen structure 如何通过 structure 来生成 potcar？
-解决方法：通过 Poscar 类得到 structure 的元素种类，之后与 PBE 泛函的元素进行比对，之后用 Potcar 类写入 POTCAR（生成新的之前需删掉原来的 POTCAR 文件）
+    - 注：Workshop 2020 和 2021 的内容绝大部分相似，lesson3 分别为表面和界面；Workshop 2018 和 2019 的内容相似（对 atomate 的讲解稍微详细些）
 
 
 
@@ -104,6 +70,8 @@ pip install -U git+https://github.com/materialsproject/pymatgen
 - [change log](https://pymatgen.org/change_log.html)（代码 bug 修复，新功能添加等，可以关注）
 
 - [pymatgen 插件和外部工具](https://pymatgen.org/addons)
+
+- 确保 VASP 计算符合 MP 数据：[GitHub - materialsproject/pymatgen-io-validation: Comprehensive input/output validator. Made with the initial purpose of ensuring calculations in the MP Database are compatible; now generalized.](https://github.com/materialsproject/pymatgen-io-validation)
 
 - 兼容性：需对进行 `from pymatgen import xxx` 修改（v2022.0.0 版本开始）
 
@@ -144,7 +112,7 @@ from pymatgen.ext.matproj ...
 - pymatgen 支持的构型文件格式
 
 ```python
-'prismatic', 'cssr', 'json', 'xsf', 'yaml', 'poscar', 'mcif', 'cif'
+FileFormats = Literal["cif", "poscar", "cssr", "json", "yaml", "yml", "xsf", "mcsqs", "res", "pwmat", ""]
 ```
 
 - MP 晶体 DFT code 用的是 VASP，分子用的是 Q-Chem
@@ -222,7 +190,9 @@ pmg view POSCAR
 
 ---
 
-### structure 创建、保存、分析与变化操作
+### 操作 structure
+
+- 包括创建、保存、分析与变化操作
 
 ```python
 from pymatgen.core.composition import Composition
@@ -230,12 +200,9 @@ from pymatgen.core.lattice import Lattice
 from pymatgen.core.structure import Structure
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
-# 结构创建
-lattice = Lattice.cubic(4.2)
-
 # 标准方法
 structure = Structure(
-    lattice,
+    Lattice.cubic(4.2)
     ["Cs", "Cl"],
     ...[[0, 0, 0], [0.5, 0.5, 0.5]],
 )
@@ -246,20 +213,6 @@ structure = Structure.from_spacegroup(
     Lattice.cubic(3),
     ["Li", "O"],
     [[0.25, 0.25, 0.25], [0, 0, 0]],
-)
-
-bcc_fe = Structure.from_spacegroup(
-    "Im-3m",
-    Lattice.cubic(2.8),
-    ["Fe"],
-    [[0, 0, 0]],
-)
-
-nacl = Structure.from_spacegroup(
-    "Fm-3m",
-    Lattice.cubic(5.692),
-    ["Na+", "Cl-"],
-    [[0, 0, 0], [0.5, 0.5, 0.5]],
 )
 
 # 保存成其他文件格式
@@ -283,31 +236,24 @@ structure[1] = "Cl", [0.51, 0.51, 0.51]
 structure["Cs"] = "K"
 
 # 生成无序结构
-# 部分占据的无序结构无法保存成 POSCAR
 # 与 SQS 是不同的概念
+# 部分占据的无序结构无法保存成 POSCAR
 structure["K"] = "K0.5Na0.5"
 
 # structure 类似 list，支持大部分的 list 方法
 # reverse, append, extend, pop, index, count
 structure.reverse()
 structure.append("F", [0.9, 0.9, 0.9])
-```
 
-修改 Structures：`pymatgen.transformations`
-
-分析 Structures：`pymatgen.analysis.structure_matcher`
-
-```python
 # 超胞构建
 structure * 2
 structure * (2, 2, 2)
 structure.make_supercell([2, 2, 2])
 ```
 
-
 ---
 
-pymatgen 的许多 object 都有 `as_dict()` 方法和 `from_dict()` 静态方法的实现。虽然 python 确实提供了 pickling 功能（实现对象序列化和反序列化的方式），但 pickle 在代码修改方面往往是非常脆弱的。`as_dict()` 提供了一种以更稳健的方式保存工作的方法，且更容易阅读。将 object 输入某些数据库，如 MongoDb，也特别有用。`as_dict()` 规范是由 monty 库（pymatgen 产生的一个通用 python 补充库）提供的。
+pymatgen 的许多 object 都有 `as_dict()` 方法和 `from_dict()` 静态方法的实现。虽然 python 确实提供了 pickling 功能（实现对象序列化和反序列化的方式），但 pickle 在代码修改方面往往是非常脆弱的。`as_dict()` 提供了一种以更稳健的方式保存工作的方法，且更容易阅读。将 object 输入某些数据库，如 MongoDB，也特别有用。`as_dict()` 规范是由 monty 库（pymatgen 产生的一个通用 python 补充库）提供的。
 
 ```python
 with open('structure.json', 'w') as file:
@@ -353,37 +299,20 @@ gau.write_file('methane.inp')
 
 ### Entry
 
-除了核心的 Element、Site、Structure object 外，pymatgen 中的大多数分析（创建相图）都是通过 Entry object 进行的。Entry 的最基本形式是包含一个计算的能量和一个构型成分（可包含其他输入或计算数据）。大多数情况下 `pymatgen. entries.computed_entries` 中定义的 `ComputedEntry` 或 `ComputedStructureEntry` 对象。
+- Entry 的最基本形式：一个构型成分 + 对应计算的能量（可包含其他输入或计算数据）；可作为 pymatgen 创建相图的计算数据集
 
-### 计算输入输出管理
-
-pymatgen.io 模块包含了一些类，以方便编写计算软件的输入文件和解析输出文件，主要是 VASP。
-
-输入管理的核心类是 `InputSet`。 `InputSet` object 包含计算输入文件所需的所有数据。具体来说，`write_input()` 方法，可将所有文件写到指定位置。InputGenerator 类可以看作是完成特定计算任务的 recipe，而 InputSet 则包含这些 recipes 以应用于特定体系或结构。
-
-也可以使用 `InputSet.from_directory()` 从计算目录中构建 pymatgen InputSet。
-
-许多解析输出文件的类继承自 InputFile，其提供了一个读写文件的标准接口。
 
 ---
 
-### 变换操作
+### 计算输入输出管理
 
-- 简单的变换操作：如添加和删除原子位点，替换结构中的元素，到更高级的一对多的转换
+- pymatgen.io 模块包含一些计算软件（主要是 VASP）的输入文件编写、解析与输出文件解析子模块
 
-- 典型用法：
+- 输入管理的核心类是 `InputSet`。 `InputSet` object 包含计算输入文件所需的所有数据。具体来说，`write_input()` 方法，可将所有文件写到指定位置。InputGenerator 类可以看作是完成特定计算任务的 recipe，而 InputSet 则包含这些 recipes 以应用于特定体系或结构
 
-```python
-from pymatgen.transformations.standard_transformations import RemoveSpecieTransformations
+- 也可以使用 `InputSet.from_directory()` 从计算目录中构建 pymatgen InputSet
 
-structure = ...
-
-# 添加具体的变换操作
-t = RemoveSpeciesTransformation(["X"])
-
-# 施加变换操作到构型上
-modified_structure = t.apply_transformation(structture)
-```
+- 许多解析输出文件的类继承自 InputFile，其提供了一个读写文件的标准接口
 
 
 ---
@@ -423,19 +352,6 @@ FCC、六方和面心正交晶体结构只能用Gamma网格
 
 ---
 
-```python
-# 待了解
-read_neb()
-
-MITNEBSet class
-```
-
----
-
-复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
-
----
-
 - 生成元素置换后的非等同结构（借助 bsym 包）：[bsym_examples](https://nbviewer.org/github/bjmorgan/bsym/blob/master/examples/bsym_examples.ipynb)
 
 ```python
@@ -470,6 +386,53 @@ task_doc.keys()
 [Ewald Summation - Qijing Zheng](http://staff.ustc.edu.cn/~zqj/posts/Ewald-Summation/)
 
 EwaldSummation 是 pymatgen 库中的一个类，用于计算离子晶体的 Ewald 总能量。Ewald 总能量是一种用于处理带电体系的长程库仑相互作用的技术，通常用于计算固体材料中的电势能。该方法将总能量分解为实空间、倒空间、点电荷修正和偶极修正部分，并进行相应的求和计算。
+
+---
+
+[求助：过渡态计算新版pymatgen中找不到iddp插值方法 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-19704-1-1.html)
+
+```python
+# 过渡态 NEB
+from pymatgen.analysis import transition_state
+
+from pymatgen.analysis.diffusion.neb.pathfinder import IDPPSolver
+
+# pymatgen defects 扩展包不好用，不值得深入了解
+from pymatgen.analysis.defects.generators import SubstitutionGenerator
+subs = SubstitutionGenerator(structure, "Bi")
+
+# 晶界相关
+from pymatgen.core.interface import GrainBoundary, GrainBoundaryGenerator
+
+# 待了解
+read_neb()
+
+MITNEBSet class
+```
+
+
+---
+
+### 相关问题
+
+- [x] pymatgen 如何获取可用的 POTCAR 种类；较难：一般是指定泛函类型
+
+- [x] pymatgen structure 如何通过 structure 来生成 potcar？解决方法：通过 Poscar 类得到 structure 的元素种类，之后与 PBE 泛函的元素进行比对，之后用 Potcar 类写入 POTCAR（生成新的之前需删掉原来的 POTCAR 文件）
+
+- [ ] 复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
+
+- [ ] pymatgen 中的 LLL reduction 是什么含义
+
+- [ ] pymatgen 键长计算（并非只是简单的计算原子对之间的距离）
+
+- atomate 计算弹性常数得到的弹性张量中 POSCAR-format 与 IEEE-format 之间的区别：
+    - [Elastic Constants - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/elasticity)
+    - 有时相同，有时不同（存在旋转关系），可使用 `pymatgen.core.tensors.Tensor` 类的 `get_ieee_rotation` 得到
+    - 建议采用 POSCAR-format
+
+- [x] pymatgen 保存成 POSCAR 时，对元素类型进行排序（是否可自定义）；不方便，建议用 ase ✅ 2024-10-23
+    - [x] `to()` 或 `Poscar` 类中的 `write_file()` 方法无直接排序参数 ✅ 2024-10-23
+    - [x] `Structure` 类中的 `sort()` 方法中的 `key` 参数可以是哪些值（不深挖） ✅ 2024-10-23
 
 
 
@@ -520,7 +483,9 @@ from_prototype()         # 通过原型结构快速构建结构
 to_cell()                # 获取单/原胞
 to_conventional()        # 获取单胞；调用 to_cell()
 to_primitive()           # 获取原胞；同上
-interpolate()            # 在两个结构间插值，用于 NEB 计算
+interpolate()            # 在两个构型间插值，用于 NEB 计算
+sort()                   # 排序（不常用）
+get_sorted_structure()   # 排序（不常用）
 ```
 
 
@@ -902,6 +867,15 @@ dict_keys(
 )
 ```
 
+- Vasprun 类在解析未收敛的计算时，会有 Warning，并说明电子步和离子步的收敛情况
+
+```bash
+UnconvergedVASPWarning: vasprun.xml is an unconverged VASP run.
+Electronic convergence reached: True.
+Ionic convergence reached: False.
+  warnings.warn(msg, UnconvergedVASPWarning)
+```
+
 
 ---
 
@@ -1165,20 +1139,21 @@ symmetry_dataset.equivalent_atoms
 
 ### pymatgen.transformations
 
+- 简单的变换操作：如添加和删除原子位点，替换结构中的元素，到更高级的一对多的转换
+
 - `standard_transformations` 和 `advanced_transformations` 定义的类，都有 `apply_transformation()` 方法
 
-- SQSTransformation 类中调用的是 ATAT 中的 mcsqs 工具或 ICET 中的 enumeration、monte carlo 模块
+- SQSTransformation 类中调用的是 ATAT 中的 mcsqs 工具或 ICET 中的 enumeration、monte carlo 模块；建议直接使用其调用的原生工具
 
 ```python
-from pymatgen.transformations.standard_transformations import 
+from pymatgen.transformations.standard_transformations import RemoveSpecieTransformations
 from pymatgen.transformations.advanced_transformations import SQSTransformation
 
 
 # 方法
-apply_transformation(structure)
+apply_transformation(structure)            # 施加变换操作到构型上
 
-
-# 获取 sqs 结构；建议直接使用其调用的原生工具
+# 获取 sqs 结构
 sqs = SQSTransformation([2, 2, 2])
 sqs.apply_transformation(structure)
 

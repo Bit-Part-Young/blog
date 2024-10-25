@@ -1,0 +1,1109 @@
+---
+title: LAMMPS 输入文件
+top: false
+pin: false
+cover:
+toc: true
+mathjax: true
+math: true
+summary: LAMMPS 输入文件
+description: LAMMPS 输入文件
+tags:
+  - LAMMPS
+categories:
+  - 科研工具
+  - LAMMPS
+date: 2024-10-25 19:36:01
+abbrlink:
+password:
+---
+
+# LAMMPS 输入文件
+
+## LAMMPS 常用命令
+
+**Command 类型**
+
+- 全局设置
+  - 例：timestep, newton, log, thermo, restart
+- 在 “run” 中执行 添加、修改、删除、替代 “styles”
+  - 例：pair_style, fix, compute, dump, thermo_style, pair_modify
+- 执行 “run” 或其他计算、操作
+  - 例：print, run, minimize, temper, write_dump, rerun, read_data, read_start
+
+
+
+`&` 该行过长，用该符号连接下一行
+
+`#` 注释
+
+`$` \$ 后面及 \${} 中 \{} 的文本为定义的变量
+
+
+- in 文件结构
+    - 初始化
+    - 系统定义
+    - 模拟设置
+    - 运行模拟
+
+
+**thermo**
+
+```shell
+thermo N  
+
+#每N步输出热力学信息；可以是变量
+```
+
+**thermo_style**
+
+```shell
+thermo_style style args
+
+#设置 打印热力学信息格式 到屏幕上或log文件里
+
+#style = one  multi  custom（最常用设置）
+#args = 具体类型的参数；前两种没有；custom可以有一个或多个参数
+#custom args = step  dt  time  temp  atoms  press  pe  ke  etotal
+#step = timestep  dt = timestep size  time = simulation time
+#temp = temperature  atoms = # of atoms  press = pressure
+#pe = total potential energy  ke = kinetic energy 
+#etotal = total energy
+```
+
+
+---
+
+### 初始化
+
+#### atom_style
+
+- 定义模拟过程中原子的类型，它会决定原子包括哪些属性；该命令必须在建立模拟盒子（使用命令 `read_data` 或 `read_restart` 或 `create_box`）之前使用
+
+- `atomic`：典型物理体系：金属、固体、粗粒度液体
+
+```shell
+# 语法
+atom_style style args
+
+# style：
+atomic             # 只有 body 和 hybrid 需要设置 args
+body
+hybrid
+
+
+# 示例
+atom_style atomic  # 默认设置
+```
+
+
+---
+
+#### boundary
+
+- 用来设置模拟盒子的边界条件
+
+```shell
+# 语法
+boundary x y z
+
+# x,y,z：可取p/s/f/m中的一个字母或两个字母的组合
+# p：周期性边界条件 periodic
+# f：非周期性固定边界条件 fixed
+# s：非周期性包覆边界条件 shrink-wrapped
+# m：非周期性包覆最小值边界条件 minimum value
+
+
+# 示例
+boundary p p p
+```
+
+
+---
+
+#### dimension
+
+- 定义模拟的维度
+
+```shell
+# 语法
+dimension N           # N 为2 或 3
+
+# 示例
+dimension 3           # 默认设置
+```
+
+- 参考 “how to” 部分，了解如何进行二维模拟
+
+---
+
+#### newton
+
+- 用来开启或关闭对势或键相互作用中的第三运动定律
+
+```shell
+# 语法
+newton flag
+newton flag1 flag2
+
+# flag： 开关对势和键相互作用[on/off]
+# flag1：开关对势相互作用[on/off]
+# flag2：开关键相互作用[on/off]
+
+# 示例
+newton on  # 默认设置
+```
+
+---
+
+#### units
+
+- 用来定义模拟过程中使用的单位类型，它决定了所有输入脚本、数据文件和所有输出到屏幕、日志文件以及 dump 文件中物理量的单位；一般来说，该命令用在输入脚本最开始的位置
+
+- `metal` 类型：质量：g/mol；距离：埃；时间：皮秒；能量：ev；力：ev/埃；温度：开尔文
+
+- `real` 类型：时间：飞秒；能量：Kcal/mol；力：Kcal/mol-Angstrom
+
+- `lj` 类型：所有的物理量都是没有单位的
+
+```shell
+# 语法
+units style
+
+# style
+lj real metal si cgs electron
+
+# 示例
+units lj                # 默认设置
+units metal
+```
+
+
+---
+
+### 建模
+
+- 利用 LAMMPS 中的 `lattice`、`region`、`create_box`、`group`、`create_atoms`、`delete_atoms` 等命令帮助构建简单模型
+
+#### read_data
+
+- 读取构型文件（data 格式？）
+
+
+---
+
+#### read_restart
+
+- 用来读入之前的模拟过程保存下的重启动文件；可以帮助你实现接着之前的模拟过程继续进行
+
+- 这些重启动文件一般来说是不能拷贝到其他的机器使用的，但你可以使用工具 `restart2data` 将其转换成文本文件
+
+```shell
+# Syntax
+read_restart file
+
+# file：要读入的二进制重启动文件的文件名
+```
+
+
+---
+
+#### read_dump
+
+WIP...
+
+
+---
+
+#### lattice
+
+- 定义晶格类型，晶格常数，以及晶向方向
+
+
+
+```shell
+# Syntax
+lattice style scale keyword values ...
+
+# style：none bcc fcc hcp diamond hex sc custom
+
+# scale：晶格与模拟盒子之间的比例因子
+
+# keyword/value：没有或多个
+# keyword = orient origin spacing a1 a2 a3 basis
+# orient values = dim i j k
+# dim = x y z
+# i,j,k = 整数晶向方向
+
+# Examples
+lattice fcc 3.52
+lattice none 1.0  # 默认设置
+lattice bcc 3.168 orient x 1 0 0 orient y 0 1 0 orient z 0 0 1  # 
+```
+
+- `orient x 1 0 0 orient y 0 1 0 orient z 0 0 1` 为默认值，可不用书写；改变晶向时，需满足**右手定则**
+
+---
+
+#### region
+
+- 用来构建拟盒子大小以及划分模拟区域（用于定义一个空间几何区域）
+
+
+
+```shell
+# Syntax
+region ID style args keyword args ...
+
+# ID = 待定义区域的ID
+
+# style = block sphere plane等
+# block args = xlo xhi ylo yhi zlo zhi  各个维度上的范围值
+# xlo, xhi = x方向的起始和终止坐标位点
+
+# keyword/arg = 没有或多个
+# keyword = side units move rotate
+# units args = lattice box
+# lattice = 用lattice 单位定义几何结构  （默认项）
+# box = 用模拟盒子单位定义几何结构
+
+# prism args = xlo xhi ylo yhi zlo zhi xy xz yz
+#   xlo,xhi,ylo,yhi,zlo,zhi = bounds of untilted prism (distance units)
+#   xy = distance to tilt y in x direction (distance units)
+#   xz = distance to tilt z in x direction (distance units)
+#   yz = distance to tilt z in y direction (distance units)
+
+# Examples
+variable        a equal 3.61
+lattice            fcc ${a}
+region            box block 0 10 0 10 0 10 units lattice # 构建一个10a*10a*10a大小的模拟盒子（a为晶格常数）；units lattice为默认值，可不写出
+region 1 block 1 9 1 9 1 9  # 表示将盒子中x（1a-9a），y（1a-9a），z（1a-9a）的区域选中，定义为区域1，用于后续模拟
+
+region            box block 0 10 0 10 0 10 units box   # 构建一个10*10*10（埃）大小的模拟盒子
+```
+
+- `units lattice` 为默认值，可不写出
+- 一般 `box` 这个单词只用于与盒子相关的地方，只选取部分区域时，不要将其定义为 `box`
+
+#### create_box
+
+- 定义模型中有几类原子，几类键等
+
+
+
+```shell
+# Syntax
+create_box N region-ID keyword value ...
+
+# N = 原子种类数
+# region-ID = 用作模拟域的区域ID (类似别称)
+
+# keyword/value = 没有或多个
+# keyword = bond/types angle/types
+# bond/types value = # of bond types 键种类数
+
+# Examples
+create_box 2 box  # 表示盒子中有2种原子
+create_box 2 box bond/type 2  # 表示盒子中有2种原子以及2种键长
+```
+
+---
+
+#### creat_atoms
+
+- 用来在晶格阵点上创建原子，或创建一个单独的原子，或创建一些列随机原子（往模型中添加原子）
+- 使用该命令之前，模拟盒子必须是存在的（使用 `create_box` 命令创建），同时晶格也必须已经被定义（使用 `lattice` 命令）
+
+
+
+```shell
+# Syntax
+create_atoms type style args keyword values ...
+
+# type：要创建的原子类型（用1到N的数字代替）
+
+# style：box region single random
+# box arg：无
+# region args：region-ID  只有在region内的原子才会被创建
+# single args： x y z  x,y,z为要创建原子的坐标（以原胞为单位）
+
+# keyword：basis reamp units 没有或多个
+# units values：lattice box  lattice：以晶格距离作为单位；box：以模拟盒子作为单位
+
+# Examples
+create_atoms 1 box  # 表示将类型1的原子按照lattice命令的设定填满盒子
+create_atoms 2 single 5 5 5  # 表示在坐标为（5a, 5a, 5a）的地方添加一个类型为2的原子
+```
+
+- **box 类型**：该命令在整个模拟盒子中所有的晶格阵点上创建原子
+
+---
+
+### 势函数
+
+#### pair_coeff
+
+- 给出势函数中的参数或者数值列表
+
+
+
+```shell
+# Syntax
+pair_coeff I J args
+
+
+# Examples
+# pair_style eam/alloy
+pair_coeff      * * ../../CuYM.eam.alloy Cu
+# 对于含多元的势文件，如果只用到其中一部分元素，则其它的元素就不需要写出来
+
+# pair_style lj/cut 2.5
+pair_coeff * * 1 1
+# * * 表示考虑任意的两个原子间的相互作用，2.5, 1和1为L-J势所需要的参数，这些参数均可在相关参考文献中找到
+```
+
+---
+
+#### pair_modify
+
+---
+
+#### pair_style
+
+- 告诉 LAMMPS 相互作用势的类型
+
+
+
+```shell
+# Syntax
+pair_style style args
+
+# Examples
+pair_style eam/alloy
+pair_style none   # 默认设置
+```
+
+---
+
+#### pair_write
+
+- 将原子对间所定义的势函数，以距离作为自变量，将对应的能量和受力写入到文件中
+
+---
+
+#### 近邻列表
+
+```shell
+neighbor skin style
+
+# skin = 超出力截止的额外距离(distance units)
+# style = bin nsq multi multi/old
+
+# 例子
+neighbor 0.3 bin
+neighbor 2.0 nsq
+```
+
+
+
+- 此命令设置影响 pairwise neighbor lists 构建的参数。所有原子对的 neighbor cutoff 距离等于其力截止加上 skin 距离，都存储在列表中。通常，skin 距离越大，需要构建的 neighbor lists 就越少，但每个时间步都必须检查更多的对以确定可能的力相互作用。skin 的默认值取决于模拟的单位选择；请参见下面的默认值。
+
+- style 的值表示选择构建近邻列表的算法。bin style 通过 binning 创建列表，binning 是一种与 N/P（每个处理器的原子数）线性缩放的操作，其中 N=原子总数，P=处理器数 (processors)。它几乎总是比缩放为 (N/P)^2 的 nsq style 快。
+
+
+
+- 2.0 bin for units = real or metal, skin = 2.0 Angstroms
+
+---
+
+#### neigh_modify
+
+```shell
+neigh_modify keyword values ...
+
+# keyword = delay every check once cluster ...
+
+# delay value = N
+# every value = M
+# check value = yes or no
+# once value = yes or no
+
+# 例子
+neigh_modify every 2 delay 10 check yes page 100000
+```
+
+
+
+- 此命令设置影响 pairwise neighbor lists 的生成和使用的参数。根据定义的对相互作用和其他命令，模拟可能需要一个或多个邻居列表。
+
+- *every*, *delay*, *check*, and *once*选项影响模拟运行时生成列表的频率。*delay*设置意味着在上一次构建之后至少 N 个步骤之前从不构建新列表。*every*设置意味着每 M 步尝试构建列表（after the delay has passed）。如果*check*设置为 no，则在满足延迟和每个设置的第一步上构建列表。如果*check*设置为 yes，则*every*和*delay*设置将确定何时可能执行构建，但只有在自上次邻居列表构建以来至少有一个原子移动了超过 neighbor skin 距离（在 neighbor 命令中指定）一半的情况下，才会进行实际构建。
+- 如果*once*设置为 yes，则 neighbor lists 仅在每次运行开始时构建一次，并且从不重新构建，除非在写入重新启动文件时执行步骤，或在修复强制进行重建时执行步骤（例如，创建或删除原子的修复，如 fix deposit or fix evaporate）。只有当您确定原子移动的距离不够远，无法重建 neighbor lists 时，才能进行此设置，例如运行冷晶体模拟。请注意，检查是否应该重建邻居列表并不昂贵。
+
+- 默认值：delay = 0, every = 1, check = yes, once = no, cluster = no, include = all (same as no include option defined), exclude = none, page = 100000, one = 2000, and binsize = 0.0.
+
+---
+
+### 设置
+
+#### group
+
+- 确定一组原子属于一个组；可以在其他命令（如 fix compute dump velocity）使用 group ID，以共同作用于这些原子；如果 group ID 已存在，group 命令将指定的原子添加到 group 中
+
+
+
+```shell
+# Syntax
+group ID style args
+
+# ID
+
+# style
+# style = id  表示原子id
+# style = type 表示原子种类
+
+# 默认设置：所有的原子属于 "all" group
+
+# Examples
+group 1 type 1  # 表示将所有类型为1的原子设置为1组
+group 2 region 2  # 表示将处于区域2中的所有原子设置为2组
+group 3 union 1 2 # 表示将1，2组合并为3组
+group water type 3 4
+group sub id 10 25 50
+```
+
+---
+
+#### mass
+
+- 为某一种或几种类型的原子设置质量
+- 只有在模拟盒子定义后，才能使用该命令
+
+
+
+```shell
+# Syntax
+mass I value
+
+# I = 原子类型
+# value = 质量值
+
+# Examples
+mass 1 1.0
+```
+
+---
+
+#### timestep
+
+- 为该命令之后的分子动力学模拟设置时间步长
+
+
+
+```shell
+# Syntax
+timestep dt
+
+# dt：时间步长（以时间为单位）；默认的时间步长依赖于模拟中所采用的单位类型
+
+# Examples
+timestep = 0.005  # tau for units = lj
+timestep = 1.0    # fmsec for units = real
+timestep = 0.001  #  psec for units = metal
+```
+
+
+
+- 默认时间步长：metal 单位，0.001 ps；real 单位，1.0 fs
+
+---
+
+#### velocity
+
+- 设置或改变 group 原子的速度
+
+```shell
+# Syntax
+velocity group-ID style args keyword value ...
+
+# style = create set scale zero
+# create args = temp seed  设置初速度
+# temp = 温度值（温度单位）
+# seed = 随机数（正整数）
+
+# keyword/value = 没有或多个
+# keyword = dist sum mom rot temp loop等
+# dist value = uniform gaussian  在creat style下使用
+# dist gaussian：原子速度分布满足高斯分布
+
+# Example
+velocity all create 300.0 4928459 dist gaussian
+
+# 默认设置：dist = uniform mom = yes rot = no
+```
+
+---
+
+#### neigh_modify
+
+---
+
+#### run
+
+- 设置运行步数
+
+
+
+```shell
+# Syntax
+run N keyword values ...
+
+# Example
+run 10000
+```
+
+- `N = 0` 是可以接受的；只计算和打印系统的热力学量，不需要时间步长
+
+---
+
+### 约束
+
+#### fix
+
+- 为 group 原子施加 fix 约束；`fix` 是在时间步进或最小化期间应用于系统的任何操作；可能是在时间积分的过程中更新原子的位置和速度，或是控制温度，或是给原子施加约束力，或是强制某种边界条件，或计算过程诊断，等等
+
+
+
+```shell
+# Syntax
+fix ID group-ID style args
+
+# ID = 用户为fix命令分配的命令
+# group-ID = 需要施加fix到的原子的group ID
+
+# fix nvt  fix nve  fix npt
+
+# fix print
+
+
+# Example
+# 设置模拟系综（nve,nvt,npt等）
+fix 1 all nvt temp 300 300 100.0
+
+# 对原子进行操作
+
+
+```
+
+#### fix nve
+
+```shell
+fix ID group-ID nve
+
+# ID, group-ID与fix命令中定义相同
+```
+
+
+
+- 执行普通 (plain) 时间积分，以在每个时间步更新组中原子的位置和速度。这创建了与微正则系综（NVE）一致的系统轨迹，前提是存在（完全）周期性边界条件，并且没有系统的其他 “操纵 “（例如，修改力或速度的固定）
+
+#### fix nvt/npt/nph
+
+- 用 Nose-Hoover 方法对时间积分，生成位置和速度
+
+```shell
+# Syntax
+fix ID group-ID style_name keyword value ...
+
+# style_name = nvt/npt/nph
+
+# keyword = temp iso等
+# temp values = Tstart Tstop Tdamp
+# iso values = Pstart Pstop Pdamp
+
+# Examples
+fix 1 all nvt temp 300.0 300.0 100.0
+```
+
+- fix nvt，温度不是保持不变，而是会有振荡（波动），振幅与 Tdamp 有关
+
+#### fix box/relax
+
+```shell
+fix ID group-ID box/relax keyword value ...
+```
+
+
+
+- 在能量最小化期间，将外部压力或应力张量应用于模拟盒。这允许盒子的大小和形状在最小化器的迭代过程中变化，从而最终构型将是原子势能的能量最小值，并且系统压力张量将接近指定的外部张量。从概念上讲，指定正压力就像挤压模拟盒；负压通常允许盒子膨胀。
+
+- 外部压力张量用*iso*, *aniso*, *tri*, *x*, *y*, *z*, *xy*, *xz*, *yz*, and *couple*关键词。这些关键字使您能够指定外部应力张量的所有 6 个分量，并将这些分量耦合在一起，以便在最小化过程中与它们所表示的尺寸一起变化。
+- 应力张量的 6 个分量中的每一个的目标压力 Ptarget 可以通过 x、y、z、xy、xz、yz 关键字独立指定，这些关键字对应于 6 个模拟盒维度。例如，如果使用 y 关键字，则在最小化期间 y 框长度将发生变化。如果使用 xy 关键字，xy 倾斜因子将更改。如果未指定该组件，长方体尺寸将不会更改。
+
+- 关键字 iso 表示在计算压力（静水压力）时将所有三个对角分量连接在一起，并将尺寸放大/缩小在一起。value = Ptarget
+- 关键词 aniso 意味着 x、y 和 z 维度是使用应力张量的 Pxx、Pyy 和 Pzz 分量作为驱动力和指定的标量外部压力独立控制的。
+- vmax 关键字可用于限制在最小化器的一次迭代中可能发生的模拟盒体积的分数变化。如果在最小化期间压力没有稳定下来，这可能是因为体积波动太大。指定的分数必须大于 0.0，且应小于 1.0。值 0.001 表示当指定了 xyz 对时，体积在一次迭代中的变化不能超过 1/10。对于任何其他情况，这意味着模拟框的线性尺寸变化都不能超过 1/10。
+
+- 默认值：dilate = all, vmax = 0.0001, nreset = 0
+
+#### fix print 帮助输出所需信息
+
+```shell
+# Syntax
+fix ID group-ID print N string keyword value ...
+
+# keyword  = file screen append
+# file value = filename
+# append value = filename
+# screen value = yes no
+
+# Example
+fix extra all print 100 "Coords of marker atom =$x $y $z" file coord.txt
+```
+
+- 输出文件（如 coord.txt）中的标题行默认为
+
+```shell
+# Fix print output for fix-ID
+```
+
+#### fix_modify
+
+#### unfix
+
+- 删除之前使用 `fix` 命令定义的约束；也会删除使用 `fix_modify` 命令对该约束所进行的修改
+
+
+
+```shell
+# Syntax
+unfix fix-ID
+
+# Examples
+unfix 2
+```
+
+---
+
+### 计算
+
+#### compute
+
+- 为 group 原子定义一种计算
+- 计算出的量是瞬时值，也就是说它们只是原子在当前时间步或迭代步的信息。当然，compute 命令也可以在内部保存体系在之前一个状态的某些信息
+- 定义 compute 命令的时候并不会执行计算。真正的计算过程是被其他 LAMMPS 命令激活的，比如某些 fix 命令需要计算温度的时候，或这需要产生热力学信息的时候，或者需要 dump 输出到文件中的时候
+
+
+
+```shell
+# Syntax
+compute ID group-ID style args
+
+# ID = user-assigned name for the computation
+# group-ID = ID of the group of atoms to perform the computation on
+
+# style = ke ke/atom pe pe/atom pressure rdf temp voronoi/atom等
+
+# Examples
+compute 1 all temp
+compute 1 all pe/atom  # 表示计算每个原子的势能
+compute 1 all porperty/atom fx fy fz # 表示计算每个原子在x，y以及z方向上所受到的力
+
+compute 1 all pe/atom
+dump 1 all custom 100 W.xyz id type x y z c_1
+# c为compute的缩写，1为这个compute的代号;c_1表示输出计算的原子势能
+# 将得到的W.xyz文件导入ovito软件中，然后在Add Modification中选择Color coding,然后在图示中的input property选项中选择c_1即可得被原子势能涂色的示意图
+```
+
+- style 中含有 “atom”，为单原子量；含有 “local”，为局域量；不包含前两者，为全局量
+
+---
+
+#### compute_modify
+
+- 用来修改过之前定义过的 `compute` 命令的一个或多个参数
+
+
+
+```shell
+# Syntax
+compute_modify compute-ID keyword value ...
+```
+
+#### uncompute
+
+---
+
+### 输出
+
+#### dump
+
+```shell
+# Syntax
+dump ID group-ID style N file args
+
+# ID = 用户为 dump 分配的名称
+# group-ID = 要 dump 的原子group 的ID
+# style = custom one等
+# N = 每N步输出一次 / 在N的倍数的时间步长上dump
+# file = 输出文件的文件名
+# args = 特定 style 的参数列表
+
+# custom args = list of atom attributes 原子属性列表
+# mass = 原子质量
+# id = 原子ID
+# type = 原子类型
+# x,y,z = 原子坐标（unscaled）
+# xs,ys,zs = 原子坐标（scaled）
+# c_ID/c_ID[I] = 允许输出由compute计算的每原子向量或数组(per-atom vectors or arrays)
+
+# Examples
+dump 1 all custom 500 file_name.xyz id type x y z
+```
+
+
+
+- custom style 中的参数：c_ID/c_ID[I] = 允许输出由 compute 计算的每原子向量或数组 (per-atom vectors or arrays)，这里 ID 应替换为先前在 in 文件中定义的计算的实际 ID（**ID 类似于一种变量**）
+
+---
+
+#### dump_modify
+
+```shell
+dump_modify dump-ID keyword values ...
+
+# dump-ID = 需要修改的dump ID
+
+# keyword = sort等
+# sort arg = off or id or N or -N
+```
+
+
+
+
+
+- keyword 为 sort 时：off 表示通常以不确定的顺序（串行或并行）写入；sort 的值为 id 时，表示通过原子 ID 对输出进行排序；N 或−N 表示按每个原子信息的第 N 列中的值按升序或降序对输出进行排序
+
+---
+
+#### undump
+
+- 关闭先前定义的 dump，使其不再处于活动状态。这将关闭与 dump 关联的文件。
+
+```shell
+undump dump-ID
+
+# dump-ID = 先前定义的dump ID
+```
+
+---
+
+#### thermo
+
+- 用来设置在模拟中计算和打印热力学信息（比如温度、能量、压强）的时间步的频率（每运行多少步输出一次热力学信息）
+
+
+
+```shell
+# Syntax
+thermo N
+
+# N = 输出热力学信息的频率，可以是变量
+
+# Examples
+thermo 100
+thermo 0   # 默认设置
+```
+
+#### thermo_style
+
+- 表示输出所需要的热力学信息
+
+
+```shell
+# Syntax
+thermo_style style args
+
+# style  = custom one multi yaml
+# 后三个style args = none
+
+# custom args = list of keywords
+# atoms表示原子总数目
+# step表示输出运行的步数是多少
+# temp表示体系的温度
+# ke表示体系的动能
+# pe表示体系的总势能
+# etotal表示体系的总能量
+# pxx,pyy,pzz,pxy...表示体系各个方向的压强
+# count(all)表示计算总原子数目
+# dt = timestep size
+# lx,ly,lz = box lengths in x,y,z
+# v_name = value calculated by an equal-style variable with name（由具有名称的等式变量计算的值）
+
+# Examples
+thermo_style custom step temp ke pe etotal
+```
+
+- `thermo_style` 命令中的 `custom args` 可以作为 `variable` 命令中的参数
+
+---
+
+#### start
+
+#### write_restart
+
+---
+
+### 操作
+
+#### delete_atoms
+
+- 删除不需要的原子
+
+
+```shell
+# Syntax
+delete_atoms style args keyword value ...
+
+# style = group region overlap random
+
+# keyword = compress bond mol
+# value  = no yes
+
+
+# Examples
+delete_atoms group 1 # 表示将1组的原子删掉
+delete_atoms region 2 # 表示将区域2中的原子删掉
+```
+
+
+
+- **如果 compress 关键字设置为 yes，那么在原子被删除后，原子 ID 将被重新分配，以便从 1 到系统中的原子数**。请注意，对于分子系统（请参见 atom_style 命令），无论压缩设置如何，都不会这样做，因为这会破坏已指定的键连接。但是，reset_atom_ids 命令可以在该命令之后使用，以完成相同的任务。
+
+- 默认设置是：compress = yes, bond = no, mol = no
+
+---
+
+#### minimize
+
+- 通过不断迭代调整原子坐标的方式对体系的能量进行最小化
+
+
+```shell
+# Syntax
+minimize etol ftol maxiter maxeval
+
+# etol = 能量的停止容差（无单位）
+# ftol = 力的停止容差（力的单位）
+# maxiter = 能量最小化器minimizer的最大迭代次数
+# maxeval = 计算力或能量的最大次数
+
+# Examples
+minimize 1.0e-4 1.0e-6 100 1000
+```
+
+
+- 在能量最小化结束后，程序会打印一段统计摘要信息，介绍满足了何种收敛判据，以及能量、受力、最终的线性搜索和迭代次数等
+
+```shell
+Minimization stats:
+  Stopping criterion = max iterations
+  Energy initial, next-to-last, final = 
+       -0.626828169302     -2.82642039062     -2.82643549739
+```
+
+---
+
+#### min_style
+
+- 为 `minimize` 命令选择一种能量最小化的算法
+
+
+
+```shell
+# Syntax
+min_style style
+
+# style = cg sd quickmin spin等
+# cg：PR版本的共轭梯度法；对于绝大多数的问题来说，PR版的共轭梯度算法都被认为是效果最好的
+# sd：最速下降法；一般来说，sd算法都没有cg算法收敛快，但在某些特定的情形下可能会根据稳定
+
+# Examples
+min_style cg  # 默认设置
+```
+
+---
+
+#### min_modify
+
+- 设置由 `min_style` 命令所选择的能量最小化算法的参数；不同的设置参数会影响收敛速率和能量最小化过程中需要计算力的次数
+
+
+
+```shell
+# Syntax
+min_modify keyword values ...
+
+# keyword/value = 一个或多个
+# keyword = dmax line norm等
+
+# Examples
+min_modify dmax 0.2
+```
+
+#### neb
+
+---
+
+#### temper
+
+---
+
+### 其他
+
+#### variable
+
+```shell
+# Syntax
+variable name style args ...
+
+# name：定义的变量名
+# style：index equal loop等
+# index args：一个或多个字符串
+# equal args：公式（数字等）
+# loop args：N 或 N1 N2
+
+# Examples
+variable x index run1 run2 run3
+variable        iteration equal 40
+variable        n loop ${iteration}
+```
+
+---
+
+#### jump
+
+- 关闭当前输入脚本文件，打开命令中文件名所指定的文件，并从那个文件开始读入 LAMMPS 命令；与命令 `include` 不同的是，LAMMPS 不会再返回到之前的输入文件了
+
+
+
+```shell
+# Syntax
+jump file label
+
+# file： 要跳转到的输入脚本的文件名
+# label：[可选]要跳转到的输入脚本中的标签；从标签的位置开始向下执行
+
+# Examples
+jump newfile
+jump in.run2 runloop
+jump SELF runloop
+```
+
+
+
+- 如果文件名使用了单词 “SELF”，则当前输入脚本将被重新打开并再次读取。
+
+---
+
+#### label
+
+---
+
+#### clear
+
+- 用来删除所有的原子、将所有的设置都设为默认值，并释放 LAMMPS 分配的所有内存
+- 该命令可以让你在一个输入脚本中顺序运行多个作业
+- 工作目录（命令 `shell`）、日志文件状态（命令 `log`）、echo 状态（命令 `echo`）以及输入脚本中的变量（命令 `variable`）不受 `clear` 影响
+
+
+
+```shell
+(commands for 1st simulation)
+clear
+(commands for 2nd simulation)
+```
+
+---
+
+#### next
+
+- 该命令需要与使用命令 `variable` 定义的变量同时使用，用来从为该变量定义的一些列值中将下一个值赋给变量。在使用该命令之后，变量就是一个新值
+
+
+
+```shell
+# Syntax
+next variables
+
+# variables： 一个或者多个变量名
+
+# Examples
+next x
+next a t x myTemp
+```
+
+---
+
+#### if
+
+- 在输入文件中提供一个 if-then-else 功能
+
+
+
+```shell
+# Syntax
+if boolean then t1 t2 ... elif boolean f1 f2 ... elif boolean f1 f2 ... else e1 e2 ...
+
+# Examples
+if              "$i==1" then "shell rm data"
+```
+
+---
+
+#### print
+
+- 打印一个文本字符串到屏幕和日志文件
+
+
+
+```shell
+# Syntax
+print string keyword value
+
+# keyword value：没有或一个或多个
+# file value = filename
+# append value = filename
+# screen value = yes or no
+# universe value = yes or no
+```
+
+---
+
+#### shell
+
+- 执行 shell 命令
+
+```shell
+# Syntax
+shell command args
+
+# command：cd mkdir mv rm rmdir
+```
+
+---
+
+#### neigh_modify
+
+- 设置影响成对近邻列表建立和使用的参数；一次模拟可能需要多个近邻列表
+
+
+
+```shell
+# Syntax 
+neigh_modify keyword values ...
+
+# delay: 在上一次构建之后至少N步之前，永远不要构建新的列表
+# everry: delay pass后，每M步建立列表
+# check: 
+# once: 
+```

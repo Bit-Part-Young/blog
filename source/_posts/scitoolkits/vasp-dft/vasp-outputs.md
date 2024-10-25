@@ -2,7 +2,7 @@
 title: VASP 输出文件
 top: true
 pin: true
-cover:
+cover: 
 toc: true
 mathjax: true
 math: true
@@ -10,9 +10,9 @@ summary: VASP 输出文件
 description: VASP 输出文件
 tags:
   - VASP
-  - DFT
 categories:
   - 科研工具
+  - VASP
 date: 2024-10-14 11:04:30
 abbrlink: 410503
 password:
@@ -395,14 +395,14 @@ energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
 
 ---
 
-### XDATCAR
+## XDATCAR
 
 - 含每个离子步的构型（轨迹文件；AIMD 常用）
 
 
 ---
 
-### PCDAT
+## PCDAT
 
 - 含对关联函数（pair correlation function；AIMD 常用）；对于 AIMD，写入平均对关联函数
 
