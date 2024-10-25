@@ -249,6 +249,7 @@ fractional
     - 离子优化相关参数：IBRION、POTIM、NSW、EDIFFG
     - 态密度积分相关参数：ISMEAR、SIGMA、LORBIT
     - 态密度相关参数：EMIN 、EMAX、NEDOS
+    - 能带相关参数：NBANDS
 
 - 注意事项：
     - 等号（=）前后可以有空格，也可以没有
@@ -554,6 +555,8 @@ N              # N 为数字；Methfessel-Paxton order N（默认 1）
 
 - 是否考虑自旋极化
 
+- 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
+
 ```bash
 1              # 不考虑
 2              # 考虑
@@ -605,29 +608,27 @@ N              # N 为数字；Methfessel-Paxton order N（默认 1）
 
 ---
 
-- LAECHG = True
 
-    - 含义：用于控制是否计算电荷密度差异。
-    - 值：True 表示计算电荷密度差异。
 - LASPH = True
-
     - 含义：用于控制是否考虑 LDA+U 方法中的自相互作用。
     - 值：True 表示考虑自相互作用。
 
 - LVHAR = True
-
     - 含义：用于控制是否计算原子的局部势能。
     - 值：True 表示计算局部势能。
 
 - KPAR = 8
-
     - 含义：用于并行计算中控制 k 点并行的数量。
     - 值：8 表示使用 8 个处理器进行 k 点并行计算。
 
 - NPAR = 4
-
     - 含义：用于控制并行计算中的分区数量。
     - 值：4 表示将计算任务分成 4 个部分进行并行计算。
+
+
+ - NCORE: 指定单个轨道计算所使用的核数量
+ - NPAR: 指定同时并行处理的能带数
+ - KPAR: 指定同时并行处理的 K 点数量
 
 
 >[13\_vasp/V2PC/README.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
@@ -636,5 +637,5 @@ N              # N 为数字；Methfessel-Paxton order N（默认 1）
 其他
 
 ```bash
-GGA = PE
+GGA    = PE      # 泛涵；PE，Perdew-Burke-Ernzerhof；91，Perdew -Wang 91；PS，PBEsol
 ```

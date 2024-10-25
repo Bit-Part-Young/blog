@@ -61,15 +61,6 @@ DFT-D3：vdW 相互作用修正
 
 Heyd–Scuseria–Ernzerhof 泛函 (HSE06)：更精确，处理电子和光学性质
 
-+U
-
-```bash
-# LDAU 等参数
-LDAU
-LDAUU
-LDAUJ
-```
-
 
 
 自洽计算：均匀 K 点计算（严格一点，先弛豫后静态计算；模型较好，不 care 晶格常数，可直接静态计算）
@@ -98,16 +89,12 @@ SCAN (Strongly constrained and appropriately normed)
 - VASP Tutorial：[Category:Tutorials - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Tutorials)、[Tutorials](https://www.vasp.at/tutorials/latest/)
 - VASP Examples：[Category:Examples - Vaspwiki](https://www.vasp.at/wiki/index.php/Category:Examples)
 
-[VASP关键输入参数速查表 - VASPKIT与量化软件](http://vaspkit.cn/index.php/3.html)
-
 - VASP 计算流程：[VASP的计算流程 - Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
+- [VASP关键输入参数速查表 - VASPKIT与量化软件](http://vaspkit.cn/index.php/3.html)
 
+- [VASP中POTCAR使用指南 - Jun's Blog](https://next.jun997.xyz/2022/04/14/ba8ff0b84c20.html)
 
-[VASP中POTCAR使用指南 - Jun's Blog](https://next.jun997.xyz/2022/04/14/ba8ff0b84c20.html)
-
-
-输入文件及参数介绍
->[GitHub - bzkarimi/VASP: Practical guide on how to use VASP](https://github.com/bzkarimi/VASP)
+- 输入文件参数介绍：[GitHub - bzkarimi/VASP: Practical guide on how to use VASP](https://github.com/bzkarimi/VASP)
 
 
 VASP 中计算电子基态的算法
@@ -144,11 +131,6 @@ GW 计算
 
 [DFT磁性的计算(本例为用VASP计算FCC Ni的磁矩)](https://mp.weixin.qq.com/s/4ygwBJsAjVVQ3slPZeevhw)
 
-
-
- - NCORE: 指定单个轨道计算所使用的核数量
- - NPAR: 指定同时并行处理的能带数
- - KPAR: 指定同时并行处理的 K 点数量
 
 
 ---
@@ -212,22 +194,36 @@ GW 计算
     - NiO：反铁磁
 
 
----
+- [ ] DOS 计算过程中 ISMEAR=0 和 -5 的差别是什么：[Part 2: More silicon](https://www.vasp.at/tutorials/latest/bulk/part2/)
 
-
-- [ ] DOS 计算过程中 ISMEAR=0 和 -5 的差别是什么
-[Part 2: More silicon](https://www.vasp.at/tutorials/latest/bulk/part2/)
 
 ---
 
 ## 示例
 
+```bash
+# 能带结构、DOS 计算
+ISTART = 1
+ICHARG = 11
+
+# 其余计算
+ISTART = 0
+ICHARG = 2
+
+# 断点后续算；其他参数值不改变
+ISTART = 1
+ICHARG = 1
+```
+
+
+---
+
 ### 静态计算
 
 ```bash
-IBRION  =  -1
-NSW     =  0
-ISIF    =  2
+IBRION = -1
+NSW    = 0
+ISIF   = 2
 ```
 
 
@@ -235,14 +231,20 @@ ISIF    =  2
 
 ### 孤立原子计算
 
-WIP...
+```bash
+
+```
 
 
 ---
 
 ### 收敛性测试
 
-k 点和 ENCUT
+K 点和 ENCUT
+
+```bash
+
+```
 
 
 ---
@@ -253,41 +255,29 @@ vaspkit 标准弛豫（SR） INCAR 示例：
 
 ```bash
 Global Parameters
-ISTART =  1            (Read existing wavefunction, if there)
-ISPIN  =  1            (Non-Spin polarised DFT)
-# ICHARG =  11         (Non-self-consistent: GGA/LDA band structures)
-LREAL  = .FALSE.       (Projection operators: automatic)
-# ENCUT  =  400        (Cut-off energy for plane wave basis set, in eV)
-# PREC   =  Accurate   (Precision level: Normal or Accurate, set Accurate when perform structure lattice relaxation calculation)
-LWAVE  = .TRUE.        (Write WAVECAR or not)
-LCHARG = .TRUE.        (Write CHGCAR or not)
-ADDGRID= .TRUE.        (Increase grid, helps GGA convergence)
-# LVTOT  = .TRUE.      (Write total electrostatic potential into LOCPOT or not)
-# LVHAR  = .TRUE.      (Write ionic + Hartree electrostatic potential into LOCPOT or not)
-# NELECT =             (No. of electrons: charged cells, be careful)
-# LPLANE = .TRUE.      (Real space distribution, supercells)
-# NWRITE = 2           (Medium-level output)
-# KPAR   = 2           (Divides k-grid into separate groups)
-# NGXF    = 300        (FFT grid mesh density for nice charge/potential plots)
-# NGYF    = 300        (FFT grid mesh density for nice charge/potential plots)
-# NGZF    = 300        (FFT grid mesh density for nice charge/potential plots)
+ISTART =  0
+ICHARG =  2
+ISPIN  =  1
+LREAL  = .FALSE.
+ENCUT  =  400
+PREC   =  Accurate
+LWAVE  = .TRUE.
+LCHARG = .TRUE.
+ADDGRID= .TRUE.
 
 Electronic Relaxation
-ISMEAR =  0            (Gaussian smearing, metals:1)
-SIGMA  =  0.05         (Smearing value in eV, metals:0.2)
-NELM   =  90           (Max electronic SCF steps)
-NELMIN =  6            (Min electronic SCF steps)
-EDIFF  =  1E-08        (SCF energy convergence, in eV)
-# GGA  =  PS           (PBEsol exchange-correlation)
+ISMEAR =  0 
+SIGMA  =  0.05
+NELM   =  90
+NELMIN =  6
+EDIFF  =  1E-05
 
 Ionic Relaxation
-NSW    =  100          (Max ionic steps)
-IBRION =  2            (Algorithm: 0-MD, 1-Quasi-New, 2-CG)
-ISIF   =  2            (Stress/relaxation: 2-Ions, 3-Shape/Ions/V, 4-Shape/Ions)
-EDIFFG = -2E-02        (Ionic convergence, eV/AA)
-# ISYM =  2            (Symmetry: 0=none, 2=GGA, 3=hybrids)
+NSW    =  100
+IBRION =  2
+ISIF   =  2
+EDIFFG = -2E-02
 ```
-
 
 
 ---
@@ -309,6 +299,8 @@ EDIFFG = -2E-02        (Ionic convergence, eV/AA)
 - 开启自旋极化，DOS 会有上下两条线（上下对称、不对称的含义是什么）
 
 - 建议 NEDOS 数值稍微取密一些（多少较为合适）
+
+- DOS 计算相比弛豫对截断能没有那么敏感，截断能值可以设小一些
 
 - 态密度相关输出文件：DOSCAR、PROCAR
 
@@ -346,7 +338,7 @@ grep 'EMIN' OUTCAR           # 查看 EMIN、EMAX 数值
 
 - 差分电荷密度：charge density difference；原子相互作用后（成键前后）的电荷密度与初始原子电荷密度之差；可分析在成键和成键电子耦合过程中的电荷移动以及成键极化方向等性质
 
-- 计算：与静态计算类似；添加 `LAECHG` 参数，会生成 AECCAR0 AECCAR1 AECCAR2 三个文件
+- 计算：与静态计算类似；添加 `LAECHG` 参数（计算内层电荷密度和价电子层电荷密度，将两个文件叠加求得总电荷，再求解 Bader 电荷），会生成 AECCAR0、AECCAR1、AECCAR2 三个文件
 
 ```bash
 # INCAR 参数设置
@@ -442,9 +434,9 @@ LELF        = .TRUE.
 - [ ] Nb 计算得到的弹性常数 C44 < 0，为什么？
 
 ```bash
-IBRION    =  6
-NFREE     =  4  # 4 或 2
-ISIF      =  3
+IBRION = 6
+NFREE  = 4  # 4 或 2
+ISIF   = 3
 
 # NSW 的设置，非 0 即可，与其具体值关系不大
 ```
@@ -463,9 +455,10 @@ WIP...
 
 - [ ] VASP 拉伸模拟
 
-SOC：自旋轨道耦合、旋轨耦合
+---
 
-VASP INCAR 参数 `LSORBIT = T` 开启 SOC 时，需使用 `vasp_ncl`，使用 `vasp_std` 会出现以下报错
+- SOC：自旋轨道耦合、旋轨耦合
+    - VASP INCAR 参数 `LSORBIT = T` 开启 SOC 时，需使用 `vasp_ncl`，使用 `vasp_std` 会出现以下报错
 
 ```txt
 ERROR: non collinear calculations require that VASP is compiled
@@ -474,18 +467,25 @@ ERROR: non collinear calculations require that VASP is compiled
  without the flag -DNGXhalf and -DNGZhalf
 ```
 
-pymatgen 解析 SOC 的 Vasprun 文件出现以下 Warning（实际不影响）
-
 ```bash
+# pymatgen 解析 SOC 的 Vasprun 文件出现以下 Warning（实际不影响）
 pymatgen/io/vasp/outputs.py:161: UserWarning: Float overflow (*******) encountered in vasprun
 warnings.warn("Float overflow (*******) encountered in vasprun")
 ```
 
 ---
 
-红外光谱（Infrared Spectroscopy，IR）
+- LDA + U
 
-[VASP快速计算红外光谱(IR) 后处理软件vasprun推荐](https://mp.weixin.qq.com/s/LGUFL5t8vZi3iedjtFelJQ)
+```bash
+LDAU
+LDAUU
+LDAUJ
+```
+
+---
+
+- 红外光谱（Infrared Spectroscopy，IR）：[VASP快速计算红外光谱(IR) 后处理软件vasprun推荐](https://mp.weixin.qq.com/s/LGUFL5t8vZi3iedjtFelJQ)
 
 
 ---

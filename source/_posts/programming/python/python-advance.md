@@ -376,7 +376,6 @@ import pkg_resources
 MODEL_DATA_PATH = pkg_resources.resource_filename("pdepp", "data/model")
 ```
 
-
 ```python
     package_data={
         "pdepp": [
@@ -388,8 +387,6 @@ MODEL_DATA_PATH = pkg_resources.resource_filename("pdepp", "data/model")
         ],
     },
 ```
-
-
 
 
 ---
@@ -412,10 +409,9 @@ password = pypi-AgEI...
 - 安装 twine（上传 Python package 到 PyPI 的工具）
 
 ```bash
-pip install twine
+pip install -U twine
 
-# 安装 pyproject.toml 构建工具
-pip install build
+pip install -U build        # 安装 pyproject.toml 构建工具
 ```
 
 - 构建 package
@@ -423,8 +419,7 @@ pip install build
 ```bash
 python setup.py sdist bdist_wheel
 
-# 使用 pyproject.toml 构建
-python -m build
+python -m build         # 使用 pyproject.toml 构建
 ```
 
 - 上传到 TestPyPI 进行测试（可选）
@@ -447,7 +442,7 @@ twine upload dist/*
 
 ---
 
-- [ ] PyPI 自动发布 CI、自动发布 release CI
+- [ ] PyPI 自动发布 CI、自动发布 Release CI
 参考：[workflow-sandbox/.github/workflows/release.yml at master · rpanderson/workflow-sandbox · GitHub](https://github.com/rpanderson/workflow-sandbox/blob/master/.github/workflows/release.yml)
 
 [GitHub - pypa/gh-action-pypi-publish: The blessed GitHub Action, for publishing your distribution files to PyPI: https://github.com/marketplace/actions/pypi-publish](https://github.com/pypa/gh-action-pypi-publish)
@@ -479,13 +474,14 @@ twine upload dist/*
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401291949924.png)
 
 
+
 ---
 
-### IPython
+## IPython
 
 - [25 IPython Tips for Your Next Advent of Code](https://switowski.com/blog/25-ipython-tips-for-your-next-advent-of-code/)
 
-- 在 Ipython 中按 Tab 键可补全可用的类的方法和属性；在函数或类的方法后添加 `?` 可以查看其 docstring
+- 在 IPython 中按 Tab 键可补全可用的类的方法和属性；在函数或类的方法后添加 `?` 可以查看其 docstring
 
 ```bash
 XXX?               # 一个问号；查看类或函数的 docstring
@@ -501,6 +497,7 @@ os.*dir*?          # 通配符搜索函数
 %%ruby             # 执行其他编程语言的代码
 %rerun ~N/         # 运行之前的第 N 个 session 中的代码
 ```
+
 
 
 ---

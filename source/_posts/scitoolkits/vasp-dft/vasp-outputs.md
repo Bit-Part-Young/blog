@@ -2,7 +2,7 @@
 title: VASP 输出文件
 top: true
 pin: true
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -69,6 +69,10 @@ password:
 - 相关数据提取
 
 ```bash
+# 能量之间的差异
+energy without entropy
+E0
+
 # 弛豫计算结束，达到所需精度
 reached required accuracy - stopping structural energy minimisation
 
