@@ -2,7 +2,7 @@
 title: Windows 新机使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -167,10 +167,16 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 
 - [解决windows显示开启HDR后chrome内截图泛白问题\_截图浏览器变色\_Athus\_c的博客-CSDN博客](https://blog.csdn.net/Athus_c/article/details/106494715)
 
-- [ ] 如何关闭 Office 模板（去除其广告）
+- VSCode 清理
 
-- [ ] VSCode 清理
-    - [ ] `AppData\Local\Temp\vscode-remote-wsl` 占用体积较大
-    - [ ] `\AppData\Roaming\Code\Service Worker` 占用体积较大
+```bash
+# 占用体积较大的目录
+AppData\Local\Temp\vscode-remote-wsl
+\AppData\Roaming\Code\Service Worker
+```
+
+- 去除 C 盘及程序快捷方式的两个朝内的蓝色箭头（无法从根本上去除）：右键 - 属性 - 高级 - 取消勾选 “压缩内容以便节省磁盘空间”
+
+- [ ] 如何关闭 Office 模板（去除其广告）
 
 - [ ] Bose qc45 两侧如何清理

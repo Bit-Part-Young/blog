@@ -408,9 +408,13 @@ No READY jobs detected
 
 ### 使用 tips
 
-- 用 python 脚本生成 workflows 的 fireworks 后，需要用 qlaunch 相关命令将 fireworks 提交到队列系统中，对于只有一个 firework 的 workflows（如弛豫和静态计算），若共生成了**N 个 fireworks**，`qlaunch rapidfire --nlaunches N` 即可（体系较小时，N 可缩减成 N/2 等）；
-- 对于有多个 fireworks（如 M 个）的 workflows（如弹性常数计算），可以先提前了解这些多个 fireworks 之间的逻辑关系，若共有**N 个 workflows**，可先 `qlaunch rapidfire --nlaunches N`，N 个中有部分 fireworks（如 X 个）计算完成后，可适当再 `qlaunch rapidfire --nlaunches X*(M-1)`，进行该 workflow 其余部分 fireworks 的计算，一定程度上可以控制计算成本（虽然可能需要时不时查看 fireworks 的计算完成情况）。
-- **不建议直接 `qlaunch rapidfire`**。
+- 用 Python 脚本生成 workflows 的 fireworks 后，需要用 qlaunch 相关命令将 fireworks 提交到队列系统中，对于只有一个 firework 的 workflows（如弛豫和静态计算），若共生成了**N 个 fireworks**，`qlaunch rapidfire --nlaunches N` 即可（体系较小时，N 可缩减成 N/2 等）
+
+- 对于有多个 fireworks（如 M 个）的 workflows（如弹性常数计算），可以先提前了解这些多个 fireworks 之间的逻辑关系，若共有**N 个 workflows**，可先 `qlaunch rapidfire --nlaunches N`，N 个中有部分 fireworks（如 X 个）计算完成后，可适当再 `qlaunch rapidfire --nlaunches X*(M-1)`，进行该 workflow 其余部分 fireworks 的计算，一定程度上可以控制计算成本（虽然可能需要时不时查看 fireworks 的计算完成情况）
+
+- **不建议直接 `qlaunch rapidfire`**
+
+- atomate 无法在只将 workflow 产生后就能看到输入文件，需让其实际运行才能看到；做法：核数设为 1；运行后待输入文件产生，将 Jobid 删除，检查输入文件参数
 
 
 

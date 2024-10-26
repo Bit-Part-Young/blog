@@ -1773,6 +1773,7 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
     - [GitHub - ml-evs/CV: My TeX CV built with moderncv.](https://github.com/ml-evs/CV)
     - [A Customised CurVe CV - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/a-customised-curve-cv/mvmbhkwsnmwv)
     - [GitHub - rasenior/CV: CV using CurVe in LaTeX](https://github.com/rasenior/CV)
+    - [GitHub - bocklund/resume: Brandon Bocklund Resume](https://github.com/bocklund/resume) （适合学术用）
 
 - 国自然基金 LaTeX 模板：
     - [GitHub - Ruzim/NSFC-application-template-latex: 国家自然科学基金申请书正文（面上项目）LaTeX 模板（非官方）](https://github.com/Ruzim/NSFC-application-template-latex)

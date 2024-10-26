@@ -30,12 +30,13 @@ password:
 - [GitHub - rougier/numpy-100: 100 numpy exercises (with solutions)](https://github.com/rougier/numpy-100)
 - [NumPy的应用-1 - Python-100-Days](https://github.com/jackfrued/Python-100-Days/blob/master/Day66-80/68.NumPy%E7%9A%84%E5%BA%94%E7%94%A8-1.md)
 - [NumPy 介绍](https://mp.weixin.qq.com/s/RGVKqo-LGf0s3dETIPr8gQ)
+- [GitHub - numpy/numpy-tutorials: NumPy tutorials & educational content in notebook format](https://github.com/numpy/numpy-tutorials)
 
 ```python
 np.argsort()
 np.sort()
 
-# 找到 2D 数组 arr 最小值的对应行、列索引 
+# 找到 2D 数组 arr 最小值的对应行、列索引
 i, j = np.unravel_index(np.argmin(arr, axis=None), arr.shape)
 
 # 数值积分函数；通过梯形法则（trapezoidal rule）计算定积分
@@ -63,22 +64,22 @@ np.trapz()
 import numpy as np
 
 # 从列表创建
-np.array([1, 2, 3, 4, 5])
+np.array([1, 2, 3])
 
 # 从内置函数创建
-np.eye()             # 单位阵
-np.zeros()           # 全为 0
-np.ones()            # 全为 1
-np.full()            # 填充
-np.arange()          # 范围
-np.linspace()        # 等差
-np.logspace()        # 等比
-np.fromstring()      # 从字符串提取数据
+np.eye()                # 单位阵
+np.zeros()              # 全为 0
+np.ones()               # 全为 1
+np.full()               # 填充
+np.arange()             # 范围
+np.linspace()           # 等差
+np.logspace()           # 等比
+np.fromstring()         # 从字符串提取数据
 
 # 随机
-np.random.rand()  # 0-1 随机小数
-np.random.randint()  # 随机整数
-np.random.normal()   # 正态分布随机数
+np.random.rand()        # 0-1 随机小数
+np.random.randint()     # 随机整数
+np.random.normal()      # 正态分布随机数
 ```
 
 
@@ -87,10 +88,10 @@ np.random.normal()   # 正态分布随机数
 ### 属性
 
 ```python
-dtype    # 数组元素数据类型
-shape    # 数组形状
-ndim     # 数组维度
-size     # 数组元素个数
+dtype                   # 数组元素数据类型
+shape                   # 数组形状
+ndim                    # 数组维度
+size                    # 数组元素个数
 ```
 
 ---
@@ -114,39 +115,36 @@ size     # 数组元素个数
 ### 数学运算
 
 ```python
-*  # 数组乘法，元素相乘
+*                       # 数组乘法，元素相乘
+np.square()             # 平方
+np.sqrt()               # 平方根
+np.cbrt()               # 立方根
+np.log2()               # 对数计算
+np.round()              # 保留小数位数
 
-np.square()  # 平方
-np.sqrt()  # 平方根
-np.cbrt()  # 立方根
-np.log2()  # 对数计算
-
-np.round()  # 保留小数位数
-
-# 不使用科学计数法
-np.set_printoptions(suppress=True)
+np.set_printoptions(suppress=True)      # 不使用科学计数法
 ```
 
 ---
 
 通用一元函数：参数是一个数组对象，函数会对数组进行元素级的处理
 
-| 函数                               | 说明                               |
-| -------------------------------- | -------------------------------- |
-| `abs` / `fabs`                   | 求绝对值的函数                          |
-| `sqrt`                           | 求平方根的函数，相当于 `array ** 0.5 `       |
-| `square`                         | 求平方的函数，相当于 `array ** 2`           |
-| `exp`                            | 计算 $e^x$ 的函数                       |
-| `log` / `log10` / `log2`         | 对数函数（`e` 为底 / `10` 为底 / `2` 为底）     |
-| `sign`                           | 符号函数（`1` - 正数；`0` - 零；`-1` - 负数） |
-| `ceil` / `floor`                 | 上取整 /  下取整                       |
-| `isnan`                          | 返回布尔数组，NaN 对应 `True`，非 NaN 对应 `False` |
-| `isfinite` / `isinf`             | 判断数值是否为无穷大的函数                    |
-| `cos` / `cosh` / `sin`           | 三角函数                             |
-| `sinh` / `tan` / `tanh`          | 三角函数                             |
-| `arccos` / `arccosh` / `arcsin`  | 反三角函数                            |
-| `arcsinh` / `arctan` / `arctanh` | 反三角函数                            |
-| `rint` / `round`                 | 四舍五入函数                           |
+```bash
+abs / fabs                       # 绝对值
+sqrt                             # 平方根
+square                           # 平方
+exp                              # e 指数幂
+log / log10 / log2               # 对数函数
+sign                             # 符号函数
+ceil / floor                     # 向上/下取整
+isnan                            # 返回布尔数组；NaN 为 True，非 NaN 为 False
+isfinite / isinf                 # 判断数值是否为无穷大
+cos / cosh / sin                 # 三角函数
+sinh / tan / tanh                # 三角函数
+arccos / arccosh / arcsin        # 反三角函数
+arcsinh / arctan / arctanh       # 反三角函数
+rint / round                     # 四舍五入
+```
 
 ---
 
@@ -263,24 +261,24 @@ np.genfromtxt()
 `linalg` 模块
 
 ```python
-.T  # 转置
-np.transpose()
+.T                              # 转置
+np.transpose()                  # 同上
 
-@  # 矩阵乘法
-np.matmul()
-np.dot()  # 矩阵 1D，点积；2D，矩阵相乘
+@                               # 矩阵乘法
+np.matmul()                     # 同上
+np.dot()                        # 矩阵 1D，点积；2D，矩阵相乘
 
-np.triu(..., k=...)      # 提取上三角矩阵；k 为偏移量
-arr.trace()              # 对角线元素和
-np.linalg.trace()        # 对角线元素和
-np.linalg.matrix_rank()  # 矩阵的秩 
-np.linalg.inv()          # 求逆
-np.linalg.det()          # 求行列式
-np.linalg.eig()          # 计算特征值、特征向量
-np.linalg.qr()           # QR 分解
-np.linalg.svd()          # 奇异值分解
-np.linalg.solve()        # 解线性方程组
-np.linalg.norm(x, ord="fro")  # 范数 ord="fro" F-范数
+np.triu(..., k=...)             # 提取上三角矩阵；k 为偏移量
+arr.trace()                     # 对角线元素和
+np.linalg.trace()               # 对角线元素和
+np.linalg.matrix_rank()         # 矩阵的秩
+np.linalg.inv()                 # 求逆
+np.linalg.det()                 # 求行列式
+np.linalg.eig()                 # 计算特征值、特征向量
+np.linalg.qr()                  # QR 分解
+np.linalg.svd()                 # 奇异值分解
+np.linalg.solve()               # 解线性方程组
+np.linalg.norm(x, ord="fro")    # 范数 ord="fro" F-范数
 ```
 
 

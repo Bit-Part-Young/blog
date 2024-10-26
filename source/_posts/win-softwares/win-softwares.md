@@ -370,8 +370,6 @@ onlinelibrary.wiley.com
 
 - 为 Windows 系统提供 Vim 风格的快捷键：[GitHub - pit-ray/win-vind: You can operate Windows with key bindings like Vim.](https://github.com/pit-ray/win-vind)
 
-- PPT 插件，插入 LaTeX 公式：[GitHub - Jonathan-LeRoux/IguanaTex: A PowerPoint add-in allowing you to insert LaTeX equations into PowerPoint presentations on Windows and Mac](https://github.com/Jonathan-LeRoux/IguanaTex)
-
 - 优化 Windows 11 系统的脚本：[GitHub - Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat)
 
 - 查看磁盘占用：[WinDirStat - Windows Directory Statistics](https://windirstat.net/)

@@ -101,12 +101,16 @@ df.corr()               # Pearson 相关系数矩阵
 ```
 
 
+---
 
-索引
+### 索引
+
 ```python
 # Series 索引
 ser[1]             # 整数索引
+ser.iloc[1]
 ser["a"]           # 标签索引
+ser.loc["a"]
 
 
 df.loc[]           # 基于标签索引；闭区间

@@ -131,9 +131,19 @@ channels <CHANNELNAME>           # conda 源
 # 临时使用
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
 
+# 临时不使用镜像源
+pip install --no-index package_name
+
 # 设为默认
 python -m pip install -U pip
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 删除镜像源
+pip config unset global.index-url
+pip config unset global.extra-index-url
+
+# 查看镜像源
+pip config list
 ```
 
 

@@ -21,6 +21,8 @@ password:
 
 ## 介绍
 
+- [GitHub - vscodecool/vscodecool.github.io: 《VS Code入门教程》笔记](https://github.com/vscodecool/vscodecool.github.io)
+
 - 代码编辑器，有非常丰富的插件
 
 - 命令行启动

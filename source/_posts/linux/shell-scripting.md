@@ -60,7 +60,7 @@ command [ arg1 ... [ argN ]]
 Shell 终端快捷键
 
 ```bash
-TAB                   # 命令补全
+Tab                   # 命令补全
 Ctrl + C              # 中止命令
 Ctrl + D              # 键盘输入结束，可用于退出 Shell 窗口
 Crtl + A              # 光标移动到命令首
