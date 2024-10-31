@@ -187,14 +187,13 @@ GW 计算
 
 - 注意事项：
     - VASP 官网计算示例
-    - VASP 官网算例中的部分 POSCAR 文件中没有元素符号行（第 6 行，不影响）
-    - VASP wiki 中的示例 POSCAR 格式和 POTCAR 文件（PAW 格式）较老？
+    - VASP 官网算例中的部分 POSCAR 文件格式非 VASP5 版本
+    - VASP Wiki 中的示例 POSCAR 格式和 POTCAR 文件（PAW 格式）较老？
     - FCC Ni 及 Ni(100) 表面的 DOS 计算，没有先进行自洽计算
     - Ni(100) 表面的能带结构计算，K-path 是 reziprok 方式，非 Line-Mode，vaspkit 和 pymatgen 无法获取数据，只能使用 p4vasp？
     - NiO：反铁磁
+    - [ ] DOS 计算过程中 ISMEAR=0 和 -5 的差别是什么：[Part 2: More silicon](https://www.vasp.at/tutorials/latest/bulk/part2/)
 
-
-- [ ] DOS 计算过程中 ISMEAR=0 和 -5 的差别是什么：[Part 2: More silicon](https://www.vasp.at/tutorials/latest/bulk/part2/)
 
 
 ---
@@ -240,7 +239,11 @@ ISIF   = 2
 
 ### 收敛性测试
 
-K 点和 ENCUT
+- [精度与成本平衡之道——K点收敛性测试 (qq.com)](https://mp.weixin.qq.com/s?__biz=MzIzODczNjY3OA==&mid=2247484324&idx=1&sn=0fa6af1be7c169a00ac153d22186e642&chksm=e93587edde420efb4c41704560cc2b3dbe50ebc9c3fc138d505313c8e8b12903991df0791af0&scene=21#wechat_redirect)
+
+- [精度与成本平衡之道——ENCUT收敛性测试 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/348826693)
+
+- 对 K 点和 ENCUT 进行收敛性测试，同一构型采用超胞和单胞得到的结果类似，单胞的 ENCUT 可直接用于超胞计算，单胞的 K 点密度等比例缩小用于超胞计算
 
 ```bash
 
@@ -258,25 +261,21 @@ Global Parameters
 ISTART =  0
 ICHARG =  2
 ISPIN  =  1
-LREAL  = .FALSE.
 ENCUT  =  400
 PREC   =  Accurate
-LWAVE  = .TRUE.
-LCHARG = .TRUE.
-ADDGRID= .TRUE.
 
 Electronic Relaxation
-ISMEAR =  0 
-SIGMA  =  0.05
-NELM   =  90
-NELMIN =  6
-EDIFF  =  1E-05
+ISMEAR = 0 
+SIGMA  = 0.05
+NELMIN = 6
+NELM   = 90
+EDIFF  = 1E-06
 
 Ionic Relaxation
-NSW    =  100
-IBRION =  2
-ISIF   =  2
-EDIFFG = -2E-02
+NSW    = 100
+IBRION = 2
+ISIF   = 3
+EDIFFG = -1E-02
 ```
 
 
@@ -290,30 +289,21 @@ EDIFFG = -2E-02
 
 - 计算流程：
     - 弛豫计算（或结构优化；初始构型很好，可忽略此步）
-    - 静态自洽计算
-    - 态密度计算：拷贝自洽计算生成的 WAVECAR 和 CHGCAR，非自洽计算（ICHARG=11，K 点密度变大）
-    - 能带计算：拷贝自洽计算生成的 WAVECAR 和 CHGCAR，非自洽计算（ICHARG=11，K-path）
+    - 静态自洽计算（可不用拷贝自洽计算生成的 WAVECAR）
+    - 态密度计算：拷贝自洽计算生成的 CHGCAR，非自洽计算（ICHARG=11，增加 K 点密度；`K*a=45` 可满足要求）
+    - 能带计算：拷贝自洽计算生成的 CHGCAR，非自洽计算（ICHARG=11，K-path）
 
 - 自洽与非自洽计算的区别：电子密度是否匹配；**不是静态与弛豫计算的区别！**
 
 - 开启自旋极化，DOS 会有上下两条线（上下对称、不对称的含义是什么）
 
-- 建议 NEDOS 数值稍微取密一些（多少较为合适）
+- 建议 NEDOS 数值稍微取密一些（NEDOS=2000/3000 足够好）
 
-- DOS 计算相比弛豫对截断能没有那么敏感，截断能值可以设小一些
+- DOS、能带计算很快
+
+- DOS 计算相比弛豫对截断能没有那么敏感，截断能值可以设小一些（？）
 
 - 态密度相关输出文件：DOSCAR、PROCAR
-
-```bash
-# DOS 相关参数；可不用设置
-EMIN
-EMAX
-NEDOS
-
-
-grep 'NEDOS' OUTCAR          # 查看 NEDOS 数值
-grep 'EMIN' OUTCAR           # 查看 EMIN、EMAX 数值
-```
 
 
 ---
@@ -475,7 +465,7 @@ warnings.warn("Float overflow (*******) encountered in vasprun")
 
 ---
 
-- LDA + U
+- LDA + U：[LDA+U - 计算材料学](https://ywwang0.github.io/2020/08/31/LDA-U/)
 
 ```bash
 LDAU

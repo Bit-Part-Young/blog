@@ -103,8 +103,8 @@ WIP...
 - [git cherry-pick 教程 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
 - [个人心得：Git使用与开发规范 - AllenY's blog](https://alleny.xyz/post/development-standards/)
 - [Getting Started with: Git, GitHub, and GitHub pages - howtos](https://www.wgilpin.com/howto/howto_github.html)
-- git 游戏：[Oh My Git!](https://ohmygit.org/)
-
+- Git 游戏：[Oh My Git!](https://ohmygit.org/)
+- [GitHub - hanyujie2002/wyag-zh: 自己动手写 Git 的中文翻译](https://github.com/hanyujie2002/wyag-zh)
 
 
 ---

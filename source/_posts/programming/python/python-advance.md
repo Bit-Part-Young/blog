@@ -455,21 +455,30 @@ twine upload dist/*
 
 - 在 Jupyter Notebook 中使用 Python 时，在函数或类的方法后添加 `??` 可以查看其 docstring
 
+- Jupyter Notebook ipynb 文件转 HTML 格式
+    - 使用 `jupyter nbconvert --to html notebook.ipynb`
+    - VSCode，打开 ipynb 文件，在 “大纲” 右侧点击三个点，选择导出成 HTML（需安装 notebook 包）
+
 - 代替 Jupyter Notebook：[GitHub - marimo-team/marimo](https://github.com/marimo-team/marimo)
 
 - 在终端中运行 Jupyter：[GitHub - joouha/euporie: Jupyter notebooks in the terminal](https://github.com/joouha/euporie)
 
+```bash
+euporie-preview notebook.ipynb    # 预览
+euporie-notebook notebook.ipynb   # 编辑
+euporie-console                   # 连接 Jupyter kernel 并可在控制台会话中编辑交互运行代码
+```
+
+- 魔法命令
+
 ```python
-# 魔法命令
 %autosave 500   # 每 500s 自动保存
-
 %timeit         # 计时
-
 !ls             # 运行 Bash 命令
 %%bash          # 运行 Bash 命令；在 cell 开头添加此行
 ```
 
-- VSCode，在 Python 脚本中的代码前添加 `# %%`，可以像 Jupyter Notebook 一样运行一段代码；添加 `# %% [markdown]`，可编写 Markdown
+- VSCode，在 Python 脚本中的代码前添加 `# %%`，可像 Jupyter Notebook 一样运行一段代码；添加 `# %% [markdown]`，可编写 Markdown
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401291949924.png)
 

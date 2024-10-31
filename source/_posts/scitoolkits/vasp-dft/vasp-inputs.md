@@ -34,7 +34,7 @@ password:
     - 第 1 行：Comment line 注释行；可对体系进行描述，也可空着
     - 第 2-5 行：Scaling factor and lattice，缩放因子和基矢；与体系的晶格常数符合即可；第二行值如果为负数，表示体积
     - 第 6-7 行：Ion species and numbers，元素种类（VASP4 可没有该行）及对应原子数目；**元素种类的顺序需与 POTCAR 文件中的一致**；
-    - 第 8-N 行：Ion positions 原子坐标；Direct（首字母大写或只写 D 均可）表示分数坐标，Cartesian（或 C）表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定）
+    - 第 8-N 行：Ion positions 原子坐标；Direct（首字母大写或只写 D 均可）表示分数坐标，Cartesian（或 C）表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定；默认值为 T，表示该方向可运动，F 表示固定）
     - 原子坐标信息之后是原子的初始速度信息
 
 - 注意事项：
@@ -115,6 +115,8 @@ grep -A1 '  PAW_PBE' POTCAR
     - 赝势种类：模守恒赝势、超软赝势 USPP（它们应用在哪些体系？）
     - 赝势目录中每个类型的泛函目录中有一个 data_base 文件，里面包含每个赝势对应元素 3 种可能结构的基态能量数据
     - PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
+    - [VASP中的赝势 - 计算材料学](https://ywwang0.github.io/2020/08/18/VASP%E4%B8%AD%E7%9A%84%E8%B5%9D%E5%8A%BF/)
+
 
 - POTCAR 文件内容示例：
 
@@ -244,11 +246,11 @@ fractional
 - INCAR 准备的原则：**越简单越好，不知道的，不理解的就不往里面放**
 
 - INCAR 参数类型
-    - 通用参数：SYSTEM、PREC、ISTART、ICHARG
+    - 通用参数：SYSTEM、PREC、ISTART、ICHARG、LWAVE、LCHARG
+    - 态密度积分相关参数：ISMEAR、SIGMA
     - 电子优化相关参数：ALGO、ENLM、NELMIN、ENCUT、EDIFF
     - 离子优化相关参数：IBRION、POTIM、NSW、EDIFFG
-    - 态密度积分相关参数：ISMEAR、SIGMA、LORBIT
-    - 态密度相关参数：EMIN 、EMAX、NEDOS
+    - 态密度相关参数：LORBIT、EMIN 、EMAX、NEDOS
     - 能带相关参数：NBANDS
 
 - 注意事项：
@@ -283,7 +285,7 @@ fractional
 
 ### ICHARG
 
-- 决定 VASP 如何构造初始电荷密度；其积分值为电子数
+- 确定 VASP 如何构造初始电荷密度；其积分值为电子数
 
 - 默认值：ISTART=0，则 ICHARG=2；否则 ICHARG=0
 
@@ -294,6 +296,24 @@ fractional
 +10            # 非自洽计算（在整个电子最小化过程中电荷密度保持不变）
 11             # 从 CHGCAR 文件获取（能带绘制用）本征值或给定的电荷密度的态密度（DOS）
 ```
+
+
+---
+
+### LCHARG
+
+- 决定电荷密度是否写入 CHGCAR 和 CHG 文件中
+
+- 默认值：.TRUE.
+
+
+---
+
+### LWAVE
+
+- 决定运行结束后波函数是否写入 WAVECAR 文件中
+
+- 默认值：.TRUE.
 
 
 ---
@@ -328,24 +348,6 @@ AUTO
 
 ---
 
-### LCHARG
-
-- 决定电荷密度是否写入 CHGCAR 和 CHG 文件中
-
-- 默认值：.TRUE.
-
-
----
-
-### LWAVE
-
-- 决定运行结束后波函数是否写入 WAVECAR 文件中
-
-- 默认值：.TRUE.
-
-
----
-
 ### ENCUT
 
 - 平面波截断能；收敛性测试指标之一；默认值为 POTCAR 文件中最大的 ENMAX 值
@@ -370,27 +372,35 @@ High           # High Medium Low 为弃用值
 
 ### ISMEAR
 
-- 轨道分数占据的展宽（平滑处理）方法
+- 轨道分数占据（值在 0-1 之间）的展宽（平滑处理）方法
+
+- 默认值：1
+
+- ISMEAR=0 在大多数情况下会得到非常合理的结果
+
+- 对体系没有先验认识，总是使用 ISMEAR=0 + SIGMA=0.03-0.05
+
+- DOS 和非常精确的总能计算，使用 ISEMAR=-5
+    - 缺点：对于金属的力和应力张量，误差可能高达 5-10%
+
+- 对于半导体或绝缘体，使用 ISEMAR=-5，若胞太大或只使用 1-2 个 K 点，使用 ISMEAR=0 + SIGMA=0.03-0.05
+    - 电子态的占据是整数占据
+    - 避免使用 ISMEAR>0，因为经常会导致错误的结果（某些态的占据可能小于 0 或大于 1）
+
+- 对于金属中的力、声子频率计算，使用 ISMEAR=1 或 ISMEAR=2，SIGMA 合理值通常为 0.2（默认值）
+    - 推荐使用 ISMEAR>0（总能也能精确描述），需仔细选择 SIGMA 的值。值太大可能导致不正确的总能，太小需要更密的 K 点；应尽可能大，使 OUTCAR 文件中的 `entropy T*S` 项可忽略（小于 1meV/atom）
 
 ```bash
 N              # N 为数字；Methfessel-Paxton order N（默认 1）
 0              # Gaussian
 -1             # Fermi
--4             # tetrahedron
+-4             # tetrahedron；该方法忽略 SIGMA 参数值，需 K 点数目大于等于 4
 -5             # Blöchl 纠正的 tetrahedron
-```
 
-- 注意事项：
-    - DOS 和非常精确的总能计算（金属的非弛豫），使用 ISEMAR=-5
-    - 对于金属弛豫，使用 ISMEAR=1 或 ISMEAR=2 以及合适的 SIGMA 值（熵项小于 1meV/atom），合理值通常为 SIGMA=0.2（默认）
-    - 对于半导体或绝缘体，使用 ISEMAR=-5，胞太大或只使用 1-2 个 k 点，使用 ISMEAR=0 以及 SIGMA=0.03-0.05
-    - Tetrahedron method 需 K 点数目大于等于 4
 
->tetrahedron 方法，忽略 SIGMA 参数
-
-```bash
- VERY BAD NEWS! internal error in subroutine IBZKPT:
- Tetrahedron method fails for NKPT<4. NKPT =       1
+# ISMEAR=-5，K 点数目小于 4 时，会报错
+VERY BAD NEWS! internal error in subroutine IBZKPT:
+Tetrahedron method fails for NKPT<4. NKPT =       1
 ```
 
 
@@ -421,26 +431,24 @@ N              # N 为数字；Methfessel-Paxton order N（默认 1）
 
 ### IBRION
 
-- 决定离子如何更新和移动
+- 确定在计算中晶体结构如何变化
 
 - 默认值：-1（NSW=-1 或 0）；0（其他情况，执行 AIMD）
 
 - 除 0 外，其他算法都最终弛豫到局部能量最小值
 
-- IBRION 选择
-    - 弛豫较困难时，推荐使用 IBRION=2
-    - 在从非常糟糕的初始猜测值开始的情况下，IBRION=3 通常有用
-    - 接近能量局部最小值，推荐使用 IBRION=1
+- 结构优化
+    - IBRION=1，结构接近基态时的选择
+    - IBRION=2，稳健的默认选择，相比 RMM-DIIS 可能需要更多的迭代步数
+    - IBRION=2，结构远离基态时的选择
 
 ```bash
 -1             # 不更新；离子不移动
 0              # 分子动力学 AIMD
-
 # 结构优化
 1              # RMM-DIIS / quasi-Newton 算法
 2              # conjugate gradient algorithm 共轭梯度算法
 3              # Damped molecular dynamics 算法
-
 # 计算声子模式；计算二阶导数、海森矩阵和声子频率
 5 6            # 有限差分（finite differences）；5 without symmetry, 6 with symmetry
 7 8            # 密度泛函扰动理论（density functional perturbation theory, DFPT）；7 without symmetry, 8 with symmetry
@@ -451,7 +459,11 @@ N              # N 为数字；Methfessel-Paxton order N（默认 1）
 
 ### POTIM
 
-- 离子弛豫步宽或 AIMD 步长
+- 离子弛豫步宽或 AIMD 时间步长
+
+- 默认值：IBRION=0 时必须设置；0.5（离子弛豫）；0.015（IBRION=5,6）
+
+- quasi-Newton 算法对该参数值敏感（IBRION=1）
 
 
 ---

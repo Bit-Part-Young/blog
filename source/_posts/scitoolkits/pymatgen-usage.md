@@ -883,7 +883,7 @@ Ionic convergence reached: False.
 
 - 电子结构相关工具与分析（能带和态密度）；可绘制能带、DOS、能带 + DOS
 
-- Plotter 类的 sigma 参数使绘制出的图平滑（参数值为多少较为合适，不破坏点线图的原本趋势变化）
+- Plotter 类的 sigma 参数使绘制出的图平滑（**若平滑后使原本的部分数据信息损失，建议不设置该参数！**）
 
 ```python
 import matplotlib.pyplot as plt

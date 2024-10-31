@@ -217,6 +217,7 @@ mdbook serve --open
     - [GitHub - saicaca/fuwari: ✨A static blog template built with Astro.](https://github.com/saicaca/fuwari)
     - [GitHub - EveSunMaple/Frosti: A clean, elegant, and fast static blog template! 🚀 Developed with Astro](https://github.com/EveSunMaple/Frosti)
     - [GitHub - lin-stephanie/astro-antfustyle-theme: A customizable, feature-rich Astro theme for blog and portfolio creation.](https://github.com/lin-stephanie/astro-antfustyle-theme)
+    - 活版印字：[GitHub - moeyua/astro-theme-typography: Rediscover the beauty of typography.](https://github.com/moeyua/astro-theme-typography)
 
 - [GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
 

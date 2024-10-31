@@ -49,17 +49,16 @@ password:
 ## zsh
 
 - 提升终端使用体验
-- master、manager 上没有 zsh；Pi 和思源一号有 zsh，但版本较老
+- Master、Manager 上没有 zsh；Pi 和 SiYuan 有 zsh，但版本较老
 - zsh 系列插件：[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins)
 - 管理 zsh 配置：[ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 - 管理 bash 配置：[oh-my-bash](https://github.com/ohmybash/oh-my-bash)（没 ohmyzsh 好用）
-
 
 ---
 
 ### 安装
 
-- 通过 Package Managers
+#### Package Managers
 
 ```bash
 sudo apt install zsh  # Ubuntu
@@ -69,9 +68,11 @@ brew install zsh      # macOS
 
 ---
 
-- 源码编译：依赖 ncurses；[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
+#### 源码编译
 
-编译 ncurses（构建 TUI（文本用户界面）的库）
+- 依赖 ncurses：[Building Zsh from Source and Configuring It on CentOS - jdhao's digital space](https://jdhao.github.io/2018/10/13/centos_zsh_install_use/)
+
+- 编译 ncurses（构建 TUI（文本用户界面）的库）
 
 ```bash
 wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certificate
@@ -81,7 +82,7 @@ wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certifica
 make -j && make install
 ```
 
-编译 zsh
+- 编译 zsh
 
 ```bash
 wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/download -O zsh-5.9.tar.xz --no-check-certificate
@@ -93,11 +94,16 @@ make -j && make install
 
 ---
 
-- Windows：
-    - 两种方式：WSL + zsh，Git Bash + zsh：[Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)、[在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
-    - Windows Terminal 以及 VSCode 本地设置默认终端为 Git Bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
+#### Windows
 
-下载 zsh 包；复制 `etc/`、`usr/` 到 Git 安装目录中；打开 Git Bash，执行命令 `zsh`
+- 两种方式：
+    - WSL + zsh，Git Bash + zsh
+    - [Windows高效开发环境配置（一） - 北鱼扶摇](https://ifuyao.com/blog/install-zsh-and-oh-my-zsh-in-windows-git-bash/)
+    - [在 Windows 中使用 Bash shell - 北辞](https://northword.cn/code/bash-for-windows/)
+
+- Windows Terminal 以及 VSCode 本地设置默认终端为 Git Bash：[Windows Terminal添加Git Bash支持 - TruthHell - 博客园](https://www.cnblogs.com/cong-wang/p/15026535.html)
+
+- 下载 zsh 包；复制 `etc/`、`usr/` 到 Git 安装目录中；打开 Git Bash，执行命令 `zsh`
 
 ```bash
 wget https://mirror.msys2.org/msys/x86_64/zsh-5.9-2-x86_64.pkg.tar.zst
@@ -105,7 +111,7 @@ wget https://mirror.msys2.org/msys/x86_64/zsh-5.9-2-x86_64.pkg.tar.zst
 tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 ```
 
-设置 zsh 为默认 shell，在 `.bashrc` 添加：
+- 设置 zsh 为默认 shell，在 `.bashrc` 添加：
 
 ```bash
  # Enable zsh
@@ -114,7 +120,7 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
  fi
 ```
 
-修改 Windows Terminal 的 `settings.json` 内容：
+- 修改 Windows Terminal 的 `settings.json` 内容：
 
 ```json
 {
@@ -140,8 +146,6 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 }
 ```
 
----
-
 - 设置 zsh 为默认 shell
 
 ```bash
@@ -159,7 +163,7 @@ export SHELL=`which zsh`
 
 ### 配置
 
-ohmyzsh 介绍：插件丰富；丰富的 git 命令 alias，git 状态可视化
+ohmyzsh 介绍：插件丰富；丰富的 Git 命令 alias 及 Git 状态可视化
 
 zimfw（类似 ohmyzsh）：[GitHub - zimfw/zimfw: Zim: Modular, customizable, and blazing fast Zsh framework](https://github.com/zimfw/zimfw)
 
@@ -168,11 +172,11 @@ zimfw（类似 ohmyzsh）：[GitHub - zimfw/zimfw: Zim: Modular, customizable, a
 - 安装 ohmyzsh
 
 ```bash
-# gitee 源
+# Gitee 源
 sh -c "$(curl -fsSL https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh)"  # via curl
 sh -c "$(wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -)"  # via wget
 
-# github 源
+# GitHub 源
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  # via curl
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  # via wget
 ```
@@ -187,7 +191,7 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
     - [starship](https://github.com/starship/starship): Shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
 
 ```bash
-# github 源
+# GitHub 源
 git clone --depth=1 https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
@@ -200,14 +204,14 @@ git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use.git ${
 # git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git ${ZSH_CUSTOM}/themes/spaceship-prompt && \
 # ln -s ${ZSH_CUSTOM}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM}/themes/spaceship.zsh-theme
 
-# gitee 源
+# Gitee 源
 git clone --depth=1 https://gitee.com/yuhldr/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting && \
 git clone --depth=1 https://gitee.com/yuhldr/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions && \
 git clone --depth=1 https://gitee.com/yuhldr/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions && \
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 ```
 
-- 备份 `~/.zshrc`（如果有）
+- 备份 `~/.zshrc`（若有）
 
 - 重新登录，会进入配置 powerlevel10k 的交互，按照指示自定义设置即可
 
@@ -418,7 +422,8 @@ Markdown 相关
 编程相关
 
 - 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
-- 统计代码文件行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
+- 统计代码行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
+- 统计目录中的代码行数：[scc](https://github.com/boyter/scc)（类似 cloc）
 
 
 ---

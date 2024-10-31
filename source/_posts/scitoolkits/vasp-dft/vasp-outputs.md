@@ -73,7 +73,7 @@ password:
 energy without entropy
 E0
 
-# 弛豫计算结束，达到所需精度
+# 结构优化结束标志
 reached required accuracy - stopping structural energy minimisation
 
 # 构型原子数
@@ -115,6 +115,8 @@ grep -i 'nbands' OUTCAR
 # 输出内容示例；也可得到不可约布里渊区 K 点数
 k-points           NKPTS =     35   k-points in BZ     NKDIM =     35   number of bands    NBANDS=      9
 
+# 查看 NEDOS、EMIN、EMAX 数值
+grep -E 'NEDOS|EMIN' OUTCAR
 
 # TODO: 待说明含义
 awk 'BEGIN{i=1} /dos>/,\
@@ -392,9 +394,11 @@ energy     DOS     integrated DOS
 energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
 ```
 
-- EIGENVAL：每个 k 点的 Kohn-Sham 本征值
+- EIGENVAL：每个 K 点的 Kohn-Sham 本征值
 
 - 对于弛豫，DOSCAR 通常没用
+
+- 该两个文件中的能量值都是绝对的，不是以费米能级作为参考零点
 
 
 ---
@@ -478,4 +482,4 @@ Tetrahedra
 
 ## PROCAR
 
-对于静态计算，PROCAR 文件含 spdand site projected wave function character of each orbital，由 LORBIT 和 RWIGS 参数控制。LORBIT>=10 时，不需要 RWIGS 参数
+对于静态计算，PROCAR 文件含 spd and site projected wave function character of each orbital，由 LORBIT 和 RWIGS 参数控制。LORBIT>=10 时，不需要 RWIGS 参数

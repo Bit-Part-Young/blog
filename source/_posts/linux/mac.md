@@ -271,7 +271,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Android 文件传输助手（有时无法识别）
 - 音量控制：SoundSource（付费）
 - 键盘键位映射：Karabiner-Elements
-- Dock 栏：DockDoor
+- Dock 栏：DockDoor (指针悬停到 Dock 中的 App 预览窗口，类似 Windows)
 - 将网页放到屏幕侧边：SlidePad
 
 ---
@@ -308,11 +308,12 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 书签收藏工具：
     - Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
     - [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
-- 文本翻译：Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
+- 文本翻译：
+    - Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
 - PDF 阅读器：
-    - UPDF
     - skim
     - [sioyek](https://github.com/ahrm/sioyek)（有部分类似的 Vim 快捷键）
+    - UPDF
 - 文献管理：Zotero
 - 截图转 LaTeX 公式：
     - [Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)
@@ -345,6 +346,10 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 ---
 
 **其他**
+
+- 文本编辑器
+    - Notepad--
+    - CotEditor
 
 - 代码编辑器：
     - VSCode
@@ -1018,9 +1023,12 @@ export HOMEBREW_MACOS_VERSION=14.5
 
 ### 其他
 
+- [ ] NTFS 格式的外置磁盘如何读写（默认只读）
+    - 将磁盘格式化成 exFAT 格式（兼容 macOS 和 Windows，在 Windows 上会对应有隐藏的点文件）
+    - 软件：大部分需收费
+
 - [ ] BetterTouchTool 如何使用
 
-- [ ] MacBook Air M3 第一次打开 Chrome 会无法打开，需强制退出后再打开才可以（重新卸载安装无效果；有时可以第一次直接打开）
 
 - [ ] Mac 如何安装 Parallels Desktop20 最新破解版
 [PD虚拟机，Parallels Desktop 20.0.0最新中文版，支持Mac所有机型【永久使用】](https://mp.weixin.qq.com/s/iFvLMVxYekal87ZsBhQ9pA)
