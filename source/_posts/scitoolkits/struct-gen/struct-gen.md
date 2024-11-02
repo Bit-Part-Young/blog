@@ -154,6 +154,8 @@ Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector
 
 - [GitHub - ab5424/agility: Repository for the Atomistic Grain Boundary and Interface Utility.](https://github.com/ab5424/agility)
 
+- [GitHub - oekosheri/GB\_code: A grain boundary generation code](https://github.com/oekosheri/GB_code)
+
 CSL 重合位置点阵理论
 
 

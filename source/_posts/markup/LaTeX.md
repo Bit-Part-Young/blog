@@ -66,7 +66,7 @@ password:
 - [GitHub - xinychen/latex-cookbook: LaTeX论文写作教程 (中文版)](https://github.com/xinychen/latex-cookbook)
 - [latex相关笔记 - 我是谁](https://yuhldr.github.io/posts/2dcfe2a6.html)
 - [国外教授的讲义都是自己用 LaTeX 打出来的吗？ - 知乎](https://www.zhihu.com/question/29227449)
-
+- [GitHub - AnMnv/eBook: LaTeX book with examples, open-source eBook](https://github.com/AnMnv/eBook)
 
 
 ---
@@ -352,6 +352,7 @@ brew install latexdiff
 
 - 将 Microsoft Excel 中的表格转换为 LaTeX 代码：[CTAN: Package Excel2LaTeX](https://www.ctan.org/pkg/excel2latex)
 
+- 适合用于个人简历中的技能部分（用 icon 表示掌握的技能）：[GitHub - AnMnv/latex-skill-icons: Skill icons in LaTeX](https://github.com/AnMnv/latex-skill-icons)
 
 ---
 

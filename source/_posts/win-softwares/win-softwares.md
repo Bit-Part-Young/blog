@@ -353,14 +353,17 @@ onlinelibrary.wiley.com
     - 类似于 Mac 的空格键；有插件可实现预览 Office 套件文件，但效果不是很好
     - [GitHub - QL-Win/QuickLook.Plugin.OfficeViewer: Word, Excel, and PowerPoint plugin for QuickLook.](https://github.com/QL-Win/QuickLook.Plugin.OfficeViewer)
 
-- Rime 输入法引擎 + 雾凇拼音
+- Rime 输入法引擎 + 雾凇拼音（Windows 端个人感觉不是很好用）
     - [Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)
     - [小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
 
-- 调节显示器亮度：Twinkle Tray（部分显示器设备无效）
+- 调节显示器亮度：Twinkle Tray（部分显示器设备无效；一般）
 
 - [GitHub - Planshit/Tai: 👻 在Windows上统计软件使用时长和网站浏览时长](https://github.com/Planshit/Tai)
 
+- 切换统一程序下的不同窗口：[GitHub - sigoden/window-switcher: Easily switch between windows of the same app with Alt+\` (Backtick), also switch between apps with Alt+Tab.](https://github.com/sigoden/window-switcher)
+
+- 自动切换中英文输入法：[GitHub - flyinclouds/KBLAutoSwitch: AHK自动切换中英文输入法，输入法，自动切换](https://github.com/flyinclouds/KBLAutoSwitch)
 
 ---
 

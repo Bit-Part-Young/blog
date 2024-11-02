@@ -209,90 +209,134 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 **系统相关**
 
 - 包安装、管理工具：Homebrew
-- 文件搜索、程序启动工具：
+
+- 文件搜索、程序启动工具
     - Alfred 5
     - [Raycast](https://www.raycast.com/)
-- 系统资源监控：
+
+- 系统资源监控
     - iStat Menus
     - RunCat
     - [stats](https://github.com/exelban/stats)
     - [mactop](https://github.com/context-labs/mactop)
     - [asitop](https://github.com/tlkh/asitop)
-- 限制电池最大充电量：
-    - [bclm](https://github.com/zackelia/bclm)
+
+- 限制电池最大充电量
     - AlDente
-- 电池电量：
+    - [bclm](https://github.com/zackelia/bclm)
+
+- 电池电量
     - AirBattery（显示所有苹果产品设备电量）
     - Battery Buddy（可爱电池电量图标）
-- 垃圾清理：
-    - CleanMyMac X（完整版本需收费；有破解版）
-    - Cleaner One Pro（可查看 CPU、内存、电池、垃圾文件等情况；完整版本需收费）
+
+- 垃圾清理
+    - 腾讯柠檬
+    - CleanMyMac X
+    - Cleaner One Pro
+
 - 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
+
 - 软件卸载：Pearcleaner
+
 - 软件更新：Latest（一般）
-- Applite：macOS 的第三方应用管理器，可以一键下载、更新、卸载应用
-- 窗口管理：
+
+- Applite：macOS 的第三方应用管理器，可以一键下载、更新、卸载应用（一般）
+
+- 窗口管理
     - Rectangle
     - Loop
+
 - 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
-- 菜单栏管理：
+
+- 菜单栏管理
     - Ice
     - Bartender
-- 快捷键提示：
+
+- 快捷键提示
     - FlyKey
     - CheatSheet
+
 - 右键增强：MouseBoost（右键助手）
+
 - 快捷功能集合：Only Switch（屏幕检测与清洁、推出磁盘映像、清空废纸篓等）
-- 鼠标滚轮方向切换：
+
+- 鼠标滚轮方向切换
     - Mos
     - LinearMouse
     - Mac Mouse Fix
-- 输入法切换：
+
+- 输入法切换
     - 自动切换输入法 Lite 版
     - [Input Source Pro](https://inputsource.pro/zh-CN)
+
 - 可视化键盘输入：KeyCastr
+
 - 风扇控制：Mac Fan Control
-- 刘海屏相关：
-    - 将刘海屏当作 AirDrop：
+
+- 刘海屏相关
+    - 将刘海屏当作 AirDrop
         - NotchDrop
         - Folder Hub
-    - 隐藏刘海屏：
+    - 隐藏刘海屏
         - Only Switch（将菜单栏调成黑色）
         - zNotch（将菜单栏下移）
-    - 增加趣味：Notchmeister
-- 控制外置显示器亮度：
+    - 增加趣味
+        - Notchmeister
+
+- 控制外置显示器亮度
     - MonitorControl
     - BetterDisplay（功能更强大，付费）
-- 用魔法增强 MacbookPro 的屏幕亮度：[LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
+
+- 增强 MacbookPro 的屏幕亮度
+    - Vivid
+    - [LumosMaxima - Boost Your MacBook Pro's Screen Brightness](https://lumosmaxima.000ooo.ooo/cn)
+
 - 取消 macOS 的截图录屏权限的月提醒：[Amnesia](https://goodsnooze.gumroad.com/l/amnesia)
-- Android 连接 Mac：
+
+- Android 连接 Mac
     - Macdroid（付费）
     - OpenMTP
     - Android 文件传输助手（有时无法识别）
+
 - 音量控制：SoundSource（付费）
+
 - 键盘键位映射：Karabiner-Elements
+
 - Dock 栏：DockDoor (指针悬停到 Dock 中的 App 预览窗口，类似 Windows)
+
 - 将网页放到屏幕侧边：SlidePad
 
 ---
 
 **图音视频**
 
-- 媒体播放器：IINA（免费）、Infuse（付费，有破解版）
+- 媒体播放器
+    - IINA（免费）
+    - Infuse（付费，有破解版）
+
 - 媒体库管理：Emby（海报墙）
-- 视频下载：
+
+- 视频下载
     - Downie
     - Motrix
     - imFile
-- 截图：
+
+- 截图
     - Snipaste（无 OCR）
     - Shottr（可长截图、OCR）
-- 图床：
-    - PicList（基于 PicGo 开发）
+
+- 图床
     - PicGo
+    - PicList（基于 PicGo 开发）
+
 - 录屏：QuickRecorder
+
 - 抠图：鲜艺 AI 抠图
-- codye：将代码片段转换为精美图片（类似 carbon）
+
+- 将代码片段转换为精美图片
+    - codye
+    - carbon
+
 - 瀑布流图片查看器：FlowVision
 
 ---
@@ -304,18 +348,24 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Typora
     - MarkText
     - FSNotes（iOS/macOS 专用）
+
 - 预览渲染后的 Markdown 文档：[QLMarkdown](https://github.com/sbarex/QLMarkdown)
-- 书签收藏工具：
+
+- 书签收藏工具
     - Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
     - [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
+
 - 文本翻译：
     - Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
-- PDF 阅读器：
+
+- PDF 阅读器
     - skim
     - [sioyek](https://github.com/ahrm/sioyek)（有部分类似的 Vim 快捷键）
     - UPDF
+
 - 文献管理：Zotero
-- 截图转 LaTeX 公式：
+
+- 截图转 LaTeX 公式
     - [Snap2LaTeX](https://github.com/ProfFan/Snap2LaTeX)
     - [snip2tex](https://github.com/shanto268/snip2tex)
 
@@ -324,24 +374,31 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 **网络**
 
 - 网络代理：ClashX
+
 - 异地组网、内网穿透：Tailscale（跨平台）
-- 虚拟机：
+
+- 虚拟机
     - Parallels Desktop（收费）
     - VMware Fusion
-- 文件互传：
+
+- 文件互传
     - LocalSend（跨平台；需设备在同一局域网下）
     - [Blip](https://blip.net/)
-- 文件同步：
+
+- 文件同步
     - [Syncthing](https://github.com/syncthing/syncthing)（跨平台）
     - 交大云盘
-- 挂载云盘：
+
+- 挂载云盘
     - AList
     - CloudMounter（大多为国外云盘）
-- 远程控制：
+
+- 远程控制
     - 向日葵
     - TeamViewer Host
     - ToDesk
-- 运行 Docker 容器、k8s 和 Linux：[orbstack](https://github.com/orbstack/orbstack)
+
+- 运行 Docker 容器、k8s 和 Linux：[OrbStack](https://github.com/orbstack/orbstack)
 
 ---
 
@@ -350,11 +407,13 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 文本编辑器
     - Notepad--
     - CotEditor
+    - [micro](https://github.com/zyedidia/micro)（基于终端的文本编辑器）
 
-- 代码编辑器：
+- 代码编辑器
     - VSCode
     - VSCode-Insiders
-- 终端模拟器：
+
+- 终端模拟器
     - iTerm2（最实用）
     - 默认终端
     - Tabby
@@ -362,35 +421,49 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - kitty
     - [Warp](https://www.warp.dev/)（需注册；有 AI 功能）
     - shell360（类似 Termius）
-- 浏览器：
+
+- 浏览器
     - Chrome
     - Safari
     - Arc
     - Zen
+
 - 任务 To Do 清单
     - Things（只限苹果产品）
     - Microsoft To Do（跨平台）
+
 - 邮件服务：Mailspring 或 Mac 自带邮件程序
-- 压缩、解压缩工具：The Unarchiver
+
+- 压缩、解压缩工具
+    - The Unarchiver
+
 - 打开当前路径下的终端：[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal)
-- 剪贴板相关：
+
+- 剪贴板相关
     - [PasteBar](https://www.pastebar.app/)（Windows、macOS 平台，可预览剪贴内容）
     - [GitHub - CrossPaste](https://github.com/CrossPaste/crosspaste-desktop)（可剪贴文件）
     - Maccy
-- 平铺式窗口管理器（tiling window manager）：
+
+- 平铺式窗口管理器（tiling window manager）
     - [yabai](https://github.com/koekeishiya/yabai)
     - [Amethyst](https://github.com/ianyh/Amethyst)
     - [AeroSpace](https://github.com/nikitabobko/AeroSpace)（类似 i3）
+
 - 右键压缩图片（需收费）：[Compress any image on macOS—Compress Image](https://compressimage.app/)
+
 - 将图像复制到剪贴板时，优化其大小：[Clop - Image, video, PDF and clipboard optimiser](https://lowtechguys.com/clop/)
-- RSS 阅读器：
+
+- RSS 阅读器
     - quick-rss（国区 Mac App Store）
     - Fluent Reader
+
 - 编程语言 API 下载、查看：Dash
-- 构型可视化：
+
+- 构型可视化
     - VESTA
     - OVITO
-- 趣味 App：
+
+- 趣味 App
     - Ball
     - Bananabin
     - Desktop Goose（桌面宠物）
@@ -399,16 +472,11 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Logoer（修改左上角的苹果 logo）
     - Numi（计算器）
     - One Thing（在菜单栏显示文字）
-- 微信（Windows 端没有深色模式，macOS 有深色模式）等
 
----
-
-**macOS 没有的一些软件**
-
-- PotPlayer
-- Notepad++（可以用 [Notepad--](https://github.com/cxasm/notepad--) 代替；[micro](https://github.com/zyedidia/micro)（基于终端的文本编辑器））
-- MobaXterm
-- WinSCP
+- **macOS 没有的软件**
+    - PotPlayer
+    - MobaXterm
+    - WinSCP
 
 
 ---
@@ -439,9 +507,8 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - kitty 配置：
         - [kitty.conf - kitty](https://sw.kovidgoyal.net/kitty/conf/)
         - 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
-    - [ ] kitty 如何升级
-    - [x] 如何将 kitty 的窗口信息放到上面，而非默认的下方（设置 `tab_bar_edge` 参数）
-    - [Share your tab bar style · kovidgoyal/kitty · Discussion #4447 · GitHub](https://github.com/kovidgoyal/kitty/discussions/4447)
+    - [x] kitty 如何升级（建议官网下载 Release，使用 Homebrew 速度很慢）
+    - [x] 如何将 kitty 的窗口信息放到上面，而非默认的下方（设置 `tab_bar_edge` 参数）：[Share your tab bar style · kovidgoyal/kitty · Discussion #4447 · GitHub](https://github.com/kovidgoyal/kitty/discussions/4447)
 
 ```bash
 ~/.local/kitty.app              # Linux 安装路径
@@ -457,8 +524,6 @@ cat file | kitty +kitten hints  # 使用键盘选中屏幕中的内容，默认 
     kitty +kitten ssh server        # 连接远程服务器
 ```
 
----
-
  - Termius 设置：
     - [ ] Termius 无法复制粘贴
     - 跨平台，多端数据记录同步；有学生认证
@@ -472,8 +537,6 @@ cat file | kitty +kitten hints  # 使用键盘选中屏幕中的内容，默认 
         - Solarized Dark（个人主要采用该 Theme）
         - Atom One Dark
         - Tokyo Night
-
----
 
 - iTerm2 设置
     - 字体：Prefrences - profiles - text
@@ -527,6 +590,8 @@ keyNotFound(code: "CHWA")
 ```
 
 - [Cannot install MarkText 0.17.0rc2-arm64 on M1 MacBook Air · Issue #2983 · marktext/marktext · GitHub](https://github.com/marktext/marktext/issues/2983)
+
+- Syncthing 的同步速度较慢（最高仅 1-2 MB/s，一般几十 - 几百 K/s）
 
 - LocalSend 连接 SJTU WiFi 无法互相发现设备，使用手机热点可以
     - SJTU 的公共 WiFi 不支持局域网下设备互相发现（AP 隔离，导致不能正常使用）
