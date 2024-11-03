@@ -18,7 +18,7 @@ password:
 
 # LAMMPS 安装
 
-- MPICH（并行计算库）、FFTW（快速傅里叶变换库）
+- MPICH（并行计算库；或使用 OpenMPI）、FFTW（快速傅里叶变换库；若没有安装，LAMMPS 将会使用自带的 KISS）
 
 - 参考资料：
     - [安装LAMMPS - lammps-tutorial](https://lammpscn2.vercel.app/Tutorial/install/#step2b-%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84make%E5%AE%89%E8%A3%85)
@@ -28,7 +28,7 @@ password:
     - [Linux 软件安装⑥|LAMMPS - Jinzhe Zeng's Blog](https://njzjz.win/2018/06/16/installlammps/)
     - LAMMPS 所有版本：[LAMMPS Source Download Repository](https://download.lammps.org/tars/index.html)
     - [GitHub - njzjz/lammps-wheel: LAMMPS unofficial Python wheels on PyPi, \`pip install lammps\`](https://github.com/njzjz/lammps-wheel)
-
+    - OpenMPI 编译：[4.1. Quick start: Installing Open MPI — Open MPI 5.0.x documentation](https://docs.open-mpi.org/en/v5.0.x/installing-open-mpi/quickstart.html)
 
 
 ---
@@ -53,8 +53,7 @@ module load intel-oneapi-tbb/2021.4.0
 module load gcc/11.2.0
 module load cmake/3.26.3-gcc-11.2.0
 
-# 列出预设 cmake 文件（自行选择安装 package）
-ll cmake/presets
+ll cmake/presets             # 列出预设 cmake 文件（自行选择安装 package）
 
 basic.cmake                  # 安装的 package 数目：64
 most.cmake                   # 
@@ -62,7 +61,7 @@ all_on.cmake                 # 安装的 package 数目：92
 oneapi.cmake & intel.cmake   # 不会安装 package
 
 
-# 创建 build 路径并配置编译选项
+# 创建 build 目录（编译工作区）并配置编译选项
 # 只含 一些基础的 packages
 mkdir build-basic && cd build-basic
 cmake -C ../cmake/presets/basic.cmake ../cmake
@@ -71,7 +70,13 @@ cmake -C ../cmake/presets/basic.cmake ../cmake
 mkdir build-most && cd build-most
 cmake -C ../cmake/presets/most.cmake ../cmake
 
-# cmake 参数
+# 可叠加配置编译选项
+cmake -C ../cmake/presets/basic.cmake -C ../cmake/presets/kokkos-cuda.cmake ../cmake
+
+# 手动指定安装的 packages
+cmake -D PKG_KSPACE=yes -D PKG_USER-CONP2=yes ../cmake
+
+# cmake 参数；D 可以与后面的编译选项空一格空格
 -DCMAKE_C_COMPILER           # 指定 C 编译器
 -DCMAKE_CXX_COMPILER         # 指定 CXX 编译器
 -DCMAKE_Fortran_COMPILER     # 指定 Fortran 编译器
@@ -79,12 +84,21 @@ cmake -C ../cmake/presets/most.cmake ../cmake
 -DCMAKE_BUILD_TYPE           # 构建类型；Debug / Release
 -DBUILD_SHARED_LIBS          # 指定是否安装成共享库；若安装 LAMMPS 的 Python 模块，需指定
 -DPython_EXECUTABLE          # 指定 Python 解释器路径
+-DPKG_XXX=yes               # 安装 XXX package
+-DPKG_GPU=on                 # 导入/安装 GPU package
+-DGPU_API                    # opencl 或 cuda
 
 make                         # 编译
-
+make install                 # 安装
 make install-python          # 安装 LAMMPS 的 Python 模块；作用是生成 whl 文件
 
+
 lmp -h                       # 显示已编译的 LAMMPS 版本的所有信息；可查看已安装的 packages
+
+# 调用 GPU 加速计算，需加入 -sf -pk 两个 flag 
+mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
+-sf                          # 在所有支持 GPU 加速的脚本命令前加上 gpu 前缀
+-pk gpu N                    # GPU 数量
 ```
 
 - cmake 配置好 Makefile 文件之后，查看输出到屏幕的 `-- Enabled packages` 参数进行检验；示例：
@@ -109,14 +123,30 @@ lmp -h                       # 显示已编译的 LAMMPS 版本的所有信息�
 ```bash
 cd src
 
-make                         # 查看 make 所有选项
-make clean-all               # 
-make yes-<package>           # 
-make yes-all                 #  安装所有 packages
-make no-lib                  # 卸载需要外部库的 packages 
+ll MAKE                      # 列出预设 make 文件
+
+Makefile.example
+Makefile.serial              # make serial 使用的该文件
+Makefile.mpi
+
+
+make                         # 查看 make 编译选项
+make clean-all               # 删除 object 文件
+make yes-<package>           # 添加要编译的 packages
+make package                 # 列出可用 packages
+make ps                      # 查看 packages 状态
+make pi                      # 列出已安装 packages
 make package-update          # 
+make yes-basic               # 安装常用 packages
+make yes-all                 # 安装所有 packages
+make yes-most                # 安装大部分 packages w/o libs in src
+make no-lib                  # 卸载需要外部库的 packages 
 make serial                  # 编译串行版本
 make mpi                     # 编译并行版本
+
+# 编译 Intel 版本
+make yes-user-intel          # 添加 USER-INTEL package
+make intel_cpu_intelmpi      # 编译 Intel 版本
 ```
 
 

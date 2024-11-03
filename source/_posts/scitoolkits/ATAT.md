@@ -2,7 +2,7 @@
 title: ATAT 安装与使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -30,6 +30,7 @@ password:
     - cvmclus (Cluster Variation Method CLUSter generator code)
     - genstr：枚举结构
     - mcsqs
+    - gensqs
     - corrdump
 
 

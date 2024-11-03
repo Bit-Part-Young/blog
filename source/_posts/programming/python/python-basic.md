@@ -1129,6 +1129,8 @@ args = parser.parse_args()
 
 - 多个子命令的命令行参数解析
 
+处理具有 2 种不同参数数目的函数: [\[Python\] argparse处理多个功能和不同的多参数-CSDN博客](https://blog.csdn.net/Spade_/article/details/111059349)
+
 ```python
 import argparse
 

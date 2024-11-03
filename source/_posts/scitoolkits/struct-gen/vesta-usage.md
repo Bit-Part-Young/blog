@@ -35,3 +35,5 @@ password:
 - 图片保存成 png 时，Scale 设置成 3 及以上，清晰度较高
 
 - VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffraction Pattern - Calculate, Plot
+
+- 无法显示原子类型图例：[software - Atom legend in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/1867/atom-legend-in-vesta)

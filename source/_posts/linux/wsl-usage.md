@@ -37,7 +37,9 @@ password:
 - WSL 问题 Q&A：[关于适用于 Linux 的 Windows 子系统的常见问题解答 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/faq)
 - WSL 开发指南：[Dev on Windows with WSL](https://dowww.spencerwoo.com/)
 - WSL GUI 图形化窗口：[GUI 图形化窗口 | Dev on Windows with WSL](https://dowww.spencerwoo.com/4-advanced/4-1-gui.html#%E5%AE%89%E8%A3%85-xserver-for-windows)
-- WSL Windows Terminal 终端设置：[GitHub - tautomer/WSL\_Windows\_Terminal: A full guide on how to set up WSL/WSL2 and use Windows Terminal or Terminator as the terminal emulator. Some tricky X11 configuration is also included.](https://github.com/tautomer/WSL_Windows_Terminal)
+- WSL Windows Terminal 终端设置：[GitHub - tautomer/WSL\_Windows\_Terminal](https://github.com/tautomer/WSL_Windows_Terminal)
+- ArchWSL：[GitHub - yuk7/ArchWSL: ArchLinux based WSL Distribution. Supports multiple install.](https://github.com/yuk7/ArchWSL)
+    - ArchWSL 配置：[如何安装 - ArchWSL official documentation](https://wsldl-pg.github.io/ArchW-docs/locale/zh-CN/How-to-Setup/)
 
 
 
@@ -45,8 +47,7 @@ password:
 
 ## 安装
 
->[安装 | Dev on Windows with WSL](https://dowww.spencerwoo.com/1-preparations/1-1-installation.html#windows-10)
-
+- 参考：[安装 - Dev on Windows with WSL](https://dowww.spencerwoo.com/1-preparations/1-1-installation.html#windows-10)
 
 - 开启「适用于 Linux 的 Windows 子系统」的附加功能：以管理员身份打开 PowerShell；运行以下命令，按照提示重启电脑
 
@@ -64,13 +65,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 ### 个人 WSL 开发配置
 
->[Linux 端安装配置 zsh - Linux 终端工具 - Seek Another Land](https://seekanotherland.xyz/hexo-demo/posts/16854.html#Linux-%E7%AB%AF%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE-zsh)
-
->[Miniconda3 安装与使用 - Seek Another Land](https://seekanotherland.xyz/hexo-demo/posts/43711.html)
-
->[多账号 ssh 配置 - git 使用 - Seek Another Land](https://seekanotherland.xyz/hexo-demo/posts/24234.html#%E5%A4%9A%E8%B4%A6%E5%8F%B7-ssh-%E9%85%8D%E7%BD%AE)
-
-
 - 确定 WSL 版本（1 or 2），下载合适的发行版（不同版本的 Ubuntu，WSLArch 等），设置账号和密码
 - 确认一些基本程序是否已安装，如 git、wget、curl 等；若未安装，需手动安装
 - `git clone https://gitee.com/yangsl306/dotfiles.git`，进行配置
@@ -86,9 +80,10 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 ### WSL 迁移到 D 盘
 
->[Move WSL to another drive in Windows - Anmup HD](https://anmup.com.np/programming/move-wsl-to-another-drive-in-windows/)
+- 参考：[Move WSL to another drive in Windows - Anmup HD](https://anmup.com.np/programming/move-wsl-to-another-drive-in-windows/)
 
-- WSL 默认安装在 C 盘，若安装 Intel oneAPI 和 texlive 等体积较大的软件时，会占用 C 盘较多的空间，因此需进行迁移。
+- WSL 默认安装在 C 盘，若安装 Intel oneAPI 和 texlive 等体积较大的软件时，会占用 C 盘较多的空间，因此需进行迁移
+
 - WSL 迁移到非 C 盘后，MobaXterm 连接登录 WSL 会偶尔出现一次无法成功，需多次尝试的情况，总体影响不大
 
 ```powershell
@@ -154,25 +149,17 @@ autoProxy=true
 ### 常用命令
 
 ```powershell
-# 设置默认 WSL 版本为 2
-wsl --set-default-version 2
+wsl -l -v                       # 列出 WSL 发行版及其信息
+wsl -l -o                       # 列出可安装的所有 WSL 发行版
 
-# 设置 WSL 发行版版本为 2
-wsl --set-version <Distro> 2
+wsl --shutdown                  # 关闭 WSL
+wsl --unregister XXX            # 卸载 WSL 发行版
 
-# 设置默认 WSL 发行版
-wsl --set-default-version Ubuntu-22.04
+wsl --set-default-version 2     # 设置 WSL 默认版本为 2
+wsl --set-version XXX 2         # 设置 WSL 发行版版本为 2
+wsl --set-default-version XXX   # 设置默认 WSL 发行版
 
-# 列出 WSL 发行版及其信息
-wsl -l -v
-
-# 列出可安装的所有 WSL 发行版
-wsl -l -o
-
-# 卸载 WSL 发行版
-wsl --unregister <Distro>
-
-wslconfig
+wslconfig                       # 查看 WSL 配置
 ```
 
 
@@ -180,9 +167,9 @@ wslconfig
 
 ### 其他
 
-WSL2 安装 cuda：[win11+wls2+ubuntu2004配置cuda+cudnn+pytorch - LandWind - 博客园](https://www.cnblogs.com/LandWind/p/wsl2-cuda-cudnn-first-start.html)
+- WSL2 安装 cuda：[win11+wls2+ubuntu2004配置cuda+cudnn+pytorch - LandWind - 博客园](https://www.cnblogs.com/LandWind/p/wsl2-cuda-cudnn-first-start.html)
 
-cuda 的 API 分为两种类型，一种是驱动（driver）API，另一种是运行（runtime）API。`nvidia-smi` 查看的 cuda 版本是驱动 API 版本，`nvcc -V` 是运行 API
+- cuda 的 API 分为两种类型，一种是驱动（driver）API，另一种是运行（runtime）API。`nvidia-smi` 查看的 cuda 版本是驱动 API 版本，`nvcc -V` 是运行 API
 
 
 
@@ -191,29 +178,22 @@ cuda 的 API 分为两种类型，一种是驱动（driver）API，另一种是�
 ## 问题
 
 - 安装 WSL 2 报错：[WslRegisterDistribution failed with error: 0x800701bc · Issue #5393 · microsoft/WSL · GitHub](https://github.com/microsoft/WSL/issues/5393)
+    - 解决方法：[更新 WSL 2 Linux kernel](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
 
 ```bash
 WslRegisterDistribution failed with error: 0x800701bc
 ```
 
-解决方法：[更新 WSL 2 Linux kernel](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
-
----
-
 - 默认用户设置：[WSL Ubuntu设置普通用户为默认用户 - 简书](https://www.jianshu.com/p/5bfeb5920fb1)
-
-WSL Ubuntu 设置默认用户为普通用户：在 powershell 中输入以下命令
-
-```powershell
-ubuntu config --default-user <username>
-
-ubuntu2204 config --default-user <username>
-```
-
-WSLArch 设置默认用户为普通用户：在 `/etc/wsl.conf` 添加以下内容，在 powershell 中输入 `wsl --shutdown` 关闭 WSL
+    - WSL Ubuntu 设置默认用户为普通用户：
+    - WSLArch 设置默认用户为普通用户：在 `/etc/wsl.conf` 添加以下内容，在 powershell 中输入
 
 ```bash
-[user] 
+# 在 PowerShell 中输入以下命令
+ubuntu config --default-user <username>
+
+# /etc/wsl.conf 添加内容
+[user]
 default=myuser
 ```
 

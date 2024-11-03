@@ -182,6 +182,10 @@ ifconfig
 
 ### Session
 
+profile、bash_profile、bashrc 之间的区别：[profile、bash\_profile、bashrc的用途与区别 - 简书](https://www.jianshu.com/p/a57e8f1a3426)
+
+---
+
 用户每次使用 Shell，都会开启一个与 Shell 的 Session（对话）。
 
 Session 有两种类型：登录 Session 和非登录 Session。

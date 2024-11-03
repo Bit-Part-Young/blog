@@ -1,7 +1,7 @@
 ---
 title: atomsk 使用
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: atomsk 使用
@@ -51,6 +51,7 @@ password:
 ```bash
 # 构建晶体结构
 atomsk --create fcc 4.02 Al vasp
+atomsk --create hcp 2.92 4.61 Ti vasp
 
 # 构建不同晶体取向的构型
 # zsh [] 中括号需添加引号
@@ -69,8 +70,8 @@ atomsk --interpolate initial.cfg final.cfg 7 cfg
 atomsk POSCAR -orthogonal-cell -sort species pack vasp
 
 # 笛卡尔、分数坐标互相转换
-echo y | atomsk POSCAR vasp
-echo y | atomsk POSCAR -fractional vasp
+atomsk POSCAR vasp
+atomsk POSCAR -fractional vasp
 
 # 常用 options
 -orient             # 晶体取向
