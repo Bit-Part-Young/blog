@@ -182,7 +182,7 @@ fonts/opentype  # OpenType 格式的字体文件
 需要手动安装的宏包，一般已经按照上述目录结构打包完成。手动安装时，尽量不要拷贝到系统的 TEXMF 树，而是拷贝到发行版提供的用户 TEXMF 树，如 `texlive/texmf-local`。安装完成后，还需**刷新 TeX 发行版的文件名数据库**，令新安装的宏包文件能够被系统找到
 
 ```bash
-mktexlsr
+mktexlsr   # 更新 TeX 目录（通常是 TEXMF）的文件数据库
 ```
 
 
@@ -495,6 +495,8 @@ latexmk --xelatex main.tex
 ---
 
 #### latexmk
+
+- [Using Latexmk — homepage](https://mg.readthedocs.io/latexmk.html)
 
 ```bash
 latexmk [options] main.tex  # .tex 后缀名可省略

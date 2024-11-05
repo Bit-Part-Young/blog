@@ -226,6 +226,8 @@ Crtl + 点击图片          # 缩小图片
 
 - Todo Tree：以树形显示文件中的 `TODO`、`FIXME` 等
 
+- 管理 Project：Project Manager、Project Manager Next（效果一般）
+
 
 ---
 

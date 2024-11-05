@@ -35,9 +35,9 @@ password:
 
 - pymatgen 实例代码：[GitHub - materialsvirtuallab/matgenb](https://github.com/materialsvirtuallab/matgenb)
 
-- [Materials Project Documentation](https://docs.materialsproject.org/)
-
-- [Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)（该网址包含了 pymatgen 在材料相关计算中用的具体参数及其说明：如，截断能为 520eV 是由元素周期表所有元素中最大截断能的 1.3 倍得到的）
+- Materials Project 官方文档：[Materials Project Documentation](https://docs.materialsproject.org/)
+    - Materials Project 推荐赝势：[Pseudo-potentials - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/calculation-details/gga+u-calculations/pseudopotentials)
+    - 含 MP 在计算中所采用的具体参数及其说明（如截断能为 520eV 是由元素周期表所有元素中最大截断能的 1.3 倍得到的）： [Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)
 
 - [GitHub - computron/pymatgen\_tutorials: Tutorials for using the pymatgen library](https://github.com/computron/pymatgen_tutorials)
 
@@ -54,7 +54,7 @@ password:
 
 ## 安装
 
-- 参考：[https://pymatgen.org/installation.html](https://pymatgen.org/installation.html)
+- 参考：[Installation - pymatgen](https://pymatgen.org/installation.html)
 
 - 安装：
 
@@ -105,7 +105,7 @@ from pymatgen.ext.matproj ...
 
 ## 使用
 
-- 使用：[https://pymatgen.org/usage.html](https://pymatgen.org/usage.html)
+- 使用：[Usage - pymatgen](https://pymatgen.org/usage.html)
 
 - pymatgen 的包 (package、subpackage) 是目录, 模块 (module、submodule) 是文件; import 既可以导入包和子包, 也可以导入模块和子模块； [ug-materials-simulation/pymatgen/包和模块结构.ipynb at master · xiangzhouzhang/ug-materials-simulation · GitHub](https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/%E5%8C%85%E5%92%8C%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84.ipynb)
 
@@ -113,6 +113,12 @@ from pymatgen.ext.matproj ...
 
 ```python
 FileFormats = Literal["cif", "poscar", "cssr", "json", "yaml", "yml", "xsf", "mcsqs", "res", "pwmat", ""]
+```
+
+- pymatgen 中可指定的泛函类型
+
+```python
+FUNCTIONAL_CHOICES= ['PBE', 'PBE_52', 'PBE_54', 'LDA', 'LDA_52', 'LDA_54', 'PW91', 'LDA_US', 'PW91_US', 'Perdew-Zunger81']
 ```
 
 - MP 晶体 DFT code 用的是 VASP，分子用的是 Q-Chem
@@ -419,8 +425,6 @@ MITNEBSet class
 
 - [x] pymatgen structure 如何通过 structure 来生成 potcar？解决方法：通过 Poscar 类得到 structure 的元素种类，之后与 PBE 泛函的元素进行比对，之后用 Potcar 类写入 POTCAR（生成新的之前需删掉原来的 POTCAR 文件）
 
-- [ ] 复杂结构 pymatgen 无法将其单胞转化成原胞（Al3Ni）
-
 - [ ] pymatgen 中的 LLL reduction 是什么含义
 
 - [ ] pymatgen 键长计算（并非只是简单的计算原子对之间的距离）
@@ -448,9 +452,11 @@ pymatgen 核心模块
 
 #### structure
 
-- 有 `IStructure` 和 `Structure` 类，`Structure` 类继承自 `IStructure`
+- `Structure` 类继承自 `IStructure`
 
 - `Structure` 无 `wrap()` 方法，ase 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
+
+- 复杂结构 pymatgen（以及 vaspkit） 无法将单胞转化成原胞
 
 - `Structure` 类相关属性和方法：
 
@@ -475,6 +481,7 @@ center_of_mass           # 质心
 
 # 方法
 remove_species()         # 删除元素种类
+remove_sites()           # 删除原子位点
 replace_species()        # 替换元素种类
 translate_sites()        # 移动原子位点
 get_space_group_info()   # 获取空间群信息
@@ -718,7 +725,6 @@ site_symbols                # 原子种类
 
 读取和写入 POTCAR 文件的 object，由 PotcarSingle object （单个 POTCAR） 的列表组成
 
-
 ```python
 from pymatgen.io.vasp.inputs import Potcar
 
@@ -735,38 +741,54 @@ potcar.write_file("POTCAR")
 
 ### pymatgen.io.vasp.sets
 
-- MPRelaxSet、MPStaticSet 等类均继承于 VaspInputSet，这些 InputSet 都有 `write_input()` 方法
-- MPStaticSet 有设置 EDIFF 10-4；没有 MPStaticSet.yaml；reciprocal_density=100
+- `MPRelaxSet`、`MPStaticSet` 等类均继承于 `VaspInputSet`，都有 `write_input() ` 方法
+
+- `MPRelaxSet` 中的 K 点生成方式是 `Kpoints.automatic_density_by_vol()`
+
+- `MPRelaxSet` 没有设置 EDIFFG 参数：[MPRelaxSet.write\_input() no EDIFFG in INCAR - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprelaxset-write-input-no-ediffg-in-incar/44359)
 
 ```python
-pymatgen/io/vasp/MPRelaxSet.yaml         # 弛豫计算，MP 默认的所有输入文件参数设置
-pymatgen/io/vasp/VASPIncarBase.yaml      # INCAR 文件中的 MAGMOM 元素磁矩参数
+## yaml 文件
+# 弛豫计算；MP 默认的输入文件参数设置
+# 没有设置 EDIFFG；EDIFF 设置的是 EDIFF_PER_ATOM: 5.0e-05
+# 没有 MPStaticSet.yaml
+# MPSCANRelaxSet 有设置 EDIFFG
+pymatgen/io/vasp/MPRelaxSet.yaml
+
+# INCAR 文件中的 MAGMOM 元素磁矩参数
+pymatgen/io/vasp/VASPIncarBase.yaml
+
+# MIT 团队高通量项目的输入文件参数设置
+pymatgen/io/vasp/MITRelaxSet.yaml
 
 
-from pymatgen.io.vasp.sets import MPStaticSet, MPRelaxSet, MPMetalRelaxSet
+## 该模块中的类
+MPRelaxSet         # 弛豫计算；reciprocal_density: 64
+MPStaticSet        # 静态计算；参数基于 MPRelaxSet
+MPMetalRelaxSet    # 金属体系的弛豫计算；参数基于 MPRelaxSet；"ISMEAR": 1, "SIGMA": 0.2，"reciprocal_density": 200
+MPHSERelaxSet      # 和 MPRelaxSet 一样，有添加 HSE 参数和 vdW 纠正
+MatPESStaticSet    # 生成 potential energy surface(PES) 数据
+MPHSEBSSet         # HSE 能带结构计算
+MPSOCSet           # SOC 计算
+MVLElasticSet      # MVL 表示 Materials Virtual Lab；弹性常数计算
+MVLGWSet           # GW 计算
+MVLSlabSet         # 表面 slab 计算
+MVLGBSet           # 晶界计算
+LobsterSet         # Lobster 计算
+
+from pymatgen.io.vasp.sets import ...
 
 # 方法
-write_input(output_dir=..., potcar_spec=True)  # 生成 4 个输入文件
+write_input()      # 生成 VASP 计算用的 4 个输入文件
+  # 参数
+  output_dir=...
+  potcar_spec=True
 
 # 静态方法
 MPStaticSet.from_prev_calc()            # 基于之前的 VASP 计算目录中生成静态计算输入文件
 
 # 属性
 config_dict                             # config_dict["POTCAR"]["Mg"]
-```
-
-
-```text
-MPRelaxSet继承的DictSet类，DictSet类继承的VaspInputSet类 MPRelaxSet中的K点生成方式是Kpoints.automatic_density_by_vol() ISMEAR=-5 SIGMA=0.05 io/vasp/MPRelaxSet.yaml KPOINTS: reciprocal_density: 64
-
-MPMetalRelaxSet中的K点生成方式是Kpoints.automatic_density_by_vol()；
-
-ISMEAR=1 SIGMA=0.2 相关参数是在MPRelaxSet.yaml的基础上修改的
-
-class MPMetalRelaxSet(MPRelaxSet): 
-""" 
-Implementation of VaspInputSet utilizing parameters in the public Materials Project, but with tuning for metals. Key things are a denser k point density, and a 
-"""
 ```
 
 
@@ -1275,3 +1297,5 @@ spacegroup
 formation_energy_per_atom
 elasticity
 ```
+
+- [MPRester through proxy server - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprester-through-proxy-server/4485)

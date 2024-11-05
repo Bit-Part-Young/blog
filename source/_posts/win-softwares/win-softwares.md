@@ -371,6 +371,8 @@ onlinelibrary.wiley.com
 
 - 锁定键盘：[GitHub - Nigh/I-wanna-clean-keyboard](https://github.com/Nigh/I-wanna-clean-keyboard)
 
+- 右键菜单：[GitHub - moudey/Shell: Powerful context menu manager for Windows File Explorer](https://github.com/moudey/Shell)
+
 - 为 Windows 系统提供 Vim 风格的快捷键：[GitHub - pit-ray/win-vind: You can operate Windows with key bindings like Vim.](https://github.com/pit-ray/win-vind)
 
 - 优化 Windows 11 系统的脚本：[GitHub - Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat)

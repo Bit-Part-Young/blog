@@ -102,8 +102,9 @@ Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector
 ```
 
 - 注意事项：
+    - CIF 格式有含对称性、不含对称性两种格式，大部分程序将构型格式转换成 CIF 都是不含对称性的（空间群为 P1，写入所有原子）
     - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息
-    - vaspkit 可以将 xsd 文件转换成 POSCAR
+    - vaspkit 可将 xsd 文件转换成 POSCAR
     - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
 
 
@@ -155,6 +156,9 @@ Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector
 - [GitHub - ab5424/agility: Repository for the Atomistic Grain Boundary and Interface Utility.](https://github.com/ab5424/agility)
 
 - [GitHub - oekosheri/GB\_code: A grain boundary generation code](https://github.com/oekosheri/GB_code)
+
+LAMMPS 晶界构建：[Grain-Boundary-Energies-LAMMPS/Code and Scripts/Python and Lammps/FullStackAll/FullStack555/Experiments/Cu/0 at master · vishalsubbiah/Grain-Boundary-Energies-LAMMPS · GitHub](https://github.com/vishalsubbiah/Grain-Boundary-Energies-LAMMPS/tree/master/Code%20and%20Scripts/Python%20and%20Lammps/FullStackAll/FullStack555/Experiments/Cu/0)
+
 
 CSL 重合位置点阵理论
 
@@ -269,6 +273,18 @@ direct
 ---
 
 ## 晶体学相关
+
+七大晶系中空间群所属范围
+三斜：1-2
+单斜：3-15
+正交：16-74
+四方：75-142
+三方：143-167
+六方：168-194
+立方：195-230
+
+---
+
 
 空间群、磁性空间群
 [GitHub - DanPorter/spacegroups: Load spacegroup and magnetic spacegroup information](https://github.com/DanPorter/spacegroups)
@@ -418,6 +434,8 @@ BCC 的第 N 近邻距离：[solid state chemistry - Calculate the third and fou
 钙钛矿、半导体、绝缘体的点缺陷比金属或金属间化合物的点缺陷要复杂很多
 
 C60 POSCAR 文件：[C60.POSCAR.vasp](https://github.com/Shuyangzero/Ogre/blob/master/structures/C60.POSCAR.vasp)
+
+HCP 结构位错类型：a 型、a+c 型
 
 钙钛矿晶体结构：八面体扭转理论
 

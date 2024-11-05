@@ -286,9 +286,12 @@ pip install -U <package>
 pip install git+url
 pip install -r requirements.txt
 pip install .
-pip install -e .  # editable mode
+pip install -e .          # editable mode
 python setup.py install
 pip install ".[test]"
+
+# 卸载
+pip uninstall <package>   # 可添加 -y 参数
 ```
 
 - 常用 packages：多个 packages 一行命令安装可能出现报错，建议单个安装

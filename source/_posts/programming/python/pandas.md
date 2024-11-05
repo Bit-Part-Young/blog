@@ -172,6 +172,8 @@ df.mean()
 
 ### IO
 
+- 保存成 csv 文件时，在文件头添加注释（无内置函数）：[python - Write comments in CSV file with pandas - Stack Overflow](https://stackoverflow.com/questions/29233496/write-comments-in-csv-file-with-pandas)
+
 ```python
 pd.read_csv()       # 从 csv 文件读取数据
 
@@ -290,7 +292,7 @@ df.round()                               # 四舍五入；当 df 既有数值和
 
 
 ```python
-df.diff()
+df.diff()       # 同列相邻元素差值
 
 df.unique()
 df.nunique()

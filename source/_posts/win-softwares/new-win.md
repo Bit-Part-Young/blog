@@ -188,9 +188,11 @@ taskkill /f /im explorer.exe & start explorer.exe
 ```
 
 - 取消 Win11 息屏断网：控制面板 - 网络和 Internet - 网络和共享中心 - 更改适配器设置 - 选中网络，属性，配置，电源管理，取消勾选“允许计算机关闭设备以节约电源”；[更新win11以后，休眠模式下断网，怎么改？ - 知乎](https://www.zhihu.com/question/498326700)
+
 ```text
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046D02}\LanguageProfile\0x00000804\{89E1D5C2-A068-44B6-B820-F8406C8A4706}
 ```
+
 - 老电脑绕过 TPM 和 CPU 兼容性升级到 Win11：去官网下载对应版本的 Win11 的 ISO 镜像文件，之后克隆 [GitHub - AveYo/MediaCreationTool.bat](https://github.com/AveYo/MediaCreationTool.bat) repo 或下载压缩包，（管理员）运行其中的 `Skip_TPM_Check_on_Dynamic_Update.cmd` 文件，耐心等待更新升级
 
 - [如何关闭Win10搜索栏内的系统广告](https://www.zhihu.com/question/569384371/answer/2790041626)（建议使用方法二）
@@ -200,7 +202,6 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 - 磁盘分区：此电脑 -- 管理 -- 存储，磁盘管理
 
 - 删除双系统中的 Linux 时，不要将 Windows 的 EFI 分区误删!!！
-    - 双系统没想象中的好用
     - 拯救者会出现的开机启动报错：`EFI PXE 0 for IPv4(XX-XX-XX-XX-XX-XX) boot failed`
     - 误删后，可制作 PE 的 U 盘，重建 Windows 的 EFI 引导分区 [Windows EFI引导分区重建。UEFI启动设置\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1k24y1y7qa/?spm_id_from=333.999.0.0)
 
@@ -229,3 +230,5 @@ AppData\Local\Temp\vscode-remote-wsl
 ```
 
 - 删除 2345 王牌输入法：`win + R`，输入 `regedit`，搜索以下内容并删除；[如何彻底删除2345输入法？ - 知乎](https://www.zhihu.com/question/37679187)
+
+- [删除右键菜单中的Git Gui Here、Git Bash Here的方法 - blogging - 博客园](https://www.cnblogs.com/family-626-77/p/5747953.html)

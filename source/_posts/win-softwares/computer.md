@@ -1,7 +1,7 @@
 ---
 title: Windows 计算机相关
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: Windows 计算机相关
@@ -40,6 +40,12 @@ Win+ ↑/↓            # 最大化当前窗口
 Ctrl + Tab          # 标签页切换（向右切换；浏览器、终端、文本编辑器等）
 Ctrl + Shift + Tab  # 向左切换
 ```
+
+- 文件资源管理器：Tab 键切换左侧的文件夹目录和右侧的文件目录；Backspace 键返回上一层目录
+
+- 底层任务栏应用打开：Win+T，选中底层任务栏的第一个应用，左右键选择应用，Enter 键打开该应用
+
+- 其他应用的界面也都可以用 Tab 键切换不同的栏目
 
 
 

@@ -34,6 +34,11 @@ Python 绘图包
 - 精美科研绘图示例：[Veusz 2D Examples](https://veusz.github.io/examples/)
 - 在 Matplolib 中使用 LaTeX：[Use latex with matplotlib on HPCs where you can't sudo! · GitHub](https://gist.github.com/chiang-yuan/62fbcaae06bf77f793a8f9b5aed1ba70)
 
+- mpltex 用于绘制论文级别的图
+    - [GitHub - liuyxpp/mpltex: A python package for producing publication quality images using matplotlib.](https://github.com/liuyxpp/mpltex)
+    - [mpltex: A Tool for Creating Publication Quality Plots – Yi-Xin Liu](http://www.yxliu.group/2014/09/mpltex)
+
+- Seaborn Style 使用：[Seaborn Styling, Part 1: Figure Style and Scale - Codecademy](https://www.codecademy.com/article/seaborn-design-i)
 
 ```python
 from matplotlib.axes import Axes

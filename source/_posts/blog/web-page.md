@@ -83,6 +83,8 @@ http://machine_ip_address:2283      # 网页端登录
 http://machine_ip_address:2283/api  # 移动端登录
 ```
 
+- [GitHub - photoview/photoview: Photo gallery for self-hosted personal servers](https://github.com/photoview/photoview)
+
 - [GitHub - photoprism/photoprism: AI-Powered Photos App for the Decentralized Web 🌈💎✨](https://github.com/photoprism/photoprism)
 
 - [GitHub - ente-io/ente: Fully open source, End to End Encrypted alternative to Google Photos and Apple Photos](https://github.com/ente-io/ente)
@@ -134,7 +136,10 @@ http://machine_ip_address:2283/api  # 移动端登录
 ## 学术首页
 
 - [GitHub - academicpages/academicpages.github.io: Github Pages template for academic personal websites, forked from mmistakes/minimal-mistakes](https://github.com/academicpages/academicpages.github.io)
+
 - [GitHub - samueldy/samueldy.github.io: Public professional website](https://github.com/samueldy/samueldy.github.io)
+
+- [GitHub - CodingWZL/wangzhilong.github.io: Zhilong Wang's Personal Homepage](https://github.com/CodingWZL/wangzhilong.github.io)
 
 
 

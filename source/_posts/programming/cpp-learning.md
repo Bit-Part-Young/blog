@@ -34,6 +34,8 @@ password:
 
 - [Setting up C/C++ compiler • C and C++ Programing](https://pranabdas.github.io/c-cpp/)
 
+- [GitHub - ShujiaHuang/Cpp-Primer-Plus-6th: 《C++ Primer Plus 第6版（中文版）》原书代码、习题答案和个人笔记，仅供学习和交流。](https://github.com/ShujiaHuang/Cpp-Primer-Plus-6th)
+
 - [cppreference.com](https://en.cppreference.com/w/)（页面可转换成中文）
 
 - [GitHub - parallel101/cppguidebook: 小彭老师领衔编写，现代C++的中文百科全书](https://github.com/parallel101/cppguidebook)

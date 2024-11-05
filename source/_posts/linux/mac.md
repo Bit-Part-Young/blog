@@ -163,6 +163,7 @@ command + delete             # 删除文件
 command + ↑ / ️↓              # 返回上一层文件夹；进入文件夹
 control + ← / →︎              # 左右切换「空间」（有全屏窗口时）
 command + shift + G          # 打开 “前往文件夹” 窗口
+command + shift + .          # 在 Finder 中显示隐藏的点文件
 command + ~                  # 切换同一个程序下的窗口
 command + M                  # 将最前方的窗口最小化至程序坞（不会出现在切换窗口中）
 command + H                  # 隐藏最前方 App 的窗口（会出现在切换窗口中）
@@ -270,6 +271,8 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - [Input Source Pro](https://inputsource.pro/zh-CN)
 
 - 可视化键盘输入：KeyCastr
+
+- 键盘映射：[Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements)
 
 - 风扇控制：Mac Fan Control
 
@@ -504,9 +507,11 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - 介绍：
         - [kitty - Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/Kitty)
         - [Kitty基于GPU的终端工具 - Escape](https://www.escapelife.site/posts/8e342b57.html)
+        - 无 Windows 版本
     - kitty 配置：
         - [kitty.conf - kitty](https://sw.kovidgoyal.net/kitty/conf/)
         - 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
+        - 指针动画：[Neovide like cursor animation in kitty terminal : r/KittyTerminal](https://www.reddit.com/r/KittyTerminal/comments/1g7vkwt/neovide_like_cursor_animation_in_kitty_terminal/)
     - [x] kitty 如何升级（建议官网下载 Release，使用 Homebrew 速度很慢）
     - [x] 如何将 kitty 的窗口信息放到上面，而非默认的下方（设置 `tab_bar_edge` 参数）：[Share your tab bar style · kovidgoyal/kitty · Discussion #4447 · GitHub](https://github.com/kovidgoyal/kitty/discussions/4447)
 
@@ -514,6 +519,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 ~/.local/kitty.app              # Linux 安装路径
 ~/.config/kitty/kitty.conf      # 配置文件路径
 
+# kitten 使用
 kitty +kitten                   # 查看所有可用的 kittens
 kitty +kitten diff file1 file2  # 查看文件之间的差异
 kitty +kitten icat <figure>     # 查看图片
@@ -521,7 +527,7 @@ kitty +kitten themes            # 查看可用主题
 kitty +kitten clipboard file    # 拷贝文件中的内容到剪贴板
 kitty +kitten clipboard -g      # 粘贴剪贴板的内容到 STDOUT
 cat file | kitty +kitten hints  # 使用键盘选中屏幕中的内容，默认 URL
-    kitty +kitten ssh server        # 连接远程服务器
+kitty +kitten ssh server        # 连接远程服务器
 ```
 
  - Termius 设置：
@@ -543,6 +549,7 @@ cat file | kitty +kitten hints  # 使用键盘选中屏幕中的内容，默认 
     - 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
     - [x] 如何存储 SSH 登录服务器的账号密码（无直接的方式，password manager 非直接存储 SSH 密码；kitty、Tabby 也是如此，Termius 可以）
 
+- Raindrop 中的书签用预览模式打开，有时会打不开
 
 - 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 - 高级 - 持续时间缩短成 1.5
     - [In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
@@ -559,9 +566,9 @@ tags XXX      # 根据文件 tag 查找文件
 - Bob 快捷键设置
 
 ```bash
-command + option + D   # 划词翻译
-command + option + S   # 截图翻译
-command + option + A   # 输入翻译
+control + option + D   # 划词翻译
+control + option + S   # 截图翻译
+control + option + A   # 输入翻译
 ```
 
 - IINA 相关快捷键
@@ -793,10 +800,13 @@ sudo rm -rf /usr/local/texlive
 
 #### Rime 输入法引擎 + 雾凇拼音
 
-参考：
+- 参考：
+    - [RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
+    - [GitHub - Mintimate/oh-my-rime: The Simple Config Template Of Rime By Mintimate.](https://github.com/Mintimate/oh-my-rime)
+    - [自由输入法 RIME 简明配置指南 - 少数派](https://sspai.com/post/84373)
+    - [ ] 如何添加自己的词库（如：赝势）
 
-- [RIME 鼠须管输入法简明使用教程 - BAI YUN](https://baiyun.me/rime-simple-tutorial)
-- [GitHub - Mintimate/oh-my-rime: The Simple Config Template Of Rime By Mintimate.](https://github.com/Mintimate/oh-my-rime)
+- 安装
 
 ```bash
 # 安装 Rime 鼠须管 输入法引擎
@@ -810,14 +820,14 @@ cd plum
 bash rime-install iDvel/rime-ice:others/recipes/full
 ```
 
-可修改的配置文件路径：
+- 可修改的配置文件路径：
 
 ```bash
 /Users/XXX/Library/Rime/squirrel.yaml
 /Users/XXX/Library/Rime/default.yaml
 ```
 
-macOS 修改应用的默认 ascii_mode（个人更倾向修改成默认英文）：`squirrel.yaml`
+- macOS 修改应用的默认 ascii_mode（个人更倾向修改成默认英文）：`squirrel.yaml`
 
 ```yaml
 # 可参考 /Library/Input Methods/Squirrel.app/Contents/SharedSupport/squirrel.yaml
@@ -842,7 +852,7 @@ style:
   horizontal: true
 ```
 
-修改候选词个数：`default.yaml`
+- 修改候选词个数：`default.yaml`
 
 ```yaml
 # 菜单
@@ -850,7 +860,7 @@ menu:
   page_size: 9  # 候选词个数
 ```
 
-关闭切换输入法的 Ctrl + \` 快捷键（与 VSCode 中的切换终端快捷键冲突）：
+- 关闭切换输入法的 Ctrl + \` 快捷键（与 VSCode 中的切换终端快捷键冲突）：
 
 ```yaml
 # 方案选单相关
@@ -863,6 +873,16 @@ switcher:
     # - Alt+grave
 ```
 
+- 修改候选词前后翻页快捷键（默认是 `-`、`=` 快捷键，修改成 `,`、`.` 快捷键）
+
+```yaml
+# 快捷键
+key_binder:
+  bindings:
+    - { when: paging, accept: comma, send: Page_Up }
+    - { when: has_menu, accept: period, send: Page_Down }
+```
+
 
 ---
 
@@ -870,7 +890,7 @@ switcher:
 
 - 下载的压缩文件的不自动解压：设置 - 通用 - 取消勾选 “自动打开 “安全” 文件”
 
-- [ ] 无痕浏览模式打开新标签页时如何保留原有标签页网站的登录信息（好像不行；Chrome 可以）
+- [x] 无痕浏览模式打开新标签页时如何保留原有标签页网站的登录信息（好像不行；Chrome 可以） ✅ 2024-11-03
 
 ---
 

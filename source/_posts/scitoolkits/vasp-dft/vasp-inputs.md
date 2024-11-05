@@ -20,8 +20,13 @@ password:
 
 # VASP 输入文件
 
-包括 INCAR、POSCAR、KPOINTS 和 POTCAR4 个输入文件。
+- 包括 INCAR、POSCAR、KPOINTS 和 POTCAR4 个输入文件
 
+- 参考资料
+    - [vasp手册\_VASP个人笔记(二) INCAR参数设置(详细)-CSDN博客](https://blog.csdn.net/weixin_39637363/article/details/111123875)
+    - 是否开启自旋极化
+        - [求助VASP表面结构优化自旋极化ISPIN及MAGMOM设置问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-22387-1-1.html)
+        - [vasp中如何确定所计算的体系要不要加自旋极化？ - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-11672-1-1.html)
 
 
 ---
@@ -86,11 +91,13 @@ direct
 
 ## POTCAR
 
+- VASP6 与 VASP5 相比，赝势基本不变，只有小部分变动，如氧的更高截断能测试，如 700eV 等：[求助！跪求一套VASP 6 版本的赝势 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-44530-1-1.html)
+
 - [Available pseudopotentials - VASP Wiki](https://www.vasp.at/wiki/index.php/Available_pseudopotentials)：含 PBE52、PBE54、PBE64 赝势介绍，赝势加后缀之间的区别
 
 - 赝势文件；包含计算体系中每种元素的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 
-- PBE 赝势可分为：无后缀、\_pv、\_sv、\_d 和数字后缀，即 semi-core 的 p、s、d 当做价态处理
+- PBE 赝势可分为：无后缀、\_pv、\_sv、\_d 和数字后缀，即 semi-core 的 p、s、d 层电子当做价电子处理
 
 ```bash
 # 多个元素种类的 POTCAR 文件合并
@@ -116,7 +123,7 @@ grep -A1 '  PAW_PBE' POTCAR
     - 赝势目录中每个类型的泛函目录中有一个 data_base 文件，里面包含每个赝势对应元素 3 种可能结构的基态能量数据
     - PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
     - [VASP中的赝势 - 计算材料学](https://ywwang0.github.io/2020/08/18/VASP%E4%B8%AD%E7%9A%84%E8%B5%9D%E5%8A%BF/)
-
+    - VASP5.4 版本，W\_sv 替代 W\_pv
 
 - POTCAR 文件内容示例：
 
@@ -211,9 +218,9 @@ Gamma          ! generate a Gamma centered mesh
 0  0  0        ! optional shift of the mesh (s_1, s_2, s_3)
 ```
 
-- 注意事项：
-    - Monkhorst-Pack 网格的收敛速度可能快于 Γ- 中心网格；同时需注意避免使用 Monkhorst-Pack 网格破坏对称性。
-    - 对于 HCP 结构，采用 Gamma 方法
+- 不同晶系下的 K 点生成方式选择：[Symmetry reduction of the mesh - KPOINTS - VASP Wiki](https://www.vasp.at/wiki/index.php/KPOINTS#Symmetry_reduction_of_the_mesh)
+    - Monkhorst-Pack 网格的收敛速度可能快于 Γ- 中心网格；同时需注意避免使用 Monkhorst-Pack 网格破坏对称性
+    - 对于 HCP、面心立方结构，K 点生成方式采用 Gamma
 
 - 能带计算：当性质依赖于 K 矢量时，通常沿高对称性路径将性质可视化；线模式（line mode）表示在布里渊区用户定义的点之间生成 K 点，最常用的情况是分析能带结构
     - 第 1 行：注释行
@@ -244,6 +251,8 @@ fractional
 - 核心输入文件：用于指定 VASP 计算的参数、算法和设置
 
 - INCAR 准备的原则：**越简单越好，不知道的，不理解的就不往里面放**
+
+- 注释 `#`，可在没有歧义的情况下以不添加 `#` 进行注释
 
 - INCAR 参数类型
     - 通用参数：SYSTEM、PREC、ISTART、ICHARG、LWAVE、LCHARG

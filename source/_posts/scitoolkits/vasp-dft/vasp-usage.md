@@ -219,6 +219,8 @@ ICHARG = 1
 
 ### 静态计算
 
+- INCAR 参数示例：
+
 ```bash
 IBRION = -1
 NSW    = 0
@@ -243,7 +245,16 @@ ISIF   = 2
 
 - [精度与成本平衡之道——ENCUT收敛性测试 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/348826693)
 
+- [自洽计算的K点选取 和 KPOINTS 文件生成方法 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-13066-1-1.html)
+
 - 对 K 点和 ENCUT 进行收敛性测试，同一构型采用超胞和单胞得到的结果类似，单胞的 ENCUT 可直接用于超胞计算，单胞的 K 点密度等比例缩小用于超胞计算
+
+- 个人收敛性测试步骤：
+    - 先粗结构优化（ENCUT 为 1.3ENMAX，K 点密度稍密）
+    - 之后进行 K 点测试（ENCUT 为 1.3ENMAX）
+    - 之后进行 ENCUT 测试（K 点密度选择达到收敛性标准的）
+    - 采用达到收敛性标准的 K 点密度 + ENCUT 进行细结构优化
+    - 个人经验：计算体系含 C 时，可不进行 ENCUT 测试，直接使其为 520（C 赝势中的 ENMAX=400）
 
 ```bash
 
@@ -254,7 +265,7 @@ ISIF   = 2
 
 ### 弛豫计算
 
-vaspkit 标准弛豫（SR） INCAR 示例：
+- INCAR 参数示例：
 
 ```bash
 Global Parameters

@@ -36,6 +36,8 @@ password:
     - `EFI` - UEFI 固件用来存储 EFI 应用程序和驱动程序；建议 100MB 到 500MB（一般该分区已设置）
 - 安装完成后，系统会提示拔掉 U 盘
 
+注：**双系统没想象中的好用**
+
 
 ---
 
@@ -571,35 +573,39 @@ fc-list :lang=zh  # 查看中文字体
 ```
 
 - 字体设置
-    - 系统设置： Settings - Appearance - Fonts
-    - Chrome 浏览器设置：Settings - Appearance - Customize font
-    - Obsidian 设置：设置 - 外观 - 字体 - 界面、正文、代码字体
+    - 系统设置： Settings -- Appearance -- Fonts
+    - Chrome 浏览器设置：Settings -- Appearance -- Customize font
+    - Obsidian 设置：设置 -- 外观 -- 字体 -- 界面、正文、代码字体
 
 
 ---
 
 #### 其他
 
-- Windows、Linux 双系统时，Windows 盘符 及 U 盘的路径为 `/media/username/`
-- KDE 任务栏应用程序图标大小设置：相应位置右键 - Enter Edit Mode - 调整 Panel height
-- KDE 任务栏系统托盘（System Tray）图标大小设置：相应位置右键 - Configure System Tray - General - Panal icon size
-- Linux 相关程序介绍：[目录 -  Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/%E7%9B%AE%E5%BD%95)、[StrongSwan](https://wiki.archlinuxcn.org/wiki/StrongSwan)、[OpenSSH](https://wiki.archlinuxcn.org/wiki/OpenSSH)、[窗口管理器](https://wiki.archlinuxcn.org/zh/%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8)
+- Windows、Linux 双系统时，Windows 盘符及 U 盘的路径为 `/media/username/`
 
----
+- KDE 任务栏应用程序图标大小设置：相应位置右键 -- Enter Edit Mode -- 调整 Panel height
 
-相关命令
+- KDE 任务栏系统托盘（System Tray）图标大小设置：相应位置右键 -- Configure System Tray -- General -- Panal icon size
+
+- Linux 相关程序介绍：
+    - [目录 -  Arch Linux 中文维基](https://wiki.archlinuxcn.org/wiki/%E7%9B%AE%E5%BD%95)
+    - [StrongSwan](https://wiki.archlinuxcn.org/wiki/StrongSwan)
+    - [OpenSSH](https://wiki.archlinuxcn.org/wiki/OpenSSH)
+    - [窗口管理器](https://wiki.archlinuxcn.org/zh/%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8)
+
+- apt 安装与源码编译安装之间的区别： [apt安装与源码编译安装\_apt-get install 是源码编译吗-CSDN博客](https://blog.csdn.net/angelazhao620/article/details/123914092)
+    - apt 安装的程序涉及到的路径：文档一般在 `/usr/share`，可执行文件 `/usr/bin`；配置文件 `/etc`；lib 文件 `/usr/lib`
+    - 源码编译安装：相关路径均可自定义
+
+- [Ubuntu上的apt/apt-get等命令的实质意义和区别 - 精心出精品 - 博客园](https://www.cnblogs.com/zyrblog/p/11042015.html)
+
+- 相关命令
 
 ```bash
-# 在终端用默认程序打开文件或 URL
-open file
-open URL
-
-# 查看 GPU 信息
-lspci | grep -i nvidia
-
-# 查看显示器信息
-xrandr
-
+open file/URL             # 在终端用默认程序打开文件或 URL
+lspci | grep -i nvidia    # 查看 GPU 信息
+xrandr                    # 查看显示器信息
 ```
 
 

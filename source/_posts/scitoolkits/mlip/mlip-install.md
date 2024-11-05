@@ -96,3 +96,5 @@ make[1]: *** [Makefile:98: ../lmp_intel_cpu_intelmpi] Error 1
 make mpi-stubs
 make intel_cpu_intelmpi -lgfortran
 ```
+
+- MTP 机器学习势函数没有 GPU 版本

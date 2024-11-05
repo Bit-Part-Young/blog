@@ -71,7 +71,7 @@ localhost  # 主机名
 - Cloudflare 域名价格：[Cloudflare Domain Pricing](https://cfdomainpricing.com/)
 - `.top` 域名价格较便宜（￥20+/年），`.xyz` 较贵（￥70+/年）
 
-- [ ] 是否考虑转移到便宜的域名
+- [ ] 是否考虑转移到便宜的域名（迁移费用不少）
 
 
 ---
@@ -199,6 +199,8 @@ localhost  # 主机名
 - [搭建 CDN - Argvchs の小窝](https://argvchs.github.io/2023/01/05/build-cdn/)
 
 - 提供 DNS 查询的 API：[DNS.fish - Command-line DNS Record Lookup Tool](https://dns.fish/)
+
+- [ICP域名备案查询网-备案查询网](https://www.beiancx.com/)
 
 - Cloudflare R2 需要先添加订阅（免费额度：10GB/月），建议使用 PayPal 方式，可以使用银联银行卡；添加 Bucket，之后可以添加文件或文件夹；管理 API Token
 

@@ -115,7 +115,9 @@ ignore_missing_imports = True
 ## 代码格式化
 
 - [isort:](https://github.com/PyCQA/isort): 给 import 进行排序
-- [black](https://github.com/psf/black)、[ruff](https://github.com/astral-sh/ruff)
+- [black](https://github.com/psf/black)
+- [ruff](https://github.com/astral-sh/ruff)
+- autopep8：PEP 8 规范
 
 ```bash
 # PyPI 安装
@@ -132,6 +134,9 @@ isort script.py
 isort .
 
 ruff
+
+autopep8 script.py              # 输出至终端
+autopep8 --in-place script.py   # 作用到源文件
 ```
 
 - VSCode 设置 black-formatter 的单行字符长度限制：[vscode 配置 python black 格式化单行长度 - Ainsliaea - 博客园](https://www.cnblogs.com/ainsliaea/p/17647847.html)
