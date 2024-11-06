@@ -318,9 +318,13 @@ Lattay/vasp.vim               # VASP 输入文件参数高亮
 
 ### 其他
 
->[vim缓冲区buffer\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Jf4y1g731)
+- 把普通用户的 Vim 配置迁移到 root 用户中： [Linux下切换成root如何把自己的vim配置也迁移过去？\_用vim编辑器复制到root目录-CSDN博客](https://blog.csdn.net/u014610830/article/details/53561599)
 
-缓冲区 buffer
+```bash
+ln -s /home/username/.vimrc /root/.vimrc
+```
+
+- 缓冲区 Buffer：[vim缓冲区buffer\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Jf4y1g731)
 
 ```bash
 :e file      # 打开文件并创建一个新的 buffer
@@ -336,20 +340,15 @@ Lattay/vasp.vim               # VASP 输入文件参数高亮
 set hidden   # 默认 buffer 未保存切换会警告；关闭该选项
 ```
 
----
-
-寄存器
+- 寄存器
 
 ```bash
 "ay       # 复制
 "ap       # 粘贴
 ```
 
----
-
-折叠
-
-手动折叠：进入可视化模式，选中要折叠的行，`zf` 创建折叠
+- 折叠
+    - 手动折叠：进入可视化模式，选中要折叠的行，`zf` 创建折叠
 
 ```bash
 :set foldenable  # 开启折叠功能
@@ -368,6 +367,15 @@ zR               # 打开所有折叠及其嵌套折叠
 zm               # 关闭所有折叠
 zM               # 关闭所有折叠及其嵌套折叠
 zE               # 删除所有折叠
+```
+
+- Vim 实现右键粘贴：[https://blog.csdn.net/foryouslgme/article/details/52688285](https://blog.csdn.net/foryouslgme/article/details/52688285)
+
+```bash
+# 在 ~/.vimrc 中添加
+if has('mouse') 
+    set mouse-=a 
+endif
 ```
 
 

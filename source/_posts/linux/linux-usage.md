@@ -53,8 +53,6 @@ WIP...
 
 - SSH 配置管理：[GitHub - soulteary/ssh-config: 1MB size, 100% Coverage, Use more expressive YAML / JSON to manage your Config files. --- 1MB大小，100% 测试覆盖，使用更具表现力的YAML / JSON来管理您的配置文件。](https://github.com/soulteary/ssh-config)
 
-- `rm` 的安全替代：[GitHub - MilesCranmer/rip2: A safe and ergonomic alternative to rm](https://github.com/MilesCranmer/rip2)
-
 
 
 ---
@@ -80,6 +78,7 @@ WIP...
 - Linux 配置文件：
     - [GitHub - skwp/dotfiles](https://github.com/skwp/dotfiles)
     - [GitHub - yutkat/dotfiles](https://github.com/yutkat/dotfiles)（内含一键安装脚本，可参考写法）
+    - Linux 配置文件（还行）：[GitHub - LintaoAmons/CoolStuffes: 我的分享放这里了，大家随便拿去用啊，记得给个星星就行啦～](https://github.com/LintaoAmons/CoolStuffes)
     - 备份 dotfiles：[GitHub - deadc0de6/dotdrop: Save your dotfiles once, deploy them everywhere](https://github.com/deadc0de6/dotdrop)
 
 - Bash 脚本，用来生成 Markdown 表格：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
@@ -826,15 +825,23 @@ sed -n '$=' file
 
 ### 文件系统层次结构
 
-- [Unix filesystem - Wikipedia](https://en.wikipedia.org/wiki/Unix_filesystem#Conventional_directory_layout)
-- [Filesystem Hierarchy Standard - Wikipedia](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
-- [Linux 系统目录结构 - 菜鸟教程](https://www.runoob.com/linux/linux-system-contents.html)
+- 参考：
+    - [Unix filesystem - Wikipedia](https://en.wikipedia.org/wiki/Unix_filesystem#Conventional_directory_layout)
+    - [Filesystem Hierarchy Standard - Wikipedia](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
+    - [Linux 系统目录结构 - 菜鸟教程](https://www.runoob.com/linux/linux-system-contents.html)
 
+- 示意图
 ![](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/Standard-unix-filesystem-hierarchy.svg)
 
 
 
 ![ft.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202312311529652.png)
+
+---
+
+- 注意事项：
+    - `/usr/bin`：系统预装的可执行程序，会随着系统升级而改变
+    - `/usr/local/bin`：用户放置本地可执行程序的目录，不会被系统升级而覆盖同名文件
 
 ```bash
 /bin              # 基本二进制程序；对所有用户可用

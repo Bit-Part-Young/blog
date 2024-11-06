@@ -276,6 +276,14 @@ tot          0.000   0.000   0.000   0.000
 
 ---
 
+## vasprun.xml
+
+- xml 格式的输出文件（内容和 OUTCAR 文件类似）
+
+
+
+---
+
 ## OSZICAR
 
 - 电子步和离子步迭代的具体信息
@@ -322,6 +330,7 @@ DAV:  13    -0.675771007310E+02   -0.31732E-07   -0.91291E-05  2928   0.667E-02
 - CONTCAR 中的 CONT 是继续的意思
 
 
+
 ---
 
 ## PROCAR
@@ -344,12 +353,6 @@ ion      s     py     pz     px    dxy    dyz    dz2    dxz  x2-y2    tot
 tot    0.727  0.000  0.013  0.000  0.000  0.000  0.000  0.000  0.000  0.740
 ```
 
-
----
-
-## vasprun.xml
-
-- xml 格式的输出文件（内容和 OUTCAR 文件类似）
 
 
 ---
@@ -401,11 +404,13 @@ energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
 - 该两个文件中的能量值都是绝对的，不是以费米能级作为参考零点
 
 
+
 ---
 
 ## XDATCAR
 
 - 含每个离子步的构型（轨迹文件；AIMD 常用）
+
 
 
 ---
@@ -415,15 +420,17 @@ energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
 - 含对关联函数（pair correlation function；AIMD 常用）；对于 AIMD，写入平均对关联函数
 
 
+
 ---
 
 ## IBZKPT
 
-含不可约布里渊区 k 点数目、坐标及权重
+- 含不可约布里渊区 k 点数目、坐标及权重
 
-与 KPOINTS 文件兼容，如果在 KPOINTS 文件中选择了自动生成 k 点网格，则会生成 IBZKPT 文件。
+- 与 KPOINTS 文件兼容，如果在 KPOINTS 文件中选择了自动生成 k 点网格，则会生成 IBZKPT 文件。
 
-示例
+- 示例
+
 ```text
 Automatically generated mesh
       35
@@ -477,6 +484,8 @@ Tetrahedra
 ## WAVECAR
 
 波函数文件（包含波函数系数、特征值、费米权重等信息）
+
+
 
 ---
 

@@ -39,31 +39,34 @@ password:
 
 ## Windows Terminal
 
-新版本 Windows 会自带；比 powershell 和 cmd 美观，可通过 oh-my-posh 美化；可直接连接已安装的 WSL。
+新版本 Windows 会自带；比 PowerShell 和 CMD 美观，可通过 oh-my-posh 美化；可直接连接已安装的 WSL。
 
 ---
 
 ### 美化
 
-- 安装 oh-my-posh 和 Meslo-NF，在设置中选择 `MesloLGM Nerd Font` 字体；
+- 安装 oh-my-posh 和 Meslo-NF，在设置中选择 `MesloLGM Nerd Font` 字体
 
 ```powershell
 scoop install oh-my-posh
 
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/Meslo-NF
+
 ```
 
+- 初始化 oh-my-posh
 
 ```powershell
-notepad $Profile  # 初始化 oh-my-posh
+notepad $Profile
 
-# 文件目录结构；若没有该文件，可手动创建
+# 上述命令默认打开的文件；若没有该文件，可手动创建
 Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
 
 # 写入以下内容
 # 自动配置 oh-my-posh 在 PowerShell 中的初始化设置
 oh-my-posh init pwsh | Invoke-Expression
+
 
 Get-PoshThemes  # 获取主题
 . $Profile      # 重新加载 profile
@@ -74,7 +77,7 @@ Get-PoshThemes  # 获取主题
 
 ### 自动补全
 
->[PSReadLine - Powershell 的强化工具\_sigmarising的博客-CSDN博客](https://blog.csdn.net/sigmarising/article/details/107287275)
+- 参考：[PSReadLine - Powershell 的强化工具\_sigmarising的博客-CSDN博客](https://blog.csdn.net/sigmarising/article/details/107287275)
 
 - 安装 PSReadLine
 
@@ -88,9 +91,12 @@ Install-Module PSReadLine
 Install-Module PSReadLine -RequiredVersion 2.1.0 -Scope CurrentUser
 ```
 
-- `notepad $Profile`，设置快捷键，写入以下内容：
+- 设置快捷键
 
 ```powershell
+notepad $Profile
+
+# 写入以下内容
 # Get-PSReadLineKeyHandler 查看所有设置的快捷键绑定
 # PSReadLine
 Import-Module PSReadLine
@@ -114,17 +120,17 @@ Set-PSReadLineKeyHandler -Key Ctrl+z -Function Undo
 
 ## Scoop
 
->[Scoop](https://scoop.sh/)
+- 参考：
+    - [Windows - Scoop软件包管理神器 | 新壳记](https://www.cdnxin.top/post/scoop/)
+    - [GitHub - duzyn/scoop-cn: 中国用户能用的 Scoop 应用库，每日同步 Scoop 的官方库，加速应用的下载速度](https://github.com/duzyn/scoop-cn#)
 
->[Windows - Scoop软件包管理神器 | 新壳记](https://www.cdnxin.top/post/scoop/)
+- Scoop 官网：[Scoop](https://scoop.sh/)
 
->[GitHub - duzyn/scoop-cn: 中国用户能用的 Scoop 应用库，每日同步 Scoop 的官方库，加速应用的下载速度](https://github.com/duzyn/scoop-cn#)
+- Windows 的程序包安装管理工具（类似工具：Winget 和 Chocolatey；macOS 为 Homebrew）
 
+- 可安装大部分的开源程序和命令行工具（如本文提到的所有软件）
 
-- Windows 平台的程序包安装管理工具（类似工具：Winget 和 Chocolatey；Mac 平台为 Homebrew）
-- 可以安装几乎所有的开源程序和命令行工具（如本文提到的所有软件）
-- 程序安装后无需再手动添加环境变量（自动配置；Scoop 中的 Shim 工具）。
-
+- 程序安装后无需再手动添加环境变量（自动配置；Scoop 中的 Shim 工具）
 
 ```powershell
 # 将 Scoop 安装到 D 盘
@@ -132,31 +138,19 @@ $env:SCOOP='D:\Scoop'
 [environment]::setEnvironmentVariable('SCOOP',$env:SCOOP,'User')
 iwr -useb get.scoop.sh | iex
 
+
 # 添加国内 bucket
 scoop bucket add scoop-cn https://github.com/duzyn/scoop-cn
-# 删除 bucket
-scoop bucket rm scoop-cn
-# 列出 bucket
-scoop bucket list
+scoop bucket rm scoop-cn       # 删除 bucket
+scoop bucket list              # 列出 bucket
+scoop update -a                # 更新所有程序
+scoop status                   # 查看状态
+scoop cache rm -a              # 删除缓存
+scoop cleanup -a               # 删除所有旧版本
+scoop uninstall scoop          # 卸载 Scoop
 
-# 更新所有程序
-scoop update -a
-
-# 查看状态
-scoop status
-
-# 配置 scoop
+scoop config name value        # 配置 scoop
 # 配置文件路径 ~/.config/scoop/config.json
-scoop config name value
-
-# 删除缓存
-scoop cache rm -a
-
-# 删除所有旧版本
-scoop cleanup -a
-
-# 卸载 Scoop
-scoop uninstall scoop
 ```
 
 
@@ -165,20 +159,23 @@ scoop uninstall scoop
 
 ## Zotero
 
-- 文献管理软件，可通过插件保存网页中的文献，也可直接导入文献文件；
-- 可实现文献、文献中的批注云同步（需找到合适的同步盘软件，如坚果云，InfiniCLOUD 等，推荐使用后者）；
-- 插件生态很好，比 EndNote 好用很多。
+- 文献管理软件，可通过插件保存网页中的文献，也可直接导入文献文件
+
+- 可实现文献、文献中的批注云同步（需找到合适的 WebDAV 同步盘软件，如坚果云，InfiniCLOUD 等，推荐使用后者）
+
+- 插件生态很好，比 EndNote 好用很多
 
 - Zotero 文献存储路径修改（默认 C 盘）：[Zotero更改储存路径&迁移文件 - 知乎](https://zhuanlan.zhihu.com/p/478035708)
 
 - 文献云同步：通过 WebDAV，主要有 infini-cloud 和坚果云：[如何在Zotero中设置webdav连接到坚果云？ - 坚果云帮助中心](https://help.jianguoyun.com/?p=3168)、[Zotero × Logseq - 有意栽花花满枝](https://blog.hjroyal.top/posts/tools/2023-04-zotero_logseq/)
 
-```text
-toi.teracloud.jp/dav
+```bash
+toi.teracloud.jp/dav       # 可能会变
 dav.jianguoyun.com/dav
 ```
 
-- Zotero 插件：[plugins [Zotero Documentation]](https://www.zotero.org/support/plugins)、[文献管理软件Zotero常用插件安装及配置使用\_zotero插件\_qq\_43309940的博客-CSDN博客](https://blog.csdn.net/qq_43309940/article/details/117126357)
+- Zotero 插件推荐：
+    - [文献管理软件Zotero常用插件安装及配置使用\_zotero插件\_qq\_43309940的博客-CSDN博客](https://blog.csdn.net/qq_43309940/article/details/117126357)
 
 - Zotero style 插件安装后会导致软件很卡
 
@@ -191,8 +188,8 @@ dav.jianguoyun.com/dav
 ## Notion
 
 - 跨平台同步的笔记软件；也有网页版，但网页版的体验不如客户端，很卡
-- 可以查看每一个页面的内容更新情况（页面右上角的时钟图标）
-- Notion 可以用教育邮箱使用教育版
+- 可查看每一个页面的内容更新情况（页面右上角的时钟图标）
+- Notion 可用教育邮箱使用教育版
 - 不可以改变图片大小
 - task list 没有快捷键
 
@@ -208,7 +205,7 @@ dav.jianguoyun.com/dav
 
 ### 快捷键
 
-```text
+```bash
 # + Space         # 一级标题；其他类推
 " + Space         # 引用
 > + Space         # toggle list

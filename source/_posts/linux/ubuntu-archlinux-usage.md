@@ -36,16 +36,18 @@ password:
     - `EFI` - UEFI 固件用来存储 EFI 应用程序和驱动程序；建议 100MB 到 500MB（一般该分区已设置）
 - 安装完成后，系统会提示拔掉 U 盘
 
-注：**双系统没想象中的好用**
+- 注意事项：
+    - **双系统没想象中的好用**
+    - Linux 中网卡、显卡驱动容易出问题
 
 
 ---
 
 ### 基础设置
 
-参考：
+- 参考：
+    - [ubuntu20.04全新配置 - 我是谁](https://yuhldr.github.io/posts/30877.html)
 
-- [ubuntu20.04全新配置 - 我是谁](https://yuhldr.github.io/posts/30877.html)
 - Ubuntu 配置工具（感觉一般）：[Omakub — An Omakase Developer Setup for Ubuntu 24.04 by DHH](https://omakub.org/)
 
 ---
@@ -74,7 +76,7 @@ sudo apt update && sudo apt upgrade
 
 #### 安装显卡驱动
 
-Softwares & Update - Additional Drivers - Additional Drivers - 选择其中一个 NVIDIA driver
+- Softwares & Update - Additional Drivers - Additional Drivers - 选择其中一个 NVIDIA driver
 
 
 ---

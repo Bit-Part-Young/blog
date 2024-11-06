@@ -512,6 +512,7 @@ url = https://user:token@gitee.com/user/repo.git
 ### Gitee 与 GitHub、GitLab 之间互相同步
 
 - Gitee 可以直接从 GitHub 和 GitLab 中导入 repo
+
 - 参考：
     - [仓库镜像管理（Gitee<->Github 双向同步） - Gitee 产品文档](https://help.gitee.com/repository/settings/sync-between-gitee-github)
     - [Gitlab、Github、Gitee之间的代码同步\_gitea 和gitee能同步吗\_李·逍遥的博客-CSDN博客](https://blog.csdn.net/lianwen1314/article/details/106384595)
@@ -521,9 +522,7 @@ url = https://user:token@gitee.com/user/repo.git
 
 ### Git LFS
 
-Git LFS(Git Large File Storage)：
-
-- GitHub 推出的大文件存储服务，让 Git 只保存二进制文件的 hash，而二进制文件将会存在 Git LFS 服务器中。以减小 Git 仓库体积，加快仓库的克隆和拉取
+- Git LFS(Git Large File Storage)：GitHub 推出的大文件存储服务，让 Git 只保存二进制文件的 hash，而二进制文件将会存在 Git LFS 服务器中。以减小 Git 仓库体积，加快仓库的克隆和拉取
 
 - GitHub 的免费存储空间为 1G，限带宽 1GB/月，超过需升级；Gitee 只对付费企业开放
 
@@ -560,6 +559,7 @@ git push --force             # 强制推送
 ### git-filter-repo
 
 - Git 历史重写工具
+
 - 执行 `git filter-repo` 命令后，会改变 `.git/config` 文件，只保留 `[core]` 参数信息，需重新添加远程 repo url 并强制推送
 
 ```bash

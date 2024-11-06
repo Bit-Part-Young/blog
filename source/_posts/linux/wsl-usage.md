@@ -66,14 +66,14 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 ### 个人 WSL 开发配置
 
 - 确定 WSL 版本（1 or 2），下载合适的发行版（不同版本的 Ubuntu，WSLArch 等），设置账号和密码
-- 确认一些基本程序是否已安装，如 git、wget、curl 等；若未安装，需手动安装
-- `git clone https://gitee.com/yangsl306/dotfiles.git`，进行配置
-    - 换源（Ubuntu 为 `/etc/apt/sources.list`，WSLArch 等）
-    - git 及 多账号 ssh 配置（`~/.gitconfig`、`~/.ssh/config`、`id_rsa.github`、`id_rsa.gitee`）
-    - 安装、配置 zsh（`.zshrc`）
-    - 配置 vim
-    - 安装 Miniconda3，换源（`.condarc`）
-    - 若安装的是 WSL 2，进行网络代理设置（`wslproxy`）
+- 若安装的是 WSL 2，进行网络代理设置
+- 基础程序安装（如 Git、wget、curl 等）
+- 配置步骤
+    - 换源
+    - Git 及多账号 ssh 配置
+    - 安装、配置 zsh
+    - 配置 Vim
+    - Python 环境搭建
 
 
 ---
@@ -82,7 +82,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 - 参考：[Move WSL to another drive in Windows - Anmup HD](https://anmup.com.np/programming/move-wsl-to-another-drive-in-windows/)
 
-- WSL 默认安装在 C 盘，若安装 Intel oneAPI 和 texlive 等体积较大的软件时，会占用 C 盘较多的空间，因此需进行迁移
+- WSL 默认安装在 C 盘，若安装 Intel oneAPI 和 Tex Live 等体积较大的软件时，会占用 C 盘较多的空间，强烈建议迁移
 
 - WSL 迁移到非 C 盘后，MobaXterm 连接登录 WSL 会偶尔出现一次无法成功，需多次尝试的情况，总体影响不大
 
@@ -102,35 +102,16 @@ wsl --import Ubuntu-22.04 "D:\Ubuntu-2204" "D:\Ubuntu-2204.tar"
 
 ### WSL 2 网络代理
 
+- 参考：
+    - [WSL 2 的一些网络访问问题 - 野声](https://cat.ms/posts/wsl2-network-tricks/)
+    - [WSL 2 中访问宿主机 Windows 的代理 - ZingLix Blog](https://zinglix.xyz/2020/04/18/wsl2-proxy/)
+    - [WSL 2 中的网络访问问题](https://dowww.spencerwoo.com/2-cli/2-3-cli-tools.html#wsl-2-%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98)
+
 - Windows 和 WSL 2 算是在同一个局域网内，由 Hyper-V 创建；WSL 2 使用的网络适配器是 'Default Hyper-V Switch'，该适配器每次重启都会被删除重建（WSL 2 IP 不固定的原因）
-- [WSL 2 的一些网络访问问题 - 野声](https://cat.ms/posts/wsl2-network-tricks/)
 
-- [WSL 2 中访问宿主机 Windows 的代理 - ZingLix Blog](https://zinglix.xyz/2020/04/18/wsl2-proxy/)
-
-- [WSL 2 中的网络访问问题](https://dowww.spencerwoo.com/2-cli/2-3-cli-tools.html#wsl-2-%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98)
-
-
----
-
-流程：
-
-- Windows 主机上的网络代理软件**允许局域网访问**
-- 获取 Windows 主机 IP
-- 设置 WSL 2 的代理
-- shell 脚本：[proxywsl · Falling Slowly/dotfiles - Gitee.com](https://gitee.com/yangsl306/dotfiles/blob/main/proxywsl)；[proxy.sh](https://github.com/Roy-Kid/Personal-scripts-and-configs/blob/master/proxy.sh)
-
-
----
-
-v2rayN 代理客户端允许局域网访问：设置 - 参数设置 - Core: 基础设置 - 勾选允许来自局域网的连接
-
-```text
-端口：本地:[socks:10808] | [http(系统代理):10809] 局域网:[socks:10810] | [http:10811]
-```
-
----
-
-较新版本的 WSL 2 网络代理设置：打开或创建 wsl 配置文件（位置：`%USERPROFILE%\.wslconfig`），添加以下内容
+- 方法 1：较新版本的 WSL 2 网络代理设置：
+    - [wsl: 检测到 localhost 代理配置，但未镜像到 WSL。NAT 模式下的 WSL 不支持 localhost 代理。 · Issue #10753 · microsoft/WSL · GitHub](https://github.com/microsoft/WSL/issues/10753)
+    - 打开或创建 WSL 配置文件（位置：`%USERPROFILE%\.wslconfig`），添加以下内容
 
 ```bash
 [experimental]
@@ -141,7 +122,16 @@ firewall=true
 autoProxy=true
 ```
 
->[wsl: 检测到 localhost 代理配置，但未镜像到 WSL。NAT 模式下的 WSL 不支持 localhost 代理。 · Issue #10753 · microsoft/WSL · GitHub](https://github.com/microsoft/WSL/issues/10753)
+- 方法 2：
+    - Windows 主机上的网络代理软件**允许局域网访问**
+        - v2rayN 代理客户端允许局域网访问：设置 -- 参数设置 -- Core: 基础设置 -- 勾选允许来自局域网的连接
+    - 获取 Windows 主机 IP
+    - 设置 WSL 2 的代理
+    - Shell 脚本：[proxywsl · Falling Slowly/dotfiles - Gitee.com](https://gitee.com/yangsl306/dotfiles/blob/main/proxywsl)；[proxy.sh](https://github.com/Roy-Kid/Personal-scripts-and-configs/blob/master/proxy.sh)
+
+```bash
+端口：本地:[socks:10808] | [http(系统代理):10809] 局域网:[socks:10810] | [http:10811]
+```
 
 
 ---
@@ -197,17 +187,15 @@ ubuntu config --default-user <username>
 default=myuser
 ```
 
----
-
-- WSL 可被分配的最大内存：WSL 2 在可用内存允许的情况下可以分配更大的内存量，而 WSL 1 的可用内存通常受到一定限制，约为 4 GB
-    - [WSL2高级使用 - 我是谁](https://yuhldr.github.io/posts/2411.html)
+- WSL 可被分配的最大内存：WSL 2 在可用内存允许的情况下可以分配更大的内存量，而 WSL 1 的可用内存通常受到一定限制，约为 4 GB；[WSL2高级使用 - 我是谁](https://yuhldr.github.io/posts/2411.html)
 
 ```bash
+# 好像没效果
 [wsl2]  
 # 自定义 Linux 内核的绝对路径  
-kernel=<path>  
+kernel=<path>                  # <path> 须是带反斜杠的绝对路径  
 # 给 WSL 2 虚拟机分配的内存大小  
-memory=<size>  
+memory=<size>                  # <size> 须在后面加上单位，如 GB、MB
 # 为 WSL 2 虚拟机分配的处理器核心数量  
 processors=<number>  
 # 为 WSL 2 虚拟机分配的交换空间，0 表示没有交换空间  
@@ -216,7 +204,4 @@ swap=<size>
 swapFile=<path>  
 # 是否允许将 WSL 2 的端口转发到主机（默认为 true）  
 localhostForwarding=<bool>  
-  
-# `<path>` 必须是带反斜杠的绝对路径，例如 `C:\\Users\\kernel`  
-# `<size>` 必须在后面加上单位，例如 8 GB 或 512 MB
 ```

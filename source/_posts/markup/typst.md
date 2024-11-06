@@ -21,9 +21,9 @@ password:
 
 ## 介绍
 
-Typst 是一门用于文档排版的标记语言。
+- Typst 是一门用于文档排版的标记语言
 
-Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建简单，详细使用体验，参见：[Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
+- Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建简单，详细使用体验，参见：[Typst 中文用户使用体验 - OrangeX4 - 知乎](https://www.zhihu.com/question/591143170/answer/3304601296)
 
 
 ```rust
@@ -78,11 +78,12 @@ Typst 优势：语法简单、编译速度快（毫秒级别）、环境搭建�
 ## 安装
 
 - 二进制文件： [Releases · typst/typst](https://github.com/typst/typst/releases)
+
 - 包管理器：
 
 ```bash
 brew install typst         # macOS
-scoop install main/typst   # Win
+scoop install main/typst   # Windows
 ```
 
 - 在线编辑器：[Web - Typst](https://typst.app/)

@@ -22,25 +22,21 @@ password:
 
 ## 介绍
 
-命令行工具安装方式：
+- 命令行工具安装方式：
+    - 官网下载二进制文件
+    - 包管理器
+        - Linux：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）
+        - Windows：Scoop、Winget、Chocolatey 等
+        - macOS：Homebrew
+        - 程序端：Python（pip、pipx、conda），Rust（cargo），Nodejs（npm），Go（go）
+    - 从 [webinstall.dev](https://webinstall.dev/) 网站安装（后三者可以在无 root 权限情况下安装）
+    - 源码编译安装
 
-- 官网下载二进制文件
-- 包管理器
-    - Linux 端：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）
-    - Windows 端：scoop、winget 等
-    - Mac 端：brew
-    - 程序端：Python（pip、pipx、conda），Rust（cargo），Nodejs（npm），Go（go）
-- 从 [webinstall.dev](https://webinstall.dev/) 网站安装（后三者可以在无 root 权限情况下安装）
-- 源码编译安装
-
----
-
-参考资料：
-
-- [命令行常用工具的替代品 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2022/01/cli-alternative-tools.html)
-- [GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
-- 有意思/搞笑的 GitHub repo：[GitHub - terremoth/awesome-hilarious-repos: Awesome hilarious github repositories](https://github.com/terremoth/awesome-hilarious-repos)
-- [My Favorite CLI Tools](https://switowski.com/blog/favorite-cli-tools/)
+- 参考资料：
+    - [命令行常用工具的替代品 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2022/01/cli-alternative-tools.html)
+    - [GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
+    - 有意思/搞笑的 GitHub repo：[GitHub - terremoth/awesome-hilarious-repos: Awesome hilarious github repositories](https://github.com/terremoth/awesome-hilarious-repos)
+    - [My Favorite CLI Tools](https://switowski.com/blog/favorite-cli-tools/)
 
 
 
@@ -163,9 +159,9 @@ export SHELL=`which zsh`
 
 ### 配置
 
-ohmyzsh 介绍：插件丰富；丰富的 Git 命令 alias 及 Git 状态可视化
+- ohmyzsh 介绍：插件丰富；丰富的 Git 命令 alias 及 Git 状态可视化
 
-zimfw（类似 ohmyzsh）：[GitHub - zimfw/zimfw: Zim: Modular, customizable, and blazing fast Zsh framework](https://github.com/zimfw/zimfw)
+- zimfw（类似 ohmyzsh）：[GitHub - zimfw/zimfw: Zim: Modular, customizable, and blazing fast Zsh framework](https://github.com/zimfw/zimfw)
 
 ---
 
@@ -226,7 +222,9 @@ p10k configure  # 配置 powerlevel10k
 ### 插件
 
 - ohmyzsh 有用的内置与外置插件：[Plugins · ohmyzsh/ohmyzsh Wiki · GitHub](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins)
+
 - [GitHub - magicmonty/bash-git-prompt: An informative and fancy bash prompt for Git users](https://github.com/magicmonty/bash-git-prompt)
+
 - zsh tips tricks examples: [ZSH-LOVERS(1)](https://grml.org/zsh/zsh-lovers.html)
 
 ```bash
@@ -272,10 +270,6 @@ bash-snippets                  # 有 cheat 等可执行命令
 
 - 添加 `~/.bash_profile` 文件（内容可为空），可使登录时不直接使用 zsh
 
-```bash
-export PATH=$PATH:$HOME/bin
-```
-
 - 超算 Pi 更换操作系统后， zsh 无需重新编译，只是缺少了部分动态库如 `libncursesw.so.5` 和 `libtinfo.so.5`，可从 conda 环境中 lib 目录里找到创建其符号链接，在 `~/.bashrc` 文件中添加动态库 `PATH`
 
 ```bash
@@ -290,6 +284,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/XXX/lib
 ---
 
 ## 数据处理相关命令行工具
+
+- 参考：
+    - [GitHub - multiprocessio/dsq: Commandline tool for running SQL queries against JSON, CSV, Excel, Parquet, and more.](https://github.com/multiprocessio/dsq)
+    - [GitHub - jeroenjanssens/data-science-at-the-command-line: Data Science at the Command Line](https://github.com/jeroenjanssens/data-science-at-the-command-line)
+    - [100+ Command Line Tools for Data Visualization / Alex Garcia - Observable](https://observablehq.com/@asg017/100-command-line-tools-for-data-viz)
 
 - CSV 命令行工具：csvkit（Python）
 
@@ -323,12 +322,6 @@ yj -jy < package.json    # JSON 转 YAML
 yj -yj < deploy.yml      # YAML 转 JSON
 yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 ```
-
-- [GitHub - multiprocessio/dsq: Commandline tool for running SQL queries against JSON, CSV, Excel, Parquet, and more.](https://github.com/multiprocessio/dsq)
-
-- [GitHub - jeroenjanssens/data-science-at-the-command-line: Data Science at the Command Line](https://github.com/jeroenjanssens/data-science-at-the-command-line)
-
-- [100+ Command Line Tools for Data Visualization / Alex Garcia - Observable](https://observablehq.com/@asg017/100-command-line-tools-for-data-viz)
 
 
 

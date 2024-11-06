@@ -464,6 +464,7 @@ pymatgen 核心模块
 from pymatgen.core.structure import Structure
 
 # 属性
+index                    # 原子位点序号
 num_sites                # 原子数；int
 composition.num_atoms    # 原子数；float
 n_elems                  # 元素数
@@ -484,6 +485,9 @@ remove_species()         # 删除元素种类
 remove_sites()           # 删除原子位点
 replace_species()        # 替换元素种类
 translate_sites()        # 移动原子位点
+get_neighbors()          # 给定半径，获取给定原子位点的近邻原子
+get_all_neighbors()      # 给定半径，获取所有原子位点的近邻原子
+get_distance()           # 获取两个原子位点间的距离
 get_space_group_info()   # 获取空间群信息
 from_spacegroup()        # 根据空间群构建结构
 from_prototype()         # 通过原型结构快速构建结构
@@ -493,6 +497,10 @@ to_primitive()           # 获取原胞；同上
 interpolate()            # 在两个构型间插值，用于 NEB 计算
 sort()                   # 排序（不常用）
 get_sorted_structure()   # 排序（不常用）
+
+
+# 获取 Structure 某个元素的原子位点序号
+indices_nb = [i for i, site in enumerate(structure) if site.species_string == "Nb"]
 ```
 
 

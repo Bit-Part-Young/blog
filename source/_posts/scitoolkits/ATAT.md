@@ -107,6 +107,8 @@ str2cif < str.out > str.cif
 enum.x input.file
 ```
 
+- [GitHub - FlorianPf/ATAT\_VASP: Some of the python scripts I wrote whilst working on my bachelor thesis.](https://github.com/FlorianPf/ATAT_VASP)
+
 
 ---
 
