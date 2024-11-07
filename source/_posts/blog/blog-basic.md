@@ -18,6 +18,10 @@ password:
 
 # 博客搭建基础
 
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202405191051807.png)
+
+---
+
 ## 网络基础知识
 
 - [lec6：网络/网站基础知识概述 - 2023秋冬实用技能拾遗](https://slides.tonycrane.cc/PracticalSkillsTutorial/2023-fall-ckc/lec6/)

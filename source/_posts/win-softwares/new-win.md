@@ -150,25 +150,27 @@ scoop install smiley-sans       # 得意黑
 
 ## 设置
 
+- [Windows 11系统终极优化指南](https://zhuanlan.zhihu.com/p/693407803)
+
 - [接纳不等于忍受，为舒服使用 Windows 11 的若干优化调整记录 - 少数派](https://sspai.com/post/92064)
 
 - 将默认桌面、视频、照片、音乐目录路径迁移出 C 盘
 
-- 浏览器下载路径迁移出 C 盘
+- Chrome、Edge 浏览器下载路径迁移出 C 盘
 
-- 关闭小组件、任务视图：设置 - 个性化 - 任务栏项
+- 关闭小组件、任务视图：设置 -- 个性化 -- 任务栏项
 
-- 任务栏中的搜索图标过长：设置 - 个性化 - 任务栏项，搜索，选择仅 “搜索” 图标
+- 任务栏中的搜索图标过长：设置 -- 个性化 -- 任务栏项，搜索，选择仅 “搜索” 图标
 
-- 关闭资源管理器最近使用的文件：设置 - 个性化 - 开始
+- 关闭资源管理器最近使用的文件：设置 -- 个性化 -- 开始
 
-- 关闭资源管理器常用文件夹：打开资源管理器 - 主文件夹 - 点击三个点图标，选项 - 常规，隐私，取消勾选“显示常用文件夹”和“最近使用的文件”
+- 关闭资源管理器常用文件夹：资源管理器 -- 主文件夹 -- 点击三个点图标，选项 -- 常规，隐私，取消勾选 “显示常用文件夹” 和 “最近使用的文件”
 
 - 关闭搜索中的文字热门搜索
 
 - 删除桌面回收站图标
 
-- 关闭 Xbox 开机自启动：[专治疑难系列 - 解决win11中xbox开机自启问题\_Passerby\_Wang的博客-CSDN博客](https://blog.csdn.net/Passerby_Wang/article/details/129836176)
+- 关闭部分应用开机自启动（如 Xbox、OneDrive、OneNote 等）：任务管理器 -- 启动应用
 
 - 外接键盘 Windows 键失效：有些键盘（如联想薄膜键盘）右上角有 Windows 锁定键，可以切换 Windows 键的开启和关闭
 
@@ -217,17 +219,11 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 
 - Microsoft 365 无法删除里面的应用
 
+- X-Rite Color Assistant 是联想的色彩管理软件
+
 - [ ] 如何关闭 Office 模板（去除其广告）
 
 - [ ] Bose qc45 两侧如何清理
-
-- VSCode 清理
-
-```bash
-# 占用体积较大的目录
-AppData\Local\Temp\vscode-remote-wsl
-\AppData\Roaming\Code\Service Worker
-```
 
 - 删除 2345 王牌输入法：`win + R`，输入 `regedit`，搜索以下内容并删除；[如何彻底删除2345输入法？ - 知乎](https://www.zhihu.com/question/37679187)
 

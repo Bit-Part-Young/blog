@@ -24,7 +24,7 @@ password:
 
 ## 介绍
 
-文本编辑器。
+- Linux 常用文本编辑器
 
 
 ---
@@ -38,6 +38,7 @@ password:
 - [GitHub - yangyangwithgnu/use\_vim\_as\_ide: use vim as IDE](https://github.com/yangyangwithgnu/use_vim_as_ide)
 - [Eric Wong / Learn Vim Zh Cn · GitLab](https://gitlab.com/wsdjeg/Learn-Vim_zh_cn)
 - [GitHub - alexzhang1030/full-keyboard: 让你在日常开发中全键盘操作](https://github.com/alexzhang1030/full-keyboard)
+
 
 
 ---
@@ -386,6 +387,7 @@ endif
 ### 安装
 
 - 安装文档：[neovim/INSTALL.md at master · neovim/neovim · GitHub](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+
 - 安装二进制版本：[Releases · neovim/neovim](https://github.com/neovim/neovim/releases/)
 
 ```bash

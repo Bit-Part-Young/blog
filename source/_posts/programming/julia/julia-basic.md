@@ -22,9 +22,11 @@ password:
 
 ## 介绍
 
+- 科学计算编程语言
+- 非常灵活
+
 默认环境：`~/.julia/environments/v1.9/`
 
-科学计算编程语言
 
 `===`：完全相等性比较，还需要具有相同的内存地址
 
@@ -49,14 +51,21 @@ typeof()
 ### 参考资料
 
 - 教程：[Julia语言入门](https://www.math.pku.edu.cn/teachers/lidf/docs/Julia/html/_book/index.html)
+
 - Julia 与其他语言的差异：[与其他语言的显著差异 · Julia中文文档](https://cn.julialang.org/JuliaZH.jl/latest/manual/noteworthy-differences/#Noteworthy-differences-from-Python)
+
 - Julia 速查表：[Julia 备忘清单 & julia cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/julia.html)
+
 - [GitHub - m3g/JuliaNotes.jl: A collection of examples and explanations about Julia](https://github.com/m3g/JuliaNotes.jl)
+
 - Julia 微积分笔记：[Calculus with Julia](https://jverzani.github.io/CalculusWithJuliaNotes.jl/)
-- [GitHub - RoyiAvital/Julia100Exercises: A set of introductory exercises for Julia. Based on \[100 NumPy Exercises\](https://github.com/rougier/numpy-100).](https://github.com/RoyiAvital/Julia100Exercises)
+
+- [GitHub - RoyiAvital/Julia100Exercises: A set of introductory exercises for Julia. Based on \ [100 NumPy Exercises\](https://github.com/rougier/numpy-100).](https://github.com/RoyiAvital/Julia100Exercises)
+
 - [GitHub - Leticia-maria/Introduction.jl](https://github.com/Leticia-maria/Introduction.jl)
 
 - [Julia Tips - My digital garden](https://sosiristseng.github.io/julia/)
+
 - [Modern Julia Workflows](https://modernjuliaworkflows.github.io/)
 
 

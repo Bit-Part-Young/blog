@@ -1779,6 +1779,7 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
     - [GitHub - bocklund/resume: Brandon Bocklund Resume](https://github.com/bocklund/resume) （适合学术用）
 
 - 国自然基金 LaTeX 模板：
+    - [GitHub - huangwb8/ChineseResearchLaTeX: 中国科研常用LaTeX模板集](https://github.com/huangwb8/ChineseResearchLaTeX)
     - [GitHub - Ruzim/NSFC-application-template-latex: 国家自然科学基金申请书正文（面上项目）LaTeX 模板（非官方）](https://github.com/Ruzim/NSFC-application-template-latex)
     - 青基：[GitHub - QijingZheng/QZ\_ExcellentYoungScientistsFund\_2024](https://github.com/QijingZheng/QZ_ExcellentYoungScientistsFund_2024)
     - [NSFC - overleaf 版](https://www.overleaf.com/project/6372028b9049e7ce5ea603fc)

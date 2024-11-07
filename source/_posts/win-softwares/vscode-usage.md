@@ -1,13 +1,13 @@
 ---
-title: VSCode 常用插件
+title: VSCode 使用
 top: false
 pin: false
 cover:
 toc: true
 mathjax: true
 math: true
-summary: VSCode 常用插件
-description: VSCode 常用插件
+summary: VSCode 使用
+description: VSCode 使用
 tags:
   - VSCode
 categories:
@@ -17,13 +17,13 @@ abbrlink: 189254
 password:
 ---
 
-# VSCode 常用插件
+# VSCode 使用
 
 ## 介绍
 
-- [GitHub - vscodecool/vscodecool.github.io: 《VS Code入门教程》笔记](https://github.com/vscodecool/vscodecool.github.io)
-
 - 代码编辑器，有非常丰富的插件
+
+- VSCode 连接远程服务器，点击打开的文件，会立马跳转到相应的目录中，文件定位相比 MobaXterm 更便捷迅速
 
 - 命令行启动
 
@@ -32,7 +32,8 @@ code             # VSCode
 code-insiders    # VSCode Insiders
 ```
 
-- 配置：**分用户、远程设置和工作区**；配置文件中有设置但没安装的插件其命令不会有高亮
+- 配置：**分用户、远程设置和工作区**
+    - 配置文件中有设置但没安装的插件其设置不会高亮
     - 打开配置文件 `settings.json`：命令面板 -- 搜索 “Open Settings”
     - 打开 GUI：设置菜单
 
@@ -42,7 +43,8 @@ code-insiders    # VSCode Insiders
 
 - VSCode 中类、函数、方法、属性等的图标：[IntelliSense in Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions)
 
-- VSCode 连接远程服务器，点击打开的文件，会立马跳转到相应的目录中，文件定位相比 MobaXterm 更便捷迅速
+- 参考资料：
+    - [GitHub - vscodecool/vscodecool.github.io: 《VS Code入门教程》笔记](https://github.com/vscodecool/vscodecool.github.io)
 
 
 
@@ -70,7 +72,10 @@ Crtl + 点击图片          # 缩小图片
 ## 通用设置
 
 - 终端字体设置：[Change terminal font family to nerd font · Issue #81497 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/81497)
+
 - 删除行尾的多余空白字符（尾随空白）：[visual studio code - Remove trailing spaces automatically or with a shortcut - Stack Overflow](https://stackoverflow.com/questions/30884131/remove-trailing-spaces-automatically-or-with-a-shortcut)
+
+- 关掉 VSCode 的声音：[How to turn off (or on) sounds from Visual Studio Code? - Stack Overflow](https://stackoverflow.com/questions/54173462/how-to-turn-off-or-on-sounds-from-visual-studio-code)
 
 ```json
 {
@@ -84,6 +89,8 @@ Crtl + 点击图片          # 缩小图片
     "window.zoomLevel": 0.5,
     // 删除尾随空白
     "files.trimTrailingWhitespace": true,
+    // 关掉 VSCode 的声音
+    "editor.accessibilitySupport": "off",
 }
 ```
 
@@ -102,6 +109,7 @@ Crtl + 点击图片          # 缩小图片
 - 配置
 
 ```json
+{
     // Vim 配置
     "vim.leader": "<space>",
     "vim.surround": true,
@@ -142,9 +150,8 @@ Crtl + 点击图片          # 缩小图片
             "after": ["^"]
         },
     ],
+}
 ```
-
----
 
 - easymotion 用法：
 
@@ -153,11 +160,9 @@ Crtl + 点击图片          # 缩小图片
 <leader><leader> s <char>  # 查找字符
 ```
 
----
-
 - surround 用法：
-  - `"test"` with cursor inside quotes type `cs"'` to end up with `'test'`
-  - `"test"` with cursor inside quotes type `ds"` to end up with `test`
+    - `"test"` with cursor inside quotes type `cs"'` to end up with `'test'`
+    - `"test"` with cursor inside quotes type `ds"` to end up with `test`
 
 
 ---
@@ -279,9 +284,9 @@ Crtl + 点击图片          # 缩小图片
 
 ## Code Server
 
->[Code Server 是什么？\_51CTO博客\_code server](https://blog.51cto.com/phyger/5156445)
+- [GitHub - coder/code-server: VS Code in the browser](https://github.com/coder/code-server)
 
->[GitHub - coder/code-server: VS Code in the browser](https://github.com/coder/code-server)
+- [Code Server 是什么？\_51CTO博客\_code server](https://blog.51cto.com/phyger/5156445)
 
 - 浏览器或远程使用 VSCode 进行开发；服务器平台为 Linux 和 macOS，不支持 Windows；可脚本、二进制安装
 
@@ -308,14 +313,6 @@ brew services start code-server
 
 ## 相关问题
 
-- 关掉 VSCode 的声音：[How to turn off (or on) sounds from Visual Studio Code? - Stack Overflow](https://stackoverflow.com/questions/54173462/how-to-turn-off-or-on-sounds-from-visual-studio-code)
-
-```json
-{
-    "editor.accessibilitySupport": "off",
-}
-```
-
 - WSL1 无法安装插件：[Installing extensions to WSL VS Code Server gives \`EACCES: Permission Denied\` · Issue #90164 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/90164)
 
 - GitHub Copilot 无法连接服务器：[GitHub Copilot could not connect to server. Extension activation failed: "Timed out waiting for authentication provider to register" · community · Discussion #11324 · GitHub](https://github.com/orgs/community/discussions/11324)
@@ -326,7 +323,7 @@ GitHub Copilot could not connect to server. Extension activation failed: "Timed 
 
 - 扩展远程主机在过去 5 分钟内意外终止了 3 次：[vscode 扩展主机意外终止怎么办，重装好几次了\_博问\_博客园](https://q.cnblogs.com/q/94411/)
 
-- Pylance 语言服务器 crashed：[The Python Tools server crashed 5 times in the last 3 minutes. The server will not be restarted. · Issue #13679 · microsoft/vscode-python · GitHub](https://github.com/microsoft/vscode-python/issues/13679)
+- Pylance 语言服务器 Crashed：[The Python Tools server crashed 5 times in the last 3 minutes. The server will not be restarted. · Issue #13679 · microsoft/vscode-python · GitHub](https://github.com/microsoft/vscode-python/issues/13679)
 
 ```bash
 The Pylance server crashed 5 times in the last 3 minutes. The server will not be restarted. See the output for more information.
@@ -341,3 +338,11 @@ The Pylance server crashed 5 times in the last 3 minutes. The server will not be
     - 解决方法：清除相关文件缓存：进入 `C:\Users\XX\AppData\Roaming\Code`，删除 `Cache`、`CachedData`、`CachedExtensions`、`CachedExtensionVSIXs`（目录如果存在）和 `Code Cache` 内容
 
 - VSCode terminal profile 无法使用 zsh：[VSCode terminal task not using zsh profile · Issue #143061 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/143061)
+
+- VSCode 清理
+
+```bash
+# 占用体积较大的目录
+AppData\Local\Temp\vscode-remote-wsl
+\AppData\Roaming\Code\Service Worker
+```

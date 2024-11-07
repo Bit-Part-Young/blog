@@ -21,7 +21,13 @@ password:
 
 ## 介绍
 
-- Macbook Air 轻便；续航强；音响音质好；触控板功能丰富...
+- 优点：
+    - Macbook Air 轻便
+    - 续航强
+    - 屏幕、音质好
+    - 触控板功能丰富
+    - CPU 单核性能强
+    - ...
 
 - 明确 Macbook 购买机型：
     - [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
@@ -37,16 +43,28 @@ password:
 ### 参考资料
 
 - Mac 相关汇总：[GitHub - jaywcjlove/awesome-mac](https://github.com/jaywcjlove/awesome-mac)
+
 - [Mac：终极配置教程 - BLOG](https://44maker.github.io/wiki/Mac/index.html)
+
 - [GitHub - maoxiaoke/setup-a-mac-for-frontend-dev](https://github.com/maoxiaoke/setup-a-mac-for-frontend-dev)
+
 - [GitHub - nikitavoloboev/my-mac: Apps/tools I use on macOS](https://github.com/nikitavoloboev/my-mac)
-- [GitHub - serhii-londar/open-source-mac-os-apps: 🚀 Awesome list of open source applications for macOS. https://t.me/s/opensourcemacosapps](https://github.com/serhii-londar/open-source-mac-os-apps)
+
+- macOS 开源 App：[GitHub - serhii-londar/open-source-mac-os-apps](https://github.com/serhii-londar/open-source-mac-os-apps)
+
 - [GitHub - itcharge/macOS-Tips: macOS 系统的使用技巧介绍、常用软件推荐、效率工具推荐。](https://github.com/itcharge/macOS-Tips)
+
 - [Mac\_张的个人空间-Mac\_张个人主页-哔哩哔哩视频](https://space.bilibili.com/49574614)
+
 - [大洋的朝九晚十的个人空间-大洋的朝九晚十个人主页-哔哩哔哩视频](https://space.bilibili.com/33734786)
+
 - [GitHub - macdao/ocds-guide-to-setting-up-mac: OCD's Guide to Setting up Mac](https://github.com/macdao/ocds-guide-to-setting-up-mac)
+
 - [摸鱼人的 macOS 工作流 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/282518)
+
 - [小张的分享中心首页 - 飞书云文档](https://qnswkjn28n.feishu.cn/wiki/T8uJwQH4YiIy7BkHyQpczpyDnug)
+
+- macOS 内置命令行工具：[Useful built-in macOS command-line utilities](https://weiyen.net/articles/useful-macos-cmd-line-utilities)
 
 
 
@@ -1108,6 +1126,8 @@ export HOMEBREW_MACOS_VERSION=14.5
 ---
 
 ### 其他
+
+- [ ] 点击标签，不显示标记过的文件/目录
 
 - [ ] NTFS 格式的外置磁盘如何读写（默认只读）
     - 将磁盘格式化成 exFAT 格式（兼容 macOS 和 Windows，在 Windows 上会对应有隐藏的点文件）
