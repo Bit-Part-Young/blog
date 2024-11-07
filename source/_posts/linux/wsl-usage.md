@@ -35,11 +35,17 @@ password:
 ### 参考资料
 
 - WSL 问题 Q&A：[关于适用于 Linux 的 Windows 子系统的常见问题解答 | Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/faq)
+
 - WSL 开发指南：[Dev on Windows with WSL](https://dowww.spencerwoo.com/)
+
 - WSL GUI 图形化窗口：[GUI 图形化窗口 | Dev on Windows with WSL](https://dowww.spencerwoo.com/4-advanced/4-1-gui.html#%E5%AE%89%E8%A3%85-xserver-for-windows)
+
 - WSL Windows Terminal 终端设置：[GitHub - tautomer/WSL\_Windows\_Terminal](https://github.com/tautomer/WSL_Windows_Terminal)
+
 - ArchWSL：[GitHub - yuk7/ArchWSL: ArchLinux based WSL Distribution. Supports multiple install.](https://github.com/yuk7/ArchWSL)
     - ArchWSL 配置：[如何安装 - ArchWSL official documentation](https://wsldl-pg.github.io/ArchW-docs/locale/zh-CN/How-to-Setup/)
+
+- [比较 WSL 版本 - Microsoft Learn](https://learn.microsoft.com/zh-cn/windows/wsl/compare-versions)
 
 
 

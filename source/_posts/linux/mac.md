@@ -26,6 +26,7 @@ password:
 - 明确 Macbook 购买机型：
     - [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
     - [2024年苹果 MacBook 选购指南(MacBook Air/Pro 的 M123/Pro/Max/Ultra有什么区别，13/14/15/16寸怎么选)](https://www.zhihu.com/tardis/zm/art/378347974?source_id=1003)
+    - [Apple 苹果产品参数中心 / HubWeb.cn](https://hubweb.cn/)
 
 - macOS 可以运行的游戏：[Mac能玩哪些游戏？实测5种游玩方式\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Vy421a7Rd)
     - 运行 Windows 3A 游戏：使用 Game Porting Toolkit

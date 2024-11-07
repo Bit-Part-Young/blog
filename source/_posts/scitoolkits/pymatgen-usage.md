@@ -208,9 +208,9 @@ from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
 # 标准方法
 structure = Structure(
-    Lattice.cubic(4.2)
+    Lattice.cubic(4.2),
     ["Cs", "Cl"],
-    ...[[0, 0, 0], [0.5, 0.5, 0.5]],
+    [[0, 0, 0], [0.5, 0.5, 0.5]],
 )
 
 # 利用空间群对称性创建结构
@@ -429,11 +429,6 @@ MITNEBSet class
 
 - [ ] pymatgen 键长计算（并非只是简单的计算原子对之间的距离）
 
-- atomate 计算弹性常数得到的弹性张量中 POSCAR-format 与 IEEE-format 之间的区别：
-    - [Elastic Constants - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/elasticity)
-    - 有时相同，有时不同（存在旋转关系），可使用 `pymatgen.core.tensors.Tensor` 类的 `get_ieee_rotation` 得到
-    - 建议采用 POSCAR-format
-
 - [x] pymatgen 保存成 POSCAR 时，对元素类型进行排序（是否可自定义）；不方便，建议用 ase ✅ 2024-10-23
     - [x] `to()` 或 `Poscar` 类中的 `write_file()` 方法无直接排序参数 ✅ 2024-10-23
     - [x] `Structure` 类中的 `sort()` 方法中的 `key` 参数可以是哪些值（不深挖） ✅ 2024-10-23
@@ -446,7 +441,11 @@ MITNEBSet class
 
 ### pymatgen.core
 
-pymatgen 核心模块
+- pymatgen 核心模块，常用的子模块有：
+    - `structure`
+    - `sites`
+    - `lattice`
+    - `composition`
 
 ---
 

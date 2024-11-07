@@ -422,13 +422,6 @@ No READY jobs detected
 
 ## 案例
 
-### 测试
-
-WIP...
-
-
----
-
 ### 弛豫计算
 
 WIP...
@@ -445,10 +438,14 @@ WIP...
 
 ### 弹性常数计算
 
-弹性常数计算时，部分 fw 成功，部分 fizzled，它会先根据成功的那部分数据进行拟合得到弹性数据，因此需检查所有 fw 是否都成功计算完成并检验结果是否合理；修改相关错误，重新提交 fizzled fw 后（之前错误生成的输入文件会进行更新），分析那步 fw 会处于 WAITING 状态，以进行更新
+- 弹性常数计算时，若该 workflow 有部分变形的 firework 计算结束，部分 fizzled，它会先根据已计算的变形 firework 数据进行拟合得到弹性数据，因此**需检查该 workflow 中的所有 firework 是否都计算完成并检验结果是否合理**；修改相关错误，重新提交 fizzled fw 后（之前错误生成的输入文件会进行更新），分析那步 fw 会处于 WAITING 状态，以进行更新
 
+- atomate 计算弹性常数得到的弹性张量中 POSCAR-format (raw) 与 IEEE-format (ieee_format) 之间的区别：
+    - [Elastic Constants - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/elasticity)
+    - 有时相同，有时不同（存在旋转关系），可使用 `pymatgen.core.tensors.Tensor` 类的 `get_ieee_rotation()` 方法进行转换
+    - 建议采用 POSCAR-format
 
-自定义弹性常数计算 wf 保存到 db 中的 collection 的名字：
+- 自定义弹性常数计算 workflow 的弹性数据保存到 db 中的 collection 的名字
 
 ```python
 # atomate/vasp/firetasks/parse_outputs.py 中的 ElasticTensorToDb 类（修改 "elasticity" 即可）

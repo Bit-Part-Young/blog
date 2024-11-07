@@ -114,11 +114,19 @@ WIP...
 ### 工具
 
 - VSCode 插件 GitLens：增强 Git 使用
+
 - Git 操作 TUI 工具：[gitui](https://github.com/extrawurst/gitui)、[lazygit](https://github.com/jesseduffield/lazygit)
-- [onefetch](https://github.com/o2sh/onefetch)：展示本地 Git 仓库的项目详情和代码统计等内容
-- [gita](https://github.com/nosarthur/gita)：管理多个 Git repo
+
+- [onefetch](https://github.com/o2sh/onefetch)：获取本地 Git 仓库的项目详情和代码统计、仓库大小等内容
+
+- [gita](https://github.com/nosarthur/gita)：管理多个 Git 仓库
+
+- 统计本地 Git 仓库大小：[GitHub - github/git-sizer](https://github.com/github/git-sizer)
+
 - 查看 Git repo 的统计信息：[GitHub - arzzen/git-quick-stats](https://github.com/arzzen/git-quick-stats)
-- 以 SQL 的方式查询 repo 的 Git 相关内容：[Git Query language](https://amrdeveloper.github.io/GQL/)
+
+- 以 SQL 的方式查询 Git 仓库相关内容：[Git Query language](https://amrdeveloper.github.io/GQL/)
+
 - 根据 commit 记录生成 changelog：[GitHub - orhun/git-cliff: A highly customizable Changelog Generator that follows Conventional Commit specifications ⛰️](https://github.com/orhun/git-cliff)
 
 ```bash
@@ -189,7 +197,7 @@ git undo N           # 删除最新的 N 条提交记录
 
 ---
 
-- 新建 repo
+- 新建本地 Git 仓库
 
 ```bash
 git init
@@ -209,7 +217,7 @@ git push -u origin main
 
 ---
 
-- 本地已有 Git repo
+- 已有本地 Git repo
 
 ```bash
 git remote add origin git@github.com:user/repo.git

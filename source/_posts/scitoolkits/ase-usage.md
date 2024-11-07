@@ -25,6 +25,8 @@ password:
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202406022047963.png)
 
+- ASE 中可识别的文件格式：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+
 - [ASE 版本 Release notes](https://wiki.fysik.dtu.dk/ase/releasenotes.html)：查看版本更新细节
 
 - 注意事项：
@@ -413,10 +415,12 @@ spg.equivalent_sites([0.4673, 0, 0.3333])
 ### ase.io
 
 - 构型格式文件读入、写出
-- 函数 `read()` 可自动识别文件格式；ase 中可识别的文件格式（部分格式只有 `read` 或 `write` 一个函数）：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
-- 可以读取 gz 格式压缩文件，如 OUTCAR.gz
 
-[lammps的结构文件转其他格式 - 知乎](https://zhuanlan.zhihu.com/p/390968120)
+- 模块中的 `read()` 函数可自动识别文件格式；部分格式只有 `read()` 或 `write()` 一个函数
+
+- 可读取 gz 格式压缩文件，如 OUTCAR.gz
+
+- [lammps的结构文件转其他格式 - 知乎](https://zhuanlan.zhihu.com/p/390968120)
 
 - [ ] ase 中读取 VASP OUTCAR 文件，写了一个 chunk 类？
 
