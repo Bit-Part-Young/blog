@@ -238,6 +238,8 @@ mdbook serve --open
 
 - [GitHub - mazzzystar/tinymind: Tinymind - Write and sync your blog & memo data with GitHub](https://github.com/mazzzystar/tinymind)
 
+- 前后端：[GitHub - LiuYuYang01/ThriveX-Blog](https://github.com/LiuYuYang01/ThriveX-Blog)
+
 
 
 ---

@@ -114,10 +114,11 @@ xyz exyz sxyz
 -fractional             # 分数坐标；VASP 格式下
 -sort species pack      # 使相同元素在 POSCAR 中是连续的
 -fix Z                  # 固定原子坐标轴；Z/all
+-shift                  # 平移
 -substitute 1 Cu        # 原子类型替换成某种元素
 -wrap                   # 将胞外原子施加 PBC 移至胞内
--cell add 10 y          # 在 y 方向上增加 10 埃，原子位置不变；x y z 可分别写成 H1 H2 H3；作用相当于添加真空层
--center 0/com           # 移动所有原子，使其质心在 box 中心；会使位于 box 边缘的原子位点稍微往胞里靠，和 ase Atoms 的 center方法效果不同
+-cell add 10 y          # 在 y 方向上增加 10 埃，原子位置不变；x y z 可分别写成 H1 H2 H3；作用相当于添加真空层；set 设置 某个方向的长度
+-center 0/com           # 移动所有原子，使其质心在 box 中心；会使位于 box 边缘的原子位点稍微往胞里靠，和 ase Atoms 的 center 方法效果不同
 -add-atom               # 添加原子；可添加笛卡尔坐标及分数坐标（0.5*box 形式）
 
 # 常用 modes

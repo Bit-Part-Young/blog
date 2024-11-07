@@ -224,6 +224,8 @@ onlinelibrary.wiley.com
 
 - 自动切换中英文输入法：[GitHub - flyinclouds/KBLAutoSwitch: AHK自动切换中英文输入法，输入法，自动切换](https://github.com/flyinclouds/KBLAutoSwitch)
 
+- 应用窗口居中和大小重置：[GitHub - Devail1/window-center-resize: A utility application that allows you to easily center and resize windows on your desktop using customizable keyboard shortcuts.](https://github.com/Devail1/window-center-resize)
+
 ---
 
 >以下软件并未实际下载使用测试

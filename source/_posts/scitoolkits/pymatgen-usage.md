@@ -480,6 +480,7 @@ density                  # 密度
 center_of_mass           # 质心
 
 # 方法
+append()                 # 添加原子位点
 remove_species()         # 删除元素种类
 remove_sites()           # 删除原子位点
 replace_species()        # 替换元素种类

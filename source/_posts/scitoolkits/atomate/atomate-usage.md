@@ -25,7 +25,7 @@ sticky: "99"
 
 - 官网：[atomate (Materials Science Workflows) — atomate 1.0.3 documentation](https://atomate.org/)
 - 高通量计算（主要 VASP）工具；主要在队列系统（Slurm、PBS 等）上运行；自动生成、保存作业运行过程中的所有记录（输入文件、输出文件、数据提取、错误信息等）；
-- 数据保存到数据库（Mongodb）中，易于获取、查询、分析；
+- 数据保存到数据库（MongoDB）中，易于获取、查询、分析；
 - 提供了许多性质计算（静态、弛豫、弹性常数、能带、EOS、体模量、NEB）的标准 workflow，只需提供晶体结构（POSCAR），即可进行高通量计算；标准的 workflow 可以进行自定义修改；
 - 可以自定义设计新的性质计算 workflow。
 
