@@ -49,6 +49,8 @@ password:
     - [GitHub - RayeRen/acad-homepage.github.io](https://github.com/RayeRen/acad-homepage.github.io)，示例：[Yi Ren (任意) - Homepage](https://rayeren.github.io/)
     - [GitHub - sharu725/online-cv](https://github.com/sharu725/online-cv)
 
+- [GitHub - engenmt/my-eleventy-resume](https://github.com/engenmt/my-eleventy-resume)
+
 
 
 ---
@@ -142,7 +144,6 @@ http://machine_ip_address:2283/api  # 移动端登录
 - [GitHub - CodingWZL/wangzhilong.github.io: Zhilong Wang's Personal Homepage](https://github.com/CodingWZL/wangzhilong.github.io)
 
 
-
 ---
 
 ## 幻灯片 Slides
@@ -218,11 +219,12 @@ mdbook serve --open
 
 - 将 Telegram Channel 转为微博客：[GitHub - ccbikai/BroadcastChannel: Turn your Telegram Channel into a MicroBlog.](https://github.com/ccbikai/BroadcastChannel)
 
-- Astro 框架：
+- Astro 框架主题：
     - [GitHub - saicaca/fuwari: ✨A static blog template built with Astro.](https://github.com/saicaca/fuwari)
     - [GitHub - EveSunMaple/Frosti: A clean, elegant, and fast static blog template! 🚀 Developed with Astro](https://github.com/EveSunMaple/Frosti)
     - [GitHub - lin-stephanie/astro-antfustyle-theme: A customizable, feature-rich Astro theme for blog and portfolio creation.](https://github.com/lin-stephanie/astro-antfustyle-theme)
     - 活版印字：[GitHub - moeyua/astro-theme-typography: Rediscover the beauty of typography.](https://github.com/moeyua/astro-theme-typography)
+    - 简洁主题：[GitHub - cirry/astro-yi: Astro Theme YI. A simple and lightweight blog theme for Astro.](https://github.com/cirry/astro-yi)
 
 - [GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
 

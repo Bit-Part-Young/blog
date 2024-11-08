@@ -18,6 +18,10 @@ password:
 
 # deepmd 使用
 
+机器学习势预测精度用 MAE 评估
+
+[Deepmd-kit & DPGEN 使用笔记](https://zhuanlan.zhihu.com/p/362073474)
+
 离线安装
 
 给离线安装的 conda 环境添加环境名

@@ -1110,7 +1110,7 @@ Row 2                      & Data 3   & Data 4   \\
 ### 公式
 
 参考：
-
+- [通用 LaTeX 数学公式语法手册 - UinIO.com 电子技术实验室](http://www.uinio.com/Math/LaTex/)
 - [LaTeX 公式排版超级备忘录 - 各类场景全覆盖](https://mp.weixin.qq.com/s/tHdjIXvViUk-kbNnoRi7dg)
 - [LaTeX Math Wikibook](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
 

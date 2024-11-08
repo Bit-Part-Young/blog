@@ -423,6 +423,8 @@ Markdown 相关
 
 - [f2](https://github.com/ayoisaiah/f2)：文件批量重命名
 
+- 检测文件内容类型（文本、文档、代码等）：[GitHub - google/magika: Detect file content types with deep learning](https://github.com/google/magika)
+
 
 ---
 

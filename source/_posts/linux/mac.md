@@ -189,6 +189,7 @@ command + H                  # 隐藏最前方 App 的窗口（会出现在切�
 option + shift + F1/2/11/12  # 更加细致地调节音量、亮度
 option + command + 5         # 显示截图、录屏选项
 command + F3                 # 返回桌面
+fn + control + C             # 使窗口居中
 ```
 
 
@@ -1127,7 +1128,7 @@ export HOMEBREW_MACOS_VERSION=14.5
 
 ### 其他
 
-- [ ] 点击标签，不显示标记过的文件/目录
+- [ ] 在 Office 三套件中，插入图片时，显示 Finder，点击标签，不显示标记过的文件/目录；其他时候正常
 
 - [ ] NTFS 格式的外置磁盘如何读写（默认只读）
     - 将磁盘格式化成 exFAT 格式（兼容 macOS 和 Windows，在 Windows 上会对应有隐藏的点文件）

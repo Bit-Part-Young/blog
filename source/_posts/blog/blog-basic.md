@@ -46,21 +46,26 @@ localhost  # 主机名
 
 ## 博客/文档框架类型
 
->大多为静态网页
+- 大多为静态网页
 
->大部分框架都需要用到 Node.js（Hugo、Jekyll 除外）
+- 大部分框架都需要用到 Node.js（Hugo、Jekyll 除外）
 
-- Jekyll
-- Hexo
-- Vuepress
-- Vitepress
-- Hugo
-- Docusaurus（主要文档）
-- MkDocs（主要文档）
-- Sphinx（主要文档）
-- WordPress
-- Typecho
-- ...
+- 适用于博客
+    - Jekyll（GitHub Page 默认框架）
+    - Hexo
+    - Hugo
+    - WordPress
+    - Typecho
+
+- 适用于文档/教程
+    - Docusaurus
+    - MkDocs
+    - Vuepress
+    - Vitepress
+    - Sphinx
+    - mdbook
+
+[W3 搭建博客与Git操作 - 🦄&🐟](https://maindraster.github.io/train/w3_bloggit/)
 
 
 ---
@@ -182,6 +187,8 @@ localhost  # 主机名
 - [NGINX 配置 - 配置高性能、安全、稳定的NGINX服务器的最简单方法](https://www.digitalocean.com/community/tools/nginx?global.app.lang=zhCN)
 
 - [Cloudflare浑身都是宝，普通用户能白嫖多少服务？盘点cloudflare的免费功能](https://mp.weixin.qq.com/s/ComwejsgG3f8W_AVJccwGQ)
+
+- [用 Cloudflare R2 搭建图床 - 柃夏chapu](https://www.lxchapu.com/posts/build-picbed-with-cloudflare-r2/)
 
 - [使用 GitHub Actions 通过 acme.sh 自动申请 SSL 证书](https://github.com/danbao/auto-ssl)
 

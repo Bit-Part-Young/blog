@@ -291,6 +291,9 @@ git rebase feature               # 同上
     quotepath = false
 [help]
     autocorrect = 1
+[push]
+    # 自动设置远程追踪分支；git push 后可省略 origin BRANCH
+    autosetupremote = true
 ```
 
 

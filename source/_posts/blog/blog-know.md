@@ -1,7 +1,7 @@
 ---
 title: 博客须知
 top: true
-sticky: "101"
+sticky: "150"
 pin: true
 cover:
 toc: true
