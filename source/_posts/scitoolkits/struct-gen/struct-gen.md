@@ -59,6 +59,20 @@ password:
 
 [OpenMX Viewer](https://www.openmx-square.org/viewer/index.html)
 
+
+- 结构可视化
+    - MoS2：[Molybdenum Disulfide - MoS2](https://www.chemtube3d.com/ss-mos2/)
+    - 金刚石、石墨、C60、碳纳米管：[Introductory Structures Allotropes of Carbon (Diamond and Graphite) and Pentacene](https://www.chemtube3d.com/claydencarbonallotropes/)
+    - HCP：[Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/)
+    - perovskite：[CaTiO3 - Perovskite: Interactive 3D Structure](https://www.chemtube3d.com/_perovskitefinal/)
+
+
+- HCP 结构单胞原子位置有两种形式：
+    - 一个原子在原点，另一个在胞内：latgen 和 ase，(0.0 0.0 0.0)、(2/3 1/3 0.5)
+    - 两个原子均在胞内：pymatgen 和 PyXtal，(1/3 2/3 1/4)、(2/3 1/3 3/4)
+    - 两种形式无本质区别，两者可通过过周期性平移进行互相转化
+    - [Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/) 有这两种形式的可视化
+
 ---
 
 
@@ -218,24 +232,6 @@ direct
 
 ```
 
-
-```text
-graphene orthogonal
-1.0
-   4.2747013930799902    0.0000000000000000    0.0000000000000000
-   0.0000000000000000    2.4680000000000000    0.0000000000000000
-   0.0000000000000000    0.0000000000000000   15.0000000000000000
-C
-4
-direct
-   0.0000000000000000    0.0000000000000000    0.0000000000000000 C
-   0.3333333333333333    0.0000000000000000    0.0000000000000000 C
-   0.5000000000000000    0.5000000000000000    0.0000000000000000 C
-   0.8333333333333333    0.5000000000000000    0.0000000000000000 C
-
-```
-
-
 ---
 
 ### 石墨
@@ -274,37 +270,6 @@ direct
 
 ## 晶体学相关
 
-七大晶系中空间群所属范围
-三斜：1-2
-单斜：3-15
-正交：16-74
-四方：75-142
-三方：143-167
-六方：168-194
-立方：195-230
-
----
-
-
-空间群、磁性空间群
-[GitHub - DanPorter/spacegroups: Load spacegroup and magnetic spacegroup information](https://github.com/DanPorter/spacegroups)
-
-空间群：[Space Group Diagrams and Tables](http://img.chem.ucl.ac.uk/sgp/large/sgp.htm)
-
-晶体学课程内容
->[GitHub - aronwalsh/Crystallography: Online resource for introduction to crystallography at Imperial College London (MATE40004)](https://github.com/aronwalsh/Crystallography)
-
-[晶体化学](https://www.hxzxs.cn/shuju/newpage/jthx.htm)
-
-晶体结构标注：空间群符号、Pearson 符号、典型晶体结构类型（Strukturbericht designation 或 Strukturbericht type）
-
-[典型晶体结构类型 - 维基百科，自由的百科全书](https://zh.m.wikipedia.org/wiki/%E5%85%B8%E5%9E%8B%E6%99%B6%E4%BD%93%E7%BB%93%E6%9E%84%E9%A1%9E%E5%9E%8B)
-
-[七大晶系的XRD图谱（部分空间群）](https://mp.weixin.qq.com/s/fMCCPNzhQ0Fr2UNzSZPimg)
-
-二维晶体：10 种点群，17 种空间群（墙纸群 (wallpaper group)）
-
-
 - [ ] 了解 aflow prototype 中的 primitive vectors 的公式及其含义，及如何实现 unit 与 primitive 互相转变的
 
 
@@ -316,98 +281,6 @@ direct
 有序 B2/β 相晶体学信息：空间群：Pm-3m(3 的上面有横线) CsCl 原型结构
 O 相晶体学信息：晶体结构：三元有序 orthorhombic；空间群：Cmcm, oC16
 
----
-
-- 结构原型百科全书：[aflow.org/prototype-encyclopedia/](http://aflow.org/prototype-encyclopedia/)
-
-
-- 常见结构的空间群符号：
-
-|    结构    | 空间群符号 | 空间群 number |
-|:----------:|:----------:|:------------:|
-|   金刚石   |       Fd-3m     |      227        |
-|    FCC     |       Fm-3m     |     225          |
-|    BCC     |      Im-3m      |       229       |
-|    HCP     |      P6_3/mmc      |      194        |
-|    岩盐 (rocksalt NaCl)    |        Fm-3m    |              |
-| 立方钙钛矿 (perovskite CaTiO3) |      Pm-3m      |              |
-| CsCl           |      Pm-3m      |              |
-
-- 一些结构的 prototype
-
-| Prototype | Strukturbericht designation | Pearson symbol | Space group number | Space group symbol |
-|:-------: |:-------------------------: |:------------: |:----------------: |:----------------: |
-|     W     |             A2              |      cI2       |        229         |       Im-3m        |
-
-BCC：[AFLOW Prototype: A\_cI2\_229\_a](https://www.aflowlib.org/prototype-encyclopedia/A_cI2_229_a.html)
-
-FCC：[AFLOW Prototype: A\_cF4\_225\_a](https://www.aflowlib.org/prototype-encyclopedia/A_cF4_225_a.html)
-
-HCP：[AFLOW Prototype: A\_hP2\_194\_c](https://www.aflowlib.org/prototype-encyclopedia/A_hP2_194_c.html)
-
-$\beta$ -Sn：[AFLOW Prototype: A\_tI4\_141\_a](https://www.aflowlib.org/prototype-encyclopedia/A_tI4_141_a.html)
-
-Cr5B3：[AFLOW Prototype: A3B5\_tI32\_140\_ah\_cl](https://www.aflowlib.org/prototype-encyclopedia/A3B5_tI32_140_ah_cl.html)
-
-Mn5Si3：[AFLOW Prototype: A5B3\_hP16\_193\_dg\_g](https://www.aflowlib.org/prototype-encyclopedia/A5B3_hP16_193_dg_g.html)
-
-
-
-BCC
-
-$$
-\begin{align}
-\mathbf{a_1}& = -\frac{1}{2}\mathbf{x} + \frac{1}{2}\mathbf{y} + \frac{1}{2}\mathbf{z}\\
-
-\mathbf{a_2}& = \frac{1}{2}a\mathbf{x} - \frac{1}{2}a\mathbf{y} + \frac{1}{2}a\mathbf{z}\\
-
-\mathbf{a_3}& = \frac{1}{2}a\mathbf{x} + \frac{1}{2}a\mathbf{y} - \frac{1}{2}a\mathbf{z}
-
-\end{align}
-$$
-
-FCC
-
-$$
-\begin{align}
-\mathbf{a_1}& = \frac{1}{2}a\mathbf{y} + \frac{1}{2}a\mathbf{z} \\
-
-\mathbf{a_2}& = \frac{1}{2}a\mathbf{x} + \frac{1}{2}a\mathbf{z} \\
-
-\mathbf{a_3}& = \frac{1}{2}a\mathbf{x} + \frac{1}{2}a\mathbf{y} \\
-\end{align}
-
-$$
-
-HCP
-
-$$
-\begin{align}
-\mathbf{a_1}& = \frac{1}{2}a\mathbf{y} - \frac{\sqrt{3}}{2}a\mathbf{z}\\
-
-\mathbf{a_2}& = \frac{1}{2}a\mathbf{y} + \frac{\sqrt{3}}{2}a\mathbf{z}\\
-
-\mathbf{a_3}& = c\mathbf{z}\\
-\end{align}
-$$
-
----
-
-结构可视化
-
-- MoS2：[Molybdenum Disulfide - MoS2](https://www.chemtube3d.com/ss-mos2/)
-- 金刚石、石墨、C60、碳纳米管：[Introductory Structures Allotropes of Carbon (Diamond and Graphite) and Pentacene](https://www.chemtube3d.com/claydencarbonallotropes/)
-- hcp：[Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/)
-- perovskite：[CaTiO3 - Perovskite: Interactive 3D Structure](https://www.chemtube3d.com/_perovskitefinal/)
-
-
-hcp 结构原胞原子坐标有两种形式：
-
-- 一个原子在原点，另一个在胞内：latgen 和 ase，(0.0 0.0 0.0) (2/3 1/3 0.5)
-- 两个原子均在胞内：pymatgen 和 pyxtal，(1/3 2/3 1/4) (2/3 1/3 3/4)
-- 两种形式无本质区别，两者可通过过周期性平移进行互相转化
-- [Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/) 有这两种形式的可视化
-
 
 ---
 
@@ -417,15 +290,7 @@ BCC 的第 N 近邻距离：[solid state chemistry - Calculate the third and fou
 
 [BCC金属中的间隙原子及建模](https://mp.weixin.qq.com/s/49yQ1ncwI5TzFdc5jmGFfw)
 
-```text
-金刚石结构原胞原子位点位置
-0.8750000000000000 0.8750000000000000 0.8750000000000000
-0.1250000000000000 0.1250000000000000 0.1250000000000000
-
-还是
-0.0 0.0 0.0
-0.25 0.25 0.25
-```
+金刚石结构原胞原子位点位置：(0.0 0.0 0.0)、(0.25 0.25 0.25)
 
 - [ ] 原子半径没有统一值？
 
@@ -482,30 +347,3 @@ Pearson 符号
 pymatgen 中的 BCC 形成的 (111) 表面结构是菱形晶系，latgen 形成的晶系是六方晶系
 latgen 中表面的真空层距离数值设置
 latgen 可以生成界面（multi-layer）
-
-- [ ] 当 POSCAR 文件中的原子位点出现负值或大于 1 时（分数坐标），可以通过 VESTA 软件进行转换；如何通过 pymatgen 解决上述问题？
-
----
-
-借鉴该文献中的结构晶体学信息表格写法
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202406141558921.png)
-
----
-
-点缺陷
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052005978.png)
-
->[8.2: Close-packing and Interstitial Sites - Chemistry LibreTexts](https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Book%3A_Introduction_to_Inorganic_Chemistry_(Wikibook)/08%3A_Ionic_and_Covalent_Solids_-_Structures/8.02%3A_Close-packing_and_Interstitial_Sites)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014348.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014588.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014611.png)
-
-
-
-[Interstitial Sites: Size, Types, Applications, And Calculations – Materials Science & Engineering](https://msestudent.com/interstitial-sites-size-types-applications-and-calculations/)
-
-[Interstitial Sites (FCC & BCC)](https://lamma.engineering.unt.edu/sites/default/files/class8_handout_mtse_5010_2018.pdf)

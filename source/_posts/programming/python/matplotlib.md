@@ -710,8 +710,11 @@ fig.savefig()       # Figure 对象的方法
 plt.savefig()       # 更加通用的命令；适用于没有明确的 Figure 对象时
 
 
-# 插入内嵌图
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+axin = ax.inset_axes()     # 插入内嵌放大图
+# bound: [x0, y0, width, height] 左下角的坐标及宽度高度
+
+# 在主图上绘制放大区域的边框
+ax.indicate_inset_zoom(axins)
 ```
 
 

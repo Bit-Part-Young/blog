@@ -1,13 +1,13 @@
 ---
-title: 间隙原子位点
+title: 金属常见晶体结构的间隙原子位点
 top: false
 pin: false
 cover:
 toc: true
 mathjax: true
 math: true
-summary: 间隙原子位点
-description: 间隙原子位点
+summary: 金属常见晶体结构的间隙原子位点
+description: 金属常见晶体结构的间隙原子位点
 tags:
   - 材料科学
   - 点缺陷
@@ -18,41 +18,9 @@ abbrlink: 535416
 password:
 ---
 
-# 间隙原子位点
+# 金属常见晶体结构的间隙原子位点
 
 **注：以下 3 张示意图均来自教材书籍：余永宁《金属学原理》**
-
----
-
-## FCC 结构
-
-- FCC 结构间隙位置示意图
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152048016.png)
-
-- latgen 中关于 FCC 间隙原子位置的选项
-
-```bash
-# 八面体间隙（晶胞各个棱的中点）
-There are 4 octahedral interstitial sites within lattice FCC(001):
-1) [0.5 0.5 0.5]
-2) [0.5 0 0]
-3) [0 0.5 0]
-4) [0 0 0.5]
-
-# 四面体间隙（体对角线离顶点的 1/4 处）
-There are 8 tetrahedral interstitial sites within lattice FCC(001):
-5) [0.25 0.25 0.25]
-6) [0.25 0.25 0.75] 
-7) [0.25 0.75 0.25] 
-8) [0.75 0.25 0.25] 
-9) [0.75 0.75 0.75] 
-10) [0.75 0.75 0.25] 
-11) [0.75 0.25 0.75] 
-12) [0.25 0.75 0.75]
-```
-
-
 
 ---
 
@@ -60,10 +28,9 @@ There are 8 tetrahedral interstitial sites within lattice FCC(001):
 
 - BCC 结构间隙位置示意图
 
+![BCC-intestitial-sites-1.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152048455.png)
 
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152048455.png)
-
-- latgen 中关于 BCC 间隙原子位置的选项
+- latgen 中关于 BCC 间隙原子位置的选项（6 个八面体间隙 + 12 个四面体间隙）
 
 ```bash
 # 八面体间隙（扁八面体）
@@ -76,19 +43,51 @@ There are 6 octahedral interstitial sites within lattice BCC(001):
 6) [0.5 0 0.5]
 
 # 四面体间隙
-There are 12 tetrahedral interstitial sites within lattice BCC(001): 
-7) [0.25 0.5 0] 
-8) [0.75 0.5 0] 
-9) [0.5 0.25 0] 
-10) [0.5 0.75 0] 
-11) [0.5 0 0.25] 
-12) [0 0.5 0.25] 
-13) [0 0.25 0.5] 
-14) [0 0.75 0.5] 
-15) [0.25 0 0.5] 
-16) [0.75 0 0.5] 
-17) [0 0.5 0.75] 
+There are 12 tetrahedral interstitial sites within lattice BCC(001):
+7) [0.25 0.5 0]
+8) [0.75 0.5 0]
+9) [0.5 0.25 0]
+10) [0.5 0.75 0]
+11) [0.5 0 0.25]
+12) [0 0.5 0.25]
+13) [0 0.25 0.5]
+14) [0 0.75 0.5]
+15) [0.25 0 0.5]
+16) [0.75 0 0.5]
+17) [0 0.5 0.75]
 18) [0.5 0 0.75]
+```
+
+
+
+---
+
+## FCC 结构
+
+- FCC 结构间隙位置示意图
+
+![FCC-intestitial-sites-1.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152048016.png)
+
+- latgen 中关于 FCC 间隙原子位置的选项（4 个八面体间隙 + 8 个四面体间隙）
+
+```bash
+# 八面体间隙（晶胞各个棱的中点）
+There are 4 octahedral interstitial sites within lattice FCC(001):
+1) [0.5 0.5 0.5]
+2) [0.5 0 0]
+3) [0 0.5 0]
+4) [0 0 0.5]
+
+# 四面体间隙（体对角线离顶点的 1/4 处）
+There are 8 tetrahedral interstitial sites within lattice FCC(001):
+5) [0.25 0.25 0.25]
+6) [0.25 0.25 0.75]
+7) [0.25 0.75 0.25]
+8) [0.75 0.25 0.25]
+9) [0.75 0.75 0.75]
+10) [0.75 0.75 0.25]
+11) [0.75 0.25 0.75]
+12) [0.25 0.75 0.75]
 ```
 
 
@@ -114,9 +113,9 @@ direct
 ```
 
 - HCP 结构间隙位置示意图
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152049962.png)
+![HCP-intestitial-sites-1.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152049962.png)
 
-- latgen 中关于 HCP 间隙原子位置的选项
+- latgen 中关于 HCP 间隙原子位置的选项（2 个八面体间隙 + 4 个四面体间隙）
 
 ```text
 There are 2 octahedral interstitial sites within lattice HCP(001):
@@ -236,3 +235,27 @@ Direct
 26 [0.33333333 0.66666666 0.375     ] 2.055
 30 [0.83333333 0.66666666 0.375     ] 2.055
 ```
+
+
+
+---
+
+## 其他
+
+- 部分结构与 FCC 间隙的关系：[8.2: Close-packing and Interstitial Sites - Chemistry LibreTexts](https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Book%3A_Introduction_to_Inorganic_Chemistry_(Wikibook)/08%3A_Ionic_and_Covalent_Solids_-_Structures/8.02%3A_Close-packing_and_Interstitial_Sites)
+    - 萤石 CaF2：可看作 F 元素占据了 FCC 全部的四面体间隙位点
+    - 岩盐结构 NaCl：可看作 Na/Cl 元素占据了 FCC 全部的八面体间隙位点
+    - Li3B: 可看作 Li 元素占据了 FCC 全部的四面体和八面体间隙位点
+    - 闪锌矿 ZnS：可看作 S 元素占据了一半的四面体间隙位点（2 个上 +2 个下）
+
+![Structures-FCC-interstitial-sites](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202411091538417.png)
+
+- 纤锌矿型（wurtzite）是一种六方晶系，又称六方硫化锌，以纤锌矿为例，S 原子作六方密堆积，Zn 原子填充在半数的四面体空隙中（z 方向坐标值 u 是个变量，不同体系可能会有不同；ASE 可直接构建）
+
+- 三种结构的间隙位点示意图参考：[Interstitial Sites: Size, Types, Applications, And Calculations – Materials Science & Engineering](https://msestudent.com/interstitial-sites-size-types-applications-and-calculations/)
+
+![BCC-intestitial-sites-2.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014588.png)
+
+![FCC-intestitial-sites-2.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014611.png)
+
+![HCP-intestitial-sites-2.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202407052014348.png)

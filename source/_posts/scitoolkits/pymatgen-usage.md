@@ -337,28 +337,7 @@ nglview.show_ase()
 
 ---
 
-```text
-pymatgen中的HCP结构单胞的原子位置有些奇怪
-
-Structure Summary 
-Lattice abc : 3.234 3.234 5.168 
-angles : 90.0 90.0 119.99999999999999 
-volume : 46.80941006909575 
-A : 3.234 0.0 1.98025387422127e-16 
-B : -1.616999999999999 2.800726155838875 1.98025387422127e-16 
-C : 0.0 0.0 5.168 
-pbc : True True True 
-PeriodicSite: Zr (1.6170, 0.9336, 3.8760) [0.6667, 0.3333, 0.7500] 
-PeriodicSite: Zr (-0.0000, 1.8672, 1.2920) [0.3333, 0.6667, 0.2500]
-
-相当于沿(-1/3,1/3,-1/4)进行了平移
-
-FCC、六方和面心正交晶体结构只能用Gamma网格
-```
-
----
-
-- 生成元素置换后的非等同结构（借助 bsym 包）：[bsym_examples](https://nbviewer.org/github/bjmorgan/bsym/blob/master/examples/bsym_examples.ipynb)
+- 生成元素置换后的非等同结构（借助 bsym 包；适用于复杂结构，如金属间化合物）：[bsym_examples](https://nbviewer.org/github/bjmorgan/bsym/blob/master/examples/bsym_examples.ipynb)
 
 ```python
 from bsym.interface.pymatgen import unique_structure_substitutions
@@ -441,11 +420,7 @@ MITNEBSet class
 
 ### pymatgen.core
 
-- pymatgen 核心模块，常用的子模块有：
-    - `structure`
-    - `sites`
-    - `lattice`
-    - `composition`
+- pymatgen 核心模块，常用的子模块有：`structure`、`sites`、`lattice`、`composition`
 
 ---
 
@@ -453,9 +428,11 @@ MITNEBSet class
 
 - `Structure` 类继承自 `IStructure`
 
-- `Structure` 无 `wrap()` 方法，ase 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
+- 查看方法是否会直接修改对象本身：检查是否有 `in_place` 参数及注释是否有 "in place" 字样（“原地” 的意思）
 
-- 复杂结构 pymatgen（以及 vaspkit） 无法将单胞转化成原胞
+- `Structure` 无 `wrap()` 方法，ASE 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
+
+- 复杂结构 pymatgen 无法通过 `to_primitive()` 方法（以及 vaspkit）将单胞转化成原胞
 
 - `Structure` 类相关属性和方法：
 
@@ -480,6 +457,7 @@ density                  # 密度
 center_of_mass           # 质心
 
 # 方法
+make_supercell()         # 建立超胞
 append()                 # 添加原子位点
 remove_species()         # 删除元素种类
 remove_sites()           # 删除原子位点
@@ -489,8 +467,6 @@ get_neighbors()          # 给定半径，获取给定原子位点的近邻原�
 get_all_neighbors()      # 给定半径，获取所有原子位点的近邻原子
 get_distance()           # 获取两个原子位点间的距离
 get_space_group_info()   # 获取空间群信息
-from_spacegroup()        # 根据空间群构建结构
-from_prototype()         # 通过原型结构快速构建结构
 to_cell()                # 获取单/原胞
 to_conventional()        # 获取单胞；调用 to_cell()
 to_primitive()           # 获取原胞；同上
@@ -498,8 +474,23 @@ interpolate()            # 在两个构型间插值，用于 NEB 计算
 sort()                   # 排序（不常用）
 get_sorted_structure()   # 排序（不常用）
 
+# 类方法
+from_spacegroup()        # 根据空间群构建结构
+from_prototype()         # 通过原型结构快速构建结构；实际调用的是 from_spacegroup()
 
-# 获取 Structure 某个元素的原子位点序号
+# 可通过 protype 构建的结构
+bcc                      # Nb
+fcc                      # Al
+hcp                      # Mg
+fluorite, caf2           # CaF2
+antifluorite             # Na2O
+rocksalt                 # NaCl
+cscl                     # CsCl
+diamond                  # Si
+zincblende               # ZnS
+perovskite               # BaTiO3
+
+# 获取 Structure 某种元素的原子位点序号
 indices_nb = [i for i, site in enumerate(structure) if site.species_string == "Nb"]
 ```
 

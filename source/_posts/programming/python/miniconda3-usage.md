@@ -349,14 +349,15 @@ deactivate  # 退出
 
 ```bash
 # 安装
-# Linux 安装速度快
+# Linux 安装速度快，推荐
 curl -LsSf https://astral.sh/uv/install.sh | sh 
 # macOS 
 brew install uv
-# cargo 安装速度慢
+# cargo 安装速度慢，不推荐
 cargo install --git https://github.com/astral-sh/uv uv
 
 uv self update   # 更新
+uv cache prune   # 删除缓存
 ```
 
 - 使用

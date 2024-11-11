@@ -97,17 +97,27 @@ direct
 
 - 赝势文件；包含计算体系中每种元素的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 
+ - 赝势目录一般含 LDA，PBE，和 PW91 三个子目录
+
 - PBE 赝势可分为：无后缀、\_pv、\_sv、\_d 和数字后缀，即 semi-core 的 p、s、d 层电子当做价电子处理
 
 ```bash
+_sv
+_pv
+_d
+_GW           # GW 计算用赝势
+
+
+
 # 多个元素种类的 POTCAR 文件合并
 cat POTCAR.1 POTCAR.2 > POTCAR    
 
 
 # POTCAR 文件中的关键参数
-ZVAL                     # 价电子数；与 VRHFIN 及第二行内容对应
+Titel                    # 第一行，说明元素及 POTCAR 发布时间
+ZVAL                     # 价电子数；与 VRHFIN 及第二行内容对应；电荷分析时有用
 VRHFIN                   # 该元素赝势的价电子排布（在写论文的计算 method 时会用到）
-LEXCH                    # 泛涵；PE
+LEXCH                    # 泛涵；PE；若 INCAR 中不设定泛函，默认读取该参数值
 RCORE                    # 最大截止半径，单位是波尔 bohr
 ENMAX                    # cutoff 取值一般为 1.3 * ENMAX
 
@@ -204,11 +214,11 @@ END of PSCTR-controll parameters
 - 对 K 点进行收敛性测试是许多电子最小化计算的基本任务之一
 
 - 常规 K 点网格
-    - 第 1 行：注释行
-    - 第 2 行：设置 K 点数目，0 表示 k 点网格自动生成
-    - 第 3 行：K 点网格划分方式（Monkhorst-Pack 和 Gamma 方法）
+    - 第 1 行：注释行，可随便写
+    - 第 2 行：设置 K 点数目，0 表示 K 点网格自动生成
+    - 第 3 行：K 点网格划分方式（Monkhorst-Pack 和 Gamma-centerd MP 方法）；只认第一个字母，大小写均可
     - 第 4 行：3 个方向上具体的网格划分数目
-    - 第 5 行：格
+    - 第 5 行：格；一般保持 0 0 0 不变
 
 ```text
 Regular k-point mesh
@@ -218,9 +228,14 @@ Gamma          ! generate a Gamma centered mesh
 0  0  0        ! optional shift of the mesh (s_1, s_2, s_3)
 ```
 
+- Gamma-centered（以 Gamma 点为中心生成网格） 只是 MP 方法的一种特殊情况
+
 - 不同晶系下的 K 点生成方式选择：[Symmetry reduction of the mesh - KPOINTS - VASP Wiki](https://www.vasp.at/wiki/index.php/KPOINTS#Symmetry_reduction_of_the_mesh)
     - Monkhorst-Pack 网格的收敛速度可能快于 Γ- 中心网格；同时需注意避免使用 Monkhorst-Pack 网格破坏对称性
-    - 对于 HCP、面心立方结构，K 点生成方式采用 Gamma
+    - 对于 HCP、面心立方结构，K 点生成方式采用 Gamma-centerd（M 平移之后，网格的对称性和晶胞的对称性会出现不匹配的情况，从而导致计算出错）
+    - 建议一直用 Gamma-centered
+    - 非六方晶系的计算，若已设置 M 计算了，继续沿用算就行，没必要改成 G 再重新算一遍
+    - 若晶胞在某个方向增加了 2 倍，对应方向的 K 点需除以 2（在计算过程中，保持 k\*a 保持不变）：原因：倒易晶格矢量和实际的晶格矢量之间存在着倒数的关系；选取的晶格越大，倒易晶格矢量越小。用同等数目的 K 点分布到倒易晶格中，网格的密度也会越大，从而造成计算量的增加
 
 - 能带计算：当性质依赖于 K 矢量时，通常沿高对称性路径将性质可视化；线模式（line mode）表示在布里渊区用户定义的点之间生成 K 点，最常用的情况是分析能带结构
     - 第 1 行：注释行
@@ -242,6 +257,16 @@ fractional
   0    0    0    Γ
 ```
 
+- K 点密度选择：三个方向的 K 点密度应尽量一致
+    - 对于原子或者分子的计算，取一个 Gamma 点就够了（1 1 1）
+
+```bash
+# a 为 晶格常数
+k*a ~ 30 Å     # d band 金属
+k*a ~ 25 Å     # 简单金属
+k*a ~ 20 Å     # 半导体
+k*a ~ 15 Å     # 绝缘体
+```
 
 
 ---
@@ -288,6 +313,8 @@ fractional
 - 初始化轨道；确定是否读取 WAVECAR 文件
 
 - 默认值：1（若 WAVECAR 文件存在）否则 0
+
+- 若无 WAVECAR，设置 ISTART=1/2，不会报错，而是继续算
 
 
 ---
@@ -359,7 +386,13 @@ AUTO
 
 ### ENCUT
 
-- 平面波截断能；收敛性测试指标之一；默认值为 POTCAR 文件中最大的 ENMAX 值
+- 平面波（基矢集）截断能；收敛性测试指标之一
+
+- 默认值： POTCAR 文件中最大的 ENMAX 值
+
+- 原则上可不进行具体设置，会默认读取 POTCAR 中的 ENMAX 数值（建议具体设置）
+
+- ENCUT 值确定好后，在计算中需保持不变
 
 
 ---
@@ -393,7 +426,7 @@ High           # High Medium Low 为弃用值
     - 缺点：对于金属的力和应力张量，误差可能高达 5-10%
 
 - 对于半导体或绝缘体，使用 ISEMAR=-5，若胞太大或只使用 1-2 个 K 点，使用 ISMEAR=0 + SIGMA=0.03-0.05
-    - 电子态的占据是整数占据
+    - 电子态的占据是整数占据（0 或 1）
     - 避免使用 ISMEAR>0，因为经常会导致错误的结果（某些态的占据可能小于 0 或大于 1）
 
 - 对于金属中的力、声子频率计算，使用 ISMEAR=1 或 ISMEAR=2，SIGMA 合理值通常为 0.2（默认值）
@@ -433,6 +466,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 - 默认值：0
 
 - IBRION=0 时，必须提供 NSW 数值（AIMD 步数）
+
 - 每个离子步会计算 Hellmann-Feynman 力和应力
 
 
@@ -494,6 +528,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 电子步收敛条件
 
+- 默认值：
 
 
 ---
@@ -501,6 +536,8 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 ### EDIFFG
 
 - 离子步收敛条件
+
+- 默认值：EDIFF \* 10
 
 
 ---
@@ -576,12 +613,17 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 是否考虑自旋极化
 
-- 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
-
 ```bash
 1              # 不考虑
 2              # 考虑
 ```
+
+- 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
+
+- 需考虑自旋极化的几种情况：
+    - 含 Fe,Co, Ni 的体系
+    - 体系具有磁性：顺磁，铁磁，反铁磁等
+    - 关注体系的电子性质且不确定时，建议加上
 
 
 ---
@@ -625,6 +667,13 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 - DOS 和介电函数的网格点数目
 
 - 默认值：301
+
+
+---
+
+### NFREE
+
+WIP...
 
 
 ---

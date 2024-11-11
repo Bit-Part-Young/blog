@@ -72,6 +72,7 @@ password:
     - [如何采用Materials Studio切晶面和建立界面模型\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Av411H7PS)
     - [How to build and optimize crystal structure of a compound - Part 01 - Materials studio (CASTEP)](https://www.youtube.com/watch?v=IMvzznBhEns)
     - [关于Material Studio和Vesta导出来的cif文件的差别](https://zhuanlan.zhihu.com/p/417605545)
+    - [合集·Materials Studio - 奕星模拟个人主页 - 哔哩哔哩视频](https://space.bilibili.com/662609827/channel/collectiondetail?sid=4089960)
 
 - 复杂结构 Bulk 模型构建：
     - 可通过其他程序构建（如 pymatgen、ase、pyxtal 等），使用 ase 保存成 xsd 格式文件，之后直接导入到 MS 中即可
@@ -86,6 +87,9 @@ password:
 - MS -- Build -- find symmetry 找到对称性
 
 - 无定形模型：水溶液
+
+- 构建界面模型：Build -- Build Layer（最多添加三个构型）
+
 
 ---
 
