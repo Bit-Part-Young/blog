@@ -414,9 +414,10 @@ spg.equivalent_sites([0.4673, 0, 0.3333])
 
 ### ase.io
 
-- 构型格式文件读入、写出
+- 构型格式文件读入、写出；可支持的格式很多
 
-- 模块中的 `read()` 函数可自动识别文件格式；部分格式只有 `read()` 或 `write()` 一个函数
+- 模块中的 `read()` 函数可自动识别文件格式；部分格式只有 `read()` 或 `write()` 一个函数（只读或只写）
+    - LAMMPS 相关格式：lammps-data 可读写；lammps-dump-text、lammps-dump-binary lammps 只读
 
 - 可读取 gz 格式压缩文件，如 OUTCAR.gz
 

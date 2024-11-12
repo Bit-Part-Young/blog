@@ -708,13 +708,6 @@ plt.clf()           # 清除当前 Figure
 
 fig.savefig()       # Figure 对象的方法
 plt.savefig()       # 更加通用的命令；适用于没有明确的 Figure 对象时
-
-
-axin = ax.inset_axes()     # 插入内嵌放大图
-# bound: [x0, y0, width, height] 左下角的坐标及宽度高度
-
-# 在主图上绘制放大区域的边框
-ax.indicate_inset_zoom(axins)
 ```
 
 
@@ -813,6 +806,20 @@ fig.supylabel("y", x=0.01)
 # 添加整个子图的图例 在图外面
 handles, labels = ax.get_legend_handles_labels()
 fig.legend(handles, labels, bbox_to_anchor=(1.1, 0.1))
+```
+
+
+---
+
+### 插入内嵌放大图
+
+```python
+axin = ax.inset_axes() 
+# 参数
+bound:         # [x0, y0, width, height] 左下角的坐标及宽度高度；数值范围均为 0~1
+
+# 在主图上绘制放大区域的边框
+ax.indicate_inset_zoom(axins)
 ```
 
 

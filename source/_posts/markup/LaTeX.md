@@ -22,6 +22,7 @@ password:
 ## 介绍
 
 - TeX 是高德纳 (Donald E. Knuth) 为排版文字和数学公式而开发的软件
+
 - LaTeX 是一种使用 TeX 程序作为排版引擎的格式（format），可以粗略地将它理解成是对 TeX 的一层封装；与汉字 “拉泰赫” 或 “雷泰赫” 的发音相近
 
 - 优缺点：
@@ -29,6 +30,7 @@ password:
     - 缺点：学习成本高，不容易排错，不容易定制样式，不所见即所得...
 
 - TeX 发行版：TeX Live / MacTeX（macOS 下定制的 TeX Live 版本）
+
 - TeX 编辑器：TeXstudio（Windows）、TeXShop（MacTeX 自带）、Texifier（macOS；有破解版）
 
 
@@ -223,21 +225,23 @@ tlmgr repository set url            # 同上
 ## LaTeX 编辑器
 
 - Windows 端：TeXstudio
+
 - Mac 端：TeXShop
 
 - 在线 LaTeX 编辑器
-    - [网页版 Overleaf](https://www.overleaf.com/)；桌面端 Overleaf：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
+    - [网页版 Overleaf](https://www.overleaf.com/)
+    - 桌面端 Overleaf（有些像网页版的套壳）：[NativeOverleaf](https://github.com/fjwillemsen/NativeOverleaf)
     - [SJTU LaTeX 文档助手, 在线LaTeX编辑器](https://latex.sjtu.edu.cn/)
     - LaTeX 在线编辑器：[ScienHub, Online LaTex Editor](https://www.scienhub.com/)
 
 - Overleaf 使用：
-    - Overleaf 的项目源码可以 push 到 GitHub 中，pull 到 Overleaf，实现版本控制（交大版的 Overleaf 无此功能)
-    - Overleaf 可以使用 Vim 快捷键（**组合键**选项）
+    - 可使用 Vim 快捷键（**组合键**选项）
+    - OverLeaf 连接 GitHub 仓库需要升级 Pro（交大版无此功能)，IEEE 白嫖 Pro 的方式已失效；可 Docker 部署的开源 OverLeaf 只有社区版
 
-- TeXstudio：工具 - 清理辅助文件
+- TeXstudio：工具 -- 清理辅助文件
 
 - LyX：
-    - 安装： [LyX - Download](https://www.lyx.org/Download)
+    - 安装：[LyX - Download](https://www.lyx.org/Download)
     - 使用：[【或许会是电子笔记入门参考】【秃头小人的电子笔记软件使用经历】满纸荒唐言，图君一哂 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/262187)
 
 

@@ -337,7 +337,9 @@ Load key "id_rsa": bad permissions
 
 ### Slurm 任务调度系统
 
->[Slurm 作业调度系统 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/slurm.html)
+- [Slurm 作业调度系统 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/slurm.html)
+
+- 通过 Jobid 来进入计算目录：[A12 通过job-ID快速进入计算目录 - Learn VASP The Hard Way](https://www.bigbrosci.com/2018/12/15/A12/)
 
 ```bash
 # 常用命令

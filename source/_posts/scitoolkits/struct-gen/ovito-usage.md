@@ -24,6 +24,8 @@ password:
 - 选中某层原子：表达式选取 Expression selection
 - 计算层间距：可以尝试 Histogram add modification
 
+- [ovito_modifiers](https://www.ovito.org/docs/current/python/modules/ovito_modifiers.html)
+
 - OVITO 菜单栏：
     - 主菜单
     - 视图窗口
