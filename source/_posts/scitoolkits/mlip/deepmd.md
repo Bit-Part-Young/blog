@@ -18,6 +18,8 @@ password:
 
 # deepmd 使用
 
+[DPMD - Deep Potential Molecular Dynamics-Prepare Dataset](https://mp.weixin.qq.com/s/-2gEpNmOjgNUhwCYsmEkUg)
+
 机器学习势预测精度用 MAE 评估
 
 [Deepmd-kit & DPGEN 使用笔记](https://zhuanlan.zhihu.com/p/362073474)

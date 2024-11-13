@@ -452,6 +452,8 @@ LELF        = .TRUE.
 
 ### 弹性常数计算
 
+- VASP 计算弹性常数，其 ENCUT 数值要比弛豫计算的更高，通常 1.5 倍 ENMAX
+
 [GitHub - haidi-ustc/VASP-Elastic: Extracts full elastic tensor from VASP OUTCAR and calculates some useful quantities](https://github.com/haidi-ustc/VASP-Elastic)
 
 计算得到的弹性常数值不是很准确

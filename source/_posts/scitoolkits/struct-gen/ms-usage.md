@@ -82,6 +82,8 @@ password:
 
 - 表面构建：表面构建过程中，可以调整 thickness（从最小值调整到 1.0），得到表面不同终端的数目和层间距
 
+- 将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）
+
 - MS 中的构型文件可保存成 res 格式（对称性设为 P1），之后使用 posconv 可转换成其他格式
 
 - MS -- Build -- find symmetry 找到对称性

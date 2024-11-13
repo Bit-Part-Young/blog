@@ -694,9 +694,30 @@ incar.write_file("INCAR")
 from pymatgen.io.vasp.inputs import Kpoints
 
 
-automatic()                 # length
+# 类方法
+automatic()                 
+gamma_automatic
+monkhorst_automatic()
 automatic_density()         # grid_density
+automatic_gamma_density()
 automatic_density_by_vol()  # reciprocal_density
+automatic_density_by_lengths()     # 依据长度生成 K 点密度大小
+automatic_linemode()
+
+
+# KPOINTS 生成
+kpoints_dict = {
+    "nkpoints": 0,
+    "generation_style": "Gamma",
+    "kpoints": [[10, 10, 10]],
+    "usershift": [0, 0, 0],
+    "comment": "Automatic mesh",
+}
+
+kpoints = Kpoints.from_dict(kpoints_dict)
+
+# 读取 KPOINTS 文件内容
+Kpoints.from_file("KPOINTS").as_dict()
 ```
 
 

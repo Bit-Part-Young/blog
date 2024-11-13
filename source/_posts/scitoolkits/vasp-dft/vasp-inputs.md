@@ -110,7 +110,7 @@ _GW           # GW 计算用赝势
 
 
 # 多个元素种类的 POTCAR 文件合并
-cat POTCAR.1 POTCAR.2 > POTCAR    
+cat POTCAR.1 POTCAR.2 > POTCAR
 
 
 # POTCAR 文件中的关键参数
@@ -134,6 +134,28 @@ grep -A1 '  PAW_PBE' POTCAR
     - PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
     - [VASP中的赝势 - 计算材料学](https://ywwang0.github.io/2020/08/18/VASP%E4%B8%AD%E7%9A%84%E8%B5%9D%E5%8A%BF/)
     - VASP5.4 版本，W\_sv 替代 W\_pv
+
+- pymatgen 与 VASP 推荐赝势之间的差异
+
+| 元素  | MPRelaxSet 推荐 | ENMAX | 价电子 | VASP 推荐 | ENMAX | 价电子 |
+| --- | ------------- | ----- | --- | ------- | ----- | --- |
+| B   | B             | 319   | 3   | B       | 319   | 3   |
+| C   | C             | 400   | 4   | C       | 400   | 4   |
+| Al  | Al            | 240   | 3   | Al      | 240   | 3   |
+| Si  | Si            | 245   | 4   | Si      | 245   | 4   |
+| Sc  | Sc_sv         | 223   | 11  | Sc_sv   | 223   | 11  |
+| Ti  | Ti_pv         | 222   | 10  | Ti_sv   | 275   | 12  |
+| V   | V_pv          | 264   | 11  | V_sv    | 264   | 13  |
+| Cr  | Cr_pv         | 266   | 12  | Cr_pv   | 266   | 12  |
+| Fe  | Fe_pv         | 293   | 14  | Fe      | 268   | 8   |
+| Co  | Co            | 268   | 9   | Co      | 268   | 9   |
+| Ni  | Ni_pv         | 368   | 16  | Ni      | 270   | 10  |
+| Zr  | Zr_sv         | 230   | 12  | Zr_sv   | 230   | 12  |
+| Nb  | Nb_pv         | 209   | 11  | Nb_sv   | 293   | 13  |
+| Mo  | Mo_pv         | 225   | 12  | Mo_sv   | 243   | 14  |
+| Hf  | Hf_pv         | 220   | 10  | Hf_pv   | 220   | 10  |
+| W   | W_sv          | 223   | 14  | W_sv    | 223   | 14  |
+| Y   | Y_sv          | 203   | 11  | Y_sv    | 203   | 11  |
 
 - POTCAR 文件内容示例：
 

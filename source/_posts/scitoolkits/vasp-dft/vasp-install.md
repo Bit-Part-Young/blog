@@ -31,18 +31,25 @@ vasp_ncl             # 考虑磁结构，如 SOC；非共线版
 vasp_gam             # Gamma only 版本
 ```
 
+- 编译条件
+    - Fortran、C、C++ 编译器
+    - 数值计算库：FFTW、BLAS、LAPACK、ScaLAPACK
+    - MPI
 
->[intel oneAPI以及vasp5.4.4安装](http://bbs.keinsci.com/thread-28200-1-1.html)
+- 官方安装教程：
+    - [Installing VASP.5.X.X - VASP Wiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
+    - [Installing VASP.6.X.X - VASP Wiki](https://www.vasp.at/wiki/index.php/Installing_VASP.6.X.X)
 
->[Ubuntu18.04编译VASP5.4.4的详细步骤 - 哔哩哔哩](https://www.bilibili.com/read/cv3794759)
-
->[VASP 5.4.4极简安装方法（CentOS 7.6+ifort 19）\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/av39616222/)
-
->[VASP最简单的安装方法（含全程视频演示） - 思想家公社的门口：量子化学·分子模拟·二次元](http://sobereva.com/455)
+- 安装参考资料：
+    - [【计算材料学-从算法原理到代码实现】视频教程 - 4.1\_VASP安装教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1W24y1N7WK)
+    - [【计算材料学-从算法原理到代码实现】视频教程 - 4.1\_VASP的Intel\_OneAPI安装教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1tN411D7Hn/?spm_id_from=333.999.0.0)
+    - [intel oneAPI以及vasp5.4.4安装](http://bbs.keinsci.com/thread-28200-1-1.html)
+    - [Ubuntu18.04编译VASP5.4.4的详细步骤 - 哔哩哔哩](https://www.bilibili.com/read/cv3794759)
+    - [VASP 5.4.4极简安装方法（CentOS 7.6+ifort 19）\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/av39616222/)
+    - [VASP最简单的安装方法（含全程视频演示） - 思想家公社的门口：量子化学·分子模拟·二次元](http://sobereva.com/455)
+    - VASP6 编译（含 GPU 版本）：[编译版本6的VASP](https://blog.sbyu.top/post/5)
 
 在 `makefile.include` 中的 OFLAG 参数里加入 -xhost，这样编译器会使得编译出的程序能够利用当前机子 CPU 能支持的最高档次的指令集以加速计算
-
-VASP6 编译（含 GPU 版本）：[编译版本6的VASP](https://blog.sbyu.top/post/5)
 
 [VASP.6.4.3中新功能：固定轴优化](https://mp.weixin.qq.com/s/cZLf_B4LrvAClRNCmKRh6w)
 
@@ -54,88 +61,10 @@ VASP6 编译（含 GPU 版本）：[编译版本6的VASP](https://blog.sbyu.top/
 
 ### Intel oneAPI
 
-- 参考：[安装 Intel® oneAPI Base Toolkit 和 Intel® oneAPI HPC](https://blog.csdn.net/weixin_42487488/article/details/115066980)
-- Intel oneAPI 暂不支持 Arch Linux
-- Intel-oneAPI 中的 FFTW、BLAS、LAPACK 和 SCALAPACK 相关路径
-
-```bash
-${MKLROOT}/include/fftw  # FFTW
-
-${MKLROOT}/lib/intel64   # BLACS、LAPACK 和 SCALAPACK
-```
-
-- Intel oneAPI 在官网只能下载最新版本；官网未对 Ubuntu23.04 进行测试；旧版下载：[Intel](https://get.hpc.dev/vault/intel/?sort=name&order=desc)
-- Intel-oneAPI 2024 版开始没有了 icc 和 icpc
-
-- Intel® oneAPI Base Toolkit 2024 版包含的东西
-
-```text
-Intel® oneAPI Collective Communications Library
-Intel® oneAPI Data Analytics Library
-Intel® oneAPI Deep Neural Network Library
-Intel® oneAPI DPC++/C++ Compiler (separate download required)
-Intel® oneAPI DPC++ Library
-Intel® oneAPI Math Kernel Library
-Intel® oneAPI Threading Building Blocks
-Intel® Advisor
-Intel® Distribution for GDB*
-Intel® Distribution for Python* (separate download required)
-Intel® DPC++ Compatibility Tool
-Intel® Integrated Performance Primitives
-Intel® VTune™ Profiler
-Optional: Intel® FPGA Add-on for oneAPI Base Toolkit
-```
-
-- Intel® oneAPI HPC Toolkit 2024 版包含的东西（缺少 C++ Compiler Classic）
-
-```text
-Intel® oneAPI DPC++/C++ Compiler (separate download required)
-Intel® Fortran Compiler & Intel® Fortran Compiler Classic (separate download required)
-Intel® Inspector
-Intel® MPI Library
-Intel® Trace Analyzer and Collector
-```
-
----
-
-- 安装：先 Base，后 HPC
-
-```bash
-# 下载 Offline 安装版本
-
-# 默认安装到 /opt/intel；无 sudo，则默认安装到 ~/intel
-sudo sh ./l_BaseKit_p_XXX_offline.sh
-sudo sh ./l_HPCKit_p_XXX_offline.sh
-
-# 将以下命令添加到 ~/.bashrc 或 ~/.zshrc 中
-# 使得登录开启 Intel oneAPI 环境
-source /opt/intel/oneapi/setvars.sh intel64
-```
-
-- 检查
-
-```bash
-icc -v
-icpc -v
-ifort -v
-mpiicc -v
-mpiifort -v
-
-icx -v
-icpx -v
-```
-
----
-
 - VASP.5.4.4 和 6.3.0 版本编译用到的编译器是 icc、icpc、mpiifort
-- Intel oneAPI 卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)
-
-```bash
-cd /opt/intel/oneapi/installer
-sudo ./installer
-```
 
 - makefile.include 不同版本的含义：[makefile.include - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include)
+
 - makefile.include.linux\_intel 内容：[makefile.include.linux\_intel - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include.linux_intel)
 
 - VASP.6.3.0 中的 四种 intel makefile
@@ -144,7 +73,7 @@ sudo ./installer
     - makefile.include.intel_ompi_mkl_omp: Parallelized using OpenMPI + OpenMP, combined with MKL.
     - makefile.include.intel_serial: Not parallelized, strongly reduced feature-set, i.e., not suitable for production.
 
-- master 上编译 intel_omp 版本，运行 `mpirun -n 2 vasp_std` 命令会报错；编译 intel 版本正常
+- Master 上编译 intel_omp 版本，运行 `mpirun -n 2 vasp_std` 命令会报错；编译 Intel 版本正常
 
 ```bash
 # 超算平台编译步骤
@@ -167,7 +96,7 @@ cp arch/makefile.include.intel makefile.include
 make  # 或 make all, make std
 ```
 
-VASP.5.4.4 编译最后可能会出现的 remark（无影响）：
+- VASP.5.4.4 编译最后可能会出现的 remark（无影响）：
 
 ```bash
 ifort: command line remark #10412: option '-mkl=sequential' is deprecated and will be removed in a future release. Please use the replacement option '-qmkl=sequential'
@@ -176,13 +105,32 @@ ifort: command line remark #10412: option '-mkl=sequential' is deprecated and wi
 
 ---
 
-### GNU 套件
+### GNU
 
 - Linux
 
-WIP…
+```bash
+# lib 路径
+/usr/lib/x86_64-linux-gnu
 
----
+# OpenMPI
+sudo apt install libopenmpi-dev
+
+# 数值计算库
+sudo apt install libfftw3-dev
+sudo apt install libblas-dev    # 或者 libopenblas-dev （优化版 BLAS）
+sudo apt install liblapack-dev
+sudo apt install libscalapack-openmpi-dev  # 或 libscalapack-mpi-dev
+
+# VASP.5.4.4
+cp arch/makefile.include.linux_gnu makefile.include
+# VASP.6.3.0
+cp arch/makefile.include.gnu_omp makefile.include
+
+# 修改 数值计算库 lib 在 makefile.include 中的具体路径
+
+make  # 或 make all, make std
+```
 
 - Mac M1：Mac M1 gnu omp 编译 VASP6 + HDF5（耗时 32 min 左右）：[VASP M1 Mac Compilation Guide · GitHub](https://gist.github.com/janosh/a484f3842b600b60cd575440e99455c0)
 
@@ -381,9 +329,12 @@ make: *** [makefile:17: std] Error 2
 
 ## 相关问题
 
-VASP 运行出现 forrtl 报错：[forrtl: severe (174): SIGSEGV, segmentation fault occurred - My Community](https://www.vasp.at/forum/viewtopic.php?t=17257)
+- VASP 运行出现 `forrtl` 报错：[forrtl: severe (174): SIGSEGV, segmentation fault occurred - My Community](https://www.vasp.at/forum/viewtopic.php?t=17257)
 
-解决方法：在提交脚本或终端中添加命令：`ulimit -s unlimited`
+```bash
+# 在提交脚本或终端中添加命令
+ulimit -s unlimited
+```
 
 ---
 

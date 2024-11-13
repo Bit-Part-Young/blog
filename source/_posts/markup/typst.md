@@ -133,6 +133,8 @@ typst-upgrade file.typ       # 更新 packages 并覆写文件
 
 - 将 Typst 公式渲染成 svg 或 png：[GitHub - xingjian-zhang/typst2img: A fast script to render your Typst formulas to svg and png. Integrate formulas to your slides in seconds!](https://github.com/xingjian-zhang/typst2img/?tab=readme-ov-file)
 
+- [GitHub - Thumuss/utpm: A package manager for typst](https://github.com/Thumuss/utpm)
+
 
 ---
 
@@ -656,6 +658,7 @@ wget --recursive --no-parent --convert-links https://typst.app/docs/
     - [GitHub - nju-lug/nju-thesis-typst: 南京大学学位论文 Typst 模板 nju-thesis-typst](https://github.com/nju-lug/nju-thesis-typst)
     - [GitHub - howardlau1999/sysu-thesis-typst: 中山大学学位论文 Typst 模板](https://github.com/howardlau1999/sysu-thesis-typst)
     - [简易上海交通大学学位论文 Typst 模板](https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF)
+    - [GitHub - tzhTaylor/typst-sjtu-thesis-master: SJTU Master Thesis Typst Template](https://github.com/tzhTaylor/typst-sjtu-thesis-master/)
     - 机器学习领域的系列论文模板：[GitHub - daskol/typst-templates: A list of paper templates in the area of machine learning.](https://github.com/daskol/typst-templates)
 
 - Typst 文档编译 Github Actions：

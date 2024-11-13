@@ -45,3 +45,5 @@ password:
 - 扩胞：Edit -- Edit Data -- Unit Cell, Transform, 修改 Transformation matrix
 
 - VESTA 可读取原子位置分数占据的构型文件（可导出 cif 格式）：[Atomsk - Tutorial - Importation of CIF files](https://atomsk.univ-lille.fr/tutorial_cif.php)
+
+- 将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）

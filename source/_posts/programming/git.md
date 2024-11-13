@@ -1079,7 +1079,8 @@ git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.id
 git ls-tree --full-tree -r --name-only HEAD
 ```
 
-拷贝自水源
+- 拷贝自水源
+
 ```bash
 # 忽略本地文件系统的优化
 git clone --no-local
@@ -1116,9 +1117,22 @@ git filter-repo -f --commit-callback 'commit.committer_date = commit.author_date
 
 - GitHub 可以渲染 Front-Matter，Gitee 和 Typora 暂不行，但会将其包裹起来
 
-- [坑：ssh: connect to host github.com port 22: Connection refused - 知乎](https://zhuanlan.zhihu.com/p/521340971)
+- 无法 SSH 连接 GitHub：[坑：ssh: connect to host github.com port 22: Connection refused - 知乎](https://zhuanlan.zhihu.com/p/521340971)
 
-- git 报错：`error: RPC failed; Failed to connect to github.com port 443: Couldn't connect to server`
+```bash
+# 方式 1
+# 修改 ~/.ssh/config 内容
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+
+# 方式 2
+# 打开仓库中的 .git/config 文件
+git config --local -e
+# 将 url 的 SSH 形式 改成 HTTPS
+```
+
+- Git 报错：`error: RPC failed; Failed to connect to github.com port 443: Couldn't connect to server`
 
 ```bash
 # 若有 VPN 代理，设置代理
@@ -1126,6 +1140,6 @@ git config --global http.proxy 127.0.0.1:7890
 git config --global https.proxy 127.0.0.1:7890
 ```
 
-- [ ] 交大 VPN 打开，会使得 ssh 连接 git 失效（已水源提问，暂无法解决）
+- [ ] 交大 VPN 打开，会使得 SSH 连接 Git 失效（已水源提问，暂无法解决）
 
-- [x] git 如何忽略空行的变化（忽略的话，对同步会不利，不建议）
+- [x] Git 如何忽略空行的变化（忽略的话，对同步会不利，不建议）

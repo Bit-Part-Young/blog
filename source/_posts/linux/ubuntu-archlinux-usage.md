@@ -374,8 +374,7 @@ sudo apt install libfuse2
 
 ##### package 彻底卸载
 
->[Ubuntu apt-get彻底卸载软件包\_apt卸载包\_享学IT的博客-CSDN博客](https://blog.csdn.net/get_set/article/details/51276609)
-
+- [Ubuntu apt-get彻底卸载软件包\_apt卸载包\_享学IT的博客-CSDN博客](https://blog.csdn.net/get_set/article/details/51276609)
 
 ```bash
 apt-cache  # 搜索、查看和管理 package 缓存
@@ -427,7 +426,7 @@ dpkg-query -f '${binary:Package}\n' -W | wc -l
 - 构型可视化：VESTA、OVITO
 - 邮件服务：Mailspring
 - 截图：Snipaste
-- pt 下载工具：qBittorrent 或 Transmissioin
+- PT 下载工具：qBittorrent 或 Transmissioin
 
 
 ---
@@ -436,15 +435,17 @@ dpkg-query -f '${binary:Package}\n' -W | wc -l
 
 ###### Alacritty 设置
 
->[GitHub - tmcdonell/config-alacritty: Alacrity configuration](https://github.com/tmcdonell/config-alacritty)
+- [GitHub - tmcdonell/config-alacritty: Alacrity configuration](https://github.com/tmcdonell/config-alacritty)
 
-创建配置文件
+- 创建配置文件
+
 ```bash
 mkdir ~/.config/alacritty
 touch ~/.config/alacritty/alacritty.yml
 ```
 
-配置内容
+- 配置内容
+
 ```yaml
 # 透明度
 window:
@@ -455,7 +456,7 @@ window:
 
 ###### VLC
 
-VLC 打开时报错：[vlc doesn't work after \`sudo snap install vlc\` - Ask Ubuntu](https://askubuntu.com/questions/1278422/vlc-doesnt-work-after-sudo-snap-install-vlc)
+- VLC 打开时报错：[vlc doesn't work after \`sudo snap install vlc\` - Ask Ubuntu](https://askubuntu.com/questions/1278422/vlc-doesnt-work-after-sudo-snap-install-vlc)
 
 ```bash
 sudo rm /var/cache/fontconfig/* 
@@ -769,226 +770,6 @@ pacman -Q | grep plasma
 # 卸载 plasma 组件
 sudo pacman -Rcns plasma
 ```
-
-
----
-
-## 常用编程程序安装
-
-### tree
-
-```bash
-sudo apt install tree
-```
-
-源码编译
-
-```bash
-# 可能会连接不上
-wget https://mama.indstate.edu/users/ice/tree/src/tree-2.1.1.tgz --no-check-certificate
-
-make PREFIX=. install && make clean
-```
-
-
----
-
-### g++、gcc
-
-```bash
-sudo apt install build-essential
-
-sudo pacman -S gcc
-```
-
-
----
-
-### gfortran
-
-```bash
-sudo apt install gfortran
-
-sudo pacman -S gcc-fortran
-```
-
-
----
-
-### clang
-
-```bash
-sudo apt install clang
-
-sudo pacman -S clang
-
-bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-```
-
-
----
-
-### cmake
-
-```bash
-sudo apt install cmake
-```
-
-
----
-
-### C++ Tools
-
->[GitHub - include-what-you-use/include-what-you-use: A tool for use with clang to analyze #includes in C and C++ source files](https://github.com/include-what-you-use/include-what-you-use#how-to-install)
-
->[README\_dependencies.md](https://github.com/cpp-best-practices/infiz/blob/main/README_dependencies.md)
-
-cppcheck：开源的 C/C++ 代码静态分析工具，用于检测源代码中的潜在错误和代码质量问题
-
-conan：开源的 C/C++ 包管理器，用于管理和构建 C/C++ 依赖项、库和二进制包
-
-```bash
-sudo apt-get install doxygen
-sudo apt-get install graphviz
-
-sudo apt-get install ccache
-
-sudo apt-get install cppcheck
-
-sudo pacman -S cppcheck
-
-sudo pacman -S conan
-
-pip install conan
-```
-
-
-ARM 交叉编译工具
->[linaro公司：交叉编译器 arm-linux-gnueabi 和 arm-linux-gnueabihf 的区别\_学无止境2022的博客-CSDN博客](https://blog.csdn.net/dianqicyuyan/article/details/122979359)
-
----
-
-### gsl
-
->[14.04 - GSL libray and header paths - Ask Ubuntu](https://askubuntu.com/questions/710907/gsl-libray-and-header-paths)
-
-```bash
-sudo apt install libgsl-dev
-# 头文件及库文件路径 /usr/include/gsl /usr/lib/x86_64-linux-gnu
-
-sudo pacman -S gsl
-# 头文件及库文件路径 /usr/include/gsl /usr/lib
-```
-
-源码编译
-
-```bash
-wget https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz
-
-./configure --prefix=${HOME}/src/gsl
-
-make && make install
-```
-
-
----
-
-### voro++
-
-无 root 权限时，需修改 `config.mk` 文件中的 `PREFIX` 内容 `PREFIX=${HOME}/src/voro++`，再编译安装
-
-```bash
-# Ubuntu 需源码编译
-wget https://math.lbl.gov/voro++/download/dir/voro++-0.4.6.tar.gz
-
-tar -xzvf voro++-0.4.6.tar.gz
-cd voro++-0.4.6
-
-make && sudo make install
-# 头文件及库文件路径 /usr/local/include/voro++ /usr/local/lib
-
-yay -S voro++  # Arch Linux
-# 头文件及库文件路径 /usr/include/voro++ /usr/lib
-```
-
-
-
----
-
-### Open MPI
-
-```bash
-sudo apt install openmpi-bin libopenmpi-dev
-
-sudo pacman -S openmpi
-```
-
----
-
-查看 OpenMPI 的头文件路径
-
-```bash
-mpicc -showme:compile
-```
-
-
----
-
-### boost
-
-```bash
-sudo apt install libboost-all-dev
-```
-
-
----
-
-### ninja
-
-构建工具
-
-```bash
-sudo apt install ninja-build
-
-sudo pacman -S ninja
-```
-
-
----
-
-### protobuf
-
-一种轻量级的数据序列化格式
-
-```bash
-sudo apt install protobuf-compiler libprotobuf-dev
-
-sudo pacman -S protobuf
-```
-
-
----
-
-### 其他
-
-- 安装 tcsh（csh 通常作为 tcsh 的链接或别名；tcsh 是 C Shell 的增强版）
-
-```bash
-sudo apt install tcsh
-```
-
-- 查看图片：imagemagick 和 eog
-
-```bash
-sudo apt install imagemagick
-sudo apt install eog
-
-display figure
-identify figure  # 显示图片信息
-
-eog figure
-```
-
 
 
 ---

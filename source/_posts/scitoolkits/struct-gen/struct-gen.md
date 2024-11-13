@@ -25,9 +25,7 @@ password:
 
 # 结构建模
 
-## 介绍
-
-### 结构建模常用工具
+## 结构建模常用工具
 
 - [pymatgen](https://pymatgen.org/)
 - [ASE](https://wiki.fysik.dtu.dk/ase/)
@@ -36,29 +34,27 @@ password:
 - [PyXtal](https://pyxtal.readthedocs.io/)
 - Material Studio（Win + Linux）
 
-其他：
+- 其他：
+    - [GitHub - orex/supercell: The program allows you to create regular structure supercell from cif file with partial occupancy and/or substitutions.](https://github.com/orex/supercell)
 
-- [GitHub - orex/supercell: The program allows you to create regular structure supercell from cif file with partial occupancy and/or substitutions.](https://github.com/orex/supercell)
+    - [GitHub - dkratzert/StructureFinder: A crystal structure finder written in PyQt5 and Python3](https://github.com/dkratzert/StructureFinder)
 
-- [GitHub - dkratzert/StructureFinder: A crystal structure finder written in PyQt5 and Python3](https://github.com/dkratzert/StructureFinder)
+    - [CrystalMaker Software: Crystal & Molecular Structures Modelling and Diffraction](https://crystalmaker.com/)
 
-- [CrystalMaker Software: Crystal & Molecular Structures Modelling and Diffraction](https://crystalmaker.com/)
 
 
 ---
 
-### 构型可视化工具
+## 构型可视化工具
 
 - [OVITO](https://www.ovito.org/)
 - [VESTA](https://jp-minerals.org/vesta/en/download.html)
 - [VMD](https://www.ks.uiuc.edu/Research/vmd/)
+- [OpenMX Viewer](https://www.openmx-square.org/viewer/index.html)
 
-[如何实现结构原子可视化？](https://mp.weixin.qq.com/s/zfzZ7kRXsXKe9yhyLcPuYQ)
+- [如何实现结构原子可视化？](https://mp.weixin.qq.com/s/zfzZ7kRXsXKe9yhyLcPuYQ)
 
-用于晶体、分子结构可视化的 Jupyter 组件：[GitHub - nglviewer/nglview: Jupyter widget to interactively view molecular structures and trajectories](https://github.com/nglviewer/nglview)
-
-[OpenMX Viewer](https://www.openmx-square.org/viewer/index.html)
-
+- 用于晶体、分子结构可视化的 Jupyter 组件：[GitHub - nglviewer/nglview: Jupyter widget to interactively view molecular structures and trajectories](https://github.com/nglviewer/nglview)
 
 - 结构可视化
     - MoS2：[Molybdenum Disulfide - MoS2](https://www.chemtube3d.com/ss-mos2/)
@@ -66,32 +62,35 @@ password:
     - HCP：[Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/)
     - perovskite：[CaTiO3 - Perovskite: Interactive 3D Structure](https://www.chemtube3d.com/_perovskitefinal/)
 
-
 - HCP 结构单胞原子位置有两种形式：
     - 一个原子在原点，另一个在胞内：latgen 和 ase，(0.0 0.0 0.0)、(2/3 1/3 0.5)
     - 两个原子均在胞内：pymatgen 和 PyXtal，(1/3 2/3 1/4)、(2/3 1/3 3/4)
     - 两种形式无本质区别，两者可通过过周期性平移进行互相转化
     - [Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/) 有这两种形式的可视化
 
----
-
-
-将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）
-
 
 
 ---
 
-### 分析工具
+## 分析工具
 
 - crysinfo 程序（孔老师）：6a 选项查看 Assign Wyckoff letter（等同位点）
+
 - 结构原型分析：[GitHub - chuanxun/StructurePrototypeAnalysisPackage: Structure Prototype Analysis Package can analyze symmetry and compare similarity of a large number of atomic structures.](https://github.com/chuanxun/StructurePrototypeAnalysisPackage)
+
+ - CIF 格式文件分析：[GitHub - bobleesj/cifkit: High-throughput .cif analysis made easy. Visit: https://bobleesj.github.io/cifkit/](https://github.com/bobleesj/cifkit)
 
 
 
 ---
 
 ## 构型文件格式
+
+- 注意事项：
+    - CIF 格式有含对称性、不含对称性两种格式，大部分程序将构型格式转换成 CIF 都是不含对称性的（空间群为 P1，写入所有原子）
+    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息
+    - vaspkit 可将 xsd 文件转换成 POSCAR
+    - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
 
 ```bash
 .pdb           # Protein Data Bank，可以用 VMD 软件（跨平台）打开
@@ -101,12 +100,12 @@ password:
 .xsf           # XCrySDen
 
 
-
 # xyz 格式内容示例
 2
 
 Nb      0.000000000000000      0.000000000000000      0.000000000000000
 Nb      1.660000000000000      1.660000000000000      1.660000000000000
+
 
 # posconv xyz 格式内容示例
 2
@@ -115,29 +114,41 @@ Nb    0.000000000000000    0.000000000000000    0.000000000000000 crystal_vector
 Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector  2    0.000000000000000    3.320000000000000    0.000000000000000
 ```
 
-- 注意事项：
-    - CIF 格式有含对称性、不含对称性两种格式，大部分程序将构型格式转换成 CIF 都是不含对称性的（空间群为 P1，写入所有原子）
-    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息
-    - vaspkit 可将 xsd 文件转换成 POSCAR
-    - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
-
 
 ---
 
 ## 结构建模
 
 - 元素周期表里元素的晶体结构：[Periodic table (crystal structure) - Wikipedia](https://en.m.wikipedia.org/wiki/Periodic_table_(crystal_structure))
+
 - Springer Materials：[https://materials.springer.com/](https://materials.springer.com/)
-- MP 等数据库中的结构文件有时对称性不一定正确，最好进行静态计算检验一下
+
+- MP 等材料数据库中的结构文件有时对称性不一定正确，查看该数据库中已计算的性质是否与文献中的接近，以及最好进行静态计算检验一下
 
 
 ---
 
 ### 复杂结构
 
-- 方法 1：在文献中查找该结构的晶体学信息，若提到 protype structure（原型结构），可在数据库（ICSD、MP、Aflow、Springer Materials 等）中找到对应原型结构的 cif 文件（需留意 Wyckoff position 是否一致或接近），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
+- 方法 1：在文献中查找该结构的晶体学信息，若提到 prototype structure（原型结构），可在数据库（ICSD、MP、Aflow、Springer Materials 等）中找到对应原型结构的 cif 文件（**需留意 Wyckoff position 是否一致或接近**），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
 
 - 方法 2: 手动构建，需以下晶体学信息：晶体结构（crystal structure）、点阵参数（lattice parameter）、空间群（space group number）、原子位置（Wyckoff letter & Wyckoff position）；使用 Pyxtal 或 Material Studio 构建
+
+
+---
+
+### 表面
+
+pymatgen 中的 BCC 形成的 (111) 表面结构是菱形晶系，latgen 形成的晶系是六方晶系
+
+latgen 中表面的真空层距离数值设置
+
+latgen 可以生成界面（multi-layer）
+
+- 添加真空层：
+    - vaspkit 添加真空层，先加数值，再将原子层移至 z 方向居中
+    - ase 中的 `center()` 函数添加真空层是分别往两边加
+    - atomsk 添加真空层是在 top 上加
 
 
 ---
@@ -275,6 +286,8 @@ direct
 
 - [ ] D019 结构（Ti3Al）原子位点，mp 与 latgen 两者有区别（和 hcp 类似的问题）
 
+D019 Ti3Al 结构：[https://next-gen.materialsproject.org/materials/mp-1823?chemsys=Ti-Al&crystal_system=Hexagonal](https://next-gen.materialsproject.org/materials/mp-1823?chemsys=Ti-Al&crystal_system=Hexagonal)
+
 ---
 
 α2 相晶体学信息：晶体结构：D019；空间群：P63/mmc
@@ -343,7 +356,3 @@ Pearson 符号
 原型结构（最早发现的晶体）
 
 ---
-
-pymatgen 中的 BCC 形成的 (111) 表面结构是菱形晶系，latgen 形成的晶系是六方晶系
-latgen 中表面的真空层距离数值设置
-latgen 可以生成界面（multi-layer）

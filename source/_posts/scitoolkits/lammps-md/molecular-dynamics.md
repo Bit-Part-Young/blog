@@ -1,7 +1,7 @@
 ---
 title: 分子动力学原理
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: 分子动力学原理
@@ -18,6 +18,16 @@ password:
 # 分子动力学原理
 
 ## 多尺度介绍
+
+多尺度课程分布：
+- 新生开学第一周不上
+- 课程介绍 1 周
+- 国庆放假 1 周
+- MD：4 次课
+- DFT：4 次课
+- PF：5 次课？
+
+---
 
 模拟和建模的区别
 
@@ -77,16 +87,8 @@ velocity verlet 算法（含两原子及多原子）
 
 
 ```text
-
 螺旋上升：解耦
 
-
-遍历原理
-
-
-两个基本原理
-
-系综平均值代替时间平均值
 
 纳米线：用圆柱框住晶体，圆柱外的原子删除
 ```
@@ -98,10 +100,14 @@ velocity verlet 算法（含两原子及多原子）
 
 - 牛顿第二定律
 
+- 用时间平均（达到平衡）代替系综平均（两者等价）
 
-- 用时间平均代替系综平均
 系综涉及统计物理相关内容，计算复杂（相空间等知识点）
 
+补充（ChatGPT4 生成）
+
+- **遍历性假设**（Ergodic Hypothesis）：在分子动力学中，遍历性假设是一个核心概念，它表明系统在足够长的时间内，其通过时间演化能遍历其所有可能的微观状态。换句话说，系统的任何一个微观状态都能够在其时间演化的轨迹中出现。
+- **时间平均与系综平均的等价性**：在理想条件下，如果一个物理系统满足遍历性，那么对系统的某个物理量进行长时间的时间平均，得到的结果应该与通过统计系综中大量相同系统的平均（即系综平均）相同。这意味着单个系统的长时间行为可以代表整个系综的平均行为。
 
 
 ---
@@ -110,12 +116,9 @@ velocity verlet 算法（含两原子及多原子）
 
 - 初始条件/化
 
-
 - 演化（核心）
 
-
 - 结果后处理
-
 
 
 ---
@@ -125,21 +128,16 @@ velocity verlet 算法（含两原子及多原子）
 - 初始化原子构型
 
 
-
 - 初始化速度/温度
-
 
 速度满足麦克斯韦玻尔兹曼分布（可用平均分布代替）
 
-保证体系总动量为零
-
-具体细节：
-…
-
+速度修正，保证体系总动量为零
 
 
 - 边界条件
 
+- 控制参数
 
 
 ---
@@ -154,6 +152,8 @@ velocity verlet 算法（含两原子及多原子）
 
 推进算法也称作积分算法
 
+---
+
 - verlet 算法
 
 $$r(t+\Delta t)=2r(t)-r(t-\Delta t)+a\Delta t^2+O(\Delta t^4)$$
@@ -166,9 +166,9 @@ $$v(t)=\frac{r(t+\Delta t)-r(t-\Delta t)}{2\Delta t}+O(\Delta t^2)$$
 
 缺点：确定当前速度需要下一刻的位置，速度确定的精度低，$O(\Delta t^2)$
 
+Verlet 不是一个自启动的算法，所以第一步的时候，我们需要根据初始的速度，反推前一步的位置。只有同时有当前步和前一步的位置信息，Verlet 算法才能够更新迭代获得下一步的位置信息
 
->Verlet 不是一个自启动的算法，所以第一步的时候，我们需要根据初始的速度，反推前一步的位置。只有同时有当前步和前一步的位置信息，Verlet 算法才能够更新迭代获得下一步的位置信息。
->[一维谐振子的Verlet算法.ipynb](https://github.com/stanfordbshan/CompMatBook/blob/main/Chapter06/%E4%B8%80%E7%BB%B4%E8%B0%90%E6%8C%AF%E5%AD%90%E7%9A%84Verlet%E7%AE%97%E6%B3%95.ipynb)
+代码示例：[一维谐振子的Verlet算法.ipynb](https://github.com/stanfordbshan/CompMatBook/blob/main/Chapter06/%E4%B8%80%E7%BB%B4%E8%B0%90%E6%8C%AF%E5%AD%90%E7%9A%84Verlet%E7%AE%97%E6%B3%95.ipynb)
 
 ---
 
@@ -197,8 +197,9 @@ $$step 4: v(t + \Delta t) = v(t + \Delta t/2) + 0.5 * a(t + \Delta t) * \Delta t
 
 - leap frog 算法
 
->[蛙跳积分法 - 维基百科，自由的百科全书](https://zh.wikipedia.org/zh-hans/%E8%9B%99%E8%B7%B3%E7%A7%AF%E5%88%86%E6%B3%95)
->[Leapfrog integration - Wikipedia](https://en.wikipedia.org/wiki/Leapfrog_integration)
+- 参考：
+    - [蛙跳积分法 - 维基百科，自由的百科全书](https://zh.wikipedia.org/zh-hans/%E8%9B%99%E8%B7%B3%E7%A7%AF%E5%88%86%E6%B3%95)
+    - [Leapfrog integration - Wikipedia](https://en.wikipedia.org/wiki/Leapfrog_integration)
 
 
 原理：在相同的时间步，位置和速度的更新是分开的
@@ -211,10 +212,9 @@ $$v(t + \Delta t/2) = v(t-\Delta t/2) + a * \Delta t$$
 
 ### 时间步长
 
-步长太小：
+步长太小：耗时
 
-步长太大：
-
+步长太大：可能无法描述正确的运动轨迹
 
 合适的步长：能够正确描述运动轨迹（最快的运动 原子振动）；
 
@@ -226,22 +226,15 @@ $$v(t + \Delta t/2) = v(t-\Delta t/2) + a * \Delta t$$
 
 ### 边界条件
 
-simulation box/cell/domain：模拟盒子
+simulation box/cell/domain：模拟盒子/胞
 
 边界原子如何处理
 
+---
 
-- 自由边界条件
-分子、团簇、纳米颗粒
+- 自由边界条件：分子、团簇、纳米颗粒
 
-
-
-
-- 固定边界条件
-压缩模型、表面模型中下表面一两个原子层进行固定
-
-
-
+- 固定边界条件：压缩模型、表面模型中下表面一两个原子层进行固定
 
 - 周期性边界条件
     - 可以消除自由表面的影响；模拟无穷大的体系
@@ -251,11 +244,25 @@ simulation box/cell/domain：模拟盒子
 
 
 
-最小影像准则：（计算胞不能任意小）
+- 最小影像准则：（计算胞不能任意小）
 
 $$
 L > 2*R_{cutoff}
 $$
+
+计算位错相关性质，体系至少含几十万个原子才算比较准确
+
+
+---
+
+### MD 能做/不能做
+
+- 能做的：
+
+不能做的：涉及到电子（视原子为 particle）
+
+时间尺度：ns；长度尺度：nm
+
 
 ---
 
@@ -295,11 +302,11 @@ Morse 势公式 图形绘制
 
 
 
-
-
 >[莫尔斯势 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E8%8E%AB%E5%B0%94%E6%96%AF%E5%8A%BF)
 
 >[Buckingham potential - Wikipedia](https://en.wikipedia.org/wiki/Buckingham_potential)
+
+---
 
 ### 力的计算
 
@@ -376,9 +383,12 @@ $$
 >
 >势函数中约定了单位
 
+---
+
 #### 总能计算
 
-bulk 体系平衡总能 LAMMPS 计算脚本
+- bulk 体系平衡总能 LAMMPS 计算脚本
+
 ```bash
 # LAMMPS input script for total energy calculation
 units metal
@@ -412,7 +422,7 @@ print "${a} \${vpa} \${epa}" append ev.dat
 ```
 
 >`fix` - 对体系做各种改变
->
+
 >`run 0` - 并非跑零步，只计算能量
 
 

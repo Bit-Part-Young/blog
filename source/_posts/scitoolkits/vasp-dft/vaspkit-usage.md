@@ -38,6 +38,11 @@ password:
 
 ## 使用
 
+- vaspkit 生成的 HCP 结构 KPOINTS 文件中的 K 点生成方式是 Gamma 点（无论选择 G 还是 MP）
+
+
+---
+
 ### utilities 目录结构
 
 ```bash

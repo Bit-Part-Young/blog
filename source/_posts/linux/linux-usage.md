@@ -63,13 +63,11 @@ WIP...
 
 - 在线试用各种 Linux 发行版，它会分配一个虚拟机，浏览器里连接桌面：[Test Linux distros online - DistroSea](https://distrosea.com/)
 
-- [GitHub - 1Panel-dev/1Panel：现代化、开源的 Linux 服务器运维管理面板。](https://github.com/1Panel-dev/1Panel)
-
-- 用纯 bash 命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
+- 用纯 Bash 命令实现众多功能：[GitHub - dylanaraps/pure-bash-bible: 📖 A collection of pure bash alternatives to external processes.](https://github.com/dylanaraps/pure-bash-bible)
 
 - 命令行艺术：[GitHub - jlevy/the-art-of-command-line: Master the command line, in one page](https://github.com/jlevy/the-art-of-command-line)
 
-- bash 一行命令：[https://github.com/onceupon/Bash-Oneliner](https://github.com/onceupon/Bash-Oneliner)
+- Bash 一行命令：[https://github.com/onceupon/Bash-Oneliner](https://github.com/onceupon/Bash-Oneliner)
 
 - [GitHub - RubyMetric/chsrc: chsrc 全平台通用换源工具](https://github.com/RubyMetric/chsrc)
 
@@ -81,14 +79,14 @@ WIP...
     - Linux 配置文件（还行）：[GitHub - LintaoAmons/CoolStuffes: 我的分享放这里了，大家随便拿去用啊，记得给个星星就行啦～](https://github.com/LintaoAmons/CoolStuffes)
     - 备份 dotfiles：[GitHub - deadc0de6/dotdrop: Save your dotfiles once, deploy them everywhere](https://github.com/deadc0de6/dotdrop)
 
-- Bash 脚本，用来生成 Markdown 表格：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
+- 生成 Markdown 表格（Bash 脚本）：[Pure bash markdown table generator — josh.fail](https://josh.fail/2022/pure-bash-markdown-table-generator/)
 
 
 ---
 
 ### 基本使用
 
-系统信息查看
+- 系统信息查看
 
 ```bash
 lsb_release -a        # 显示 LSB 版本信息
@@ -101,9 +99,7 @@ cat /etc/lsb-release
 cat /etc/issue
 ```
 
----
-
-系统资源查看
+- 系统资源查看
 
 ```bash
 lscpu          # 查看 CPU 信息
@@ -117,63 +113,38 @@ vmstat -S M    # 以 MB 单位显示虚拟内存使用情况
 htop           # 显示系统资源；增强版 top
 ```
 
----
+- 图片查看：`eog` 或 `display`
 
-图片查看：`eog` 或 `display`
+- Linux 系统文件颜色
+    - 白色：一般性文件，如文本文件，配置文件，代码文件等
+    - 蓝色：目录
+    - 绿色： 可执行文件
+    - 红色：压缩文件
+    - 浅蓝色：链接文件
 
----
+- SSH 配置
+    - 用户配置：`~/.ssh/config`
+    - 系统配置：`/etc/ssh/ssh_config`
 
-Linux 系统文件颜色
+- 用户切换
+    - 切换到用户：`su username`
+    - 切换到 root：
+        - `sudo -i` 或 `sudo su` 只需输入当前用户密码
+        - `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，通过 `sudo passwd root` 给 root 创建密码
 
-- 白色：一般性文件，如文本文件，配置文件，代码文件等
-- 蓝色：目录
-- 绿色： 可执行文件
-- 红色：压缩文件
-- 浅蓝色：链接文件
-
----
-
-SSH 配置
-
-- 用户配置：`~/.ssh/config`
-- 系统配置：`/etc/ssh/ssh_config`
-
----
-
-用户切换
-
-- 切换到用户：`su username`
-- 切换到 root：
-    - `sudo -i` 或 `sudo su` 只需输入当前用户密码
-    - `su` 需输入 root 用户的密码，Ubuntu 默认没有设置，通过 `sudo passwd root` 给 root 创建密码
-
----
-
-创建新用户
+- 创建新用户
 
 ```bash
 # 方式 1
-sudo useradd -m newuser        # -m 表示为新用户创建主目录，默认位置在 /home/newuser
-sudo passwd newuser            # 为新用户设置密码
+sudo useradd -m user        # -m 表示为新用户创建主目录，默认位置在 /home/user
+sudo passwd user            # 为新用户设置密码
 
 # 方式 2
-sudo adduser newuser           # 系统会提示输入一些信息，如密码、全名等，按提示操作即可
+sudo adduser user           # 系统会提示输入一些信息，如密码、全名等，按提示操作即可
 
-sudo usermod -aG sudo newuser  # 可选；将新用户添加到 sudo 组，以便赋予管理员权限
+sudo usermod -aG sudo user  # 可选；将新用户添加到 sudo 组，以便赋予管理员权限
 
-su - newuser                   # 切换到新用户
-```
-
----
-
-其他
-
-```bash
-# 安装 ifconfig
-sudo apt install net-tools
-
-# 查看 IP 地址 Linux/macOS
-ifconfig
+su - user                   # 切换到新用户
 ```
 
 
@@ -230,52 +201,49 @@ bash --rcfile testrc  # 指定另一个脚本代替 .bashrc
 
 ### 常用命令
 
-参考：
-
-- [Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
-- [Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
+- 参考：
+    - [Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
+    - [Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
 
 ---
 
-#### 基本命令
+#### 常用基本命令
 
-基本命令
+- 常用基本命令
 
 ```bash
-man         # 查看命令帮助
-echo        # 打印字符串
-pwd         # 显示当前路径
-cd          # 切换目录
-ls          # 列出目录内容；
-cat         # 显示文件内容
-tac         # 从最后一行显示文件内容
-head tail   # 打印文件首尾内容，默认 10 行
-less        # 逐页显示文件内容
-touch       # 创建文件/修改文件时间属性
-mkdir       # 创建目录
-mv          # 移动/重命名
-cp          # 复制
-rm          # 删除
-rmdir       # 删除空目录
-diff        # 查看文件差异
-which       # 查看可执行命令所在路径
-cut         # 剪切命令
-clear       # 清屏
-reset       # 重置终端
-dirname     # 获取文件路径的目录部分
-basename    # 获取文件路径的文件部分
-chmod       # 变更文件或目录的权限
-chown       # 变更文件或目录的拥有者或所属群组
-time        # 统计指定命令运行耗时
-|           # 管道符
->  >>       # 标准输出流重定向
-<           # 标准输入流重定向
-2>  2>>     # 标准错误流重定向
+man                # 查看命令帮助
+echo               # 打印字符串
+pwd                # 显示当前路径
+cd                 # 切换目录
+ls                 # 列出目录内容；
+cat                # 显示文件内容
+tac                # 从最后一行显示文件内容
+head tail          # 打印文件首尾内容，默认 10 行
+less               # 逐页显示文件内容
+touch              # 创建文件/修改文件时间属性
+mkdir              # 创建目录
+mv                 # 移动/重命名
+cp                 # 复制
+rm                 # 删除
+rmdir              # 删除空目录
+diff               # 查看文件差异
+which              # 查看可执行命令所在路径
+cut                # 剪切命令
+clear              # 清屏
+reset              # 重置终端
+dirname            # 获取文件路径的目录部分
+basename           # 获取文件路径的文件部分
+chmod              # 变更文件或目录的权限
+chown              # 变更文件或目录的拥有者或所属群组
+time               # 统计指定命令运行耗时
+|                  # 管道符
+>  >>              # 标准输出流重定向
+<                  # 标准输入流重定向
+2>  2>>            # 标准错误流重定向
 ```
 
----
-
-基本命令进阶用法
+- 常用基本命令进阶用法
 
 ```bash
 man man                 # 查看如何使用 man 命令
@@ -314,6 +282,7 @@ cut -d, -f3 file  # 从每一行文本中提取以逗号分隔的第三个字段
 #### tar
 
 - 打包命令，非压缩/解压缩命令（和其他程序如 gzip、bzip2 等一起实现压缩/解压缩功能）
+
 - 不同压缩格式的文件体积大小：`tar.gz` > `tar.bz2` > `tar.xz`
 
 ```bash
@@ -354,7 +323,7 @@ bzcat    # 查看 .bz2 文件
 
 #### ln
 
-给文件/目录设置字符（软）链接（**需绝对路径**）
+- 给文件/目录设置符号（软）链接（**建议绝对路径**）
 
 ```bash
 ln -s SRC DEST
@@ -367,7 +336,7 @@ ln -s SRC DEST
 
 #### curl
 
-利用 URL 规则在命令行下工作的文件传输工具
+- 利用 URL 规则在命令行下工作的文件传输工具
 
 ```bash
 # 常用参数
@@ -396,7 +365,7 @@ curl ascii.live/parrot
 
 #### wget
 
-从网络下载文件
+- 从网络下载文件
 
 ```bash
 # 参数
@@ -463,10 +432,11 @@ strings libstdc++.so.6 | grep GLIBCXX
 
 #### sed
 
-文本处理工具
+- 文本处理工具
 
-- macOS 中需在使用 `i\` `a\`、`c\` 命令时，需在 `\` 后换行
-- macOS 在使用 `-i` 选项时，需在后面添加 `''`
+- 注意事项：
+    - macOS 中需在使用 `i\` `a\`、`c\` 命令时，需在 `\` 后换行
+    - macOS 在使用 `-i` 选项时，需在后面添加 `''`
 
 ```bash
 # 命令格式
@@ -486,7 +456,7 @@ i\             # 在行前插入文本
 c\             # 替换行
 ```
 
-示例：
+- 示例：
 
 ```bash
 # 替换指定字符串
@@ -528,7 +498,7 @@ sed -e '1d' -e '$d' file   # 删除多行
 
 #### grep
 
-文本搜索工具
+- 文本搜索工具
 
 ```bash
 # 常用参数
@@ -554,7 +524,7 @@ sed -e '1d' -e '$d' file   # 删除多行
 egrep          # 等同于 grep -E
 
 grep -E 'word1|word2' file  # 匹配多个 pattern
-egrep 'word1|word2' file    # 同上 
+egrep 'word1|word2' file    # 同上
 ```
 
 
@@ -562,11 +532,14 @@ egrep 'word1|word2' file    # 同上
 
 #### awk
 
-文本处理工具
+- 文本处理工具
 
 - 将输入数据视为记录，每个记录又被进一步划分为字段
+
 - 默认分隔符为空格（可以为多个空格），指定分隔符（`-F:`）
+
 - awk 程序由模式和动作组成（可以没有模式）
+
 - `-v var=` 定义变量
 
 ```bash
@@ -591,9 +564,7 @@ END {
 }
 ```
 
----
-
-常用功能 awk 命令实现
+- 常用功能 awk 命令实现
 
 ```bash
 awk '{ print NR, $0 }' file  # 输出文件内容并显示行号
@@ -655,7 +626,7 @@ du -sh file/folder
 du -sh file/folder | sort -h  # 按大小排序
 ```
 
-- dirs：显示目录堆栈，按照最近访问的目录排序（ohmyzsh 有关 dirs 的 alias 是 `d`）
+- dirs：显示目录堆栈，按照最近访问的目录排序
 
 ```bash
 # 常用参数
@@ -665,7 +636,7 @@ du -sh file/folder | sort -h  # 按大小排序
 -c             # 清空目录堆栈
 ```
 
-- xargs：参数转化器，将输入数据转换为命令行参数并执行命令。常用于将管道或标准输入 (stdin) 的数据转换为命令的参数。
+- xargs：参数转化器，将输入数据转换为命令行参数并执行命令。常用于将管道或标准输入 (stdin) 的数据转换为命令的参数
 
 ```bash
 # 将 find 找到的文件删除
@@ -684,7 +655,7 @@ command | tee file
 -i             # 忽略中断信号
 ```
 
-- nohup：全称 no hang up。允许在用户注销或者断开终端连接之后，仍然运行后台的程序（或直接在命令后添加 `&`，使程序进入后台运行）
+- nohup：全称 no hang up；允许在用户注销或者断开终端连接之后，仍然运行后台的程序（或直接在命令后添加 `&`，使程序进入后台运行）
 
 ```bash
 nohup command &
@@ -719,12 +690,19 @@ nl -n rz file   # 行号在自己栏位的最右方显示，且加 0 ；
 nl -b a file    # 表示不论是否为空行，也同样列出行号
 ```
 
-- type：判断命令的来源（内置命令，外部程序）；命令的类型：别名（alias），关键词（keyword），函数（function），内置命令（builtin）和文件（file）
+- type：判断命令的类型/来源（内置命令，外部程序）
 
 ```bash
 # 参数
--a    # 查看一个命令的所有定义
--t    # 返回一个命令的类型
+-a           # 查看一个命令的所有定义
+-t           # 返回一个命令的类型
+
+# 命令类型
+alias        # 别名
+keyword      # 关键词
+function     # 函数
+builtin      # 内置命令
+file         # 文件
 ```
 
 - 格式化输出日期：[Bash Date Format Options - Examples](https://www.tutorialkart.com/bash-shell-scripting/bash-date-format-options-examples/)
@@ -752,6 +730,32 @@ hostnamectl set-hostname new_hostname
 ```bash
 ldconfig -p    # 查看库文件路径和实际缓存的库
 sudo ldconfig  # 更新缓存
+```
+
+- ps：显示进程信息
+
+```bash
+-e / -A        # 显示所有进程
+-f             # 全格式显示
+-l             # 长格式显示
+-u USER        # 指定用户
+-o             # 自定义输出
+-p PID         # 指定 PID
+-c             # 显示进程的实际命令名，而非完整的命令行
+
+# 进程信息
+UID            # 用户 ID
+PID            # 进程 ID
+PPID           # 父进程 ID
+C              # CPU 使用率
+STIME          # 启动时间
+TTY            # 终端名称
+TIME           # CPU 时间
+CMD            # 命令名称
+
+
+# 统计每个用户的进程数
+ps hax -o user | sort | uniq -c | sort -r
 ```
 
 - top：显示系统资源使用情况的实时工具；运行时是交互式的
@@ -805,9 +809,6 @@ env                    # 显示环境变量
 
 pstree                 # 将所有进程以树状图显示
 nmon                   # 监控系统资源（应该不常用）
-
-# 统计每个用户的进程数
-ps hax -o user | sort | uniq -c | sort -r
 
 # 在终端上打印一行由井号(#)组成的横条，其长度与终端的列数相同
 # 可作为视觉分隔线

@@ -69,6 +69,9 @@ password:
 - 相关数据提取
 
 ```bash
+
+total drift           # 结构中所有原子在 x y z 方向的受力变化总和
+
 # 能量之间的差异
 energy without entropy
 E0
