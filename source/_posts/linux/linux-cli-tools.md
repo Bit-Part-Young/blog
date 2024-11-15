@@ -333,23 +333,23 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 
 系统相关
 
-- Shell：个人感觉没有 zsh 好用
+- Shell（个人感觉没有 zsh 好用）
     - nushell
     - fish
 
-- 替代 `man`：
+- 替代 `man`
     - [tldr](https://github.com/tldr-pages/tldr)（有时会失效）
     - [eg](https://github.com/srsudar/eg)
     - [navi](https://github.com/denisidoro/navi)（默认的 cheatsheet 很少，效果一般）
 
 - `CTRL + R` 历史命令升级版：[mcfly](https://github.com/cantino/mcfly)
 
-- 替代 `ls`：
+- 替代 `ls`
     - [lsd](https://github.com/lsd-rs/lsd)（可显示文件的 git 状态）
     - [eza](https://github.com/eza-community/eza)（exa 的维护版本；可显示文件的 git 状态）
     - [exa](https://github.com/ogham/exa)（已不再更新）
 
-- 替代 `grep`：
+- 替代 `grep`
     - [ripgrep](https://github.com/BurntSushi/ripgrep)（命令 `rg`）
     - [peco](https://github.com/peco/peco)（交互式）
     - [ripgrep-all](https://github.com/phiresky/ripgrep-all)（命令 `rga`；可在 PDF、E-Books、Office 文档、压缩文件等查找内容）
@@ -357,27 +357,30 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 - 替代 `sed`：[sd](https://github.com/chmln/sd)
 - 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)（cargo 安装时为 `fd-find`）
-- 替代 `ps`：[procs](https://github.com/dalance/procs)
 - 替代 `diff`：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
+- 替代 `ps`：[procs](https://github.com/dalance/procs)
 
-- 替代 `top`：
+- 替代 `top`
     - [btop](https://github.com/aristocratos/btop)
     - [htop](https://github.com/htop-dev/htop)
 
 - 查看系统资源：[glances](https://github.com/nicolargo/glances)
 
-- 监测 GPU（Nvidia 和 AMD 等）：
+- 监测 GPU（Nvidia 和 AMD 等）
     - [nvtop](https://github.com/Syllo/nvtop#distribution-specific-installation-process)
     - [nvitop](https://github.com/XuehaiPan/nvitop)
 
 - 监测 CPU 压力：[GitHub - amanusk/s-tui: Terminal-based CPU stress and monitoring utility](https://github.com/amanusk/s-tui)
 
-- 显示系统信息：
+- 显示系统信息
     - [neofetch](https://github.com/dylanaraps/neofetch)、[neofetch-themes](https://github.com/Chick2D/neofetch-themes)
     - [fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
     - [hyfetch](https://github.com/hykilpikonna/hyfetch)
+    - macchina
 
-- 磁盘分析：[ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
+- 磁盘分析
+    - [ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
+    - dysk（仅限 Linux）
 
 - 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
 
@@ -396,7 +399,7 @@ yj -yy < deploy.yml      # 会删除 YAML 文件中多余的空行
 
 Markdown 相关
 
-- 终端 Markdown 渲染：
+- 终端 Markdown 渲染
     - [frogmouth](https://github.com/Textualize/frogmouth)
     - [glow](https://github.com/charmbracelet/glow)
     - [GitHub - swsnr/mdcat: cat for markdown](https://github.com/swsnr/mdcat)
@@ -407,7 +410,7 @@ Markdown 相关
 
 文件相关
 
-- 模糊文件查找：[fzf](https://github.com/junegunn/fzf)
+- 文件模糊查找：[fzf](https://github.com/junegunn/fzf)
 
 - 终端文件管理器
     - [yazi](https://github.com/sxyazi/yazi)
@@ -475,6 +478,7 @@ Markdown 相关
 - fzf 进阶用法
     - [fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
     - [Linux 上有哪些工具软件堪称精美？ - 知乎](https://www.zhihu.com/question/28596616/answer/3487536522)
+    - 可将 find、grep、history 等查找命令与 fzf 通过管道符连接，实现前者命令的模糊查找
 
 ```bash
 # 搜索整个 apt package；回车安装

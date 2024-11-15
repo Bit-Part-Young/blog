@@ -13,6 +13,7 @@ tags:
   - atomate
 categories:
   - 科研工具
+  - atomate
 date: 2024-11-12 17:37:45
 abbrlink: 543717
 password:
@@ -28,7 +29,7 @@ sticky: "99"
 atomate       1.1.0          2023.08.26
 pymatgen      2024.10.29     2024.10.29
 custodian     v2024.10.16    2024.10.16
-firework      2.0.3          2021.03.12
+fireworks     2.0.3          2021.03.12
 ```
 
 
@@ -39,7 +40,7 @@ firework      2.0.3          2021.03.12
 
 - 使用 lpad 命令时，出现如下报错：
     - 参考：[AttributeError: "safe\_load()" has been removed · Issue #531 · materialsproject/fireworks · GitHub](https://github.com/materialsproject/fireworks/issues/531)
-    - firework 的最新 Release 版本为 2021 年的，很老；GitHub 中的 fireworks 源码有对该问题进行解决，下载源码之后 `python setup.py install` 重新安装该包；或降版本 `ruamel.yaml <0.18.0`
+    - fireworks 的最新 Release 版本为 2021 年的，很老；GitHub 中的 fireworks 源码有对该问题进行解决，下载源码之后 `python setup.py install` 重新安装该包；或降版本 `ruamel.yaml <0.18.0`
 
 ```bash
   File "/path/env/lib/python3.11/site-packages/ruamel/yaml/main.py", line 1039, in error_deprecation

@@ -13,6 +13,7 @@ tags:
   - atomate
 categories:
   - 科研工具
+  - atomate
 date: 2023-06-18 18:30:30
 abbrlink: 120738
 password:

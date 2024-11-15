@@ -13,6 +13,7 @@ tags:
   - atomate
 categories:
   - 科研工具
+  - atomate
 date: 2023-06-18 18:30:30
 abbrlink: 120740
 password:
@@ -54,10 +55,10 @@ Workflow，Firework（Firework 的列表可称做 fireworks），Firetask（一�
 ```bash
 # lpad 参数
 -i            # ID
--s            # state READY/WAITING/COMPLETED/FIZZLED/RUNNING
+-s            # 状态；有 READY/WAITING/COMPLETED/FIZZLED/RUNNING
               # DEFUSED 该 firework 不运行
 -m            # max
--t            # table
+-t            # 以表格形式列出 workflow 中 firework 的状态
 -d            # all 会显示 firework 之间的关联
               # count 统计数目
               # ids 统计 id
@@ -70,7 +71,7 @@ lpad report
 lpad rerun_fws -i 3
 lpad rerun_fws -s FIZZLED
 
-# 查看 fireworks 
+# 查看 fireworks
 lpad get_fws
 lpad get_fws -i 3
 lpad get_fws -s FIZZLED
@@ -135,7 +136,7 @@ No READY jobs detected
 
 - 对于有多个 fireworks（如 M 个）的 workflows（如弹性常数计算），可以先提前了解这些多个 fireworks 之间的逻辑关系，若共有**N 个 workflows**，可先 `qlaunch rapidfire --nlaunches N`，N 个中有部分 fireworks（如 X 个）计算完成后，可适当再 `qlaunch rapidfire --nlaunches X*(M-1)`，进行该 workflow 其余部分 fireworks 的计算，一定程度上可以控制计算成本（虽然可能需要时不时查看 fireworks 的计算完成情况）
 
-- **不建议直接 `qlaunch rapidfire`**
+- **不建议直接 `qlaunch rapidfire`**（只要作业未结束，生成其他的 workflow，会自动到队列中等待，计算目录容易混淆）
 
 - atomate 无法在只将 workflow 产生后就能看到输入文件，需让其实际运行才能看到；做法：核数设为 1；运行后待输入文件产生，将 Jobid 删除，检查输入文件参数
 
@@ -181,7 +182,7 @@ from atomate.vasp.workflows.presets.core import wf_structure_optimization
 from fireworks.core.launchpad import LaunchPad
 from pymatgen.core.structure import Structure
 
-structure = Structure.from_file("Si.vasp")
+structure = Structure.from_file("POSCAR")
 
 wf = wf_structure_optimization(structure)
 
@@ -199,6 +200,27 @@ print("The relaxation test workflow is added.")
 
 ### 弹性常数计算
 
+- Python 代码示例
+
+```python
+from atomate.common.powerups import add_namefile, add_tags
+from atomate.vasp.workflows.presets.core import wf_elastic_constant
+from fireworks.core.launchpad import LaunchPad
+from pymatgen.core.structure import Structure
+
+structure = Structure.from_file("POSCAR")
+
+wf = wf_elastic_constant(structure=structure)
+
+wf = add_namefile(wf)
+wf = add_tags(wf, {"task_name": "atomate elastic constant workflow test"})
+
+lpad = LaunchPad.auto_load()
+lpad.add_wf(wf)
+
+print("The elastic constant test workflow is added.")
+```
+
 - 弹性常数计算时，若该 workflow 有部分变形的 firework 计算结束，部分 fizzled，它会先根据已计算的变形 firework 数据进行拟合得到弹性数据，因此**需检查该 workflow 中的所有 firework 是否都计算完成并检验结果是否合理**；修改相关错误，重新提交 fizzled fw 后（之前错误生成的输入文件会进行更新），分析那步 fw 会处于 WAITING 状态，以进行更新
 
 - atomate 计算弹性常数得到的弹性张量中 POSCAR-format (raw) 与 IEEE-format (ieee_format) 之间的区别：
@@ -209,11 +231,20 @@ print("The relaxation test workflow is added.")
 - 自定义弹性常数计算 workflow 的弹性数据保存到 db 中的 collection 的名字
 
 ```python
+# 修改弹性常数计算 workflow 主要的两个文件路径
+atomate/vasp/workflows/base/elastic.py
+atomate/vasp/workflows/presets/core.py
+
 # atomate/vasp/firetasks/parse_outputs.py 中的 ElasticTensorToDb 类（修改 "elasticity" 即可）
-db.db["elasticity"] 
+db.db["elasticity"]
 
 # 或 atomate/vasp/workflows/base/elastic.py 中的 get_wf_elastic_constant() 有涉及
 ```
+
+atomate 中计算弹性常数默认用法：应力 - 应变法（从 Si 的弹性常数计算示例中看出）
+
+
+变形（进行静态计算，用到的是 StaticSetOne.yaml 文件中的参数）
 
 
 ---
@@ -280,7 +311,7 @@ query = {"task_id": {"$gt": 18, "$lt": 44}}
 query = {"tags.solute": {"$in": solute_list}}
 query = {"completed_at": {"$regex": "2022-08-05 *"}}
 
-# 0: 不提取数据；1: 提取数据 
+# 0: 不提取数据；1: 提取数据
 projection = {
     "_id": 0,
     "dir_name": 1,
@@ -497,7 +528,7 @@ dict_keys(
 
 ```bash
     raise ServerSelectionTimeoutError(
-pymongo.errors.ServerSelectionTimeoutError: 
+pymongo.errors.ServerSelectionTimeoutError:
 ```
 
 - MongoDB 数据库连接失败（数据库服务未启动；XXX 指 Host）
@@ -507,5 +538,5 @@ pymongo.errors.ServerSelectionTimeoutError:
 getaddrinfo ENOTFOUND XXX
 
 # 报错情况 2
-Connection failed: XXXX: [Errno 111] Connection refused, Timeout: 30s, Topology Description: 
+Connection failed: XXXX: [Errno 111] Connection refused, Timeout: 30s, Topology Description:
 ```

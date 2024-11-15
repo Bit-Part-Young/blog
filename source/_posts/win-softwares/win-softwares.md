@@ -167,6 +167,7 @@ scoop config name value        # 配置 scoop
     - 与 Mac 的 Alfred 类似；快速切换到当前打开的目录 `CTRL + G`
 
 - MobaXterm：远程服务器连接工具；集成 X11 和 SFTP；可自动识别已安装的 WSL
+    - [【终端】全能终端神器MobaXterm\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ze41157SP)
     - [Mobaxterm: how to prevent ssh session from exiting? - Stack Overflow](https://stackoverflow.com/questions/57385896/mobaxterm-how-to-prevent-ssh-session-from-exiting)
     - [ ] Mobaxterm 左侧文件目录无法随右侧终端命令实时改变（暂无法解决）
 

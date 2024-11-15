@@ -240,7 +240,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - RunCat
     - [stats](https://github.com/exelban/stats)
     - [mactop](https://github.com/context-labs/mactop)
-    - [asitop](https://github.com/tlkh/asitop)
+    - [asitop](https://github.com/tlkh/asitop)（调用的是 macOS 自带 powermetrics 命令）
 
 - 限制电池最大充电量
     - AlDente

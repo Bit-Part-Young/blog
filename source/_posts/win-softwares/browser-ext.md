@@ -61,7 +61,9 @@ yy           # 拷贝当前页面的 URL 到剪切板
 
 ### SwitchyOmega
 
-自动切换对网页实现不同的代理（直连或代理），节省流量。配置好切换规则后，选择 “auto switch”；[2024最新SwitchyOmega使用教程配置从入门到精通](https://switchyomega.org/)
+- 自动切换对网页实现不同的代理（直连或代理），节省流量；配置好切换规则后，选择 "auto switch"
+
+- [2024最新SwitchyOmega使用教程配置从入门到精通](https://switchyomega.org/)
 
 ```bash
 # 规则列表网址
@@ -113,6 +115,16 @@ www.sciencedirect.com     # 直接连接
 
 - 新标签页：[GitHub - XengShi/materialYouNewTab: A Simple New Tab ( browsers's home page ) inspired with Google's 'Material You' design](https://github.com/XengShi/materialYouNewTab)
 
+- [GitHub - hanydd/BilibiliSponsorBlock: 一款跳过B站视频中恰饭片段的浏览器插件](https://github.com/hanydd/BilibiliSponsorBlock) （实用）
+
+- 预览网页中的链接内容：[GitHub - XiCheng148/SmartPreview](https://github.com/XiCheng148/SmartPreview/)
+
+- X media Downloader：推特视频下载
+
+- 浏览推特内容平台时，模糊媒体资源：[GitHub - Dnevend/x-comfort-browse](https://github.com/dnevend/x-comfort-browse/)
+
+- 屏蔽推特广告和纯视频内容，同时支持根据敏感词过滤；另外的两个功能是在时间线上显示用户的关注数和给用户加标签：[【工具自荐】免费的 Twitter/X 时间线优化工具 · Issue #5249 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/5249)
+
 - IDM Integration Module：IDM 下载集成模块；嗅探下载网页视频
 
 - 隐藏浏览器插件（会把插件关掉）：[GitHub - cunzaizhuyi/up-mode-extension: This is a browser extension that protects the author's privacy by hiding pinned browser extensions.](https://github.com/cunzaizhuyi/up-mode-extension)
@@ -152,6 +164,8 @@ www.sciencedirect.com     # 直接连接
 - AC baidu 重定向：去广告，优化排列等。
 
 - CSDN 广告过滤
+
+- YAWF：微博过滤
 
 - 知乎相关：
     - [知乎修改器🤜持续更新🤛努力实现功能最全的知乎配置插件](https://greasyfork.org/zh-CN/scripts/423404)

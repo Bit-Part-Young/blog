@@ -11,6 +11,7 @@ tags:
   - 高通量
 categories:
   - 科研工具
+  - atomate
 date: 2023-07-27 10:42:30
 abbrlink: 420310
 password:
@@ -19,6 +20,10 @@ password:
 # atomate 进阶使用
 
 ml-atomate：[GitHub - takahashi-akira-36m/ml\_atomate: Machine learning-assisted Atomate code for autonomous computational materials screening.](https://github.com/takahashi-akira-36m/ml_atomate)
+
+[atomate. utils package](https://atomate.org/atomate.utils.html](https://atomate.org/atomate.utils.html))
+
+[Customizing workflows — atomate 1.0.3 documentation](https://atomate.org/customizing_workflows.html)
 
 
 以下两段代码来自 MP Workshop 2021 05_automated_dft lesson（写成 atomate basic 示例代码）
@@ -116,7 +121,9 @@ atomate
 
 ### 通过 yaml 文件自定义、导入 workflow
 
-- 参考：[https://atomate.org/workflow_yaml_reference.html](https://atomate.org/workflow_yaml_reference.html)
+- 参考：
+    - [https://atomate.org/workflow_yaml_reference.html](https://atomate.org/workflow_yaml_reference.html)
+    - [How to write a parameters to YAML file denpends on workflow - Atomate - Materials Science Community Discourse](https://matsci.org/t/how-to-write-a-parameters-to-yaml-file-denpends-on-workflow/37337)
 
 - yaml 文件示例 1：
 
@@ -145,7 +152,7 @@ metadata:
 - yaml 文件示例 2：
 
 ```yaml
-%%file opti.yaml  
+# file opti.yaml
 fireworks:
 # Relaxation for
 - fw: atomate.vasp.fireworks.core.OptimizeFW
@@ -160,7 +167,7 @@ fireworks:
 from atomate.utils.utils import ...
 
 get_wf_from_spec_dict()     # 通过 yaml 文件导入 workflow
-get_meta_from_structure()   # 
+get_meta_from_structure()   #
 get_fws_and_tasks           # 获取给定 workflow 的 fw_ids 和 task_ids
 
 
@@ -217,39 +224,39 @@ VaspDrone.schema
 
 ```python
 error_msgs = {
-        'algo_tet': ['ALGO=A and IALGO=5X tend to fail'], 
-        'amin': ['One of the lattice vectors is very long (>50 A), but AMIN'], 
-        'bravais': ['Inconsistent Bravais lattice'], 
-        'brions': ['BRIONS problems: POTIM should be increased'], 
-        'brmix': ['BRMIX: very serious problems'], 
-        'coef': ['while reading plane', 'while reading WAVECAR'], 
-        'dentet': ['DENTET'], 
-        'dfpt_ncore': ['PEAD routines do not work for NCORE', 'remove the tag NPAR from the INCAR file'], 
-        'edddav': ['Error EDDDAV: Call to ZHEGV failed'], 
-        'eddrmm': ['WARNING in EDDRMM: call to ZHEGV failed'], 
-        'elf_kpar': ['ELF: KPAR>1 not implemented'], 
-        'elf_ncl': ['WARNING: ELF not implemented for non collinear case'], 
-        'grad_not_orth': ['EDWAV: internal error, the gradient is not orthogonal'], 
-        'hnform': ['HNFORM: k-point generating'], 
-        'incorrect_shift': ['Could not get correct shifts'], 
-        'inv_rot_mat': ['rotation matrix was not found (increase SYMPREC)'], 
-        'nbands_not_sufficient': ['number of bands is not sufficient'], 
-        'nicht_konv': ['ERROR: SBESSELITER : nicht konvergent'], 
-        'point_group': ['group operation missing'], 
-        'posmap': ['POSMAP'], 'pricel': ['internal error in subroutine PRICEL'], 
-        'pssyevx': ['ERROR in subspace rotation PSSYEVX'], 
-        'read_error': ['Error reading item', 'Error code was IERR= 5'], 
-        'real_optlay': ['REAL_OPTLAY: internal error', 'REAL_OPT: internal ERROR'], 
-        'rhosyg': ['RHOSYG'], 'rot_matrix': ['Found some non-integer element in rotation matrix', 'SGRCON'], 
-        'rspher': ['ERROR RSPHER'], 'set_core_wf': ['internal error in SET_CORE_WF'], 
-        'subspacematrix': ['WARNING: Sub-Space-Matrix is not hermitian in DAV'], 
-        'symprec_noise': ['determination of the symmetry of your systems shows a strong'], 
-        'tet': ['Tetrahedron method fails', 'tetrahedron method fails', 'Fatal error detecting k-mesh', 'Fatal error: unable to match k-point', 'Routine TETIRR needs special values', 'Tetrahedron method fails (number of k-points < 4)', 'BZINTS'], 
-        'tetirr': ['Routine TETIRR needs special values'], 
-        'too_few_bands': ['TOO FEW BANDS'], 
-        'triple_product': ['ERROR: the triple product of the basis vectors'], 
-        'zbrent': ['ZBRENT: fatal internal in', 'ZBRENT: fatal error in bracketing'], 
-        'zheev': ['ERROR EDDIAG: Call to routine ZHEEV failed!'], 
+        'algo_tet': ['ALGO=A and IALGO=5X tend to fail'],
+        'amin': ['One of the lattice vectors is very long (>50 A), but AMIN'],
+        'bravais': ['Inconsistent Bravais lattice'],
+        'brions': ['BRIONS problems: POTIM should be increased'],
+        'brmix': ['BRMIX: very serious problems'],
+        'coef': ['while reading plane', 'while reading WAVECAR'],
+        'dentet': ['DENTET'],
+        'dfpt_ncore': ['PEAD routines do not work for NCORE', 'remove the tag NPAR from the INCAR file'],
+        'edddav': ['Error EDDDAV: Call to ZHEGV failed'],
+        'eddrmm': ['WARNING in EDDRMM: call to ZHEGV failed'],
+        'elf_kpar': ['ELF: KPAR>1 not implemented'],
+        'elf_ncl': ['WARNING: ELF not implemented for non collinear case'],
+        'grad_not_orth': ['EDWAV: internal error, the gradient is not orthogonal'],
+        'hnform': ['HNFORM: k-point generating'],
+        'incorrect_shift': ['Could not get correct shifts'],
+        'inv_rot_mat': ['rotation matrix was not found (increase SYMPREC)'],
+        'nbands_not_sufficient': ['number of bands is not sufficient'],
+        'nicht_konv': ['ERROR: SBESSELITER : nicht konvergent'],
+        'point_group': ['group operation missing'],
+        'posmap': ['POSMAP'], 'pricel': ['internal error in subroutine PRICEL'],
+        'pssyevx': ['ERROR in subspace rotation PSSYEVX'],
+        'read_error': ['Error reading item', 'Error code was IERR= 5'],
+        'real_optlay': ['REAL_OPTLAY: internal error', 'REAL_OPT: internal ERROR'],
+        'rhosyg': ['RHOSYG'], 'rot_matrix': ['Found some non-integer element in rotation matrix', 'SGRCON'],
+        'rspher': ['ERROR RSPHER'], 'set_core_wf': ['internal error in SET_CORE_WF'],
+        'subspacematrix': ['WARNING: Sub-Space-Matrix is not hermitian in DAV'],
+        'symprec_noise': ['determination of the symmetry of your systems shows a strong'],
+        'tet': ['Tetrahedron method fails', 'tetrahedron method fails', 'Fatal error detecting k-mesh', 'Fatal error: unable to match k-point', 'Routine TETIRR needs special values', 'Tetrahedron method fails (number of k-points < 4)', 'BZINTS'],
+        'tetirr': ['Routine TETIRR needs special values'],
+        'too_few_bands': ['TOO FEW BANDS'],
+        'triple_product': ['ERROR: the triple product of the basis vectors'],
+        'zbrent': ['ZBRENT: fatal internal in', 'ZBRENT: fatal error in bracketing'],
+        'zheev': ['ERROR EDDIAG: Call to routine ZHEEV failed!'],
         'zpotrf': ['LAPACK: Routine ZPOTRF failed', 'Routine ZPOTRF ZTRTRI']
 }
 ```
@@ -289,30 +296,15 @@ if __name__ == '__main__':
 ## 相关问题
 
 - 部分 workflow 有 VASP 计算过程，但无法将计算数据保存到 MongoDB 中（个人理解）
+    - 参考：[Check returncode to raise CustodianError() leading some trouble · Issue #41 · materialsproject/custodian · GitHub](https://github.com/materialsproject/custodian/issues/41)
+    - 源代码修改：将 `custodian/custodian.py` 中 `Custodian` 类的 `__init__` 方法 `terminate_on_nonzero_returncode ` 参数值改成 `False`
 
 ```bash
 custodian.custodian.ReturnCodeError: Job return code is 174. Terminating…
 ```
 
-解决方法：[Check returncode to raise CustodianError() leading some trouble · Issue #41 · materialsproject/custodian · GitHub](https://github.com/materialsproject/custodian/issues/41)
-
-源代码修改：将 `custodian/custodian.py` 中 `Custodian` 类的 `terminate_on_nonzero_returncode` 参数值改成 `False`。
-
-```python
-class Custodian:
-    ...
-    def __init__(
-        self,
-        ...
-        # modified by ysl
-        # terminate_on_nonzero_returncode=True,
-        terminate_on_nonzero_returncode=False,
-    ):
-```
-
----
-
 - 涉及到含元素 Si 的 atomate 计算（atomate 1.1.0 版本），会出现如下报错（2023.10.12）
+    - atomate 版本为 1.1.0，但在 MongoDB 的数据库中 documentation 中的 schema.version 版本仍显示是 1.0.3
 
 ```bash
 Traceback (most recent call last):
@@ -322,7 +314,12 @@ Traceback (most recent call last):
 bson.errors.InvalidDocument: cannot encode object: True, of type: <class 'numpy.bool_'>
 ```
 
-atomate 版本为 1.1.0，但在 mongodb 的数据库中 documentation 中的 schema.version 版本仍显示是 1.0.3
+- 计算弹性常数，报错：实际计算用不到该模块，在 `atomate/vasp/firetasks/write_inputs.py"`，在第 637 行将其注释掉）
+    - [Fix \`ModuleNotFoundError\`: No module named 'pymatgen.transformations.defect\_transformations' by janosh · Pull Request #760 · hackingmaterials/atomate · GitHub](https://github.com/hackingmaterials/atomate/pull/760/commits/85786c33b2fade6a882f35b4221552529fb4fef4)
+
+```bash
+- `ModuleNotFoundError: No module named 'pymatgen.transformations.defect_transformations’`
+```
 
 ---
 
@@ -358,7 +355,7 @@ plot_wf(wf)
 
 ### atomate.common.powerups
 
->[Tags are not passed to individual fireworks in QChem workflow · Issue #576 · hackingmaterials/atomate · GitHub](https://github.com/hackingmaterials/atomate/issues/576)
+- [Tags are not passed to individual fireworks in QChem workflow · Issue #576 · hackingmaterials/atomate · GitHub](https://github.com/hackingmaterials/atomate/issues/576)
 
 - `add_namefile()` 函数：每个 firework 计算目录会写入 `FW–<fw.name>-<fw.fw_id>` 格式的空文件，以更好地查看当前目录是什么具体的计算任务内容，如在 `block*` 目录下执行命令：`ls -l launch*/FW–*`
 
@@ -367,10 +364,15 @@ plot_wf(wf)
 ```python
 from atomate.common.powerups import ...
 
-
-add_namefile()
-add_tags()
+# 相关函数
+add_namefile()         # 给 firework 添加 name
+add_tags()             # 给 namefile 添加 tag
 ```
+
+![Untitled 10.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202411130850488.png)
+
+![Untitled 11.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202411130852831.png)
+
 
 
 ---
@@ -452,9 +454,9 @@ wf_nudged_elastic_band(structures, parent, c=None)
 
 ### atomate.vasp.powerups
 
->[Customize KPOINTs without using user\_kpoints\_settings (dict) - Atomate - Materials Science Community Discourse](https://matsci.org/t/customize-kpoints-without-using-user-kpoints-settings-dict/35309)
+- 参考：[Customize KPOINTs without using user\_kpoints\_settings (dict) - Atomate - Materials Science Community Discourse](https://matsci.org/t/customize-kpoints-without-using-user-kpoints-settings-dict/35309)
 
-- 修改 VASP workflow 计算中的输入参数设置
+- 修改 VASP workflow 中的计算输入参数设置
 
 ```python
 from atomate.vasp.powerups import ...
@@ -468,6 +470,10 @@ add_modify_kpoints()       # 查看 ModifyKpoints 类
 add_modify_potcar()        # 查看 ModifyPotcar 类
 
 clear_modify()
+
+use_fake_vasp()           # 不实际进行运算，主要起演示 atomate 计算流程作用
+
+use_no_vasp()
 ```
 
 示例
@@ -519,11 +525,10 @@ from atomate.vasp.powerups import use_fake_vasp
 from atomate.vasp.workflows import wf_bandstructure
 from pymatgen.core.structure import Structure
 
+structure = Structure.from_file("POSCAR")
+wf = wf_bandstructure(structure)
 
-struc = Structure.from_file("POSCAR")
-wf = wf_bandstructure(struc)
-
-# 是否要将目录中的文件分成inputs和outputs？workshop中的进行了分类
+# 是否要将目录中的文件分成 inputs 和 outputs？workshop 中的进行了分类
 path = ...
 ref_dirs = {
         "Si-structure optimization": f"{path}/Si_structure_opt",
@@ -533,7 +538,7 @@ ref_dirs = {
         }
 
 wf = use_fake_vasp(
-        wf, 
+        wf,
         ref_dirs,
         params_to_check=None,
         check_incar=True,
@@ -546,6 +551,6 @@ wf = use_fake_vasp(
 lp = LaunchPad.auto_load()
 lp.add_wf(wf)
 
-# 1为fw_id
+# 1 为 fw_id
 lp.get_wf_summary_dict(1)
 ```
