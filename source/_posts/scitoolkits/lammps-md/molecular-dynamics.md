@@ -60,6 +60,8 @@ C++/Python 实现 MD（待测试）
 
 [MD 笔记 - zhaobo9337 - 知乎](https://www.zhihu.com/people/zhaobo9337/posts)
 
+[论文 - Introduction to molecular dynamics simulations](https://pubs.aip.org/aapt/ajp/article/88/5/401/1056833/Introduction-to-molecular-dynamics-simulations)
+
 
 MD 教程（含广义层错能计算）
 >[GitHub - shuozhixu/LAMMPSatUCSB](https://github.com/shuozhixu/LAMMPSatUCSB)
@@ -267,6 +269,14 @@ $$
 ---
 
 ## 势函数
+
+势函数查找网站：
+
+- [OpenKIM · Knowledgebase of Interatomic Models · Interatomic Potentials and Force Fields](https://openkim.org/)
+
+- [Interatomic Potentials Repository](https://www.ctcms.nist.gov/potentials/)
+
+---
 
 Lennard-Jones 势描述惰性气体较适用（物理相互作用）
 

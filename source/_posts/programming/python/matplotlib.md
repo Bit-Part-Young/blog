@@ -201,6 +201,9 @@ bbox_to_anchor      # 2-tuple floats，(x, y)；x≥1.0 时，图例在外面
 
 ax.plot(x, y, label="_nolegend_")      # label 不在图例上显示
 ax.legend([])                          # 不显示图例
+ax.get_legend().remove()               # 移除当前图例
+
+handles, labels = ax.get_legend_handles_labels()
 ```
 
 

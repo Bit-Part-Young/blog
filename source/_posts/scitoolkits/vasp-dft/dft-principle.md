@@ -1,7 +1,7 @@
 ---
 title: DFT 原理
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: DFT 原理
@@ -19,6 +19,7 @@ password:
 
 参考资料：
 
+[VASP: Basics (DFT, PW, PAW...)](https://www.nersc.gov/assets/Uploads/VASP-lecture-Basics.pdf)
 
 [\[自制课程\] 密度泛函理论（DFT）速训班\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1fZ421h7dp)
 

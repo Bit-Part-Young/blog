@@ -661,7 +661,8 @@ VaspDoc().print_jupyter_help("IBRION")
 ### pymatgen.io.vasp.inputs
 
 - VASP 输入文件模块
-- 四种输入文件类都有 `from_dict()`、`from_file()`、`write_file()` 类方法
+
+- 四种类 `Incar`、`Poscar`、` Kpoints`、` Potcar`；都有 `from_dict()`、`from_file()`、`write_file()` 类方法
 
 ---
 
@@ -690,18 +691,22 @@ incar.write_file("INCAR")
 
 #### Kpoints
 
+- 生成 K 点密度的类方法大多都有 `force_gamma` 参数
+
+- `automatic_density_by_vol()` 类方法生成的三个方向的 K 点密度公式可理解为： reciprocal_density \* (2\*π / lattice_constant)；`kppvol` 参数值设置可参考 `MPStaticSet` 类中的代码
+
 ```python
 from pymatgen.io.vasp.inputs import Kpoints
 
 
 # 类方法
-automatic()                 
-gamma_automatic
-monkhorst_automatic()
-automatic_density()         # grid_density
+automatic()                        # 弃用，建议使用 INCAR 中的 KSPAING 参数 
+gamma_automatic()                  # kpts 参数：三个方向的 K 点密度
+monkhorst_automatic()              # 同上
+automatic_density()                # grid_density
 automatic_gamma_density()
-automatic_density_by_vol()  # reciprocal_density
-automatic_density_by_lengths()     # 依据长度生成 K 点密度大小
+automatic_density_by_vol()         # reciprocal_density
+automatic_density_by_lengths()     # 依据晶格常数生成 K 点密度大小
 automatic_linemode()
 
 
@@ -715,9 +720,6 @@ kpoints_dict = {
 }
 
 kpoints = Kpoints.from_dict(kpoints_dict)
-
-# 读取 KPOINTS 文件内容
-Kpoints.from_file("KPOINTS").as_dict()
 ```
 
 
@@ -748,11 +750,12 @@ site_symbols                # 原子种类
 ```python
 from pymatgen.io.vasp.inputs import Potcar
 
-Potcar()
 
-# 写入 POTCAR
-element_list = ["Ti", "Al"]
-potcar = Potcar(element_list)
+# 这里的 symbols 是元素赝势符号，而非元素符号
+potcar = Potcar(
+    symbols=["Nb_sv", "Si"],
+    functional="PBE",
+)
 potcar.write_file("POTCAR")
 ```
 
@@ -761,11 +764,23 @@ potcar.write_file("POTCAR")
 
 ### pymatgen.io.vasp.sets
 
-- `MPRelaxSet`、`MPStaticSet` 等类均继承于 `VaspInputSet`，都有 `write_input() ` 方法
-
-- `MPRelaxSet` 中的 K 点生成方式是 `Kpoints.automatic_density_by_vol()`
+- `MPRelaxSet`、`MPStaticSet` 等类均继承于 `VaspInputSet`，都有 `write_input()` 方法
 
 - `MPRelaxSet` 没有设置 EDIFFG 参数：[MPRelaxSet.write\_input() no EDIFFG in INCAR - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprelaxset-write-input-no-ediffg-in-incar/44359)
+
+- `MPRelaxSet` 中的赝势选择相比 MIT project 参数，含更多的价电子；K 点网格密度也比其高 50%
+
+- 在 MPRelaxSet.yaml 参数设置文件中，KPOINTS 只能写如下几种参数
+
+```bash
+grid_density                       # Kpoints.automatic_density
+reciprocal_density                 # KPoints.automatic_density_by_vol
+length                             # Kpoints.automatic
+line_density                       # line mode
+added_kpoints                      # specific k-points to include
+zero_weighted_reciprocal_density   # a zero weighted uniform mesh
+zero_weighted_line_density         # a zero weighted line mode mesh
+```
 
 ```python
 ## yaml 文件
@@ -798,6 +813,17 @@ LobsterSet         # Lobster 计算
 
 from pymatgen.io.vasp.sets import ...
 
+input_settings = MPRelaxSet(structure, ...)
+
+# 参数
+user_incar_settings       # 自定义 INCAR 参数
+user_kpoints_settings     # 自定义 KPOINTS 参数
+user_potcar_settings      # 自定义元素赝势
+user_potcar_functional    # 指定泛涵
+force_gamma               # 是否使用 Gamma-centered K 点生成方式
+
+
+
 # 方法
 write_input()      # 生成 VASP 计算用的 4 个输入文件
   # 参数
@@ -817,6 +843,7 @@ config_dict                             # config_dict["POTCAR"]["Mg"]
 ### pymatgen.io.vasp.outputs
 
 - 读取并解析 VASP 的输出文件
+
 - Oszicar 类的 `final_energy` 属性选择的是 `E0`；Vasprun 类的 `final_energy` 属性选择的也是 `E0`
 
 
@@ -925,17 +952,108 @@ Ionic convergence reached: False.
 
 - 电子结构相关工具与分析（能带和态密度）；可绘制能带、DOS、能带 + DOS
 
-- Plotter 类的 sigma 参数使绘制出的图平滑（**若平滑后使原本的部分数据信息损失，建议不设置该参数！**）
+- Plotter 类的 sigma 参数使绘制出的图平滑（sigma=0.05 相对好一些；**若平滑后使原本的部分数据信息损失，建议不设置该参数！**）
+
+- 态密度 DOS 数据获取与绘图
+    - label 颜色自定义：修改源代码（获取 ax 的方法不行）
+    - 使用 pymatgen 模块绘制 DOS 图时，相对会耗时一些，**建议将 DOS 数据获取后单独存储为数据文件自己绘制**
+
+```python
+import matplotlib.pyplot as plt
+from pymatgen.electronic_structure.plotter import DosPlotter
+from pymatgen.io.vasp.outputs import Vasprun, BSVasprun
+from pymatgen.electronic_structure.core import OrbitalType, Orbital, Spin
+from pymatgen.core.periodic_table import Element
+
+# 获取态密度数据
+dos_vasprun=Vasprun("./dos/vasprun.xml")
+dos_data=dos_vasprun.complete_dos
+
+# 获取费米能级
+fermi = dos_data.efermi
+# 整体能量平移
+energy = dos_data.energies - fermi
+
+dos_data                          # 体系总态密度
+dos_data.get_spd_dos()            # 体系分态密度
+dos_data.get_element_dos()        # 元素总态密度
+dos_data.get_element_spd_dos()    # 元素分态密度
+dos_data.get_site_dos()           # 原子总态密度
+dos_data.get_site_spd_dos()       # 原子分态密度
+
+# 方式 1
+# 体系总态密度数据
+total_densities = dos_data.densities
+total_densities[Spin.up]
+# 体系分态密度数据
+spd_dos = dos_data.get_spd_dos()
+dos_s = spd_dos[OrbitalType.s].densities[Spin.up]
+# 元素总态密度数据
+element_dos = dos_data.get_element_dos()
+dos_Si = element_dos[Element("Si")].densities[Spin.up]
+
+# 方式 2
+# 提取 TDOS 数据
+dos_vasprun.tdos.as_dict()["energies"]
+dos_vasprun.tdos.as_dict()["densities"]["1"]
+# 提取原子位点 PDOS 数据
+dos_vasprun.pdos[0][Orbital.s][Spin.up]
+
+
+# 态密度（总）绘制
+dos_plot = DosPlotter()
+dos_plot.add_dos("Total", dos=dos_data)
+dos_plot.get_plot()
+
+# 态密度（投影到 spd 轨道）绘制
+pdos_plot = DosPlotter()
+pdos_plot.add_dos_dict(dos_data.get_spd_dos())
+pdos_plot.get_plot()
+
+# 态密度（投影到元素）绘制
+edos_plot = DosPlotter()
+edos_plot.add_dos_dict(dos_data.get_element_dos())
+edos_plot.get_plot()
+
+# 态密度（投影到元素 spd 轨道）绘制
+edos_plot = DosPlotter()
+pdos_Nb = dos_data.get_element_spd_dos("Nb")
+dos_plot.add_dos("Nb(s)", dos=pdos_Nb[OrbitalType.s])
+dos_plot.add_dos("Nb(p)", dos=pdos_Nb[OrbitalType.p])
+dos_plot.add_dos("Nb(d)", dos=pdos_Nb[OrbitalType.d])
+edos_plot.get_plot()
+
+# 态密度（投影到原子）绘制
+ados_plot = DosPlotter()
+ados_plot.add_dos("Site 0 Total", dos=dos_data.get_site_dos(structure[0]))
+ados_plot.get_plot()
+
+# 态密度（投影到原子 spd 轨道）绘制
+apdos_plot = DosPlotter()
+dos_site0 = dos_data.get_site_spd_dos(structure[0])
+apdos_plot.add_dos("Nb0(s)", dos=dos_site0[OrbitalType.s])
+apdos_plot.add_dos("Nb0(p)", dos=dos_site0[OrbitalType.p])
+apdos_plot.add_dos("Nb0(d)", dos=dos_site0[OrbitalType.d])
+apdos_plot.get_plot()
+
+
+# 对 get_plot() 返回的 Axes 对象进行进一步的操作
+ax = dos_plot.get_plot()
+ax.set_xlim(...)
+
+plt.savefig(...)    # 保存图片，可不使用 dos_plot.save_plot()
+```
+
+- 能带 BandStructure
 
 ```python
 import matplotlib.pyplot as plt
 from pymatgen.electronic_structure.core import OrbitalType, Orbital
 from pymatgen.io.vasp.outputs import Vasprun, BSVasprun
 from pymatgen.electronic_structure.plotter import (
-    BSDOSPlotter,
     BSPlotter,
     BSPlotterProjected,
-    DosPlotter,
+    BSDOSPlotter,
 )
 
 # 获取能带数据
@@ -946,50 +1064,10 @@ bs_data = bs_vasprun.get_band_structure(line_mode=True)
 bs_plot = BSPlotter(bs=bs_data)
 bs_plot.get_plot()
 
-# 获取态密度数据
-dos_vasprun=Vasprun("./dos/vasprun.xml")
-dos_data=dos_vasprun.complete_dos
-
-# 态密度（总）绘制
-dos_plot = DosPlotter(stack=False, sigma=0.5)
-dos_plot.add_dos("Total", dos=dos_data)
-dos_plot.get_plot()
-
-# 态密度（投影到轨道 + 总）绘制
-pdos_plot = DosPlotter(stack=False, sigma=0.5)
-pdos_plot.add_dos("Total", dos=dos_data)
-pdos_plot.add_dos_dict(dos_data.get_spd_dos())
-pdos_plot.get_plot()
-
-# 态密度（投影到元素 + 总）绘制
-edos_plot = DosPlotter(stack=False, sigma=0.5)
-edos_plot.add_dos("Total", dos=dos_data)
-edos_plot.add_dos_dict(dos_data.get_element_dos())
-edos_plot.get_plot()
-
-# 态密度（元素投影到轨道 + 总）绘制
-edos_plot = DosPlotter(stack=False, sigma=0.5)
-pdos_Nb = dos_data.get_element_spd_dos("Nb")
-dos_plot.add_dos("Nb(s)", dos=pdos_Nb[OrbitalType.s])
-dos_plot.add_dos("Nb(p)", dos=pdos_Nb[OrbitalType.p])
-dos_plot.add_dos("Nb(d)", dos=pdos_Nb[OrbitalType.d])
-edos_plot.get_plot()
 
 # 能带 + 态密度绘制
 bsdos_plot = BSDOSPlotter(bs_projection=None, dos_projection=None)
 bsdos_plot.get_plot(bs=bs_data, dos=dos_data)
-
-# 对 get_plot() 返回的 Axes 对象进行进一步的操作
-ax = dos_plot.get_plot()
-ax.set_xlim(...)
-
-plt.savefig(...)    # 保存图片，可不使用 dos_plot.save_plot()
-
-
-# 提取具体的 TDOS 数据
-dos_vasprun.tdos.as_dict()["energies"]
-# 提取具体的原子位点 PDOS 数据；分 Spin.up 和 Spin.down
-os_vasprun.pdos[0][Orbital.s]
 ```
 
 

@@ -40,10 +40,15 @@ password:
 
 - vaspkit 生成的 HCP 结构 KPOINTS 文件中的 K 点生成方式是 Gamma 点（无论选择 G 还是 MP）
 
+- vaspkit 的能带结构数据获取前提是 K-path 是 Line-Mode 的
 
----
+- 能带绘制相关数据文件：`REFORMATTED_BAND.dat`、`KLABELS`
 
-### utilities 目录结构
+- 态密度绘制相关数据文件：`TDOS.dat`、`IDOS.dat`（积分 DOS）
+
+- 没有绘制体系分态密度（总的 s、p、d 轨道）选项
+
+- vaspkit 源码中的 utilities 目录结构
 
 ```bash
 utilities
@@ -73,22 +78,13 @@ get_lattice.f90        #
 bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 ```
 
+
 ---
 
-### vaspkit 1.5.0 版本功能介绍
-
-注意事项：
-
-- vaspkit 的能带结构数据获取前提是 K-path 是 Line-Mode 的
-
-- 能带绘制需要用到的数据文件：`REFORMATTED_BAND.dat`、`KLABELS`
-
-- 态密度绘制需要用到的数据文件：`TDOS.dat`
-
-- 没有绘制总的 s、p、d 轨道的 PDOS 选项
+### vaspkit 功能介绍
 
 ```bash
-# Task-ID          # 功能
+# Task-ID        # 功能
 02               # 力学性质
 202              # 从弹性张量文件计算弹性性质
 203              # 从 OUTCAR 文件提取弹性常数并计算弹性性质 |
@@ -119,7 +115,7 @@ bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 
 ---
 
-### atomkit 0.9.0 版本功能介绍
+### atomkit 功能介绍
 
 ```bash
 # Task-ID    # 功能
@@ -129,4 +125,25 @@ bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 203          # 寻找单胞
 204          # 参看等同原子
 209          # 分析分子或团簇的对称性
+
+
+4            # 编辑 structure
+401          # 构建超胞
+402          # 固定选中原子
+403          # 移动选中原子
+404          # 删除选中原子
+405          # 交换点阵矢量的轴
+406          # 沿指定方向对原子坐标排序
+409          # 在指定位置添加原子
+410          # 取代选中原子
+412          # 分数坐标，笛卡尔坐标之间转换
+413          # 按照指定顺序排布 structure 中的元素
+414          # 给选中原子施加随机位移
+416          # 给 structure 施加系列应变
+
+6            # 二维材料工具
+601          # 将原子层移动到 z 方向底部
+602          # 将原子层移动到 z 方向中间
+603          # 调整真空层厚度
+604          # Standardize 二维晶胞
 ```

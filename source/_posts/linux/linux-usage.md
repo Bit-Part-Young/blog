@@ -753,6 +753,11 @@ TTY            # 终端名称
 TIME           # CPU 时间
 CMD            # 命令名称
 
+ps -p PID -o ...
+# 后面添加 =，会不显示 title
+user           # 用户
+lstart         # 开始时间；详细
+lstart         # 同上；简短
 
 # 统计每个用户的进程数
 ps hax -o user | sort | uniq -c | sort -r

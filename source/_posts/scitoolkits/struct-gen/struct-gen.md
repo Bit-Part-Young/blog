@@ -80,6 +80,8 @@ password:
 
  - CIF 格式文件分析：[GitHub - bobleesj/cifkit: High-throughput .cif analysis made easy. Visit: https://bobleesj.github.io/cifkit/](https://github.com/bobleesj/cifkit)
 
+含缺陷超胞生成、前/后处理和分析：[Doped code 介绍](https://mp.weixin.qq.com/s/r3ZabHXYAn2HJgyFxFmA-w)
+
 
 
 ---
@@ -183,6 +185,13 @@ latgen 可以生成界面（multi-layer）
 - [GitHub - oekosheri/GB\_code: A grain boundary generation code](https://github.com/oekosheri/GB_code)
 
 LAMMPS 晶界构建：[Grain-Boundary-Energies-LAMMPS/Code and Scripts/Python and Lammps/FullStackAll/FullStack555/Experiments/Cu/0 at master · vishalsubbiah/Grain-Boundary-Energies-LAMMPS · GitHub](https://github.com/vishalsubbiah/Grain-Boundary-Energies-LAMMPS/tree/master/Code%20and%20Scripts/Python%20and%20Lammps/FullStackAll/FullStack555/Experiments/Cu/0)
+
+- 含晶界构建
+    - 旧：[GitHub - wojdyr/gosam: generator of simple atomistic models](https://github.com/wojdyr/gosam)
+    - 复刻上述仓库（代码有更新）：[GitHub - akakcolin/gosam: generator of simple atomistic models](https://github.com/akakcolin/gosam)
+
+
+---
 
 
 CSL 重合位置点阵理论

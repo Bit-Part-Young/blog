@@ -26,6 +26,8 @@ password:
 
 - [ovito_modifiers](https://www.ovito.org/docs/current/python/modules/ovito_modifiers.html)
 
+- POSCAR 格式，单个文件含多帧构型，会无法读取；LAMMPS 格式，单个文件含多帧构型，只会读取第一帧数据
+
 - OVITO 菜单栏：
     - 主菜单
     - 视图窗口

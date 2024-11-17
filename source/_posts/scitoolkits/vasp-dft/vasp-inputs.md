@@ -231,6 +231,10 @@ END of PSCTR-controll parameters
 
 ## KPOINTS
 
+- [论文 - Rapid generation of optimal generalized Monkhorst-Pack grids - CMS](https://www.sciencedirect.com/science/article/pii/S0927025620305917)
+
+- [GitHub - giovannipizzi/seekpath: A module to obtain and visualize k-vector coefficients and obtain band paths in the Brillouin zone of crystal structures](https://github.com/giovannipizzi/seekpath)
+
 - 设置布里渊区 K 点网格采样大小或计算能带结构时沿高对称方向的 K 点
 
 - 对 K 点进行收敛性测试是许多电子最小化计算的基本任务之一
@@ -240,7 +244,7 @@ END of PSCTR-controll parameters
     - 第 2 行：设置 K 点数目，0 表示 K 点网格自动生成
     - 第 3 行：K 点网格划分方式（Monkhorst-Pack 和 Gamma-centerd MP 方法）；只认第一个字母，大小写均可
     - 第 4 行：3 个方向上具体的网格划分数目
-    - 第 5 行：格；一般保持 0 0 0 不变
+    - 第 5 行：shift；一般保持 0 0 0 不变
 
 ```text
 Regular k-point mesh
@@ -256,8 +260,10 @@ Gamma          ! generate a Gamma centered mesh
     - Monkhorst-Pack 网格的收敛速度可能快于 Γ- 中心网格；同时需注意避免使用 Monkhorst-Pack 网格破坏对称性
     - 对于 HCP、面心立方结构，K 点生成方式采用 Gamma-centerd（M 平移之后，网格的对称性和晶胞的对称性会出现不匹配的情况，从而导致计算出错）
     - 建议一直用 Gamma-centered
-    - 非六方晶系的计算，若已设置 M 计算了，继续沿用算就行，没必要改成 G 再重新算一遍
+    - 非六方晶系的计算，若已设置 M 计算了，继续沿用计算就行，没必要改成 G 再重新算一遍
     - 若晶胞在某个方向增加了 2 倍，对应方向的 K 点需除以 2（在计算过程中，保持 k\*a 保持不变）：原因：倒易晶格矢量和实际的晶格矢量之间存在着倒数的关系；选取的晶格越大，倒易晶格矢量越小。用同等数目的 K 点分布到倒易晶格中，网格的密度也会越大，从而造成计算量的增加
+
+- 自动生成；推荐使用 INCAR 中的 KSPACING 参数
 
 - 能带计算：当性质依赖于 K 矢量时，通常沿高对称性路径将性质可视化；线模式（line mode）表示在布里渊区用户定义的点之间生成 K 点，最常用的情况是分析能带结构
     - 第 1 行：注释行
@@ -397,10 +403,14 @@ Damped         # damped velocity friction 算法
 
 - 默认值：.FALSE.
 
+- 体系超过 30 个原子，推荐使用实空间投影 scheme，且使用 LREAL=Auto
+
+- LREAL=Auto 总是会导致小误差（不一定可忽略；通常是每个原子的恒定能量偏移）；关注能量差，计算时使用相同的设置（ENCUT、PREC、LREAL）；弛豫结构，最后静态计算时，使用 LREAL=.FALSE. 获取精确能量；PREC=Accurate，误差通常小于 1meV/atom
+
 ```bash
 .FALSE.        # 倒空间
-.TRUE.
-AUTO
+.TRUE.         # 实空间
+Auto / A       # 实空间；自动优化
 ```
 
 
@@ -442,13 +452,14 @@ High           # High Medium Low 为弃用值
 
 - ISMEAR=0 在大多数情况下会得到非常合理的结果
 
+- ISMEAR=-5 时，SIGMA=0，费米狄拉克分布，不会有展宽；电子态的占据是整数占据（0 或 1）；无平滑处理，DOS 绘制普遍毛刺较多
+
 - 对体系没有先验认识，总是使用 ISMEAR=0 + SIGMA=0.03-0.05
 
 - DOS 和非常精确的总能计算，使用 ISEMAR=-5
     - 缺点：对于金属的力和应力张量，误差可能高达 5-10%
 
 - 对于半导体或绝缘体，使用 ISEMAR=-5，若胞太大或只使用 1-2 个 K 点，使用 ISMEAR=0 + SIGMA=0.03-0.05
-    - 电子态的占据是整数占据（0 或 1）
     - 避免使用 ISMEAR>0，因为经常会导致错误的结果（某些态的占据可能小于 0 或大于 1）
 
 - 对于金属中的力、声子频率计算，使用 ISMEAR=1 或 ISMEAR=2，SIGMA 合理值通常为 0.2（默认值）
