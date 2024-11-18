@@ -12,6 +12,7 @@ tags:
   - VASP
 categories:
   - 科研工具
+  - VASP
 date: 2024-06-20 09:00:00
 abbrlink: 206045
 password:
@@ -22,19 +23,6 @@ password:
 ## 介绍
 
 - VASP 中的可执行命令无 `-h` 等帮助选项
-
-- VASP 编辑得到的三个版本：
-
-```bash
-vasp_std             # 标准版本
-vasp_ncl             # 考虑磁结构，如 SOC；非共线版
-vasp_gam             # Gamma only 版本
-```
-
-- 编译条件
-    - Fortran、C、C++ 编译器
-    - 数值计算库：FFTW、BLAS、LAPACK、ScaLAPACK
-    - MPI
 
 - 官方安装教程：
     - [Installing VASP.5.X.X - VASP Wiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
@@ -48,35 +36,111 @@ vasp_gam             # Gamma only 版本
     - [VASP 5.4.4极简安装方法（CentOS 7.6+ifort 19）\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/av39616222/)
     - [VASP最简单的安装方法（含全程视频演示） - 思想家公社的门口：量子化学·分子模拟·二次元](http://sobereva.com/455)
     - VASP6 编译（含 GPU 版本）：[编译版本6的VASP](https://blog.sbyu.top/post/5)
+    - [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)
+    - [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
 在 `makefile.include` 中的 OFLAG 参数里加入 -xhost，这样编译器会使得编译出的程序能够利用当前机子 CPU 能支持的最高档次的指令集以加速计算
-
-[VASP.6.4.3中新功能：固定轴优化](https://mp.weixin.qq.com/s/cZLf_B4LrvAClRNCmKRh6w)
-
 
 
 ---
 
 ## VASP 编译
 
-### Intel oneAPI
+### 编译前须知
 
-- VASP.5.4.4 和 6.3.0 版本编译用到的编译器是 icc、icpc、mpiifort
+- 编译条件
+    - Fortran、C、C++ 编译器
+    - 数值计算库：FFTW、BLAS、LAPACK、ScaLAPACK
+    - MPI
 
-- makefile.include 不同版本的含义：[makefile.include - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include)
+- VASP.5.4.4、VASP.6.X.X 安装包路径：Master: `/opt/software`；将其拷贝到自己的用户目录下，传输至超算平台）
 
-- makefile.include.linux\_intel 内容：[makefile.include.linux\_intel - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include.linux_intel)
+- makefile.include 不同架构的含义：[makefile.include - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include)
 
-- VASP.6.3.0 中的 四种 intel makefile
-    - makefile.include.intel: Parallelized using MPI, combined with MKL.
-    - makefile.include.intel_omp: Parallelized using MPI + OpenMP, combined with MKL.
-    - makefile.include.intel_ompi_mkl_omp: Parallelized using OpenMPI + OpenMP, combined with MKL.
-    - makefile.include.intel_serial: Not parallelized, strongly reduced feature-set, i.e., not suitable for production.
-
-- Master 上编译 intel_omp 版本，运行 `mpirun -n 2 vasp_std` 命令会报错；编译 Intel 版本正常
+- make.include 文件选择
 
 ```bash
-# 超算平台编译步骤
+# Intel Composer suite and oneAPI Base + HPC toolkits for CPUs
+makefile.include.linux_intel             # VASP.5.X.X
+makefile.include.intel                   # VASP.6.X.X
+
+# GNU compilers for CPUs
+makefile.include.linux_gnu               # VASP.5.X.X
+makefile.include.gnu_omp                 # VASP.6.X.X
+
+# NVIDIA HPC-SDK for CPU and GPU
+makefile.include.nvhpc_ompi_mkl_omp_acc  # VASP.6.X.X GPU
+```
+
+- 自定义功能：[Customize - makefile.include - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include#Customize)
+    - HDF5
+    - Wannier90
+    - Libxc
+    - ...
+
+- VASP.5.4.4 源代码目录结构
+
+```bash
+vasp.X.X.X (root directory)
+                            |
+         ---------------------------------------
+        |              |          |             |
+       arch           bin       build          src
+                                                |
+                                         ---------------
+                                        |       |       |
+                                       lib    parser   CUDA
+
+
+arch      # 针对不同架构的 Makefile 模板，如 makefile.include.linux_intel
+bin       # 编译后的可执行程序文件目录
+build     # 编译时自动复制 src 目录内源码后执行编译，会分别创建三个版本的子目录
+src       # 源码目录
+lib       # 库目录，对应以前的 vasp.lib 目录
+CUDA      # GPU CUDA 代码目录 
+```
+
+- VASP.6.X.X 源代码目录结构
+
+```text
+                  vasp.x.x.x (root directory)
+                               |
+         ------------------------------------------------
+        |        |        |         |          |         |
+       arch     bin     build      src     testsuite   tools
+                                    |
+                              -------------
+                             |      |      |
+                            lib   parser  fftlib
+```
+
+- 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
+
+- `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功
+
+- 编译得到的三个版本
+
+```bash
+vasp_std             # standard 标准版本
+vasp_ncl             # non-collinear 非共线版本；考虑磁结构，如 SOC
+vasp_gam             # gamma-only 版本
+```
+
+- [VASP.6.4.3中新功能：固定轴优化](https://mp.weixin.qq.com/s/cZLf_B4LrvAClRNCmKRh6w)
+
+
+---
+
+### Intel oneAPI
+
+- 用到的编译器：icc、icpc、mpiifort
+
+- Master 上选择 intel_omp 编译，运行 `mpirun -n 2 vasp_std` 命令会报错；选择 Intel 编译正常
+
+- 安装步骤
+
+```bash
+# 超算平台编译步骤；Master 可忽略此步骤
 # 导入 oneAPI 套件
 module purge
 module load intel-oneapi-compilers/2021.4.0
@@ -94,9 +158,11 @@ cp arch/makefile.include.intel makefile.include
 
 # 编译；耗时 20-30 分钟
 make  # 或 make all, make std
+
+# 为 vasp_std 等设置符号链接
 ```
 
-- VASP.5.4.4 编译最后可能会出现的 remark（无影响）：
+- VASP.5.4.4 编译最后可能会出现的 remark（无影响）
 
 ```bash
 ifort: command line remark #10412: option '-mkl=sequential' is deprecated and will be removed in a future release. Please use the replacement option '-qmkl=sequential'
@@ -105,7 +171,37 @@ ifort: command line remark #10412: option '-mkl=sequential' is deprecated and wi
 
 ---
 
+### GPU
+
+- 参考：[Ubuntu安装GPU版VASP6.4.3（含NVIDIA显卡驱动安装更新）](https://blog.csdn.net/liouver/article/details/140653183)
+
+- VASP GPU 版本在小体系下，计算速度与 CPU 版本差不多；大体系下会有加速效果（占用显存较多，一个进程可达 6-7G）
+
+- 安装步骤
+
+```bash
+# 考虑在已安装 CPU 版本的情况下另外安装 GPU版本的
+
+# 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_cpu
+
+mkdir build.gpu
+
+cp arch/makefile.include.nvhpc_ompi_mkl_omp_acc makefile.include.gpu
+
+ln -s makefile.include.gpu makefile.include
+
+make PREFIX=./build.gpu  # make PREFIX=./build.gpu std
+
+# 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_gpu
+```
+
+
+---
+
 ### GNU
+
+- Mac M1：[VASP M1 Mac Compilation Guide · GitHub](https://gist.github.com/janosh/a484f3842b600b60cd575440e99455c0)
+    - Mac M1 gnu_omp 编译 VASP6 + HDF5（耗时 32 min 左右）
 
 - Linux
 
@@ -132,14 +228,12 @@ cp arch/makefile.include.gnu_omp makefile.include
 make  # 或 make all, make std
 ```
 
-- Mac M1：Mac M1 gnu omp 编译 VASP6 + HDF5（耗时 32 min 左右）：[VASP M1 Mac Compilation Guide · GitHub](https://gist.github.com/janosh/a484f3842b600b60cd575440e99455c0)
-
 
 ---
 
 ### HDF5
 
-安装步骤：
+- 安装步骤
 
 ```bash
 wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_14_3/src/hdf5-1.14.3.tar.gz
@@ -151,15 +245,8 @@ wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF
 
 make
 make install
-```
 
-未添加 `--enable-parallel` 参数会出现以下报错：
 
-```bash
-configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use --enable-unsupported to override this error.
-```
-
-```bash
 # 显示 HDF5 的编译和配置详细信息
 h5cc -showconfig  # 或 h5c++ h5pcc
 
@@ -167,12 +254,15 @@ h5cc -showconfig  # 或 h5c++ h5pcc
 h5cc -show
 ```
 
----
+- 未添加 `--enable-parallel` 参数会出现以下报错：
 
-使用
+```bash
+configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use --enable-unsupported to override this error.
+```
 
-- HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
-- Pandas 的 read_hdf() 不太好用
+- 使用
+    - HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
+    - Pandas 的 `read_hdf()` 不太好用
 
 ```bash
 h5ls data.h5     # 显示 Group 列表
@@ -192,7 +282,9 @@ h5dump data.h5   # 输出文件的详细结构和内容
 
 ### VASP.6.3.0 + HDF5
 
->[编译支持HDF5的VASP - 哔哩哔哩](https://www.bilibili.com/read/cv15039734/)
+- 参考：[编译支持HDF5的VASP - 哔哩哔哩](https://www.bilibili.com/read/cv15039734/)
+
+- 安装步骤
 
 ```bash
 # 超算平台编译步骤
@@ -206,23 +298,20 @@ module load hdf5/1.12.2-intel-2021.4.0
 module show hdf5/1.12.2-intel-2021.4.0
 
 cp arch/makefile.include.intel makefile.include
-# 删除 MKLROOT    ?= 后的内容 此步可忽略
 # 取消 HDF5 相关行注释，将 HDF5_ROOT  ?= 后的内容替换为 hdf5 的安装路径
 
 make  # 或 make all, make std
 ```
 
-可能会出现以下报错：
+- 可能会出现以下报错
 
 ```bash
 error while loading shared libraries: libhdf5_fortran.so.102: cannot open shared object file: No such file or directory
-```
 
-原因：缺少 `libhdf5_fortran.so.102` 动态链接库，其实 module load 的 `hdf5/1.12.2-intel-2021.4.0` 有该动态链接库，不过版本更新一些，为 `libhdf5_fortran.so.200`
+# 原因：缺少 libhdf5_fortran.so.102 动态链接库，其实 module load 的 hdf5/1.12.2-intel-2021.4.0 有该动态链接库，不过版本更新一些，为 libhdf5_fortran.so.200
 
-解决方法：将 `libhdf5_fortran.so.200` 软链接为 `libhdf5_fortran.so.102`；将 `~/lib` 写入到 `LD_LIBRARY_PATH`
+# 解决方法：将 libhdf5_fortran.so.200 软链接为 libhdf5_fortran.so.102；将 ~/lib 写入到 LD_LIBRARY_PATH
 
-```bash
 ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/hdf5-1.12.2-nxwmp3tddhreojgbib25ldc7wusvzf3m/lib/libhdf5_fortran.so.200 ~/lib/libhdf5_fortran.so.102
 
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/lib
@@ -233,12 +322,11 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/lib
 
 ## VASP + VTST 编译
 
-VASP + VTST：在 VASP 添加过渡态计算功能
+- 在 VASP 添加过渡态计算功能
 
-参考：
-
-- [Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)
-- [VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
+- 参考：
+    - [Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)
+    - [VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
 
 ---
 
@@ -302,13 +390,10 @@ dependencies: sources libs
 
 ---
 
-VASP.6.3.0 + VTST 出现报错：VTST 源码代码有问题
-
->[VASP6.3.2 + vtstcode6.3编译出错 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-46112-1-1.html)
-
->[过渡态神器VTST为什么在VASP6.3编译不成功？因为源代码有问题！](https://mp.weixin.qq.com/s/ah33JQ7uTxcm_DakY2yJXA)
-
-解决方法：在 chain.F 第 202 行后添加 `ENDIF`
+- VASP.6.3.0 + VTST 出现报错：VTST 源码代码有问题
+    - [VASP6.3.2 + vtstcode6.3编译出错 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-46112-1-1.html)
+    - [过渡态神器VTST为什么在VASP6.3编译不成功？因为源代码有问题！](https://mp.weixin.qq.com/s/ah33JQ7uTxcm_DakY2yJXA)
+    - 解决方法：在 chain.F 第 202 行后添加 `ENDIF`
 
 ```bash
 mpiifort -free -names lowercase -assume byterecl -w -xHOST -O2 -I/opt/software/intel/oneapi/mkl/2022.1.0/include/fftw  -c chain.f90
@@ -332,7 +417,7 @@ make: *** [makefile:17: std] Error 2
 - VASP 运行出现 `forrtl` 报错：[forrtl: severe (174): SIGSEGV, segmentation fault occurred - My Community](https://www.vasp.at/forum/viewtopic.php?t=17257)
 
 ```bash
-# 在提交脚本或终端中添加命令
+# 在 提交脚本 / 终端 / ~/.{bash,zsh}rc 中添加命令
 ulimit -s unlimited
 ```
 

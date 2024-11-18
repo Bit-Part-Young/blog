@@ -964,9 +964,9 @@ srun -p 64c512g -n 1 --pty /bin/bash
 
 ### 源码编译
 
->[linux源码编译安装软件原理 - 人生的哲理 - 博客园](https://www.cnblogs.com/renshengdezheli/p/13954234.html)
+- 参考：[linux源码编译安装软件原理 - 人生的哲理 - 博客园](https://www.cnblogs.com/renshengdezheli/p/13954234.html)
 
-编译前，需理解 Makefile 文件中的命令含义！
+- 编译前，需理解 Makefile 文件中的命令含义！
 
 ```bash
 ./configure   # 配置
@@ -978,471 +978,63 @@ make install  # 安装
 ```
 
 
-
 ---
 
-### posconv、NumNei
+## posconv、NumNei
 
-- posconv：构型文件格式转换（POSCAR、xyz、LAMMPS atomic/dump、Material Studio 等）
-- NumNei：计算 BCC、FCC 和金刚石结构的第 N 近邻原子距离
-- 编译：编译器可选择 gfortran 或 ifort（gfortran 已足够；ifort 性能可能更好些）
-
->posconv 的 LAMMPS dump 格式原子坐标为分数坐标，即为 xs, ys, zs
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291005269.png)
+- 具体安装步骤见：
 
 ---
 
 ### latgen
 
-- 构型生成程序，包括 BCC、FCC、HCP、diamond、含点缺陷、置换固溶体、表面等构型。
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006009.png)
-
----
-
-编译：依赖 voro++；编译器可选择 gcc 或 icc
-
-- voro++ 编译
-
-```bash
-wget https://math.lbl.gov/voro++/download/dir/voro++-0.4.6.tar.gz
-
-tar -xzvf voro++-0.4.6.tar.gz
-
-cd voro++-0.4.6.tar.gz
-
-# 修改 config.mk 的 PREFIX 选项
-PREFIX=${HOME}/local/voro
-
-make && make install
-```
-
-- 修改 latgen 中的 Makefile 文件内容（`INC`：voro++ 的头文件路径； `LIB`：库路径）
-
-```bash
-VoroINC = -I${HOME}/local/voro/include/voro++
-VoroLIB = -L${HOME}/local/voro/lib -lvoro++
-```
+- 具体安装步骤见：
 
 
 ---
 
 ### dumpana
 
-- LAMMPS dump 文件后处理程序。可以计算：CSRO；RDF、PDF、g(r) （径向分布函数）；扩散系数；键长键角；混合构型熵；局域序参数等
-- dumpana、latgen、posconv 和 vaspkit 等程序都可以通过 `latgen < inp.script` 命令，使其不用每次交互输入参数，节约时间（**重要！！！**）。
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006937.png)
-
----
-
-编译：编译依赖 voro++ 和 gsl（C 数值计算库）；编译器可选择 gcc 或 icc
-
-- gsl 编译
-
-```bash
-wget https://mirror.ibcp.fr/pub/gnu/gsl/gsl-latest.tar.gz
-
-./configure --prefix=${HOME}/local/gsl
-
-make && make install
-
-# 将 gsl 的 lib 路径添加到 LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$HOME/local/gsl/lib:${LD_LIBRARY_PATH}
-```
-
----
-
-- Master 平台编译
-
-修改 Makefile 文件内容（voro++、gsl 的 `INC` 和 `LIB`），编译
-
-```bash
-VoroINC = -I${HOME}/src/voro++/include/voro++
-VoroLIB = -L${HOME}/src/voro++/lib -lvoro++
-
-GslINC  = -I${HOME}/src/gsl/include
-GslLIB  = -L${HOME}/src/gsl/lib -lgsl -lgslcblas
-
-# master 上有 voro++、gsl；可不用修改
-VoroINC = -I/opt/libs/voro/include/voro++
-VoroLIB = -L/opt/libs/voro/lib -lvoro++
-
-GslINC  = -I/opt/libs/gsl/include
-GslLIB  = -L/opt/libs/gsl/lib -lgsl -lgslcblas
-```
-
----
-
-- 思源一号平台编译
-
-```bash
-git clone https://github.com/lingtikong/dumpana.git
-
-module purge
-module load gsl/2.7.1-intel-2021.4.0
-module load intel-oneapi-compilers/2021.4.0
-
-# 编译器选择 icc
-# 修改 Makefile 文件的 voro++ 内容，gsl 可不用修改
-
-make
-```
-
-若使用时报错，设置 gsl 相关的动态链接库文件的软链接
-
-```bash
-ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7gmwz4mpn2csc7paszwv5h2wk/lib/libgsl.so.27 ~/lib/
-ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7gmwz4mpn2csc7paszwv5h2wk/lib/libgslcblas.so.0 ~/lib/
-```
+- 具体安装步骤见：
 
 
 ---
 
 ### atomsk
 
-- 结构建模程序；同 latgen 相比，可生成孪晶、晶界、位错、层错等更多复杂构型
-- 示例丰富，文档详细
-
----
-
-**安装：**[Atomsk - Install - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/install.html)
-
-- 下载二进制版本（最简单方式）：[Download Atomsk](https://atomsk.univ-lille.fr/dl.php)
-
-- 源码编译：
-
-依赖 BLAS 和 LAPACK 库（manager/master/超算上没有这两个库，需源码编译；LAPACK 依赖 BLAS；**intel 套件有相关库**）
-
-编译 BLAS 和 LAPACK 步骤以及压缩包：
->[apt - How to build and link BLAS and LAPACK libraries by hand for use on cluster? - Ask Ubuntu](https://askubuntu.com/questions/1270161/how-to-build-and-link-blas-and-lapack-libraries-by-hand-for-use-on-cluster)
-
->[LAPACK build and test guide - GNU Project](https://gcc.gnu.org/gcc-3.0/lapack-guide.html)
-
->[BLAS (Basic Linear Algebra Subprograms)](https://netlib.org/blas/)
-
-
-创建 `~/lib`，并将其添加到 `LD_LIBRARY_PATH`；将 `*.a` 静态库文件设置软链接（或复制）到此
-
-```bash
-export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
-```
-
-编译 BLAS
-
-```bash
-make
-
-mv blas_LINUX.a libblas.a
-
-cp *.a ~/lib
-```
-
----
-
-编译 LAPACK
-
-```bash
-cp make.inc.example make.inc
-
-make  # 这步花费时间会比较长
-
-cp *.a ~/lib
-```
-
----
-
-下载 atomsk 源代码，进入 `src`，修改 Makefile 文件
-
-```bash
-LAPACK=-L$HOME/lib/ -llapack -lblas
-INSTPATH=$HOME/src
-CONFPATH=${INSTPATH}/etc
-```
-
-编译：
-
-```bash
-make atomsk
-
-make install  # 应该会出错，但没关系，这步非必需
-```
-
-编译成功：
-
-```text
-    \o/ Compilation was successful!
-
-    <i> To install Atomsk system-wide, you may now run:
-          sudo make install
-```
-
----
-
-- 编译 ifort 版本
-
-```bash
-# 导入 oneapi 套件
-module purge
-module load intel-oneapi-compilers/2021.4.0
-module load intel-oneapi-mpi/2021.4.0
-module load intel-oneapi-mkl/2021.4.0
-
-git clone https://github.com/pierrehirel/atomsk.git
-
-cd atomsk/src
-
-make -f Makefile.ifort atomsk
-
-# 超算（思源一号）使用 atomsk 时
-# 需设置 libiomp5.so 文件的软链接
-# 或使用前 module load intel-oneapi-compilers/2021.4.0
-ln -s /dssg/opt/icelake/linux-centos8-icelake/gcc-8.5.0/intel-oneapi-compilers-2021.4.0-rszhbg2vjwqqeddqqdryjwxromenbfmr/compiler/2021.4.0/linux/compiler/lib/intel64_lin/libiomp5.so ~/lib/libiomp5.so
-```
-
----
-
-- macOS 编译 atomsk
-
-```bash
-# 需安装 LAPACK 和 OpenMP（非必需）
-# 修改 Makefile.macos 中的 LAPACK lib 路径
-# 并将 -lrefblas 改为 -lblas，最后编译
-make -f Makefile.macos atomsk
-make -j3 -f Makefile.macos atomsk
-```
+- 具体安装步骤见：
 
 
 ---
 
 ### VASP.5.4.4
 
-- 参考：
-    - [Installing VASP.5.X.X - Vaspwiki](https://www.vasp.at/wiki/index.php/Installing_VASP.5.X.X)
-    - [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)、
-    - [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
-
-- VASP.5.4.4 源代码目录结构：
-
-```bash
-arch      # 针对不同架构的 Makefile 模板，如 makefile.include.linux_intel
-bin       # 编译后的可执行程序文件目录
-build     # 编译时自动复制 src 目录内源码后执行编译的目录
-src       # 源码目录
-lib       # 库目录，对应以前的 vasp.lib 目录
-CUDA      # GPU CUDA 代码目录
-```
-
-```text
-vasp.X.X.X (root directory)
-                            |
-         ---------------------------------------
-        |              |          |             |
-       arch           bin       build          src
-                                                |
-                                         ---------------
-                                        |       |       |
-                                       lib    parser   CUDA
-```
-
----
-
-- 编译安装步骤：
-    - VASP.5.4.4 安装包：Manager: `/opt`，Master: `/opt/software`；将其拷贝到自己的用户目录下打包压缩，上传至超算平台）
-    - 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
-    - `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功；
-    - 将 `vasp_std` 设置软链接
-
-```bash
-# 导入 oneapi 套件
-module purge
-module load intel-oneapi-compilers/2021.4.0
-module load intel-oneapi-mpi/2021.4.0
-module load intel-oneapi-mkl/2021.4.0
-
-# 删除 bulid 和 bin 目录中的内容
-make veryclean
-rm bin/*
-
-# 拷贝适合架构的 Makefile 模板文件
-cp arch/makefile.include.linux_intel makefile.include
-
-# 编译；耗时 20-30 分钟
-make  # make all
-```
+- 具体安装步骤见：
+    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
 
 
 ---
 
 ### HDF5
 
-- 编译安装步骤：
-
-```bash
-# 编译安装
-wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_14_3/src/hdf5-1.14.3.tar.gz
-
-# 配置 Intel 版本
-./configure --enable-parallel --enable-fortran --enable-cxx --enable-unsupported \
-            CC=mpiicc FC=mpiifort CXX=mpiicpc \
-            --prefix=${HOME}/local/hdf5
-
-make
-make install
-
-
-# 未添加 --enable-parallel 参数会出现以下报错：
-configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use --enable-unsupported to override this error.
-```
-
-- 使用
-    - HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
-    - Pandas 的 `read_hdf()` 不太好用
-
-```bash
-h5cc -showconfig     # 或 h5c++ h5pcc；显示 HDF5 的编译和配置详细信息
-h5cc -show           # 显示用于编译 HDF5 的编译器命令行，包括链接的库和编译器标志
-
-h5ls data.h5         # 显示 Group 列表
-
-# vaspout.h5 示例
-input                    Group
-intermediate             Group
-original                 Group
-results                  Group
-version                  Group
-
-h5dump data.h5   # 输出文件的详细结构和内容
-```
+- 具体安装步骤见：
+    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
 
 
 ---
 
 ### VASP.6.3.0 + HDF5
 
-- 参考：[Installing VASP.6.X.X - VASP Wiki](https://www.vasp.at/wiki/index.php/Installing_VASP.6.X.X)
-
-- VASP.6.3.0 源代码目录结构：
-
-```text
-                  vasp.x.x.x (root directory)
-                               |
-         ------------------------------------------------
-        |        |        |         |          |         |
-       arch     bin     build      src     testsuite   tools
-                                    |
-                              -------------
-                             |      |      |
-                            lib   parser  fftlib
-```
-
----
-
-- 编译安装步骤：Master 的 VASP.6.3.0 安装包在 `/opt/software` 下；将其拷贝到自己的目录下打包，上传至超算平台）
-
-```bash
-# 导入 oneapi 套件；hdf5
-module purge
-module load intel-oneapi-compilers/2021.4.0
-module load intel-oneapi-mpi/2021.4.0
-module load intel-oneapi-mkl/2021.4.0
-module load hdf5/1.12.2-intel-2021.4.0
-
-# 查看 hdf5/1.12.2-intel-2021.4.0 的安装路径
-module show hdf5/1.12.2-intel-2021.4.0
-
-cp arch/makefile.include.intel makefile.include
-# 删除 MKLROOT    ?= 后的内容 此步可忽略
-# 取消 HDF5 相关行注释，将 HDF5_ROOT  ?= 后的内容替换为 hdf5 的安装路径
-
-make  # 或 make all, make std
-```
-
-可能会出现以下报错：
-
-```bash
-error while loading shared libraries: libhdf5_fortran.so.102: cannot open shared object file: No such file or directory
-```
-
-原因：缺少 `libhdf5_fortran.so.102` 动态链接库，其实 module load 的 `hdf5/1.12.2-intel-2021.4.0` 有该动态链接库，不过版本更新一些，为 `libhdf5_fortran.so.200`
-
-解决方法：将 `libhdf5_fortran.so.200` 软链接为 `libhdf5_fortran.so.102`；将 `~/lib` 写入到 `LD_LIBRARY_PATH`
-
-```bash
-ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/hdf5-1.12.2-nxwmp3tddhreojgbib25ldc7wusvzf3m/lib/libhdf5_fortran.so.200 ~/lib/libhdf5_fortran.so.102
-
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/lib
-```
+- 具体安装步骤见：
+    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
 
 
 ---
 
 ### VASP + VTST
 
-VASP + VTST：在 VASP 添加过渡态计算功能
-
-参考：[Installation — Transition State Tools for VASP](http://theory.cm.utexas.edu/vtsttools/installation.html)、[VASP 5.4.1+VTST编译安装](http://hmli.ustc.edu.cn/doc/app/vasp.5.4.1-vtst.htm)
-
----
-
-编译安装步骤：
-
-- 下载 VTST Code 和 VTST Scripts：[Download — Transition State Tools for VASP](https://theory.cm.utexas.edu/vtsttools/download.html)
-
-- 修改 `src/main.F` 源码：
-
-```bash
-# 替换前
-CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
-     LATT_CUR%A,LATT_CUR%B,IO%IU6)
-
-# 替换后；添加了 TSIF,
-CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
-     TSIF,LATT_CUR%A,LATT_CUR%B,IO%IU6)
-
-# vasp.6.2 及以后，还需进行以下替换
-# 替换前
-IF (LCHAIN) CALL chain_init( T_INFO, IO)
-# 替换后
-CALL chain_init( T_INFO, IO)
-```
-
-- 备份 `src/chain.F`；复制 vtstcode-XXX 中对应 VASP 版本（如 vtstcode5、vtstcode6.3；vtstcode6.3 中多了 `ml_pyamff.F` 文件和 `pyamff_fortran/` 目录）的目录下的所有文件到 `src/`：
-
-```bash
-cp src/chain.F src/chain.F-org
-
-cp vtstcode-XXX/vtstcodeXXX/* src/
-```
-
-- 修改 `src/.objects` 源码，在 `chain.o` 所在行前添加：
-
-```bash
-# vtstcode5 和 vtstcode6.1
-bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
-fire.o lanczos.o neb.o qm.o opt.o \
-
-# vtstcode6.3
-bfgs.o dynmat.o instanton.o lbfgs.o sd.o cg.o dimer.o bbm.o \
-fire.o lanczos.o neb.o qm.o \
-pyamff_fortran/*.o ml_pyamff.o \
-opt.o\
-```
-
-- 使用 vtstcode6.3，还需修改 `src/makefile` 源码：
-
-```bash
-# 替换前
-LIB= lib parser
-dependencies: sources
-
-# 替换后
-LIB= lib parser pyamff_fortran
-dependencies: sources libs
-```
-
-- 编译：同 VASP 编译步骤
+- 具体安装步骤见：
+    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
 
 
 ---

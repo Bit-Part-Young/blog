@@ -377,7 +377,9 @@ uv pip install <package>   # 安装 package；与 pip 基本一致
 
 - mamba：Conda 平替，在解析和安装包时比 Conda 快得多
 
-- micromamba 类似 miniconda，使用与 Conda 非常类似，配置文件可使用已存在的 `~/. condarc`；没有 base 环境
+- micromamba 类似 miniconda，使用与 Conda 非常类似，配置文件可使用已存在的 `~/. condarc`
+
+- 某些情况下会出现问题？（个人不再使用）
 
 ```bash
 # 安装

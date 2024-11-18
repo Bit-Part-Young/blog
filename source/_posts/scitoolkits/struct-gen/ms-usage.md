@@ -119,3 +119,10 @@ BIOVIA\Materials Studio 19.1\share\Resources\Quantum\Castep\Potentials
 - 出现很卡顿的情况
     - 解决方法：Tool -- Option -- Graphhics，勾选 Disable Graphic（取消硬件加速）
     - 输入法的兼容性打开
+
+
+---
+
+### 其他
+
+- MS 轨迹文件格式 `.arc`：[lmp2arc工具：将LAMMPS的轨迹文件保留键信息转为MS的轨迹文件](https://zhuanlan.zhihu.com/p/7373662870)

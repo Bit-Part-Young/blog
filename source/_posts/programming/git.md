@@ -657,14 +657,15 @@ git add -i  # 交互式
 
 ### commit
 
->[创建没有任何改动的提交](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%94%B9%E5%8A%A8%E7%9A%84%E6%8F%90%E4%BA%A4)
+- [创建没有任何改动的提交](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%94%B9%E5%8A%A8%E7%9A%84%E6%8F%90%E4%BA%A4)
 
 ```bash
 # 根据当前时间进行 commit
 git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
 
 # 将改动添加进最近一次的 commit 中
-git commit --amend --no-edit
+git commit --amend --no-edit  
+git push --force  # 不加 --force 会出现问题
 
 # 修改 commit 信息
 git commit --amend --no-edit -m 'xxx'
