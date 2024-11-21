@@ -40,7 +40,7 @@ fireworks     2.0.3          2021.03.12
 
 - 使用 lpad 命令时，出现如下报错：
     - 参考：[AttributeError: "safe\_load()" has been removed · Issue #531 · materialsproject/fireworks · GitHub](https://github.com/materialsproject/fireworks/issues/531)
-    - fireworks 的最新 Release 版本为 2021 年的，很老；GitHub 中的 fireworks 源码有对该问题进行解决，下载源码之后 `python setup.py install` 重新安装该包；或降版本 `ruamel.yaml <0.18.0`
+    - fireworks 的最新 Release 版本为 2021 年的，很老；GitHub 中的 fireworks 源码有对该问题进行解决，下载源码之后 `python setup.py install` 重新安装该包；或使 `ruamel.yaml <0.18.0`
 
 ```bash
   File "/path/env/lib/python3.11/site-packages/ruamel/yaml/main.py", line 1039, in error_deprecation
@@ -58,6 +58,7 @@ instead of file "path/env/lib/python3.11/site-packages/fireworks/utilities/fw_se
 
 - 使用 Python 代码生成 workflow，并添加到 lpad 中，出现 `cannot encode object: True, of type: <class 'numpy.bool'>` 报错：
     - 参考：[bson.errors.InvalidDocument: cannot encode object: True, of type: \<class 'numpy.bool\_'\> · Issue #522 · materialsproject/fireworks · GitHub](https://github.com/materialsproject/fireworks/issues/522)
+    - 有可能是 NumPy 版本的原因，使 `numpy<=1.26.4`
 
 ```python
 # 生成 wf(workflow) 后，检查 metadata dict 中的值类型

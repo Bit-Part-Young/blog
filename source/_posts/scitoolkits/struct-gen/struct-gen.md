@@ -84,6 +84,7 @@ password:
 
 
 
+
 ---
 
 ## 构型文件格式
@@ -100,6 +101,7 @@ password:
 .cell          # CASTEP 的输入构型文件格式
 .cif           # 部分该格式文件晶体学信息很全
 .xsf           # XCrySDen
+.stru          # ABACUS
 
 
 # xyz 格式内容示例

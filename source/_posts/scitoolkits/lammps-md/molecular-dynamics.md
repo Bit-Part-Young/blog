@@ -270,104 +270,100 @@ $$
 
 ## 势函数
 
-势函数查找网站：
+### 势函数
 
-- [OpenKIM · Knowledgebase of Interatomic Models · Interatomic Potentials and Force Fields](https://openkim.org/)
+- 势函数查找网站
+    - [OpenKIM · Knowledgebase of Interatomic Models · Interatomic Potentials and Force Fields](https://openkim.org/)
+    - [Interatomic Potentials Repository](https://www.ctcms.nist.gov/potentials/)
 
-- [Interatomic Potentials Repository](https://www.ctcms.nist.gov/potentials/)
+- 总能、势能（总能 - 自能）
 
----
+- 势函数（物理领域）、力场（化学领域）
 
-Lennard-Jones 势描述惰性气体较适用（物理相互作用）
+- 材料中的键（键合特征）：金属、陶瓷、高分子、稀有气体
 
-引入截止会导致作用力的不连续
+- Lennard-Jones 势（6-12 势；一个人名）
+    - 正项（12，数学意义）排斥，负项（6，有物理依据）吸引
+    - 势能为 0；平衡距离
+    - 描述惰性气体较适用（物理相互作用）
+    - 截断问题：引入截断会导致相互作用力的不连续
+        - Truncation 截断（LAMMPS：lj/cut）
+        - Shift 平移（LAMMPS：pair modify shift yes）
+        - Tail 多项式拟合（有两个截断距离；LAMMPS：pair modify tail yes）
+    - Mixing rules 混合法则（LAMMPS：pair modify mix ...）：
+        - 几何平均
+        - 算术平均（更常用）
+        - 六阶近似
 
+- 其他势函数
+    - Mie
+    - Buckingham：吸引项与 LJ 类似；原子间距离很小时，会迅速吸引（缺点）；[Buckingham potential - Wikipedia](https://en.wikipedia.org/wiki/Buckingham_potential)
+    - Born-Mayer-Huggins
+    - [莫尔斯势 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E8%8E%AB%E5%B0%94%E6%96%AF%E5%8A%BF)
+    - [Welcome to potentials’s documentation! — potentials 0.1 documentation](https://interatomic-potentials.readthedocs.io/en/latest/index.html)
 
+- 离子体系的势函数
+    - 对势 + 库伦相互作用（+ 三体角度项）
+    - 极化问题：引入 core-shell 模型
 
-对势：相互作用只与距离有关；更倾向于简单构型，如 BCC FCC；满足柯西关系（$C_{12}=C_{44}$）
+- 中心力场（Central force potential）
+    - 相互作用只与距离有关
+    - 更倾向于简单构型，如 BCC FCC
+    - 满足柯西关系（$C_{12}=C_{44}$；某些体系会不满足）
 
-离子体系：对势 + 库伦相互作用（+（三体角度项））
+- 金属体系势函数
+    - 嵌入原子势 EAM：
+        - 二体单独考虑，其余 n 体考虑成一项（嵌入能）
+        - 截断到第 3、4 近邻足够
+        - 含共价键的体系和 HCP 结构，描述不够准确
+    - MEAM：Modified EAM；电子密度贡献拆成两部分，引入了三体项之间的相互作用
 
-极化问题：引入 core-shell
+- 高分子势函数
+    - 势函数组成如下
+        - 键长
+        - 键角（球谐函数 + 非球谐函数）
+        - 二面角（前三个：成键相互作用）
+        - 前三项可用简谐形式近似（键不会断掉，无法描述化学反应，非反应力场）
+        - 物理相互作用
+        - 库伦项 + ...
+    - Morse 势可描述有限距离下的键断
 
+- 反应力场 Reactive Force Field
+    - 键序 Bond Order（键长越短，键序越高）
+    - 校正
+    - 计算量很大
 
-嵌入原子势 EAM
+- 势函数拟合
+    - 最小化：计算 cost function
+    - 需要考虑相转变能量差计算性质
 
-hcp 结构 EAM 势函数无法准确描述
+- ML 势函数
 
-MEAM：电子密度贡献拆成两部分，引入了三体项之间的相互作用
-
-高分子势函数：力场
-键长（公式为简谐形式；键长不会断，非反应力场）+ 键角（球谐函数 + 非球谐函数） + 二面角（前三个：成键相互作用）+ 物理相互作用 + 库伦项 +…
-
-键会断：采用 Morse 势
-
-
-反应力场 bond order 键级（键长越短，键级越高）；之后校正
-
-Morse 势公式 图形绘制
-
-势函数拟合 需要考虑相转变能量差计算性质
-计算 cost function
-
-
-
->[莫尔斯势 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E8%8E%AB%E5%B0%94%E6%96%AF%E5%8A%BF)
-
->[Buckingham potential - Wikipedia](https://en.wikipedia.org/wiki/Buckingham_potential)
 
 ---
 
 ### 力的计算
 
-需要原子之间的距离
+- 力演化 - 对势：需要原子之间的距离
 
+- Demo 程序的计算复杂度 $O(N^2)$
 
+- 近邻列表 Neighbor list：将计算复杂度减小为 $O(N)$
+    - 第一次 $O(N^2)$，后面 $O(N)$
+    - 原子移动距离小于 $r_{skin}$，不更新；大于，更新（小，更新频率会频繁；更新的计算复杂度 $O(N^2)$）
 
-demo 程序的计算复杂度（$O(N^2)$）
-```c
-for (i = 0; i < N; ++i)
-    f[i] = 0.;
-for (i = 0; i < N - 1; ++i)
-{
-    for (j = i + 1; j < N; ++j)
-    {
-        xij = x[j][0] - x[i][0]; yij = ylj][0] - y[i][0];
-        zij = z[j][0] - z[i][0];
-        Apply_PBC(xij, yij, zij);
-        rij = sqrt(xij * xij + yij * yij + zij * zij);
-        if (rij < Rcut)
-        {
-            dp = -partial_phi(rij);
-            fij = dp / rij * [ xij, yij, zij ];
-            f[i] += fij;
-            f[j] -= fij;
-        }
-    }
-}
-```
+- 力的计算 - 角度项
 
+- 长程相互作用（库伦相互作用）
+    - 直接计算库仑相互作用时遇到的问题，即直接求和收敛缓慢且计算成本高
+    - 算法：
+        - Ewald sum method：借助傅里叶变换
+        - PP/PM 方法（Particle-Particle/Particle-Mesh）
+        - Random Batch Ewald（交大团队开发）
 
+- 经验势函数总结
 
-为减小复杂度，引入 neighbor list（近邻列表，计算复杂度 $O(N)$）
-
-
-原子移动距离小于 skin 距离，不更新；大于，更新（小，更新频率会频繁）
-
-
-
-长程相互作用（库伦相互作用是长程势）
-
-长程势的截断
-Ewald sum method
-借助傅里叶变换
-
-
-lammps 中的 kspace 选项
-
-PP/PM 方法（Particle-Particle/Particle-Mesh）
-Random Batch Ewald（交大团队开发）
-
+- 势函数选择：Bonding，Transferability，Accuracy，Efficiency
 
 
 ---

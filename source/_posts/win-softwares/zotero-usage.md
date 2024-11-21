@@ -58,6 +58,8 @@ dav.jianguoyun.com/dav
 
 - 内置 PDF 阅读器切换到双页浏览：查看 -- 奇数分布
 
+- Zotero 快速复制引文：在 Zotero 选中任意一个文献，按 `command + shift + C/A`, 再转到想插入文献的地方，按 `command + V`, 粘贴完成（默认格式在首选项 -- 导出里面设置）
+
 - Zotero 文献阅读颜色标签标准
 
 ```bash

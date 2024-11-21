@@ -69,6 +69,7 @@ makefile.include.linux_gnu               # VASP.5.X.X
 makefile.include.gnu_omp                 # VASP.6.X.X
 
 # NVIDIA HPC-SDK for CPU and GPU
+# VASP.5.X.X GPU
 makefile.include.nvhpc_ompi_mkl_omp_acc  # VASP.6.X.X GPU
 ```
 
@@ -180,7 +181,9 @@ ifort: command line remark #10412: option '-mkl=sequential' is deprecated and wi
 - 安装步骤
 
 ```bash
-# 考虑在已安装 CPU 版本的情况下另外安装 GPU版本的
+# 考虑在已安装 CPU 版本的情况下另外安装 GPU版本
+
+# 将 nvfortran 所在路径添加到 PATH
 
 # 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_cpu
 
@@ -188,11 +191,46 @@ mkdir build.gpu
 
 cp arch/makefile.include.nvhpc_ompi_mkl_omp_acc makefile.include.gpu
 
+# 设置符号链接
 ln -s makefile.include.gpu makefile.include
 
 make PREFIX=./build.gpu  # make PREFIX=./build.gpu std
 
 # 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_gpu
+
+
+# makefile.include 修改内容
+
+# 若已将 nvfortran 所在路径添加到 PATH，以下内容可不修改
+CPP
+
+CC
+FC
+FCL
+
+FC_LIB
+CC_LIB
+
+CXX_PARS
+
+# 若已将 nvfortran 所在路径添加到 PATH，以下内容可保持注释状态不变
+NVHPC
+NVVERSION
+NVROOT
+```
+
+- 出现以下报错：
+    - 解决方法：将 nvfortran 所在路径添加到环境变量 `export PATH=${PATH}:/path/to/nvfortran`
+
+```bash
+--------------------------------------------------------------------------
+The Open MPI wrapper compiler was unable to find the specified compiler
+nvfortran in your PATH.
+
+Note that this compiler was either specified at configure time or in
+one of several possible environment variables.
+--------------------------------------------------------------------------
+make[2]: *** [makefile:171: c2f_interface.o] Error 1
 ```
 
 

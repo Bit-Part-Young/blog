@@ -54,7 +54,6 @@ ax = plt.subplot()
 fig, ax = plt.subplots()
 
 ax = fig.add_subplot()  # 返回 Axes object
-
 ```
 
 
@@ -728,7 +727,15 @@ plt.savefig()       # 更加通用的命令；适用于没有明确的 Figure �
 ax.plot(x, y, ...)
 
 # 参数
-marker      # marker style
+color                 # c；颜色
+linestyle             # ls；线的样式
+linewidth             # lw；线宽
+marker                # marker 样式
+markeredgecolor       # mec；marker 边缘颜色
+markeredgewidth       # mew；marker 边缘宽度
+markerfacecolor       # mfc；
+markersize            # ms；marker 尺寸
+
 
 
 # 散点图

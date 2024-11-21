@@ -23,6 +23,7 @@ password:
     - [Hugo 框架主题集合](https://themes.gohugo.io/)
     - [hextra](https://github.com/imfing/hextra)
     - [stack](https://github.com/CaiJimmy/hugo-theme-stack)
+    - [blowfish](https://github.com/nunocoracao/blowfish)
     - [PaperMod](https://github.com/adityatelange/hugo-PaperMod/)、[modified-papermod](https://github.com/xyming108/sulv-hugo-papermod)
         - [我的博客搭建经验 - 有意栽花花满枝](https://blog.hjroyal.top/posts/tools/2022-09-myblog/)
         - [GitHub - hjroyal/hugo-papermod-flowers: 博客源码](https://github.com/hjroyal/hugo-papermod-flowers)

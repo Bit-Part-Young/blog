@@ -38,6 +38,7 @@ DFT 原理介绍
 >[GitHub - czjiangjun/DFT\_Manuscript](https://github.com/czjiangjun/DFT_Manuscript)
 
 
+[密度泛函理论是怎么一个解法过程？](https://www.zhihu.com/question/3939148171/answer/29253837230)
 
 
 

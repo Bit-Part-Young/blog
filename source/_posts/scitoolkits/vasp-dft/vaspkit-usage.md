@@ -38,7 +38,15 @@ password:
 
 ## 使用
 
-- vaspkit 生成的 HCP 结构 KPOINTS 文件中的 K 点生成方式是 Gamma 点（无论选择 G 还是 MP）
+- vaspkit 处理 DOS、能带计算数据演示：[13\_vasp/V2PC/01\_K\_Path\_Bulk\_Structure.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/01_K_Path_Bulk_Structure.md)
+
+- vaspkit 中的 INCAR 选项
+    - SR：标准弛豫，只弛豫原子位置，ISIF=2
+    - LR：点阵弛豫，全弛豫，ISIF=3
+
+- vaspkit 生成的 HCP 结构（及对称性不是很高的结构） KPOINTS 文件中的 K 点生成方式是 Gamma 点（无论选择 G 还是 MP，会自动纠正）
+
+- vaspkit K 点设置：推荐精度：0.03（梅师兄）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 k\*ha 值大于 30 或 33.33，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；0.03 对应的 K 点密度是 1/0.03=33.33
 
 - vaspkit 的能带结构数据获取前提是 K-path 是 Line-Mode 的
 
@@ -83,12 +91,23 @@ bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 
 ### vaspkit 功能介绍
 
+- vaspkit 的 04 Structure Editor、06 Symmetry Analysis 功能移至 atomkit 中
+
 ```bash
 # Task-ID        # 功能
 02               # 力学性质
 202              # 从弹性张量文件计算弹性性质
 203              # 从 OUTCAR 文件提取弹性常数并计算弹性性质 |
 205              # EOS 拟合
+
+08               # Advanced Structure Models
+800              # 构建正交超胞
+801              # 指定方向添加真空层
+802              # 构建随机置换合金
+803              # 指定 Miller 指数构建表面
+804              # 指定两个表面构建界面/异质结
+821              # 在超胞模型中构建非等同的空位缺陷
+822              # 在超胞模型中构建非等同的置换缺陷
 
 11               # DOS 态密度
 111              # 总 DOS
@@ -105,6 +124,30 @@ bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 214              # 选定原子的投影能带
 215              # 元素权重的投影能带
 216              # 选定原子和轨道的投影能带加和
+
+31               # 电荷密度分析
+311              # 电荷密度
+314              # 电荷密度差
+
+72               # AIMD Kit
+721              # MSD
+722              # MSD（使用 FFT，推荐）
+723              # 从 MSD.dat 文件中获取扩散系数和离子迁移率
+725              # 从 PCDAT 获取对关联函数
+726              # 选中元素的径向分布函数
+727              # 速度自关联函数
+728              # 从速度自关联函数获取振动态密度
+730              # 选中元素的键长分布
+731              # 选中元素的键角分布
+736              # 选中原子的 MD 轨迹（POSCAR 格式）
+737              # 选中原子的 MD 轨迹（PDB 格式）
+
+78               # VASP2other 接口
+789              # 声子能带结构排序（phononpy）
+
+91               # 半导体 Kit
+911              # 带隙
+917              # 费米速度
 
 92               # 2D-Material Kit
 920              # 将原子层移动到 z 方向底部
@@ -123,7 +166,7 @@ bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 201          # 分析晶体结构对称性
 202          # 寻找原胞
 203          # 寻找单胞
-204          # 参看等同原子
+204          # 寻中对称性等同原子
 209          # 分析分子或团簇的对称性
 
 

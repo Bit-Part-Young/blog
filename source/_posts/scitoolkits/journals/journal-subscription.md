@@ -30,6 +30,10 @@ password:
 Elsevier 无 RSS、APS 有 RSS（效果一般）
 
 
+期刊缩写：[Science and Engineering Journal Abbreviations | Woodward Library](https://woodward.library.ubc.ca/woodward/research-help/journal-abbreviations/)
+
+[计算材料类期刊推荐 - Misaraty](https://www.misaraty.com/2024-02-09_%E8%AE%A1%E7%AE%97%E6%9D%90%E6%96%99%E7%B1%BB%E6%9C%9F%E5%88%8A%E6%8E%A8%E8%8D%90/)
+
 
 ---
 

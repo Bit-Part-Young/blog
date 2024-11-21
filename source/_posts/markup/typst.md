@@ -135,6 +135,8 @@ typst-upgrade file.typ       # 更新 packages 并覆写文件
 
 - [GitHub - Thumuss/utpm: A package manager for typst](https://github.com/Thumuss/utpm)
 
+- [GitHub - mkpoli/tyler: Typst package (libraries, templates) publishing utilty CLI tool](https://github.com/mkpoli/tyler)
+
 
 ---
 

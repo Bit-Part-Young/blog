@@ -25,10 +25,17 @@ sticky: "98"
 ## 介绍
 
 - 官网：[atomate (Materials Science Workflows) — atomate 1.0.3 documentation](https://atomate.org/)
+
 - 高通量计算（主要 VASP）工具；主要在队列系统（Slurm、PBS 等）上运行；自动生成、保存作业运行过程中的所有记录（输入文件、输出文件、数据提取、错误信息等）；
+
 - 数据保存到数据库（MongoDB）中，易于获取、查询、分析；
+
 - 提供了许多性质计算（静态、弛豫、弹性常数、能带、EOS、体模量、NEB）的标准 workflow，只需提供晶体结构（POSCAR），即可进行高通量计算；标准的 workflow 可以进行自定义修改；
-- 可以自定义设计新的性质计算 workflow。
+
+- 可自定义设计新的性质计算 workflow
+
+- **少量计算还是手动计算速度更快**
+
 
 firetask 细节会在提交后生成的 `*submit*` 文本文件中查看
 
@@ -101,7 +108,15 @@ lpad init
 ```
 
 - `qlaunch`：将 workflow 提交到超算队列
-    - 过程：先创建 `block_date/launcher_date` workflow 目录，之后生成 ` FW_submit.script ` Slurm 提交脚本，再在此目录下创建 `launcher_date` firework 计算目录
+    - 过程：先创建 `block_date/launcher_date` workflow 目录（`qlaunch rapidfire` 命令；`qlaunch singleshot` 无此步骤），之后生成 `FW_submit.script` Slurm 提交脚本，再在此目录下创建 `launcher_date` firework 计算目录
+
+- `qlaunch rapidfire` 若出现以下提示时，不会再提交作业
+
+```bash
+No jobs exist in the LaunchPad for submission to queue
+# 或
+No READY jobs detected
+```
 
 ```bash
 qlaunch (-r) rapidfire            # 一次提交多个任务
@@ -112,17 +127,8 @@ qlaunch singleshot                # 一次提交一个任务
 - `rlaunch`：直接在计算平台本地上运行计算
 
 ```bash
-rlaunch singleshot     # 会在当前目录下的所有文件分别单独压缩成 gz 格式
-rlaunch rapidfire      # 会生成 launcher_* 具体时间的计算目录
-
-```
-
-- 若出现以下提示时，不会再提交作业
-
-```bash
-No jobs exist in the LaunchPad for submission to queue
-# 或
-No READY jobs detected
+rlaunch singleshot     # 会将当前目录下的所有文件分别单独压缩成 gz 格式
+rlaunch rapidfire      # 会生成 launcher_date workflow 目录
 ```
 
 - 高通量正确计算完成时，custodian.json 文件无纠错

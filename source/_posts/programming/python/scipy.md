@@ -2,7 +2,7 @@
 title: SciPy 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -55,8 +55,13 @@ value, unit, uncertainty = physical_constants["XXX"]
 "Avogadro constant"         # 阿伏伽德罗常数
 
 
-# smoothing 感觉效果一般？
+# 平滑 smoothing 处理
 from scipy.ndimage import gaussian_filter1d
 
 rdf=gaussian_filter1d(rdf, sigma=...)
+sigma       # 高斯滤波的展宽；值不能太大，否则会偏离原始数据
+
+
+# 特殊函数
+from scipy import special
 ```

@@ -242,6 +242,7 @@ mdbook serve --open
 
 - 前后端：[GitHub - LiuYuYang01/ThriveX-Blog](https://github.com/LiuYuYang01/ThriveX-Blog)
 
+- Rust 静态网站生成器：[GitHub - getzola/zola: A fast static site generator in a single binary with everything built-in. https://www.getzola.org](https://github.com/getzola/zola)
 
 
 ---

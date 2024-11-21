@@ -126,6 +126,8 @@ GW 计算
 [DFT磁性的计算(本例为用VASP计算FCC Ni的磁矩)](https://mp.weixin.qq.com/s/4ygwBJsAjVVQ3slPZeevhw)
 
 
+[VASP教学 - 计算材料学](https://ywwang0.github.io/2020/11/09/VASP%E6%95%99%E5%AD%A6/)
+
 
 ---
 
@@ -365,7 +367,7 @@ ISMEAR = 0
 
 - 差分电荷密度：charge density difference；原子相互作用后（成键前后）的电荷密度与初始原子电荷密度之差；可分析在成键和成键电子耦合过程中的电荷移动以及成键极化方向等性质
 
-- 计算：与静态计算类似；添加 `LAECHG` 参数（计算内层电荷密度和价电子层电荷密度，将两个文件叠加求得总电荷，再求解 Bader 电荷），会生成 AECCAR0、AECCAR1、AECCAR2 三个文件
+- 计算：与静态计算类似；添加 `LAECHG` 参数（计算内层电荷密度和价电子层电荷密度，将两个文件叠加求得总电荷，再求解 Bader 电荷）
 
 ```bash
 # INCAR 参数设置
@@ -375,16 +377,10 @@ LCHARG      = .TRUE.
 LAECHG      = .TRUE.      # Bader 计算
 
 
-# 输出文件
-# TODO: 待确认
-AECCAR0                   # 全电子中的芯电子部分
-AECCAR1                   # 自洽计算前的交叠原子电荷
-AECCAR2                   # 全电子中的价电子部分
-CHGCAR                    # 自洽计算后赝电子
-
 # 后处理
 chgsum.pl AECCAR0 AECCAR2     # 得到 CHGCAR_sum，包含了 VASP 中定义的原子总电荷密度
 bader CHGCAR -ref CHGCAR_sum  # 得到 BCF.dat、ACF.dat、AVF.dat
+cat ACF.dat                   # 查看 CHARGE 列
 
 # BCF.dat
 # TODO: 待确认
@@ -410,30 +406,6 @@ VACUUM VOLUME:              0.0000
 
 ---
 
-### AIMD 计算
-
-- 参考：
-    - [【VASP 基础 03】关于 VAPS 分子动力学的计算细节](https://zhuanlan.zhihu.com/p/1103173525)
-
-- 计算：
-
-```bash
-# INCAR 参数设置
-MDALGO      = 2
-SMASS       = 0
-
-TEBEG       = 300
-TEEND       = 300
-
-
-# 数据获取
-# 压强
-grep "external pressure" OUTCAR | awk '{print $4}'
-```
-
-
----
-
 ### ELF
 
 - 参考：[VASP视频教程-电荷局域分析\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HP4iecEjM)
@@ -451,6 +423,8 @@ LELF        = .TRUE.
 ---
 
 ### 弹性常数计算
+
+- 可以用原胞计算弹性常数
 
 - VASP 计算弹性常数，其 ENCUT 数值要比弛豫计算的更高，通常 1.5 倍 ENMAX
 
@@ -480,6 +454,35 @@ WIP...
 
 ---
 
+### AIMD 计算
+
+- 参考：
+    - [【VASP 基础 03】关于 VAPS 分子动力学的计算细节](https://zhuanlan.zhihu.com/p/1103173525)
+
+- 参数设置
+
+```bash
+# INCAR 参数设置
+MDALGO      = 2
+SMASS       = 0
+
+TEBEG       = 300
+TEEND       = 300
+
+
+# 数据获取
+# 压强
+grep "external pressure" OUTCAR | awk '{print $4}'
+```
+
+
+基于分子动力学模拟，可以通过对速度自关联函数（velocity autocorrelation function，VACF）进行傅里叶变换得到材料的振动态密度（vibrational density of states， VDOS）。VACF 是根据动力学模拟出来的轨迹文件和速度文件，求算系统在某一时刻的速度与另一时刻速度的关联程度的函数，直接看 VACF 并不能很直观的得到一些信息，而 VDOS 直接对应实验红外光谱，可以直观的对高温或高压下的振动变化情况等进行分析。
+
+>[AIMD结合vaspkit计算振动态密度](https://mp.weixin.qq.com/s/gqM5c1P3BtIqi0h_tVTj5g)
+
+
+---
+
 ### 其他
 
 - [ ] VASP 拉伸模拟
@@ -504,66 +507,11 @@ warnings.warn("Float overflow (*******) encountered in vasprun")
 
 ---
 
-- LDA + U：[LDA+U - 计算材料学](https://ywwang0.github.io/2020/08/31/LDA-U/)
-
-```bash
-LDAU
-LDAUU
-LDAUJ
-```
-
----
-
 - 红外光谱（Infrared Spectroscopy，IR）：[VASP快速计算红外光谱(IR) 后处理软件vasprun推荐](https://mp.weixin.qq.com/s/LGUFL5t8vZi3iedjtFelJQ)
 
+- 静电势能计算: 在 INCAR 中添加 LVHAR=.TRUE. 参数
 
----
-
-
-**DFT 相关内容（梅师兄讲解）：**
-
-
-没有磁性的构型添加自旋，**计算速度会变慢（2 倍及以上）**，但并不会对计算的性质结果产生影响（可以检查添加自旋后的计算磁矩是否接近 0）
-
-vaspkit 在 KPOINTS 文件生成的选项中，若构型是六方等对称性不是很高的结构，若网格方式选择的是 MP，最后生成的 KPOINTS 文件中的网格方式还是 Gamma（会自动纠正）；推荐精度：0.03（梅）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 ka 值大于 30 或 33.33，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；**0.03 对应的 K 点密度是 1/0.03=33.33**。
-
-（SR：标准弛豫，只弛豫原子位置；LR：点阵弛豫，全弛豫）
-
-Γ点：原点，每个构型都有一个原点
-
-ALGO 参数：控制电子步迭代的算法，会在 OSZICAR 中看到 DAV、RMM 等不同的算法
-
-NELM 最大设置：300 步（梅）
-
-NELMIN：最小电子步步数；在 AIMD 中，每个离子步中的电子步可能会很少（1-2 步），需对其进行最小步数限制（可能计算结果更准确）
-
-对于金属体系，引入 ISMEAR 和 SIGMA 展宽后，会引入虚假温度，使得 OUTCAR 中的 T*S 项不为零，其值小于 0.001eV 时，为较好的 SIGMA 值（对于金属，ISMEAR=1 或 2，SIGMA=0.2（默认值）；对于半导体，ISMEAR=-5，SIGMA=0.05）
-
-DFT+U：计算能带
-
-一个原子的构型也可以计算弹性常数
-
-
-
----
-
-网络版的 vasp.5.4.4 没什么问题（VASP3 个版本都能编译成功）
-
-
----
-
-VASP 相关脚本
-
->[GitHub - tamaswells/VASP\_script: Useful scripts for VASP](https://github.com/tamaswells/VASP_script)
-
-- 检查 OUTCAR 文件中 T·S 项的数值是否小于 0.001eV，以检查 SIGMA 值是否设置合理：[VASP\_script/sigma.sh at master · tamaswells/VASP\_script · GitHub](https://github.com/tamaswells/VASP_script/blob/master/sigma.sh)
-
----
-
-基于分子动力学模拟，可以通过对速度自关联函数（velocity autocorrelation function，VACF）进行傅里叶变换得到材料的振动态密度（vibrational density of states， VDOS）。VACF 是根据动力学模拟出来的轨迹文件和速度文件，求算系统在某一时刻的速度与另一时刻速度的关联程度的函数，直接看 VACF 并不能很直观的得到一些信息，而 VDOS 直接对应实验红外光谱，可以直观的对高温或高压下的振动变化情况等进行分析。
-
->[AIMD结合vaspkit计算振动态密度](https://mp.weixin.qq.com/s/gqM5c1P3BtIqi0h_tVTj5g)
-
----
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202405272344155.png)
+- 表面吸附位点：
+    - Top 顶位（T）
+    - Bridge 桥位（B）
+    - Hollow 洞位（H）

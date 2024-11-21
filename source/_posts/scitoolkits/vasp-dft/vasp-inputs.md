@@ -20,13 +20,24 @@ password:
 
 # VASP 输入文件
 
+## 介绍
+
 - 包括 INCAR、POSCAR、KPOINTS 和 POTCAR4 个输入文件
 
-- 参考资料
-    - [vasp手册\_VASP个人笔记(二) INCAR参数设置(详细)-CSDN博客](https://blog.csdn.net/weixin_39637363/article/details/111123875)
-    - 是否开启自旋极化
-        - [求助VASP表面结构优化自旋极化ISPIN及MAGMOM设置问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-22387-1-1.html)
-        - [vasp中如何确定所计算的体系要不要加自旋极化？ - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-11672-1-1.html)
+---
+
+### 参考资料
+
+- [13\_vasp/V2PC/README.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
+
+- [vasp手册\_VASP个人笔记(二) INCAR参数设置(详细)-CSDN博客](https://blog.csdn.net/weixin_39637363/article/details/111123875)
+
+- [vasp中影响并行效率的三个变量KPAR,NPAR,NCORE - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-12058-1-1.html)
+
+- 是否开启自旋极化
+    - [求助VASP表面结构优化自旋极化ISPIN及MAGMOM设置问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-22387-1-1.html)
+    - [vasp中如何确定所计算的体系要不要加自旋极化？ - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-11672-1-1.html)
+
 
 
 ---
@@ -129,7 +140,7 @@ grep -A1 '  PAW_PBE' POTCAR
 ```
 
 - 注意事项：
-    - 赝势种类：模守恒赝势、超软赝势 USPP（它们应用在哪些体系？）
+    - 赝势种类：模守恒赝势、超软赝势 USPP（所需截断能较小，计算速度快）
     - 赝势目录中每个类型的泛函目录中有一个 data_base 文件，里面包含每个赝势对应元素 3 种可能结构的基态能量数据
     - PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
     - [VASP中的赝势 - 计算材料学](https://ywwang0.github.io/2020/08/18/VASP%E4%B8%AD%E7%9A%84%E8%B5%9D%E5%8A%BF/)
@@ -234,6 +245,8 @@ END of PSCTR-controll parameters
 - [论文 - Rapid generation of optimal generalized Monkhorst-Pack grids - CMS](https://www.sciencedirect.com/science/article/pii/S0927025620305917)
 
 - [GitHub - giovannipizzi/seekpath: A module to obtain and visualize k-vector coefficients and obtain band paths in the Brillouin zone of crystal structures](https://github.com/giovannipizzi/seekpath)
+
+- [如何获得第一布里渊区的高对称点的对称性？](https://zhuanlan.zhihu.com/p/690450851)
 
 - 设置布里渊区 K 点网格采样大小或计算能带结构时沿高对称方向的 K 点
 
@@ -349,7 +362,7 @@ k*a ~ 15 Å     # 绝缘体
 
 ### ICHARG
 
-- 确定 VASP 如何构造初始电荷密度；其积分值为电子数
+- 决定 VASP 如何构造初始电荷密度；其积分值为电子数
 
 - 默认值：ISTART=0，则 ICHARG=2；否则 ICHARG=0
 
@@ -384,7 +397,7 @@ k*a ~ 15 Å     # 绝缘体
 
 ### ALGO
 
-- 确定电子最小化算法，或选择 GW 计算类型
+- 决定电子最小化算法，或选择 GW 计算类型
 
 - 默认值：Normal
 
@@ -446,7 +459,7 @@ High           # High Medium Low 为弃用值
 
 ### ISMEAR
 
-- 轨道分数占据（值在 0-1 之间）的展宽（平滑处理）方法
+- 轨道分数占据（电子态占据数，值在 0-1 之间）的展宽（平滑处理）方法
 
 - 默认值：1
 
@@ -463,6 +476,7 @@ High           # High Medium Low 为弃用值
     - 避免使用 ISMEAR>0，因为经常会导致错误的结果（某些态的占据可能小于 0 或大于 1）
 
 - 对于金属中的力、声子频率计算，使用 ISMEAR=1 或 ISMEAR=2，SIGMA 合理值通常为 0.2（默认值）
+    - 引入 ISMEAR 和 SIGMA 展宽后，会引入虚假温度，使得 OUTCAR 中的 T\*S 项不为 0
     - 推荐使用 ISMEAR>0（总能也能精确描述），需仔细选择 SIGMA 的值。值太大可能导致不正确的总能，太小需要更密的 K 点；应尽可能大，使 OUTCAR 文件中的 `entropy T*S` 项可忽略（小于 1meV/atom）
 
 ```bash
@@ -518,16 +532,20 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
     - IBRION=2，稳健的默认选择，相比 RMM-DIIS 可能需要更多的迭代步数
     - IBRION=2，结构远离基态时的选择
 
+- 有限差分（finite differences）；密度泛函扰动理论（density functional perturbation theory, DFPT）
+
 ```bash
 -1             # 不更新；离子不移动
 0              # 分子动力学 AIMD
+
 # 结构优化
 1              # RMM-DIIS / quasi-Newton 算法
 2              # conjugate gradient algorithm 共轭梯度算法
 3              # Damped molecular dynamics 算法
+
 # 计算声子模式；计算二阶导数、海森矩阵和声子频率
-5 6            # 有限差分（finite differences）；5 without symmetry, 6 with symmetry
-7 8            # 密度泛函扰动理论（density functional perturbation theory, DFPT）；7 without symmetry, 8 with symmetry
+5 6            # 有限差分；5 without symmetry, 6 with symmetry
+7 8            # DFPT；7 without symmetry, 8 with symmetry
 ```
 
 
@@ -559,36 +577,48 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ### EDIFF
 
-- 电子步收敛条件
+- 电子步（the electronic SC-loop）收敛条件
 
-- 默认值：
+- 默认值：$10^{-4}$
+
+- 在大多数情况下，收敛速度是二次的，因此额外迭代的成本通常很小；收敛良好的计算，强烈推荐设置 EDIFF= $10^{-6}$；有限差分计算（如声子），为获取精确结果，可能需要 EDIFF= $10^{-7}$；大体系或使用 meta-GGA 泛函，EDIFF= $10^{-8}$ 或 EDIFF= $10^{-7}$ 的收敛条件可能很困难；总体 EDIFF= $10^{-6}$ 可能为最佳设置
 
 
 ---
 
 ### EDIFFG
 
-- 离子步收敛条件
+- 离子步（the ionic relaxation loop）收敛条件
 
 - 默认值：EDIFF \* 10
+
+- EDIFFG 为正值，表示两离子步间的总能变化小于 EDIFFG 时，弛豫结束；为负值，表示受力小于 |EDIFFG|时，弛豫结束（绝对值，更方便的设置）；EIDIFF=0 时，运行 NSW 步后，离子步结束
+
+- EDIFFG 不用于 AIMD
 
 
 ---
 
 ### NELM
 
-- 每个离子步中的最大电子步步数
+- 最大电子步步数
 
 - 默认值：60
+
+- 通常无需修改默认值；若电子自洽在 40 个电子步内收敛，可能根本无法收敛，此情况应考虑 ALGO 等参数
+
+- 梅师兄设置：300
 
 
 ---
 
 ### NELMIN
 
-- 每个离子步中的最小电子步步数
+- 最小电子步步数
 
 - 默认值：2；推荐值设置在 4-8 之间
+
+- 在 AIMD 中，每个离子步中的电子步可能会很少（1-2 步），需对其进行最小步数限制（可能计算结果更准确）
 
 
 ---
@@ -637,7 +667,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 
 - 为什么需要对称：在 LDA 中，超胞和电荷密度的对称性总是相同的。由于在计算中使用了一组不可约对称性的 k 点，因此这种对称性被打破。为了储存正确的电荷密度和力，有必要对称这些量。
-- 如果打开对称运算，则 NWRITE=3 将对称运算写入 OUTCAR 文件。
+- 如果打开对称运算，则 NWRITE=3 将对称运算写入 OUTCAR 文件
 
 
 ---
@@ -651,7 +681,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 2              # 考虑
 ```
 
-- 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
+- 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上；但并不会对计算的性质结果产生影响，可检查添加自旋后的计算磁矩是否接近 0）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
 
 - 需考虑自旋极化的几种情况：
     - 含 Fe,Co, Ni 的体系
@@ -663,7 +693,29 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ### MAGMOM
 
-- 设置磁矩
+- 设置每个原子的初始磁矩
+
+- 默认值：NION \* 1.0 (ISPIN=2)
+
+
+---
+
+### KSPACING
+
+- 若 KPOINTS 文件不存在，决定 K 点数目
+
+- 默认值：0.5
+
+
+---
+
+### KGAMMA
+
+- 决定 K 点是否含 $\Gamma$ 点
+
+- 默认值：.TRUE.
+
+- 若 KPOINTS 文件存在，VASP 忽略 KSPACING 和 KGAMMA 参数
 
 
 ---
@@ -704,6 +756,22 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ---
 
+### LAECHG
+
+- LAECHG=.TRUE. 时，all-electron 电荷密度将被明确重建并写入文件
+
+- 默认值：.FALSE.
+
+- LAECHG=. TRUE. 时，VASP 会重建三个不同的 all-electron 电荷密度，分别写入 AECCAR0，AECCAR1 和 AECCAR2 文件
+    - the core density
+    - the proto-atomic valence density (overlapping atomic charge densities)
+    - the self-consistent valence density
+
+- 在 PAW 方法中，"all-electron" 密度不是指所有电子（all electrons）的密度
+
+
+---
+
 ### NFREE
 
 WIP...
@@ -711,34 +779,105 @@ WIP...
 
 ---
 
+### LASPH
 
-- LASPH = True
-    - 含义：用于控制是否考虑 LDA+U 方法中的自相互作用。
-    - 值：True 表示考虑自相互作用。
+- 考虑 PAW spherical 密度梯度相关的 non-spherical 贡献（LDA 和 Hartree potential 通常考虑）
 
-- LVHAR = True
-    - 含义：用于控制是否计算原子的局部势能。
-    - 值：True 表示计算局部势能。
+- 默认值：.FALSE.
 
-- KPAR = 8
-    - 含义：用于并行计算中控制 k 点并行的数量。
-    - 值：8 表示使用 8 个处理器进行 k 点并行计算。
-
-- NPAR = 4
-    - 含义：用于控制并行计算中的分区数量。
-    - 值：4 表示将计算任务分成 4 个部分进行并行计算。
+- 利于精确总能计算、能带结构计算（f、所有 3d、第二周期的磁性原子）
 
 
- - NCORE: 指定单个轨道计算所使用的核数量
- - NPAR: 指定同时并行处理的能带数
- - KPAR: 指定同时并行处理的 K 点数量
+---
+
+### LVTOT
+
+- 决定总的局域势是否写入 LOCPOT 文件
+
+- 默认值：.FALSE.
+
+- 总的局域势包括：离子、Hatree 和交换关联势
 
 
->[13\_vasp/V2PC/README.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
+---
+
+### LVHAR
+
+- 决定局域势是否写入 LOCPOT 文件
+
+- 默认值：.FALSE.
+
+- 局域势包括：离子、Hatree 势，不包括交换关联势
+
+- 用于静电势能的计算
 
 
-其他
+---
+
+### LELF
+
+- 决定是否生成 ELFCAR 文件
+
+- ELFCAR 文件含电子局域化函数（electron localization function, ELF）
+
+- 若设置了 LELF，则必须在 INCAR 文件中明确设置 NPAR=1
+
+
+---
+
+### KPAR
+
+-  determines the number of **k**-points that are to be treated in parallel
+
+- 默认值：1
+
+
+---
+
+### NPAR
+
+- determines the number of bands that are treated in parallel
+
+- 默认值：核数
+
+
+---
+
+### NCORE
+
+- determines the number of compute cores that work on an individual orbital
+
+- 默认值：1
+
+
+---
+
+### 其他
+
+- LDA + U：[LDA+U - 计算材料学](https://ywwang0.github.io/2020/08/31/LDA-U/)
 
 ```bash
-GGA    = PE      # 泛涵；PE，Perdew-Burke-Ernzerhof；91，Perdew -Wang 91；PS，PBEsol
+GGA    = PE      # 泛涵
+# 参数值
+PE               # Perdew-Burke-Ernzerhof
+91               # Perdew -Wang 91
+PS               # PBEsol
+
+LNONCOLLINEAR    # 非共线磁结构计算
+
+LSORBIT          # 自旋轨道耦合计算
+
+LDAU             # 针对强关联体系进行 LDA+U 计算
+LDAUU
+LDAUJ
+
+IVDW             # 范德瓦尔斯相互作用
+
+LHFCALC          # 进行 Hatree-Fock 或杂化泛函计算
+
+LOPTICS          # 
+
+LEPSILON         # 
+
+LBERRY           # Berry 相位法
 ```

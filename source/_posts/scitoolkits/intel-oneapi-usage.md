@@ -88,6 +88,16 @@ mpiifort -v
 
 icx -v
 icpx -v
+
+# Intel 编译器
+mpiicc
+mpiicpc
+mpiifort
+
+# GNU 编译器
+mpicc
+mpif90
+mpifc
 ```
 
 - Intel oneAPI 卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)

@@ -45,6 +45,13 @@ pip install -U git+https://github.com/qzhu2017/PyXtal.git@master
 
 ## 使用
 
+```bash
+# 查看 0 维点群
+pyxtal_symmetry.py -d 0  
+```
+
+
+
 - 以六方 γ-Nb5Si3 构型构建示例；六方 γ-Nb5Si3 结构信息：
     - $D8_8$，$Mn_5Si_3$ 原型，hP16；
     - 空间群为 P63/mcm（193）；

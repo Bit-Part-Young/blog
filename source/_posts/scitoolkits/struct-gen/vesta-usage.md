@@ -20,6 +20,8 @@ password:
 
 - [VESTA 使用](https://mp.weixin.qq.com/s/wTxztn1RDWCG4cjVaA3E0A)
 
+- [blog/Materials Studio-VESTA教程v1.4.docx at master · misaraty/blog · GitHub](https://github.com/misaraty/blog/blob/master/Materials%20Studio-VESTA%E6%95%99%E7%A8%8Bv1.4.docx)
+
 - VESTA 除结构可视化外，也可以进行结构建模
 
 - 当 POSCAR 中的原子坐标有负值时，可使用 VESTA 导出使其变为正

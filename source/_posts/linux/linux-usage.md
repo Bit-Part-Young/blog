@@ -89,10 +89,10 @@ WIP...
 - 系统信息查看
 
 ```bash
+hostnamectl           # 显示系统信息，包括主机名、操作系统、内核等
 lsb_release -a        # 显示 LSB 版本信息
 uname -r              # 显示内核版本
 uname -a              # 查看完整的内核版本信息
-hostnamectl           # 显示系统信息，包括主机名、操作系统、内核等
 cat /proc/version
 cat /etc/os-release
 cat /etc/lsb-release

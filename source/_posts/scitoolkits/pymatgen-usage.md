@@ -527,8 +527,9 @@ from pymatgen.core.composition import Composition
 Composition("LiFePO4").as_dict()
 
 # Composition
-alphabetical_formula
-chemical_system
+alphabetical_formula      # 
+reduced_formula           # 
+chemical_system           # 
 ```
 
 
@@ -1161,7 +1162,10 @@ pymatgen 电子结构相关分析很多都是建立在 vasprun.xml 文件中提�
 
 #### phase_diagram
 
+- 可绘制二、三、四元的相图
+
 - 无法直接使用 `pymatgen.entries` 中的 `Entry` 类初始化，会报错，`energy` 参数为 `ABC` 抽象类型（Doc 有提及），而是用 `pymatgen.analysis.phase_diagram` 中的 PDEntry 类初始化
+
 - label 字体大小无法调节：[How control fontsize in PDPlotter? - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-control-fontsize-in-pdplotter/36715)
 
 ```python
@@ -1175,17 +1179,22 @@ entry2 = ...
 
 entries = [entry1, entry2, ...]
 
-phasediagram = PhaseDiagram(entries)
+phasediagram = PhaseDiagram(entries)   # 稳定相
 
-phasediagram                       # 稳定相
-phasediagram.stable_entries        # 稳定相及其对应能量
-phasediagram.get_decomposition()   # 获取特定构型成分分解成哪些稳定相及其比例
+# 属性
+stable_entries                         # 稳定相及其对应能量
+
+# 方法
+get_decomposition()                    # 获取特定构型成分分解成哪些稳定相及其比例
+get_decomp_and_e_above_hull()          # 
+get_plot()                             # 绘制相图
+
 
 # label 字体大小无法修改 可能会导致有重叠
 ax = phasediagram.get_plot(
-    backend="matplotlib",      # 绘图后端；ploty 或 matplotlib
-    show_unstable=False,       # 是否显示非稳定构型
-    # label_stable=False,      # 是否显示 label
+    backend="matplotlib",              # 绘图后端；ploty 或 matplotlib
+    show_unstable=False,               # 是否显示非稳定构型
+    # label_stable=False,              # 是否显示 label
     )
 
 ax.figure.savefig()

@@ -54,7 +54,9 @@ password:
 
 ### 安装
 
-#### Package Managers
+#### 包管理器
+
+包管理器：Package Managers
 
 ```bash
 sudo apt install zsh  # Ubuntu
@@ -71,9 +73,19 @@ brew install zsh      # macOS
 - 编译 ncurses（构建 TUI（文本用户界面）的库）
 
 ```bash
+# ncurses 库在大部分 Linux 中是默认安装的
+# 检查是否安装
+dpkg -l | grep libncurses
+dnf list installed | grep ncurses
+locate libncurse
+
+# 能找到库文件，头文件找不到，建议还是手动编译
+
 wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.4.tar.gz --no-check-certificate
 
-./configure --prefix=${HOME}/local/ncurses CXXFLAGS="-fPIC" CFLAGS="-fPIC"
+./configure --prefix=${HOME}/local/ncurses\
+            CXXFLAGS="-fPIC"\
+            CFLAGS="-fPIC"
 
 make -j && make install
 ```
@@ -83,9 +95,23 @@ make -j && make install
 ```bash
 wget https://sourceforge.net/projects/zsh/files/zsh/5.9/zsh-5.9.tar.xz/download -O zsh-5.9.tar.xz --no-check-certificate
 
-./configure --prefix="${HOME}/local/zsh" CPPFLAGS="-I${HOME}/local/ncurses/include" LDFLAGS="-L${HOME}/local/ncurses/lib"
+./configure --prefix="${HOME}/local/zsh"\
+            CPPFLAGS="-I${HOME}/local/ncurses/include"\
+            LDFLAGS="-L${HOME}/local/ncurses/lib"
 
 make -j && make install
+```
+
+- 设置 zsh 为默认 Shell
+
+```bash
+# 有 root 权限
+chsh -s /bin/zsh
+
+# 无 root 权限 在 ~/.bashrc_profile 添加以下内容（不建议）
+export PATH=$HOME/bin:$PATH
+export SHELL=`which zsh`
+[ -f "$SHELL" ] && exec "$SHELL" -l
 ```
 
 ---
@@ -107,7 +133,7 @@ wget https://mirror.msys2.org/msys/x86_64/zsh-5.9-2-x86_64.pkg.tar.zst
 tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 ```
 
-- 设置 zsh 为默认 shell，在 `.bashrc` 添加：
+- 设置 zsh 为默认 Shell，在 `.bashrc` 添加：
 
 ```bash
  # Enable zsh
@@ -142,18 +168,6 @@ tar --zstd -xvf zsh-5.9-2-x86_64.pkg.tar.zst
 }
 ```
 
-- 设置 zsh 为默认 shell
-
-```bash
-# 有 root 权限
-chsh -s /bin/zsh
-
-# 无 root 权限 在 ~/.bashrc_profile 添加以下内容（不建议）
-export PATH=$HOME/bin:$PATH
-export SHELL=`which zsh`
-[ -f "$SHELL" ] && exec "$SHELL" -l
-```
-
 
 ---
 
@@ -168,13 +182,13 @@ export SHELL=`which zsh`
 - 安装 ohmyzsh
 
 ```bash
-# Gitee 源
-sh -c "$(curl -fsSL https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh)"  # via curl
-sh -c "$(wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -)"  # via wget
-
 # GitHub 源
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  # via curl
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  # via wget
+
+# Gitee 源
+sh -c "$(curl -fsSL https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh)"  # via curl
+sh -c "$(wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O -)"  # via wget
 ```
 
 - 插件下载：
@@ -182,7 +196,7 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
     - zsh-completions（自动补全）
     - zsh-syntax-highlighting（高亮）
     - zsh-autosuggestions（建议）
-    - forgit（交互式 git；需确保安装了 fzf）
+    - forgit（交互式 Git；需确保安装了 fzf；ohmyzsh 默认的 Git 设置已足够好用）
     - zsh prompt（可选）：[spaceship-prompt](https://github.com/spaceship-prompt/spaceship-prompt)
     - [starship](https://github.com/starship/starship): Shell prompt（支持多种 shell，与 ohmyzsh 的主题不兼容）
 

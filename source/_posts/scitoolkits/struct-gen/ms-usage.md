@@ -73,6 +73,7 @@ password:
     - [How to build and optimize crystal structure of a compound - Part 01 - Materials studio (CASTEP)](https://www.youtube.com/watch?v=IMvzznBhEns)
     - [关于Material Studio和Vesta导出来的cif文件的差别](https://zhuanlan.zhihu.com/p/417605545)
     - [合集·Materials Studio - 奕星模拟个人主页 - 哔哩哔哩视频](https://space.bilibili.com/662609827/channel/collectiondetail?sid=4089960)
+    - [blog/Materials Studio-VESTA教程v1.4.docx at master · misaraty/blog · GitHub](https://github.com/misaraty/blog/blob/master/Materials%20Studio-VESTA%E6%95%99%E7%A8%8Bv1.4.docx)
 
 - 复杂结构 Bulk 模型构建：
     - 可通过其他程序构建（如 pymatgen、ase、pyxtal 等），使用 ase 保存成 xsd 格式文件，之后直接导入到 MS 中即可
