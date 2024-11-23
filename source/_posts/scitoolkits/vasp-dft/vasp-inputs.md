@@ -119,6 +119,20 @@ _d
 _GW           # GW 计算用赝势
 
 
+# 不同程序不同泛函的目录名称
+# VASP
+PAW_PBE              # PBE
+PAW_LDA              # LDA
+PAW_PW91             # PW91
+# ASE
+potpaw_PBE           # PBE
+potpaw               # LDA
+potpaw_GGA           # PW91
+# pymatgen
+POT_GGA_PAW_PBE      # PBE
+POT_LDA_PAW          # LDA
+POT_GGA_PAW_PW91     # PW91
+
 
 # 多个元素种类的 POTCAR 文件合并
 cat POTCAR.1 POTCAR.2 > POTCAR
@@ -636,9 +650,11 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ### ADDGRID
 
-- 添加网格；有助于降低力噪声
+- 添加网格
 
 - 默认值：.FALSE.
+
+- 若 ADDGRID=.TRUE.，grid 将是 "fine "grid 的 8 倍；有助于降低力噪声
 
 
 ---
@@ -656,18 +672,20 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 决定 VASP 处理对称性的方式
 
+- 默认值：1（赝势使用 USPPs）；3（LHFCALC=.TRUE.）；2（其他情况）
 
-- 默认值：1：若 VASP 用 USPPs 运行；3：若 `LHFCALC=.TRUE.`；2：其他情况
-- 1 | 2 | 3：对称性打开；-1 | 0：对称性关闭；
-- 与 ISYM=1 相比，ISYM=2 采用了更高效、更节省内存的电荷密度对称化方法。这尤其降低了并行版本的内存需求。
-- 对于 ISYM=3，VASP 并不直接对称电荷密度。相反，电荷密度是通过对布里渊区不可还原部分 k 点处的轨道进行相关对称运算来构建的。当 LHFCALC=.TRUE 时使用这种对称方法。
-- 当 ISYM=0 时，VASP 不使用对称性，但会假定 Ψk=Ψ*-k 并相应减少布里渊区的采样。这个值应该为分子动力学设置，即 IBRION=0。
-- 当 ISYM=-1 时，对称性被完全关闭。
+- 1/2/3：对称性打开；-1/0：对称性关闭
 
+- 与 ISYM=1 相比，ISYM=2 采用了更高效、更节省内存的电荷密度对称化方法，尤其降低了并行版本的内存需求
 
+- 对于 ISYM=3，VASP 并不直接对称电荷密度。相反，电荷密度是通过对布里渊区不可约部分 k 点处的轨道进行相关对称运算来构建的
+- ISYM=0，VASP 不使用对称性，但会假定 Ψk=Ψ*-k 并相应减少布里渊区的采样（对应 AIMD 设置，即 IBRION=0）
 
-- 为什么需要对称：在 LDA 中，超胞和电荷密度的对称性总是相同的。由于在计算中使用了一组不可约对称性的 k 点，因此这种对称性被打破。为了储存正确的电荷密度和力，有必要对称这些量。
-- 如果打开对称运算，则 NWRITE=3 将对称运算写入 OUTCAR 文件
+- ISYM=-1，对称性被完全关闭
+
+- 若对称性打开，则 NWRITE=3 将对称操作写入 OUTCAR 文件
+
+- 该 tag 的 VASP 官网中还讲解了对称性的相关内容
 
 
 ---

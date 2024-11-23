@@ -579,11 +579,12 @@ os.environ["VASP_PP_PATH"] = ...
 - ASE VASP Calculator 赝势不同泛涵目录命名
 
 ```bash
-LDA:  $VASP_PP_PATH/potpaw/
-PBE:  $VASP_PP_PATH/potpaw_PBE/
-PW91: $VASP_PP_PATH/potpaw_GGA/
+potpaw_PBE           # PBE
+potpaw               # LDA
+potpaw_GGA           # PW91
 
-# 查找元素 POTCAR 示例：potpaw_PBE/N/POTCAR
+# 示例
+potpaw_PBE/Nb_pv/POTCAR
 ```
 
 - 示例代码

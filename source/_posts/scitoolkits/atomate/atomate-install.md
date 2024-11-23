@@ -229,7 +229,7 @@ pseudopotentials
 
 ```bash
 # pymatgen 寻找 POTCAR 的两种路径形式
-# 形式 1 所有元素 POTCAR 在一个目录下
+# 形式 1 所有元素 POTCAR 在一个目录下；可以是压缩文件
 psp_dir/POT_GGA_PAW_PBE/POTCAR.XXX
 # 形式 2 元素 POTCAR 按元素分类在子目录下
 psp_dir/POT_GGA_PAW_PBE/XXX/POTCAR

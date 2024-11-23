@@ -29,18 +29,29 @@ password:
 - Linux 系统：Ubuntu 22.04，内核：5.19.0-43-generic
 - root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
 - 任务调度系统：Slurm
-- CPU：Intel Xeon Platinum 8369B，共 64 核；CPU 信息查看：`cat /proc/cpuinfo`
-- GPU：2 $\times$ 24G RTX 3090；调用 GPU 时只能一整块调用，显存自动分配；GPU 信息、使用情况查看：`nvidia-smi`
+- CPU：Intel Xeon Platinum 8369B，共 64 核
+- GPU：2 $\times$ 24G RTX 3090；调用 GPU 时只能一整块调用，显存自动分配
 - Intel 套件：Intel-oneAPI 2022.1.0
-- 内存：共 512G；内存信息查看：`cat /proc/meminfo`；内存使用情况查看：`free -h`
-- 数据存储：较大体积的数据（master 本地或超算上的）可以放到 `${HOME}/storage`
+- 内存：共 512G
+- 数据存储：较大体积的数据（Master 本地或超算上的）可以放到 `${HOME}/storage`
 - `/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中
+
+```bash
+cat /proc/cpuinfo       # CPU 信息查看
+cat /proc/meminfo       # 内存信息查看
+free -h                 # 内存使用情况查看
+nvidia-smi              # GPU 信息、使用情况查看
+
+# 赝势路径
+/work/backup/.vasp_pot/    # Master
+/opt/.vasp_pot             # Manager
+```
 
 ---
 
-- master 上已安装的程序/软件：`cat /opt/bin/README` 查看
+- Master 上已安装的程序/软件：`cat /opt/bin/README` 查看
 
-```text
+```bash
 # Code                 Function
 ave....................Get the averages of data columns in a file
 bave...................Get the block averages of data columns in a file
@@ -89,16 +100,15 @@ vmd....................To visualize md trajectories
 - 查看 cuda 是否安装
 
 ```bash
-nvidia-smi       # NVIDIA 驱动
+nvidia-smi            # NVIDIA 驱动
 nvcc --version
-/usr/local/cuda  # CUDA 库路径
+/usr/local/cuda       # CUDA 库路径
 ```
 
 - GPU 信息及使用情况查看：`nvidia-smi`、[gpustat - Python](https://github.com/wookayin/gpustat)
 
 ```bash
-# 持续查看 GPU 使用情况
-watch -d2 nvidia-smi
+watch -d2 nvidia-smi      # 持续查看 GPU 使用情况
 
 gpustat -i 2
 ```
@@ -157,7 +167,7 @@ model.to(device)
 - 任务调度系统：PBS
 - CPU：Intel Xeon E5520、Intel Xeon E5630（node 9）、Intel Xeon E5-2620（node 11）；共 100 核，共 12 个节点（node1~11 + manager；其中 node2，6，7，8 经常 down）
 - GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理任务）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）
-- 内存：登录、Manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G；内存使用情况查看：`free -h`
+- 内存：登录、Manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G
 - Intel 套件：Composer XE 2015
 - glibc 版本过低（编译安装新版本较为复杂）
 
@@ -166,7 +176,7 @@ model.to(device)
 
 ### 超算
 
-- Linux 系统：Centos 7.7.1908（Pi）； 8.3.2011（思源一号）
+- Linux 系统：Rocky Linux（基于 Centos）
 - root 权限：无；无法使用 yum 命令安装软件程序
 - 任务调度系统：Slurm；Pi、ARM、思源一号提交的任务在任一平台都可以看到
 - CPU、内存：超算中的 CPU 核有内存配比限制
@@ -174,23 +184,6 @@ model.to(device)
 - 程序/软件：Pi 的一些基础程序的版本比思源一号旧许多；查看：`module av`
 - Pi 和 ARM 用户目录相同
 - sylogin1 登录节点占用率较高，比其他（2-5）卡，是超算断开连接，vim 使用卡顿的可能原因之一；超算的登录节点为随机分配，应尽量避免登录到 sylogin1
-
-
----
-
-### VASP 赝势目录路径
-
-- Pi mseklt 用户目录中的 VASP 赝势与思源和 manager 上的有些不同，相比之下，前者不全。
-
-```bash
-/work/backup/.vasp_pot/    # master
-
-/opt/.vasp_pot             # manager
-
-$HOME/.sjtu_mgi/.vasp.pot  # 思源一号 mseklt
-
-$HOME/opt/VASP/VASP_PSP    # Pi mseklt
-```
 
 
 
@@ -252,7 +245,7 @@ Host alias
     IdentityFile
 ```
 
-具体示例：
+- 具体示例：
 
 ```bash
 Host Manager
@@ -280,7 +273,7 @@ Host SiYuan
     IdentityFile ~/.ssh/id_rsa
 ```
 
-设置完成后，只需输入以下内容即可实现服务器、超算 SSH 登录：
+- 设置完成后，只需输入以下内容即可实现服务器、超算 SSH 登录：
 
 ```bash
 ssh Master
@@ -319,11 +312,11 @@ Load key "id_rsa": bad permissions
 
 ### VSCode 免密登录
 
-- 安装 **Remote Development** 扩展，如上面的 `~/.ssh/config` 内容已设置好，会自动识别设置好的主机名（**config 文件所在路径可自定义**）。
+- 安装 **Remote Development** 扩展，如上面的 `~/.ssh/config` 内容已设置好，会自动识别设置好的主机名（**config 文件所在路径可自定义**）
 
-- VSCode 远程连接 manager（机子较老，10 余年历史），有时会导致其负载过高而崩溃，不建议长时间连接；vscode 远程连接 master（2023 年 5 月配置）暂无相关问题。
+- VSCode 远程连接 Manager（机子较老，10 余年历史），有时会导致其负载过高而崩溃，不建议长时间连接；VSCode 远程连接 Master（2023 年 5 月配置）暂无相关问题
 
-- 在超算上使用 python 插件中的 pylance 语言服务器（LSP）以及 jupyter 插件，常会出现 pylance 崩溃的问题（Pi 稍微稳定些），因为超算的登录节点资源有限，建议将 pylance 换成 jedi（功能不及 pylance），会稍微稳定些；建议不在超算平台上使用 jupyter notebook。master 暂无相关问题。
+- 在超算上使用 Python 插件中的 Pylance 语言服务器（LSP）以及 Jupyter 插件，常会出现 Pylance 崩溃的问题（Pi 稍微稳定些），因为超算的登录节点资源有限，建议将 Pylance 换成 Jedi（功能不及 Pylance），会稍微稳定些；建议不在超算平台上使用 Jupyter Notebook；Master 暂无相关问题
 
 
 
@@ -331,7 +324,7 @@ Load key "id_rsa": bad permissions
 
 ## 任务准备、提交、检查
 
-[超算中作业管理系统PBS/LSF/Slurm的常用命令 - Ji-Huan Guan](https://www.guanjihuan.com/archives/42460)
+- 参考：[超算中作业管理系统PBS/LSF/Slurm的常用命令 - Ji-Huan Guan](https://www.guanjihuan.com/archives/42460)
 
 ---
 
@@ -374,8 +367,11 @@ UserId|WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|Run
 ### PBS 任务调度系统
 
 - Manager 为此作业调度系统
+
 - `submit` 命令是孔老师写的一个 PBS 任务提交脚本
+
 - `-nc` 参数含义：不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**
+
 - 提交任务命令会自动生成对应的 `PBS.batch` 脚本；当提交的任务出错时，修改 `PBS.batch` 脚本内容，之后可使用 `qsub PBS.batch` 命令提交任务
 
 ```bash
@@ -417,9 +413,7 @@ mpirun -n 1 lmp -in in.file
 #PBS -l nodes=1:ppn=1
 ```
 
----
-
-Manager 中与 PBS 相关的一些 alias 设置
+- Manager 中与 PBS 相关的一些 alias 设置
 
 ```bash
 # 查看 q 相关命令 alias
@@ -451,7 +445,7 @@ Time Use    # 实际时间 * 节点数
 
 ### 超算队列介绍
 
->[快速上手 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/quickstart/index.html)
+- 参考：[快速上手 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/quickstart/index.html)
 
 - 超算队列内存情况
 
@@ -465,8 +459,6 @@ dgx2           每核6G内存    pi
 192c6t         每核31G内存   pi**
 cpu，small和dgx2队列作业运行时间最长7天，huge和192c6t最长2天。作业延长需发邮件申请，附上用户名和作业ID，延长后的作业最长运行时间不超过14天。
 ```
-
----
 
 - 队列资源选择
 
@@ -483,25 +475,18 @@ GPU 作业请至 dgx2 队列或思源一号a100队列；
 **大内存作业可选择 huge 或 192c6t 两种队列**。
 ```
 
----
-
 - **192c6t 和 huge 大内存队列，核数有一定要求，且排队时间较长**
 
-192c6t 队列
 
 ```bash
+# 192c6t 队列
 sbatch: error: The cpu demand is lower than 48. Please submit to huge or cpu partition.
 sbatch: error: Batch job submission failed: Unspecified error
-```
 
-huge 队列
-
-```bash
+# huge 队列
 sbatch: error: The cpu demand is lower than 6. Please submit to small partition.
 sbatch: error: Batch job submission failed: Unspecified error
 ```
-
----
 
 - 超算收费情况（2023.05.30）
 
@@ -522,8 +507,6 @@ GPU 价格：2 元/卡/小时（dgx2队列 V100 GPU）
 每个新账户赠送价值 300 元的积分，供免费试用
 ```
 
----
-
 - 超算软件模块使用：[软件模块使用方法 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/module.html)
 
 ```bash
@@ -539,7 +522,7 @@ module show [MODULE]    # 列出该模块的信息，如路径（lib 及 include
 
 - 超算代理相关设置：[常见问题 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/faq.html#id1)
 
-思源一号克隆 Github repo（或 wget 下载网络文件） 速度慢或无法进行；Pi 则正常。
+思源一号克隆 GitHub repo（或 wget 下载网络文件） 速度慢或无法进行；Pi 则正常。
 
 解决方案：在计算节点上运行（有时也还是不稳定）或使用 [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD) 油猴插件，选择合适的 URL 进行克隆。
 
@@ -613,10 +596,10 @@ proxy.hpc.sjtu.edu.cn:3004
 
 ### 任务提交示例
 
->以下任务提交脚本代码使用的思源一号中的 64c512g 队列；超算中有许多不同版本的程序，可根据自身需求 `module load` 相应版本的程序
+- 以下任务提交脚本代码使用的思源一号中的 64c512g 队列；超算中有许多不同版本的程序，可根据自身需求 `module load` 相应版本的程序
 
+- SBATCH 相关参数
 
-SBATCH 相关参数
 ```bash
 #SBATCH --job-name=vasp_job
 #SBATCH --account=wen
@@ -793,11 +776,10 @@ bash test.sh
 
 ### 任务状态检查
 
-任务提交后，会生成 `jobid.err` 和 `jobid.out` 文件：
-
-- `err` 文件为空（大部分情况下），表示提交的任务未出错
-- `err` 文件不为空，表示提交的任务出错；需查看 `err` 文件中的出错提示，进行修改
-- 若 `err`、`out` 文件出现以下内容，大概率为超算平台出现故障，请与相关负责人联系
+- 任务提交后，会生成 `jobid.err` 和 `jobid.out` 文件
+    - `err` 文件为空（大部分情况下），表示提交的任务未出错
+    - `err` 文件不为空，表示提交的任务出错；需查看 `err` 文件中的出错提示，进行修改
+    - 若 `err`、`out` 文件出现以下内容，大概率为超算平台出现故障，请与相关负责人联系
 
 ```bash
 # err 文件内容
@@ -826,12 +808,11 @@ slurm_load_jobs error: Slurm backup controller in standby mode
 
 ## 数据传输
 
-参考：
+- 参考：
+    - [数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
+    - 提高数据传输速度（利用外部指令并发多个 scp/rsync 进程）：[数据传输技巧 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportskills.html)
 
-- [数据共享与传输 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/index.html)
-- 提高数据传输速度（利用外部指令并发多个 scp/rsync 进程）：[数据传输技巧 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportskills.html)
-
-超算进行数据传输一般在 data 节点上进行。超算传输节点：
+- 超算进行数据传输一般在 data 节点上进行。超算传输节点
 
 ```bash
 data.hpc.sjtu.edu.cn    # Pi
@@ -844,8 +825,11 @@ sydata.hpc.sjtu.edu.cn  # 思源
 ### 命令行
 
 - scp：Secure Copy，基于 SSH 协议进行文件传输，不支持增量传输
-- rsync：支持 SSH 协议或 rsync 协议、增量传输、支持本地和远程同步、支持断点续传
+
+- rsync：支持 SSH 协议或 rsync 协议、**增量传输**、支持本地和远程同步、支持断点续传
+
 - 因安全策略升级，在集群的终端上不支持 scp/rsync 的远程传输功能，所以需要从用户本地终端使用 scp/rsync 命令：[数据传输方案和传输节点 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/transportsolution.html)
+
 - rsync 显示整体进度（不太好用）：[Overall Progress with rsync - Dave Dribin’s Blog](https://www.dribin.org/dave/blog/archives/2024/01/21/rsync-overall-progress/)
 
 ```bash
@@ -928,10 +912,9 @@ rsync -auvP --human-readable user@sydata.hpc.sjtu.edu.cn:SRC DEST
 
 ### Manager 与超算间的数据传输
 
-上传与下载：孔老师写的 upload 与 download 脚本
-
-- Manager 与 Pi：`upload -s P` 或将 `P` 改成 `H` 或 `h`
-- Manager 与思源一号：将 `P` 改成 `s`
+- 上传与下载：孔老师写的 upload 与 download 脚本
+    - Manager 与 Pi：`upload -s P` 或将 `P` 改成 `H` 或 `h`
+    - Manager 与思源一号：将 `P` 改成 `s`
 
 ```bash
 # 上传
@@ -983,6 +966,7 @@ make install  # 安装
 ## posconv、NumNei
 
 - 具体安装步骤见：
+
 
 ---
 

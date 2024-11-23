@@ -109,10 +109,45 @@ from pymatgen.ext.matproj ...
 
 - pymatgen 的包 (package、subpackage) 是目录, 模块 (module、submodule) 是文件; import 既可以导入包和子包, 也可以导入模块和子模块； [ug-materials-simulation/pymatgen/包和模块结构.ipynb at master · xiangzhouzhang/ug-materials-simulation · GitHub](https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/%E5%8C%85%E5%92%8C%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84.ipynb)
 
+- 查看 pymatgen 相关信息
+
+```python
+import pymatgen.core
+import sys
+
+sys.version                  # 查看 Python 版本
+pymatgen.core.__version__    # 查看 pymatgen 版本
+pymatgen.core.__file__       # 查看 pymatgen 安装路径
+
+# 获取 .pmgrc 配置文件内容
+from pymatgen.core import SETTINGS
+
+PMG_VASP_PSP_DIR = SETTINGS.get("PMG_VASP_PSP_DIR")
+
+# 可解析压缩文件路径 
+from monty.os.path import zpath
+
+path = ...
+path = zpath(path)
+```
+
 - pymatgen 支持的构型文件格式
 
 ```python
-FileFormats = Literal["cif", "poscar", "cssr", "json", "yaml", "yml", "xsf", "mcsqs", "res", "pwmat", ""]
+FileFormats = Literal[
+    "cif",
+    "poscar",
+    "cssr",
+    "json",
+    "yaml",
+    "yml",
+    "xsf",
+    "mcsqs",
+    "res",
+    "pwmat",
+    "aims",
+    "",
+]
 ```
 
 - pymatgen 中可指定的泛函类型
@@ -125,26 +160,10 @@ FUNCTIONAL_CHOICES= ['PBE', 'PBE_52', 'PBE_54', 'LDA', 'LDA_52', 'LDA_54', 'PW91
 
 - `MSONable` 类：MSON（Monty JSON）；MSONable 对象必须实现 `as_dict()` 方法，该方法须返回可序列化为 JSON 的字典，且须支持无参数。静态方法 `from_dict()`，从 `as_dict()` 方法生成的字典中重建对象。`as_dict()` 方法应该包含 `@module` 和 `@class` 键，这将允许 MontyEncoder 动态反序列化该类。
 
-- `Molecule` 与 `Structure` 类
-    - `Molecule` 类的输入参数：`species` 和 `coords`，关键字参数有：`charge`、 `spin_multiplicity`、 `validate_proximity` 和 `site_properties`
-    - `Structure` 类还需指定 `lattice` 输入参数
-    - `Molecule` 类的 `coords` 参数值需是 Cartesian 坐标形式，`Structure` 类可以是 Cartesian 和分数两种坐标形式
-    - `Molecule` 本质上是 Site objects 的列表；`Structure` 本质上是 PeriodicSites objects 的列表；可以像 list 一样操作 `Molecule` 和 `Structure`
-
 - monty 包：对 json/yaml/msgpack 等文件格式进行 serialization
 
 ```python
 from monty.serialization import loadfn, dumpfn
-```
-
-
-```python
-import pymatgen.core
-import sys
-
-sys.version                  # 查看 python 版本
-pymatgen.core.__version__    # 查看 pymatgen 版本
-pymatgen.core.__file__       # 查看 pymatgen 安装路径
 ```
 
 
@@ -222,6 +241,7 @@ structure = Structure.from_spacegroup(
 )
 
 # 保存成其他文件格式
+structure.to(filename="POSCAR", fmt="poscar") 
 # 不提供 filename 参数，返回 string
 structure.to(fmt="poscar")
 # 只提供 filename 参数，会自动识别其格式
@@ -259,7 +279,7 @@ structure.make_supercell([2, 2, 2])
 
 ---
 
-pymatgen 的许多 object 都有 `as_dict()` 方法和 `from_dict()` 静态方法的实现。虽然 python 确实提供了 pickling 功能（实现对象序列化和反序列化的方式），但 pickle 在代码修改方面往往是非常脆弱的。`as_dict()` 提供了一种以更稳健的方式保存工作的方法，且更容易阅读。将 object 输入某些数据库，如 MongoDB，也特别有用。`as_dict()` 规范是由 monty 库（pymatgen 产生的一个通用 python 补充库）提供的。
+pymatgen 的许多类都有 `as_dict()` 方法和 `from_dict()` 静态方法的实现。虽然 python 确实提供了 pickling 功能（实现对象序列化和反序列化的方式），但 pickle 在代码修改方面往往是非常脆弱的。`as_dict()` 提供了一种以更稳健的方式保存工作的方法，且更容易阅读。将 object 输入某些数据库，如 MongoDB，也特别有用。`as_dict()` 规范是由 monty 库（pymatgen 产生的一个通用 python 补充库）提供的。
 
 ```python
 with open('structure.json', 'w') as file:
@@ -314,18 +334,19 @@ gau.write_file('methane.inp')
 
 - pymatgen.io 模块包含一些计算软件（主要是 VASP）的输入文件编写、解析与输出文件解析子模块
 
-- 输入管理的核心类是 `InputSet`。 `InputSet` object 包含计算输入文件所需的所有数据。具体来说，`write_input()` 方法，可将所有文件写到指定位置。InputGenerator 类可以看作是完成特定计算任务的 recipe，而 InputSet 则包含这些 recipes 以应用于特定体系或结构
+- 输入管理的核心类是 `InputSet`。 `InputSet` object 包含计算输入文件所需的所有数据。具体来说，`write_input()` 方法，可将所有文件写到指定位置。`InputGenerator` 类可以看作是完成特定计算任务的 recipe，而 `InputSet` 则包含这些 recipes 以应用于特定体系或结构
 
-- 也可以使用 `InputSet.from_directory()` 从计算目录中构建 pymatgen InputSet
+- 也可以使用 `InputSet.from_directory()` 从计算目录中构建 pymatgen `InputSet`
 
-- 许多解析输出文件的类继承自 InputFile，其提供了一个读写文件的标准接口
+- 许多解析输出文件的类继承自 `InputFile`，其提供了一个读写文件的标准接口
 
 
 ---
 
 ### 其他
 
-- pymatgen 构型可视化：[Pymatgen - how to visualize a crystal structure? - Materials Project / Materials Project Data/API - Materials Science Community Discourse](https://matsci.org/t/pymatgen-how-to-visualize-a-crystal-structure/2761)
+- pymatgen 构型可视化
+    - [Pymatgen - how to visualize a crystal structure? - Materials Project / Materials Project Data/API - Materials Science Community Discourse](https://matsci.org/t/pymatgen-how-to-visualize-a-crystal-structure/2761)
 
 ```python
 # 可视化原子构型
@@ -335,9 +356,9 @@ nglview.show_pymatgen()
 nglview.show_ase()
 ```
 
----
-
-- 生成元素置换后的非等同结构（借助 bsym 包；适用于复杂结构，如金属间化合物）：[bsym_examples](https://nbviewer.org/github/bjmorgan/bsym/blob/master/examples/bsym_examples.ipynb)
+- 生成元素置换后的非等同结构
+    - 借助 bsym 包；适用于复杂结构，如金属间化合物；可理解为置换找到的非等同原子中等同原子的第一个原子
+    - [bsym_examples](https://nbviewer.org/github/bjmorgan/bsym/blob/master/examples/bsym_examples.ipynb)
 
 ```python
 from bsym.interface.pymatgen import unique_structure_substitutions
@@ -351,8 +372,6 @@ subs_structures = unique_structure_substitutions(
 )
 ```
 
----
-
 - 解析 VASP 计算目录：[Automated DFT - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/05_automated_dft/Lesson/#parsing-directories-with-atomate-drones)
 
 ```python
@@ -364,15 +383,10 @@ task_doc = drone.assimilate(path=...)
 task_doc.keys()
 ```
 
----
-
-[【Pymatgen学习 2】Ewald方法计算静电能](https://zhuanlan.zhihu.com/p/708133858)
-
-[Ewald Summation - Qijing Zheng](http://staff.ustc.edu.cn/~zqj/posts/Ewald-Summation/)
-
-EwaldSummation 是 pymatgen 库中的一个类，用于计算离子晶体的 Ewald 总能量。Ewald 总能量是一种用于处理带电体系的长程库仑相互作用的技术，通常用于计算固体材料中的电势能。该方法将总能量分解为实空间、倒空间、点电荷修正和偶极修正部分，并进行相应的求和计算。
-
----
+- 静电势能计算
+    - [【Pymatgen学习 2】Ewald方法计算静电能](https://zhuanlan.zhihu.com/p/708133858)
+    - [Ewald Summation - Qijing Zheng](http://staff.ustc.edu.cn/~zqj/posts/Ewald-Summation/)
+    - EwaldSummation 是 pymatgen 库中的一个类，用于计算离子晶体的 Ewald 总能量。Ewald 总能量是一种用于处理带电体系的长程库仑相互作用的技术，通常用于计算固体材料中的电势能。该方法将总能量分解为实空间、倒空间、点电荷修正和偶极修正部分，并进行相应的求和计算
 
 [求助：过渡态计算新版pymatgen中找不到iddp插值方法 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-19704-1-1.html)
 
@@ -428,9 +442,14 @@ MITNEBSet class
 
 - `Structure` 类继承自 `IStructure`
 
+- `Structure` 与 `Molecule` 类的区别
+    - `Molecule` 类的基本参数为 `species`、 `coords`，`Structure` 还需指定 `lattice` 参数
+    - `Molecule` 类的 `coords` 参数值需是笛卡尔坐标形式，`Structure` 类可以是笛卡尔和分数两种坐标形式
+    - `Molecule` 本质上是 Site objects 的列表；`Structure` 本质上是 PeriodicSites objects 的列表；可以像 list 一样进行操作
+
 - 查看方法是否会直接修改对象本身：检查是否有 `in_place` 参数及注释是否有 "in place" 字样（“原地” 的意思）
 
-- `Structure` 无 `wrap()` 方法，ASE 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
+- `Structure` 无 `wrap()` 方法（根据 PBC 条件将胞外原子移至胞内），ASE 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
 
 - 复杂结构 pymatgen 无法通过 `to_primitive()` 方法（以及 vaspkit）将单胞转化成原胞
 
@@ -502,6 +521,7 @@ indices_nb = [i for i, site in enumerate(structure) if site.species_string == "N
 - pymatgen 表面生成无法指定具体的层数（可以指定最第层数）：[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
 
 ```python
+# 方法
 # 获取指定晶面指数中的最大数值下其对称性非等同的所有晶面指数
 get_symmetrically_distinct_miller_indices()
 
@@ -765,7 +785,7 @@ potcar.write_file("POTCAR")
 
 ### pymatgen.io.vasp.sets
 
-- `MPRelaxSet`、`MPStaticSet` 等类均继承于 `VaspInputSet`，都有 `write_input()` 方法
+- `MPRelaxSet`、`MPStaticSet` 等类均继承于 `VaspInputSet`，都有 `write_input()` 方法（可能会发生 POSCAR 中的元素重新排序的情况）
 
 - `MPRelaxSet` 没有设置 EDIFFG 参数：[MPRelaxSet.write\_input() no EDIFFG in INCAR - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprelaxset-write-input-no-ediffg-in-incar/44359)
 
