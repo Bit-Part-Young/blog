@@ -39,6 +39,9 @@ password:
     - [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)
     - [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
+
+- 含各 VASP 版本更新内容简要介绍：[VASP - NSC](https://www.nsc.liu.se/software/installed/tetralith/vasp/)
+
 在 `makefile.include` 中的 OFLAG 参数里加入 -xhost，这样编译器会使得编译出的程序能够利用当前机子 CPU 能支持的最高档次的指令集以加速计算
 
 
@@ -484,3 +487,5 @@ compilation aborted for minimax_functions1D.f90 (code 1)
 ---
 
 - [1.仅优化二维VASP编译.md](https://github.com/lhycms/QM/blob/main/DFT/VASP/%E7%BC%96%E8%AF%91/1.%E4%BB%85%E4%BC%98%E5%8C%96%E4%BA%8C%E7%BB%B4VASP%E7%BC%96%E8%AF%91.md)
+
+[VASP固定基矢优化结构 - Misaraty](https://www.misaraty.com/2021-01-11_vasp%E5%9B%BA%E5%AE%9A%E5%9F%BA%E7%9F%A2%E4%BC%98%E5%8C%96%E7%BB%93%E6%9E%84/)：对于二维材料，固定 z 方向晶胞参数不变（固定 z 轴），优化 x、y 晶胞参数

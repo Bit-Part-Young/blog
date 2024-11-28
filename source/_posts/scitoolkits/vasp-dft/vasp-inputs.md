@@ -50,8 +50,8 @@ password:
     - 第 1 行：Comment line 注释行；可对体系进行描述，也可空着
     - 第 2-5 行：Scaling factor and lattice，缩放因子和基矢；与体系的晶格常数符合即可；第二行值如果为负数，表示体积
     - 第 6-7 行：Ion species and numbers，元素种类（VASP4 可没有该行）及对应原子数目；**元素种类的顺序需与 POTCAR 文件中的一致**；
-    - 第 8-N 行：Ion positions 原子坐标；Direct（首字母大写或只写 D 均可）表示分数坐标，Cartesian（或 C）表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定；默认值为 T，表示该方向可运动，F 表示固定）
-    - 原子坐标信息之后是原子的初始速度信息
+    - 第 8-N 行：Ion positions 原子坐标；Direct（首字母大写或只写 D 均可）表示分数坐标，Cartesian（或 C）表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定；**默认值为 T，表示该方向可运动，F 表示固定**）
+    - 原子坐标信息之后是原子的初始速度信息（一般可不用设置）
 
 - 注意事项：
     - VASP 根据 POSCAR 文件确定体系的对称性。原子位置精度不够（位数太少）是一个常见错误。为更好地利用 VASP 中的对称性，强烈建议在 POSCAR 文件中指定至少 7 位有效数字的原子位置（和晶格参数，最好多一些）
@@ -342,6 +342,8 @@ k*a ~ 15 Å     # 绝缘体
     - 态密度相关参数：LORBIT、EMIN 、EMAX、NEDOS
     - 能带相关参数：NBANDS
 
+- 对于大体系，建议增加 NELM 和 NSW 数值
+
 - 注意事项：
     - 等号（=）前后可以有空格，也可以没有
     - 不要使用 Tab，用空格替换 Tab
@@ -542,9 +544,9 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 - 除 0 外，其他算法都最终弛豫到局部能量最小值
 
 - 结构优化
-    - IBRION=1，结构接近基态时的选择
-    - IBRION=2，稳健的默认选择，相比 RMM-DIIS 可能需要更多的迭代步数
-    - IBRION=2，结构远离基态时的选择
+    - IBRION=1，通过之前位置的线性组合来减少力；接近基态的大体系（> 20 个自由度）选择
+    - IBRION=2，沿搜索方向寻找最佳步长；稳健的默认选择，相比 RMM-DIIS 可能需要更多的迭代步数
+    - IBRION=3，runs a MD simulation with decreasing velocity of the ions；远离基态的大体系选择，相比其他算法，获取更好的起始点（**效率不高；用的情况很少**）
 
 - 有限差分（finite differences）；密度泛函扰动理论（density functional perturbation theory, DFPT）
 
@@ -555,7 +557,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 # 结构优化
 1              # RMM-DIIS / quasi-Newton 算法
 2              # conjugate gradient algorithm 共轭梯度算法
-3              # Damped molecular dynamics 算法
+3              # Damped MD 算法
 
 # 计算声子模式；计算二阶导数、海森矩阵和声子频率
 5 6            # 有限差分；5 without symmetry, 6 with symmetry
@@ -580,9 +582,16 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 决定在弛豫及分子动力学运行中胞的体积、形状或原子位置是否发生改变以及应力张量是否计算
 
-- 默认值：0：IBRION=0 时；2：其他情况
+- 默认值：0（IBRION=0 时）；2（其他情况）
 
 - 应力张量计算相对耗时，因此在 AIMD 中将其关掉；力总是会进行计算
+
+```bash
+1          # 只弛豫原子位置，晶胞体积、形状不变（不计算应力张量）
+2          # 只弛豫原子位置，晶胞体积、形状不变（计算应力张量）
+3          # 原子位置、晶胞体积、形状均可弛豫
+7          # 只弛豫晶胞体积，原子位置、形状不变
+```
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152120807.png)
 
@@ -593,7 +602,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 电子步（the electronic SC-loop）收敛条件
 
-- 默认值：$10^{-4}$
+- 默认值：$10^{-4}$（单位为 eV，而非 eV/atom）
 
 - 在大多数情况下，收敛速度是二次的，因此额外迭代的成本通常很小；收敛良好的计算，强烈推荐设置 EDIFF= $10^{-6}$；有限差分计算（如声子），为获取精确结果，可能需要 EDIFF= $10^{-7}$；大体系或使用 meta-GGA 泛函，EDIFF= $10^{-8}$ 或 EDIFF= $10^{-7}$ 的收敛条件可能很困难；总体 EDIFF= $10^{-6}$ 可能为最佳设置
 
@@ -898,4 +907,6 @@ LOPTICS          #
 LEPSILON         # 
 
 LBERRY           # Berry 相位法
+
+NUPDOWN          # 指定自旋向上和自旋向下的电子数差
 ```

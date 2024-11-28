@@ -22,10 +22,14 @@ password:
 ## 介绍
 
 - 全球最大的代码托管平台，也是一个社区
+
 - 也可以托管 Gist 代码片段
+
 - 团队协作开发平台：有完善的协作功能 (Fork, Issue, Pull Request) 等功能
+
 - 提供免费的静态网站托管服务 GitHub Pages
-- GitHub 每个仓库的总体积限制是 1GB（Gitee 是 500MB），每个仓库中每个 release 的最大文件体积限制是 2GB（Gitee 是 1GB）；release 数量没有明确的限制；对于普通用户，仓库（Repo 代码 + release 文件）的总体积限制为 100 GB
+
+- GitHub 每个仓库的总体积限制是 1GB（Gitee 是 500MB），每个仓库中每个 release 的最大文件体积限制是 2GB（Gitee 是 1GB）；release 数量没有明确的限制；对于普通用户，仓库（仓库代码 + release 文件）的总体积限制为 100 GB
 
 
 ---
@@ -35,7 +39,7 @@ password:
 - [GitHub 简易指南 - OrangeX4's Blog](https://orangex4.cool/post/github-tutorials-for-beginner/)
 - Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
 - [GitHub - tiimgreen/github-cheat-sheet: A list of cool features of Git and GitHub.](https://github.com/tiimgreen/github-cheat-sheet)
-- [GitHub - phodal/github: GitHub 漫游指南- a Chinese ebook on how to build a good project on Github. Explore the users' behavior. Find some thing interest.](https://github.com/phodal/github)
+- [GitHub - phodal/github: GitHub 漫游指南](https://github.com/phodal/github)
 
 
 
@@ -44,6 +48,14 @@ password:
 ## 使用
 
 ### 工具
+
+- 管理 GitHub Star（Star 的仓库数一多，5k+，无法查看 star 页面，老是出错）
+    - 移动端 GitHub App（可识别用户已创建的分类 tag）
+    - [【工具自荐】starflare 又一个管理 github star 的 web app · Issue #4732 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/4732)
+    - [GitHub - cfour-hi/gitstars: Github Starred Repositories Manager](https://github.com/cfour-hi/gitstars)（无法识别）
+    - [Starflare](https://starflare.app/)（无法识别）
+    - [Organize Your GitHub Stars With Ease - Astral](https://astralapp.com/)
+    - [GitHub - raythunder/github-stars-manager: 这是一个用来管理你的github stars的网页工具，它通过标签来管理和分类你的stars。所有的数据保存在你自己的github gists.](https://github.com/raythunder/github-stars-manager)
 
 - 汉化插件：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
 
@@ -59,9 +71,11 @@ password:
 
 - 生成 changelog：[GitHub - github-changelog-generator/github-changelog-generator: Automatically generate change log from your tags, issues, labels and pull requests on GitHub.](https://github.com/github-changelog-generator/github-changelog-generator)
 
-- 用 [nbviewer](https://nbviewer.org/) 浏览 GitHub 仓库中的 ipynb 文件
+- 浏览、打开、预览 GitHub 仓库中的 ipynb 文件
+    - [nbviewer](https://nbviewer.org/)
+    - [欢迎使用 Colaboratory - Colab](https://colab.research.google.com/)
 
-- [【工具自荐】一键查看 github 仓库树形图 · Issue #5272 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/5272)
+- [【工具自荐】一键查看 github 仓库树形图 · Issue #5272 · ruanyf/weekly · GitHub](https://github.com/ruanyf/weekly/issues/5272)（一般）
 
 - [GitHub - zanjie1999/githubBackup: 备份Github所有仓库（包括私仓）纯shell实现](https://github.com/zanjie1999/githubBackup)
 

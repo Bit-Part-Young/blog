@@ -77,6 +77,8 @@ password:
 
 - 内容一般（能带计算 ASE Python 代码部分可参考）： [GitHub - WMD-group/ASE-Tutorials: Examples of using the Atomic Simulation Environment](https://github.com/WMD-group/ASE-Tutorials)
 
+- [GitHub - wangchr1617/ASE-Modeling: This repository contains custom functions and scripts for materials modeling, structure manipulation, and simulation using the Atomic Simulation Environment (ASE).](https://github.com/wangchr1617/ASE-Modeling)
+
 
 
 ---
@@ -392,9 +394,17 @@ cell[:]
 ### ase.spacegroup
 
 ```python
-from ase.spacegroup import Spacegroup
+from ase.spacegroup import Spacegroup, crystal, get_spacegroup
 
-spg = Spacegroup(152)
+spg = Spacegroup(152)     # 类；查看给定空间群的对称性信息
+# 属性
+symbol                    # 
+no                        # 
+scaled_primitive_cell     # 
+
+get_spacegroup()          # 获取 Atoms 的空间群信息
+
+crystal()                 # 类；通过空间群构建晶体结构
 
 # 查看等同原子坐标
 spg.equivalent_sites([0.4673, 0, 0.3333])

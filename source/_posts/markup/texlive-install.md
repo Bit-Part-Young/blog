@@ -50,7 +50,7 @@ kpsewhich <classname>.cls        # 查看文档类路径
 
 ## Linux
 
-CTAN 镜像：[CTAN - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CTAN/)
+- CTAN 镜像：[CTAN - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CTAN/)
 
 ```bash
 # 设置自定义安装路径，添加环境变量
@@ -73,11 +73,13 @@ perl ./install-tl --scheme=full    # 或 medium small
 export MANPATH=$HOME/local/texlive/2023/texmf-dist/doc/man
 export INFOPATH=$HOME/local/texlive/2023/texmf-dist/doc/info
 export PATH=$HOME/local/texlive/2023/bin/x86_64-linux:$PATH
+```
 
+- 跨版本更新
 
-# 跨版本更新
-rm 2023/tlpkg/backups      # 删除包的备份
-cp -a 2023 2024            # 耗时较久
+```bash
+rm 2023/tlpkg/backups        # 删除包的备份
+cp -a 2023 2024              # 耗时较久
 
 # 更新 ~/.{bash,zsh}rc 中 TeX Live 环境变量的年份
 
@@ -85,7 +87,7 @@ cp -a 2023 2024            # 耗时较久
 wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
 sh update-tlmgr-latest.sh -- --upgrade
 
-tlmgr update --self --all  # 更新
+tlmgr update --self --all    # 更新
 ```
 
 
@@ -95,7 +97,9 @@ tlmgr update --self --all  # 更新
 ## macOS
 
 - 不建议用 brew 下载安装（体积太大），而是手动下载安装包
+
 - 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
+
 - 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)；卸载 GUI，直接将 TeX 移入废纸篓；卸载 TeX Distribution；卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
 ```bash
@@ -113,7 +117,7 @@ sudo rm -rf /usr/local/texlive
 
 ## TeX 目录结构
 
-TeX 目录结构（TeX Directory Structure, TDS）：TeX 发行版中宏包、字体、帮助文档等文件的组织结构；有时也称为 TEXMF 树
+- TeX 目录结构（TeX Directory Structure, TDS）：TeX 发行版中宏包、字体、帮助文档等文件的组织结构；有时也称为 TEXMF 树
 
 ```bash
 texlive/XXXX/texmf-dist/  # TEXMF 树根目录
@@ -127,7 +131,7 @@ fonts/type1     # PostScript 字体文件（Type1），PFB 格式
 fonts/opentype  # OpenType 格式的字体文件
 ```
 
-需要手动安装的宏包，一般已经按照上述目录结构打包完成。手动安装时，尽量不要拷贝到系统的 TEXMF 树，而是拷贝到发行版提供的用户 TEXMF 树，如 `texlive/texmf-local`。安装完成后，还需**刷新 TeX 发行版的文件名数据库**，令新安装的宏包文件能够被系统找到
+- 需要手动安装的宏包，一般已经按照上述目录结构打包完成。手动安装时，尽量不要拷贝到系统的 TEXMF 树，而是拷贝到发行版提供的用户 TEXMF 树，如 `texlive/texmf-local`。安装完成后，还需**刷新 TeX 发行版的文件名数据库**，令新安装的宏包文件能够被系统找到
 
 ```bash
 mktexlsr   # 更新 TeX 目录（通常是 TEXMF）的文件数据库
@@ -138,11 +142,12 @@ mktexlsr   # 更新 TeX 目录（通常是 TEXMF）的文件数据库
 
 ## tlmgr 使用
 
-tlmgr：TeX Live 包管理器
+- tlmgr：TeX Live 包管理器
 
-- 清华镜像：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
-- 中科大镜像：https://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
-- 交大镜像：https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/texlive/tlnet
+- 镜像
+    - 清华镜像：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+    - 中科大镜像：https://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
+    - 交大镜像：https://mirrors.sjtug.sjtu.edu.cn/CTAN/systems/texlive/tlnet
 
 ```bash
 # 列出已安装的宏包和文档类
@@ -164,6 +169,3 @@ tlmgr option repository             # 查看当前使用的源
 tlmgr option repository url         # 换源
 tlmgr repository set url            # 同上
 ```
-
-
----

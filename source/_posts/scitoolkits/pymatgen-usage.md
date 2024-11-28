@@ -56,7 +56,7 @@ password:
 
 - 参考：[Installation - pymatgen](https://pymatgen.org/installation.html)
 
-- 安装：
+- 安装
 
 ```bash
 # 稳定版本
@@ -467,13 +467,14 @@ symbol_set               # 元素种类；tuple
 types_of_specie          # 元素种类；Element
 formula                  # 化学式
 compsition               # 成分；as_dict() 转换成字典形式
+cart_coords              # 笛卡尔坐标
 frac_coords              # 分数坐标
-cart_coords              # Cartesian 坐标
 lattice                  # 点阵
        .abc              # 晶格常数
 volume                   # 体积
 density                  # 密度
 center_of_mass           # 质心
+site_properties          # 位点性质，如 selective_dynamics
 
 # 方法
 make_supercell()         # 建立超胞
@@ -482,6 +483,8 @@ remove_species()         # 删除元素种类
 remove_sites()           # 删除原子位点
 replace_species()        # 替换元素种类
 translate_sites()        # 移动原子位点
+add_site_property()      # 添加位点性质
+remove_site_property()   # 移除位点性质
 get_neighbors()          # 给定半径，获取给定原子位点的近邻原子
 get_all_neighbors()      # 给定半径，获取所有原子位点的近邻原子
 get_distance()           # 获取两个原子位点间的距离
@@ -497,7 +500,7 @@ get_sorted_structure()   # 排序（不常用）
 from_spacegroup()        # 根据空间群构建结构
 from_prototype()         # 通过原型结构快速构建结构；实际调用的是 from_spacegroup()
 
-# 可通过 protype 构建的结构
+# 可支持的 prototype
 bcc                      # Nb
 fcc                      # Al
 hcp                      # Mg
@@ -597,8 +600,11 @@ print_periodic_table()     # 打印元素周期表
 - 原子位点
 
 ```python
+from pymatgen.core.sites import Site, PeriodicSite
+
 # 属性
 coords
+frac_coords
 specie
 ```
 
@@ -731,14 +737,32 @@ automatic_density_by_lengths()     # 依据晶格常数生成 K 点密度大小
 automatic_linemode()
 
 
-# KPOINTS 生成
+# KPOINTS dict
 kpoints_dict = {
+    "comment": "Automatic mesh",
     "nkpoints": 0,
     "generation_style": "Gamma",
     "kpoints": [[10, 10, 10]],
     "usershift": [0, 0, 0],
-    "comment": "Automatic mesh",
 }
+
+# KPOINTS 完整 dict
+kpoints_dict = {
+    '@module': 'pymatgen.io.vasp.inputs',
+    '@class': 'Kpoints',
+    'comment': 'k-point density of [20, 20, 20]/[a, b, c]',
+    'nkpoints': 0,
+    'generation_style': 'Gamma',
+    'kpoints': [(4, 4, 2)],
+    'usershift': (0, 0, 0),
+    'kpts_weights': None,
+    'coord_type': None,
+    'labels': None,
+    'tet_number': 0,
+    'tet_weight': 0,
+    'tet_connections': None,
+}
+
 
 kpoints = Kpoints.from_dict(kpoints_dict)
 ```
@@ -832,30 +856,27 @@ MVLSlabSet         # 表面 slab 计算
 MVLGBSet           # 晶界计算
 LobsterSet         # Lobster 计算
 
-from pymatgen.io.vasp.sets import ...
 
-input_settings = MPRelaxSet(structure, ...)
+from pymatgen.io.vasp.sets import VaspInputSet
+
+VaspInputSet(...)
 
 # 参数
-user_incar_settings       # 自定义 INCAR 参数
-user_kpoints_settings     # 自定义 KPOINTS 参数
-user_potcar_settings      # 自定义元素赝势
-user_potcar_functional    # 指定泛涵
-force_gamma               # 是否使用 Gamma-centered K 点生成方式
-
-
+user_incar_settings         # 自定义 INCAR 参数
+user_kpoints_settings       # 自定义 KPOINTS 参数
+user_potcar_settings        # 自定义元素赝势
+user_potcar_functional      # 自定义泛涵
+force_gamma                 # 是否使用 Gamma-centered K 点生成方式
+config_dict                 # config_dict["POTCAR"]["Mg"]
 
 # 方法
-write_input()      # 生成 VASP 计算用的 4 个输入文件
-  # 参数
-  output_dir=...
-  potcar_spec=True
+write_input()               # 生成 VASP 计算用的 4 个输入文件
+# 参数
+output_dir=...
+potcar_spec=True
 
 # 静态方法
-MPStaticSet.from_prev_calc()            # 基于之前的 VASP 计算目录中生成静态计算输入文件
-
-# 属性
-config_dict                             # config_dict["POTCAR"]["Mg"]
+from_prev_calc()            # 基于之前的 VASP 计算目录中生成静态计算输入文件
 ```
 
 

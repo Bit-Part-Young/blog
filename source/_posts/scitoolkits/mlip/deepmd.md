@@ -40,6 +40,10 @@ DP library：DP 模型数据库（类似 Material Project）
 
 exploration、labeling、train 三个过程
 
+[learning/notes/DeePMD/DeePMD-kit安装.md at main · wangchr1617/learning · GitHub](https://github.com/wangchr1617/learning/blob/main/notes/DeePMD/DeePMD-kit%E5%AE%89%E8%A3%85.md)
+
+[learning/notes/DeePMD/DeePMD-kit入门.md at main · wangchr1617/learning · GitHub](https://github.com/wangchr1617/learning/blob/main/notes/DeePMD/DeePMD-kit%E5%85%A5%E9%97%A8.md)
+
 
 
 描述符
@@ -129,17 +133,26 @@ training_data
 └── type_map.raw
 
 
-coord.npy      # 体系的结构文件
-type.raw       # 体系的结构文件对应的元素标记
-energy.npy     # 体系的结构文件对应的能量
-force.npy      # 体系的结构文件对应的力
-box.npy        # 体系的结构文件对应的晶胞大小，如果是非周期性体系，请在训练文件里准备一个超大周期边界条件
+coord.npy      # 原子坐标
+type.raw       # 元素种类
+energy.npy     # 体系能量
+force.npy      # 原子受力
+box.npy        # 模拟盒子，若为非周期性体系，请在训练文件里准备一个超大周期边界条件
 
-
+virial.raw     # 维里应力
 ```
 
 
 - 模型训练参数
+
+```bash
+model
+learning_rate
+loss
+training
+```
+
+- 示例
 
 ```json
 "model":{
@@ -328,9 +341,12 @@ dpdata：将多种构型文件格式转换成 deepmd 格式（转换成其他格
 
 
 
-
 ```python
 import dpdata
+
+
+# 格式
+cp2k/output
 
 dpdata.LabeledSystem('OUTCAR').to()
 

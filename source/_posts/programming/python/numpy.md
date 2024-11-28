@@ -41,6 +41,9 @@ i, j = np.unravel_index(np.argmin(arr, axis=None), arr.shape)
 
 # 数值积分函数；通过梯形法则（trapezoidal rule）计算定积分
 np.trapz()
+
+# 按照第 2 列元素进行排序
+new_arr = arr[arr[:, 1].argsort()]
 ```
 
 
@@ -99,6 +102,11 @@ size                    # 数组元素个数
 ### 索引
 
 普通索引、切片索引、布尔索引
+
+```python
+arr[[1, 2], [1, 2]]            # 索引的是 2 个元素，分别是 [1][1] 和 [2][2]
+arr[np.ix_([1, 2], [1, 2])]    # 索引的是子 2 维数组，即第 2、3 行与列的交叉数组  
+```
 
 二维数组的普通索引
 
@@ -197,7 +205,8 @@ np.tolist()  # 转换成 Python list
 
 np.flatten()   # 扁平化
 
-np.unique()    # 去重
+np.unique()    # 去重；返回的元素是排序过的（从小到大）
+# 参数
 return_count=True  # 返回相同元素的数目
 
 np.hstack()    # 横向堆叠多个数组构成新数组

@@ -85,6 +85,10 @@ Common neighbor analysis          # CNA
 
 - [Ovito可视化堆垛层错、缺陷和原子应力\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ieyqYnEiq/)
 
+- 输出 RDF
+
+- [OVITO批量导入数据的功能](https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA)
+
 
 
 ---

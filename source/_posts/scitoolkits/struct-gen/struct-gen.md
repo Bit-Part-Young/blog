@@ -80,8 +80,21 @@ password:
 
  - CIF 格式文件分析：[GitHub - bobleesj/cifkit: High-throughput .cif analysis made easy. Visit: https://bobleesj.github.io/cifkit/](https://github.com/bobleesj/cifkit)
 
-含缺陷超胞生成、前/后处理和分析：[Doped code 介绍](https://mp.weixin.qq.com/s/r3ZabHXYAn2HJgyFxFmA-w)
+- 含缺陷超胞生成、前/后处理和分析：[Doped code 介绍](https://mp.weixin.qq.com/s/r3ZabHXYAn2HJgyFxFmA-w)
 
+- [Crystal Toolkit - Materials Project](https://next-gen.materialsproject.org/toolkit)
+
+- AFLOW 线上工具：[AFlow - Automatic - FLOW for Materials Discovery](https://aflowlib.org/aflow-online/)；功能
+    - 构型文件转换
+    - 对称性
+    - 结构对比
+    - Coordination corrected enthalpies (CCE)
+    - K 点
+    - Partial OCCupation (POCC)
+    - 间隙
+    - XRD
+
+aflow 程序安装（aflow 工具功能比 MP 强大很多）：[AFlow - Automatic - FLOW for Materials Discovery](https://aflow.org/install-aflow/)
 
 
 
@@ -136,7 +149,7 @@ Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector
 
 - 方法 1：在文献中查找该结构的晶体学信息，若提到 prototype structure（原型结构），可在数据库（ICSD、MP、Aflow、Springer Materials 等）中找到对应原型结构的 cif 文件（**需留意 Wyckoff position 是否一致或接近**），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
 
-- 方法 2: 手动构建，需以下晶体学信息：晶体结构（crystal structure）、点阵参数（lattice parameter）、空间群（space group number）、原子位置（Wyckoff letter & Wyckoff position）；使用 Pyxtal 或 Material Studio 构建
+- 方法 2: 手动构建，需以下晶体学信息：晶体结构（crystal structure）、点阵参数（lattice parameter）、空间群（space group number）、原子位置（Wyckoff letter & Wyckoff position）；使用 Pyxtal，ASE，pymatgen 或 Material Studio 构建
 
 
 ---
@@ -314,7 +327,7 @@ BCC 的第 N 近邻距离：[solid state chemistry - Calculate the third and fou
 
 [BCC金属中的间隙原子及建模](https://mp.weixin.qq.com/s/49yQ1ncwI5TzFdc5jmGFfw)
 
-金刚石结构原胞原子位点位置：(0.0 0.0 0.0)、(0.25 0.25 0.25)
+金刚石结构 Si 原胞原子位点位置（latgen、ASE）：(0.0 0.0 0.0)、(0.25 0.25 0.25)；pymatgen 对应的原胞位置是 (0.0 0.0 0.0)、(0.75 0.75 0.75)
 
 - [ ] 原子半径没有统一值？
 

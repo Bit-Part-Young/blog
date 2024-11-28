@@ -20,10 +20,13 @@ password:
 ## 多尺度介绍
 
 多尺度课程分布：
-- 新生开学第一周不上
+- 研究生新生开学第一周不上
 - 课程介绍 1 周
 - 国庆放假 1 周
 - MD：4 次课
+    - MD 核心原理
+    - 势函数、力的演化
+    - 分子静力学，控温、控压
 - DFT：4 次课
 - PF：5 次课？
 
@@ -368,74 +371,94 @@ $$
 
 ---
 
-## 分子静力学
+## 分子静力学 & 控温 & 控压
 
 ### 案例 1：表面能计算
+
+#### 总体介绍
+
+- 表面能公式
 
 $$
 \gamma = \frac{G_{slab} - G_{bulk}}{A_{surface}} \approx \frac{E_{slab} - E_{bulk}}{A_{surface}}
 $$
 
-总体步骤：
-- 计算 bulk 的总能量（获取平衡常数及该平衡常数下的构型的 energy/ atom）
-- 计算 slab 的总能量
-    - 切表面
-    - 弛豫表面
-    - 计算弛豫表面的总能量
-- 计算表面能
+- 总体步骤（方式 1）：
+    - 计算 Bulk 的总能量（获取平衡常数及该平衡常数下的构型的 energy/atom）
+    - 计算 slab 的总能量
+        - 切表面
+        - 弛豫表面
+        - 计算弛豫表面的总能量
+    - 计算表面能
 
 
->熵的组成：构型熵、振动熵（声子谱计算可得到）、
->
->势函数中约定了单位
+- 方式 2：
+    - 先使用未弛豫的表面构型的能量采用上述公式获取表面能（$E_1$）
+    - 对表面构型进行设置：固定下面的几个原子层，上面的原子层不变；进行弛豫，该部分的能量变化除以 $A_{surface}$（$E_2$）
+    - 计算表面能：$E_1+E_2$
+
+- 对于使用 LAMMPS 进行 MD 计算，方式 2 无必要；对于 DFT 计算，方式 2 一定程度上会减少工作量
+
+- 其他
+    - 熵的组成：构型熵、振动熵（声子谱计算可得到）、磁性熵，...
+
 
 ---
 
-#### 总能计算
+#### Bulk 体系总能计算
 
-- bulk 体系平衡总能 LAMMPS 计算脚本
+- LAMMPS 相关命令解释
+
+```bash
+# 势函数文件中约定了单位，含截断半径
+
+fix          # 对体系做各种改变
+compute      # 
+dump         # 构型输出
+thermo       # 热力学信息输出
+run 0        # 并非跑零步，只计算能量（单点能计算）
+```
+
+- Bulk 体系平衡总能计算 LAMMPS 脚本示例（取自课件）
 
 ```bash
 # LAMMPS input script for total energy calculation
-units metal
-boundary p p p
-atom_style atomic
+units          metal
+boundary       p p p
+atom_style     atomic
 
-lattice fcc 3.615
-region box block 0 10 0 10 0 10
-create_box  1 box
-create_atoms  1 box
+lattice        fcc 3.615
+region         box block 0 10 0 10 0 10
+create_box     1 box
+create_atoms   1 box
 
 # Potential
-pair_style eam
-pair_coeff * * Cu_u6.eam
-neighbor 0.2 bin
-neigh_modify delay 5
+pair_style     eam
+pair_coeff     * * Cu_u6.eam
+neighbor       0.2 bin
+neigh_modify   delay 5
 
 # Time step
-timestep  0.001
+timestep       0.001
 
 # Variables to output
-variable vpa equal "vol/ atoms"
-variable epa equal "pe/ atoms"
+variable       vpa equal "vol / atoms"
+variable       epa equal "pe / atoms"
 
 # MD
-fix 1 all nve
-run 0
+fix            1 all nve
+run            0
 
 # Output the energy
-print "${a} \${vpa} \${epa}" append ev.dat
+print          "${a} \${vpa} \${epa}" append ev.dat
 ```
-
->`fix` - 对体系做各种改变
-
->`run 0` - 并非跑零步，只计算能量
-
 
 
 ---
 
-#### 切表面
+#### 表面构型构建、弛豫及表面能计算
+
+- Slab 表面构型构建、弛豫及表面能计算 LAMMPS 脚本示例（取自课件）
 
 ```bash
 
@@ -446,44 +469,42 @@ print "${a} \${vpa} \${epa}" append ev.dat
 
 ### 能量最小化
 
-势能曲面
+- 平衡状态：能量最小
 
-鞍点：在某个路径下，能量对坐标的二阶导小于零，其他路径均大于 0
+- 势能曲面
+    - 局域最小值
+    - 全局最小值
+    - 鞍点：在某个路径下，能量对坐标的二阶导小于零，其他路径均大于 0
 
 
 ---
 
+#### 局域能量最小化
 
-局域能量最小化
+- Hessian 矩阵（二阶导，模量）通常很难求
 
+- 能量最小化相关算法
+    - 基于一阶导
+        - 最速下降法
+        - 共轭梯度法
+        - Damped MD（初始构型远离平衡态时，可能较为适合）
+    - 基于一阶和二阶导（LAMMPS 中没有实现？）
+        - BFGS
 
-Hessian 矩阵通常很难求
-
-
-相关算法
-
-- 基于一阶导
-    - 最速下降法
-    - 共轭梯度法
-
-
-- 基于一阶和二阶导
-    - BFGS
-
+- LAMMPS 中能量最小化算法对应命令
 
 ```bash
-min_style sd
-min_style cg
-min_style htfn
-min_style quickmin
-min_style fire
+min_style      sd
+min_style      cg
+min_style      htfn
+min_style      quickmin      # Damped MD
+min_style      fire
 ```
 
 
 ---
 
-
-全局能量最小化
+#### 全局能量最小化
 
 - 模拟退火
 - 遗传算法
@@ -492,34 +513,29 @@ min_style fire
 
 ---
 
+#### 过渡态
 
-过渡态寻找
+- 公式
 
-示例：表面模型中吸附原子的扩散
+- 示例：表面模型中吸附原子的扩散
 
+- 算法
+    - NEB（最常用算法；LAMMPS 和 VASP 中有）
+    - Dimer
+    - ART-n
 
-
-跃迁概率
-
-- NEB（LAMMPS 和 VASP 中有）
-- Dimer
-- ART-n
-
-
+- NEB 算法简要介绍：在初始、终点连线，插值/点，每个点的运动方向与连线垂直
 
 mpirun lmp -in in.file -sf opt -sc none (-sf opt -sc none 表示导入优化的包)
-
-
-
 
 
 -----
 
 ### 案例 2：熔点计算
 
-固液相变点
+- 熔点：固液相变点
 
-熔化的相变是一级相变（状态函数的一阶导不连续）
+- 熔化的相变是一级相变（状态函数的一阶导不连续）
 
 熔化是晶核形成
 
@@ -535,168 +551,112 @@ DSC 速率：10K/min
 
 降温：均质形核，得到的构型最后可能有晶界，可能形成多晶
 
-
-
 - 加热 - 冷却法
+    - 熔点近似公式：加热、冷却过程中的突变温度的平均值（非常不准确）
+    - MD 结果：升温（过热）与降温（过冷）得到的突变温度点不会重合
+    - 原因：
+        - 构建的晶体完美，熔化凝固需要较大的过热和过冷
+        - MD 模拟的升/降温速率比实验的升/降温速率快很多；
+        - 势函数不一定准确
 
-分子动力学：升温（过热）与降温（过冷）得到的突变温度点不会重合（原因：分子动力学模拟的升/降温速率比实验的升/降温速率快很多）
-
-
-不是很好的原因：
-模拟的构型是 perfect
-模拟的升温、降温速率过快
-
-
-
----
-
-
-
-界面迁移速度为零时可能为熔点
-
-
-
-
----
-
-
-- 固液共存法
-  - 构建固液界面
-    - 切换到 NVE 系综（孤立体系），不控温
-    - 切换到 NPH
-    - 使用 2 种 thermostat
-
-
-中间区域高温，两边低温，低温高温热传导速率不一样
+- 固液共存法总体步骤
+    - 第一步：构建固液界面
+    - 第二步：在特定温度下进行平衡，观察界面迁移速率
+    - 界面迁移速度为零时为熔点
+    - 替代方案：
+        - 在第二步后面阶段切换到 NVE 系综（孤立体系），不控温（问题：一级相变会发生体积变化，有应力）
+        - 在第二步后面阶段切换到 NPH 系综
+        - 使用 2 种热浴
+        - 设置低温（左）、高温区（右），中间区域有热流，靠近低高温的传热速率不一致，交点为固液共存点
 
 
 ---
 
 ### 系综
 
-NVE 系综：少见
+- NVE 系综：孤立体系，少见
 
-
-
-
-
-NVT 系综
-
-温度的波动需满足的一定的规律
-
-温度的方差
-
-能量的方差
-
-
-
+- NVT 系综
+    - 温度并非不变，而是有一定的起伏
+    - 温度的波动满足的一定的规律：
+        - 温度方差
+        - 能量方差
 
 NPT 系综：
 
+$\mu VT$ ：化学势不变
 
 
 ---
 
-## 控温
+### 控温
 
-thermostat（热浴/恒温器）
-
-也可以通过控制原子受力
-
-控温离不开控制速度
+- 控温：thermostat（热浴）；控温离不开控制速度
 
 $$
 E_K = \frac{3}{2}Nk_BT=\frac{1}{2}\sum m_i v^2_i
 $$
 
-- Velocity scaling（对速度标定）
+- Velocity scaling（对速度标度）
     - isokinetics 算法：速度重置，较野蛮；实际体系的温度演化不符合热力学统计规律，不是很好的控温方法
     - Berendsen 算法：比 isokinetics 好很多，能给出部分合理的热力学统计温度
+
 - Stochastic thermostat（引入一些随机过程）
     - Andersen 算法
     - Langevin 算法：LAMMPS 中有
+
 - Extended Langrangian（扩展拉格朗日）
     - Nose-Hoover 算法
     - Nose-Hoover chain 算法
 
+---
 
-
-
-
-
-计算当前温度，标定
+- isokinetics 算法
+    - 计算当前温度，标定；速度重置
+    - 温度演化不满足正则系综下的要求，不合理
+    - 有时候有用，初始模拟时，构建的体系通常远离平衡状态，通过这种方式，可以使体系快速达到想要的状态，基于该状态再进行实际的模拟
 
 $$
 \lambda = \sqrt{\frac{T_{target}}{T(t)}}
 $$
 
-速度重置
-
 $$
 v^{'}_i = \lambda v_i
 $$
 
-温度演化不满足正则系综下的要求，不合理
-
-有时候有用，初始模拟时，构建的体系通常远离平衡状态，通过这种方式，可以使体系快速达到想要的状态，基于该状态再进行实际的模拟
-
-
-
-
-Berendsen 算法
+- Berendsen 算法
+    - $\lambda$ 不是常数
+    - $\Delta t$ 为时间步长，引入 coupling constant $\tau$，使温度缓慢达到目标温度，使体系变化不那么剧烈，相对好一些，但也无法证明其能给出正确的正则分布
 
 $$
 \lambda = \sqrt{1+\frac{\Delta t}{\tau}\left[ \frac{T_{target}}{T(t)} -1 \right]}
 $$
 
-$\Delta t$ 为时间步长，引入 coupling constant $\tau$，使温度缓慢达到目标温度，使体系变化不那么剧烈，相对好一些，但也无法证明其能给出正确的正则分布
+- Andersen 算法
+    - 随机选取处于一定分布的原子进行速度重置
+    - 能给出正则系综下的温度要求；会破坏原子轨迹的连续性；可能导致能量动量不守恒；用的也不是很广泛
 
-
-
-
-
-
-
-
-Andersen 算法
-
-每步每个原子进行速度重置
-
-能给出正则系综下的温度要求；会破坏原子轨迹的连续性；可能导致能量动量不守恒；用的也不是很广泛
-
-
-
-Langevin 算法
-
-粘滞力 + 随机力
->只有粘滞力，会导致最终静止
-
-对原子的受力进行修改
+- Langevin 算法
+    - 对原子的受力进行修改：粘滞力 + 随机力（只有粘滞力，会导致最终静止；随机力需满足一定的规则）
 
 $$
 f_i = -E - \frac{m}{\tau}v_i+w_i
 $$
 
-E 为势函数给出的力，v 为粘滞力，w 为随机力（使原子不会停止下来）
-
-
-
-
-
-
-Nose-Hoover 算法
+- Nose-Hoover 算法
+    - 粘滞力系数 $\gamma$ 不是常数
 
 $$
 f_i = -E - m \gamma v_i
 $$
 
-粘滞力系数 $\gamma$
-
 ---
 
-## 控压
+### 控压
 
-控制压强通过控制体系的体积；体积通过控制速度
+控压：通过控制体系的体积；体积通过控制速度
+
+Barostat：压浴
 
 压强计算：Virial theorem
 
@@ -719,6 +679,11 @@ $\beta$ 为体模量
 >https://docs.lammps.org/fix_nh.html
 
 >https://docs.lammps.org/fix_press_berendsen.html
+
+
+- 算法
+    - Berendsen
+
 
 
 ---

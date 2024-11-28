@@ -379,7 +379,8 @@ add_tags()             # 给 namefile 添加 tag
 
 ### atomate.vasp.fireworks
 
-atomate 中预设的 VASP firework
+- atomate 中预设的 VASP firework
+
 ```python
 from atomate.vasp.fireworks.core import ...
 
@@ -393,11 +394,30 @@ OptimizeFW
 ### atomate.vasp.workflows.presets
 
 - `atomate/vasp/workflows/presets`: preset（预设）workflows，通常只需提供构型
+
 - `atomate/vasp/workflows/base`: raw workflows，需要更多参数设置
 
 用于 elastic tensor 的标准预设 workflow 使用了许多超出确定弹性张量所需的计算，这样可以得到一个高质量的张量，其中一些数值噪声会在重复计算中被消除。也可以生成 minimal 的 workflow，它既不使用更昂贵的 DFT 参数，也不进行扩展计算。使用该 workflow 生成的张量通常不太精确，但对于具有大量对称性的简单半导体通常足够使用。（摘自 workshop 2019）
 
-- [ ] 参数 `c` 的含义是什么，如何写
+- [ ] 参数 `c` （Config dict，作为 `atomate.vasp.powerups` 模块中的 `add_common_powerups()` 函数参数）
+
+```python
+# add_common_powerups() 支持以下 4 个 key
+"ADD_NAMEFILE"
+"SCRATCH_DIR"
+"ADD_MODIFY_INCAR"
+"GAMMA_VASP_CMD"
+
+"USER_INCAR_SETTINGS"    # 不在下面的路径中
+
+# atomate.vasp.workflows.presets.core 中定义的 wf 函数常用到的 Config dict
+"VASP_CMD"
+"ADD_WF_METADATA"
+"DB_FILE"
+
+# 这些 Config dict 默认值所在的文件路径
+atomate/vasp/config.py
+```
 
 ```python
 from atomate.vasp.workflows.presets.core import ...
@@ -479,7 +499,7 @@ use_no_vasp()
 示例
 
 ```python
-modified_wf = add_modify_incar(
+wf = add_modify_incar(
     wf,
     modify_incar_params={
         "incar_update": {
@@ -489,8 +509,8 @@ modified_wf = add_modify_incar(
     fw_name_constraint="optimization",
 )
 
-modified_wf = add_modify_potcar(
-    orig_wf,
+wf = add_modify_potcar(
+    wf,
     modify_potcar_params={
         "potcar_symbols": {
             "W": "W_sv",

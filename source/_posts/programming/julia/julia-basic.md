@@ -45,6 +45,8 @@ readlines()
 typeof()
 ```
 
+[Julia并行：多线程与多进程 - Misaraty](https://www.misaraty.com/2021-12-16_julia%E5%B9%B6%E8%A1%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/)
+
 
 ---
 

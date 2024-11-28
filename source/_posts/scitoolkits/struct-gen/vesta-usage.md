@@ -40,7 +40,7 @@ password:
 
 - VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffraction Pattern - Calculate, Plot
 
-- 无法显示原子类型图例：[software - Atom legend in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/1867/atom-legend-in-vesta)
+- 无法显示原子类型图例（不同颜色及大小的球对应的元素）：[software - Atom legend in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/1867/atom-legend-in-vesta)
 
 - 点击原子，可显示其原子序号、分数坐标及笛卡尔坐标
 
@@ -49,3 +49,5 @@ password:
 - VESTA 可读取原子位置分数占据的构型文件（可导出 cif 格式）：[Atomsk - Tutorial - Importation of CIF files](https://atomsk.univ-lille.fr/tutorial_cif.php)
 
 - 将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）
+
+- [如何在VESTA中区分不同表面层的原子](https://mp.weixin.qq.com/s/oRGvocav3Fl_9xf_zBck1w)

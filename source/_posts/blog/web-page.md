@@ -112,6 +112,8 @@ http://machine_ip_address:2283/api  # 移动端登录
 - [GitHub - nxuzy/love: love\_matters](https://github.com/nxuzy/love)、[恋爱申请书](https://nxuzy.github.io/love/)
 - [GitHub - xing16/ValentineDaySuprise: HMTL实现情人节告白气球，不一样的惊喜](https://github.com/xing16/ValentineDaySuprise)
 - [GitHub - Kicamon/Kicamon.github.io: 恋爱](https://github.com/Kicamon/Kicamon.github.io)
+- [Like\_Girl v5.2.0](https://lovey.kikiw.cn/) 、源码：[LikeGirl v5.2.0: 情侣小站](https://gitee.com/kiCode111/like-girl-v5.2.0)
+
 
 
 
@@ -225,6 +227,7 @@ mdbook serve --open
     - [GitHub - lin-stephanie/astro-antfustyle-theme: A customizable, feature-rich Astro theme for blog and portfolio creation.](https://github.com/lin-stephanie/astro-antfustyle-theme)
     - 活版印字：[GitHub - moeyua/astro-theme-typography: Rediscover the beauty of typography.](https://github.com/moeyua/astro-theme-typography)
     - 简洁主题：[GitHub - cirry/astro-yi: Astro Theme YI. A simple and lightweight blog theme for Astro.](https://github.com/cirry/astro-yi)
+    - 适合文档：[GitHub - withastro/starlight: 🌟 Build beautiful, accessible, high-performance documentation websites with Astro](https://github.com/withastro/starlight)
 
 - [GitHub - kingwrcy/moments: 极简朋友圈](https://github.com/kingwrcy/moments)
 

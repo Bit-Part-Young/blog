@@ -40,9 +40,20 @@ fireworks     2.0.3          2021.03.12
 
 - 使用 lpad 命令时，出现如下报错：
     - 参考：[AttributeError: "safe\_load()" has been removed · Issue #531 · materialsproject/fireworks · GitHub](https://github.com/materialsproject/fireworks/issues/531)
-    - fireworks 的最新 Release 版本为 2021 年的，很老；GitHub 中的 fireworks 源码有对该问题进行解决，下载源码之后 `python setup.py install` 重新安装该包；或使 `ruamel.yaml <0.18.0`
+    - fireworks 的最新 Release 版本为 2021 年的，很老；GitHub 中的 fireworks 源码有对该问题进行解决，下载源码之后 `python setup.py install` 重新安装该包；或使 `ruamel.yaml<0.18.0`
 
 ```bash
+# 方式 1（好像不起作用？）
+git clone https://github.com/materialsproject/fireworks
+
+cd fireworks
+python setup.py install
+
+# 方式 2
+pip install -U "ruamel.yaml<0.18.0"
+
+
+# 报错内容
   File "/path/env/lib/python3.11/site-packages/ruamel/yaml/main.py", line 1039, in error_deprecation
     raise AttributeError(s, name=None)
 AttributeError:

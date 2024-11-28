@@ -171,3 +171,5 @@ ln -s /dssg/opt/icelake/linux-centos8-icelake/intel-2021.4.0/gsl-2.7.1-363bjoc7g
 viscal：计算粘度程序（孔老师编写的 manager 上）
 
 粘度计算：Green-Kubo 公式
+
+ARTn：过渡态搜索；可只指定起点，不指定终点

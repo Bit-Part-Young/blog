@@ -173,8 +173,11 @@ brew install git-extras  # macOS
 git clone [https://github.com/tj/git-extras.git](https://github.com/tj/git-extras.git)
 cd git-extras
 git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
-make install PREFIX=$HOME/local/git--extras
+make install PREFIX=$HOME/local/git-extras
 
+# 设置环境变量
+export PATH=$HOME/local/git-extras/bin:$PATH
+source $HOME/local/git-extras/git-extras-completion.zsh
 
 # 常用命令
 git setup            # 初始化项目（等同于 git init + add + commit）
@@ -1133,12 +1136,27 @@ git config --local -e
 # 将 url 的 SSH 形式 改成 HTTPS
 ```
 
-- Git 报错：`error: RPC failed; Failed to connect to github.com port 443: Couldn't connect to server`
+- Git 报错
 
 ```bash
+# 报错内容
+error: RPC failed; Failed to connect to github.com port 443: Couldn't connect to server
+
+# 解决方法
 # 若有 VPN 代理，设置代理
 git config --global http.proxy 127.0.0.1:7890
 git config --global https.proxy 127.0.0.1:7890
+```
+
+- Git 报错
+
+```bash
+# 报错内容
+error: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+
+# 解决方法
+git config pull.rebase false
 ```
 
 - [ ] 交大 VPN 打开，会使得 SSH 连接 Git 失效（已水源提问，暂无法解决）

@@ -53,6 +53,8 @@ Ctrl + Shift + Tab  # 向左切换
 
 ## PowerShell
 
+- [GitHub - Mq-b/PowerShellLearning](https://github.com/Mq-b/PowerShellLearning)
+
 - CMD 与 PowerShell 的区别：PowerShell 是 CMD 的升级版；支持管道操作；支持 Tab（命令）补全（CMD 支持路径、文件名参数补全）
 
 - PowerShell 设置别名：

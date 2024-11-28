@@ -20,9 +20,11 @@ password:
 
 ## 介绍
 
-- 强大的建模工具
+- 强大的结构建模工具；同 latgen 相比，可生成孪晶、晶界、位错、层错等更多复杂构型
 
-- atomsk 中的 cfg 格式文件用 OVITO 打开，VESTA 无法打开
+- 示例丰富，文档详细
+
+- atomsk 中的 cfg 格式文件可用 OVITO 打开，VESTA 无法打开
 
 - 暂时没有的功能：
     - 单胞转换成原胞
@@ -58,83 +60,53 @@ password:
 
 ## 安装
 
-- 结构建模程序；同 latgen 相比，可生成孪晶、晶界、位错、层错等更多复杂构型
-- 示例丰富，文档详细
+### Linux
 
----
+- 安装教程：[Atomsk - Install - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/install.html)
 
-**安装：**[Atomsk - Install - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/install.html)
+- 下载二进制版本（最简单方式，无 macOS 版本）：[Download Atomsk](https://atomsk.univ-lille.fr/dl.php)
 
-- 下载二进制版本（最简单方式）：[Download Atomsk](https://atomsk.univ-lille.fr/dl.php)
+- 源码编译：依赖 BLAS 和 LAPACK 库（LAPACK 依赖 BLAS；Intel 套件有相关库）
 
-- 源码编译：
-
-依赖 BLAS 和 LAPACK 库（manager/master/超算上没有这两个库，需源码编译；LAPACK 依赖 BLAS；**intel 套件有相关库**）
-
-编译 BLAS 和 LAPACK 步骤以及压缩包：
->[apt - How to build and link BLAS and LAPACK libraries by hand for use on cluster? - Ask Ubuntu](https://askubuntu.com/questions/1270161/how-to-build-and-link-blas-and-lapack-libraries-by-hand-for-use-on-cluster)
-
->[LAPACK build and test guide - GNU Project](https://gcc.gnu.org/gcc-3.0/lapack-guide.html)
-
->[BLAS (Basic Linear Algebra Subprograms)](https://netlib.org/blas/)
-
-
-创建 `~/lib`，并将其添加到 `LD_LIBRARY_PATH`；将 `*.a` 静态库文件设置软链接（或复制）到此
+- 编译 BLAS 和 LAPACK 步骤以及压缩包
+    - [apt - How to build and link BLAS and LAPACK libraries by hand for use on cluster? - Ask Ubuntu](https://askubuntu.com/questions/1270161/how-to-build-and-link-blas-and-lapack-libraries-by-hand-for-use-on-cluster)
+    - [LAPACK build and test guide - GNU Project](https://gcc.gnu.org/gcc-3.0/lapack-guide.html)
+    - [BLAS (Basic Linear Algebra Subprograms)](https://netlib.org/blas/)
 
 ```bash
+# 创建 ~/lib，并将其添加到 LD_LIBRARY_PATH；将 *.a 静态库文件设置软链接（或复制）到此
 export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
-```
 
-编译 BLAS
-
-```bash
+# 编译 BLAS
 make
 
 mv blas_LINUX.a libblas.a
 
 cp *.a ~/lib
-```
 
----
-
-编译 LAPACK
-
-```bash
+# 编译 LAPACK
 cp make.inc.example make.inc
 
-make  # 这步花费时间会比较长
+make  # 耗时较长
 
 cp *.a ~/lib
-```
 
----
-
-下载 atomsk 源代码，进入 `src`，修改 Makefile 文件
-
-```bash
+# atomsk 编译
+# 下载 atomsk 源代码，进入 src 目录，修改 Makefile 文件
 LAPACK=-L$HOME/lib/ -llapack -lblas
 INSTPATH=$HOME/src
 CONFPATH=${INSTPATH}/etc
-```
 
-编译：
-
-```bash
 make atomsk
 
 make install  # 应该会出错，但没关系，这步非必需
+
+# 编译成功
+\o/ Compilation was successful!
+
+<i> To install Atomsk system-wide, you may now run:
+      sudo make install
 ```
-
-编译成功：
-
-```text
-    \o/ Compilation was successful!
-
-    <i> To install Atomsk system-wide, you may now run:
-          sudo make install
-```
-
----
 
 - 编译 ifort 版本
 
@@ -151,22 +123,19 @@ cd atomsk/src
 
 make -f Makefile.ifort atomsk
 
-# 超算（思源一号）使用 atomsk 时
+# 超算（思源）使用 atomsk 时
 # 需设置 libiomp5.so 文件的软链接
 # 或使用前 module load intel-oneapi-compilers/2021.4.0
 ln -s /dssg/opt/icelake/linux-centos8-icelake/gcc-8.5.0/intel-oneapi-compilers-2021.4.0-rszhbg2vjwqqeddqqdryjwxromenbfmr/compiler/2021.4.0/linux/compiler/lib/intel64_lin/libiomp5.so ~/lib/libiomp5.so
 ```
 
----
-
-- macOS 编译 atomsk
+- macOS 编译 atomsk（详细编译说明查看 `Makefile.macos` 文件内容）
 
 ```bash
 # 需安装 LAPACK 和 OpenMP（非必需）
 # 修改 Makefile.macos 中的 LAPACK lib 路径
 # 并将 -lrefblas 改为 -lblas，最后编译
 make -f Makefile.macos atomsk
-make -j3 -f Makefile.macos atomsk
 ```
 
 

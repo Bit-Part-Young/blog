@@ -160,6 +160,8 @@ bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 
 ### atomkit 功能介绍
 
+- 转换成 cif 构型文件格式，对称性只能识别成 P1
+
 ```bash
 # Task-ID    # 功能
 02           # 对称性分析

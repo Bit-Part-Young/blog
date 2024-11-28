@@ -513,6 +513,7 @@ GPU 价格：2 元/卡/小时（dgx2队列 V100 GPU）
 module avail/av         # 查看超算预部署软件模块
 module av [MODULE]      # 查看具体模块
 module load [MODULE]    # 加载相应软件模块
+module unload [MODULE]  # 卸载相应软件模块
 module list             # 列出已加载模块
 module purge            # 清除所有已加载软件模块
 module show [MODULE]    # 列出该模块的信息，如路径（lib 及 include 等）、环境变量等
@@ -952,7 +953,7 @@ srun -p 64c512g -n 1 --pty /bin/bash
 - 编译前，需理解 Makefile 文件中的命令含义！
 
 ```bash
-./configure   # 配置
+./configure   # 配置、生成 Makefile 文件
 # 常见参数
 --prefix      # 自定义安装路径
 
@@ -1188,41 +1189,7 @@ pip install .
 
 - Tex Live 版本：思源一号 2018；Pi 2013；Manager 2015；Master 未安装
 
-```bash
-# 设置自定义安装路径，添加环境变量
-export TEXLIVE_INSTALL_PREFIX=$HOME/src/texlive
-export TEXLIVE_INSTALL_TEXDIR=$HOME/src/texlive/2023
-
-# 下载安装包
-wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
-
-tar -xzvf nstall-tl-unx.tar.gz
-
-cd install-tl-*
-
-# 安装
-perl ./install-tl --scheme=full    # 或 medium small
---no-interaction    # 不进行交互
--gui                #  启用 GUI 安装程序
-
-# 安装完成后，添加环境变量
-export MANPATH=$HOME/local/texlive/2023/texmf-dist/doc/man
-export INFOPATH=$HOME/local/texlive/2023/texmf-dist/doc/info
-export PATH=$HOME/local/texlive/2023/bin/x86_64-linux:$PATH
-
-
-# 跨版本更新
-rm 2023/tlpkg/backups      # 删除包的备份
-cp -a 2023 2024            # 耗时较久
-
-# 更新 ~/.{bash,zsh}rc 中 TeX Live 环境变量的年份
-
-# 下载 update-tlmgr-latest.sh
-wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
-sh update-tlmgr-latest.sh -- --upgrade
-
-tlmgr update --self --all  # 更新
-```
+- 具体安装步骤见：
 
 
 ---

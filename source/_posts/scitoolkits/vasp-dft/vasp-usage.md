@@ -53,6 +53,8 @@ PAW 是独立于 PBE 的理论方法，但是我们常常会见到 POTCAR 中称
 
 含各种类型计算的通用 INCAR 文件： [GitHub - WMD-group/INCAR: A generic INCAR file for the density functional theory package VASP](https://github.com/WMD-group/INCAR)
 
+[VASP 计算问题小结 - chempeng](https://chempeng.github.io/post/2017/05/18/vasp-%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98%E5%B0%8F%E7%BB%93/)
+
 
 ---
 
@@ -357,6 +359,9 @@ ISMEAR = 0
     - [电子结构分析【04】——差分电荷密度和电荷布居要如何分析？要点在这里](https://mp.weixin.qq.com/s/NLEP8tG6KWfLOgnKqA9L_g)
     - [差分电荷和Bader电荷分布 - Dong Fan's Blog](https://agrh.github.io/2019/08/06/ded/)
     - [VASP视频教程-电荷差分与bader分析\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1L6pWeVESu)
+    - [差分电荷 - Misaraty](https://www.misaraty.com/2019-04-17_%E5%B7%AE%E5%88%86%E7%94%B5%E8%8D%B7/)
+    - [VASP的电荷密度计算及图像处理 - chempeng](https://chempeng.github.io/post/2017/01/06/vasp%E7%9A%84%E7%94%B5%E8%8D%B7%E5%AF%86%E5%BA%A6%E8%AE%A1%E7%AE%97%E5%8F%8A%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/)
+    - [VASP的差分电荷密度计算及图像处理 - chempeng](https://chempeng.github.io/post/2017/02/26/vasp%E7%9A%84%E5%B7%AE%E5%88%86%E7%94%B5%E8%8D%B7%E5%AF%86%E5%BA%A6%E8%AE%A1%E7%AE%97%E5%8F%8A%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/)
 
 - Bader 电荷：
     - DFT 计算中常见的一种电荷分析方法，通过其对电荷的定义计算出每个原子在体系中得失电子的情况，即净电荷

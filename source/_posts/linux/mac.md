@@ -257,9 +257,11 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 - 阻止 iTunes 或 Apple Music 自动启动和弹出：[noTune](https://github.com/tombonez/noTunes)
 
-- 软件卸载：Pearcleaner
+- 软件卸载
+    - Pearcleaner
 
-- 软件更新：Latest（一般）
+- 软件更新
+    - Latest（一般）
 
 - Applite：macOS 的第三方应用管理器，可以一键下载、更新、卸载应用（一般）
 
@@ -325,7 +327,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 - 键盘键位映射：Karabiner-Elements
 
-- Dock 栏：DockDoor (指针悬停到 Dock 中的 App 预览窗口，类似 Windows)
+- DockDoor：指针悬停到 Dock 中的 App，预览打开的窗口（类似 Windows)
 
 - 将网页放到屏幕侧边：SlidePad
 
@@ -378,7 +380,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Raindrop（可保存各种网络内容；有同步功能；跨平台，有浏览器扩展）
     - [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
 
-- 文本翻译：
+- 文本翻译
     - Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
 
 - PDF 阅读器
@@ -455,7 +457,9 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Things（只限苹果产品）
     - Microsoft To Do（跨平台）
 
-- 邮件服务：Mailspring 或 Mac 自带邮件程序
+- 邮件服务
+    - Mac 自带邮件程序
+    - Mailspring
 
 - 压缩、解压缩工具
     - The Unarchiver
@@ -477,8 +481,13 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 将图像复制到剪贴板时，优化其大小：[Clop - Image, video, PDF and clipboard optimiser](https://lowtechguys.com/clop/)
 
 - RSS 阅读器
+    - Follow
     - quick-rss（国区 Mac App Store）
     - Fluent Reader
+
+- Topit：应用窗口强制置顶显示
+
+- xHistory：终端历史记录管理工具（类似 history）
 
 - 编程语言 API 下载、查看：Dash
 
@@ -1038,6 +1047,8 @@ brew install openjdk  # 安装 Java
     - [GitHub - zanjie1999/png2heic: 自动转换图片到heic或webp 依赖ffmpeg mp4box exiftool](https://github.com/zanjie1999/png2heic)
 
 - [GitHub - zanjie1999/meDisplay: 使用任何设备(浏览器)作为mac的副屏(随航) 将Android平板用作Mac的第二台显示器](https://github.com/zanjie1999/meDisplay)
+
+- 下载 iCloud 照片：[GitHub - icloud-photos-downloader/icloud\_photos\_downloader: A command-line tool to download photos from iCloud](https://github.com/icloud-photos-downloader/icloud_photos_downloader)
 
 - 专为 macOS 设计的 Jupyter Notebook：[Satyrn](https://satyrn.app/)
     - 有 command（类似 Vim） 和 edit 模式；需自己添加 Miniconda 虚拟环境的 kernel（支持 uv）

@@ -72,7 +72,7 @@ atomate_env
 
 ---
 
-- `db.json` 文件内容：连接 MongoDB 数据库（注：除了 port 条目（entry）的 value 是整数；其他都是字符串，且条目及对应的 value 值都应用双引号）
+- `db.json` 文件内容：连接 MongoDB 数据库（注：除了 port 条目（entry）的 value 是整数；其他都是字符串，且条目及对应的 value 值都应用双引号）；不能有注释 `//`，否则会报错（无法解析）从而无法将计算数据存储至 MongoDB 中
 
 ```json
 {
