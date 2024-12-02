@@ -21,7 +21,7 @@ password:
 
 ## 介绍
 
-搭建图床，便于 Markdown 文档、博客文档中的图片同步。
+- 搭建图床，便于 Markdown 文档、博客文档中的图片同步
 
 
 
@@ -74,11 +74,29 @@ https://cdn.jsdelivr.net/gh/username/repo
 ```
 
 ```bash
-# 快捷键
+# VSCode 相关快捷键
 Ctrl + Alt + U      # 从剪贴板上传图像
 Ctrl + Alt + E      # 从资源管理器上传图像
 Ctrl + Alt + O      # 从输入框上传图像
 ```
+
+
+
+---
+
+## 其他
+
+- GitHub + Cloudflare 搭建图床
+    - 方式 1：使用 Cloudflare 中的 Worker；[Github+Cloudflare搭建图床 - Cactus's Blog](https://cactusli.net/tutorial/%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/Github_Cloudflare%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A.html)
+    - 方式 2：使用 Cloudflare 中的 R2 存储桶
+
+```bash
+# 填入 PicGo/PicList 中的 GitHub 自定义域名格式
+https://<your_domain>/<GitHub_repo>/<repo_branch>
+```
+
+- [使用cloudflare+jsdmirror加速github图床访问 - 渊澄](https://ycyc.win/posts/54996)（国内 IP 重定向至 jsdmirror 成功，国外 IP 重定向至 jsDelivr 失败）
+
 
 
 ---

@@ -489,3 +489,13 @@ compilation aborted for minimax_functions1D.f90 (code 1)
 - [1.仅优化二维VASP编译.md](https://github.com/lhycms/QM/blob/main/DFT/VASP/%E7%BC%96%E8%AF%91/1.%E4%BB%85%E4%BC%98%E5%8C%96%E4%BA%8C%E7%BB%B4VASP%E7%BC%96%E8%AF%91.md)
 
 [VASP固定基矢优化结构 - Misaraty](https://www.misaraty.com/2021-01-11_vasp%E5%9B%BA%E5%AE%9A%E5%9F%BA%E7%9F%A2%E4%BC%98%E5%8C%96%E7%BB%93%E6%9E%84/)：对于二维材料，固定 z 方向晶胞参数不变（固定 z 轴），优化 x、y 晶胞参数
+
+---
+
+- NVHPC 和 OpenACC 介绍（ChatGPT4 生成）
+
+NVHPC（NVIDIA HPC 编译器套件）是由 NVIDIA 提供的一套编译器工具集，专门为高性能计算（HPC）应用设计。它包括了 C、C++ 和 Fortran 语言的编译器，以及对 CUDA 架构的支持。NVHPC 编译器针对 NVIDIA GPU 优化，使得开发者能够有效地将高性能计算任务加速。此外，这个套件还包含了数学库、通信库和调试工具，帮助开发者提高应用程序的性能和可靠性。
+
+OpenACC 是一个开放的编程标准，旨在简化 CPU 和 GPU 等异构计算设备上的并行编程。它允许开发者通过简单的编译器指令来标记代码中的并行区域，无需深入了解底层的硬件架构。这种方式使得代码能够保持可读性和可移植性，同时能够在不同的硬件平台上实现有效的执行。OpenACC 广泛用于科学计算和工程仿真领域，尤其是在需要大规模数据处理和计算的应用中。
+
+NVHPC 编译器套件支持 OpenACC 标准，使得使用这一标准的代码可以直接在 NVIDIA 的 GPU 上进行编译和运行，从而实现高效的加速效果。这种结合提供了一种强大的工具，以利用现代硬件的并行处理能力，加速科学和工程计算的应用程序。

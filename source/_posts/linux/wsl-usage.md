@@ -167,6 +167,12 @@ wslconfig                       # 查看 WSL 配置
 
 - cuda 的 API 分为两种类型，一种是驱动（driver）API，另一种是运行（runtime）API。`nvidia-smi` 查看的 cuda 版本是驱动 API 版本，`nvcc -V` 是运行 API
 
+- 将 Windows Chrome 浏览器软链至 WSL 2 Ubuntu
+
+```bash
+
+sudo ln -sf /mnt/d/XXX/chrome.exe /usr/bin/chrome
+```
 
 
 ---

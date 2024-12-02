@@ -181,7 +181,7 @@ ax.set(xlabel="x", ylabel="y")
 
 - 图例符号称为 handle
 
-有将两个图例 label 放在一行的示例：[Legend Demo — Matplotlib 3.9.2 documentation](https://matplotlib.org/stable/gallery/text_labels_and_annotations/legend_demo.html)
+- 将两个图例 label 放在一行的示例：[Legend Demo — Matplotlib 3.9.2 documentation](https://matplotlib.org/stable/gallery/text_labels_and_annotations/legend_demo.html)
 
 ```python
 ax.legend(ncols, loc, bbox_to_anchor, ...)
@@ -202,7 +202,41 @@ ax.plot(x, y, label="_nolegend_")      # label 不在图例上显示
 ax.legend([])                          # 不显示图例
 ax.get_legend().remove()               # 移除当前图例
 
+# 获取图例句柄和标签
 handles, labels = ax.get_legend_handles_labels()
+```
+
+- 修改图例顺序
+
+```python
+# reference: https://eastsheng.github.io/MyWiki/wiki/2024/06/22/codes/python/python_skills_3
+handles, labels = ax.get_legend_handles_labels()
+
+legend_order_list = [2, 0, 1]
+ax.legend(
+    [handles[idx] for idx in legend_order_list],
+    [labels[idx] for idx in legend_order_list],
+)
+```
+
+- 图例拆分成多组
+
+```python
+# reference: https://eastsheng.github.io/MyWiki/wiki/2024/06/22/codes/python/python_skills_3
+# 添加第一个图例
+first_legend = ax.legend(
+    handles=ax.get_lines()[:3],
+    loc="upper left",
+)
+ax.add_artist(first_legend)
+first_legend.get_frame().set_alpha(0)   # 使第一个图例背景透明
+
+# 添加第二个图例
+second_legend = ax.legend(
+    handles=ax.get_lines()[3:],
+    loc="upper right",
+)
+ax.add_artist(second_legend)
 ```
 
 
@@ -903,6 +937,39 @@ fig.colorbar(
 )
 ```
 
+- 单独绘制 colorbar
+
+```python
+# reference: https://eastsheng.github.io/MyWiki/wiki/2024/06/22/codes/python/python_skills_3
+import matplotlib.pyplot as plt
+from typing import Literal
+
+
+def colorbar(orientation=Literal["vertical", "horizontal"]):
+    if orientation == "vertical":
+        fig, ax = plt.subplots(figsize=(1.5, 6))
+        ax_position = [0.45, 0.2, 0.10, 0.6]
+    elif orientation == "horizontal":
+        fig, ax = plt.subplots(figsize=(6, 1.5))
+        ax_position = [0.2, 0.45, 0.6, 0.20]
+
+    ax.set_position(ax_position)  # 设置轴的位置
+
+    cmap = plt.get_cmap("jet")
+    norm = plt.Normalize(vmin=0, vmax=1)
+    cb = plt.colorbar(
+        plt.cm.ScalarMappable(norm=norm, cmap=cmap),
+        cax=ax,
+        orientation=orientation,
+    )
+
+    cb.set_ticks = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+
+
+if __name__ == "__main__":
+    orientation = "horizontal"
+    colorbar(orientation=orientation)
+```
 
 ---
 

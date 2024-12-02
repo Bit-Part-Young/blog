@@ -106,6 +106,8 @@ direct
 
 - [Available pseudopotentials - VASP Wiki](https://www.vasp.at/wiki/index.php/Available_pseudopotentials)：含 PBE52、PBE54、PBE64 赝势介绍，赝势加后缀之间的区别
 
+- 赝势选择：[Choosing pseudopotentials - VASP Wiki](https://www.vasp.at/wiki/index.php/Choosing_pseudopotentials)
+
 - 赝势文件；包含计算体系中每种元素的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 
  - 赝势目录一般含 LDA，PBE，和 PW91 三个子目录
@@ -113,10 +115,10 @@ direct
 - PBE 赝势可分为：无后缀、\_pv、\_sv、\_d 和数字后缀，即 semi-core 的 p、s、d 层电子当做价电子处理
 
 ```bash
-_sv
-_pv
-_d
-_GW           # GW 计算用赝势
+_sv           # p 和 s 层电子考虑为价电子；ENMAX 比 _pv 高
+_pv           # p 层电子考虑为价电子
+_d            # d 层电子考虑为价电子
+_GW           # 适用于光学性质计算、多体微扰理论
 
 
 # 不同程序不同泛函的目录名称
@@ -160,7 +162,7 @@ grep -A1 '  PAW_PBE' POTCAR
     - [VASP中的赝势 - 计算材料学](https://ywwang0.github.io/2020/08/18/VASP%E4%B8%AD%E7%9A%84%E8%B5%9D%E5%8A%BF/)
     - VASP5.4 版本，W\_sv 替代 W\_pv
 
-- pymatgen 与 VASP 推荐赝势之间的差异
+- pymatgen 与 VASP 推荐赝势之间的差异（部分）
 
 | 元素  | MPRelaxSet 推荐 | ENMAX | 价电子 | VASP 推荐 | ENMAX | 价电子 |
 | --- | ------------- | ----- | --- | ------- | ----- | --- |
@@ -181,6 +183,11 @@ grep -A1 '  PAW_PBE' POTCAR
 | Hf  | Hf_pv         | 220   | 10  | Hf_pv   | 220   | 10  |
 | W   | W_sv          | 223   | 14  | W_sv    | 223   | 14  |
 | Y   | Y_sv          | 203   | 11  | Y_sv    | 203   | 11  |
+
+- Jacob 天梯：[VASP中POTCAR使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/14/456c7cc4063e.html)
+
+![](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202412021648918.png)
+
 
 - POTCAR 文件内容示例：
 
@@ -393,6 +400,22 @@ k*a ~ 15 Å     # 绝缘体
 
 ---
 
+### ISPIN
+
+- 是否考虑自旋极化
+
+- 默认值：1（不考虑）；2（考虑）
+
+- 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上；但并不会对计算的性质结果产生影响，可检查添加自旋后的计算磁矩是否接近 0）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
+
+- 需考虑自旋极化的几种情况：
+    - 含 Fe,Co, Ni 的体系
+    - 体系具有磁性：顺磁，铁磁，反铁磁等
+    - 关注体系的电子性质且不确定时，建议加上
+
+
+---
+
 ### LCHARG
 
 - 决定电荷密度是否写入 CHGCAR 和 CHG 文件中
@@ -407,21 +430,6 @@ k*a ~ 15 Å     # 绝缘体
 - 决定运行结束后波函数是否写入 WAVECAR 文件中
 
 - 默认值：.TRUE.
-
-
----
-
-### ALGO
-
-- 决定电子最小化算法，或选择 GW 计算类型
-
-- 默认值：Normal
-
-```bash
-Normal         # blocked-Davidson 算法
-Fast           # 混合算法，初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
-Damped         # damped velocity friction 算法
-```
 
 
 ---
@@ -445,6 +453,21 @@ Auto / A       # 实空间；自动优化
 
 ---
 
+### PREC
+
+- 计算精度；设置截断能、FFT grids 和 the projectors in real space ROPT 的精度的默认值
+
+- 默认值：Normal；推荐使用 Normal 或 Accurate
+
+```bash
+Normal         # 适用于大多数常规计算
+Accurate       # 适用于高精度（如精确的力、声子、应力张量，或需要计算二阶导）
+High           # High Medium Low 为弃用值
+```
+
+
+---
+
 ### ENCUT
 
 - 平面波（基矢集）截断能；收敛性测试指标之一
@@ -458,16 +481,16 @@ Auto / A       # 实空间；自动优化
 
 ---
 
-### PREC
+### ALGO
 
-- 计算精度；设置截断能、FFT grids 和 the projectors in real space ROPT 的精度的默认值
+- 决定电子最小化算法，或选择 GW 计算类型
 
-- 默认值：Normal；推荐使用 Normal 或 Accurate
+- 默认值：Normal
 
 ```bash
-Normal         # 适用于大多数常规计算
-Accurate       # 适用于高精度（如精确的力、声子、应力张量，或需要计算二阶导）
-High           # High Medium Low 为弃用值
+Normal         # blocked-Davidson 算法
+Fast           # 混合算法，初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
+Damped         # damped velocity friction 算法
 ```
 
 
@@ -522,82 +545,6 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ---
 
-### NSW
-
-- 最大离子步步数
-
-- 默认值：0
-
-- IBRION=0 时，必须提供 NSW 数值（AIMD 步数）
-
-- 每个离子步会计算 Hellmann-Feynman 力和应力
-
-
----
-
-### IBRION
-
-- 确定在计算中晶体结构如何变化
-
-- 默认值：-1（NSW=-1 或 0）；0（其他情况，执行 AIMD）
-
-- 除 0 外，其他算法都最终弛豫到局部能量最小值
-
-- 结构优化
-    - IBRION=1，通过之前位置的线性组合来减少力；接近基态的大体系（> 20 个自由度）选择
-    - IBRION=2，沿搜索方向寻找最佳步长；稳健的默认选择，相比 RMM-DIIS 可能需要更多的迭代步数
-    - IBRION=3，runs a MD simulation with decreasing velocity of the ions；远离基态的大体系选择，相比其他算法，获取更好的起始点（**效率不高；用的情况很少**）
-
-- 有限差分（finite differences）；密度泛函扰动理论（density functional perturbation theory, DFPT）
-
-```bash
--1             # 不更新；离子不移动
-0              # 分子动力学 AIMD
-
-# 结构优化
-1              # RMM-DIIS / quasi-Newton 算法
-2              # conjugate gradient algorithm 共轭梯度算法
-3              # Damped MD 算法
-
-# 计算声子模式；计算二阶导数、海森矩阵和声子频率
-5 6            # 有限差分；5 without symmetry, 6 with symmetry
-7 8            # DFPT；7 without symmetry, 8 with symmetry
-```
-
-
----
-
-### POTIM
-
-- 离子弛豫步宽或 AIMD 时间步长
-
-- 默认值：IBRION=0 时必须设置；0.5（离子弛豫）；0.015（IBRION=5,6）
-
-- quasi-Newton 算法对该参数值敏感（IBRION=1）
-
-
----
-
-### ISIF
-
-- 决定在弛豫及分子动力学运行中胞的体积、形状或原子位置是否发生改变以及应力张量是否计算
-
-- 默认值：0（IBRION=0 时）；2（其他情况）
-
-- 应力张量计算相对耗时，因此在 AIMD 中将其关掉；力总是会进行计算
-
-```bash
-1          # 只弛豫原子位置，晶胞体积、形状不变（不计算应力张量）
-2          # 只弛豫原子位置，晶胞体积、形状不变（计算应力张量）
-3          # 原子位置、晶胞体积、形状均可弛豫
-7          # 只弛豫晶胞体积，原子位置、形状不变
-```
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152120807.png)
-
-
----
-
 ### EDIFF
 
 - 电子步（the electronic SC-loop）收敛条件
@@ -605,19 +552,6 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 - 默认值：$10^{-4}$（单位为 eV，而非 eV/atom）
 
 - 在大多数情况下，收敛速度是二次的，因此额外迭代的成本通常很小；收敛良好的计算，强烈推荐设置 EDIFF= $10^{-6}$；有限差分计算（如声子），为获取精确结果，可能需要 EDIFF= $10^{-7}$；大体系或使用 meta-GGA 泛函，EDIFF= $10^{-8}$ 或 EDIFF= $10^{-7}$ 的收敛条件可能很困难；总体 EDIFF= $10^{-6}$ 可能为最佳设置
-
-
----
-
-### EDIFFG
-
-- 离子步（the ionic relaxation loop）收敛条件
-
-- 默认值：EDIFF \* 10
-
-- EDIFFG 为正值，表示两离子步间的总能变化小于 EDIFFG 时，弛豫结束；为负值，表示受力小于 |EDIFFG|时，弛豫结束（绝对值，更方便的设置）；EIDIFF=0 时，运行 NSW 步后，离子步结束
-
-- EDIFFG 不用于 AIMD
 
 
 ---
@@ -642,6 +576,99 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 - 默认值：2；推荐值设置在 4-8 之间
 
 - 在 AIMD 中，每个离子步中的电子步可能会很少（1-2 步），需对其进行最小步数限制（可能计算结果更准确）
+
+
+---
+
+### NSW
+
+- 最大离子步步数
+
+- 默认值：0
+
+- IBRION=0 时，必须提供 NSW 数值（AIMD 步数）
+
+- 每个离子步会计算 Hellmann-Feynman 力和应力
+
+
+---
+
+### IBRION
+
+- 决定在计算中晶体结构如何变化
+
+- 默认值：-1（NSW=-1 或 0）；0（其他情况，执行 AIMD）
+
+- 除 0 外，其他算法都最终弛豫到能量局域最小值
+
+- 结构优化
+    - IBRION=1，通过之前位置的线性组合来减少力；接近基态的大体系（> 20 个自由度）选择
+    - IBRION=2，沿搜索方向寻找最佳步长；稳健的默认选择，相比 RMM-DIIS 可能需要更多的迭代步数
+    - IBRION=3，runs a MD simulation with decreasing velocity of the ions；远离基态的大体系选择，相比其他算法，获取更好的起始点（**效率不高；用的情况很少**）
+
+- 阻尼分子动力学（Damped Molecular Dynamics，Damped MD）优化算法是一种结合 MD 和优化技术的方法，用于寻找系统的能量最小状态。这种方法在传统 MD 中引入阻尼项，以加速系统朝向能量更低的状态演化（ChatGPT4 生成）
+
+- 有限差分（finite differences）；密度泛函扰动理论（density functional perturbation theory, DFPT）
+
+```bash
+-1             # 不更新；离子不移动
+0              # 分子动力学 AIMD
+
+# 结构优化
+1              # RMM-DIIS / quasi-Newton 算法
+2              # conjugate gradient algorithm 共轭梯度算法
+3              # Damped MD 算法
+
+# 计算声子模式；计算二阶导数、海森矩阵和声子频率
+5 6            # 有限差分；5 without symmetry, 6 with symmetry
+7 8            # DFPT；7 without symmetry, 8 with symmetry
+```
+
+
+---
+
+### ISIF
+
+- 决定在弛豫及分子动力学运行中胞的体积、形状或原子位置是否发生改变以及应力张量是否计算
+
+- 默认值：0（IBRION=0 时）；2（其他情况）
+
+- 应力张量计算相对耗时，因此在 AIMD 中将其关掉；力总是会进行计算
+
+```bash
+1          # 只弛豫原子位置，晶胞体积、形状不变（不计算应力张量）
+2          # 只弛豫原子位置，晶胞体积、形状不变（计算应力张量）
+3          # 原子位置、晶胞体积、形状均可弛豫
+7          # 只弛豫晶胞体积，原子位置、形状不变
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152120807.png)
+
+
+---
+
+### EDIFFG
+
+- 离子步（the ionic relaxation loop）收敛条件
+
+- 默认值：EDIFF \* 10
+
+- EDIFFG 为正值，表示两离子步间的总能变化小于 EDIFFG 时，弛豫结束；为负值，表示受力小于 |EDIFFG|时，弛豫结束（绝对值，更方便的设置）；EIDIFF=0 时，运行 NSW 步后，离子步结束
+
+- EDIFFG 不用于 AIMD
+
+
+---
+
+### POTIM
+
+- 离子弛豫步宽或 AIMD 时间步长
+
+- 默认值：none（IBRION=0 时必须设置）；0.5（IBRION=1, 2, 3，离子弛豫）；0.015（IBRION=5, 6）
+
+- IBRION=1, 2, 3 时，POTIM 相当于步长的缩放常数；quasi-Newton 算法对该参数值敏感（IBRION=1）
+
+- IBRION=5, 6 时，POTIM 相当于每个离子的位移宽度（计算 Hessian 矩阵）
 
 
 ---
@@ -699,25 +726,6 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ---
 
-### ISPIN
-
-- 是否考虑自旋极化
-
-```bash
-1              # 不考虑
-2              # 考虑
-```
-
-- 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上；但并不会对计算的性质结果产生影响，可检查添加自旋后的计算磁矩是否接近 0）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
-
-- 需考虑自旋极化的几种情况：
-    - 含 Fe,Co, Ni 的体系
-    - 体系具有磁性：顺磁，铁磁，反铁磁等
-    - 关注体系的电子性质且不确定时，建议加上
-
-
----
-
 ### MAGMOM
 
 - 设置每个原子的初始磁矩
@@ -767,7 +775,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ---
 
-### EMIN 、EMAX
+### EMIN & EMAX
 
 - DOS 能量的上下范围
 

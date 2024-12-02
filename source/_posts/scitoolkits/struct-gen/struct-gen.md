@@ -68,6 +68,8 @@ password:
     - 两种形式无本质区别，两者可通过过周期性平移进行互相转化
     - [Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/) 有这两种形式的可视化
 
+- [全网最全的模拟XRD衍射谱教程](https://mp.weixin.qq.com/s/fF6mKPl9NAqv4pfbzCZyLw)
+
 
 
 ---
@@ -94,7 +96,11 @@ password:
     - 间隙
     - XRD
 
-aflow 程序安装（aflow 工具功能比 MP 强大很多）：[AFlow - Automatic - FLOW for Materials Discovery](https://aflow.org/install-aflow/)
+cifcell：将 CIF 构型格式文件转换成其他计算程序格式（较实用）; [GitHub - torbjornbjorkman/cif2cell: Generating geometries for electronic structure calculations from CIF files.](https://github.com/torbjornbjorkman/cif2cell)
+
+```bash
+cif2cell Ni20Mn3P6.cif -p vasp --vasp-cartesian-positions
+```
 
 
 
@@ -103,21 +109,28 @@ aflow 程序安装（aflow 工具功能比 MP 强大很多）：[AFlow - Automat
 ## 构型文件格式
 
 - 注意事项：
-    - CIF 格式有含对称性、不含对称性两种格式，大部分程序将构型格式转换成 CIF 都是不含对称性的（空间群为 P1，写入所有原子）
-    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息
+    - CIF 格式有含对称性、不含对称性两种格式（前者晶体学信息更全），大部分程序将构型格式转换成 CIF 都是不含对称性的（空间群为 P1，写入所有原子）
+    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；**posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息**
     - vaspkit 可将 xsd 文件转换成 POSCAR
     - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
 
+- 常见构型文件格式文件名及其后缀
+
 ```bash
-.pdb           # Protein Data Bank，可以用 VMD 软件（跨平台）打开
-.xsd           # Material Studio 构型文件格式
-.cell          # CASTEP 的输入构型文件格式
-.cif           # 部分该格式文件晶体学信息很全
-.xsf           # XCrySDen
-.stru          # ABACUS
+POSCAR            # VASP
+CONTCAR           # VASP
+dump.lammpstrj    # LAMMPS dump
+.pdb              # Protein Data Bank，可用 VMD 软件（跨平台）打开
+.xsd              # Material Studio
+.cell             # CASTEP
+.cif              # Crystallographic Information File
+.xsf              # XCrySDen
+.stru             # ABACUS
+```
 
+- xyz 格式内容示例
 
-# xyz 格式内容示例
+```bash
 2
 
 Nb      0.000000000000000      0.000000000000000      0.000000000000000
@@ -130,6 +143,25 @@ Nb      1.660000000000000      1.660000000000000      1.660000000000000
 Nb    0.000000000000000    0.000000000000000    0.000000000000000 crystal_vector  1    3.320000000000000    0.000000000000000    0.000000000000000
 Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector  2    0.000000000000000    3.320000000000000    0.000000000000000
 ```
+
+- LAMMPS dump 文件格式主要内容
+
+```bash
+ITEM: TIMESTEP                                    # 第 N 个时间步长时输出的构型
+0
+ITEM: NUMBER OF ATOMS                             # 构型原子数
+3400
+ITEM: BOX BOUNDS pp pp pp                         # x y z 轴起始、终止坐标
+0.0000000000000000e+00 3.6150000000000006e+01
+0.0000000000000000e+00 3.6150000000000006e+01
+0.0000000000000000e+00 7.2300000000000011e+01
+ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数坐标等；可通过 dump 命令自定义输出所需内容
+1 1 0 0 0.3
+2 1 0.05 0.05 0.3
+5 1 0.1 0 0.3
+...
+```
+
 
 
 ---
@@ -181,6 +213,8 @@ latgen 可以生成界面（multi-layer）
 - [GitHub - aguang5241/Interface-Maker: A python3 code to create slabs and interfaces for first-principles calculations.](https://github.com/aguang5241/Interface-Maker)
 
 - [GitHub - rzk1/heterojunction: Create surfaces and heterojunctions from two crystal structures](https://github.com/rzk1/heterojunction)
+
+- 生成界面模型（Fortran 代码）：[Hepplestone / Artemis · GitLab](https://git.exeter.ac.uk/hepplestone/artemis)
 
 - 在 latgen、VASPKIT 和 MS 中，称为 build layer
 

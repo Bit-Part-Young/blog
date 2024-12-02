@@ -100,3 +100,5 @@ Common neighbor analysis          # CNA
 - OVITO Python 脚本（主要是用来可视化构型）：[GitHub - stefanbringuier/HowToSOVITO: A series of recipes and tutorials on how to use python scripting with OVITO](https://github.com/stefanbringuier/HowToSOVITO)
 
 - [How to Script with OVITO - How To Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO)
+
+- [Ovito高质量图片渲染Python模块 - Eastsheng's Wiki](https://eastsheng.github.io/MyWiki/wiki/2023/04/13/softwares/lammps/ovito_plot_rendering/)

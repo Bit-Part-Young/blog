@@ -163,14 +163,14 @@ pip config list
 
 写 Shell 或 Python 相关脚本时可能会用到以下 conda 环境变量：
 
-| 环境变量 | 说明 |
-|:------------:|:------------:|
-| `CONDA_DEFAULT_ENV` | 当前激活的虚拟环境的名称 |
-| `CONDA_PREFIX` | 当前激活的虚拟环境的路径 |
-| `CONDA_EXE` | conda 可执行文件路径 |
-| `CONDA_PYTHON_EXE` | 当前激活的虚拟环境的 Python 可执行文件路径 |
+|          环境变量           |                        说明                         |
+|:---------------------: |:-----------------------------------------------: |
+|   `CONDA_DEFAULT_ENV`   |                   当前激活的虚拟环境的名称                    |
+|     `CONDA_PREFIX`      |                   当前激活的虚拟环境的路径                    |
+|       `CONDA_EXE`       |                   conda 可执行文件路径                   |
+|   `CONDA_PYTHON_EXE`    |             当前激活的虚拟环境的 Python 可执行文件路径             |
 | `CONDA_PROMPT_MODIFIER` | 在命令行提示符中显示的当前环境的信息。包含环境名称、环境类型等（如会输出 `(base)` 信息） |
-| `CONDA_SHLVL` | 当前激活的 Conda 环境的嵌套深度。如果没有激活的环境，则为 0 |
+|      `CONDA_SHLVL`      |        当前激活的 Conda 环境的嵌套深度。如果没有激活的环境，则为 0         |
 
 ---
 

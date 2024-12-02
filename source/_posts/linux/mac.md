@@ -331,6 +331,8 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 - 将网页放到屏幕侧边：SlidePad
 
+- CrossOver：在 macOS 系统上运行 Windows 应用程序（无需安装完整的 Windows 操作系统）
+
 ---
 
 **图音视频**

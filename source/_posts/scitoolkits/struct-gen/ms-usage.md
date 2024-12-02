@@ -96,23 +96,6 @@ password:
 
 ---
 
-### CASTEP
-
-- CASTEP (Cambridge Serial Total Energy Package)
-
-- CASTEP 文件格式
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202312262058798.png)
-
-- CASTEP 赝势路径
-
-```text
-BIOVIA\Materials Studio 19.1\share\Resources\Quantum\Castep\Potentials
-```
-
-
----
-
 ### 相关问题
 
 - 文件保存路径不要有中文

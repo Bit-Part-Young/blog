@@ -75,6 +75,18 @@ password:
 python script.py
 ```
 
+- 指定 `UTF-8` 编码
+
+```python
+# 在 Python 文件的第一行或第二行，指定使用 UTF-8 编码
+# 主要用于 Python 2（Python 3 默认使用 UTF-8 编码）
+
+# 方式 1
+# -*- coding: utf-8 -*-
+# 方式 2
+# coding=utf-8
+```
+
 - 在终端执行 Python 代码，用于快速测试一些代码片段或进行简单的计算
 
 ```bash
@@ -1086,11 +1098,15 @@ os.rename(old, new)   # 重命名文件
 os.mkdirs()           # 创建单层级目录
 os.makedirs()         # 创建多层级目录；exist_ok=True 目录已存在时，命令不会报错
 
-os.path.exists()      # 检查路径是否存在
+os.path.exists()      # 检查路径是否存在（可以是文件、目录或符号链接等）
+os.path.isfile()      # 检查路径是否存在且是否为文件
+os.path.isdir()       # 检查路径是否存在且是否为目录
 os.path.basename()    # 获取文件路径的文件部分
 os.path.dirname()     # 获取文件路径的目录部分
 os.path.abspath()     # 获取绝对路径
 os.path.join()        # 将各个部分合并成一个路径
+os.path.split()       # 分离文件路径和文件名
+os.path.splitext()    # 分离文件名与后缀
 ```
 
 
@@ -1104,71 +1120,196 @@ os.path.join()        # 将各个部分合并成一个路径
 
 ---
 
-- 单个命令行参数解析
+#### 命令行参数解析
+
+- 命令行参数解析
 
 ```python
 import argparse
 
+# 创建解析器
 parser = argparse.ArgumentParser(
-    description="XXX",
-    epilog="XXX",
+    prog=...,
+    usage=...,
+    description=...,
+    epilog=...,
+    formatter_class=...,
+    add_help=...,
+    allow_abbrev=...,
 )
+# 参数
+prog              # 程序名称（可不添加）
+usage             # 程序使用方法（可不添加）
+formatter_class   # 自定义帮助文档的输出格式
+description=      # 程序描述
+epilog            # 在帮助信息结尾添加文本（如作者、版本、联系方式等）
+# formatter_class 常用值
+argparse.HelpFormatter                   # 默认
+argparse.ArgumentDefaultsHelpFormatter   # 显示参数默认值；可选参数设置 default 值后会显示，位置参数需设置 default 和 nargs 才会显示
+argparse.RawTextHelpFormatter            # 保持原格式
 
-# 单个命令行参数解析
+add_help          # 是否自动添加 -h/--help 选项
+allow_abbrev      # 是否允许长选项使用非歧义缩写
+argument_default  # 所有参数的默认值
+conflict_handler  # 处理参数名冲突
+exit_on_error     # 遇到错误时是否应该退出程序
+
+
+# 添加参数
 parser.add_argument(
-    "-f",
-    "--file",
-    type=str,
+    "file",             # 位置参数；必须提供
+    "-f",               # 可选参数；短选项；可不用空格分隔直接跟参数值
+    "--file",           # 可选参数；长选项
+    nargs=...,
+    const=...,
     default=...,
+    type=...,
+    choices=...
+    required=...,
     help=...,
 )
+# 参数
+name_or_flags     # 命令行参数名称（位置参数或可选参数）
+nargs             # 指定命令行中参数应消耗的值的数量；N、?、*、+
+const             # 常量值（只指定参数但不带值时，使用该 const 值，需结合 nargs=? 使用） 
+default           # 参数的默认值（未指定参数时，使用该 default 值）
+type              # 该命令行参数应被转换成的类型
+choices           # 参数的允许值
+required          # 用于可选参数，默认 False；True 表示该参数必须指定
+help              # 参数的帮助信息
+metavar           # 将帮助信息中的参数用 metavar 的值替代（类似占位符）
+action            # （个人不常用）
+
+# 解析命令行参数
 args = parser.parse_args()
+
+# 短、长选项在一起时，需用长选项
+file=args.file
 ```
+
+- 示例代码：
+
+```python
+def get_potcar(...):
+    ...
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(
+        description="Generate VASP, pymatgen recommended POTCAR.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+        allow_abbrev=True,
+        epilog="Author: SLY.",
+    )
+
+    parser.add_argument(
+        "-pr",
+        "--psp_recommended",
+        nargs="?",
+        const="vasp",
+        default="vasp",
+        type=str,
+        choices=["vasp", "pymatgen"],
+        help="Recommended pseudopotential source.",
+    )
+
+    parser.add_argument(
+        "structure_file",
+        nargs="?",
+        default="POSCAR",
+        type=str,
+        help="Structure file with POSCAR format, eg. POSCAR.",
+    )
+
+    ...
+```
+
+- 使用示例
+
+```bash
+# 可支持的命令行参数
+get_potcar.py -h
+get_potcar.py
+get_potcar.py -pr
+get_potcar.py --psp
+get_potcar.py --psp_recommended
+get_potcar.py -pr pymatgen POSCAR
+get_potcar.py --psp pymatgen POSCAR
+get_potcar.py --psp_recommended pymatgen POSCAR
+
+
+# 查看命令行程序描述及使用
+usage: get_potcar.py [-h] [-pr [{vasp,pymatgen}]] [structure_file]
+
+Generate VASP, pymatgen recommended POTCAR.
+
+positional arguments:
+  structure_file        Structure file with POSCAR format. (default: POSCAR)
+
+options:
+  -h, --help            show this help message and exit
+  -pr [{vasp,pymatgen}], --psp_recommended [{vasp,pymatgen}]
+                        Recommended pseudopotential source. (default: vasp)
+
+Author: SLY.
+```
+
 
 ---
 
+#### 多个子命令的命令行参数解析
+
 - 多个子命令的命令行参数解析
 
-处理具有 2 种不同参数数目的函数: [\[Python\] argparse处理多个功能和不同的多参数-CSDN博客](https://blog.csdn.net/Spade_/article/details/111059349)
+- 参考：[\[Python\] argparse处理多个功能和不同的多参数-CSDN博客](https://blog.csdn.net/Spade_/article/details/111059349)
 
 ```python
 import argparse
 
-parser = argparse.ArgumentParser(
-    description="XXX",
-    epilog="XXX",
-)
+# 创建解析器
+parser = argparse.ArgumentParser()
 
-# 多个子命令的命令行参数解析
+# 添加子解析器
 subparsers = parser.add_subparsers()
 
-parser_generate = subparsers.add_parser("generate", help="generate atomate optimization workflows.")
+# 添加子命令参数
+parser_generate = subparsers.add_parser(
+    "generate", 
+    help="generate atomate optimization workflows.",
+)
 parser_generate.add_argument(
     "-c",
     "--character",
-    metavar="wf_character",
     type=str,
-    help="the character of workflow. eg. optimization, static."
-    )
+    help="the character of workflow. eg. optimization, static.",
+)
+# 将一个子命令解析器与一个函数关联
 parser_generate.set_defaults(func=wf_relaxation_submit)
 
-parser_get_data = subparsers.add_parser("get_data", help="get data from mongodb.")
+parser_get_data = subparsers.add_parser(
+    "get_data",
+    help="get data from mongodb."
+)
 parser_get_data.add_argument(
     "-c",
     "--character",
-    metavar="wf_character",
     type=str,
     help="the character of workflow. eg. optimization, static."
     )
 parser_get_data.set_defaults(func=get_data_mongodb)
 
+# 解析命令行参数并执行
 args = parser.parse_args()
+# 执行方式 1；简洁
+args.func(args)
 
+# 执行方式 2
 if hasattr(args, 'func'):
     if args.func == wf_relaxation_submit:
-        return args.func(args.character)
+        return args.func(args)
     elif args.func == get_data_mongodb:
-        return args.func(args.character)
+        return args.func(args)
 ```
 
 
@@ -1176,14 +1317,17 @@ if hasattr(args, 'func'):
 
 ### sys
 
+- 可用于简易的命令行参数解析
+
 ```python
 import sys
-sys.path.append()            # 添加目录到模块搜索路径
 
+sys.path.append()            # 添加目录到 PATH 搜索路径
 
 # sys.argv 命令行参数解析
-# sys.argv[0] 是文件名
+# sys.argv[0] 文件名
 def add_two_num(a, b):
+
     return a + b
 
 
@@ -1214,7 +1358,12 @@ shutil.copytree()    # 拷贝目录
 ```python
 from pathlib import Path
 
+# 获取当前脚本文件所在的目录
+# __file__ 内置变量，当前脚本的路径
 THIS_DIR = Path(__file__).parent
+
+# 创建目录
+Path(...).mkdir(parents=True, exist_ok=True)
 ```
 
 

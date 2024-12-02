@@ -463,8 +463,8 @@ index                    # 原子位点序号
 num_sites                # 原子数；int
 composition.num_atoms    # 原子数；float
 n_elems                  # 元素数
-symbol_set               # 元素种类；tuple
-types_of_specie          # 元素种类；Element
+symbol_set               # 元素种类；tuple；会进行排序
+types_of_species         # 元素种类；Element
 formula                  # 化学式
 compsition               # 成分；as_dict() 转换成字典形式
 cart_coords              # 笛卡尔坐标
@@ -493,8 +493,8 @@ to_cell()                # 获取单/原胞
 to_conventional()        # 获取单胞；调用 to_cell()
 to_primitive()           # 获取原胞；同上
 interpolate()            # 在两个构型间插值，用于 NEB 计算
-sort()                   # 排序（不常用）
-get_sorted_structure()   # 排序（不常用）
+sort()                   # 排序（原子位点按电负性排序；in place）
+get_sorted_structure()   # 排序（not in place）
 
 # 类方法
 from_spacegroup()        # 根据空间群构建结构

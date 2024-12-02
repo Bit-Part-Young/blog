@@ -22,7 +22,9 @@ password:
 ## 介绍
 
 - [ATAT 官网](https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/)、[manual pdf](https://www.brown.edu/Departments/Engineering/Labs/avdw/atat/manual.pdf)、[ATAT • User Forum](https://brown.edu/Departments/Engineering/Labs/avdw//forum/index.php)（论坛不活跃）
+
 - 最早开发 CE 的工具，现在使用 ATAT 大多是其 mcsqs 模块，用其处理 CE 的不多（ECI 拟合算法默认为最小二乘法，拟合速度较慢，已有文献中的构型计算数最多也是在 3000 以内）
+
 - ATAT 模块
     - mmaps (MIT Multicomponent Ab initio Phase Stability code)；maps 的多主元（multicomponent）版本
     - memc2 (Multicomponent Eazy Monte Carlo Code)；emc2 的多主元版本
@@ -44,6 +46,7 @@ ATAT 和 ICET 枚举得到的结构是一一对应的（相同）
 ## 安装
 
 - 前提条件：需要有 tcsh/csh shell
+
 - 下载、解压安装包
 
 ```bash
@@ -108,6 +111,8 @@ enum.x input.file
 ```
 
 - [GitHub - FlorianPf/ATAT\_VASP: Some of the python scripts I wrote whilst working on my bachelor thesis.](https://github.com/FlorianPf/ATAT_VASP)
+
+- [GitHub - HanpuLiang/special-quasidisorder-structure-code-SQDS: some scripts of SQS and SQDS](https://github.com/HanpuLiang/special-quasidisorder-structure-code-SQDS)
 
 
 ---

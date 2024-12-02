@@ -660,6 +660,8 @@ git add -i  # 交互式
 
 ### commit
 
+- [commit-messages-guide/README\_zh-CN.md at master · RomuloOliveira/commit-messages-guide · GitHub](https://github.com/RomuloOliveira/commit-messages-guide/blob/master/README_zh-CN.md)
+
 - [创建没有任何改动的提交](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%94%B9%E5%8A%A8%E7%9A%84%E6%8F%90%E4%BA%A4)
 
 ```bash

@@ -277,6 +277,7 @@ np.transpose()                  # 同上
 np.matmul()                     # 同上
 np.dot()                        # 矩阵 1D，点积；2D，矩阵相乘
 
+np.outer()                      # 1*n 一维列向量与 m*1 一维行向量外积得到 m*n 矩阵
 np.triu(..., k=...)             # 提取上三角矩阵；k 为偏移量
 arr.trace()                     # 对角线元素和
 np.linalg.trace()               # 对角线元素和

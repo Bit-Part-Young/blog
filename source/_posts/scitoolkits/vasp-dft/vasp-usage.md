@@ -88,8 +88,6 @@ SCAN (Strongly constrained and appropriately normed)
 - VASP 计算流程：[VASP的计算流程 - Jun's Blog](https://www.jun997.xyz/2021/11/10/61d157e1a6d8.html)
 - [VASP关键输入参数速查表 - VASPKIT与量化软件](http://vaspkit.cn/index.php/3.html)
 
-- [VASP中POTCAR使用指南 - Jun's Blog](https://next.jun997.xyz/2022/04/14/ba8ff0b84c20.html)
-
 - 输入文件参数介绍：[GitHub - bzkarimi/VASP: Practical guide on how to use VASP](https://github.com/bzkarimi/VASP)
 
 

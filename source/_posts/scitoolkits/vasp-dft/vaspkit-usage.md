@@ -41,12 +41,12 @@ password:
 - vaspkit 处理 DOS、能带计算数据演示：[13\_vasp/V2PC/01\_K\_Path\_Bulk\_Structure.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/01_K_Path_Bulk_Structure.md)
 
 - vaspkit 中的 INCAR 选项
-    - SR：标准弛豫，只弛豫原子位置，ISIF=2
+    - SR：标准弛豫，只弛豫原子位置，晶胞体积、形状不变，ISIF=2
     - LR：点阵弛豫，全弛豫，ISIF=3
 
-- vaspkit 生成的 HCP 结构（及对称性不是很高的结构） KPOINTS 文件中的 K 点生成方式是 Gamma 点（无论选择 G 还是 MP，会自动纠正）
+- vaspkit 生成的 HCP 结构（及对称性不是很高的结构） KPOINTS 文件中的 K 点生成方式是 Gamma-center（无论选择 G 还是 MP，会自动纠正）
 
-- vaspkit K 点设置：推荐精度：0.03（梅师兄）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 k\*ha 值大于 30 或 33.33，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；0.03 对应的 K 点密度是 1/0.03=33.33
+- vaspkit K 点设置：推荐精度：0.03（梅师兄）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 k\*a 值大于 30，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；0.03 对应的 K 点密度是 1/0.03=33.33
 
 - vaspkit 的能带结构数据获取前提是 K-path 是 Line-Mode 的
 
@@ -55,6 +55,15 @@ password:
 - 态密度绘制相关数据文件：`TDOS.dat`、`IDOS.dat`（积分 DOS）
 
 - 没有绘制体系分态密度（总的 s、p、d 轨道）选项
+
+- 将自己的脚本作为 vaspkit 的补充功能（整合进 VASP）：拷贝脚本至 `vaspkit.X.X.X/utilities` 目录，在 `~/.vaspkit` 中的 `#USER_DEFINED` 处按示例格式填写内容（实用性一般）；参考：[atom_constrain.py程序: 固定原子层坐标](https://mp.weixin.qq.com/s/0-ldDyDSb-t2d7yIyC7h_A)
+
+```bash
+#USER_DEFINED
+#           id      interpreter      script          argv       description
+u3        python      layers_count.py   .TRUE.      count_atomic_layer
+#END_USER_DEFINED
+```
 
 - vaspkit 源码中的 utilities 目录结构
 
@@ -77,7 +86,7 @@ utilities
 
 INCAR_templates/       # 不同计算任务的 INCAR 文件模板
 Shermo/                # 基于给定的谐振频率、惯性矩、温度、压力、原子质量、转动对称数等信息，Shermo 程序可以输出分子配分函数和理想气体近似下的每 mol 的内能、焓、熵、自由能、热容， 并且平动、转动、振动和电子贡献会独立输出，每种振动模式的贡献也能独立输出。
-POSCARtoolkit/         # 分数坐标向笛卡尔坐标的转换；原子层数的固定；固定和放开用户选择的原子；可批量进行
+POSCARtoolkit/         # 分数坐标向笛卡尔坐标的转换；原子层的固定；固定特定原子；可批量进行
 get_entropy.py         # 计算给定温度下熵和焓的振动贡献；零点能
 xsd2pos.py             # Material Studio xsd 格式转 VASP POSCAR 格式
 cif2pos.py             # cif 转 VASP POSCAR 格式

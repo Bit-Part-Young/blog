@@ -61,9 +61,7 @@ password:
 
 - 命令行版本的 GitHub Dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
 
-- 管理 GitHub Stars（以下两个项目均会获取 GitHub public data）
-    - [GitHub - cfour-hi/gitstars: Github Starred Repositories Manager](https://github.com/cfour-hi/gitstars)
-    - [GitHub - nieheyong/starflare: A web app helps you manage your GitHub stars simply and efficiently](https://github.com/nieheyong/starflare)
+- 隐藏仓库中 `Compare & pull request` 的提示插件：[GitHub - liuliangsir/compare-and-pull-request-prompt-box-killer-for-github: Automatically hides the "Compare & pull request" prompt box on GitHub repository pages](https://github.com/liuliangsir/compare-and-pull-request-prompt-box-killer-for-github)
 
 - 显示/自定义 GitHub 通知：
     - [GitHub - qiweiii/github-custom-notifier: Web Extension - Allows you to customize GitHub notifications](https://github.com/qiweiii/github-custom-notifier)

@@ -173,3 +173,5 @@ viscal：计算粘度程序（孔老师编写的 manager 上）
 粘度计算：Green-Kubo 公式
 
 ARTn：过渡态搜索；可只指定起点，不指定终点
+
+- 孔老师 LAMMPS Phonon package：[Phonon package安装与使用 - Eastsheng's Wiki](https://eastsheng.github.io/MyWiki/wiki/2023/04/22/softwares/lammps/phonon_package/)

@@ -51,3 +51,5 @@ password:
 - 将晶体对称性降低至 P1，目的是方便对晶体结构进行修改（VESTA 和 Material Studio）
 
 - [如何在VESTA中区分不同表面层的原子](https://mp.weixin.qq.com/s/oRGvocav3Fl_9xf_zBck1w)
+
+- [如何用VESTA作精美的图](https://mp.weixin.qq.com/s/3f1Kt2U_VK_685ZCQZDjFA)
