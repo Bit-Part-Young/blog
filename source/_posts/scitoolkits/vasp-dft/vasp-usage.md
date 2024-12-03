@@ -452,7 +452,14 @@ ISIF   = 3
 
 ### 功函数计算
 
-WIP...
+- [VASP:功函数](https://mp.weixin.qq.com/s/IeddVXM7ea329njhMlFPNA)
+
+- 步骤：结构弛豫；静态计算（修改以下 INCAR 参数）
+
+```bash
+NSW    = 0
+LVHAR  = .TRUE.
+```
 
 
 ---

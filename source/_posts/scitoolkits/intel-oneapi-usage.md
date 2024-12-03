@@ -23,9 +23,16 @@ password:
 
 - Intel oneAPI 暂不支持 Arch Linux
 
-- Intel-oneAPI 中的 FFTW、BLAS、LAPACK 和 SCALAPACK 相关路径
+- Intel-oneAPI 中的 MKL (Math Kernel Library) 提供数学库： FFTW、BLAS、LAPACK、ScaLAPACK、Vector Math Library (VML)、Data Fitting Library、Sparse BLAS 等
 
 ```bash
+${MKLROOT}/include         # MKL 头文件路径
+${MKLROOT}/lib/intel64     # MKL 库文件路径
+
+-lmkl_intel_lp64           # LP64 模型
+-lmkl_sequential           # 单线程库
+-lmkl_core                 # 核心库
+
 ${MKLROOT}/include/fftw    # FFTW
 ${MKLROOT}/lib/intel64     # BLACS、LAPACK 和 SCALAPACK
 ```

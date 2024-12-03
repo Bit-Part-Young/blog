@@ -187,3 +187,135 @@ sudo apt install net-tools
 
 ifconfig      # 查看 IP 地址 Linux/macOS
 ```
+
+- OpenBLAS（C 代码）
+
+```bash
+make
+make PREFIX=${HOME}/local/OpenBLAS install
+
+-lopenblas     # 链接 OpenBLAS 库
+```
+
+- BLAS（Fortran 代码）
+
+```bash
+make
+
+mkdir -p ${HOME}/local/lib/blas
+cd ${HOME}/local/lib/blas
+ln -s blas_LINUX.a libblas.a
+
+-lblas -lgfortran    # 链接 BLAS 库时同时链接 gfortran（依赖 gfortran）
+```
+
+- LAPACK（Fortran 代码）
+
+```bash
+cp make.inc.example make.inc
+make               # 耗时较长
+
+# 会在当前目录下生成
+liblapack.a
+librefblas.a       # BLAS 的参考实现
+libtmglib.a
+
+# 拷贝编译得到的静态库文件
+make -p ${HOME}/local/lib/lapack
+cp *.a ${HOME}/lib
+
+-llapack -lrefblas    # 链接 LAPACK 库
+```
+
+---
+
+- ScaLAPACK：依赖 BLAS、LAPACK 以及一个 MPI 库
+
+```bash
+# make 编译；会报错
+cp SLmake.inc.example SLmake.inc
+
+# 修改 SLmake.inc 中的内容
+FC
+CC
+BLASLIB
+LAPACKLIB
+
+make
+
+# Master 中的 MPI 默认是 Intel OneAPI MPI Library
+# cmake 编译；如下设置不会报错
+mkdir -p build && cd build && cmake -DCMAKE_Fortran_FLAGS="-fallow-argument-mismatch" ..
+```
+
+- ScaLAPACK 编译报错：
+    - [build errors on GCC 10 (gfortran) · Issue #73 · Reference-ScaLAPACK/scalapack · GitHub](https://github.com/Reference-ScaLAPACK/scalapack/issues/73)
+    - [Argument mismatches · Issue #92 · Reference-ScaLAPACK/scalapack · GitHub](https://github.com/Reference-ScaLAPACK/scalapack/issues/92)
+
+```bash
+# 报错内容
+scalapack/SRC/pstrord.f:3264:54:
+
+  490 |      $         CALL IGAMX2D( ICTXT, 'All', TOP, 1, 1, MMAX, 1, -1,
+      |                                                      2
+......
+ 3264 |                CALL IGAMX2D( ICTXT, 'All', TOP, 1, 1, INFO, 1, -1,
+      |                                                      1
+Error: Rank mismatch between actual argument at (1) and actual argument at (2) (rank-1 and scalar)
+```
+
+---
+
+- OpenMPI
+
+```bash
+# 耗时较长
+./configure --prefix=${HOME}/local/OpenMPI
+
+make
+make install
+```
+
+- MPI 实现常见版本：
+    - MPICH
+    - Open MPI
+    - Intel MPI Library
+
+```bash
+# 三个版本都有的 mpi* 可执行程序
+mpirun --version
+mpiexec
+mpif90
+mpif77
+mpicc
+mpicxx
+
+# Intel MPI Library
+Intel(R) MPI Library for Linux* OS, Version 2021.6 Build 20220227 (id: 28877f3f32)
+Copyright 2003-2022, Intel Corporation.
+
+# Open MPI
+mpirun (Open MPI) 5.0.6
+
+Report bugs to https://www.open-mpi.org/community/help/
+```
+
+- MPICH
+
+```bash
+./configure --prefix=${HOME}/local/MPICH
+
+make  # 耗时很久
+make install
+```
+
+- FTTW
+
+```bash
+./configure --prefix=${HOME}/local/FFTW
+
+# 可添加 --enable-mpi；得到的 静态库和头文件会添加 mpi 后缀
+
+make
+make install
+```

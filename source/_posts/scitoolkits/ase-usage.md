@@ -319,7 +319,7 @@ natoms = len(atoms)
 # 元素种类数
 nelements = len(set(atoms.get_chemical_symbols()))
 
-# 构型中某一元素的浓度 
+# 构型中某一元素的浓度
 concentration = atoms.get_chemical_symbols().count('Pd') / len(atoms)
 
 # 删除 H 原子
@@ -398,9 +398,9 @@ from ase.spacegroup import Spacegroup, crystal, get_spacegroup
 
 spg = Spacegroup(152)     # 类；查看给定空间群的对称性信息
 # 属性
-symbol                    # 
-no                        # 
-scaled_primitive_cell     # 
+symbol                    #
+no                        #
+scaled_primitive_cell     #
 
 get_spacegroup()          # 获取 Atoms 的空间群信息
 
@@ -426,29 +426,75 @@ spg.equivalent_sites([0.4673, 0, 0.3333])
 
 - 构型格式文件读入、写出；可支持的格式很多
 
-- 模块中的 `read()` 函数可自动识别文件格式；部分格式只有 `read()` 或 `write()` 一个函数（只读或只写）
-    - LAMMPS 相关格式：lammps-data 可读写；lammps-dump-text、lammps-dump-binary lammps 只读
+- 模块中的 `read()` 函数可自动识别文件格式
+
+- 部分格式只读或只写
 
 - 可读取 gz 格式压缩文件，如 OUTCAR.gz
 
 - [lammps的结构文件转其他格式 - 知乎](https://zhuanlan.zhihu.com/p/390968120)
 
-- [ ] ase 中读取 VASP OUTCAR 文件，写了一个 chunk 类？
-
-
----
-
-写法一：在 `write()` 函数中的 `format` 参数指定文件格式
+- 写法一：在 `read()`、`write()` 函数中指定 `format` 参数，即具体构型文件格式
 
 ```python
 from ase.io import read, write
+from ase.data import atomic_numbers
 
-write(filename=..., images=..., format=...)
+# read() 函数
+read(
+    filename=...,        # 输入文件名
+    index=...,           # 读取单帧/多帧数据；int, slice, str 类型
+    format=...,          # 指定文件格式
+    **kwargs             # 其他参数需参考具体的格式文件函数参数写法
+)
+
+# index 写法
+index=0                  # 第一帧构型
+index=-2                 # 倒数第二帧
+index=':'                # 所有帧
+index=slice(None)        # 同上
+index='-3:'              # 倒数三帧到最后
+index=slice(-3, None)    # 同上
+index='1::2'             # 偶数帧数据
+index=slice(1, None, 2)  # 同上
+
+# write() 函数
+write(
+    filename=...,        # 输出文件名；"-" 表示标准输出
+    images=...,          # 单个 Atoms 或 Atoms 列表
+    format=...,          # 指定文件格式
+    append=...,          # 是否写入多帧数据
+    **kwargs             # 其他参数需参考具体的格式文件函数参数写法
+)
+
+
+# 保存为 LAMMPS data 格式
+lammps_data_fn = ...
+ele_list = ["Si", "Nb"]
+write(
+    lammps_data_fn,
+    images=atoms,
+    format="lammps-data",
+    specorder=ele_list,  # 指定 atom type 顺序；默认按照元素符号字母排序
+    units="metal",
+    atom_style="atomic",
+)
+
+# 读取 LAMMPS data 格式
+atoms = read(
+    lammps_data_fn,
+    format="lammps-data",
+    style="atomic",
+    # Z_of_type 参数类型为 dict，键为 type 编号，值为对应的元素原子序数
+    # 若不添加该参数，type 编号对应的元素原子序数默认为 H He ... 等
+    Z_of_type={
+        1: atomic_numbers["Si"],
+        2: atomic_numbers["Nb"],
+    },
+)
 ```
 
----
-
-写法二：从 `ase.io` 中导入具体格式的模块及其函数
+- 写法二：从 `ase.io` 中导入具体构型文件格式的模块及其函数
 
 ```python
 # LAMMPS data 格式
@@ -503,7 +549,7 @@ eos = EquationOfState(volumes, energies, eos="birchmurnaghan")
 v0, e0, B = eos.fit()
 print(f"v0 = {v0:.3f}")
 print(f"e0 = {e0:.3f}")
-print(f"B = {B / kJ * 1.0e24:.1f} GPa") 
+print(f"B = {B / kJ * 1.0e24:.1f} GPa")
 
 ax = eos.plot()
 ax.set_title(label=None)

@@ -28,6 +28,8 @@ password:
 
 ### 参考资料
 
+- [VASP个人笔记(一)计算流程与输入输出文件](https://zhuanlan.zhihu.com/p/166127696)
+
 - [13\_vasp/V2PC/README.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
 
 - [vasp手册\_VASP个人笔记(二) INCAR参数设置(详细)-CSDN博客](https://blog.csdn.net/weixin_39637363/article/details/111123875)
@@ -184,7 +186,13 @@ grep -A1 '  PAW_PBE' POTCAR
 | W   | W_sv          | 223   | 14  | W_sv    | 223   | 14  |
 | Y   | Y_sv          | 203   | 11  | Y_sv    | 203   | 11  |
 
-- Jacob 天梯：[VASP中POTCAR使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/14/456c7cc4063e.html)
+- Jacob 天梯示意图
+    - [VASP中POTCAR使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/14/456c7cc4063e.html)
+    - [Jacob's ladder of density functional approximations.](https://www.researchgate.net/figure/Jacobs-ladder-of-density-functional-approximations_fig10_351111106)
+    - [The Jacob's ladder of density functional approximations.](https://www.researchgate.net/figure/The-Jacobs-ladder-of-density-functional-approximations-56-57-Families-of_fig3_341201729)
+    - [Jacob's ladder of density-functional approximations](https://www.researchgate.net/figure/Jacobs-ladder-of-density-functional-approximations-after-Perdew-66_fig5_255759180)
+    - [Local Density Approximation for the Short-Range Exchange Free Energy Functional](https://pubs.acs.org/doi/pdf/10.1021/acsomega.9b00303)
+
 
 ![](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202412021648918.png)
 
@@ -498,6 +506,12 @@ Damped         # damped velocity friction 算法
 
 ### ISMEAR
 
+- [DFT计算软件中展宽的取值含义](https://mp.weixin.qq.com/s/LeUBraeu7mwUn7nD6tKa0g)
+
+- 费米狄拉克分布示意图及展宽处理
+
+![image.png](https://image-bed.seekanotherland.xyz/image-bed/main/m1air/202412031039272.png)
+
 - 轨道分数占据（电子态占据数，值在 0-1 之间）的展宽（平滑处理）方法
 
 - 默认值：1
@@ -515,7 +529,7 @@ Damped         # damped velocity friction 算法
     - 避免使用 ISMEAR>0，因为经常会导致错误的结果（某些态的占据可能小于 0 或大于 1）
 
 - 对于金属中的力、声子频率计算，使用 ISMEAR=1 或 ISMEAR=2，SIGMA 合理值通常为 0.2（默认值）
-    - 引入 ISMEAR 和 SIGMA 展宽后，会引入虚假温度，使得 OUTCAR 中的 T\*S 项不为 0
+    - 引入 SIGMA 展宽后，使得 OUTCAR 中的 T\*S 熵项不为 0（该熵值不是由一定的温度带来的，而是数学处理的结果）
     - 推荐使用 ISMEAR>0（总能也能精确描述），需仔细选择 SIGMA 的值。值太大可能导致不正确的总能，太小需要更密的 K 点；应尽可能大，使 OUTCAR 文件中的 `entropy T*S` 项可忽略（小于 1meV/atom）
 
 ```bash

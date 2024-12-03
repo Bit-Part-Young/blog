@@ -66,40 +66,33 @@ password:
 
 - 下载二进制版本（最简单方式，无 macOS 版本）：[Download Atomsk](https://atomsk.univ-lille.fr/dl.php)
 
-- 源码编译：依赖 BLAS 和 LAPACK 库（LAPACK 依赖 BLAS；Intel 套件有相关库）
-
-- 编译 BLAS 和 LAPACK 步骤以及压缩包
-    - [apt - How to build and link BLAS and LAPACK libraries by hand for use on cluster? - Ask Ubuntu](https://askubuntu.com/questions/1270161/how-to-build-and-link-blas-and-lapack-libraries-by-hand-for-use-on-cluster)
-    - [LAPACK build and test guide - GNU Project](https://gcc.gnu.org/gcc-3.0/lapack-guide.html)
-    - [BLAS (Basic Linear Algebra Subprograms)](https://netlib.org/blas/)
+- 源码编译：依赖 LAPACK 库（Intel 套件有相关库）
 
 ```bash
-# 创建 ~/lib，并将其添加到 LD_LIBRARY_PATH；将 *.a 静态库文件设置软链接（或复制）到此
-export LD_LIBRARY_PATH=$HOME/lib:$LD_LIBRARY_PATH
-
-# 编译 BLAS
-make
-
-mv blas_LINUX.a libblas.a
-
-cp *.a ~/lib
-
 # 编译 LAPACK
 cp make.inc.example make.inc
+make # 耗时较长
 
-make  # 耗时较长
+# 拷贝编译得到的静态库文件
+make -p ${HOME}/local/lib/lapack
+cp *.a ${HOME}/lib
 
-cp *.a ~/lib
 
-# atomsk 编译
+# atomsk 编译、安装
 # 下载 atomsk 源代码，进入 src 目录，修改 Makefile 文件
-LAPACK=-L$HOME/lib/ -llapack -lblas
-INSTPATH=$HOME/src
+LAPACK=-L${HOME}/local/lib/lapack -llapack -lrefblas
+INSTPATH=$HOME/local/atomsk
 CONFPATH=${INSTPATH}/etc
 
-make atomsk
+# 编译
+make atomsk     # 或 make -j4 atomsk
 
-make install  # 应该会出错，但没关系，这步非必需
+# 安装
+make -p ${HOME}/local/atomsk/bin
+# 方式 1
+make install
+# 方式 2
+make INSTPATH=${HOME}/local/atomsk install
 
 # 编译成功
 \o/ Compilation was successful!

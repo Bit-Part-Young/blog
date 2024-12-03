@@ -110,7 +110,7 @@ cif2cell Ni20Mn3P6.cif -p vasp --vasp-cartesian-positions
 
 - 注意事项：
     - CIF 格式有含对称性、不含对称性两种格式（前者晶体学信息更全），大部分程序将构型格式转换成 CIF 都是不含对称性的（空间群为 P1，写入所有原子）
-    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；**posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息**
+    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；**posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息，第二行有注释信息**
     - vaspkit 可将 xsd 文件转换成 POSCAR
     - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
 
@@ -144,7 +144,38 @@ Nb    0.000000000000000    0.000000000000000    0.000000000000000 crystal_vector
 Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector  2    0.000000000000000    3.320000000000000    0.000000000000000
 ```
 
-- LAMMPS dump 文件格式主要内容
+- extxyz 格式内容示例（第二行有信息）
+
+```bash
+# 其他构型文件转换成 extxyz
+32
+Lattice="6.57 0.0 0.0 0.0 6.57 0.0 0.0 0.0 11.88" Properties=species:S:1:pos:R:3 pbc="T T T"
+Nb       1.09062000       4.37562000      10.09800000
+Nb       2.19438000       1.09062000      10.09800000
+
+# OUTCAR 转换成 extxyz
+```
+
+- LAMMPS data 文件格式内容示例
+
+```bash
+# atom_style 为 atomic 时的内容
+Nb5Si3_alpha.lammps-data (written by ASE) 
+
+32 	 atoms 
+2  atom types
+0.0      6.5700000000000003  xlo xhi
+0.0      6.5700000000000003  ylo yhi
+0.0      11.880000000000001  zlo zhi
+
+
+Atoms 
+
+     1   2      1.0906200000000001      4.3756200000000005      10.098000000000001
+     2   2      2.1943800000000002      1.0906200000000001      10.098000000000001
+```
+
+- LAMMPS dump 文件格式内容示例
 
 ```bash
 ITEM: TIMESTEP                                    # 第 N 个时间步长时输出的构型

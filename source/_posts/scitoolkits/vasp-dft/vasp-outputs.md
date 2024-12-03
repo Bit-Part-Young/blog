@@ -73,8 +73,10 @@ password:
 total drift           # 结构中所有原子在 x y z 方向的受力变化总和
 
 # 能量之间的差异
-energy without entropy
-E0
+F = E + PV - TS           # 自由能公式；T=0 时，F=U
+free energy TOTEN         # 自由能
+energy without entropy    # 不含 T*S 熵项的自由能
+E0                        # 
 
 # 结构优化结束标志
 reached required accuracy - stopping structural energy minimisation
