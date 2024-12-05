@@ -38,6 +38,8 @@ password:
 
 ## 使用
 
+- [VASPKIT 功能及教程贴汇总](https://mp.weixin.qq.com/s/JjDxW7fxR8EUJDFLgtIQTQ)
+
 - vaspkit 处理 DOS、能带计算数据演示：[13\_vasp/V2PC/01\_K\_Path\_Bulk\_Structure.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/01_K_Path_Bulk_Structure.md)
 
 - vaspkit 中的 INCAR 选项

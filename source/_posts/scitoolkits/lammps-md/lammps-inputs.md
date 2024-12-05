@@ -53,7 +53,7 @@ Command 类型
 
 - LAMMPS data、dump 格式文件读取、输出：`read_data`、`write_data`、`dump`、`dump_modify`
 
-- 势函数相关命令：`pair_coeff`、`pair_modify`、`pair_style`
+- 势函数相关命令：`pair_style`、`pair_coeff`、`pair_modify`
 
 - 能量最小化：`minimize`、`min_style`、`min_modify`
 
@@ -71,9 +71,17 @@ Command 类型
 atom_style style args
 
 # style
-atomic             # 只有 body 和 hybrid 需要设置 args
+atomic
 body
 hybrid
+
+# atoms 属性
+tag,
+type
+x
+v
+image              # 影像 ID；有时
+mask               # 识别 group ID；LAMMPS 最多设置 32 个 group？
 
 # 示例
 atom_style atomic  # 默认设置
@@ -141,8 +149,7 @@ newton on  # 默认设置
 
 ### units
 
-- 用来定义模拟过程中使用的单位类型，它决定了所有输入脚本、数据文件和所有输出到屏幕、日志文件以及 dump 文件中物理量的单位；一般来说，该命令用在输入脚本最开始的位置
-
+- 用来定义模拟过程中使用的单位类型（单位制），它决定了所有输入脚本、数据文件和所有输出到屏幕、日志文件以及 dump 文件中物理量的单位；一般来说，该命令用在输入脚本最开始的位置
 
 ```bash
 # 语法
@@ -150,9 +157,9 @@ units style
 
 # style
 metal      # 质量：g/mol；距离：Å；时间：ps；能量：ev；力：ev/Å；温度：K
-real       # 时间：fs；能量：Kcal/mol；力：Kcal/mol-Angstrom
+real       # 高分子常用；时间：fs；能量：Kcal/mol；力：Kcal/mol-Angstrom
 lj         # 所有物理量没有单位
-si
+si         # 国际单位制
 cgs
 electron
 
@@ -521,9 +528,11 @@ timestep dt
 # dt：时间步长（以时间为单位）；默认的时间步长依赖于模拟中所采用的单位类型
 
 # 示例
-timestep = 0.005  # tau for units = lj
-timestep = 1.0    # fmsec for units = real
-timestep = 0.001  #  psec for units = metal
+timestep 0.005  # tau for units = lj
+timestep 1.0    # fmsec for units = real
+timestep 0.001  #  psec for units = metal
+
+0.001 ps     # metal；等于 1 fs
 ```
 
 
@@ -758,27 +767,29 @@ compute_modify compute-ID keyword value ...
 
 ### dump
 
+- 输出原子构型信息
+
 ```bash
 # 语法
 dump ID group-ID style N file args
 
-ID                    # 为 dump 分配的名称
-group-ID              # 要 dump 的原子 group ID
-style                 # custom one 等
-N                     # 每 N 步 dump 一次
+ID                    # 为 dump 命令分配的名称/ID
+group-ID              # 原子 group ID
+style                 # custom、one 等
+N                     # 每 N 步输出一次构型
 file                  # dump 文件名
-args                  # style 的参数列表
+args                  # style 参数
 
-# custom args = list of atom attributes 原子属性列表
-mass                     # 原子质量
-id                       # 原子ID
-type                     # 原子类型
-x, y, z                  # 原子坐标（unscaled）
-xs, ys, z                # 原子坐标（scaled）
-c_ID / c_ID[I]           # 允许输出由compute计算的每原子向量或数组(per-atom vectors or arrays)
+# custom 参数：原子属性列表
+mass                  # 原子质量
+id                    # 原子 ID
+type                  # 原子类型
+x, y, z               # 笛卡尔坐标
+xs, ys, z             # 分数坐标
+c_ID / c_ID[I]        # compute 命令计算的每原子向量或数组(per-atom vectors or arrays)
 
 # 示例
-dump 1 all custom 500 file.xyz id type x y z
+dump            1 all custom 500 dump.lammpstrj id type x y z
 ```
 
 - custom style 中的参数：c_ID/c_ID[I] = 允许输出由 compute 计算的每原子向量或数组 (per-atom vectors or arrays)，这里 ID 应替换为先前在 in 文件中定义的计算的实际 ID（**ID 类似于一种变量**）
@@ -809,7 +820,7 @@ dump_modify dump-ID keyword values ...
 ```bash
 undump dump-ID
 
-# dump-ID = 先前定义的dump ID
+dump-ID           # 先前定义的dump ID
 ```
 
 
@@ -824,8 +835,8 @@ undump dump-ID
 thermo N
 
 # 示例
-thermo 0                 # 默认设置
-thermo 100
+thermo          0  # 默认设置
+thermo          100
 ```
 
 
@@ -874,8 +885,6 @@ thermo_style custom step temp ke pe etotal
 ### write_restart
 
 ---
-
-### 操作
 
 ### delete_atoms
 
@@ -972,6 +981,9 @@ min_modify keyword values ...
 min_modify dmax 0.2
 ```
 
+
+---
+
 ### neb
 
 ---
@@ -986,14 +998,15 @@ min_modify dmax 0.2
 # 语法
 variable name style args ...
 
-# name：定义的变量名
-# style：index equal loop等
-# index args：一个或多个字符串
-# equal args：公式（数字等）
-# loop args：N 或 N1 N2
+name    # 定义的变量名
+
+# style
+index           # 一个或多个字符串
+equal           # 等于；公式、数字、thermo 关键字
+loop            # 循环；从 1 开始
 
 # 示例
-variable x index run1 run2 run3
+variable        x index run1 run2 run3
 variable        iteration equal 40
 variable        n loop ${iteration}
 ```
@@ -1074,17 +1087,15 @@ if              "$i==1" then "shell rm data"
 
 - 打印一个文本字符串到屏幕和日志文件
 
-
-
 ```bash
 # 语法
 print string keyword value
 
-# keyword value：没有或一个或多个
-# file value = filename
-# append value = filename
-# screen value = yes or no
-# universe value = yes or no
+# keyword
+file
+append
+screen       # yes/no
+universe     # yes/no
 ```
 
 ---

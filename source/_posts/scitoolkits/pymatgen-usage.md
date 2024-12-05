@@ -474,7 +474,8 @@ lattice                  # 点阵
 volume                   # 体积
 density                  # 密度
 center_of_mass           # 质心
-site_properties          # 位点性质，如 selective_dynamics
+site_properties          # dict；位点性质，如 selective_dynamics
+charge                   # 电荷
 
 # 方法
 make_supercell()         # 建立超胞
@@ -520,6 +521,10 @@ indices_nb = [i for i, site in enumerate(structure) if site.species_string == "N
 ---
 
 #### surface
+
+- [Chap.11 计算小白硬学VASP —— 构建slab模型 - A&H](https://andyhox.github.io/2024/08/05/Learn-VASP-from-pymatgen-11/)
+
+- [Chap.12 计算小白硬学VASP —— 构建异质结模型 - A&H](https://andyhox.github.io/2024/08/06/Learn-VASP-from-pymatgen-12/)
 
 - pymatgen 表面生成无法指定具体的层数（可以指定最第层数）：[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
 
@@ -868,6 +873,7 @@ user_potcar_settings        # 自定义元素赝势
 user_potcar_functional      # 自定义泛涵
 force_gamma                 # 是否使用 Gamma-centered K 点生成方式
 config_dict                 # config_dict["POTCAR"]["Mg"]
+use_structure_charge        # 若为 True，会将体系的电荷赋值给 INCAR 中的 NELECT 参数
 
 # 方法
 write_input()               # 生成 VASP 计算用的 4 个输入文件
@@ -1246,10 +1252,9 @@ ax.figure.savefig()
 
 #### diffraction
 
-XRD 绘制：
-
-- [Pymatgen XRD Plot - Stack Overflow](https://stackoverflow.com/questions/53439514/pymatgen-xrd-plot)
-- [How to get the hkl or hkil indices from calculated xrd pattern - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-to-get-the-hkl-or-hkil-indices-from-calculated-xrd-pattern/45920)
+- XRD 绘制：
+    - [Pymatgen XRD Plot - Stack Overflow](https://stackoverflow.com/questions/53439514/pymatgen-xrd-plot)
+    - [How to get the hkl or hkil indices from calculated xrd pattern - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-to-get-the-hkl-or-hkil-indices-from-calculated-xrd-pattern/45920)
 
 ```python
 from pymatgen.analysis.diffraction.xrd import XRDCalculator
@@ -1264,6 +1269,25 @@ get_pattern(structure).hkls
 get_pattern(structure).d_hkls
 ```
 
+
+---
+
+#### adsorption
+
+- 搜索吸附位点
+
+- [Chap.13 计算小白硬学VASP —— 自动搜索表面吸附位点并生成吸附结构 - A&H](https://andyhox.github.io/2024/08/07/Learn-VASP-from-pymatgen-13/)
+
+```python
+from pymatgen.analysis.adsorption import AdsorbateSiteFinder, plot_slab
+
+# 方法
+find_adsorption_sites()        # 搜索吸附位点
+add_adsorbate()                # 添加吸附原子/分子
+
+# 函数
+plot_slab()                    # 可视化吸附位点
+```
 
 ---
 
@@ -1309,27 +1333,45 @@ symmetry_dataset.equivalent_atoms
 
 ### pymatgen.transformations
 
+- 参考：
+    - [Chap.14 计算小白硬学VASP —— 各类结构“Transformation”使用说明（一） - A&H](https://andyhox.github.io/2024/08/09/Learn-VASP-from-pymatgen-14/)
+    - [Chap.15 计算小白硬学VASP —— 各类结构“Transformation”使用说明（二） - A&H](https://andyhox.github.io/2024/08/16/Learn-VASP-from-pymatgen-15/)
+    - [Chap.16 计算小白硬学VASP —— 各类结构“Transformation”使用说明（三） - A&H](https://andyhox.github.io/2024/08/19/Learn-VASP-from-pymatgen-16/)
+
 - 简单的变换操作：如添加和删除原子位点，替换结构中的元素，到更高级的一对多的转换
 
-- `standard_transformations` 和 `advanced_transformations` 定义的类，都有 `apply_transformation()` 方法
-
-- SQSTransformation 类中调用的是 ATAT 中的 mcsqs 工具或 ICET 中的 enumeration、monte carlo 模块；建议直接使用其调用的原生工具
+- `SQSTransformation` 类中调用的是 ATAT 中的 mcsqs 工具或 ICET 中的 enumeration、monte carlo 模块；建议直接使用其调用的原生工具
 
 ```python
-from pymatgen.transformations.standard_transformations import RemoveSpecieTransformations
+from pymatgen.transformations.standard_transformations import 
 from pymatgen.transformations.advanced_transformations import SQSTransformation
 
 
-# 方法
+# 使用方法
+structure = ...
+transformation = XXX()
+structure_new = transformation.apply_transformation(structure)
+
+
+# standard_transformations 中的类
+RemoveSpecieTransformations           # 删除元素种类
+AutoOxiStateDecorationTransformation  # 自动平衡结构中的价态信息
+ChargedCellTransformation             # 给结构施加额外电荷，使体系整体带正电或者负电
+
+# advanced_transformations 中的类
+SQSTransformation                     # SQS 结构
+EnumerateStructureTransformation      # 枚举结构
+
+# 以上类都有的方法
 apply_transformation(structure)            # 施加变换操作到构型上
 
+
+# 示例
 # 获取 sqs 结构
 sqs = SQSTransformation([2, 2, 2])
-sqs.apply_transformation(structure)
 
 # 枚举无序结构
 # reference: https://github.com/luzihen/pymatgen_examples/blob/master/enumerate_ordering.py
-from pymatgen.transformations.advanced_transformations import EnumerateStructureTransformation
 
 enum = EnumerateStructureTransformation()
 enumerated = enum.apply_transformation(structure, return_ranked_list=100)  # return no more than 100 structures

@@ -188,16 +188,6 @@ rdf = Analysis(images=...).get_rdf()
 - DOS、能带、EOS 计算：[Crystals and band structure — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut04_bulk/bulk.html)
 
 ```python
-# 添加真空层；单独使用该函数时，返回值为 None，即无效果
-from ase.build import add_vacuum
-
-# 优化器
-from ase.optimize.lbfgs import LBFGS
-
-from ase.optimize import QuasiNewton
-
-from ase.constraints import FixAtoms
-
 # 振动分析
 from ase.vibrations import Vibrations
 
@@ -206,9 +196,6 @@ from ase.data import atomic_numbers
 from ase.md.verlet import VelocityVerlet
 
 from ase.units import fs
-
-# 获取布拉维点阵
-atoms.cell.get_bravais_lattice()
 
 
 # 简易元素周期表绘制
@@ -219,26 +206,14 @@ atoms = ptable()
 atoms.write("ptable.png")
 
 
-# 固定平面
-from ase.constraints import FixAtoms, FixedPlane
-```
+# reference: https://andyhox.github.io/2024/08/07/Learn-VASP-from-pymatgen-13/
+# molecule 模块支持通过输入常见的分子化学式构建对应的分子结构
+# 查看 ase 支持的分子种类
+from ase.build.molecule import extra
+from ase.collections import g2
 
-- 其他
-
-```python
-from ase.build import sort
-
-# 按照 chemical symbols 排序生成新的 Atoms object
-sort(atoms)
-
-# 固定原子
-from ase.constraints import FixAtoms
-
-atoms = ...
-# 按照原子类型或 z 轴坐标进行固定
-c = FixAtoms(mask=atoms.symbols == 'Cu')
-c = FixAtoms(mask=atoms.positions[:, 2] < 1.0)
-atoms.set_constraint(c)
+print(g2.names)
+print(extra.keys())
 ```
 
 
@@ -269,8 +244,9 @@ cell.angles()              # 晶格角度
 numbers                    # 原子对应原子序数
 pbc                        # 周期性边界条件
 info                       # 给 Atoms 设置信息；dict；可用于写入 extxyz 格式文件
+constraints                # 获取约束信息（原子 x y z 轴固定信息）
 
-# 方法；主要分为获取和设置；部分方法和属性的功能相同
+# 方法；主要分为获取和设置；部分获取方法与属性的功能相同
 get_xxx()
 set_xxx()
 
@@ -300,6 +276,8 @@ get_potential_energies()   # 每个原子的能量
 get_forces()               # 每个原子的受力
 get_stress()               # 应力张量
 get_stresses()             # 每个原子的应力张量
+
+set_constraints()          # 施加约束；通常需结合 ase.constraints 的 FixAtoms 函数使用，直接设置 False/True 或 0/1 的列表无效果
 ```
 
 
@@ -334,11 +312,11 @@ center(vacuum=10.0, axis=2)
 
 ### ase.build
 
-#### bulk
+- 结构建模
 
-- 参考：[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
-
-- 简单 bulk 模型构建示例代码
+- bulk 晶体结构
+    - 参考：[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
+    - 简单 bulk 晶体结构构建示例代码
 
 ```python
 from ase.build import bulk
@@ -353,27 +331,70 @@ supercell = atoms * 2           # 方式 1
 supercell = atoms * (2, 2, 2)   # 方式 2
 ```
 
-
----
-
-#### surface
-
-- Doc：[Surfaces — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/surface.html)
-- 表面模型构建
-- 无法枚举出具有不同表面终端的所有表面
-- 特定、常见的简单晶体结构表面函数，支持吸附位点
+- surface 表面模型
+    - 官方文档：[Surfaces — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/surface.html)
+    - 无法枚举出具有不同表面终端的所有表面（建议还是通过 Material Studio 或 pymatgen surface 模块或 atomsk 构建含该表面坐标的单胞，进而查看原子层数）
+    - 常见晶体结构（BCC、FCC、HCP、Diamond）的常见表面（100、110、111）构建函数，支持吸附位点（'ontop', 'bridge', 'hollow' 等）
+    - 指定面指数切表面
 
 ```python
-from ase.build import surface
+from ase.build import surface, fcc100, fcc110, fcc111, ...
 
+
+# 给定构型，沿指定面指数切表面
 atoms = ...
-s = surface(lattice=atoms, indices=(1, 1, 0), layers=2, vacuum=10.0)
-
+s = surface(
+    lattice=atoms,
+    indices=(1, 1, 0),
+    layers=2,
+    vacuum=10.0,
+)
 # 参数
-lattice     # Atoms 对象
-indices     # 面指数
-layers      # 一个 layer 指不加真空层一个完整单元的 slab，而非 slab 中的具体的一个原子层，在此基础 * n
-vacuum      # 两端添加真空层
+lattice           # Atoms
+indices           # 面指数
+layers            # 指最小一个完整单元的 slab，而非原子层数
+vacuum            # z 轴两端添加真空层
+
+
+# FCC 结构常见的 (100)、(110)、(111) 面
+fcc100
+fcc110
+fcc111
+# BCC 结构常见的 (100)、(110)、(111) 面
+bcc100
+bcc110
+bcc111
+# Diamond 结构常见的 (100)、(111) 面
+diamond100
+diamond111
+# HCP 结构常见的 (0001) 面
+hcp0001
+hcp10m10     # ？；size 设置有要求
+
+
+# 示例
+atoms = fcc100(
+    symbol="Cu",
+    a=3.615,
+    size=(10, 10, 16),
+    vacuum=30.0,
+    orthogonal=True,
+)
+# 通用参数
+symbol            # 元素符号
+a                 # 晶格常数
+vacuum            # z 轴两端添加真空层
+size              # 指的是层数？
+orthogonal        # 是否转换成正交胞
+```
+
+- 其他
+
+```python
+from ase.build import add_vacuum, sort
+
+add_vacuum()       # 添加真空层；单独使用该函数时，返回值为 None，即无效果
+sort()             # 按照元素符号排序生成新的 Atoms object
 ```
 
 
@@ -381,17 +402,23 @@ vacuum      # 两端添加真空层
 
 ### ase.cell
 
+- 基矢
+
 ```python
 from ase.cell import Cell
 
-# cell 参数转换成基矢
+# 设置基矢
 cell = Cell.fromcellpar([3.31, 3.31, 3.31, 90, 90, 90])
 cell[:]
+
+cell.get_bravais_lattice()     # 获取布拉维点阵
 ```
 
 ---
 
 ### ase.spacegroup
+
+- 空间群
 
 ```python
 from ase.spacegroup import Spacegroup, crystal, get_spacegroup
@@ -415,9 +442,15 @@ spg.equivalent_sites([0.4673, 0, 0.3333])
 
 ### ase.lattice
 
+- 点阵
+
 有生成 graphene 和 graphite 模块：[ase/lattice/hexagonal.py · master · ase / ase · GitLab](https://gitlab.com/ase/ase/-/blob/master/ase/lattice/hexagonal.py)
 
 [Bravais lattices — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/lattice.html)
+
+```python
+
+```
 
 
 ---
@@ -442,11 +475,16 @@ from ase.data import atomic_numbers
 
 # read() 函数
 read(
-    filename=...,        # 输入文件名
-    index=...,           # 读取单帧/多帧数据；int, slice, str 类型
-    format=...,          # 指定文件格式
-    **kwargs             # 其他参数需参考具体的格式文件函数参数写法
+    filename=...,
+    index=...,
+    format=...,
+    **kwargs
 )
+# 参数
+filename                 # 输入文件名
+index                    # 读取单帧/多帧数据；int, slice, str 类型
+format                   # 指定文件格式
+**kwargs                 # 其他参数需参考具体的格式文件函数参数写法
 
 # index 写法
 index=0                  # 第一帧构型
@@ -458,14 +496,38 @@ index=slice(-3, None)    # 同上
 index='1::2'             # 偶数帧数据
 index=slice(1, None, 2)  # 同上
 
+
 # write() 函数
 write(
-    filename=...,        # 输出文件名；"-" 表示标准输出
-    images=...,          # 单个 Atoms 或 Atoms 列表
-    format=...,          # 指定文件格式
-    append=...,          # 是否写入多帧数据
-    **kwargs             # 其他参数需参考具体的格式文件函数参数写法
+    filename=...,
+    images=...,
+    format=...,
+    append=...,
+    **kwargs
 )
+# 参数
+filename=                # 输出文件名；"-" 表示标准输出
+images=                  # 单个 Atoms 或 Atoms 列表
+format=                  # 指定文件格式
+append=                  # 是否写入多帧数据
+**kwargs                 # 其他参数需参考具体的格式文件函数参数写法
+
+
+# 保存为 VASP POSCAR 格式
+write(
+    output_vasp_fn,
+    images=structure,
+    format="vasp",
+    direct=True,
+    sort=True,
+    vasp5=True,
+    ignore_constraints=Fasle,
+)
+# 参数
+direct                   # 笛卡尔坐标/分数坐标
+sort                     # 按照元素的字母顺序对原子进行排序
+vasp5                    # 以 VASP5+ 格式写入
+ignore_constraints       # 是否忽略约束（固定原子信息）
 
 
 # 保存为 LAMMPS data 格式
@@ -475,23 +537,28 @@ write(
     lammps_data_fn,
     images=atoms,
     format="lammps-data",
-    specorder=ele_list,  # 指定 atom type 顺序；默认按照元素符号字母排序
+    specorder=ele_list,
     units="metal",
     atom_style="atomic",
 )
+# 参数
+specorder                # 指定 atom type 顺序；默认按照元素符号字母排序
+
 
 # 读取 LAMMPS data 格式
 atoms = read(
     lammps_data_fn,
     format="lammps-data",
+    units="metal",
     style="atomic",
-    # Z_of_type 参数类型为 dict，键为 type 编号，值为对应的元素原子序数
-    # 若不添加该参数，type 编号对应的元素原子序数默认为 H He ... 等
     Z_of_type={
         1: atomic_numbers["Si"],
         2: atomic_numbers["Nb"],
     },
+
 )
+# 参数
+Z_of_type                # dict，键为 type 编号，值为对应的元素原子序数；若为 None，有 Masses 信息，会根据其猜测原子序号，否则 type 编号对应的元素原子序数默认为 H He ... 等
 ```
 
 - 写法二：从 `ase.io` 中导入具体构型文件格式的模块及其函数
@@ -500,11 +567,11 @@ atoms = read(
 # LAMMPS data 格式
 from ase.io.lammpsdata import read_lammps_data, write_lammps_data
 
-# vasp 格式
+# VASP POSCAR 格式
 from ase.io.vasp import read_vasp, write_vasp
 
-# VASP 输出文件格式
-from ase.io.vasp import read_vasp_out
+# VASP 输出文件格式 OUTCAR、XDATCAR、vasprun.xml
+from ase.io.vasp import read_vasp_out, read_vasp_xdatcar, write_vasp_xdatcar, read_vasp_xml
 
 # Material Studio xsd 格式
 from ase.io.xsd import read_xsd, write_xsd
@@ -517,6 +584,22 @@ from ase.io.xsd import read_xsd, write_xsd
   warnings.warn('write_xyz() overwriting array "{0}" present '
 ```
 
+
+---
+
+### ase.constraints
+
+- 施加约束
+
+```python
+from ase.constraints import FixAtoms
+
+atoms = ...
+# 按照 原子类型或坐标 对原子坐标轴进行固定
+c = FixAtoms(mask=atoms.symbols == "Cu")
+c = FixAtoms(mask=atoms.positions[:, 2] < 1.0)
+atoms.set_constraint(c)
+```
 
 
 ---
@@ -559,6 +642,8 @@ ax.set_title(label=None)
 ---
 
 ### ase.db
+
+- db 文件
 
 - `db.select(sort)` 中的 `sort` 为 含 key 的 str，含 `-` 时，降序
 
@@ -612,7 +697,25 @@ for row in db.select("id<=10"):
 
 ---
 
+### ase.optimize
+
+- 优化器（优化算法）
+
+```python
+# 优化器
+from ase.optimize.lbfgs import LBFGS
+
+from ase.optimize import QuasiNewton
+```
+
+
+---
+
 ### ase.calculators
+
+- 计算器
+
+---
 
 #### VASP
 

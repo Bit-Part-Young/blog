@@ -21,6 +21,8 @@ password:
 
 ## 介绍
 
+C++ 数值优化库：[GitHub - mlpack/ensmallen: A header-only C++ library for numerical optimization --](https://github.com/mlpack/ensmallen)
+
 ---
 
 ### 参考资料

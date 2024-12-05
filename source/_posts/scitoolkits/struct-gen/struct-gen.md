@@ -119,6 +119,8 @@ cif2cell Ni20Mn3P6.cif -p vasp --vasp-cartesian-positions
 ```bash
 POSCAR            # VASP
 CONTCAR           # VASP
+.vasp             # VASP
+.poscar           # VASP；Material Project 下载的构型格式
 dump.lammpstrj    # LAMMPS dump
 .pdb              # Protein Data Bank，可用 VMD 软件（跨平台）打开
 .xsd              # Material Studio
