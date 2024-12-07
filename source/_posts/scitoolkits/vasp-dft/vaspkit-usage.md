@@ -111,6 +111,19 @@ bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
 203              # 从 OUTCAR 文件提取弹性常数并计算弹性性质 |
 205              # EOS 拟合
 
+03               # 能带结构 K-Path
+301              # 一维
+302              # 二维
+303              # Bulk
+305              # Wannier90 代码用 K-Path
+305              # Phonopy 代码用 K-Path
+306              # CP2K 代码用 K-Path
+309              # 可视化第一布里渊区 K-Path
+
+05
+505              # 线性插值（NEB Images）
+508              # Bader2PQR（将 Bader 电荷数据转换成 bader.pqr 文件，在 VMD 中给原子电荷着色）
+
 08               # Advanced Structure Models
 800              # 构建正交超胞
 801              # 指定方向添加真空层

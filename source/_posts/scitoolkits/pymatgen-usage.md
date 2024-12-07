@@ -575,6 +575,7 @@ Z                          # 原子序数
 number                     # 同上
 symbol                     # 元素符号
 long_name                  # 元素的长名称（单词）
+atomic_mass                # 相对原子质量
 atomic_radius_calculated   # 计算的原子半径；经验值
 van_der_waals_radius       # 范德华半径；经验值
 ionic_radii                # 离子半径

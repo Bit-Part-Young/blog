@@ -19,16 +19,22 @@ password:
 # OVITO 使用
 
 - [OVITO](https://www.ovito.org/)
+
 - OVITO 2.9 版本的 Python script 功能可以免费使用，其他需要 Pro 版本
+
 - [OVITO 识别结构的几种方法](https://mp.weixin.qq.com/s/Jh9lQKRbpFyhUnu8aHJSog)
+
 - 选中某层原子：表达式选取 Expression selection
-- 计算层间距：可以尝试 Histogram add modification
+
+- 无直接计算原子层间距的 Modification
 
 - [ovito_modifiers](https://www.ovito.org/docs/current/python/modules/ovito_modifiers.html)
 
 - POSCAR 格式，单个文件含多帧构型，会无法读取；LAMMPS 格式，单个文件含多帧构型，只会读取第一帧数据
 
 - macOS 版本的 OVITO 无法读取多帧构型数据
+
+- 支持 SFTP，可打开远程构型文件
 
 - OVITO 菜单栏：
     - 主菜单
@@ -50,12 +56,14 @@ Wigner-Seitz defect analysis      # WS 缺陷分析
 
 # Coloring
 Assign color                      # 分配颜色/着色
-Color Coding
+Color coding
 
 # Modification
 Replicate                         # 扩胞
 Slice                             # 切片 
-Wrap at periodic boundaries       # 
+Smooth trajectory                 # 
+Unwrap trajectories               # 
+Wrap at periodic boundaries       # 将 box 外原子移至 box 内
 
 # Selection
 Clear selection                   # 清除选择
@@ -69,7 +77,7 @@ Calculate local entropy           # 计算局域熵
 # Structure identification
 Ackland-Jones analysis            # 
 Centrosymmetry parameter          # CSP
-Common neighbor analysis          # CNA
+Common neighbor analysis          # CNA；识别原子对应的晶体结构
 
 # Visualization
 ```
@@ -89,7 +97,12 @@ Common neighbor analysis          # CNA
 
 - [OVITO批量导入数据的功能](https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA)
 
+- OVITO 显示多晶不同颜色
+    - 方式 1：添加 CNA Modification
+    - 方式 2：添加 'Color coding' Modification，在右下方 'Input property' 选择 'Particle Identifier'，此时，**晶粒被设置为相同的颜色**；在颜色条下方点击 'Adjust range'，设置不同的颜色对应不同的晶粒 ID
 
+- [OVITO 选择原子的几种方法](https://zhuanlan.zhihu.com/p/10934298169)
+`
 
 ---
 

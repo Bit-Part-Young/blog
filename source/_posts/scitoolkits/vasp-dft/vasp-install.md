@@ -58,6 +58,11 @@ password:
 
 - VASP.5.4.4、VASP.6.X.X 安装包路径：Master: `/opt/software`；将其拷贝到自己的用户目录下，传输至超算平台）
 
+- 编译选项：[Compiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Compiler_options)
+- 预编译选项：[Precompiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Precompiler_options)
+- [Linking to libraries - VASP Wiki](https://www.vasp.at/wiki/index.php/Linking_to_libraries)
+- [OpenACC GPU port of VASP - VASP Wiki](https://www.vasp.at/wiki/index.php/OpenACC_GPU_port_of_VASP) 
+
 - makefile.include 不同架构的含义：[makefile.include - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include)
 
 - make.include 文件选择
@@ -69,7 +74,7 @@ makefile.include.intel                   # VASP.6.X.X
 
 # GNU compilers for CPUs
 makefile.include.linux_gnu               # VASP.5.X.X
-makefile.include.gnu_omp                 # VASP.6.X.X
+makefile.include.gnu                     # VASP.6.X.X
 
 # NVIDIA HPC-SDK for CPU and GPU
 # VASP.5.X.X GPU

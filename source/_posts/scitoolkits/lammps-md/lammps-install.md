@@ -35,6 +35,8 @@ password:
 
 ## cmake 编译
 
+- 编译选项：[3.4. Basic build options — LAMMPS documentation](https://docs.lammps.org/Build_basics.html)
+
 - 适用于较新版本的 LAMMPS
 
 ```bash
@@ -77,20 +79,27 @@ cmake -C ../cmake/presets/basic.cmake -C ../cmake/presets/kokkos-cuda.cmake ../c
 cmake -D PKG_KSPACE=yes -D PKG_USER-CONP2=yes ../cmake
 
 # cmake 参数；D 可以与后面的编译选项空一格空格
--DCMAKE_C_COMPILER           # 指定 C 编译器
--DCMAKE_CXX_COMPILER         # 指定 CXX 编译器
--DCMAKE_Fortran_COMPILER     # 指定 Fortran 编译器
--DCMAKE_INSTALL_PREFIX       # 安装路径
--DCMAKE_BUILD_TYPE           # 构建类型；Debug / Release
--DBUILD_SHARED_LIBS          # 指定是否安装成共享库；若安装 LAMMPS 的 Python 模块，需指定
--DPython_EXECUTABLE          # 指定 Python 解释器路径
--DPKG_XXX=yes               # 安装 XXX package
--DPKG_GPU=on                 # 导入/安装 GPU package
--DGPU_API                    # opencl 或 cuda
+-D BUILD_MPI                  # 
+-D LAMMPS_MACHINE
+-D CMAKE_C_COMPILER           # 指定 C 编译器
+-D CMAKE_CXX_COMPILER         # 指定 CXX 编译器
+-D CMAKE_Fortran_COMPILER     # 指定 Fortran 编译器
+-D CMAKE_INSTALL_PREFIX       # 安装路径
+-D CMAKE_BUILD_TYPE           # 构建类型；Debug / Release
+-D BUILD_SHARED_LIBS          # 指定是否安装成共享库；若安装 LAMMPS 的 Python 模块，需指定
+-D Python_EXECUTABLE          # 指定 Python 解释器路径
+-D PKG_XXX=yes               # 安装 XXX package
+-D PKG_GPU=on                 # 导入/安装 GPU package
+-D GPU_API                    # opencl 或 cuda
 
 make                         # 编译
 make install                 # 安装
 make install-python          # 安装 LAMMPS 的 Python 模块；作用是生成 whl 文件
+
+
+cmake --build . --target clean  # 删除编译的目标、库和可执行文件
+make clean                      # 同上
+
 
 
 lmp -h                       # 显示已编译的 LAMMPS 版本的所有信息；可查看已安装的 packages

@@ -19,6 +19,8 @@ password:
 
 # Intel oneAPI 使用
 
+Intel oneAPI 包括对 OpenMP 的支持
+
 - 参考：[安装 Intel® oneAPI Base Toolkit 和 Intel® oneAPI HPC](https://blog.csdn.net/weixin_42487488/article/details/115066980)
 
 - Intel oneAPI 暂不支持 Arch Linux
@@ -96,15 +98,31 @@ mpiifort -v
 icx -v
 icpx -v
 
-# Intel 编译器
-mpiicc
-mpiicpc
-mpiifort
+# icc mpiicc mpicc 三者区别
+icc             # Intel C Compiler；Intel 提供的高性能 C 编译器
+mpiicc          # MPI Intel C Compiler；基于 icc 的 MPI 版本，特殊的编译器包装器，用于编译使用 MPI 的并行程序；Intel MPI + icc
+mpicc           # 广泛用于编译 MPI 程序的通用 C 编译器包装器；Intel MPI + gcc
+
+
+# Intel Classic 编译器
+icc
+icpc
+ifort
+
+# Intel oneAPI 编译器
+icx
+icpx
+ifx
 
 # GNU 编译器
-mpicc
-mpif90
-mpifc
+gcc
+g++
+gfortran
+
+# NVHPC 编译器
+nvc
+nvc++
+nvfortran
 ```
 
 - Intel oneAPI 卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)

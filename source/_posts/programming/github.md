@@ -455,10 +455,14 @@ echo 'eval "$(gh copilot alias -- zsh)"' >> ~/.zshrc
 
 ## 相关问题
 
+- 在仓库所在链接后添加 `stargazers`：[查看GitHub仓库被谁star · Issue #15 · oneone1995/blog · GitHub](https://github.com/oneone1995/blog/issues/15)
+
+- GitHub feed 最新消息时间与电脑时间差 12 小时（移动端、网页均是次情况）
+
 - GitHub 桌面端不好用；移动端有探索功能
 
 - [x] 之前留言过的 GitHub issue，仍会收到后续通知， 如何关闭（在 GitHub 个人主页的 Notifications 处关闭）
 
 - [ ] GitHub Organization 删除后，90 天内该名字无法被使用
 
-- [ ] GitHub 添加 organization 无成员（弄成课题组）
+- [ ] GitHub 添加 organization 成员（弄成课题组）

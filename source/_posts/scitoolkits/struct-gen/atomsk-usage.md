@@ -209,8 +209,9 @@ atomsk POSCAR vasp               # 笛卡尔坐标
 atomsk POSCAR -fractional vasp   # 分数坐标
 
 # 添加真空层
--cell add 15 z                   # 在 z 轴一侧添加真空层
+-cell add 15 z                   # 在 z 轴上半部分添加真空层
 -shift 0 0 15 -cell add 30 z     # 在 z 轴两侧添加真空层
+-shift 0 0 15 -cell add 15 z     # 在 z 轴下半部分添加真空层
 
 # 格式转换
 # 输出文件可以是具体的文件名，也可以是文件格式；输出文件可以是多个
@@ -226,20 +227,6 @@ atomsk XXX.cfg xyz        # 常用：xyz lammps/lmp vasp/pos cif
 X!X ERROR: only one mode can be used at a time.
 ```
 
+- 多晶模型及界面模型（coating 模型）构建： [【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
 
----
-
-### 其他
-
-多晶模型及界面模型（coating 模型）构建： [【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
-
-基于 Voronoi tessellation 算法生成多晶模型
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090955091.png)
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090956815.png)
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405090958113.png)
+- 多晶模型：基于 Voronoi tessellation 算法生成

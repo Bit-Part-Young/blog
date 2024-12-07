@@ -30,6 +30,22 @@ password:
 
 ## LAMMPS 常用命令
 
+原子属性有哪些
+
+- [ ] 更新 LAMMPS 相关输入参数
+    - lattice
+    - create_box
+    - create_atoms
+    - print
+    - atom_style
+    - units
+    - compute
+    - variable（参考孔老师的 MSD 代码）
+    - jump
+    - label
+
+
+
 Command 类型
 
 - 全局设置
@@ -64,7 +80,7 @@ Command 类型
 
 - 定义模拟过程中原子的类型，它会决定原子包括哪些属性；该命令必须在建立模拟盒子（使用命令 `read_data` 或 `read_restart` 或 `create_box`）之前使用
 
-- `atomic`：典型物理体系：金属、固体、粗粒度液体
+- 默认值：atomic（典型物理体系：金属、固体、粗粒度液体）
 
 ```bash
 # 语法
@@ -75,12 +91,12 @@ atomic
 body
 hybrid
 
-# atoms 属性
-tag,
+# atomic 对应属性
+tag
 type
 x
 v
-image              # 影像 ID；有时
+image              # 影像盒子 ID；有时原子会跑到盒子外面，将其所处的影像盒子进行编号
 mask               # 识别 group ID；LAMMPS 最多设置 32 个 group？
 
 # 示例
@@ -115,15 +131,18 @@ boundary p p p
 
 - 定义模拟的维度
 
+- 默认值：3
+
 ```bash
 # 语法
-dimension N           # N 为2 或 3
+dimension N           
+
+N                   # 2/3
 
 # 示例
 dimension 3           # 默认设置
 ```
 
-- 参考 “how to” 部分，了解如何进行二维模拟
 
 ---
 
@@ -151,15 +170,30 @@ newton on  # 默认设置
 
 - 用来定义模拟过程中使用的单位类型（单位制），它决定了所有输入脚本、数据文件和所有输出到屏幕、日志文件以及 dump 文件中物理量的单位；一般来说，该命令用在输入脚本最开始的位置
 
+- 默认值：lj
+
+- metal
+    - 质量：g/mol
+    - 长度：Å
+    - 时间：ps
+    - 能量：ev
+    - 力：ev/Å
+    - 温度：K
+
+- real
+    - 时间：fs
+    - 能量：Kcal/mol
+    - 力：Kcal/mol-Angstrom
+
 ```bash
 # 语法
 units style
 
 # style
-metal      # 质量：g/mol；距离：Å；时间：ps；能量：ev；力：ev/Å；温度：K
-real       # 高分子常用；时间：fs；能量：Kcal/mol；力：Kcal/mol-Angstrom
-lj         # 所有物理量没有单位
-si         # 国际单位制
+metal              # 金属体系常用
+real               # 高分子常用
+lj                 # 所有物理量没有单位
+si                 # 国际单位制
 cgs
 electron
 
@@ -173,7 +207,7 @@ units metal
 
 ### read_data
 
-- 读取构型文件（LAMMPS data 格式）
+- 读取 LAMMPS data 构型格式文件
 
 ```bash
 # 语法
@@ -228,6 +262,20 @@ Pair Coeffs
 # Atoms 内容写法；与 atom_style 相关
 atomic atom-ID atom-type x y z           # atomic
 atom-ID molecule-ID atom-type q x y z    # full
+```
+
+
+---
+
+### write_data
+
+- 写出 LAMMPS data 构型格式文件
+
+- 使用 LAMMPS 内置命令构建模型后，需设置原子类型对应的相对原子质量（也可势函数），再使用 `write_data`，否则会报错
+
+```bash
+# 语法
+write_data file
 ```
 
 
@@ -500,6 +548,7 @@ group sub id 10 25 50
 ### mass
 
 - 为某一种或几种类型的原子设置质量
+
 - 只有在模拟盒子定义后，才能使用该命令
 
 ```bash
@@ -517,22 +566,20 @@ mass 1 1.0
 
 ### timestep
 
-- 为该命令之后的分子动力学模拟设置时间步长
-
-- 默认时间步长：metal 单位，0.001 ps；real 单位，1.0 fs
+- 为 MD 设置时间步长
 
 ```bash
 # 语法
 timestep dt
 
-# dt：时间步长（以时间为单位）；默认的时间步长依赖于模拟中所采用的单位类型
+dt            # 时间步长值；默认值取决于 units
 
 # 示例
-timestep 0.005  # tau for units = lj
-timestep 1.0    # fmsec for units = real
-timestep 0.001  #  psec for units = metal
+timestep 0.001
 
-0.001 ps     # metal；等于 1 fs
+# 默认值
+1 fs          # real
+0.001 ps      # metal；等于 1 fs
 ```
 
 
@@ -602,6 +649,21 @@ fix ID group-ID style args
 fix 1 all nvt temp 300 300 100.0
 
 # 对原子进行操作
+```
+
+
+---
+
+### fix setforce
+
+```bash
+fix ID group-ID setforce fx fy fz keyword value ...
+
+# 设置原子 x y z 方向的受力
+NULL 表示不改变该方向的受力
+
+# 示例
+fix 1 all setforce 0.0 0.0 NULL
 ```
 
 
@@ -781,7 +843,7 @@ file                  # dump 文件名
 args                  # style 参数
 
 # custom 参数：原子属性列表
-mass                  # 原子质量
+mass                  # 相对原子质量
 id                    # 原子 ID
 type                  # 原子类型
 x, y, z               # 笛卡尔坐标
@@ -1017,14 +1079,15 @@ variable        n loop ${iteration}
 
 - 关闭当前输入脚本文件，打开命令中文件名所指定的文件，并从那个文件开始读入 LAMMPS 命令；与命令 `include` 不同的是，LAMMPS 不会再返回到之前的输入文件了
 
+- 'SELF' 含义：重新打开当前 in 文件并再次读取
 
 
 ```bash
 # 语法
 jump file label
 
-# file： 要跳转到的输入脚本的文件名
-# label：[可选]要跳转到的输入脚本中的标签；从标签的位置开始向下执行
+file：     # 要跳转到的 in 文件名
+label：    # 可选；要跳转到的 in 文件中的标签；从标签的位置开始向下执行
 
 # 示例
 jump newfile
@@ -1032,7 +1095,6 @@ jump in.run2 runloop
 jump SELF runloop
 ```
 
-- 如果文件名使用了单词 “SELF”，则当前输入脚本将被重新打开并再次读取。
 
 ---
 
