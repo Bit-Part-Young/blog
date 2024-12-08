@@ -219,9 +219,9 @@ atomsk POSCAR -fractional vasp   # 分数坐标
 atomsk XXX.cfg xyz        # 常用：xyz lammps/lmp vasp/pos cif
 
 # 常见表面的具体坐标轴
-"[010]" "[001]" "[100]"          # BCC、FCC （100）
-"[1-10]" "[001]" "[110]"         # BCC、FCC （110）
-"[11-2]" "[-110]" "[111]"        # BCC、FCC （111）
+"[010]" "[001]" "[100]"          # BCC、FCC (100)
+"[1-10]" "[001]" "[110]"         # BCC、FCC (110)
+"[11-2]" "[-110]" "[111]"        # BCC、FCC (111)
 
 # 报错内容
 X!X ERROR: only one mode can be used at a time.

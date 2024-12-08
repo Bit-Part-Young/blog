@@ -633,6 +633,7 @@ Lattice.cubic(5)
 reciprocal_lattice          # 倒易点阵
 
 # 方法
+d_hkl()                     # 获取晶面间距（不准确，不推荐用）
 get_wigner_seitz_cell()     # wigner seitz 原胞
 get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
 ```

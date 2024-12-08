@@ -323,9 +323,12 @@ lattice style scale keyword values ...
 # i,j,k = 整数晶向方向
 
 # 示例
-lattice none 1.0             # 默认设置
-lattice fcc 3.52
-lattice bcc 3.168 orient x 1 0 0 orient y 0 1 0 orient z 0 0 1  #
+lattice      none 1.0             # 默认设置
+lattice      fcc 3.52
+# BCC (100) 表面，orient 可去掉
+lattice      bcc 3.168 orient x 1 0 0 orient y 0 1 0 orient z 0 0 1
+# FCC (111) 表面
+lattice      fcc 3.615 orient x 1 1 -2 orient y -1 1 0 orient z 1 1 1
 ```
 
 

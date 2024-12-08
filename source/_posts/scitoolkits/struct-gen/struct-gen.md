@@ -114,11 +114,12 @@ cif2cell Ni20Mn3P6.cif -p vasp --vasp-cartesian-positions
     - vaspkit 可将 xsd 文件转换成 POSCAR
     - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
 
-- 常见构型文件格式文件名及其后缀
+- 常见构型文件格式文件名及其后缀：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
 
 ```bash
 POSCAR            # VASP
 CONTCAR           # VASP
+XDATCAR           # VASP
 .vasp             # VASP
 .poscar           # VASP；Material Project 下载的构型格式
 dump.lammpstrj    # LAMMPS dump
@@ -129,6 +130,7 @@ dump.lammpstrj    # LAMMPS dump
 .xsf              # XCrySDen
 .stru             # ABACUS
 .cube             # Gaussian
+.cfg              # AtomEye
 ```
 
 - xyz 格式内容示例
