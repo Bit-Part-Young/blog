@@ -340,10 +340,12 @@ sbatch job.slurm             # 提交作业
 squeue                       # 查看作业状态
 scancel                      # 删除作业
 scontrol                     # 查看作业详细状态
-         show job            # 所有作业详细状态
-         show job JOBID      # 指定作业详细状态
 sinfo                        # 查看集群状态
-      --partition=64c512g    # 查看特定队列
+   
+scontrol show job            # 所有作业详细状态
+scontrol show job JOBID      # 指定作业详细状态
+sinfo --partition=64c512g    # 查看特定队列
+
 # 节点状态
 drain                        # 节点故障
 alloc                        # 节点在用

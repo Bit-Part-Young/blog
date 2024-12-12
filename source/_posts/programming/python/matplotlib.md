@@ -756,6 +756,8 @@ plt.savefig()       # 更加通用的命令；适用于没有明确的 Figure �
 
 - [ ] 散点图绘制时，无法直接使每个数据点对应不同的 marker
 
+- marker 样式：[matplotlib.markers — Matplotlib 3.9.3 documentation](https://matplotlib.org/stable/api/markers_api.html)
+
 ```python
 # 点线图
 ax.plot(x, y, ...)
@@ -1018,6 +1020,20 @@ plt.show()
 ---
 
 ## 其他
+
+- 平滑 `plot` 绘制的曲线：[python - Plot smooth line with PyPlot - Stack Overflow](https://stackoverflow.com/questions/5283649/plot-smooth-line-with-pyplot)
+
+```python
+from scipy.interpolate import make_interp_spline, BSpline
+
+# 生成更密的数据点
+smooth_x = np.linspace(T.min(), T.max(), 300) 
+
+spl = make_interp_spline(T, power, k=3)
+smooth_y = spl(xnew)
+
+ax.plot(smooth_x, smooth_y)
+```
 
 ```python
 # 调整 Figure 尺寸

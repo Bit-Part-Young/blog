@@ -42,6 +42,8 @@ password:
     - [CrystalMaker Software: Crystal & Molecular Structures Modelling and Diffraction](https://crystalmaker.com/)
 
 
+缺陷构型生成：[GitHub - nanyanshouhu/Defect\_generator](https://github.com/nanyanshouhu/Defect_generator)
+
 
 ---
 
@@ -119,10 +121,10 @@ cif2cell Ni20Mn3P6.cif -p vasp --vasp-cartesian-positions
 ```bash
 POSCAR            # VASP
 CONTCAR           # VASP
-XDATCAR           # VASP
+XDATCAR           # VASP 轨迹文件
 .vasp             # VASP
 .poscar           # VASP；Material Project 下载的构型格式
-dump.lammpstrj    # LAMMPS dump
+dump.lammpstrj    # LAMMPS 轨迹文件
 .pdb              # Protein Data Bank，可用 VMD 软件（跨平台）打开
 .xsd              # Material Studio
 .cell             # CASTEP
@@ -131,6 +133,8 @@ dump.lammpstrj    # LAMMPS dump
 .stru             # ABACUS
 .cube             # Gaussian
 .cfg              # AtomEye
+.car              # DMol3；Material Studio 可读
+.arc              # DMol3；类似轨迹文件；Material Studio 可读
 ```
 
 - xyz 格式内容示例
@@ -280,6 +284,54 @@ LAMMPS 晶界构建：[Grain-Boundary-Energies-LAMMPS/Code and Scripts/Python an
 - 含晶界构建
     - 旧：[GitHub - wojdyr/gosam: generator of simple atomistic models](https://github.com/wojdyr/gosam)
     - 复刻上述仓库（代码有更新）：[GitHub - akakcolin/gosam: generator of simple atomistic models](https://github.com/akakcolin/gosam)
+
+- aimsgb 程序使用
+
+```python
+# 指定旋转轴、sigma、晶面 生成晶界
+from aimsgb import Grain, GrainBoundary
+
+initial_structure = Grain.from_file("POSCAR_Fe")
+gb = GrainBoundary(
+    axis=[0, 0, 1],
+    sigma=5,
+    plane=[1, 2, 0],
+    initial_struct=initial_structure,
+)
+
+structure = Grain.stack_grains(
+    grain_a=gb.grain_a,
+    grain_b=gb.grain_b,
+    direction=gb.direction,
+)
+
+
+# 寻找所有可用的晶界信息
+from aimsgb import GBInformation
+
+# 参数: 旋转轴和最大 sigma 值
+# 返回值: 所有可能的 sigma 及对应的旋转角、晶面和 CSL 矩阵
+
+gb_dict = GBInformation(axis=[1, 1, 0], max_sigma=10)
+
+print(gb_dict)
+
+print(gb_dict.get_gb_info()[3])
+
+# output
+"""
+Grain boundary information for rotation axis: 110
+Show the sigma values up to 10 (Note: * means twist GB, Theta is the rotation angle)
+|  Sigma  |  Theta  | GB plane   | CSL matrix   |
+|---------+---------+------------+--------------|
+|    3    |  70.53  | (-1 1 1)   | -1  1  1     |
+|         |         | (1 -1 2)   | 1 -1  1      |
+|         |         | (1 1 0)*   | 1  2  0      |
+|    9    |  38.94  | (-1 1 -4)  | -1 -2  1     |
+|         |         | (-2 2 1)   | 1  2  1      |
+|         |         | (1 1 0)*   | -4  1  0     |
+"""
+```
 
 
 ---

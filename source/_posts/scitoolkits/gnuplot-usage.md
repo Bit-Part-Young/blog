@@ -85,3 +85,5 @@ png pdf jpeg              # 图片格式
 size 800 800              # 图片尺寸
 enhanced font 'Arial,12'  # 字体及大小
 ```
+
+- [表面态颜色-gnuplot颜色设置](https://mp.weixin.qq.com/s/mIv6nqGjsPJCLP5so7qQ8w)

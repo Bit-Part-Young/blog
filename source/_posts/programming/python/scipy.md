@@ -64,4 +64,24 @@ sigma       # 高斯滤波的展宽；值不能太大，否则会偏离原始数
 
 # 特殊函数
 from scipy import special
+
+
+# 最小二乘拟合
+from scipy.optimize import leastsq
+
+leastsq(func, x0, args=())
+# 参数
+func            # 残差函数，理论值和观测值的差；调用形式应为 func(p, *args)， p 是模型参数的数组
+x0              # 参数的初始猜测值，数组形式
+args            # 传递给 func 的额外参数
+
+# 返回值 (x, ier)
+x               # 拟合参数的最佳值
+
+ier             # 终止标志，1-5
+1               # 函数的两次迭代之间的相对误差小于 ftol
+2               # 两次迭代之间的相对参数变化小于 xtol
+3               # 以上两个条件同时满足
+4               # 方向余弦的平方和的值（即参数向量的变化量）小于 gtol
+5               # 函数调用次数超过 maxfev 设定的最大值
 ```

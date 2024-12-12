@@ -222,9 +222,11 @@ onlinelibrary.wiley.com
 
 - [GitHub - Planshit/Tai: 👻 在Windows上统计软件使用时长和网站浏览时长](https://github.com/Planshit/Tai)
 
-- 切换统一程序下的不同窗口：[GitHub - sigoden/window-switcher: Easily switch between windows of the same app with Alt+\` (Backtick), also switch between apps with Alt+Tab.](https://github.com/sigoden/window-switcher)
+- 切换同一程序下的不同窗口（macOS 中的快捷键）：[GitHub - sigoden/window-switcher: Easily switch between windows of the same app with Alt+\` (Backtick), also switch between apps with Alt+Tab.](https://github.com/sigoden/window-switcher)
 
 - 自动切换中英文输入法：[GitHub - flyinclouds/KBLAutoSwitch: AHK自动切换中英文输入法，输入法，自动切换](https://github.com/flyinclouds/KBLAutoSwitch)
+
+- 类似 macOS 中的触发角：[GitHub - flexits/HotCornersWin: Add macOS hot corners function to Windows 10](https://github.com/flexits/HotCornersWin)
 
 - 应用窗口居中和大小重置：[GitHub - Devail1/window-center-resize: A utility application that allows you to easily center and resize windows on your desktop using customizable keyboard shortcuts.](https://github.com/Devail1/window-center-resize)
 

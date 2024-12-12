@@ -102,7 +102,9 @@ Common neighbor analysis          # CNA；识别原子对应的晶体结构
     - 方式 2：添加 'Color coding' Modification，在右下方 'Input property' 选择 'Particle Identifier'，此时，**晶粒被设置为相同的颜色**；在颜色条下方点击 'Adjust range'，设置不同的颜色对应不同的晶粒 ID
 
 - [OVITO 选择原子的几种方法](https://zhuanlan.zhihu.com/p/10934298169)
-`
+
+- [Ovito位错分析mesh透明度设置方法](https://mp.weixin.qq.com/s/LtkGpzszEg-Xx9XBZ0Am8w)
+
 
 ---
 

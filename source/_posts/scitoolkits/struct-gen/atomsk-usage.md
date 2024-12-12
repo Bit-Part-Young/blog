@@ -159,6 +159,7 @@ make -f Makefile.macos atomsk
 -wrap                   # 将胞外原子通过 PBC 到胞内
 -properties
 -remove-doubles
+-mirror
 ```
 
 - 常用 modes
@@ -166,6 +167,9 @@ make -f Makefile.macos atomsk
 ```bash
 --create                # 构建晶体结构
 --merge
+
+# 报错内容：一次只能使用一个 mode
+X!X ERROR: only one mode can be used at a time.
 ```
 
 - atomsk 支持的构型文件格式
@@ -222,9 +226,6 @@ atomsk XXX.cfg xyz        # 常用：xyz lammps/lmp vasp/pos cif
 "[010]" "[001]" "[100]"          # BCC、FCC (100)
 "[1-10]" "[001]" "[110]"         # BCC、FCC (110)
 "[11-2]" "[-110]" "[111]"        # BCC、FCC (111)
-
-# 报错内容
-X!X ERROR: only one mode can be used at a time.
 ```
 
 - 多晶模型及界面模型（coating 模型）构建： [【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)

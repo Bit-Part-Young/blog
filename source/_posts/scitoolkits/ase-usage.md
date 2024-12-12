@@ -21,7 +21,7 @@ password:
 
 - [atomic simulation environment (ASE)](https://wiki.fysik.dtu.dk/ase)：一系列用于设置、操作、运行、可视化及分析原子模拟的工具和 Python 模块
 
-- ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与**核心** `Atoms` object 和 ASE 中的许多可用算法一起使用
+- ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与**核心** `Atoms` object 和 ASE 中的许多可用算法一起使用；支持的 `Calculators`：
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202406022047963.png)
 
@@ -164,6 +164,8 @@ nglview 组件 效果图：
 
 ---
 
+### 其他
+
 - rdf 计算
 
 ```python
@@ -172,8 +174,6 @@ from ase.geometry.analysis import Analysis
 # 添加 element 参数，可计算 partial rdf；默认计算 full rdf
 rdf = Analysis(images=...).get_rdf()
 ```
-
----
 
 - ase neb 方法：[Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
 
@@ -191,11 +191,7 @@ rdf = Analysis(images=...).get_rdf()
 # 振动分析
 from ase.vibrations import Vibrations
 
-from ase.data import atomic_numbers
-
 from ase.md.verlet import VelocityVerlet
-
-from ase.units import fs
 
 
 # 简易元素周期表绘制
@@ -204,16 +200,6 @@ from ase.utils.ptable import ptable
 
 atoms = ptable()
 atoms.write("ptable.png")
-
-
-# reference: https://andyhox.github.io/2024/08/07/Learn-VASP-from-pymatgen-13/
-# molecule 模块支持通过输入常见的分子化学式构建对应的分子结构
-# 查看 ase 支持的分子种类
-from ase.build.molecule import extra
-from ase.collections import g2
-
-print(g2.names)
-print(extra.keys())
 ```
 
 
@@ -225,8 +211,11 @@ print(extra.keys())
 ### ase.atoms
 
 - Atom 和 Atoms 是 ASE 的两个基本 Object， Atoms 由 Atom 构成
-- 本质上 Atoms 是 Atom 的 list，可以使用标序的方式来查看 Atom
+
+- Atoms 本质上是 Atom 的 list，可以使用标序的方式来查看 Atom
+
 - [array methods of Atoms objects](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#working-with-the-array-methods-of-atoms-objects)
+
 - 需添加 calculator 才能使用的 methods：[Adding a calculator](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#adding-a-calculator)
 
 ```python
@@ -250,14 +239,16 @@ constraints                # 获取约束信息（原子 x y z 轴固定信息�
 get_xxx()
 set_xxx()
 
+# （一般）方法
 todict()                   # 将原子信息写入 dict
 copy()                     # 拷贝
 wrap()                     # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
-rattle()
+rattle()                   # 扰动？
 write()                    # 写入构型格式文件
 edit()
 pop()
 
+# get 方法
 get_pbc()                  # 周期性边界条件
 get_cell()                 # 基矢
 get_volume()               # 体积
@@ -270,41 +261,50 @@ get_chemical_symbols()     # 化学符号列表
 get_distance()             # 两原子间的距离
 get_distances()            # 第 i 个原子与给定原子列表间的距离
 
-# 需添加 calculator 才能使用的方法
+# get 方法；需添加 calculator 才能使用的方法
 get_potential_energy()     # 总能量
 get_potential_energies()   # 每个原子的能量
 get_forces()               # 每个原子的受力
 get_stress()               # 应力张量
 get_stresses()             # 每个原子的应力张量
 
+
+# set 方法
+set_chemical_symbols()     # 设置元素符号；可用于置换元素
 set_constraints()          # 施加约束；通常需结合 ase.constraints 的 FixAtoms 函数使用，直接设置 False/True 或 0/1 的列表无效果
+
+center()                   # 在指定轴两端各添加真空层并移至该轴中心
+# 参数
+vacuum                     # 真空层厚度
+axis                       # 指定轴
 ```
 
+- 晶体常用变量获取
 
 ```python
 from ase.atoms import Atoms
 from ase.formula import Formula
 
-atoms: Atoms      # 类型提示
+atoms: Atoms
 
-# 晶体常用变量获取
-# 化学式
-formula = atoms.get_chemical_formula()
-# 成分 {'Al': 5, 'Ti': 1}
-composition = Formula(formula).count()
 # 原子数
 natoms = len(atoms)
 # 元素种类数
 nelements = len(set(atoms.get_chemical_symbols()))
+# 化学式
+formula = atoms.get_chemical_formula()
+# 成分 {'Al': 5, 'Ti': 1}
+composition = Formula(formula).count()
 
 # 构型中某一元素的浓度
-concentration = atoms.get_chemical_symbols().count('Pd') / len(atoms)
+concentration = atoms.get_chemical_symbols().count("Pd") / len(atoms)
+```
 
-# 删除 H 原子
+- 其他用法
+
+```python
+# 删除某一元素
 del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
-
-# 生成 slab 模型；在指定轴两端各添加真空层 vacuum 数值并使原子位点居中
-center(vacuum=10.0, axis=2)
 ```
 
 
@@ -314,9 +314,9 @@ center(vacuum=10.0, axis=2)
 
 - 结构建模
 
-- bulk 晶体结构
+- Bulk 晶体结构
     - 参考：[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
-    - 简单 bulk 晶体结构构建示例代码
+    - 简单 Bulk 晶体结构构建示例代码
 
 ```python
 from ase.build import bulk
@@ -336,6 +336,12 @@ supercell = atoms * (2, 2, 2)   # 方式 2
     - 无法枚举出具有不同表面终端的所有表面（建议还是通过 Material Studio 或 pymatgen surface 模块或 atomsk 构建含该表面坐标的单胞，进而查看原子层数）
     - 常见晶体结构（BCC、FCC、HCP、Diamond）的常见表面（100、110、111）构建函数，支持吸附位点（'ontop', 'bridge', 'hollow' 等）
     - 指定面指数切表面
+
+- 注意事项：
+    - fcc100、fcc110、bcc100、hcp10m10、diamond100 总是返回正交胞
+    - fcc111、bcc110、bcc110、hcp0001 可返回非正交胞和正交胞两种
+    - fcc211 只返回正交胞；diamond111 只返回非正交胞
+    - root surface 是什么含义？
 
 ```python
 from ase.build import surface, fcc100, fcc110, fcc111, ...
@@ -360,6 +366,7 @@ vacuum            # z 轴两端添加真空层
 fcc100
 fcc110
 fcc111
+fcc211        # 设置有要求
 # BCC 结构常见的 (100)、(110)、(111) 面
 bcc100
 bcc110
@@ -370,6 +377,9 @@ diamond111
 # HCP 结构常见的 (0001) 面
 hcp0001
 hcp10m10     # ？；size 设置有要求
+
+mx2          # MoS2 二维材料的六方结构
+
 
 
 # 示例
@@ -395,6 +405,16 @@ from ase.build import add_vacuum, sort
 
 add_vacuum()       # 添加真空层；单独使用该函数时，返回值为 None，即无效果
 sort()             # 按照元素符号排序生成新的 Atoms object
+
+
+# reference: https://andyhox.github.io/2024/08/07/Learn-VASP-from-pymatgen-13/
+# molecule 模块支持通过输入常见的分子化学式构建对应的分子结构
+# 查看 ase 支持的分子种类
+from ase.build.molecule import extra
+from ase.collections import g2
+
+print(g2.names)
+print(extra.keys())
 ```
 
 
@@ -414,6 +434,7 @@ cell[:]
 cell.get_bravais_lattice()     # 获取布拉维点阵
 ```
 
+
 ---
 
 ### ase.spacegroup
@@ -423,18 +444,20 @@ cell.get_bravais_lattice()     # 获取布拉维点阵
 ```python
 from ase.spacegroup import Spacegroup, crystal, get_spacegroup
 
-spg = Spacegroup(152)     # 类；查看给定空间群的对称性信息
-# 属性
-symbol                    #
-no                        #
-scaled_primitive_cell     #
-
 get_spacegroup()          # 获取 Atoms 的空间群信息
 
 crystal()                 # 类；通过空间群构建晶体结构
 
-# 查看等同原子坐标
-spg.equivalent_sites([0.4673, 0, 0.3333])
+
+spg = Spacegroup(152)     # 类；查看给定空间群的对称性信息
+
+# 属性
+symbol                    # 空间群符号
+no                        # 空间群序号
+scaled_primitive_cell     # 基矢
+
+# 方法
+equivalent_sites()        # 查看等同原子坐标
 ```
 
 
@@ -559,6 +582,16 @@ atoms = read(
 )
 # 参数
 Z_of_type                # dict，键为 type 编号，值为对应的元素原子序数；若为 None，有 Masses 信息，会根据其猜测原子序号，否则 type 编号对应的元素原子序数默认为 H He ... 等
+
+# 将 OUTCAR 中每个离子步信息写入 extxyz
+atoms_list = read("OUTCAR", index=":")
+
+write(
+    extxyz_fn,
+    atoms_list,
+    format="extxyz",
+    append=True,
+)
 ```
 
 - 写法二：从 `ase.io` 中导入具体构型文件格式的模块及其函数
@@ -621,15 +654,17 @@ v, e, B = eos.fit()
 print(B / kJ * 1.0e24, "GPa")
 ```
 
-- 根据 E-V 数据进行 EOS 拟合，获取平衡体积，能量和体模量；并绘制 EOS 拟合曲线
+- 根据 E-V 数据进行 EOS 拟合，获取平衡能量，体积和体模量；并绘制 EOS 拟合曲线
 
 ```python
 from ase.eos import EquationOfState
 from ase.units import kJ
 
-# murnaghan birch vinet
+# eos 参数: birchmurnaghan murnaghan birch vinet
 eos = EquationOfState(volumes, energies, eos="birchmurnaghan")
+
 v0, e0, B = eos.fit()
+
 print(f"v0 = {v0:.3f}")
 print(f"e0 = {e0:.3f}")
 print(f"B = {B / kJ * 1.0e24:.1f} GPa")
@@ -711,17 +746,62 @@ from ase.optimize import QuasiNewton
 
 ---
 
+### ase.data
+
+- 元素周期表中的元素相关数据
+
+```python
+from ase.data import ...
+
+# 大多都是 list、dict 或 np.array 的类型
+# 第一个元素是 X，空位或让后续元素信息获取从 1 正常开始的含义
+chemical_symbols               # 元素符号
+atomic_numbers                 # 原子序号
+atomic_names                   # 元素英文全称
+covalent_radii                 # 共价半径
+cohesive_energies              # 内聚能
+reference_states               # 基态
+atomic_masses                  # 相对原子能量
+vdw_radii                      # 范德华半径
+ground_state_magnetic_moments  # 基态磁矩 
+```
+
+
+---
+
+### ase.units
+
+ASE 中的物理单位，电子伏特 eV、埃 Å，开尔文 K 和原子质量单位定义为 1.0
+
+```python
+from ase.units import Bohr, Hartree, eV, kJ, mol
+
+# 能量: 1 eV = ... kJ/mol = ... Hartree = ... Ry
+print(1 / (1 * kJ / mol))
+print(1 / (1 * Hartree))
+print(1 / (1 * Ry))
+
+# 长度单位
+print(Bohr)
+```
+
+
+---
+
 ### ase.calculators
 
-- 计算器
+- ASE 支持的 calculators：[Supported Calculators — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html#supported-calculators)
+
+ - ASE 原生 Python 实现的 caculators：EMT (effective medium theory)，EAM，Lennard-Jones，Morse 和 HarmonicCalculator
+
 
 ---
 
 #### VASP
 
-- 参考：[VASP — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/vasp.html)
+- 参考：[VASP Calculator — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/vasp.html)
 
-- 设置 VASP 执行命令和赝势路径（在 `~/.{bash,zsh}rc` 或在 Python 脚本中设置相关环境变量）
+- 设置 VASP 执行命令和赝势路径（在 `~/.{bash,zsh}rc` 或在 Python 脚本中设置环境变量）
 
 ```bash
 export ASE_VASP_COMMAND="mpirun path/vasp_std"
@@ -768,7 +848,9 @@ calc = Vasp(
     net_charge=...,     # 带电体系设置
 )
 
-atoms.set_calculator(calc)       # 执行 VASP 计算
+atoms.calc = calc                # 执行 VASP 计算
+atoms.set_calculator(calc)       # 同上，但写法过时
+
 atoms.get_potential_energy()     # 获取能量
 ```
 
@@ -793,22 +875,9 @@ calc = LAMMPS(parameters=parameters, files=files)
 
 ---
 
-#### 设置单点能
+#### GPAW
 
-```python
-# 设置单点能
-from ase.atoms import Atoms
-from ase.calculators.singlepoint import SinglePointCalculator
-
-results={"energy": -7.0}
-atoms.calc = SinglePointCalculator(atoms, **results)
-atoms.get_potential_energy()
-```
-
-
----
-
-effective medium theory (EMT)
+- 示例代码
 
 ```python
 from gpaw import GPAW
@@ -825,9 +894,19 @@ opt.run(fmax=0.05)
 
 ---
 
-### 其他
+#### 设置单点能
 
 ```python
-from ase.data import atomic_masses
+# 设置单点能
+from ase.atoms import Atoms
+from ase.calculators.singlepoint import SinglePointCalculator
 
+# 还可设置 forces、stress
+results={"energy": -7.0}
+
+calc = SinglePointCalculator(atoms, **results)
+
+atoms.calc =  calc
+
+atoms.get_potential_energy()
 ```

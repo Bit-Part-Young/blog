@@ -988,10 +988,10 @@ delete_atoms region 2 # 表示将区域2中的原子删掉
 # 语法
 minimize etol ftol maxiter maxeval
 
-# etol = 能量的停止容差（无单位）
-# ftol = 力的停止容差（力的单位）
-# maxiter = 能量最小化器minimizer的最大迭代次数
-# maxeval = 计算力或能量的最大次数
+etol          # 能量收敛条件（无单位）
+ftol          # 力收敛条件（力的单位）
+maxiter       # 能量最小化的最大迭代次数
+maxeval       # 计算力或能量的最大次数
 
 # 示例
 minimize 1.0e-4 1.0e-6 100 1000
@@ -1157,8 +1157,8 @@ if              "$i==1" then "shell rm data"
 print string keyword value
 
 # keyword
-file
-append
+file         # 写入文件；无法用变量？
+append       # 追加内容到文件
 screen       # yes/no
 universe     # yes/no
 ```

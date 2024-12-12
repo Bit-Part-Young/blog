@@ -174,6 +174,21 @@ wslconfig                       # 查看 WSL 配置
 sudo ln -sf /mnt/d/XXX/chrome.exe /usr/bin/chrome
 ```
 
+- Termius 连接 WSL：[优雅食用WSL - chiale - 博客园](https://www.cnblogs.com/chiale/p/14782167.html)
+
+```bash
+sudo apt install openssh-server
+
+# 编辑文件 /etc/ssh/sshd_config
+Port 321                         # 端口配置；端口可自定义
+PasswordAuthentication yes       # 密码验证 
+
+sudo service ssh --full-restart
+
+# 创建新的 SSH 连接并配置 host 和 port 为 127.0.0.1 和 6666
+```
+
+
 
 ---
 

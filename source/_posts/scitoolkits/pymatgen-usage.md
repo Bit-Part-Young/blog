@@ -124,7 +124,7 @@ from pymatgen.core import SETTINGS
 
 PMG_VASP_PSP_DIR = SETTINGS.get("PMG_VASP_PSP_DIR")
 
-# 可解析压缩文件路径 
+# 可解析压缩文件路径
 from monty.os.path import zpath
 
 path = ...
@@ -241,15 +241,15 @@ structure = Structure.from_spacegroup(
 )
 
 # 保存成其他文件格式
-structure.to(filename="POSCAR", fmt="poscar") 
+structure.to(filename="POSCAR", fmt="poscar")
 # 不提供 filename 参数，返回 string
 structure.to(fmt="poscar")
 # 只提供 filename 参数，会自动识别其格式
-structure.to(filename="POSCAR") 
+structure.to(filename="POSCAR")
 structure.to(filename="CsCl.cif")
 
 # 从 str 或文件中读取结构
-structure = Structure.from_str(open("CsCl.cif").read(), fmt="cif") 
+structure = Structure.from_str(open("CsCl.cif").read(), fmt="cif")
 structure = Structure.from_file("CsCl.cif")
 
 # 改变位点元素种类
@@ -496,6 +496,8 @@ to_primitive()           # 获取原胞；同上
 interpolate()            # 在两个构型间插值，用于 NEB 计算
 sort()                   # 排序（原子位点按电负性排序；in place）
 get_sorted_structure()   # 排序（not in place）
+apply_strain()           # 对点阵施加应变；默认会修改对象本身
+perturb()                # 对结构中的原子位点施加随机扰动以破坏对称性
 
 # 类方法
 from_spacegroup()        # 根据空间群构建结构
@@ -555,9 +557,9 @@ from pymatgen.core.composition import Composition
 Composition("LiFePO4").as_dict()
 
 # Composition
-alphabetical_formula      # 
-reduced_formula           # 
-chemical_system           # 
+alphabetical_formula      #
+reduced_formula           #
+chemical_system           #
 ```
 
 
@@ -734,7 +736,7 @@ from pymatgen.io.vasp.inputs import Kpoints
 
 
 # 类方法
-automatic()                        # 弃用，建议使用 INCAR 中的 KSPAING 参数 
+automatic()                        # 弃用，建议使用 INCAR 中的 KSPAING 参数
 gamma_automatic()                  # kpts 参数：三个方向的 K 点密度
 monkhorst_automatic()              # 同上
 automatic_density()                # grid_density
@@ -785,7 +787,7 @@ from pymatgen.io.vasp.inputs import Poscar
 
 # 属性
 structure                   # 关联的结构
-comment                     # POSCAR 文件开头的 comment string；# 开头会读取不了    
+comment                     # POSCAR 文件开头的 comment string；# 开头会读取不了
 natoms                      # 原子数目
 site_symbols                # 原子种类
 
@@ -1024,7 +1026,7 @@ fermi = dos_data.efermi
 # 整体能量平移
 energy = dos_data.energies - fermi
 
-dos_data                          # 体系总态密度
+dos_data.densities                # 体系总态密度
 dos_data.get_spd_dos()            # 体系分态密度
 dos_data.get_element_dos()        # 元素总态密度
 dos_data.get_element_spd_dos()    # 元素分态密度
@@ -1141,21 +1143,21 @@ sm.fit(structure1, structure2)
 
 #### eos
 
-- 类：`BirchMurnaghan`、`Birch`、`Murnaghan`、`PourierTarantola`、`Vinet` 等
+- EOS 类：`BirchMurnaghan`、`Birch`、`Murnaghan`、`PourierTarantola`、`Vinet` 等
 
 ```python
 from pymatgen.analysis.eos import BirchMurnaghan
 
-
+# 初始化 EOS 类
 eos = BirchMurnaghan(volumes=..., energies=...)
-eos.fit()      # 拟合
+eos.fit()      # EOS 拟合
 
-eos.e0         # 平衡能量拟合值
-eos.b0_GPa     # 体模量B拟合值
+eos.results    # EOS 拟合结果
 eos.v0         # 平衡体积拟合值
-eos.results    # 
+eos.e0         # 平衡能量拟合值
+eos.b0_GPa     # 体模量 B 拟合值
 
-eos.plot()     # 绘制 EOS 拟合曲线     
+eos.plot()     # 绘制 EOS 拟合曲线
 ```
 
 
@@ -1235,7 +1237,7 @@ stable_entries                         # 稳定相及其对应能量
 
 # 方法
 get_decomposition()                    # 获取特定构型成分分解成哪些稳定相及其比例
-get_decomp_and_e_above_hull()          # 
+get_decomp_and_e_above_hull()          #
 get_plot()                             # 绘制相图
 
 
@@ -1291,6 +1293,39 @@ add_adsorbate()                # 添加吸附原子/分子
 plot_slab()                    # 可视化吸附位点
 ```
 
+
+---
+
+#### diffusion
+
+- 扩散相关
+
+[learning/scripts/model/idpp.py at main · wangchr1617/learning · GitHub](https://github.com/wangchr1617/learning/blob/main/scripts/model/idpp.py)
+
+- 安装
+
+```bash
+pip install -U pymatgen-analysis-diffusion
+```
+
+- 使用
+
+```python
+# 使用 IDPP 方法进行插值
+from pymatgen.analysis.diffusion.neb.pathfinder import IDPPSolver
+
+# 方法
+run()
+
+# 静态方法
+from_endpoints()
+
+
+idpp_solver = IDPPSolver.from_endpoints()
+idpp_solver.run()
+```
+
+
 ---
 
 ### pymatgen.symmetry.analyzer
@@ -1309,13 +1344,17 @@ get_conventional_standard_structure()   # 获取单胞
 get_primitive_standard_structure()      # 获取原胞
 get_symmetrized_structure()             # 获取对称性结构
 get_symmetry_dataset()                  # 获取结构的对称性数据集
-get_crystal_system()                    # 获取晶系（源码含空间群与晶系之间的关系） 
+get_crystal_system()                    # 获取晶系（源码含空间群与晶系之间的关系）
 get_space_group_number()                # 空间群编号（编号越小，对称性越低）
 get_space_group_symbol()                # 空间群符号
 
-# 寻找构型中的等同原子
+
 symmetry_dataset = sga_analyzer.get_symmetry_dataset()
-symmetry_dataset.equivalent_atoms
+# dataset 中的信息
+number                                  # 空间群序号
+international                           # 空间群 International symbol
+equivalent_atoms                        # 等同原子
+wyckoffs                                # Wyckoff letters
 ```
 
 空间群与晶系之间的关系：[Space group - Wikipedia](https://en.wikipedia.org/wiki/Space_group)
@@ -1340,14 +1379,16 @@ symmetry_dataset.equivalent_atoms
     - [Chap.15 计算小白硬学VASP —— 各类结构“Transformation”使用说明（二） - A&H](https://andyhox.github.io/2024/08/16/Learn-VASP-from-pymatgen-15/)
     - [Chap.16 计算小白硬学VASP —— 各类结构“Transformation”使用说明（三） - A&H](https://andyhox.github.io/2024/08/19/Learn-VASP-from-pymatgen-16/)
 
-- 简单的变换操作：如添加和删除原子位点，替换结构中的元素，到更高级的一对多的转换
+- 简单的变换操作：添加和删除原子位点，元素替换，到更高级的一对多的转换
+
+- pymatgen 无置换 Wyckoff Site 中的元素的类
 
 - `SQSTransformation` 类中调用的是 ATAT 中的 mcsqs 工具或 ICET 中的 enumeration、monte carlo 模块；建议直接使用其调用的原生工具
 
 ```python
-from pymatgen.transformations.standard_transformations import 
-from pymatgen.transformations.advanced_transformations import SQSTransformation
-
+from pymatgen.transformations.standard_transformations import ...
+from pymatgen.transformations.advanced_transformations import ...
+from pymatgen.transformations.site_transformations import ...
 
 # 使用方法
 structure = ...
@@ -1359,10 +1400,15 @@ structure_new = transformation.apply_transformation(structure)
 RemoveSpecieTransformations           # 删除元素种类
 AutoOxiStateDecorationTransformation  # 自动平衡结构中的价态信息
 ChargedCellTransformation             # 给结构施加额外电荷，使体系整体带正电或者负电
+SubstitutionTransformation            # 元素替换；参数 species_map
 
 # advanced_transformations 中的类
 SQSTransformation                     # SQS 结构
 EnumerateStructureTransformation      # 枚举结构
+
+# site_transformations 中的类
+ReplaceSiteSpeciesTransformation      # 原子位点元素种类替换
+
 
 # 以上类都有的方法
 apply_transformation(structure)            # 施加变换操作到构型上
@@ -1377,6 +1423,11 @@ sqs = SQSTransformation([2, 2, 2])
 
 enum = EnumerateStructureTransformation()
 enumerated = enum.apply_transformation(structure, return_ranked_list=100)  # return no more than 100 structures
+
+# 元素置换
+species_map = {"Si": "C"}
+# 分数占据
+species_map = {"Si":{"Si":0.9, "C":0.1}}
 ```
 
 

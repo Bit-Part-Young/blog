@@ -275,10 +275,6 @@ $$
 
 ### 势函数
 
-- 势函数查找网站
-    - [OpenKIM · Knowledgebase of Interatomic Models · Interatomic Potentials and Force Fields](https://openkim.org/)
-    - [Interatomic Potentials Repository](https://www.ctcms.nist.gov/potentials/)
-
 - 总能、势能（总能 - 自能）
 
 - 势函数（物理领域）、力场（化学领域）

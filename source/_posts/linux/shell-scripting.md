@@ -371,14 +371,12 @@ cp /path/{file1,file2,file3,file4} .
 
 ### 算术运算
 
-- 简单数学运算：原生 bash 不支持，可通过 `expr` 命令实现
+- 简单数学运算：原生 Bash 不支持，可通过 `expr` 命令实现
 
 ```bash
-# 表达式和运算符之间要有空格
-val=`expr 2 + 2`
- ​  
-# 乘法运算：须加反斜杠
-val=`expr 2 \* 3`
+val=`expr 2 + 2`       # 表达式和运算符之间要有空格
+
+val=`expr 2 \* 3`      # 乘法运算：须加反斜杠
 ```
 
 ---
@@ -402,7 +400,7 @@ echo $(( a=1 ))
 ---
 
 - 浮点数运算
-    - bash 不支持浮点运算，需借助 bc（basic calculator）, awk 处理
+    - Bash 不支持浮点运算，需借助 bc（basic calculator）, awk 处理
     - [linux shell 实现 四则运算（整数及浮点） 简单方法 - 程默 - 博客园](https://www.cnblogs.com/chengmo/archive/2010/09/30/1839556.html)
 
 ```bash

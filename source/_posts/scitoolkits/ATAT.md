@@ -45,7 +45,7 @@ ATAT 和 ICET 枚举得到的结构是一一对应的（相同）
 
 ## 安装
 
-- 前提条件：需要有 tcsh/csh shell
+- 前提条件：需要有 tcsh/csh Shell
 
 - 下载、解压安装包
 

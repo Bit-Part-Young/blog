@@ -97,6 +97,8 @@ https://<your_domain>/<GitHub_repo>/<repo_branch>
 
 - [使用cloudflare+jsdmirror加速github图床访问 - 渊澄](https://ycyc.win/posts/54996)（国内 IP 重定向至 jsdmirror 成功，国外 IP 重定向至 jsDelivr 失败）
 
+- [GitHub - MarSeventh/CloudFlare-ImgBed: CloudFlare 图床，基于 CloudFlare Pages 的免费图片托管解决方案，支持 Telegram Bot 和 Cloudflare R2 等多种存储方式！](https://github.com/MarSeventh/CloudFlare-ImgBed)
+
 
 
 ---

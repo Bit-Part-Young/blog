@@ -176,7 +176,6 @@ df.mean()
 
 ```python
 pd.read_csv()       # 从 csv 文件读取数据
-
 # 参数
 sep                 # 分隔符，默认是","；多个空格，可以使用 "\s+"
 comment             # 忽略注释行；如 "#" 开头的
@@ -186,12 +185,17 @@ index_col           # 用作行索引（标签）的列
 usecols             # 需要加载的列，可以使用序号或者列名
 
 
-pd.read_excel()     # 从 excel 文件读取数据
+# 可自动识别分隔符（逗号、单个空格、制表符，制表符+空格），速度会慢一些
+# 两个空格不行
+df = pd.read_csv(csv_fn, sep=None, engine="python")
 
+
+pd.read_excel()     # 从 Excel 文件读取数据
 # 参数
 sheet_name          # 指定数据表的名称
 # header skiprows 等参数同上
 # 无 sep 参数
+
 
 df.to_csv()         # 保存成 csv 文件
 # 参数

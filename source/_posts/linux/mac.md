@@ -64,7 +64,10 @@ password:
 
 - [小张的分享中心首页 - 飞书云文档](https://qnswkjn28n.feishu.cn/wiki/T8uJwQH4YiIy7BkHyQpczpyDnug)
 
-- macOS 内置命令行工具：[Useful built-in macOS command-line utilities](https://weiyen.net/articles/useful-macos-cmd-line-utilities)
+- macOS 内置命令行工具介绍：[Useful built-in macOS command-line utilities](https://weiyen.net/articles/useful-macos-cmd-line-utilities)
+
+SMB、VNC 屏幕共享服务
+- [「黑貓」把 Mac mini 用作家用服务器 | 入门教程 + 体验感受\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1mT41187DD/?spm_id_from=333.999.0.0)
 
 
 
@@ -676,7 +679,7 @@ rclone mount AList:/ /Users/XXX/AList --cache-dir /tmp --allow-other --vfs-cache
 #### 终端模拟器集成 SFTP
 
 - Tabby 集成 SFTP（无法查看远程文件内容）
-    - 在 “设置 - 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
+    - 在 “设置 -- 配置和连接” 中打开远程服务器，终端右上方才会显示 SFTP（直接在终端 SSH 连接不会显示）
     - 在当前目录下打开 SFTP 面板：[Shell working directory reporting · Eugeny/tabby Wiki · GitHub](https://github.com/Eugeny/tabby/wiki/Shell-working-directory-reporting)
 
 ```bash
@@ -687,7 +690,7 @@ export PS1="$PS1\[\e]1337;CurrentDir="'$(pwd)\a\]'
 precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
 ```
 
-- Termius 集成 SFTP（可以查看远程文件内容）
+- Termius 集成 SFTP（可查看远程文件内容）
 
 - iTerm2 安装 Shell Integration：
     - 登录远程服务器：iTerm2 - Install Shell Integration，安装成功后，当前登录的用户名最前面会出现向右的小三角，将本地文件（支持多个）或文件夹选中，按住 option 键的同时拖动到 iTerm2 窗口，松开即可上传

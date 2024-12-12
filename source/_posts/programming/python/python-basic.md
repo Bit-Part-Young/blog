@@ -218,11 +218,15 @@ _ = 3          # 临时变量
 内部元素不要求同一类型
 
 ```python
-lst = []
+lst = [4, 5, 1, 7, 2, 9]
 
 # 索引
 lst[1]            # 第二个元素
 lst[-2]           # 倒数第二个元素
+
+
+# Python 内置函数，创建切片
+slice(start, stop, step)
 
 # 切片（获取列表中的一部分值）
 lst[1:4]
@@ -234,8 +238,11 @@ lst[4:1:-2]       #
 lst[::-1]         # 列表倒序
 
 
+# 修改元素
 lst[1] = item     # 修改元素
 
+
+# 添加元素
 lst.append()      # 列表末尾加入元素
 
 
@@ -1323,9 +1330,10 @@ if hasattr(args, 'func'):
 import sys
 
 sys.path.append()            # 添加目录到 PATH 搜索路径
+sys.argv                     # 命令行参数解析
+sys.argv[0]                  # 文件名
 
-# sys.argv 命令行参数解析
-# sys.argv[0] 文件名
+
 def add_two_num(a, b):
 
     return a + b

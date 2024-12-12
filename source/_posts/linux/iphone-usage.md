@@ -72,3 +72,12 @@ https://whatshub.top/module/adultraplus.module
     - [GitHub - Lakr233/Asspp: The App Store for your multi-account eco system.](https://github.com/Lakr233/Asspp)
     - iOS 巨魔商店（高 iOS 版本不支持）：[GitHub - opa334/TrollStore: Jailed iOS app that can install IPAs permanently with arbitary entitlements and root helpers because it trolls Apple](https://github.com/opa334/TrollStore)
     - [GitHub - XLsn0w/TrollStore2: TrollStore 二代 iOS巨魔商店V2.0 安装指南: 巨魔2代安装教程 巨魔辅助安装器 Misaka TrollSpeed 状态栏网速显示](https://github.com/XLsn0w/TrollStore2)
+
+---
+
+- [ ] iPhone 录音如何不中断
+
+- iOS 中的 Chrome 和 Safari 浏览器无法在 notes.sjtu.edu.cn 中粘贴文本
+
+- iOS、Windows 之间剪贴板同步：快贴（如何使用）
+    - 临时方法，拷贝至 Microsoft To Do 软件进行同步

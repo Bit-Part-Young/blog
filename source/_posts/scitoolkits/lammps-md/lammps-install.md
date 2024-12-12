@@ -18,7 +18,25 @@ password:
 
 # LAMMPS 安装
 
-- MPICH（并行计算库；或使用 OpenMPI）、FFTW（快速傅里叶变换库；若没有安装，LAMMPS 将会使用自带的 KISS）
+## 介绍
+
+- 编译条件
+    - 兼容 C++11 标准的编译器
+    - 并行计算库（MPICH 或 OpenMPI 或其他 MPI 实现）
+    - FFT 傅里叶变换库（FFTW；若没有安装，LAMMPS 将会使用自带的 KISS）
+    - 若平台中若无 MPI 环境，可使用 `make mpi-stubs` 或安装 `stubs` package，编译过程中，将提供一个虚拟的 MPI 库，“欺骗” 需要 MPI 环境的包，使其正常编译
+
+- 编译选项：[3.4. Basic build options — LAMMPS documentation](https://docs.lammps.org/Build_basics.html)
+
+- 编译步骤：
+    - 安装 packages：`make` 使用 `make yes-<package>`； `CMake` 使用 ` -D PKG_<NAME>=on`
+    - Build LAMMPS
+
+- 所有可用的 packages 及其描述：[6.1. Available Packages — LAMMPS documentation](https://docs.lammps.org/Packages_list.html)
+
+- packages 细节：[6.2. Package details — LAMMPS documentation](https://docs.lammps.org/Packages_details.html)
+
+- 金属体系常用 packages：manybody
 
 - 参考资料：
     - [安装LAMMPS - lammps-tutorial](https://lammpscn2.vercel.app/Tutorial/install/#step2b-%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84make%E5%AE%89%E8%A3%85)
@@ -31,21 +49,19 @@ password:
     - OpenMPI 编译：[4.1. Quick start: Installing Open MPI — Open MPI 5.0.x documentation](https://docs.open-mpi.org/en/v5.0.x/installing-open-mpi/quickstart.html)
 
 
+
 ---
 
-## cmake 编译
-
-- 编译选项：[3.4. Basic build options — LAMMPS documentation](https://docs.lammps.org/Build_basics.html)
+## CMake 编译
 
 - 适用于较新版本的 LAMMPS
 
-```bash
-wget https://download.lammps.org/tars/lammps-2Aug2023.tar.gz
-tar -xzvf lammps-2Aug2023.tar.gz
-cd lammps-2Aug2023
+- 建议编译步骤
 
-# 导入 oneAPI 套件
+```bash
+# 导入 Intel oneAPI 套件
 module purge
+
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
@@ -55,31 +71,46 @@ module load intel-oneapi-tbb/2021.4.0
 module load gcc/11.2.0
 module load cmake/3.26.3-gcc-11.2.0
 
+# 编译配置；oneapi 可改成 intel
+mkdir build && cd build
+cmake -D PKG_MANYBODY=yes -C ../cmake/presets/oneapi.cmake ../cmake
+
+# 编译
+make
+```
+
+- cmake 相关命令及内容
+
+```bash
 ll cmake/presets             # 列出预设 cmake 文件（自行选择安装 package）
 
+# 预设的需安装的 packages
 basic.cmake                  # 安装的 package 数目：64
 most.cmake                   # 
 all_on.cmake                 # 安装的 package 数目：92
-oneapi.cmake & intel.cmake   # 不会安装 package
+
+# 预设的编译 OPTIONS
+oneapi.cmake
+intel.cmake
+gcc.cmake
+clang.cmake
 
 
-# 创建 build 目录（编译工作区）并配置编译选项
-# 只含 一些基础的 packages
+# 配置编译选项 示例
 mkdir build-basic && cd build-basic
 cmake -C ../cmake/presets/basic.cmake ../cmake
 
-# 含 大部分的 packages
 mkdir build-most && cd build-most
 cmake -C ../cmake/presets/most.cmake ../cmake
 
-# 可叠加配置编译选项
+# 叠加配置编译 OPTIONS
 cmake -C ../cmake/presets/basic.cmake -C ../cmake/presets/kokkos-cuda.cmake ../cmake
 
-# 手动指定安装的 packages
-cmake -D PKG_KSPACE=yes -D PKG_USER-CONP2=yes ../cmake
+# 手动安装 packages
+cmake -D PKG_KSPACE=yes  ../cmake
 
 # cmake 参数；D 可以与后面的编译选项空一格空格
--D BUILD_MPI                  # 
+-D BUILD_MPI                  # 构建 MPI 版本
 -D LAMMPS_MACHINE
 -D CMAKE_C_COMPILER           # 指定 C 编译器
 -D CMAKE_CXX_COMPILER         # 指定 CXX 编译器
@@ -88,18 +119,17 @@ cmake -D PKG_KSPACE=yes -D PKG_USER-CONP2=yes ../cmake
 -D CMAKE_BUILD_TYPE           # 构建类型；Debug / Release
 -D BUILD_SHARED_LIBS          # 指定是否安装成共享库；若安装 LAMMPS 的 Python 模块，需指定
 -D Python_EXECUTABLE          # 指定 Python 解释器路径
--D PKG_XXX=yes               # 安装 XXX package
+-D PKG_XXX=yes                # 安装 XXX package
 -D PKG_GPU=on                 # 导入/安装 GPU package
 -D GPU_API                    # opencl 或 cuda
 
-make                         # 编译
-make install                 # 安装
-make install-python          # 安装 LAMMPS 的 Python 模块；作用是生成 whl 文件
+make                          # 编译
+make install                  # 安装；默认安装到 ~/.local
+make install-python           # 安装 LAMMPS 的 Python 模块；作用是生成 whl 文件
 
 
 cmake --build . --target clean  # 删除编译的目标、库和可执行文件
 make clean                      # 同上
-
 
 
 lmp -h                       # 显示已编译的 LAMMPS 版本的所有信息；可查看已安装的 packages
@@ -110,14 +140,45 @@ mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
 -pk gpu N                    # GPU 数量
 ```
 
-- cmake 配置好 Makefile 文件之后，查看输出到屏幕的 `-- Enabled packages` 参数进行检验；示例：
+- cmake 配置好 Makefile 文件之后，查看输出到屏幕的 `-- <<< Build configuration >>>` 编译配置进行检验；示例：
 
 ```bash
--- Enabled packages: <None>
+-- <<< Build configuration >>>
+   LAMMPS Version:   20240829
+   Operating System: Linux Ubuntu 22.04
+   CMake Version:    3.22.1
+   Build type:       RelWithDebInfo
+   Install path:     /home/yangsl/.local
+   Generator:        Unix Makefiles using /usr/bin/gmake
+-- Enabled packages: MANYBODY
+-- <<< Compilers and Flags: >>>
+-- C++ Compiler:     /opt/software/intel/oneapi/compiler/2022.1.0/linux/bin/icpx
+      Type:          IntelLLVM
+      Version:       2022.1.0
+      C++ Standard:  11
+      C++ Flags:     -Wall -Wextra -g -O2 -DNDEBUG
+      Defines:       LAMMPS_SMALLBIG;LAMMPS_MEMALIGN=64;LAMMPS_OMP_COMPAT=4;LAMMPS_GZIP
+      Options:       -Wno-tautological-constant-compare;-Wno-unused-command-line-argument
+-- <<< Linker flags: >>>
+-- Executable name:  lmp
+-- Static library flags:
+-- <<< MPI flags >>>
+-- MPI_defines:      MPICH_SKIP_MPICXX;OMPI_SKIP_MPICXX;_MPICC_H
+-- MPI includes:     /opt/software/intel/oneapi/mpi/2021.6.0/include
+-- MPI libraries:    /opt/software/intel/oneapi/mpi/2021.6.0/lib/libmpicxx.so;/opt/software/intel/oneapi/mpi/2021.6.0/lib/libmpifort.so;/opt/software/intel/oneapi/mpi/2021.6.0/lib/release/libmpi.so;/lib/x86_64-linux-gnu/libdl.a;/lib/x86_64-linux-gnu/librt.a;/lib/x86_64-linux-gnu/libpthread.a;
+-- Configuring done
+-- Generating done
+```
 
--- Enabled packages: KSPACE;MANYBODY;MOLECULE;RIGID
+- 报错：[Gmake error during cmake build with intel compiler - LAMMPS / LAMMPS Installation - Materials Science Community Discourse](https://matsci.org/t/gmake-error-during-cmake-build-with-intel-compiler/54030)
 
--- Enabled packages: AMOEBA;ASPHERE;BOCS;BODY;BPM;BROWNIAN;CG-DNA;CG-SPICA;CLASS2;COLLOID;COLVARS;CORESHELL;DIELECTRIC;DIFFRACTION;DIPOLE;DPD-BASIC;DPD-MESO;DPD-REACT;DPD-SMOOTH;DRUDE;EFF;EXTRA-COMPUTE;EXTRA-DUMP;EXTRA-FIX;EXTRA-MOLECULE;EXTRA-PAIR;FEP;GRANULAR;INTEL;INTERLAYER;KSPACE;MANIFOLD;MANYBODY;MC;MEAM;MESONT;MGPT;MISC;ML-IAP;ML-POD;ML-RANN;ML-SNAP;MOFFF;MOLECULE;OPENMP;OPT;ORIENT;PERI;PHONON;PLUGIN;POEMS;PTM;QEQ;QTB;REACTION;REAXFF;REPLICA;RIGID;SHOCK;SMTBQ;SPH;SPIN;SRD;TALLY;UEF;YAFF
+```bash
+# 编译配置命令: cmake -D PKG_MANYBODY=yes -C ../cmake/presets/oneapi.cmake ../cmake
+# 报错内容
+clang++: error: unknown argument: '-qopenmp;-qopenmp-simd'
+make[2]: *** [CMakeFiles/lammps.dir/build.make:76: CMakeFiles/lammps.dir/home/yangsl/opt/lammps-29Aug2024/src/angle.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:171: CMakeFiles/lammps.dir/all] Error 2
+make: *** [Makefile:136: all] Error 2
 ```
 
 - 其他：
@@ -125,38 +186,98 @@ mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
     - [ ] 思源一号用 oneapi.cmake 编译选项，其中的 MPI 是 MPI STUBS，而非 intel 的 MPI（2024.03.16）
 
 
+
 ---
 
 ## make 编译
 
+- 简易编译步骤
+
 ```bash
-cd src
+# Master 服务器
+make yes-manybody
 
-ll MAKE                      # 列出预设 make 文件
-
-Makefile.example
-Makefile.serial              # make serial 使用的该文件
-Makefile.mpi
+make oneapi
 
 
-make                         # 查看 make 编译选项
+# 个人常用 packages
+manybody
+mc                           # 蒙特卡洛
+```
+
+- make 相关命令及内容
+
+```bash
+cd src                       # 进入 src 目录
+
+# 查看编译选项
+make                         # 查看编译选项
+
+# 清除；不会删除编译好的可执行程序
 make clean-all               # 删除 object 文件
+make clean-machine           # 删除 machine 的 object 文件
+
+# package 相关；yes 安装、no 卸载；会更新 src 中的代码
 make yes-<package>           # 添加要编译的 packages
 make package                 # 列出可用 packages
-make ps                      # 查看 packages 状态
-make pi                      # 列出已安装 packages
-make package-update          # 
 make yes-basic               # 安装常用 packages
+make no-basic
 make yes-all                 # 安装所有 packages
-make yes-most                # 安装大部分 packages w/o libs in src
-make no-lib                  # 卸载需要外部库的 packages 
+make no-all
+make yes-most                # 安装大部分 packages
+make no-most
+make yes-lib                 # 需要额外库的 packages 
+make no-lib                  # 
+make ps                      # 查看 packages 状态
+make pi                      # 列出已安装的 packages
+make package-update          # 更新 package
+
+# packages 数目
+yes-basic                    # 4 个 packages；kspace、manybody、molecule、rigid
+yes-most                     # 56 个 packages
+yes-all                      # 93 个 packages；使用 make no-lib 变成 65 个 packages
+
+# Build LAMMPS
 make serial                  # 编译串行版本
 make mpi                     # 编译并行版本
 
-# 编译 Intel 版本
-make yes-user-intel          # 添加 USER-INTEL package
-make intel_cpu_intelmpi      # 编译 Intel 版本
+
+# 根据 OPTIONS 编译
+serial                  # GNU g++ compiler, no MPI
+MPI                     # MPI with its default compiler
+intel_cpu_intelmpi      # INTEL package, Intel MPI, MKL FFT
+oneapi                  # Intel oneAPI
+
+# 根据 MACHINE 编译
+mac                     # Apple PowerBook G4 laptop, c++, no MPI
+mac_mpi                 # Apple laptop, MacPorts Open MPI 1.4.3, gcc 4.8, jpeg
+ubuntu                  # Ubuntu Linux box, g++, openmpi, FFTW3
+ubuntu_simple           # Ubuntu Linux box, g++, openmpi, KISS FFT
+
+# 查看 预设 make 文件
+ll MAKE                      # 列出预设 make 文件
+Makefile.example             # 示例文件
+Makefile.serial              # make serial 使用的该文件
+Makefile.mpi                 # make mpi 使用的该文件
 ```
+
+
+
+---
+
+## 检查
+
+- 若没有安装 packages，最后编译得到的 lmp 可执行程序，查看可用命令，会相对较少
+
+- 编译好后，需检查的内容
+    - OS
+    - Compiler
+    - C++ standard
+    - MPI
+    - Accelerator configuration
+    - Installed packages
+    - 各种 style options
+
 
 
 ---

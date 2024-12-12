@@ -89,6 +89,8 @@ def add_num(input: Union[int, str]):
 
 - Run-time 类型检查：[GitHub - agronholm/typeguard](https://github.com/agronholm/typeguard)
 
+[GitHub - beartype/beartype: Unbearably fast near-real-time hybrid runtime-static type-checking in pure Python.](https://github.com/beartype/beartype)
+
 ```bash
 # 安装
 pip install mypy

@@ -43,8 +43,9 @@ svg2pdf file.svg
 
 - jpg/png 转 svg：[PNG to SVG - FreeConvert.com](https://www.freeconvert.com/png-to-svg)
 
-- svg 生成及格式转换：[Text to SVG AI Generator : Create unique SVG illustration from text](https://svg.la/text-to-svg/)
+- svg 图片生成及格式转换：[Text to SVG AI Generator : Create unique SVG illustration from text](https://svg.la/text-to-svg/)
 
+- 图片转成 AVI 格式：[IMG2AVIF](https://img2avif.com/)
 
 
 ---
