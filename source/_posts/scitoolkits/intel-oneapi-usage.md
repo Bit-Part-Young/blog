@@ -19,7 +19,7 @@ password:
 
 # Intel oneAPI 使用
 
-Intel oneAPI 包括对 OpenMP 的支持
+- Intel oneAPI 包括对 OpenMP 的支持
 
 - 参考：[安装 Intel® oneAPI Base Toolkit 和 Intel® oneAPI HPC](https://blog.csdn.net/weixin_42487488/article/details/115066980)
 
@@ -124,6 +124,10 @@ nvc
 nvc++
 nvfortran
 ```
+
+- Intel Classic C++ Compiler 是 Intel 长期提供的传统编译器，也被称为 ICC。它主要是为了优化 Intel 硬件（如 x86 CPU 系列）而设计，并且支持 C++ 和 OpenMP 的多版本
+
+- Intel LLVM C++ Compiler 是基于 LLVM 的编译器，这是 Intel 在 oneAPI 框架下推出的新型编译器，也被称为 DPC++/C++ Compiler。这个编译器旨在提供一个统一的编程模型，支持多种硬件平台，包括 CPU、GPU 和 FPGA
 
 - Intel oneAPI 卸载：[Uninstall oneAPI Toolkits and Components](https://www.intel.com/content/www/us/en/docs/oneapi/installation-guide-linux/2023-1/uninstall-oneapi-toolkits-and-components.html)
 

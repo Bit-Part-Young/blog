@@ -23,8 +23,9 @@ password:
 - 编译条件
     - 兼容 C++11 标准的编译器
     - 并行计算库（MPICH 或 OpenMPI 或其他 MPI 实现）
-    - FFT 傅里叶变换库（FFTW；若没有安装，LAMMPS 将会使用自带的 KISS）
+    - FFT 傅里叶变换库（FFTW）
     - 若平台中若无 MPI 环境，可使用 `make mpi-stubs` 或安装 `stubs` package，编译过程中，将提供一个虚拟的 MPI 库，“欺骗” 需要 MPI 环境的包，使其正常编译
+    - 若没有安装 FFTW，LAMMPS 将会使用自带的 KISS
 
 - 编译选项：[3.4. Basic build options — LAMMPS documentation](https://docs.lammps.org/Build_basics.html)
 
@@ -35,6 +36,13 @@ password:
 - 所有可用的 packages 及其描述：[6.1. Available Packages — LAMMPS documentation](https://docs.lammps.org/Packages_list.html)
 
 - packages 细节：[6.2. Package details — LAMMPS documentation](https://docs.lammps.org/Packages_details.html)
+
+- 个人常用 packages
+
+```bash
+manybody                     # 多体势
+mc                           # 蒙特卡洛
+```
 
 - 金属体系常用 packages：manybody
 
@@ -56,16 +64,19 @@ password:
 
 - 适用于较新版本的 LAMMPS
 
-- 建议编译步骤
+- [8.6.1. Using CMake with LAMMPS — LAMMPS documentation](https://docs.lammps.org/Howto_cmake.html)
+
+- [ ] 思源一号用 oneapi.cmake 编译选项，其中的 MPI 是 MPI STUBS，而非 intel 的 MPI（2024.03.16）
+
+- 编译步骤精简
 
 ```bash
-# 导入 Intel oneAPI 套件
+# 导入 Intel oneAPI 套件；Master 可不用
 module purge
 
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
-# 建议再导入该 oneAPI 模块
 module load intel-oneapi-tbb/2021.4.0
 # Pi 上建议再 load 以下模块
 module load gcc/11.2.0
@@ -73,11 +84,29 @@ module load cmake/3.26.3-gcc-11.2.0
 
 # 编译配置；oneapi 可改成 intel
 mkdir build && cd build
-cmake -D PKG_MANYBODY=yes -C ../cmake/presets/oneapi.cmake ../cmake
+# 编译配置中没有 FFT 信息
+cmake -D PKG_MANYBODY=yes -D FFT=MKL -C ../cmake/presets/oneapi.cmake ../cmake
+# oneapi 最终编译可能会报错，改用 intel 进行编译配置；FFT 库默认会是 KISS（若无单独编译 FFTW 并设置相关环境变量）
+cmake -D PKG_MANYBODY=yes -D FFT=MKL -C ../cmake/presets/intel.cmake ../cmake
+# 或者
+cmake -C ../cmake/presets/basic.cmake -D FFT=MKL -C ../cmake/presets/intel.cmake ../cmake
 
 # 编译
 make
 ```
+
+- 报错：[Gmake error during cmake build with intel compiler - LAMMPS / LAMMPS Installation - Materials Science Community Discourse](https://matsci.org/t/gmake-error-during-cmake-build-with-intel-compiler/54030)
+
+```bash
+# 编译配置命令: cmake -D PKG_MANYBODY=yes -C ../cmake/presets/oneapi.cmake ../cmake
+# 报错内容
+clang++: error: unknown argument: '-qopenmp;-qopenmp-simd'
+make[2]: *** [CMakeFiles/lammps.dir/build.make:76: CMakeFiles/lammps.dir/home/yangsl/opt/lammps-29Aug2024/src/angle.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:171: CMakeFiles/lammps.dir/all] Error 2
+make: *** [Makefile:136: all] Error 2
+```
+
+---
 
 - cmake 相关命令及内容
 
@@ -85,9 +114,9 @@ make
 ll cmake/presets             # 列出预设 cmake 文件（自行选择安装 package）
 
 # 预设的需安装的 packages
-basic.cmake                  # 安装的 package 数目：64
-most.cmake                   # 
-all_on.cmake                 # 安装的 package 数目：92
+basic.cmake                  # package 数目: 4
+most.cmake                   # package 数目: 60+
+all_on.cmake                 # package 数目: 90+
 
 # 预设的编译 OPTIONS
 oneapi.cmake
@@ -122,7 +151,8 @@ cmake -D PKG_KSPACE=yes  ../cmake
 -D PKG_XXX=yes                # 安装 XXX package
 -D PKG_GPU=on                 # 导入/安装 GPU package
 -D GPU_API                    # opencl 或 cuda
-
+-D FFT                        # 指定 FFTW 库，默认是 FFTW3；可选值 FFTW3、MKL、NVPL、KISS；找不到时会使用 KISS
+-D WITH_JPEG=off              # 不使用 JPEG；会自动检查
 make                          # 编译
 make install                  # 安装；默认安装到 ~/.local
 make install-python           # 安装 LAMMPS 的 Python 模块；作用是生成 whl 文件
@@ -140,7 +170,7 @@ mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
 -pk gpu N                    # GPU 数量
 ```
 
-- cmake 配置好 Makefile 文件之后，查看输出到屏幕的 `-- <<< Build configuration >>>` 编译配置进行检验；示例：
+- 配置好后，查看输出到屏幕的 `-- <<< Build configuration >>>` 编译配置进行检验，示例：
 
 ```bash
 -- <<< Build configuration >>>
@@ -148,7 +178,7 @@ mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
    Operating System: Linux Ubuntu 22.04
    CMake Version:    3.22.1
    Build type:       RelWithDebInfo
-   Install path:     /home/yangsl/.local
+   Install path:     /XXX/.local
    Generator:        Unix Makefiles using /usr/bin/gmake
 -- Enabled packages: MANYBODY
 -- <<< Compilers and Flags: >>>
@@ -170,39 +200,29 @@ mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
 -- Generating done
 ```
 
-- 报错：[Gmake error during cmake build with intel compiler - LAMMPS / LAMMPS Installation - Materials Science Community Discourse](https://matsci.org/t/gmake-error-during-cmake-build-with-intel-compiler/54030)
-
-```bash
-# 编译配置命令: cmake -D PKG_MANYBODY=yes -C ../cmake/presets/oneapi.cmake ../cmake
-# 报错内容
-clang++: error: unknown argument: '-qopenmp;-qopenmp-simd'
-make[2]: *** [CMakeFiles/lammps.dir/build.make:76: CMakeFiles/lammps.dir/home/yangsl/opt/lammps-29Aug2024/src/angle.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:171: CMakeFiles/lammps.dir/all] Error 2
-make: *** [Makefile:136: all] Error 2
-```
-
-- 其他：
-    - 取消使用 JPEG 选项：`-D WITH_JPEG=off`（cmake 配置编译选项时会自动检查）：[8.6.1. Using CMake with LAMMPS — LAMMPS documentation](https://docs.lammps.org/Howto_cmake.html)
-    - [ ] 思源一号用 oneapi.cmake 编译选项，其中的 MPI 是 MPI STUBS，而非 intel 的 MPI（2024.03.16）
-
 
 
 ---
 
 ## make 编译
 
-- 简易编译步骤
+- 编译步骤精简
 
 ```bash
-# Master 服务器
-make yes-manybody
+# 导入 Intel oneAPI 套件；Master 可不用
+module purge
 
-make oneapi
+module load intel-oneapi-compilers/2021.4.0
+module load intel-oneapi-mkl/2021.4.0
+module load intel-oneapi-mpi/2021.4.0
+module load intel-oneapi-tbb/2021.4.0
+# Pi 上建议再 load 以下模块
+module load gcc/11.2.0
+module load cmake/3.26.3-gcc-11.2.0
 
 
-# 个人常用 packages
-manybody
-mc                           # 蒙特卡洛
+make yes-manybody       # 或 make yes-basic
+make oneapi             # FFT 库为 MKL
 ```
 
 - make 相关命令及内容
@@ -238,13 +258,9 @@ yes-most                     # 56 个 packages
 yes-all                      # 93 个 packages；使用 make no-lib 变成 65 个 packages
 
 # Build LAMMPS
-make serial                  # 编译串行版本
-make mpi                     # 编译并行版本
-
-
-# 根据 OPTIONS 编译
+# 根据 OPTIONS 编译；优先考虑使用
 serial                  # GNU g++ compiler, no MPI
-MPI                     # MPI with its default compiler
+mpi                     # MPI with its default compiler
 intel_cpu_intelmpi      # INTEL package, Intel MPI, MKL FFT
 oneapi                  # Intel oneAPI
 
@@ -267,16 +283,122 @@ Makefile.mpi                 # make mpi 使用的该文件
 
 ## 检查
 
-- 若没有安装 packages，最后编译得到的 lmp 可执行程序，查看可用命令，会相对较少
-
-- 编译好后，需检查的内容
-    - OS
-    - Compiler
-    - C++ standard
-    - MPI
-    - Accelerator configuration
+- 编译好后，输入 `lmp -h`，检查以下内容
+    - OS（同一平台，不会变）
+    - Compiler（这个会有差异，如 Intel Classic C++、Intel LLVM C++、GNU C++）
+    - C++ standard（C++ 11，不会变）
+    - MPI（这个会有差异，如 Intel (R) MPI Library、LAMMPS MPI STUBS）
+    - Accelerator configuration（内容一般为空？）
+    - FFT information（这个会有差异，KISS、MKL）
     - Installed packages
-    - 各种 style options
+    - 各种 style options（根据安装的 packages 特性或额外命令，其 options 数目会有不同）
+
+- 若没有安装任何 packages，最后编译得到的 lmp 可执行程序，查看可用 style options（如下所示），会相对较少
+
+```bash
+List of individual style options included in this LAMMPS executable
+
+* Atom styles:
+
+atomic          body            charge          ellipsoid       hybrid          
+line            sphere          tri             
+
+* Integrate styles:
+
+respa           verlet          
+
+* Minimize styles:
+
+cg              fire/old        fire            hftn            quickmin        
+sd              
+
+* Pair styles:
+
+born            buck            buck/coul/cut   coul/cut        coul/debye      
+coul/dsf        coul/wolf       meam/c          reax            reax/c          
+mesont/tpm      hybrid          hybrid/omp      hybrid/molecular                
+hybrid/molecular/omp            hybrid/overlay  hybrid/overlay/omp              
+hybrid/scaled   hybrid/scaled/omp               lj/cut          lj/cut/coul/cut 
+lj/expand       morse           soft            table           yukawa          
+zbl             zero            
+
+* Bond styles:
+
+hybrid          zero            
+
+* Angle styles:
+
+hybrid          zero            
+
+* Dihedral styles:
+
+hybrid          zero            
+
+* Improper styles:
+
+hybrid          zero            
+
+* KSpace styles:
+
+
+* Fix styles
+
+adapt           addforce        ave/atom        ave/chunk       ave/correlate   
+ave/grid        ave/histo       ave/histo/weight                ave/time        
+aveforce        balance         box/relax       deform          deposit         
+ave/spatial     ave/spatial/sphere              lb/pc           
+lb/rigid/pc/sphere              reax/c/bonds    reax/c/species  dt/reset        
+efield          enforce2d       evaporate       external        gravity         
+halt            heat            indent          langevin        lineforce       
+momentum        move            nph             nph/sphere      npt             
+npt/sphere      nve             nve/limit       nve/noforce     nve/sphere      
+nvt             nvt/sllod       nvt/sphere      pair            planeforce      
+press/berendsen press/langevin  print           property/atom   recenter        
+restrain        setforce        spring          spring/chunk    spring/self     
+store/force     store/state     temp/berendsen  temp/rescale    
+thermal/conductivity            vector          viscous         wall/harmonic   
+wall/lj1043     wall/lj126      wall/lj93       wall/morse      wall/reflect    
+wall/region     wall/table      
+
+* Compute styles:
+
+aggregate/atom  angle           angle/local     angmom/chunk    bond            
+bond/local      centro/atom     centroid/stress/atom            chunk/atom      
+chunk/spread/atom               cluster/atom    cna/atom        com             
+com/chunk       coord/atom      count/type      mesont          dihedral        
+dihedral/local  dipole          dipole/chunk    displace/atom   erotate/sphere  
+erotate/sphere/atom             fragment/atom   global/atom     group/group     
+gyration        gyration/chunk  heat/flux       improper        improper/local  
+inertia/chunk   ke              ke/atom         msd             msd/chunk       
+omega/chunk     orientorder/atom                pair            pair/local      
+pe              pe/atom         pressure        property/atom   property/chunk  
+property/grid   property/local  rdf             reduce          reduce/chunk    
+reduce/region   slice           stress/atom     temp            temp/chunk      
+temp/com        temp/deform     temp/partial    temp/profile    temp/ramp       
+temp/region     temp/sphere     torque/chunk    vacf            vcm/chunk       
+
+* Region styles:
+
+block           cone            cylinder        ellipsoid       intersect       
+plane           prism           sphere          union           
+
+* Dump styles:
+
+atom            cfg             custom          atom/mpiio      cfg/mpiio       
+custom/mpiio    xyz/mpiio       grid            grid/vtk        image           
+local           movie           xyz             
+
+* Command styles
+
+angle_write     balance         change_box      create_atoms    create_bonds    
+create_box      delete_atoms    delete_bonds    box             kim_init        
+kim_interactions                kim_param       kim_property    kim_query       
+reset_ids       reset_atom_ids  reset_mol_ids   message         server          
+dihedral_write  displace_atoms  info            minimize        read_data       
+read_dump       read_restart    replicate       rerun           run             
+set             velocity        write_coeff     write_data      write_dump      
+write_restart   
+```
 
 
 
@@ -365,10 +487,3 @@ compilation aborted for ../image.cpp (code 4)
 ```text
 ld: cannot find -ljpeg: No such file or directory
 ```
-
-
----
-
-## macOS 安装 LAMMPS GUI
-
-限制较多（without MPI support），不推荐

@@ -193,14 +193,10 @@ atomsk --create hcp 2.92 4.61 Ti vasp  # 矢量：H1=[2-1-10], H2=[-12-10], H3=[
 # zsh [] 中括号需添加引号
 atomsk --create fcc 3.53 Ni -orient [1-10] [11-2] [111] vasp
 
-# 构建超胞
-atomsk POSCAR -duplicate 1 1 4 vasp
+-duplicate 1 1 4                 # 构建超胞
 
 # 添加原子；box/BOX 可小写/大写
-atomsk initial.xsf -add-atom Si at 0.25*box 0.33*box 0.5*box final.cfg
-
-# 原子 z 轴坐标低于一定值，其 z 轴被固定
-atomsk POSCAR -fix z below 4.05 z vasp
+-add-atom Si at 0.25*box 0.33*box 0.5*box
 
 # 线性插值；用于 NEB
 atomsk --interpolate initial.vasp final.vasp 7 vasp
@@ -217,10 +213,13 @@ atomsk POSCAR -fractional vasp   # 分数坐标
 -shift 0 0 15 -cell add 30 z     # 在 z 轴两侧添加真空层
 -shift 0 0 15 -cell add 15 z     # 在 z 轴下半部分添加真空层
 
+-fix x -fix y                    # 固定所有原子的 x、y 轴
+-fix x below 4.05 z              # 原子 z 轴坐标低于一定值，其 x 轴被固定
+
 # 格式转换
 # 输出文件可以是具体的文件名，也可以是文件格式；输出文件可以是多个
 # 写入 cif 文件时，总是假设空间群为 P1，写入所有原子位置
-atomsk XXX.cfg xyz        # 常用：xyz lammps/lmp vasp/pos cif
+atomsk POSCAR xyz                # 常用: xyz lammps/lmp vasp/pos cif
 
 # 常见表面的具体坐标轴
 "[010]" "[001]" "[100]"          # BCC、FCC (100)

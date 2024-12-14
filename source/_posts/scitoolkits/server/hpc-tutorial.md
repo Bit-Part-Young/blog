@@ -145,7 +145,11 @@ GPU Memory Usage      # 进程使用的 GPU 内存量
 - 指定使用哪块 GPU（适用于 TensorFlow 和 PyTorch 等任何使用 CUDA 的程序）
 
 ```bash
+# 指定使用第一块 GPU
 CUDA_VISIBLE_DEVICES=1 python script.py
+
+# 指定使用两块 GPU
+CUDA_VISIBLE_DEVICES=0,1
 ```
 
 ```python

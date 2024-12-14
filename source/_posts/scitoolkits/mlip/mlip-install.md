@@ -52,17 +52,22 @@ cp ../mlip-2/lib/lib_mlip_interface.a .
 
 # 在 preinstall.sh 文件结尾添加需安装的 package
 make yes-<package>
-# 不需要添加 make yes-STUBS，install.sh 脚本中已有 make mpi-stubs 命令
+# 不需要添加 make yes-STUBS
+# 可注释 install.sh 脚本中的 make mpi-stubs 命令
 
-# 编译安装写法
+# 编译写法
 ./install.sh <path-to-lammps> <lammps-target>
 # 示例
 ./install.sh ../lammps-29Aug2024 intel_cpu_intelmpi
+
 # 其他 LAMMPS target
-g++_mpich 
-mpi 
-g++_serial 
+g++_mpich
+mpi
+g++_serial
 serial
+
+# 检查
+./intel_cpu_intelmpi -h         # Pair styles 会多出 mlip
 ```
 
 
@@ -89,10 +94,9 @@ ld: cannot find -ltbbmalloc
 make[1]: *** [Makefile:98: ../lmp_intel_cpu_intelmpi] Error 1
 ```
 
-- mpi-stubs 放在 intel_cpu_intelmpi 后的作用：不会对其造成影响
+- mpi-stubs 放在 intel_cpu_intelmpi 前的作用：平台中若无 MPI 环境，提供一个虚拟的 MPI 库，“欺骗” 需要 MPI 环境的包，使其正常编译；不会对其造成影响（还是建议将其注释掉）
 
 ```bash
-# 平台中若无 MPI 环境，提供一个虚拟的 MPI 库，“欺骗” 需要 MPI 环境的包，使其正常编译
 make mpi-stubs
 make intel_cpu_intelmpi -lgfortran
 ```

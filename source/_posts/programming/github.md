@@ -57,6 +57,7 @@ password:
     - [Organize Your GitHub Stars With Ease - Astral](https://astralapp.com/)
     - [GitHub - raythunder/github-stars-manager: 这是一个用来管理你的github stars的网页工具，它通过标签来管理和分类你的stars。所有的数据保存在你自己的github gists.](https://github.com/raythunder/github-stars-manager)
 
+- 在仓库所在链接后添加 `stargazers`：[查看GitHub仓库被谁star · Issue #15 · oneone1995/blog · GitHub](https://github.com/oneone1995/blog/issues/15)
 - 汉化插件：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
 
 - 命令行版本的 GitHub Dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
@@ -79,19 +80,18 @@ password:
 
 - 生成最近的 PR 为网页：[GitHub - leon-fong/prs: Explore historic Open Source Contributions](https://github.com/leon-fong/prs)
 
+- [GitHub - hunshcn/gh-proxy: github release、archive以及项目文件的加速项目](https://github.com/hunshcn/gh-proxy)
+
 
 ---
 
 ### GitHub Markdown
 
-生成 TOC：
+- 生成 TOC：
+    - [GitHub - ekalinin/github-markdown-toc: Easy TOC creation for GitHub README.md](https://github.com/ekalinin/github-markdown-toc)
+    - [GitHub - ekalinin/github-markdown-toc.go: Easy TOC creation for GitHub README.md (in go)](https://github.com/ekalinin/github-markdown-toc.go)
 
-- [GitHub - ekalinin/github-markdown-toc: Easy TOC creation for GitHub README.md](https://github.com/ekalinin/github-markdown-toc)
-- [GitHub - ekalinin/github-markdown-toc.go: Easy TOC creation for GitHub README.md (in go)](https://github.com/ekalinin/github-markdown-toc.go)
-
----
-
-alert 语法
+- alert 语法
 
 ```markdown
 > [!NOTE]
@@ -108,42 +108,40 @@ alert 语法
 
 ### GitHub 基本使用
 
-Repo 页面
+- Repo 页面
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images202403011048507.png)
 
-
 ---
 
-Issues 页面
+- Issues 页面
 
 ![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638624.png)
 
 ---
 
-Pull requests 页面（简称 PR）
+- Pull requests 页面（简称 PR）
 
 ![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638625.png)
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081114184.png)
 
+- Pull Requests 流程:
 
-Pull Requests 流程:
-
-- Fork（复刻） 该 Repo；
-- git clone fork 的 Repo 到本地，进行代码修改并提交，会出现提交的 commit 相对原 Repo 的前后关系；
-- 点击 “Contribute”，提 一个 Pull Request 给原来的 Repo；
-- 点击 “Sync fork”，同步原 Repo 最新代码。
+    - Fork（复刻） 该 Repo；
+    - git clone fork 的 Repo 到本地，进行代码修改并提交，会出现提交的 commit 相对原 Repo 的前后关系；
+    - 点击 “Contribute”，提一个 Pull Request 给原来的 Repo；
+    - 点击 “Sync fork”，同步原 Repo 最新代码。
 
 ---
 
-改变 Repo 的 public private 属性：该 Repo 的 Settings - Danger Zone
+- 改变 Repo 的 public private 状态：该 Repo 的 Settings - Danger Zone
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081130359.png)
 
 ---
 
-设置自己的 activity 为 private：Settings - Public profile - Contributions & activity
+- 设置自己的 activity 为 private：Settings - Public profile - Contributions & activity
 
 
 ![Untitled](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202309111638621.png)
@@ -386,7 +384,7 @@ repos:
 
 ### GitHub CLI
 
->[GitHub - cli/cli: GitHub’s official command line tool](https://github.com/cli/cli)
+- 官网：[GitHub - cli/cli: GitHub’s official command line tool](https://github.com/cli/cli)
 
 - 安装
 
@@ -454,8 +452,6 @@ echo 'eval "$(gh copilot alias -- zsh)"' >> ~/.zshrc
 ---
 
 ## 相关问题
-
-- 在仓库所在链接后添加 `stargazers`：[查看GitHub仓库被谁star · Issue #15 · oneone1995/blog · GitHub](https://github.com/oneone1995/blog/issues/15)
 
 - GitHub feed 最新消息时间与电脑时间差 12 小时（移动端、网页均是次情况）
 

@@ -73,12 +73,22 @@ Command 类型
 
 - 能量最小化：`minimize`、`min_style`、`min_modify`
 
+- LAMMPS in 文件比较好的注释写法
+
+```bash
+# --------------------- ATOM DEFINITION ---------------------
+
+# --------------------- FORCE FIELDS ------------------------
+```
+
 
 ---
 
 ### atom_style
 
-- 定义模拟过程中原子的类型，它会决定原子包括哪些属性；该命令必须在建立模拟盒子（使用命令 `read_data` 或 `read_restart` 或 `create_box`）之前使用
+- 定义模拟过程中原子的类型，决定原子包括哪些属性（原子，键角，二面角、电荷等）
+
+- 该命令必须在建立模拟盒子（`read_data` 或 `read_restart` 或 `create_box` 等命令）之前使用
 
 - 默认值：atomic（典型物理体系：金属、固体、粗粒度液体）
 
@@ -116,9 +126,9 @@ boundary x y z
 
 x, y, z                 # 可取 p s f m 中的一个或两个字母的组合
 p                       # 周期性边界条件 periodic
-f                       # 非周期性固定边界条件 fixed
-s                       # 非周期性包覆边界条件 shrink-wrapped
-m                       # 非周期性包覆最小值边界条件 minimum value
+f                       # 非周期性；固定边界条件 fixed
+s                       # 非周期性；该方向的大小会随着原子的运动而改变（以保证不丢失原子）
+m                       # 非周期性；包覆最小值边界条件 minimum value
 
 # 示例
 boundary p p p
@@ -140,7 +150,7 @@ dimension N
 N                   # 2/3
 
 # 示例
-dimension 3           # 默认设置
+dimension 3         # 默认设置
 ```
 
 
@@ -169,6 +179,8 @@ newton on  # 默认设置
 ### units
 
 - 用来定义模拟过程中使用的单位类型（单位制），它决定了所有输入脚本、数据文件和所有输出到屏幕、日志文件以及 dump 文件中物理量的单位；一般来说，该命令用在输入脚本最开始的位置
+
+- 使用不当，会导致后期数据处理需要进行繁杂的单位换算
 
 - 默认值：lj
 
@@ -428,6 +440,22 @@ create_atoms 2 single 5 5 5  # 在坐标为（5a, 5a, 5a）添加一个类型 2 
 
 ---
 
+### pair_style
+
+- 势函数类型
+
+```bash
+# 语法
+pair_style style args
+
+# 示例
+pair_style eam/alloy
+pair_style none         # 默认设置
+```
+
+
+---
+
 ### pair_coeff
 
 - 给出势函数中的参数或者数值列表
@@ -444,6 +472,7 @@ pair_coeff      * * ../../CuYM.eam.alloy Cu
 
 # pair_style lj/cut 2.5
 pair_coeff * * 1 1
+# * * 表示 span 所有元素
 # * * 表示考虑任意的两个原子间的相互作用，2.5, 1和1为L-J势所需要的参数，这些参数均可在相关参考文献中找到
 ```
 
@@ -451,20 +480,8 @@ pair_coeff * * 1 1
 
 ### pair_modify
 
----
+- WIP...
 
-### pair_style
-
-- 告诉 LAMMPS 相互作用势的类型
-
-```bash
-# 语法
-pair_style style args
-
-# 示例
-pair_style eam/alloy
-pair_style none   # 默认设置
-```
 
 ---
 
@@ -474,7 +491,13 @@ pair_style none   # 默认设置
 
 ---
 
-#### 近邻列表
+### neighbor
+
+- 此命令设置影响 pairwise neighbor lists 构建的参数。所有原子对的 neighbor cutoff 距离等于其力截止加上 skin 距离，都存储在列表中。通常，skin 距离越大，需要构建的 neighbor lists 就越少，但每个时间步都必须检查更多的对以确定可能的力相互作用。skin 的默认值取决于模拟的单位选择；请参见下面的默认值。
+
+- style 的值表示选择构建近邻列表的算法。bin style 通过 binning 创建列表，binning 是一种与 N/P（每个处理器的原子数）线性缩放的操作，其中 N=原子总数，P=处理器数 (processors)。它几乎总是比缩放为 (N/P)^2 的 nsq style 快。
+
+- 2.0 bin for units = real or metal, skin = 2.0 Angstroms
 
 ```bash
 neighbor skin style
@@ -487,43 +510,41 @@ neighbor 0.3 bin
 neighbor 2.0 nsq
 ```
 
-- 此命令设置影响 pairwise neighbor lists 构建的参数。所有原子对的 neighbor cutoff 距离等于其力截止加上 skin 距离，都存储在列表中。通常，skin 距离越大，需要构建的 neighbor lists 就越少，但每个时间步都必须检查更多的对以确定可能的力相互作用。skin 的默认值取决于模拟的单位选择；请参见下面的默认值。
-
-- style 的值表示选择构建近邻列表的算法。bin style 通过 binning 创建列表，binning 是一种与 N/P（每个处理器的原子数）线性缩放的操作，其中 N=原子总数，P=处理器数 (processors)。它几乎总是比缩放为 (N/P)^2 的 nsq style 快。
-
-- 2.0 bin for units = real or metal, skin = 2.0 Angstroms
 
 ---
 
-#### neigh_modify
+### neigh_modify
 
-```bash
-neigh_modify keyword values ...
+- 设置影响成对近邻列表建立和使用的参数；一次模拟可能需要多个近邻列表
 
-# keyword = delay every check once cluster ...
-
-# delay value = N
-# every value = M
-# check value = yes or no
-# once value = yes or no
-
-# 例子
-neigh_modify every 2 delay 10 check yes page 100000
-```
+- 默认值：delay = 0, every = 1, check = yes, once = no, cluster = no, include = all (same as no include option defined), exclude = none, page = 100000, one = 2000, and binsize = 0.0.
 
 - 此命令设置影响 pairwise neighbor lists 的生成和使用的参数。根据定义的对相互作用和其他命令，模拟可能需要一个或多个邻居列表。
 
 - *every*, *delay*, *check*, and *once*选项影响模拟运行时生成列表的频率。*delay*设置意味着在上一次构建之后至少 N 个步骤之前从不构建新列表。*every*设置意味着每 M 步尝试构建列表（after the delay has passed）。如果*check*设置为 no，则在满足延迟和每个设置的第一步上构建列表。如果*check*设置为 yes，则*every*和*delay*设置将确定何时可能执行构建，但只有在自上次邻居列表构建以来至少有一个原子移动了超过 neighbor skin 距离（在 neighbor 命令中指定）一半的情况下，才会进行实际构建。
 - 如果*once*设置为 yes，则 neighbor lists 仅在每次运行开始时构建一次，并且从不重新构建，除非在写入重新启动文件时执行步骤，或在修复强制进行重建时执行步骤（例如，创建或删除原子的修复，如 fix deposit or fix evaporate）。只有当您确定原子移动的距离不够远，无法重建 neighbor lists 时，才能进行此设置，例如运行冷晶体模拟。请注意，检查是否应该重建邻居列表并不昂贵。
 
-- 默认值：delay = 0, every = 1, check = yes, once = no, cluster = no, include = all (same as no include option defined), exclude = none, page = 100000, one = 2000, and binsize = 0.0.
+```bash
+# 语法
+neigh_modify keyword values ...
+
+# keyword
+delay           # 在上一次构建之后至少N步之前，永远不要构建新的列表
+everry          # delay pass后，每M步建立列表
+check           # yes/no
+once            # yes/no
+
+
+# 示例
+neigh_modify every 2 delay 10 check yes page 100000
+```
 
 
 ---
 
 ### group
 
-- 确定一组原子属于一个组；可以在其他命令（如 fix compute dump velocity）使用 group ID，以共同作用于这些原子；如果 group ID 已存在，group 命令将指定的原子添加到 group 中
+- 确定一组原子属于一个组；可以在其他命令（如 fix compute dump velocity）使用 group ID，以共同作用于这些原子；若 group ID 已存在，group 命令将指定的原子添加到 group 中
 
 ```bash
 # 语法
@@ -550,7 +571,7 @@ group sub id 10 25 50
 
 ### mass
 
-- 为某一种或几种类型的原子设置质量
+- 为原子类型设置相对原子质量
 
 - 只有在模拟盒子定义后，才能使用该命令
 
@@ -558,8 +579,9 @@ group sub id 10 25 50
 # 语法
 mass I value
 
-# I = 原子类型
-# value = 质量值
+I                # 原子类型
+value            # 相对原子质量值
+
 
 # 示例
 mass 1 1.0
@@ -569,7 +591,7 @@ mass 1 1.0
 
 ### timestep
 
-- 为 MD 设置时间步长
+- 设置模拟时间步长
 
 ```bash
 # 语法
@@ -590,21 +612,34 @@ timestep 0.001
 
 ### velocity
 
-- 设置或改变 group 原子的速度
+- 设置或改变原子的速度
 
 ```bash
 # 语法
 velocity group-ID style args keyword value ...
 
-# style = create set scale zero
-# create args = temp seed  设置初速度
+# style
+create
+set
+scale
+zero
+
+# create args  设置初速度
 # temp = 温度值（温度单位）
 # seed = 随机数（正整数）
 
 # keyword/value = 没有或多个
-# keyword = dist sum mom rot temp loop等
-# dist value = uniform gaussian  在creat style下使用
-# dist gaussian：原子速度分布满足高斯分布
+dist
+sum
+mom
+rot
+temp
+loop
+
+# dist value；在creat style 下使用
+uniform
+gaussian              # 原子速度分布满足高斯分布
+
 
 # 示例
 velocity all create 300.0 4928459 dist gaussian
@@ -616,13 +651,15 @@ dist = uniform mom = yes rot = no  # 默认设置
 
 ### run
 
-- 设置运行步数
+- 设置模拟运行步数
 
-- 可以设置 `N = 0`：只计算和输出系统的热力学量，不需要时间步长
+- `run 0` 含义：只计算和输出系统的热力学量，不需要时间步长
 
 ```bash
 # 语法
 run N keyword values ...
+
+N                      # 运行步数
 
 # 示例
 run 10000
@@ -633,14 +670,16 @@ run 10000
 
 ### fix
 
-- 为 group 原子施加 fix 约束；`fix` 是在时间步进或最小化期间应用于系统的任何操作；可能是在时间积分的过程中更新原子的位置和速度，或是控制温度，或是给原子施加约束力，或是强制某种边界条件，或计算过程诊断，等等
+- 给原子施加约束；`fix` 是在时间步进或最小化期间应用于系统的任何操作；可能是在时间积分的过程中更新原子的位置和速度，或是控制温度，或是给原子施加约束力，或是强制某种边界条件，或计算过程诊断，等等
+
+- `fix` 的 style 有很多，且大多已是单独的命令
 
 ```bash
 # 语法
 fix ID group-ID style args
 
-# ID = 用户为fix命令分配的命令
-# group-ID = 需要施加fix到的原子的group ID
+ID             # 为 fix 命令分配 ID
+group-ID       # 被施加约束的原子所属 group ID
 
 # fix nvt  fix nve  fix npt
 
@@ -730,24 +769,23 @@ fix ID group-ID box/relax keyword value ...
 
 ### fix print
 
-- 帮助输出所需信息
+- 输出文本内容
 
 ```bash
 # 语法
 fix ID group-ID print N string keyword value ...
 
-# keyword  = file screen append
-# file value = filename
-# append value = filename
-# screen value = yes no
+# keyword
+file              # 写入内容到文件
+append            # 追加内容到文件
+screen            # 是否输出到屏幕；yes/no
 
-# Example
+
+# 示例
 fix extra all print 100 "Coords of marker atom =$x $y $z" file coord.txt
-```
 
-- 输出文件（如 coord.txt）中的标题行默认为
 
-```bash
+# 输出文件中的默认标题行（# 号是自带的）
 # Fix print output for fix-ID
 ```
 
@@ -756,7 +794,7 @@ fix extra all print 100 "Coords of marker atom =$x $y $z" file coord.txt
 
 ### fix atom/swap
 
-- 执行原子 Monte Carlo 交换；需安装 MC package
+- 执行 Monte Carlo 原子交换；需安装 MC package
 
 ```bash
 # 语法
@@ -780,8 +818,9 @@ fix extra all print 100 "Coords of marker atom =$x $y $z" file coord.txt
 # 语法
 unfix fix-ID
 
+
 # 示例
-unfix 2
+unfix           2
 ```
 
 
@@ -797,10 +836,19 @@ unfix 2
 # 语法
 compute ID group-ID style args
 
-# ID = user-assigned name for the computation
-# group-ID = ID of the group of atoms to perform the computation on
+ID             # 为 compute 命令分配 ID
+group-ID       # 被 compute 的原子所属 group ID
 
-# style = ke ke/atom pe pe/atom pressure rdf temp voronoi/atom等
+# style
+ke
+ke/atom
+pe
+pe/atom
+pressure
+rdf
+temp
+voronoi/atom
+
 
 # 示例
 compute 1 all temp
@@ -826,7 +874,13 @@ dump 1 all custom 100 W.xyz id type x y z c_1
 compute_modify compute-ID keyword value ...
 ```
 
+
+---
+
 ### uncompute
+
+- WIP...
+
 
 ---
 
@@ -834,12 +888,14 @@ compute_modify compute-ID keyword value ...
 
 - 输出原子构型信息
 
+- custom style 中的参数：c_ID/c_ID[I] = 允许输出由 compute 计算的每原子向量或数组 (per-atom vectors or arrays)，这里 ID 应替换为先前在 in 文件中定义的计算的实际 ID（**ID 类似于一种变量**）
+
 ```bash
 # 语法
 dump ID group-ID style N file args
 
-ID                    # 为 dump 命令分配的名称/ID
-group-ID              # 原子 group ID
+ID                    # 为 dump 命令分配的 ID
+group-ID              # 被 dump 的原子所属 group ID
 style                 # custom、one 等
 N                     # 每 N 步输出一次构型
 file                  # dump 文件名
@@ -857,8 +913,6 @@ c_ID / c_ID[I]        # compute 命令计算的每原子向量或数组(per-atom
 dump            1 all custom 500 dump.lammpstrj id type x y z
 ```
 
-- custom style 中的参数：c_ID/c_ID[I] = 允许输出由 compute 计算的每原子向量或数组 (per-atom vectors or arrays)，这里 ID 应替换为先前在 in 文件中定义的计算的实际 ID（**ID 类似于一种变量**）
-
 
 ---
 
@@ -867,7 +921,7 @@ dump            1 all custom 500 dump.lammpstrj id type x y z
 ```bash
 dump_modify dump-ID keyword values ...
 
-# dump-ID = 需要修改的dump ID
+dump-ID         # dump 命令所属 ID
 
 # keyword = sort等
 # sort arg = off or id or N or -N
@@ -893,14 +947,16 @@ dump-ID           # 先前定义的dump ID
 
 ### thermo
 
-- 每 N 步输出一次热力学信息（如温度、能量、压强）；可以是变量
+- 输出热力学信息（如温度、能量、压强）；可以是变量
 
 ```bash
 # 语法
 thermo N
 
+N                  # 每 N 步输出一次热力学信息
+
 # 示例
-thermo          0  # 默认设置
+thermo          0         # 默认设置
 thermo          100
 ```
 
@@ -909,7 +965,7 @@ thermo          100
 
 ### thermo_style
 
-- 输出所设置的热力学信息
+- 设置输出的热力学信息内容
 
 ```bash
 # 语法
@@ -955,7 +1011,6 @@ thermo_style custom step temp ke pe etotal
 
 - 删除不需要的原子
 
-
 ```bash
 # 语法
 delete_atoms style args keyword value ...
@@ -971,18 +1026,53 @@ delete_atoms group 1 # 表示将1组的原子删掉
 delete_atoms region 2 # 表示将区域2中的原子删掉
 ```
 
-
-
 - **如果 compress 关键字设置为 yes，那么在原子被删除后，原子 ID 将被重新分配，以便从 1 到系统中的原子数**。请注意，对于分子系统（请参见 atom_style 命令），无论压缩设置如何，都不会这样做，因为这会破坏已指定的键连接。但是，reset_atom_ids 命令可以在该命令之后使用，以完成相同的任务。
 
 - 默认设置是：compress = yes, bond = no, mol = no
 
 ---
 
+### min_style
+
+- 能量最小化算法
+
+```bash
+# 语法
+min_style style
+
+# style
+cg            # 共轭梯度法；对于绝大多数的问题来说，被认为是效果最好的
+sd            # 最速下降法；一般来说，没有cg算法收敛快
+quickmin
+spin
+
+# 示例
+min_style     cg  # 默认设置
+```
+
+---
+
+### min_modify
+
+- 设置所选择的能量最小化算法的参数；不同的设置参数会影响收敛速率和能量最小化过程中需要计算力的次数
+
+```bash
+# 语法
+min_modify keyword values ...
+
+# keyword/value = 一个或多个
+# keyword = dmax line norm等
+
+# 示例
+min_modify dmax 0.2
+```
+
+
+---
+
 ### minimize
 
-- 通过不断迭代调整原子坐标的方式对体系的能量进行最小化
-
+- 能量最小化
 
 ```bash
 # 语法
@@ -997,53 +1087,13 @@ maxeval       # 计算力或能量的最大次数
 minimize 1.0e-4 1.0e-6 100 1000
 ```
 
-
-- 在能量最小化结束后，程序会打印一段统计摘要信息，介绍满足了何种收敛判据，以及能量、受力、最终的线性搜索和迭代次数等
+- 能量最小化结束后，程序会打印一段统计摘要信息，介绍满足了何种收敛判据，以及能量、受力、最终的线性搜索和迭代次数等
 
 ```bash
 Minimization stats:
   Stopping criterion = max iterations
   Energy initial, next-to-last, final =
        -0.626828169302     -2.82642039062     -2.82643549739
-```
-
----
-
-### min_style
-
-- 为 `minimize` 命令选择一种能量最小化的算法
-
-
-
-```bash
-# 语法
-min_style style
-
-# style = cg sd quickmin spin等
-# cg：PR版本的共轭梯度法；对于绝大多数的问题来说，PR版的共轭梯度算法都被认为是效果最好的
-# sd：最速下降法；一般来说，sd算法都没有cg算法收敛快，但在某些特定的情形下可能会根据稳定
-
-# 示例
-min_style cg  # 默认设置
-```
-
----
-
-### min_modify
-
-- 设置由 `min_style` 命令所选择的能量最小化算法的参数；不同的设置参数会影响收敛速率和能量最小化过程中需要计算力的次数
-
-
-
-```bash
-# 语法
-min_modify keyword values ...
-
-# keyword/value = 一个或多个
-# keyword = dmax line norm等
-
-# 示例
-min_modify dmax 0.2
 ```
 
 
@@ -1066,7 +1116,7 @@ variable name style args ...
 name    # 定义的变量名
 
 # style
-index           # 一个或多个字符串
+index           # 设置变量的可选值
 equal           # 等于；公式、数字、thermo 关键字
 loop            # 循环；从 1 开始
 
@@ -1076,6 +1126,7 @@ variable        iteration equal 40
 variable        n loop ${iteration}
 ```
 
+
 ---
 
 ### jump
@@ -1084,18 +1135,18 @@ variable        n loop ${iteration}
 
 - 'SELF' 含义：重新打开当前 in 文件并再次读取
 
-
 ```bash
 # 语法
 jump file label
 
-file：     # 要跳转到的 in 文件名
-label：    # 可选；要跳转到的 in 文件中的标签；从标签的位置开始向下执行
+file          # 要跳转到的 in 文件名
+label         # 可选；要跳转到的 in 文件中的设置的标签；从标签的位置开始向下执行
+
 
 # 示例
-jump newfile
-jump in.run2 runloop
-jump SELF runloop
+jump        newfile
+jump        in.run2 runloop
+jump        SELF runloop
 ```
 
 
@@ -1103,12 +1154,20 @@ jump SELF runloop
 
 ### label
 
+- 设置标签
+
+```bash
+
+```
+
 ---
 
 ### clear
 
 - 用来删除所有的原子、将所有的设置都设为默认值，并释放 LAMMPS 分配的所有内存
+
 - 该命令可以让你在一个输入脚本中顺序运行多个作业
+
 - 工作目录（命令 `shell`）、日志文件状态（命令 `log`）、echo 状态（命令 `echo`）以及输入脚本中的变量（命令 `variable`）不受 `clear` 影响
 
 ```bash
@@ -1163,31 +1222,16 @@ screen       # yes/no
 universe     # yes/no
 ```
 
+
 ---
 
 ### shell
 
-- 执行 shell 命令
+- 执行 Shell 命令
 
 ```bash
 # 语法
 shell command args
 
-# command：cd mkdir mv rm rmdir
-```
-
----
-
-### neigh_modify
-
-- 设置影响成对近邻列表建立和使用的参数；一次模拟可能需要多个近邻列表
-
-```bash
-# 语法
-neigh_modify keyword values ...
-
-# delay: 在上一次构建之后至少N步之前，永远不要构建新的列表
-# everry: delay pass后，每M步建立列表
-# check:
-# once:
+command        # cd mkdir mv rm rmdir 等 Shell 命令
 ```

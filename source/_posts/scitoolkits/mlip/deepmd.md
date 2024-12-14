@@ -95,16 +95,12 @@ pip install dpgen
 conda install -c conda-forge dpgen
 # 源码安装
 git clone https://github.com/deepmodeling/dpgen && pip install ./dpgen
+
+
+# dpdata
+pip install -U dpdata
 ```
 
-
----
-
-### dpdata
-
-```bash
-pip install dpdata
-```
 
 
 ---
@@ -363,6 +359,35 @@ predict["energies"]
 ---
 
 ### 势函数使用
+
+[1.4. Install LAMMPS — DeePMD-kit documentation](https://docs.deepmodeling.com/projects/deepmd/en/r2/install/install-lammps.html)
+
+[1.2. Install from source code — DeePMD-kit documentation](https://docs.deepmodeling.com/projects/deepmd/en/r2/install/install-from-source.html#install-the-c-interface)
+
+
+DeePMD 与 LAMMPS 的接口
+
+先安装 DeePMD-kit 的 C++ 接口
+
+```bash
+cd $deepmd_source_dir/source
+mkdir build
+cd build
+
+cmake -DUSE_TF_PYTHON_LIBS=TRUE -DCMAKE_INSTALL_PREFIX=$deepmd_root ..
+```
+
+```bash
+cd $deepmd_source_dir/source/build
+make lammps          # 生成 USER-DEEPMD module
+
+
+cp -r $deepmd_source_dir/source/build/USER-DEEPMD path_lammps/src
+
+# 安装 deempd package
+make yes-extra-fix
+make yes-user-deepmd
+```
 
 ```bash
 pair_style  deepmd graph.pb
