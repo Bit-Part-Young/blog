@@ -57,6 +57,8 @@ password:
     - [Organize Your GitHub Stars With Ease - Astral](https://astralapp.com/)
     - [GitHub - raythunder/github-stars-manager: 这是一个用来管理你的github stars的网页工具，它通过标签来管理和分类你的stars。所有的数据保存在你自己的github gists.](https://github.com/raythunder/github-stars-manager)
 
+- [GitHub - WCY-dt/my-github-2024: Statistics of your activities on GitHub in 2024. 统计2024年你在GitHub上的活动.](https://github.com/WCY-dt/my-github-2024)
+
 - 在仓库所在链接后添加 `stargazers`：[查看GitHub仓库被谁star · Issue #15 · oneone1995/blog · GitHub](https://github.com/oneone1995/blog/issues/15)
 - 汉化插件：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
 

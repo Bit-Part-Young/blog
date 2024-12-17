@@ -97,6 +97,9 @@ from pymatgen.core.operations import SymmOp
 from pymatgen.core.units ...
 from pymatgen.electronic_structure.core ...
 from pymatgen.ext.matproj ...
+
+# 或如下写法；因为 pymatgen/core/__init__.py 中已全部写入上述模块导入内容
+from pymatgen.core import Structure, Composition ...
 ```
 
 
@@ -573,6 +576,7 @@ chemical_system           #
 from pymatgen.core.periodic_table import Element
 
 # 属性
+data                       # 所有数据
 Z                          # 原子序数
 number                     # 同上
 symbol                     # 元素符号
@@ -591,7 +595,7 @@ bulk_modulus               # 体莫量
 youngs_modulus             # 杨氏模量
 ionization_energies        # 电离能
 is_metal                   # 是否为金属
-data                       # 所有的数据
+is_transition_metal        # 是否为过渡族金属
 
 # 方法
 
@@ -727,9 +731,9 @@ incar.write_file("INCAR")
 
 #### Kpoints
 
-- 生成 K 点密度的类方法大多都有 `force_gamma` 参数
+- 生成 K 点密度的 classmethod 大多都有 `force_gamma` 参数
 
-- `automatic_density_by_vol()` 类方法生成的三个方向的 K 点密度公式可理解为： reciprocal_density \* (2\*π / lattice_constant)；`kppvol` 参数值设置可参考 `MPStaticSet` 类中的代码
+- `automatic_density_by_vol()` classmethod 生成的三个方向的 K 点密度公式可理解为： reciprocal_density \* (2\*π / lattice_constant)；`kppvol` 参数值设置可参考 `MPStaticSet` 类中的代码
 
 ```python
 from pymatgen.io.vasp.inputs import Kpoints
@@ -896,47 +900,60 @@ from_prev_calc()            # 基于之前的 VASP 计算目录中生成静态�
 
 - 读取并解析 VASP 的输出文件
 
-- Oszicar 类的 `final_energy` 属性选择的是 `E0`；Vasprun 类的 `final_energy` 属性选择的也是 `E0`
-
-
 ---
 
 #### Outcar
 
-Outcar 类能获取的较普适数据的属性和方法较少（主要是解析 Vasprun.xml 文件无法获取到的数据）
+- Outcar 类能获取的较普适数据的属性和方法较少（主要解析 Vasprun.xml 文件无法获取到的数据）
 
 ```python
 from pymatgen.io.vasp.ouputs import Outcar
 
 
+# 属性
+drift                          # 每个离子步的 Total drift
+run_stats                      # "Total CPU time used (sec)" 相关内容
+final_energy                   # "energy(sigma->0)"
+final_energy_wo_entrp          # "energy without entropy"
+final_fr_energy                # "free energy TOTEN"    
+
 # 方法
-read_pattern()
-read_table_pattern()
+read_pattern()                 # 通用 pattern 解析
+read_table_pattern()           # 解析类列表数据；分成 header、main body 和 footer 三部分，返回 main body 中的内容
+read_neb()                     # 读取 VASP 中常规的 NEB 或 CINEB 数据
 
-read_neb()
+
+# 示例
+outcar = Outcar(...)
+
+# 获取原子位置坐标和受力
+table_data = outcar.read_table_pattern(
+    header_pattern=r"\sPOSITION\s+TOTAL-FORCE \(eV/Angst\)\n\s-+",
+    row_pattern=r"\s+([+-]?\d+\.\d+)\s+([+-]?\d+\.\d+)\s+([+-]?\d+\.\d+)\s+([+-]?\d+\.\d+)\s+([+-]?\d+\.\d+)\s+([+-]?\d+\.\d+)",
+    footer_pattern=r"\s--+",
+    postprocess=lambda x: float(x),
+    last_one_only=False,
+)
 ```
 
-```python
-"""
-        drift (np.array): Total drift for each step in eV/Atom.
-        run_stats (dict): Various useful run stats as a dict including "System time (sec)", "Total CPU time used (sec)",
-            "Elapsed time (sec)", "Maximum memory used (kb)", "Average memory used (kb)", "User time (sec)", "cores".
-        is_stopped (bool): True if OUTCAR is from a stopped run (using STOPCAR, see VASP Manual).
-        final_energy (float): Final energy after extrapolation of sigma back to 0, i.e. energy(sigma->0).
-        final_energy_wo_entrp (float): Final energy before extrapolation of sigma, i.e. energy without entropy.
-        final_fr_energy (float): Final "free energy", i.e. free energy TOTEN.
-"""
-```
 
 ---
 
 #### Oszicar
+
+- Oszicar 类的 `final_energy` 属性选择的是 `E0`；Vasprun 类的 `final_energy` 属性选择的也是 `E0`
 
 ```python
 from pymatgen.io.vasp.ouputs import Oszicar
 
 
 # 属性
+ionic_steps                     # 离子步数据
+electronic_steps                # 电子步数据
+final_energy                    # E0
+all_energies                    # 电子步 + 离子步
+# 方法
+as_dict()                       # key 为 ionic_steps 和 electronic_steps 的 dict
 ```
 
 
@@ -961,7 +978,7 @@ vasp_version            # VASP 版本
 initial_structure       # 初始构型
 final_structure         # 最终构型
 structures              # 每个离子步构型
-final_energy            # 最终能量
+final_energy            # 最终能量 E0
 nionic_steps            # 离子步步数
 ionic_steps             # 每步离子步内容
 complete_dos            # 获取 DOS 数据

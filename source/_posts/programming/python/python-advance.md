@@ -476,13 +476,16 @@ euporie-notebook notebook.ipynb   # 编辑
 euporie-console                   # 连接 Jupyter kernel 并可在控制台会话中编辑交互运行代码
 ```
 
-- 魔法命令
+- 魔法函数 line magic function
 
 ```python
-%autosave 500   # 每 500s 自动保存
-%timeit         # 计时
-!ls             # 运行 Bash 命令
+%lsmagic        # 列出所有的魔法函数
+
+%time           # 测量单个语句的执行时间
+%timeit         # 对单个语句多次运行，以计算一个平均运行时间
 %%bash          # 运行 Bash 命令；在 cell 开头添加此行
+!ls             # 支持部分 Linux 原生命令，如 pwd cat env history 等
+%autosave 500   # 每 500s 自动保存
 ```
 
 - VSCode，在 Python 脚本中的代码前添加 `# %%`，可像 Jupyter Notebook 一样运行一段代码；添加 `# %% [markdown]`，可编写 Markdown

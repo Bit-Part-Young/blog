@@ -70,26 +70,33 @@ password:
 
 ```bash
 
-total drift           # 结构中所有原子在 x y z 方向的受力变化总和
+total drift           # 每个离子步，结构中所有原子在 x y z 方向的受力变化总和
+
+# 获取受力数据
+n=48                  # 原子数
+lines=`awk '{i=0}/TOTAL-FORCE/{getline; while(i<n) {getline; print $4,$5,$6; i++} i=0}' n=$n < OUTCAR`
+echo $lines
 
 # 能量之间的差异
-F = E + PV - TS           # 自由能公式；T=0 时，F=U
+F = E + PV - TS           # 总能；自由能公式；T=0 时，F=U
 free energy TOTEN         # 自由能
 energy without entropy    # 不含 T*S 熵项的自由能
-E0                        # 
+E0                        # sigma -> 0 时的能量
 
-# 结构优化结束标志
+# 结构优化/弛豫结束标志
 reached required accuracy - stopping structural energy minimisation
 
 # 构型原子数
+# 方式 1
 natoms=$(sed -n '7p' POSCAR | awk '{ for(i=1; i<=NF; i++) a+=$i; print a} ')
-natoms=$(grep 'NIONS' OUTCAR | tail -1 | awk '{print $12}')
+# 方式 2
+natoms=$(grep 'NIONS' OUTCAR | tail -n 1 | awk '{print $12}')
 
 # 平均原子体积
-vol=$(grep 'volume of cell' OUTCAR | tail -1 | awk -v n=${natoms} '{print $5/n}')
+vol=$(grep 'volume of cell' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
 
 # 平均原子能量
-eng=$(grep 'free  energy' OUTCAR | tail -1 | awk -v n=${natoms} '{print $5/n}')
+eng=$(grep 'free  energy' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
 
 # 磁矩 需设置 ISPIN=2
 mag=$(grep 'mag=' OSZICAR | awk '{print $10}')
@@ -103,7 +110,7 @@ grep 'free energy' OUTCAR
 grep  'energy without entropy' OUTCAR
 
 # 离子步能量
-# 'energy  without' 'free  energy' 之间有两个空格
+# 'energy  without' 或 'free  energy' 之间有两个空格
 grep 'free  energy' OUTCAR
 grep  'energy  without entropy' OUTCAR
 

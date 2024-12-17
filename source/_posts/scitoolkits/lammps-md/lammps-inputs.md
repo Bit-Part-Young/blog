@@ -45,6 +45,11 @@ password:
     - label
 
 
+```bash
+# 移动原子
+displace_atoms
+```
+
 
 Command 类型
 
@@ -204,7 +209,7 @@ units style
 # style
 metal              # 金属体系常用
 real               # 高分子常用
-lj                 # 所有物理量没有单位
+lj                 # 约化单位，无量纲
 si                 # 国际单位制
 cgs
 electron
@@ -350,7 +355,7 @@ lattice      fcc 3.615 orient x 1 1 -2 orient y -1 1 0 orient z 1 1 1
 
 - 用来构建拟盒子大小以及划分模拟区域（用于定义一个空间几何区域）
 
-- `units lattice` 为默认值，可不写出
+- 默认值：`units lattice`
 
 - 一般 `box` 这个单词只用于与盒子相关的地方，只选取部分区域时，不要将其定义为 `box`
 
@@ -358,31 +363,34 @@ lattice      fcc 3.615 orient x 1 1 -2 orient y -1 1 0 orient z 1 1 1
 # 语法
 region ID style args keyword args ...
 
-# ID = 待定义区域的ID
+ID                    # 为 regoin 命令分配的 ID
 
-# style = block sphere plane等
-# block args = xlo xhi ylo yhi zlo zhi  各个维度上的范围值
-# xlo, xhi = x方向的起始和终止坐标位点
+# style
+block
+sphere
+plane
 
-# keyword/arg = 没有或多个
-# keyword = side units move rotate
-# units args = lattice box
-# lattice = 用lattice 单位定义几何结构  （默认项）
-# box = 用模拟盒子单位定义几何结构
+# block args
+xlo xhi ylo yhi zlo zhi    # x y z 方向的起始、终点坐标
 
-# prism args = xlo xhi ylo yhi zlo zhi xy xz yz
-#   xlo,xhi,ylo,yhi,zlo,zhi = bounds of untilted prism (distance units)
-#   xy = distance to tilt y in x direction (distance units)
-#   xz = distance to tilt z in x direction (distance units)
-#   yz = distance to tilt z in y direction (distance units)
+# keyword
+side
+units                
+move
+rotate
+
+# units
+lattice                    # 用晶格常数作为单位定义长度，box 
+box                        # 用模拟盒子单位定义几何结构
+
 
 # 示例
-variable        a equal 3.61
-lattice            fcc ${a}
-region            box block 0 10 0 10 0 10 units lattice # 构建一个10a*10a*10a大小的模拟盒子（a为晶格常数）；units lattice为默认值，可不写出
-region 1 block 1 9 1 9 1 9  # 表示将盒子中x（1a-9a），y（1a-9a），z（1a-9a）的区域选中，定义为区域1，用于后续模拟
+# 构建 10a*10a*10a 大小的 box；units lattice为默认值，可不写出
+lattice           fcc 3.615
+region            box block 0 10 0 10 0 10 units lattice
 
-region            box block 0 10 0 10 0 10 units box   # 构建一个10*10*10（埃）大小的模拟盒子
+# 构建 10*10*10 Å 大小的 box
+region            box block 0 10 0 10 0 10 units box
 ```
 
 
@@ -396,16 +404,16 @@ region            box block 0 10 0 10 0 10 units box   # 构建一个10*10*10（
 # 语法
 create_box N region-ID keyword value ...
 
-N                 # 原子种类数
-region-ID         # 设置区域 ID
+N                    # 原子种类数
 
-# keyword/value = 没有或多个
-# keyword = bond/types angle/types
-# bond/types value = # of bond types 键种类数
+# keyword
+bond/types           # 键种类数
+angle/types          # 键角种类数
+
 
 # 示例
-create_box 2 box              # 盒子中有 2 种原子
-create_box 2 box bond/type 2  # 盒子中有 2 种原子及 2 种键长
+create_box        2 box              # box 中有 2 种原子
+create_box        2 box bond/type 2  # box 中有 2 种原子及 2 种键长
 ```
 
 
@@ -414,6 +422,7 @@ create_box 2 box bond/type 2  # 盒子中有 2 种原子及 2 种键长
 ### creat_atoms
 
 - 在晶格阵点上创建原子，或创建一个单独的原子，或创建一些列随机原子（往模型中添加原子）
+
 - 使用该命令之前，模拟盒子必须是存在的（使用 `create_box` 命令创建），同时晶格也必须已经被定义（使用 `lattice` 命令）
 
 ```bash
@@ -449,8 +458,8 @@ create_atoms 2 single 5 5 5  # 在坐标为（5a, 5a, 5a）添加一个类型 2 
 pair_style style args
 
 # 示例
+pair_style none            # 默认设置
 pair_style eam/alloy
-pair_style none         # 默认设置
 ```
 
 

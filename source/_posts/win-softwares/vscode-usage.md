@@ -43,6 +43,8 @@ code-insiders    # VSCode Insiders
 
 - VSCode 中类、函数、方法、属性等的图标：[IntelliSense in Visual Studio Code](https://code.visualstudio.com/docs/editor/intellisense#_types-of-completions)
 
+- 第二侧边栏可拖动至右侧或底部，实现同时使用多个第二侧边栏：[VS Code进阶技巧: 如何使用第二侧边栏提升开发效率\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1oyzYYbEAR?spm_id_from=333.1387.favlist.content.click)
+
 - 参考资料：
     - [GitHub - vscodecool/vscodecool.github.io: 《VS Code入门教程》笔记](https://github.com/vscodecool/vscodecool.github.io)
 
@@ -89,8 +91,10 @@ Crtl + 点击图片          # 缩小图片
     "window.zoomLevel": 0.5,
     // 删除尾随空白
     "files.trimTrailingWhitespace": true,
-    // 关掉 VSCode 的声音
+    // 关掉 VSCode 声音
     "editor.accessibilitySupport": "off",
+    // Windows 复制路径正斜杠
+    "explorer.copyRelativePathSeparator": "/",
 }
 ```
 

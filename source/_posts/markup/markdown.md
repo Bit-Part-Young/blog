@@ -38,6 +38,8 @@ password:
 
 ## 工具
 
+- 将 Office 文档和 pdf 转换成 md 的 Python 包：[GitHub - microsoft/markitdown: Python tool for converting files and office documents to Markdown.](https://github.com/microsoft/markitdown)
+
 - 微信 Markdown 编辑器：[GitHub - doocs/md](https://github.com/doocs/md)
 
 - [markdown在线编辑器 - Markdown Editor](https://markdown-editor.org/)

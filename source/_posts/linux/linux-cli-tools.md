@@ -42,7 +42,9 @@ password:
 
 ---
 
-## 其他命令行工具
+## 命令行工具
+
+### 概览
 
 >lsd、ripgrep、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
 
@@ -51,6 +53,8 @@ password:
 - Shell（个人感觉没有 zsh 好用）
     - nushell
     - fish
+
+- 快速跳转目录：[z - jump around](https://github.com/rupa/z)（可用于 Bash 和 zsh）
 
 - 替代 `man`
     - [tldr](https://github.com/tldr-pages/tldr)（有时会失效）
@@ -70,9 +74,13 @@ password:
     - [ripgrep-all](https://github.com/phiresky/ripgrep-all)（命令 `rga`；可在 PDF、E-Books、Office 文档、压缩文件等查找内容）
 
 - 替代 `sed`：[sd](https://github.com/chmln/sd)
-- 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 git 结合使用）
+
+- 替代 `cat`：[bat](https://github.com/sharkdp/bat)（可与 Git 结合使用）
+
 - 替代 `find`：[fd](https://github.com/sharkdp/fd)（cargo 安装时为 `fd-find`）
+
 - 替代 `diff`：[difftastic](https://github.com/Wilfred/difftastic)（命令 `difft`）
+
 - 替代 `ps`：[procs](https://github.com/dalance/procs)
 
 - 替代 `top`
@@ -149,7 +157,9 @@ Markdown 相关
 编程相关
 
 - 命令纠正：[thefuck](https://github.com/nvbn/thefuck)
+
 - 统计代码行数：[cloc](https://github.com/AlDanial/cloc#quick-start-)
+
 - 统计目录中的代码行数：[scc](https://github.com/boyter/scc)（类似 cloc）
 
 
@@ -178,7 +188,7 @@ Markdown 相关
 
 - 文本编辑器（类似 Vim）：[helix](https://github.com/helix-editor/helix)
 
-- 趣味小工具：
+- 趣味小工具
     - cowsay（牛说）
     - sl（火车）
     - fortune（幸运饼干；格言）
@@ -189,6 +199,8 @@ Markdown 相关
 
 
 ---
+
+### 具体使用
 
 - fzf 进阶用法
     - [fzf/ADVANCED.md at master · junegunn/fzf · GitHub](https://github.com/junegunn/fzf/blob/master/ADVANCED.md)
@@ -229,6 +241,13 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 ---
 
 ```bash
+# z 安装与配置
+git clone https://github.com/rupa/z.git
+
+# 将以下内容添加至 ~/.{bash,zsh}rc
+. /path/to/z.sh
+
+
 # turm 安装
 cargo install turm
 

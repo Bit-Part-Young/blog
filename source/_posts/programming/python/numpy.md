@@ -83,6 +83,10 @@ np.fromstring()         # 从字符串提取数据
 np.random.rand()        # 0-1 随机小数
 np.random.randint()     # 随机整数
 np.random.normal()      # 正态分布随机数
+
+# 数组元素是类浮点数的字符串时
+a = [f"{x:.1f}" for x in range(1, 10)]
+array = np.array(a, dtype=float)
 ```
 
 
@@ -192,35 +196,36 @@ np.var()     # 方差
 - 方式 2：通过数组对象本身的方法（即 `array.method()`），如数组创建函数，数学和线性代数操作等
 
 ```python
-np.copy()      # 拷贝
+np.copy()             # 拷贝
 
 np.diff()
 
-np.reshape()  # 改变数组形状
-np.all()   # 判断数组是否所有元素都是 True
-np.any()   # 判断数组是否有为 True 的元素
+np.reshape()          # 改变数组形状；当一个维度的参数值为 -1 时，会自动推断出该维度的值
+np.all()              # 判断数组是否所有元素都是 True
+np.any()              # 判断数组是否有为 True 的元素
 
-np.tolist()  # 转换成 Python list
+tolist()              # 转换成 list 类型
 
 
-np.flatten()   # 扁平化
+np.flatten()          # 扁平化
 
-np.unique()    # 去重；返回的元素是排序过的（从小到大）
+np.unique()           # 去重；返回的元素是排序过的（从小到大）
 # 参数
-return_count=True  # 返回相同元素的数目
+return_count=True     # 返回相同元素的数目
 
-np.hstack()    # 横向堆叠多个数组构成新数组
-np.vstack()    # 纵向堆叠多个数组构成新数组
-np.append()    # 追加元素
-np.insert()    # 插入元素
-np.where()     # 条件查询
-np.argwhere()  # 满足条件的元素索引
+np.hstack()           # 横向堆叠多个数组构成新数组
+np.vstack()           # 纵向堆叠多个数组构成新数组
+np.append()           # 追加元素
+np.insert()           # 插入元素
+np.where()            # 条件查询
+np.argwhere()         # 满足条件的元素索引
 
-np.remainder() # 计算数组余数
+np.remainder()        # 计算数组余数
 
-np.isclose()   # 比较两个数值是否在某个容忍范围内接近相等
-rtol           # 相对容忍值
-atol           # 绝对容忍值
+np.isclose()          # 比较两个数值是否在某个容忍范围内接近相等
+# 参数
+rtol                  # 相对容忍值
+atol                  # 绝对容忍值
 ```
 
 

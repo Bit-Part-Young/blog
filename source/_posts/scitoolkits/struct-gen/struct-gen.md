@@ -44,6 +44,10 @@ password:
 
 缺陷构型生成：[GitHub - nanyanshouhu/Defect\_generator](https://github.com/nanyanshouhu/Defect_generator)
 
+- 计算材料数据库
+    - [NOMAD CoE - NOMAD CoE](https://www.nomad-coe.eu/nomad-coe/)
+    - [OQMD](https://www.oqmd.org/)
+
 
 ---
 

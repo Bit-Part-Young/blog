@@ -1467,6 +1467,19 @@ class InventoryItem:
 ```
 
 
+---
+
+### pprint
+
+- 以一种格式化和层次清晰的方式输出 dict 内容
+
+```python
+from pprint import pprint
+
+d = {...}
+pprint(d)       
+```
+
 
 ---
 

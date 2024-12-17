@@ -28,6 +28,8 @@ password:
 
 ### 参考资料
 
+- 内容精简，值得阅读参考：[VASP 计算基础与结构优化过程](https://mp.weixin.qq.com/s/SZvd7LXRsptCXRkqNs13mA)
+
 - [VASP个人笔记(一)计算流程与输入输出文件](https://zhuanlan.zhihu.com/p/166127696)
 
 - [13\_vasp/V2PC/README.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/README.md)
@@ -329,6 +331,7 @@ fractional
 
 - K 点密度选择：三个方向的 K 点密度应尽量一致
     - 对于原子或者分子的计算，取一个 Gamma 点就够了（1 1 1）
+    - 表面 Slab 体系，真空层方向的 K 点取 1 即可
 
 ```bash
 # a 为 晶格常数

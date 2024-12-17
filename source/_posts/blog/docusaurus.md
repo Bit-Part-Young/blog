@@ -1,7 +1,7 @@
 ---
 title: Docusaurus 框架
 top: false
-cover: 
+cover:
 toc: true
 mathjax: true
 summary: Docusaurus 框架
@@ -27,12 +27,15 @@ Docusaurus：文档龙/多库龙。
 ### 参考资料
 
 - 官网：[Build optimized websites quickly, focus on your content - Docusaurus](https://docusaurus.io/)
+
 - Docusaurus 与其他框架的对比：[Comparison with other tools - Docusaurus](https://docusaurus.io/docs#comparison-with-other-tools)
+
+- 主题：[GitHub - wrm244/docusaurus-theme-zen: 这是使用docusaurus搭建的主题，结合了docusaurus简单易用与其他开源页面设计方案](https://github.com/wrm244/docusaurus-theme-zen)
 
 - 示例站点
     - [GitHub - MADICES/MADICES.github.io](https://github.com/MADICES/MADICES.github.io)
     - [Setting up Fortran • Fortran Tutorial](https://pranabdas.github.io/fortran/)
-    - [互联网冲浪指南 | 数字生活 DigitalLife](https://wiki.404lab.top/)
+    - [互联网冲浪指南 - 数字生活 DigitalLife](https://wiki.404lab.top/)
 
 
 

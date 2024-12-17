@@ -107,6 +107,15 @@ pip install -U dpdata
 
 ## 使用
 
+### 工具
+
+- 生成 Deep Potential：[GitHub - hsulab/GDPy: Generating Deep Potential with Python](https://github.com/hsulab/GDPy)
+
+
+
+
+---
+
 ### DeePMD-kit
 
 训练

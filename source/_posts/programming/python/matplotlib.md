@@ -170,9 +170,14 @@ xscale / yscale                # x、y 轴比例
 facecolor                      # 轴背景颜色
 
 
-ax.set_xlabel("x"); ax.set_ylabel("y")
-# or
-ax.set(xlabel="x", ylabel="y")
+# 写法一
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+# 写法二
+ax.set(
+    xlabel="x",
+    ylabel="y",
+)
 ```
 
 ---

@@ -143,30 +143,31 @@ make -f Makefile.macos atomsk
 - 常用 options
 
 ```bash
--orient                 # 晶体取向
--rmatom N               # 删除原子
--rotate Z 45            # 旋转轴
--orthogonal-cell        # 转变为正交胞
--fractional             # 分数坐标；VASP 格式下
--sort species pack      # 使相同元素在 POSCAR 中是连续的
--fix Z                  # 固定原子坐标轴；Z/all
--shift                  # 平移
--substitute 1 Cu        # 原子类型替换成某种元素
--wrap                   # 将胞外原子施加 PBC 移至胞内
--cell add 10 y          # 在 y 方向上增加 10 埃，原子位置不变；x y z 可分别写成 H1 H2 H3；作用相当于添加真空层；set 设置 某个方向的长度
--center 0/com           # 移动所有原子，使其质心在 box 中心；会使位于 box 边缘的原子位点稍微往胞里靠，和 ase Atoms 的 center 方法效果不同
--add-atom               # 添加原子；可添加笛卡尔坐标及分数坐标（0.5*box 形式）
--wrap                   # 将胞外原子通过 PBC 到胞内
+-orient                     # 晶体取向
+-rmatom                     # 删除原子
+-rotate                     # 旋转轴
+-orthogonal-cell            # 转变为正交胞
+-fractional                 # 分数坐标；VASP 格式下
+-sort                       # 根据 properties 对原子进行排序
+-fix                        # 固定原子坐标轴
+-shift                      # 移动原子
+-substitute                 # 元素替换
+-wrap                       # 将胞外原子施加 PBC 移至胞内
+-cell                       # 修改 box 的 cell vector；可 add、set、rm
+-center                     # 使体系移至 box 的中心
+-add-atom                   # 添加原子；可添加笛卡尔、分数坐标
+-wrap                       # 将胞外原子通过 PBC 到胞内
 -properties
 -remove-doubles
 -mirror
+-deform                     # 或 -def，通过施加正应变或切应变使体系变形（box 和 原子一起）
 ```
 
 - 常用 modes
 
 ```bash
 --create                # 构建晶体结构
---merge
+--merge                 # 合并两个构型
 
 # 报错内容：一次只能使用一个 mode
 X!X ERROR: only one mode can be used at a time.
@@ -182,51 +183,59 @@ pdb pos pw str vesta xmd xsf xv
 xyz exyz sxyz
 ```
 
+- atomsk 中的变量可全小写/大写，如 box、z
+
 - 常用命令实例
 
 ```bash
 # 构建晶体结构
-atomsk --create fcc 4.02 Al vasp
-atomsk --create hcp 2.92 4.61 Ti vasp  # 矢量：H1=[2-1-10], H2=[-12-10], H3=[0001]
+--create fcc 4.02 Al               # FCC
+--create hcp 2.92 4.61 Ti          # HCP，基矢: H1=[2-1-10], H2=[-12-10], H3=[0001]
 
-# 构建不同晶体取向的构型
-# zsh [] 中括号需添加引号
-atomsk --create fcc 3.53 Ni -orient [1-10] [11-2] [111] vasp
+# 构建晶体特定取向的构型
+--create fcc 3.53 Ni -orient "[1-10]" "[11-2]" "[111]"
 
--duplicate 1 1 4                 # 构建超胞
+-duplicate 1 1 4                   # 构建超胞
 
-# 添加原子；box/BOX 可小写/大写
+# 添加原子（分数坐标）
 -add-atom Si at 0.25*box 0.33*box 0.5*box
 
-# 线性插值；用于 NEB
-atomsk --interpolate initial.vasp final.vasp 7 vasp
+-sort species pack                 # 将相同的元素排在一起（写入 VASP POSCAR 有用）
 
-# 将六方胞变成正交胞
-atomsk POSCAR -orthogonal-cell -sort species pack vasp
-
-# 笛卡尔、分数坐标互相转换
-atomsk POSCAR vasp               # 笛卡尔坐标
-atomsk POSCAR -fractional vasp   # 分数坐标
+# 笛卡尔、分数坐标互相转换（用于 VASP）
+atomsk POSCAR vasp                 # 笛卡尔坐标
+atomsk POSCAR -fractional vasp     # 分数坐标
 
 # 添加真空层
--cell add 15 z                   # 在 z 轴上半部分添加真空层
--shift 0 0 15 -cell add 30 z     # 在 z 轴两侧添加真空层
--shift 0 0 15 -cell add 15 z     # 在 z 轴下半部分添加真空层
+-cell add 15 z                     # 在 z 轴上半部分添加真空层；x、y、z 可写成 H1-3
+-shift 0 0 15 -cell add 30 z       # 在 z 轴两侧添加真空层
+-shift 0 0 15 -cell add 15 z       # 在 z 轴下半部分添加真空层
 
--fix x -fix y                    # 固定所有原子的 x、y 轴
--fix x below 4.05 z              # 原子 z 轴坐标低于一定值，其 x 轴被固定
+# 固定原子坐标轴
+-fix x -fix y                      # 固定所有原子的 x、y 轴
+-fix x below 4.05 z                # 原子 z 轴坐标低于一定值，其 x 轴被固定
+
+-def zx 5%                         # 使 z 轴沿 x 方向进行切应变
+
+-center 0/com                      # 移动所有原子，使其质心在 box 中心；会使位于 box 边缘的原子位点稍微往胞里靠，和 ase Atoms 的 center 方法效果不同
+
+
+# 线性插值；用于 NEB
+--interpolate initial.vasp final.vasp 7 vasp
+
 
 # 格式转换
-# 输出文件可以是具体的文件名，也可以是文件格式；输出文件可以是多个
+# 输出文件可为具体文件名，也可为文件格式；输出文件可以是多个
 # 写入 cif 文件时，总是假设空间群为 P1，写入所有原子位置
-atomsk POSCAR xyz                # 常用: xyz lammps/lmp vasp/pos cif
+atomsk POSCAR xyz                  # 常用: xyz lammps/lmp vasp/pos cif
+
 
 # 常见表面的具体坐标轴
-"[010]" "[001]" "[100]"          # BCC、FCC (100)
-"[1-10]" "[001]" "[110]"         # BCC、FCC (110)
-"[11-2]" "[-110]" "[111]"        # BCC、FCC (111)
+"[010]" "[001]" "[100]"            # BCC、FCC (100)
+"[1-10]" "[001]" "[110]"           # BCC、FCC (110)
+"[11-2]" "[-110]" "[111]"          # BCC、FCC (111)
 ```
 
-- 多晶模型及界面模型（coating 模型）构建： [【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
+- 多晶模型及界面模型（coating 模型，相对简单的）构建： [【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
 
 - 多晶模型：基于 Voronoi tessellation 算法生成

@@ -82,11 +82,13 @@ C++ 数值优化库：[GitHub - mlpack/ensmallen: A header-only C++ library for 
 
 ### 工具
 
-[VsCode中C/C++的launch.json文件模板 - SuiNian's Blog](https://blog.nianbroken.top/archives/254/)
+- [VsCode中C/C++的launch.json文件模板 - SuiNian's Blog](https://blog.nianbroken.top/archives/254/)
 
-filesystem 标准库：[Filesystem library (since C++17) - cppreference.com](https://en.cppreference.com/w/cpp/filesystem)
+- filesystem 标准库：[Filesystem library (since C++17) - cppreference.com](https://en.cppreference.com/w/cpp/filesystem)
 
-解析命令行输入参数：[GitHub - r-lyeh-archived/getopt: Simple command-line options handler (C++11)](https://github.com/r-lyeh-archived/getopt)
+- 命令行参数解析
+    - [GitHub - p-ranav/argparse: Argument Parser for Modern C++](https://github.com/p-ranav/argparse)
+    - [GitHub - r-lyeh-archived/getopt: Simple command-line options handler (C++11)](https://github.com/r-lyeh-archived/getopt)
 
 
 ---
@@ -96,13 +98,9 @@ filesystem 标准库：[Filesystem library (since C++17) - cppreference.com](htt
 ```bash
 g++ main.cpp            # 可执行文件名称默认为 a.out
 g++ main.cpp -o main    # 指定可执行文件名称
-```
 
----
 
-编译器标志
-
-```bash
+# 编译器标志
 -I           # 链接头文件路径
 -L           # 链接库路径
 -O[0-3]      # 不优化到逐级增强的优化
