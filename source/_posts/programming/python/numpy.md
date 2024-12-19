@@ -83,6 +83,8 @@ np.fromstring()         # 从字符串提取数据
 np.random.rand()        # 0-1 随机小数
 np.random.randint()     # 随机整数
 np.random.normal()      # 正态分布随机数
+np.random.uniform()     # 均匀分布随机数
+
 
 # 数组元素是类浮点数的字符串时
 a = [f"{x:.1f}" for x in range(1, 10)]

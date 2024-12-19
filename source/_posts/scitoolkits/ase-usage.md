@@ -21,11 +21,11 @@ password:
 
 - [atomic simulation environment (ASE)](https://wiki.fysik.dtu.dk/ase)：一系列用于设置、操作、运行、可视化及分析原子模拟的工具和 Python 模块
 
+- ASE 可支持的构型文件格式：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+
 - ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与**核心** `Atoms` object 和 ASE 中的许多可用算法一起使用；支持的 `Calculators`：
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202406022047963.png)
-
-- ASE 中可识别的文件格式：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
 
 - [ASE 版本 Release notes](https://wiki.fysik.dtu.dk/ase/releasenotes.html)：查看版本更新细节
 
@@ -177,15 +177,13 @@ rdf = Analysis(images=...).get_rdf()
 
 - ase neb 方法：[Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
 
-- ase 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/phasediagram/phasediagram.html)
-
 - ase 缺陷计算 - 寻找最优的超胞形状：[Tools for defect calculations — ASE documentation](https://wiki.fysik.dtu.dk/ase/tutorials/defects/defects.html#supercell-creation)
 
 - [MAC版的ASE如何换轴的颜色 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=46950&extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline)
 
 - interface 构建（较简单情况）：[Interface building - Manipulating atoms — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/manipulating_atoms/manipulating_atoms.html#interface-building)
 
-- DOS、能带、EOS 计算：[Crystals and band structure — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut04_bulk/bulk.html)
+- DOS、能带：[Crystals and band structure — ASE documentation](https://wiki.fysik.dtu.dk/ase/gettingstarted/tut04_bulk/bulk.html)
 
 ```python
 # 振动分析
@@ -243,10 +241,10 @@ set_xxx()
 todict()                   # 将原子信息写入 dict
 copy()                     # 拷贝
 wrap()                     # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
-rattle()                   # 扰动？
+rattle()                   # 随机移动原子（位置）
 write()                    # 写入构型格式文件
-edit()
-pop()
+edit()                     # 交互式修改（ASE GUI）
+pop()                      # 删除原子
 
 # get 方法
 get_pbc()                  # 周期性边界条件
@@ -272,14 +270,14 @@ get_stresses()             # 每个原子的应力张量
 # set 方法
 set_chemical_symbols()     # 设置元素符号；可用于置换元素
 set_constraints()          # 施加约束；通常需结合 ase.constraints 的 FixAtoms 函数使用，直接设置 False/True 或 0/1 的列表无效果
-
+    
 center()                   # 在指定轴两端各添加真空层并移至该轴中心
 # 参数
 vacuum                     # 真空层厚度
 axis                       # 指定轴
 ```
 
-- 晶体常用变量获取
+- 晶体结构常用变量获取
 
 ```python
 from ase.atoms import Atoms
@@ -316,19 +314,37 @@ del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
 
 - Bulk 晶体结构
     - 参考：[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
-    - 简单 Bulk 晶体结构构建示例代码
 
 ```python
 from ase.build import bulk
 
 # 原胞
 atoms = bulk("Al", "fcc", a=4.05)
-# 单胞
+# 单胞 cubic=True
 atoms = bulk("Al", "fcc", a=4.05, cubic=True)
 
+
+# 支持的 crystalstructure 参数值
+sc                       # 简单立方
+bcc                      # Nb
+fcc                      # Al
+hcp                      # Mg
+diamond                  # Si
+bct                      # Body-Centered Tetragonal
+rhombohedral             # 菱形
+orthorhombic             # 正交
+rocksalt                 # NaCl
+cesiumchloride           # CsCl
+fluorite, caf2           # CaF2
+zincblende               # 闪锌矿 ZnS
+wurtzite                 # 纤锌矿 ZnS
+
+
 # 超胞
-supercell = atoms * 2           # 方式 1
-supercell = atoms * (2, 2, 2)   # 方式 2
+# 方式 1
+supercell = atoms * 2
+# 方式 2
+supercell = atoms * (2, 2, 2)
 ```
 
 - surface 表面模型
@@ -356,17 +372,17 @@ s = surface(
     vacuum=10.0,
 )
 # 参数
-lattice           # Atoms
-indices           # 面指数
-layers            # 指最小一个完整单元的 slab，而非原子层数
-vacuum            # z 轴两端添加真空层
+lattice                # Atoms
+indices                # 面指数
+layers                 # 指最小一个完整单元的 slab，而非原子层数
+vacuum                 # z 方向两端添加真空层
 
 
 # FCC 结构常见的 (100)、(110)、(111) 面
 fcc100
 fcc110
 fcc111
-fcc211        # 设置有要求
+fcc211                 # 设置有要求
 # BCC 结构常见的 (100)、(110)、(111) 面
 bcc100
 bcc110
@@ -376,9 +392,14 @@ diamond100
 diamond111
 # HCP 结构常见的 (0001) 面
 hcp0001
-hcp10m10     # ？；size 设置有要求
+hcp10m10               # size 设置有要求
 
-mx2          # MoS2 二维材料的六方结构
+mx2                    # MoS2 二维材料的六方结构
+graphene               # 单层石墨烯
+# 纳米带结构
+graphene_nanoribbon    # 石墨烯纳米带
+# tube 结构
+nanotube               # 纳米管
 
 
 
@@ -480,15 +501,22 @@ equivalent_sites()        # 查看等同原子坐标
 
 ### ase.io
 
-- 构型格式文件读入、写出；可支持的格式很多
+- 构型文件读入、写出；可读入压缩格式文件内容；可支持的格式很多；[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+
+- 部分构型文件格式只读或只写或可读入写入多帧构型数据
+
+```bash
+# 常用构型文件格式       读写情况
+vasp                  # RW
+vasp-out              # R+
+vasp-xdatcar          # RW+
+xyz                   # RW+
+extxyz                # RW+
+lammps-data           # RW
+lammps-dump-text      # R+
+```
 
 - 模块中的 `read()` 函数可自动识别文件格式
-
-- 部分格式只读或只写
-
-- 可读取 gz 格式压缩文件，如 OUTCAR.gz
-
-- [lammps的结构文件转其他格式 - 知乎](https://zhuanlan.zhihu.com/p/390968120)
 
 - 写法一：在 `read()`、`write()` 函数中指定 `format` 参数，即具体构型文件格式
 
@@ -610,11 +638,13 @@ from ase.io.vasp import read_vasp_out, read_vasp_xdatcar, write_vasp_xdatcar, re
 from ase.io.xsd import read_xsd, write_xsd
 ```
 
-`extxyz.py` 源代码相关 warning：
+- 删除/重置 extxyz 文件中已有的 forces 和 info 信息：[Issue with write\_xyz (#276) · 议题 · ase / ase · GitLab](https://gitlab.com/ase/ase/-/issues/276)
 
-```bash
-/home/yangsl/src/miniconda3/envs/base_ysl/lib/python3.11/site-packages/ase/io/extxyz.py:1000: UserWarning: write_xyz() overwriting array "forces" present in atoms.arrays with stored results from calculator
-  warnings.warn('write_xyz() overwriting array "{0}" present '
+```python
+atoms = ...
+
+del atoms.arrays["force"]
+atoms.info = {}
 ```
 
 
@@ -784,6 +814,22 @@ print(1 / (1 * Ry))
 # 长度单位
 print(Bohr)
 ```
+
+
+---
+
+### ase.phasediagram
+
+- 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/phasediagram/phasediagram.html)
+
+- 没有 pymatgen 对应的模块功能丰富且绘图效果好看
+
+
+---
+
+### ase.cluster
+
+- 纳米颗粒/团簇
 
 
 ---

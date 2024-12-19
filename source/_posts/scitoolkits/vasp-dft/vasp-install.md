@@ -39,8 +39,9 @@ password:
     - [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)
     - [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
-
-- 含各 VASP 版本更新内容简要介绍：[VASP - NSC](https://www.nsc.liu.se/software/installed/tetralith/vasp/)
+- 含 VASP 版本更新内容简要介绍：
+    - VASP 6.5.0 和 6.4.3: [Changelog - VASP Wiki](https://www.vasp.at/wiki/index.php/Changelog)
+    - [VASP - NSC](https://www.nsc.liu.se/software/installed/tetralith/vasp/)
 
 在 `makefile.include` 中的 OFLAG 参数里加入 -xhost，这样编译器会使得编译出的程序能够利用当前机子 CPU 能支持的最高档次的指令集以加速计算
 
@@ -61,7 +62,7 @@ password:
 - 编译选项：[Compiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Compiler_options)
 - 预编译选项：[Precompiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Precompiler_options)
 - [Linking to libraries - VASP Wiki](https://www.vasp.at/wiki/index.php/Linking_to_libraries)
-- [OpenACC GPU port of VASP - VASP Wiki](https://www.vasp.at/wiki/index.php/OpenACC_GPU_port_of_VASP) 
+- [OpenACC GPU port of VASP - VASP Wiki](https://www.vasp.at/wiki/index.php/OpenACC_GPU_port_of_VASP)
 
 - makefile.include 不同架构的含义：[makefile.include - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include)
 

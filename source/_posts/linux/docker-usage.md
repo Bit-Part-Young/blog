@@ -99,6 +99,8 @@ mklink /J "C:\Program Files\Docker" "D:\"
 
 - [GitHub - veggiemonk/awesome-docker: :whale: A curated list of Docker resources and projects](https://github.com/veggiemonk/awesome-docker)
 
+- 替代 Docker Desktop：[GitHub - iongion/container-desktop: Podman desktop companion](https://github.com/iongion/container-desktop)
+
 - VSCode Docker 插件：可以查看镜像、容器和 Registry
 
 - Docker 操作 TUI 版本（类似 lazigit）：[GitHub - jesseduffield/lazydocker: The lazier way to manage everything docker](https://github.com/jesseduffield/lazydocker)
@@ -225,13 +227,14 @@ quay.io/XXX/XXX    # Quay.io RedHat Container Registry
 ```
 
 
-
 ---
 
 ### 制作镜像
 
 - [docker-learning/02、创建一个自己的 Docker Image.md at master · qq20004604/docker-learning · GitHub](https://github.com/qq20004604/docker-learning/blob/master/02%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%20Docker%20Image.md)
+
 - Docker 忽略文件：`.dockerignore` 写在里面的文件或目录不会被打包到 image 中
+
 - 优秀软件和服务的 Dockerfile 文件（一般）：[GitHub - stilleshan/dockerfiles](https://github.com/stilleshan/dockerfiles)
 
 

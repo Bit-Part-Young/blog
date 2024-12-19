@@ -19,11 +19,16 @@ password:
 
 ## 介绍
 
-- 用于表示 Element、Site、Structure、Molecule 的高度灵活的类。
-- 文件输入/输出支持广泛，如 VASP、ABINIT、CIF、Gaussian、XYZ 等（主要依靠 Open Babel 包）。
-- 强大的分析工具，包括生成相图、Pourbaix 图、扩散分析、反应等。
-- 电子结构分析，如态密度和能带结构。
+- 用于表示 Element、Site、Structure、Molecule 的高度灵活的类
+
+- 文件输入/输出支持广泛，如 VASP、ABINIT、CIF、Gaussian、XYZ 等（主要依靠 Open Babel 包）
+
+- 强大的分析工具，包括生成相图、Pourbaix 图、扩散分析、反应等
+
+- 电子结构分析，如态密度和能带结构
+
 - 集成 Materials Project REST API、Crystallography Open Database 等其他外部数据源
+
 - 代码文档详细
 
 

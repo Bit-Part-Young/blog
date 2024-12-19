@@ -90,7 +90,9 @@ password:
 
 - 含缺陷超胞生成、前/后处理和分析：[Doped code 介绍](https://mp.weixin.qq.com/s/r3ZabHXYAn2HJgyFxFmA-w)
 
-- [Crystal Toolkit - Materials Project](https://next-gen.materialsproject.org/toolkit)
+- Crystal Toolkit 可视化构型：
+    - 源码 [GitHub - materialsproject/crystaltoolkit](https://github.com/materialsproject/crystaltoolkit)
+    - 网页 [Crystal Toolkit - Materials Project](https://next-gen.materialsproject.org/toolkit)
 
 - AFLOW 线上工具：[AFlow - Automatic - FLOW for Materials Discovery](https://aflowlib.org/aflow-online/)；功能
     - 构型文件转换
@@ -102,10 +104,21 @@ password:
     - 间隙
     - XRD
 
-cifcell：将 CIF 构型格式文件转换成其他计算程序格式（较实用）; [GitHub - torbjornbjorkman/cif2cell: Generating geometries for electronic structure calculations from CIF files.](https://github.com/torbjornbjorkman/cif2cell)
+- cifcell：将 CIF 构型格式文件转换成其他计算程序格式（较实用）
+    - [GitHub - torbjornbjorkman/cif2cell: Generating geometries for electronic structure calculations from CIF files.](https://github.com/torbjornbjorkman/cif2cell)
 
 ```bash
-cif2cell Ni20Mn3P6.cif -p vasp --vasp-cartesian-positions
+cif2cell input.cif -p vasp --vasp-cartesian-positions
+```
+
+- findsym：生成有对称性的 cif 文件（ISOTROPY 中的工具之一）
+    - [FINDSYM](https://stokes.byu.edu/iso/findsym.php)
+    - [如何获得有对称性的cif文件？FINDSYM来解决了。](https://zhuanlan.zhihu.com/p/496042890)
+    - [ISOTROPY Software Suite](https://stokes.byu.edu/iso/isotropy.php)
+
+```bash
+findsym_cifinput input.cif > input1.cif  # 让 findsym 读起来更方便
+findsym input1.cif > output.cif          # 寻找对称性并输出
 ```
 
 
@@ -136,7 +149,7 @@ dump.lammpstrj    # LAMMPS 轨迹文件
 .xsf              # XCrySDen
 .stru             # ABACUS
 .cube             # Gaussian
-.cfg              # AtomEye
+.cfg              # AtomEye；configuration 的缩写
 .car              # DMol3；Material Studio 可读
 .arc              # DMol3；类似轨迹文件；Material Studio 可读
 ```
