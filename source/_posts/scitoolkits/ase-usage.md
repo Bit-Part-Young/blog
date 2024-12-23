@@ -101,7 +101,7 @@ ase test         # 测试；需安装 pytest
 - CLI：[Command line tool — ASE documentation](https://wiki.fysik.dtu.dk/ase/cmdline.html)
 
 ```bash
-# 开启 ase 补全（适用 bash，zsh 不行）
+# 开启 ase 补全（只适用于 bash，zsh 不行）
 ase completion >> ~/.bashrc
 
 # 列出 ase 可识别的构型文件格式
@@ -120,47 +120,11 @@ ase db test.db
 -L N                         # 只显示前 N 行
 --offset N                   # 跳过前 N 行
 --show-keys                  # 显示所有 keys
---show-values key1,key2,...  # 显示 key 的值；value为数值时，只显示首尾值，如 energy_pa: [-9.184..-5.855]
+--show-values key1,key2,...  # 显示 key 的值；value 为数值时，只显示首尾值，如 energy_pa: [-9.184..-5.855]
 ```
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202404111050491.png)
 
----
-
-- crystal 构建
-
-```python
-# 方式 1；简单晶体构建
-from ase.build import bulk
-
-# 方式 2；手动构建
-from ase.atoms import Atoms
-
-# 方式 3；利用空间群构建
-from ase.spacegroup import crystal
-```
-
----
-
-### 构型可视化
-
-建议在 Jupyter Notebook 中使用
-
-```python
-# 方式 1
-from ase.visualize.plot import plot_atoms
-
-plot_atoms(atoms)
-
-# 方式 2
-from ase.visualize import view
-
-view(atoms, viewer="ngl")
-```
-
-nglview 组件 效果图：
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401201143207.png)
 
 ---
 
@@ -233,9 +197,6 @@ pbc                        # 周期性边界条件
 info                       # 给 Atoms 设置信息；dict；可用于写入 extxyz 格式文件
 constraints                # 获取约束信息（原子 x y z 轴固定信息）
 
-# 方法；主要分为获取和设置；部分获取方法与属性的功能相同
-get_xxx()
-set_xxx()
 
 # （一般）方法
 todict()                   # 将原子信息写入 dict
@@ -245,6 +206,17 @@ rattle()                   # 随机移动原子（位置）
 write()                    # 写入构型格式文件
 edit()                     # 交互式修改（ASE GUI）
 pop()                      # 删除原子
+translate()                # 平移原子位置
+  
+center()                   # 在指定轴两端各添加真空层并移至该轴中心
+# 参数
+vacuum                     # 真空层厚度
+axis                       # 指定轴
+
+
+# 方法；主要分为获取和设置；部分获取方法与属性的功能相同
+get_xxx()
+set_xxx()
 
 # get 方法
 get_pbc()                  # 周期性边界条件
@@ -265,16 +237,11 @@ get_potential_energies()   # 每个原子的能量
 get_forces()               # 每个原子的受力
 get_stress()               # 应力张量
 get_stresses()             # 每个原子的应力张量
-
+get_properties()           # 获取性质，如 ["energy", "forces", "stress"]
 
 # set 方法
 set_chemical_symbols()     # 设置元素符号；可用于置换元素
 set_constraints()          # 施加约束；通常需结合 ase.constraints 的 FixAtoms 函数使用，直接设置 False/True 或 0/1 的列表无效果
-    
-center()                   # 在指定轴两端各添加真空层并移至该轴中心
-# 参数
-vacuum                     # 真空层厚度
-axis                       # 指定轴
 ```
 
 - 晶体结构常用变量获取
@@ -301,8 +268,33 @@ concentration = atoms.get_chemical_symbols().count("Pd") / len(atoms)
 - 其他用法
 
 ```python
+from ase.atoms import Atom, Atoms
+
+atoms = ...
+
 # 删除某一元素
 del atoms[[atom.index for atom in atoms if atom.symbol == "H"]]
+
+# 删除原子（形成空位）
+del atoms[0]
+# 添加原子（形成间隙缺陷）
+atoms.append(Atom("H", position=...))
+# 交换原子位置
+positions[[0, 1]] = atoms.positions[[1, 0]]
+
+
+# 生成纳米线
+def make_wire(spacing: float = 2.5, box_size: float = 10.0) -> Atoms:
+    wire = Atoms(
+        "Au",
+        positions=[[0.0, box_size / 2, box_size / 2]],
+        cell=[spacing, box_size, box_size],
+        pbc=[True, False, False],
+    )
+    return wire
+
+
+atoms = make_wire()
 ```
 
 
@@ -338,6 +330,17 @@ cesiumchloride           # CsCl
 fluorite, caf2           # CaF2
 zincblende               # 闪锌矿 ZnS
 wurtzite                 # 纤锌矿 ZnS
+
+
+# crystal 构建
+# 方式 1；简单晶体构建
+from ase.build import bulk
+
+# 方式 2；手动构建
+from ase.atoms import Atoms
+
+# 方式 3；利用空间群构建
+from ase.spacegroup import crystal
 
 
 # 超胞
@@ -441,6 +444,29 @@ print(extra.keys())
 
 ---
 
+### ase.visualize
+
+- 构型可视化（建议在 Jupyter Notebook 中使用）
+
+```python
+# 方式 1
+from ase.visualize.plot import plot_atoms
+
+plot_atoms(atoms)
+
+# 方式 2
+from ase.visualize import view
+
+view(atoms, viewer="ngl")
+```
+
+- nglview 组件效果图：
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401201143207.png)
+
+
+---
+
 ### ase.cell
 
 - 基矢
@@ -517,6 +543,8 @@ lammps-dump-text      # R+
 ```
 
 - 模块中的 `read()` 函数可自动识别文件格式
+
+- 将 OUTCAR 每个离子步信息转换成 extxyz 格式：[Convert VASP OUTCAR to extxyz file for NequIP input · GitHub](https://gist.github.com/simonbatzner/c2b05d38789b67f6fe5d3c75a4f2223d)
 
 - 写法一：在 `read()`、`write()` 函数中指定 `format` 参数，即具体构型文件格式
 
@@ -610,6 +638,7 @@ atoms = read(
 )
 # 参数
 Z_of_type                # dict，键为 type 编号，值为对应的元素原子序数；若为 None，有 Masses 信息，会根据其猜测原子序号，否则 type 编号对应的元素原子序数默认为 H He ... 等
+
 
 # 将 OUTCAR 中每个离子步信息写入 extxyz
 atoms_list = read("OUTCAR", index=":")

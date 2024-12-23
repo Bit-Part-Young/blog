@@ -105,6 +105,19 @@ Common neighbor analysis          # CNA；识别原子对应的晶体结构
 
 - [Ovito位错分析mesh透明度设置方法](https://mp.weixin.qq.com/s/LtkGpzszEg-Xx9XBZ0Am8w)
 
+- [OVITO 显示位错和缺陷的一个小技巧](https://mp.weixin.qq.com/s/AC3ZABp4CyhJlHwfbdLWqw)
+
+- [Expression selection - OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html)
+
+```bash
+# 常用 Expression selection 值
+Position.X              # x 方向位置
+Position.Y              # y 方向位置
+Position.Z              # z 方向位置
+Occupancy               # 原子占位
+StructureType           # 晶体结构类型
+```
+
 
 ---
 
@@ -117,3 +130,28 @@ Common neighbor analysis          # CNA；识别原子对应的晶体结构
 - [How to Script with OVITO - How To Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO)
 
 - [Ovito高质量图片渲染Python模块 - Eastsheng's Wiki](https://eastsheng.github.io/MyWiki/wiki/2023/04/13/softwares/lammps/ovito_plot_rendering/)
+
+- [Voronoi 多面体指数计算方法](https://mp.weixin.qq.com/s/D_eXDAn9n96YKfS65tpMzQ)
+
+- Voronoi 多面体指数常用 `<n1, n2, n3, ..., ni, ...>` 形式表示，其中 `ni` 表示 Voronoi 多面体具有的 i 边形数；一般 n1 和 n2 都是 0，可不用写出来；二十面体的多面体指数为 `<0, 0, 12, 0>`，十二面体的多面体指数为 `<20, 0, 0, 0>`
+
+
+```python
+from ovito.modifiers import ...
+from ovito.io import import_file, export_file
+from ovito.data import CutoffNeighborFinder, DataCollection
+
+
+# modifier
+VoronoiAnalysisModifier        # Voronoi 分析
+ComputePropertyModifier
+CoordinationAnalysisModifier
+TimeAveragingModifier
+
+
+pipline = 
+
+pipeline.modifiers.append()
+
+pipeline.compute()
+```

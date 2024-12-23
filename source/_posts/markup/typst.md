@@ -105,7 +105,7 @@ scoop install main/typst   # Windows
     - Tinymist Typst：语法高亮，代码补全，代码格式化，即时预览、单词统计等功能
     - 两者不兼容：[Faitl to activate typst-lsp: command 'typst-lsp.pinMainToCurrent' already exists · Issue #513 · nvarner/typst-lsp · GitHub](https://github.com/nvarner/typst-lsp/issues/513)
     - Tinymist 查看实时更新编译的预览 PDF：点击窗口 + 放大镜的图标（而非 PDF 的图标），源码和 PDF 可互相跳转
-    - 导出 PDF 设置：设置 "Tinymist Export PDF" 为 "onSave" 或 "onType"
+    - 导出 PDF 设置：设置 'Tinymist Export PDF' 为 'onSave' 或 'onType'
 
 - [typst-upgrade](https://github.com/Coekjan/typst-upgrade)：检查并升级 Typst packages
 
@@ -136,6 +136,8 @@ typst-upgrade file.typ       # 更新 packages 并覆写文件
 - [GitHub - Thumuss/utpm: A package manager for typst](https://github.com/Thumuss/utpm)
 
 - [GitHub - mkpoli/tyler: Typst package (libraries, templates) publishing utilty CLI tool](https://github.com/mkpoli/tyler)
+
+- [GitHub - frozolotl/muchpdf: Include PDF images in your Typst document](https://github.com/frozolotl/muchpdf)
 
 
 ---

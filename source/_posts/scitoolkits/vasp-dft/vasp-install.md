@@ -102,7 +102,7 @@ vasp.X.X.X (root directory)
                                        lib    parser   CUDA
 
 
-arch      # 针对不同架构的 Makefile 模板，如 makefile.include.linux_intel
+arch      # 针对不同架构的 Makefile 模板
 bin       # 编译后的可执行程序文件目录
 build     # 编译时自动复制 src 目录内源码后执行编译，会分别创建三个版本的子目录
 src       # 源码目录
@@ -176,6 +176,18 @@ make  # 或 make all, make std
 
 ```bash
 ifort: command line remark #10412: option '-mkl=sequential' is deprecated and will be removed in a future release. Please use the replacement option '-qmkl=sequential'
+```
+
+- 对于 2024 及更新的的 Intel oneAPI，不再包含 C++ Compiler Classic（即无 icc、icpc），需对 `makefile.include` 文件内容进行修改
+
+```bash
+# 修改前
+CC_LIB      = icc
+CXX_PARS    = icpc
+
+# 修改后
+CC_LIB      = icx
+CXX_PARS    = icpx
 ```
 
 
@@ -310,16 +322,18 @@ configure: error: --enable-cxx and --enable-parallel flags are incompatible. Use
 - 使用
     - HDF5 Preview 插件：只能打开.hdf5 格式，无法打开.h5 格式
     - Pandas 的 `read_hdf()` 不太好用
+    - [vaspout.h5 - VASP Wiki](https://www.vasp.at/wiki/index.php/Vaspout.h5)
+    - h5py 暂不能很好地解析 vaspout.h5 文件中的数据
 
 ```bash
 h5ls data.h5     # 显示 Group 列表
 
 # vaspout.h5 示例
-input                    Group
-intermediate             Group
-original                 Group
-results                  Group
-version                  Group
+input            # Group
+intermediate     # Group
+original         # Group
+results          # Group
+version          # Group
 
 h5dump data.h5   # 输出文件的详细结构和内容
 ```

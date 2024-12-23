@@ -136,16 +136,16 @@ Markdown 相关
 - 文件模糊查找：[fzf](https://github.com/junegunn/fzf)
 
 - 终端文件管理器
-    - [yazi](https://github.com/sxyazi/yazi)
-    - [superfile](https://github.com/MHNightCat/superfile)
-    - [nnn](https://github.com/jarun/nnn)
-    - [joshuto](https://github.com/kamiyaa/joshuto)
+    - [yazi](https://github.com/sxyazi/yazi)（可预览图片；macOS 端 iTerm2、kitty 等终端程序可预览，Windows 端大部分终端程序无法预览，只有 WezTerm 可预览）
+    - [superfile](https://github.com/MHNightCat/superfile)（无法预览图片）
+    - [nnn](https://github.com/jarun/nnn)（感觉一般）
+    - [joshuto](https://github.com/kamiyaa/joshuto)（Rust 版本 ranger）
     - [ranger](https://github.com/ranger/ranger)
     - [lf](https://github.com/gokcehan/lf)（效果一般）
 
 - 文件传输
     - [GitHub - schollz/croc](https://github.com/schollz/croc)
-    - TUI 版本，支持 SCP/SFTP/FTP/S3/SMB：[GitHub - veeso/termscp:](https://github.com/veeso/termscp)
+    - TUI 版本，支持 SCP/SFTP/FTP/S3/SMB：[GitHub - veeso/termscp](https://github.com/veeso/termscp)
 
 - [f2](https://github.com/ayoisaiah/f2)：文件批量重命名
 

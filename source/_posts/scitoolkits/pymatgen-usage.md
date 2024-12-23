@@ -1144,6 +1144,12 @@ bsdos_plot = BSDOSPlotter(bs_projection=None, dos_projection=None)
 bsdos_plot.get_plot(bs=bs_data, dos=dos_data)
 ```
 
+- COHP (Crystal orbital Hamilton population)
+
+```python
+from pymatgen.electronic_structure.cohp import ...
+```
+
 
 ---
 

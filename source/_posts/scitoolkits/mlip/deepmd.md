@@ -44,7 +44,19 @@ exploration、labeling、train 三个过程
 
 [learning/notes/DeePMD/DeePMD-kit入门.md at main · wangchr1617/learning · GitHub](https://github.com/wangchr1617/learning/blob/main/notes/DeePMD/DeePMD-kit%E5%85%A5%E9%97%A8.md)
 
+DeepMD ASE calculator
 
+```python
+from deepmd.calculator import DP
+
+calc = DP(model=...)
+
+atoms.calc = calc
+
+energy = atoms.get_potential_energy()
+forces = atoms.get_forces()
+stress = atoms.get_stress()
+```
 
 描述符
 

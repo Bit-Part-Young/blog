@@ -132,6 +132,45 @@ Linux 头文件路径：`/usr/include` 或 `/usr/local/include`
 
 ---
 
+- [静态库和动态库的认识](https://mp.weixin.qq.com/s/8-wwPEvhZgypPEkOmWa6CA)
+
+- 静态链接库：`lib*.a` (Linux)、`*.lib` (Windows)
+    - 静态链接库本质上是一个归档文件，它包含了一个或多个目标文件（`.o` 文件，包含了编译后的代码和数据）。使用静态链接库时，链接器会将这些目标文件中的代码和数据直接嵌入到最终生成的可执行文件中
+    - 优点：运行速度快；缺点：目标文件大，且静态链接不能共享
+
+- 动态链接库：`lib*.so` (Linux; Shared Object，SO，共享对象)、`*.dll` (Windows; Dynamic Link Library, DLL)
+    - 在运行时链接对应的库来访问这些函数
+    - 可被多个程序所共享
+
+- 构建静态链接库
+
+```bash
+# 假设有 add.c minus.c main.c add_minus.h
+
+# 只编译，不链接
+gcc -c *.c
+# 使用 ar 工具，将 add.o 和 minus.o 打包成静态库
+ar rc libadd_minus.a add.o minus.o
+# 链接生成目标文件 main
+gcc -o main main.o -L. -ladd_minus
+
+-L           # 指定库文件搜索路径
+-l           # 指定要链接的库名称
+```
+
+- 构建动态链接库
+
+```bash
+gcc -fPIC -shared add.c minus.c -o libadd_minus.so
+
+gcc -c main.c
+
+gcc -o main main.o -L. -ladd_minus
+```
+
+
+---
+
 Makefile
 
 ```bash

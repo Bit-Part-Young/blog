@@ -32,7 +32,8 @@ password:
 
 ---
 
-模拟和建模的区别
+模拟（simulation）和建模（modeling）的区别：[建模、模拟、数值研究之概念辨析](https://mp.weixin.qq.com/s/9tnrxEhbFdTPhkWQLRsNmA)
+
 
 多尺度方法：
 

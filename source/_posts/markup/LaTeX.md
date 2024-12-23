@@ -103,6 +103,8 @@ password:
 
 ### 工具
 
+- LaTeX 公式转 Word：[LaTeX2Word - Convert LaTeX to Word](https://latex2word.jun997.xyz/)
+
 - texdoc：查看 LaTeX 相关文档
 
 ```bash

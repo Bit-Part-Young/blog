@@ -2,7 +2,7 @@
 title: FFmpeg 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -17,15 +17,14 @@ abbrlink: 243243
 password:
 ---
 
-# FFmpeg
+# FFmpeg 使用
 
-参考资料：
-
-- [FFmpeg 速查表](https://wangchujiang.com/reference/docs/ffmpeg.html)
-- [FFmpeg 命令生成](https://alfg.dev/ffmpeg-commander/)
-- [用FFmpeg来生成带背景和视频信息的缩略图（一） - Gu Gu Gu](https://bupt.dev/index.php/archives/67/)
-- FFmpeg 的 GPL 和 LGPL 协议含义：[终于理解了什么是LGPL - findumars - 博客园](https://www.cnblogs.com/findumars/p/3556883.html)
-- FFmpega + Python 实现给视频添加水印：[GitHub - HeiSir2014/ffmpeg-wiki](https://github.com/HeiSir2014/ffmpeg-wiki)
+- 参考资料：
+    - [FFmpeg 速查表](https://wangchujiang.com/reference/docs/ffmpeg.html)
+    - [FFmpeg 命令生成](https://alfg.dev/ffmpeg-commander/)
+    - [用FFmpeg来生成带背景和视频信息的缩略图（一） - Gu Gu Gu](https://bupt.dev/index.php/archives/67/)
+    - FFmpeg 的 GPL 和 LGPL 协议含义：[终于理解了什么是LGPL - findumars - 博客园](https://www.cnblogs.com/findumars/p/3556883.html)
+    - FFmpeg + Python 实现给视频添加水印：[GitHub - HeiSir2014/ffmpeg-wiki](https://github.com/HeiSir2014/ffmpeg-wiki)
 
 
 
@@ -54,9 +53,8 @@ ffmpeg -i input1.avi -i input2.avi -filter_complex "[0:v][1:v]hstack=inputs=2[v]
 
 
 # 多个视频文件合并
-
 # 情况 1：使用 Concat 协议（适用于格式完全相同的视频）
-# 创建一个文本文件：列出所有要合并的视频文件；文件路径前加 file
+# 创建文本文件 mylist.txt：列出所有要合并的视频文件；文件路径前加 file
 file 'file1.mkv'
 file 'file2.mkv'
 file 'file3.mkv'

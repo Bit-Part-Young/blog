@@ -40,11 +40,9 @@ password:
 - 个人常用 packages
 
 ```bash
-manybody                     # 多体势
+manybody                     # 多体势（金属体系常用）
 mc                           # 蒙特卡洛
 ```
-
-- 金属体系常用 packages：manybody
 
 - 参考资料：
     - [安装LAMMPS - lammps-tutorial](https://lammpscn2.vercel.app/Tutorial/install/#step2b-%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E7%9A%84make%E5%AE%89%E8%A3%85)
@@ -55,6 +53,7 @@ mc                           # 蒙特卡洛
     - LAMMPS 所有版本：[LAMMPS Source Download Repository](https://download.lammps.org/tars/index.html)
     - [GitHub - njzjz/lammps-wheel: LAMMPS unofficial Python wheels on PyPi, \`pip install lammps\`](https://github.com/njzjz/lammps-wheel)
     - OpenMPI 编译：[4.1. Quick start: Installing Open MPI — Open MPI 5.0.x documentation](https://docs.open-mpi.org/en/v5.0.x/installing-open-mpi/quickstart.html)
+    - Build GPU package：[3.7. Packages with extra build options — LAMMPS documentation](https://docs.lammps.org/Build_extras.html#gpu)
 
 
 

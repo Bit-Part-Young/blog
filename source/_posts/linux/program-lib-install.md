@@ -314,8 +314,13 @@ make install
 ```bash
 ./configure --prefix=${HOME}/local/FFTW
 
-# 可添加 --enable-mpi；得到的 静态库和头文件会添加 mpi 后缀
+# 可添加 --enable-mpi；得到的静态库和头文件会添加 mpi 后缀
 
 make
 make install
+
+
+# Build standalone library of FFTW3 Fortran wrappers to Intel(R) oneMKL
+cd /path/intel/oneapi/mkl/20XX/interfaces/fftw3xf
+make libintel64
 ```

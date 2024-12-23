@@ -155,6 +155,10 @@ activate-global-python-argcomplete
 eval "$(register-python-argcomplete my-python-app)"
 ```
 
+- 检查通过 pip 命令安装的包的 License：[GitHub - raimon49/pip-licenses: Dump the license list of packages installed with pip.](https://github.com/raimon49/pip-licenses)
+
+- [GitHub - rsalmei/alive-progress: A new kind of Progress Bar, with real-time throughput, ETA, and very cool animations!](https://github.com/rsalmei/alive-progress)
+
 - 构建 CLI 工具
     - [GitHub - tiangolo/typer](https://github.com/tiangolo/typer)
     - [GitHub - google/python-fire](https://github.com/google/python-fire)

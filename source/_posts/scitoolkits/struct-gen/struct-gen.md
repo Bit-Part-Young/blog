@@ -286,6 +286,15 @@ latgen 可以生成界面（multi-layer）
 
 ---
 
+### 非晶
+
+- [非晶合金建模系列(1):“熔化-淬火”的初始模型构建](https://mp.weixin.qq.com/s/qgmuUjBtUpRMfHwgnnWY7w)
+
+- [非晶合金建模系列(3)-“熔化-淬火”法实现非晶结构](https://mp.weixin.qq.com/s/gKJnYrRH_zz2RP7ilMjG-g)
+
+
+---
+
 ### 晶界
 
 - [任意CSL值晶界建模(一)](https://mp.weixin.qq.com/s/u6qvvsnszPU6pr8u4O0Tgw)、[任意CSL值晶界建模(二)](https://mp.weixin.qq.com/s/ZXrnbjKbsKerm_ZVDSoDFQ)
@@ -296,7 +305,7 @@ latgen 可以生成界面（multi-layer）
 
 - [GitHub - oekosheri/GB\_code: A grain boundary generation code](https://github.com/oekosheri/GB_code)
 
-LAMMPS 晶界构建：[Grain-Boundary-Energies-LAMMPS/Code and Scripts/Python and Lammps/FullStackAll/FullStack555/Experiments/Cu/0 at master · vishalsubbiah/Grain-Boundary-Energies-LAMMPS · GitHub](https://github.com/vishalsubbiah/Grain-Boundary-Energies-LAMMPS/tree/master/Code%20and%20Scripts/Python%20and%20Lammps/FullStackAll/FullStack555/Experiments/Cu/0)
+- LAMMPS 晶界构建：[Grain-Boundary-Energies-LAMMPS/Code and Scripts/Python and Lammps/FullStackAll/FullStack555/Experiments/Cu/0 at master · vishalsubbiah/Grain-Boundary-Energies-LAMMPS · GitHub](https://github.com/vishalsubbiah/Grain-Boundary-Energies-LAMMPS/tree/master/Code%20and%20Scripts/Python%20and%20Lammps/FullStackAll/FullStack555/Experiments/Cu/0)
 
 - 含晶界构建
     - 旧：[GitHub - wojdyr/gosam: generator of simple atomistic models](https://github.com/wojdyr/gosam)

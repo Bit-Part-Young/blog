@@ -85,11 +85,13 @@ def add_num(input: Union[int, str]):
 
 ### 类型检查工具
 
-- 静态类型检查：[GitHub - microsoft/pyright](https://github.com/microsoft/pyright)、mypy
+- 静态类型检查：
+    - [pyright](https://github.com/microsoft/pyright)
+    - mypy
 
 - Run-time 类型检查：[GitHub - agronholm/typeguard](https://github.com/agronholm/typeguard)
 
-[GitHub - beartype/beartype: Unbearably fast near-real-time hybrid runtime-static type-checking in pure Python.](https://github.com/beartype/beartype)
+- [GitHub - beartype/beartype: Unbearably fast near-real-time hybrid runtime-static type-checking in pure Python.](https://github.com/beartype/beartype)
 
 ```bash
 # 安装
