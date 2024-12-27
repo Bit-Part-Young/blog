@@ -245,22 +245,27 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 
 ### 表面
 
-- BCC、FCC、HCP 常见表面示意图
-    - BCC/FCC (100)、(110) 面一个最小完整单元有 2 个原子层，111 面有 3 个原子层（正常是六方）
+- 不同方法生成常见指数面的表面模型的区别
+    - atomsk 生成的表面模型总是正交胞
+    - ASE 中的部分表面模型总是正交胞，部分可指定为非正交或正交胞
+    - latgen 可指定生成的表面模型为非正交或正交胞
+    - pymatgen 生成的表面模型总不是正交胞（没有前三个工具好用）
+
+- BCC、FCC、HCP 常见指数面的表面模型示意图
+    - BCC/FCC (100)、(110) 面一个最小完整单元有 2 个原子层，(111) 面有 3 个原子层（正常是六方）
     - [1.3: Surface Structures- fcc Metals - Chemistry LibreTexts](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Surface_Science_(Nix)/01%3A_Structure_of_Solid_Surfaces/1.03%3A_Surface_Structures-_fcc_Metals)
     - [1.4: Surface Structures- hcp Metals - Chemistry LibreTexts](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Surface_Science_(Nix)/01%3A_Structure_of_Solid_Surfaces/1.04%3A_Surface_Structures-_hcp_Metals)
     - [1.5: Surface Structures- bcc metals - Chemistry LibreTexts](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Surface_Science_(Nix)/01%3A_Structure_of_Solid_Surfaces/1.05%3A_Surface_Structures-_bcc_metals)
 
-- 添加真空层：
-    - vaspkit 添加真空层，先加真空层数值，再将原子层移至 z 方向居中
-    - ase 中的 `center()` 函数添加真空层是分别往两边加
-    - atomsk 添加的真空层是在上半部分
+- 添加真空层
+    - vaspkit 添加真空层，先加真空层数值，再将原子层移至 z 方向中间（1 \* vac）
+    - ASE 中的 `center()` 函数添加真空层是分别往两边加（2 \* vac）
+    - atomsk 添加的真空层是在上半部分（1 \* vac）
 
-pymatgen 中的 BCC 形成的 (111) 表面结构是菱形晶系，latgen 形成的晶系是六方晶系
-
-latgen 中表面的真空层距离数值设置
-
-latgen 可以生成界面（multi-layer）
+- 表面模型中 z 方向晶格常数数值计算（n 为 layer 数目，d 为层间距，vac 为真空层厚度）
+    - ASE：(n-1) \* d + vac
+    - atomsk：n \* d + vac
+    - latgen：n \* d + vac（可指定为 n 或 n-1）
 
 
 ---

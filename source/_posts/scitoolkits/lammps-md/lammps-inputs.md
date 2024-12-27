@@ -44,8 +44,6 @@ password:
 
 ## LAMMPS 常用命令
 
-原子属性有哪些
-
 - [ ] 更新 LAMMPS 相关输入参数
     - lattice
     - create_box
@@ -80,7 +78,6 @@ password:
 - 再细化分类
     - 蒙特卡洛 MC 相关命令：`fix gcmc`、`fix atom/swap`、`fix sgcmc`
 
-
 - [LAMMPS 最重要的两种符号：引号与美元符号](https://mp.weixin.qq.com/s/q81ngjKF6cN2l4o_7d4sow)
     - `$()` 的作用和 `""` 很像（允许空格的出现），前者是立即计算转换成数值的（所有出现 `$` 的地方都如此），后者不会立即计算
     - `print` 命令把变量的值输出时，须用 `$` 而不能用引号。因为引号在 `print` 后面时字符串的作用会被强化，而传递参数的作用会被弱化
@@ -102,9 +99,11 @@ variable         var2 equal $(foo * 2)    # 会报错
 
 - 定义模拟过程中原子的类型，决定原子包括哪些属性（原子，键角，二面角、电荷等）
 
-- 该命令必须在建立模拟盒子（`read_data` 或 `read_restart` 或 `create_box` 等命令）之前使用
+- 须在建立 simulaiton box（`read_data` 或 `read_restart` 或 `create_box` 等命令）前使用
 
-- 默认值：atomic（典型物理体系：金属、固体、粗粒度液体）
+- 不同样式对应的原子属性及适用体系： [atom-style-attributes - atom\_style command — LAMMPS documentation](https://docs.lammps.org/atom_style.html#atom-style-attributes)
+
+- 默认值：atomic（典型物理体系：金属、固体、atomic liquids）
 
 ```bash
 # 语法
@@ -115,13 +114,14 @@ atomic
 body
 hybrid
 
-# atomic 对应属性
-tag
-type
-x
-v
-image              # 影像盒子 ID；有时原子会跑到盒子外面，将其所处的影像盒子进行编号
-mask               # 识别 group ID；LAMMPS 最多设置 32 个 group？
+# atomic 对应属性（最基本属性）
+tag                # atom-ID
+type               # type
+x                  # position
+v                  # velocities
+f                  # forces
+image              # image flags；镜像 box ID；有时原子会跑到 box 外面，将其所处的镜像 box 进行编号
+mask               # group membership；识别 group ID；LAMMPS 最多设置 32 个 group？
 
 # 示例
 atom_style atomic  # 默认设置
@@ -241,7 +241,7 @@ units metal
 
 ### read_data
 
-- 读取 LAMMPS data 构型格式文件
+- 读取 LAMMPS data 构型格式文件（可读取 gzip 格式）
 
 ```bash
 # 语法
@@ -331,7 +331,11 @@ read_restart file
 
 ### read_dump
 
-WIP...
+- （可读取 gzip 格式）
+
+```bash
+
+```
 
 
 ---
@@ -479,10 +483,11 @@ create_atoms 2 single 5 5 5  # 在坐标为（5a, 5a, 5a）添加一个类型 2 
 pair_style style args
 
 # 示例
-# 默认设置
+# 默认设置，可用于只创建并输出构型文件
 pair_style         none
 # 只创建对势需要的近邻列表，不计算力和能量
 pair_style         zero
+# eam 势
 pair_style         eam/alloy
 ```
 
@@ -660,11 +665,11 @@ set
 scale
 zero
 
-# create args  设置初速度
-# temp = 温度值（温度单位）
-# seed = 随机数（正整数）
+# create
+temp                 # 温度值
+seed                 # 随机数
 
-# keyword/value = 没有或多个
+# keyword
 dist
 sum
 mom
@@ -672,24 +677,25 @@ rot
 temp
 loop
 
-# dist value；在creat style 下使用
+# dist value；在 creat style 下使用
 uniform
 gaussian              # 原子速度分布满足高斯分布
 
 
 # 示例
-velocity all create 300.0 4928459 dist gaussian
-
-dist = uniform mom = yes rot = no  # 默认设置
+velocity           all create 300.0 4928459 dist gaussian
+# 默认设置
+dist = uniform
+mom = yes
+rot = no
 ```
+
 
 ---
 
 ### run
 
 - 设置模拟运行步数
-
-- `run 0` 含义：只计算和输出系统的热力学量，不需要时间步长
 
 ```bash
 # 语法
@@ -699,6 +705,7 @@ N                      # 运行步数
 
 # 示例
 run 10000
+run 0            # 只计算系统的热力学量并输出，不需要时间步长
 ```
 
 
@@ -708,9 +715,9 @@ run 10000
 
 - 给原子施加约束；`fix` 是在时间步进或最小化期间应用于系统的任何操作；可能是在时间积分的过程中更新原子的位置和速度，或是控制温度，或是给原子施加约束力，或是强制某种边界条件，或计算过程诊断，等等
 
-- `fix` 的 style 有很多，且大多已是单独的命令
+- `fix` 的 style 有很多，且大多是单独的命令
 
-- fix 引用（compute references）：`f_`
+- fix 引用（compute references）：`f_ID`
 
 ```bash
 # 语法
@@ -813,6 +820,8 @@ fix ID group-ID box/relax keyword value ...
 # 语法
 fix ID group-ID print N string keyword value ...
 
+N                 # 每 N 步输出
+
 # keyword
 file              # 写入内容到文件
 append            # 追加内容到文件
@@ -890,7 +899,7 @@ unfix           2
 
 - 为 group 原子定义一种计算
 
-- compute 引用（compute references）：`c_`
+- compute 引用（compute references）：`c_ID`
 
 - 计算出的量是瞬时值，也就是说它们只是原子在当前时间步或迭代步的信息。当然，compute 命令也可以在内部保存体系在之前一个状态的某些信息
 
@@ -900,29 +909,30 @@ unfix           2
 # 语法
 compute ID group-ID style args
 
-ID             # 为 compute 命令分配 ID
-group-ID       # 被 compute 的原子所属 group ID
+ID                    # 为 compute 命令分配 ID
+group-ID              # 被 compute 的原子所属 group ID
 
 # style
-ke
-ke/atom
-pe
-pe/atom
+ke                    # 总动能
+ke/atom               # 平均原子动能
+pe                    # 总势能
+pe/atom               # 平均原子势能
 pressure
-rdf
+rdf                   # 计算 rdf
+msd                   # 计算 MSD
 temp
 voronoi/atom
 
 
 # 示例
-compute 1 all temp
-compute 1 all pe/atom  # 表示计算每个原子的势能
-compute 1 all porperty/atom fx fy fz # 表示计算每个原子在x，y以及z方向上所受到的力
+compute        1 all temp
+compute        1 all pe/atom
+# 计算每个原子在 x y z方向上所受到的力
+compute        1 all porperty/atom fx fy fz
 
-compute 1 all pe/atom
-dump 1 all custom 100 W.xyz id type x y z c_1
-# c为compute的缩写，1为这个compute的代号;c_1表示输出计算的原子势能
-# 将得到的W.xyz文件导入ovito软件中，然后在Add Modification中选择Color coding,然后在图示中的input property选项中选择c_1即可得被原子势能涂色的示意图
+# 将 W.xyz 导入 OVITO，Add Modification -- Color coding，在 input property 选项中选择 c_1 可得到以平均原子势能为 colorbar 的构型
+compute        1 all pe/atom
+dump           1 all custom 100 W.xyz id type x y z c_1
 ```
 
 - style 中含有 “atom”，为单原子量；含有 “local”，为局域量；不包含前两者，为全局量
@@ -945,6 +955,47 @@ compute_modify compute-ID keyword value ...
 
 - WIP...
 
+
+---
+
+### compute rdf
+
+- [如何计算 rdf](https://mp.weixin.qq.com/s/2J5J1Mlw8pPeXJBh8E2Nbw)
+
+```bash
+compute ID group-ID rdf Nbin itype1 jtype1 itype2 jtype2 ... keyword/value ...
+
+Nbin           # 0-截断半径的切片数
+itype1         # 中心原子
+jtype1         # 被统计的原子
+
+# keyword
+cutoff         # RDF 的截断半径
+```
+
+
+---
+
+### compute msd
+
+- [如何计算 msd](https://mp.weixin.qq.com/s/n15pAX-_9dewzLvgdJKPBA)
+
+```bash
+compute ID group-ID msd keyword values ...
+
+# 有 4 个分量，前三个向量分别为 x，y，z 方向的 MSD，第四个是总 MSD
+
+# keyword values
+com                 # yes/no；yes 表示在计算每个原子的位移之前，将减去原子组质心中任何漂移的影响
+average             # yes/no
+
+# 示例
+compute        1 all msd com yes
+variable       msdx equal c_1[1]
+variable       msdy equal c_1[1]
+variable       msdz equal c_1[1]
+variable       msdt equal c_1[4]
+```
 
 ---
 
@@ -1244,7 +1295,7 @@ set        region mid type/fraction 2 0.3 23985
 
 ### variable
 
-- variable 引用（variable references）：`v_`
+- variable 引用（variable references）：`v_ID`
 
 - [LAMMPS 统计一个原子周围不同类型原子数量的方法](https://mp.weixin.qq.com/s/cyCPhlYuUXDQ-GyeDcIlaQ)
 
@@ -1384,4 +1435,9 @@ universe     # yes/no
 shell command args
 
 command        # cd mkdir mv rm rmdir 等 Shell 命令
+
+
+# 示例
+shell      ./script.sh     # 执行 Bash 脚本
+shell      mkdir folder    # 创建目录
 ```

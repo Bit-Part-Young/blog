@@ -37,8 +37,11 @@ password:
 ### 参考资料
 
 - [GitHub 简易指南 - OrangeX4's Blog](https://orangex4.cool/post/github-tutorials-for-beginner/)
+
 - Git/GitHub 基础介绍：[lec2.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec2.md)
+
 - [GitHub - tiimgreen/github-cheat-sheet: A list of cool features of Git and GitHub.](https://github.com/tiimgreen/github-cheat-sheet)
+
 - [GitHub - phodal/github: GitHub 漫游指南](https://github.com/phodal/github)
 
 
@@ -59,7 +62,10 @@ password:
 
 - [GitHub - WCY-dt/my-github-2024: Statistics of your activities on GitHub in 2024. 统计2024年你在GitHub上的活动.](https://github.com/WCY-dt/my-github-2024)
 
+- [GitHub Cards - Showcase Your GitHub Contributions in 2024 into Stunning Visual Cards](https://github.cards/)
+
 - 在仓库所在链接后添加 `stargazers`：[查看GitHub仓库被谁star · Issue #15 · oneone1995/blog · GitHub](https://github.com/oneone1995/blog/issues/15)
+
 - 汉化插件：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
 
 - 命令行版本的 GitHub Dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)

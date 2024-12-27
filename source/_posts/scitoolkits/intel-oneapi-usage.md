@@ -41,7 +41,7 @@ ${MKLROOT}/lib/intel64     # BLACS、LAPACK 和 SCALAPACK
 
 - Intel oneAPI 在官网只能下载最新版本；官网未对 Ubuntu23.04 进行测试；旧版下载：[Intel](https://get.hpc.dev/vault/intel/?sort=name&order=desc)
 
-- Intel-oneAPI 2024 版开始没有了 icc 和 icpc
+- intel-oneAPI/2023.2 是这一系列套件中最后一个支持经典 C/C++/Fortran 编译器的版本（Intel-oneAPI 2024 开始没有了 icc 和 icpc）
 
 - Intel® oneAPI Base Toolkit 2024 版包含的东西
 

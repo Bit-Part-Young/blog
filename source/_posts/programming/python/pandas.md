@@ -44,7 +44,7 @@ password:
 
 ---
 
-### 创建 Dataframe / Series
+### 创建 DataFrame / Series
 
 ```python
 import pandas as pd
@@ -75,26 +75,27 @@ print(df)
 ### 快速查看数据信息
 
 ```python
-df.info()
-df.describe()
-df.head()
-df.tail()
+# DataFrame 方法
+info()
+describe()
+head()
+tail()
+count()
+astype()             # 设置数据类型
 
-df.count()
 
-df.astype(float)        # 设置数据类型
-
-
-df.dtypes               # 数据类型
-df.shape                # m 行 n 列
-df.size                 # 
-df.index                # 行索引
-df.columns              # 列名
-df.values               # 数值
-df.ndim                 # 维度
+# DataFrame 属性
+dtypes               # 数据类型
+shape                # m 行 n 列
+size                 # 
+index                # 行索引
+columns              # 列名
+values               # 数值
+ndim                 # 维度
 
 # Series 属性
-ser.is_unique
+is_unique
+name
 
 
 df.corr()               # Pearson 相关系数矩阵

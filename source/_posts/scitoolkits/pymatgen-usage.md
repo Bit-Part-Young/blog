@@ -466,6 +466,7 @@ MITNEBSet class
 ```python
 from pymatgen.core.structure import Structure
 
+
 # 属性
 index                    # 原子位点序号
 num_sites                # 原子数；int
@@ -530,44 +531,28 @@ indices_nb = [i for i, site in enumerate(structure) if site.species_string == "N
 
 ---
 
-#### surface
-
-- [Chap.11 计算小白硬学VASP —— 构建slab模型 - A&H](https://andyhox.github.io/2024/08/05/Learn-VASP-from-pymatgen-11/)
-
-- [Chap.12 计算小白硬学VASP —— 构建异质结模型 - A&H](https://andyhox.github.io/2024/08/06/Learn-VASP-from-pymatgen-12/)
-
-- pymatgen 表面生成无法指定具体的层数（可以指定最第层数）：[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
-
-```python
-# 方法
-# 获取指定晶面指数中的最大数值下其对称性非等同的所有晶面指数
-get_symmetrically_distinct_miller_indices()
-
-# 获取指定晶面指数下其对称性等同的所有晶面指数
-get_symmetrically_equivalent_miller_indices()
-
-get_d()           # 获取层间距
-
-SlabGenerator     # 类；构建指定晶面指数的 slab 模型
-
-# 方法
-get_slabs()       # 获取所有的 slab 构型（数量含义为该 slab 模型下不同终端的数量）
-```
-
-
----
-
 #### composition
 
 ```python
 from pymatgen.core.composition import Composition
 
-Composition("LiFePO4").as_dict()
+comp = Composition("LiFePO4")
 
-# Composition
-alphabetical_formula      #
-reduced_formula           #
-chemical_system           #
+# 属性
+num_atoms                 # 原子数
+weight                    # 总的相对原子质量
+alphabetical_formula      # 化学式，元素按字母顺序排序
+reduced_formula           # 约化化学式
+chemical_system           # 所含的化学元素；dict
+chemical_system_set       # 所含的化学元素；以 - 连接的 str
+fractional_composition    # 分数成分
+reduced_composition       # 约化成分
+
+# 方法
+get_atomic_fraction()     # 原子百分比
+get_wt_fraction()         # 质量百分比
+get_el_amt_dict()         # 返回元素及对应的数目；dict
+as_dict()                 # 基本同上
 ```
 
 
@@ -656,6 +641,71 @@ get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
 
 ```python
 
+```
+
+
+---
+
+#### surface
+
+- 总体而言，该模块生成表面模型没有 ASE 相关模块或 atomsk 或 latgen 好用
+
+- [Chap.11 计算小白硬学VASP —— 构建slab模型 - A&H](https://andyhox.github.io/2024/08/05/Learn-VASP-from-pymatgen-11/)
+
+- [Chap.12 计算小白硬学VASP —— 构建异质结模型 - A&H](https://andyhox.github.io/2024/08/06/Learn-VASP-from-pymatgen-12/)
+
+```python
+from pymatge.core.surface import ...
+
+
+# 方法
+# 获取指定晶面指数中的最大数值下其对称性非等同的所有晶面指数
+get_symmetrically_distinct_miller_indices()
+
+# 获取指定晶面指数下其对称性等同的所有晶面指数
+get_symmetrically_equivalent_miller_indices()
+
+get_d()                 # 获取 slab 的原子层间距
+```
+
+- `SlabGenerator` 类相关属性和方法：
+
+```python
+from pymatge.core.surface import SlabGenerator
+
+
+SlabGenerator           # 类；构建指定晶面的 slab 模型
+# 参数
+initial_structure       # 初始结构，需是单胞
+miller_index            # 晶面密勒指数
+min_slab_size           # slab 最小尺寸
+min_vacuum_size         # 真空层最小厚度
+center_slab             # 是否将原子移至 z 方向中间
+in_unit_planes          # 设置 min_slab_size 和 min_vacuum_size 参数的单位，False 为 Angstrom，True 为 slab 层数
+primitive               # 是否将生成的 slab reduce 成 primitive cell
+max_normal_search       # 
+reorient_lattice        # 使 c 方向平行于第三个点阵矢量
+
+# 方法
+get_slabs()             # 获取所有的 slab 构型（数量含义为该 slab 模型下不同终端的数量）
+
+
+# 示例
+structure = Structure.from_prototype("bcc", ["Nb"], a=3.32)
+
+slabgen = SlabGenerator(
+    initial_structure=structure,
+    miller_index=(1, 1, 0),
+    min_slab_size=10,
+    min_vacuum_size=10,
+    center_slab=True,
+    in_unit_planes=False,
+    primitive=True,
+)
+
+slabs = slabgen.get_slabs()
+
+slabs[0]
 ```
 
 
@@ -992,7 +1042,7 @@ idos                    # 积分态密度
 pdos                    # 类型是列表；索引方式 pdos[atomindex][orbitalindex]
 
 # 方法
-as_dict()               # 将 解析的 vasprun.xml 数据转换为 dict
+as_dict()               # 将解析的 vasprun.xml 数据转换为 dict
 get_computed_entry()    # 将 vasprun.xml 中的计算结果转换为 ComputedEntry 对象
 get_band_structure()    # 获取能带结构数据；line_mode=True
 
@@ -1176,16 +1226,15 @@ sm.fit(structure1, structure2)
 ```python
 from pymatgen.analysis.eos import BirchMurnaghan
 
-# 初始化 EOS 类
 eos = BirchMurnaghan(volumes=..., energies=...)
-eos.fit()      # EOS 拟合
+eos.fit()         # EOS 拟合
 
-eos.results    # EOS 拟合结果
-eos.v0         # 平衡体积拟合值
-eos.e0         # 平衡能量拟合值
-eos.b0_GPa     # 体模量 B 拟合值
+eos.results       # EOS 拟合结果
+eos.v0            # 平衡体积拟合值
+eos.e0            # 平衡能量拟合值
+eos.b0_GPa        # 体模量 B 拟合值
 
-eos.plot()     # 绘制 EOS 拟合曲线
+eos.plot()        # 绘制 EOS 拟合曲线
 ```
 
 
@@ -1193,29 +1242,28 @@ eos.plot()     # 绘制 EOS 拟合曲线
 
 #### interface
 
+- [Working with Surfaces and Interfaces - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/03_heterointerfaces/Main%20Lesson/)
+
+- pymatgen 界面模型生成无法指定两种 slab 的层数：[https://matsci.org/t/building-a-slab-and-interface/45317](https://matsci.org/t/building-a-slab-and-interface/45317)
+
+- 生成所有可能匹配的超晶格的过程：
+    - 减少表面/界面（surfaces）晶格向量并计算表面/界面的面积
+    - 在最大允许面积内生成所有超晶格变换
+    - 对于每个超晶格集：
+        - 减少超晶格矢量
+        - 检查 film 和 substrate 表面超晶格之间的长度和角度
+
 ```python
 from pymatgen.analysis.interfaces.coherent_interfaces import CoherentInterfaceBuilder
 from pymatgen.analysis.interfaces.zsl import ZSLGenerator
+
+
+zsl                              # Zur 和 McGill 晶格匹配算法 模块
+ZSLGenerator                     # 基于 zsl 算法的界面生成 类
+
+coherent_interfaces              # 
+CoherentInterfaceBuilder         # 共格界面构建 类
 ```
-
-`pymatgen.analysis.interfaces.zsl` 模块 - 实现了 Zur 和 McGill 晶格匹配算法
-
-`ZSLGenerator` - 该类基于 Zur 和 McGill 提出的异质结构界面的晶格矢量匹配方法生成匹配界面超晶格
-
-生成所有可能匹配的超晶格的过程是：
-
-- 减少表面/界面（surfaces）晶格向量并计算表面/界面的面积
-- 在最大允许面积内生成所有超晶格变换
-- 对于每个超晶格集：
-    - 减少超晶格矢量
-    - 检查 film 和 substrate 表面超晶格之间的长度和角度
-
-`pymatgen.analysis.interfaces.coherent_interfaces` 模块 - 提供了存储、生成和操作材料界面的类
-
-`CoherentInterfaceBuilder` - 该类构造了两个 slab 之间的共格界面。共格由匹配晶格（matching lattices）而非子平面（sub-planes）定义。
-
-
->[Working with Surfaces and Interfaces - The Materials Project Workshop](https://workshop.materialsproject.org/lessons/03_heterointerfaces/Main%20Lesson/)
 
 
 ---
@@ -1328,7 +1376,7 @@ plot_slab()                    # 可视化吸附位点
 
 - 扩散相关
 
-[learning/scripts/model/idpp.py at main · wangchr1617/learning · GitHub](https://github.com/wangchr1617/learning/blob/main/scripts/model/idpp.py)
+- [learning/scripts/model/idpp.py at main · wangchr1617/learning · GitHub](https://github.com/wangchr1617/learning/blob/main/scripts/model/idpp.py)
 
 - 安装
 

@@ -49,6 +49,7 @@ MkDocs：文档、笔记、博客框架。
     - [Welcome to HobbitQia's Notebook! - HobbitQia的笔记本](https://note.hobbitqia.cc/)
     - [图灵班学习指南](https://zju-turing.github.io/TuringCourses/)
     - [GitHub - CS-ZIJI/F-MkDocs-Template: The uniform MkDocs template for course notes/tutorials.](https://github.com/CS-ZIJI/F-MkDocs-Template)
+    - [GitHub - WncFht/notes](https://github.com/WncFht/notes) 
 
 
 

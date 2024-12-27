@@ -166,6 +166,7 @@ scoop config name value        # 配置 scoop
 - Listary：一款实用的文件搜索、程序启动工具
     - 与 Mac 的 Alfred 类似；快速切换到当前打开的目录快捷键 `CTRL + G`
     - Listary `Ctrl +G` 功能平替：[GitHub - fffb/FolderMenuList: List currently open folders in the Open/Save dialogue box](https://github.com/fffb/FolderMenuList)
+    - Listary 竞品：[GitHub - Flow-Launcher/Flow.Launcher](https://github.com/Flow-Launcher/Flow.Launcher)
 
 - MobaXterm：远程服务器连接工具；集成 X11 和 SFTP；可自动识别已安装的 WSL
     - [【终端】全能终端神器MobaXterm\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ze41157SP)

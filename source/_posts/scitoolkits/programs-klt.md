@@ -45,10 +45,10 @@ password:
 
 - 结构建模程序，包括
     - BCC、FCC/Diamond、HCP/Graphene 常见晶体结构、A3B、A2B、AB 及 ABXn 型结构
-    - BCC、FCC、HCP 晶体结构以\[001\]、\[110\]、\[111\] 方向作为 z 轴的取向结构
+    - BCC、FCC、HCP 晶体结构以 \[001\]、\[110\]、\[111\] 方向作为 z 轴的取向结构
     - BCC、FCC、HCP 间隙点缺陷（四面体、八面体间隙）
     - 置换固溶体
-    - 表面（layer）
+    - 表面、界面模型（Multi-layer）
 
 - latgen 功能一览
 

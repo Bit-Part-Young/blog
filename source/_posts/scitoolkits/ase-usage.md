@@ -130,17 +130,6 @@ ase db test.db
 
 ### 其他
 
-- rdf 计算
-
-```python
-from ase.geometry.analysis import Analysis
-
-# 添加 element 参数，可计算 partial rdf；默认计算 full rdf
-rdf = Analysis(images=...).get_rdf()
-```
-
-- ase neb 方法：[Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
-
 - ase 缺陷计算 - 寻找最优的超胞形状：[Tools for defect calculations — ASE documentation](https://wiki.fysik.dtu.dk/ase/tutorials/defects/defects.html#supercell-creation)
 
 - [MAC版的ASE如何换轴的颜色 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=46950&extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline)
@@ -354,7 +343,7 @@ supercell = atoms * (2, 2, 2)
     - 官方文档：[Surfaces — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/surface.html)
     - 无法枚举出具有不同表面终端的所有表面（建议还是通过 Material Studio 或 pymatgen surface 模块或 atomsk 构建含该表面坐标的单胞，进而查看原子层数）
     - 常见晶体结构（BCC、FCC、HCP、Diamond）的常见表面（100、110、111）构建函数，支持吸附位点（'ontop', 'bridge', 'hollow' 等）
-    - 指定面指数切表面
+    - 指定面指数切表面（比 pymatgen surface 模块好用）
 
 - 注意事项：
     - fcc100、fcc110、bcc100、hcp10m10、diamond100 总是返回正交胞
@@ -363,21 +352,21 @@ supercell = atoms * (2, 2, 2)
     - root surface 是什么含义？
 
 ```python
-from ase.build import surface, fcc100, fcc110, fcc111, ...
+from ase.build import ...
 
 
 # 给定构型，沿指定面指数切表面
 atoms = ...
 s = surface(
     lattice=atoms,
-    indices=(1, 1, 0),
-    layers=2,
-    vacuum=10.0,
+    indices=(0, 0, 1),
+    layers=1,
+    vacuum=5.0,
 )
 # 参数
-lattice                # Atoms
-indices                # 面指数
-layers                 # 指最小一个完整单元的 slab，而非原子层数
+lattice                # Atoms object
+indices                # 密勒/面指数
+layers                 # 指最小一个完整单元的 slab，而非具体的原子层数
 vacuum                 # z 方向两端添加真空层
 
 
@@ -403,7 +392,6 @@ graphene               # 单层石墨烯
 graphene_nanoribbon    # 石墨烯纳米带
 # tube 结构
 nanotube               # 纳米管
-
 
 
 # 示例
@@ -859,6 +847,42 @@ print(Bohr)
 ### ase.cluster
 
 - 纳米颗粒/团簇
+
+
+---
+
+### ase.geometry
+
+- rdf 计算
+
+```python
+from ase.geometry.analysis import Analysis
+
+rdf = Analysis(...).get_rdf()
+# 参数
+images               # Atoms
+element              # 可计算 partial rdf；默认计算 full rdf
+```
+
+
+---
+
+### ase.neb
+
+- [Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
+
+- [使用ASE实现idpp方法插值NEB路径](https://mp.weixin.qq.com/s/En5MN5vhS-zXFoeoZ6kR1Q)
+
+```python
+from ase.neb import NEB
+from ase.optimize import BFGS
+
+images = ...
+
+neb = NEB(images, k=0.1)
+# IDPP 插值
+neb.idpp_interpolate(fmax=0.1, optimizer=BFGS, steps=1000)
+```
 
 
 ---

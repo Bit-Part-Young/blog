@@ -160,7 +160,10 @@ grep -A1 '  PAW_PBE' POTCAR
 ```
 
 - 注意事项：
-    - 赝势种类：模守恒赝势、超软赝势 USPP（所需截断能较小，计算速度快）
+    - 赝势种类：
+        - 模守恒赝势：Norm conserving PP；所需截断能高，计算精度高
+        - 超软赝势：Ultrasoft PP；所需截断能较小，计算效率高
+        - 缀加平面波赝势：Projector Augmented Wave PP；常用
     - 赝势目录中每个类型的泛函目录中有一个 data_base 文件，里面包含每个赝势对应元素 3 种可能结构的基态能量数据
     - PSCTR 文件：控制赝势生成文件：[PSCTR](https://www.smcm.iqfr.csic.es/docs/vasp/node251.html)
     - [VASP中的赝势 - 计算材料学](https://ywwang0.github.io/2020/08/18/VASP%E4%B8%AD%E7%9A%84%E8%B5%9D%E5%8A%BF/)
@@ -534,6 +537,8 @@ Damped         # damped velocity friction 算法
 - 对于金属中的力、声子频率计算，使用 ISMEAR=1 或 ISMEAR=2，SIGMA 合理值通常为 0.2（默认值）
     - 引入 SIGMA 展宽后，使得 OUTCAR 中的 T\*S 熵项不为 0（该熵值不是由一定的温度带来的，而是数学处理的结果）
     - 推荐使用 ISMEAR>0（总能也能精确描述），需仔细选择 SIGMA 的值。值太大可能导致不正确的总能，太小需要更密的 K 点；应尽可能大，使 OUTCAR 文件中的 `entropy T*S` 项可忽略（小于 1meV/atom）
+
+- Methfessel-Paxton order N 示意图：[Methfessel-Paxton Approximation to Step Function](http://www.hector.ac.uk/cse/distributedcse/reports/conquest/conquest/node6.html)
 
 ```bash
 N              # N 为数字；Methfessel-Paxton order N（默认 1）

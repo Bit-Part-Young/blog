@@ -26,16 +26,27 @@ password:
 ## 简历 / CV 网页
 
 - [GitHub - weijie-chen/weijie-chen.github.io](https://github.com/weijie-chen/weijie-chen.github.io)、[Weijie Chen](https://weijie-chen.github.io/)
+
 - [Dr. Jinyang Zhang](https://kevinzjy.github.io/)
+
 - [Zhenchao Jin](https://charlespikachu.github.io/)（纯 html css）
+
 - [GitHub - HugoBlox/theme-academic-cv: 🎓 无需编写任何代码即可轻松创建漂亮的学术网站](https://github.com/HugoBlox/theme-academic-cv)
+
 - 在线排版：[GitHub - mdnice/markdown-resume](https://github.com/mdnice/markdown-resume)
+
 - [GitHub - Hacker233/resume-design](https://github.com/Hacker233/resume-design)
+
 - [GitHub - xitanggg/open-resume: OpenResume is a powerful open-source resume builder and resume parser. https://open-resume.com/](https://github.com/xitanggg/open-resume)
+
 - [GitHub - Troublor/troublor.github.io: Source code of my personal homepage](https://github.com/Troublor/troublor.github.io)
+
 - [GitHub - bchiang7/v4: Fourth iteration of my personal website built with Gatsby](https://github.com/bchiang7/v4)
+
 - Obsidian / Typora 简历：[GitHub - BingyanStudio/LapisCV: 📃 开箱即用的 Obsidian / Typora 简历](https://github.com/BingyanStudio/LapisCV)
+
 - [GitHub - AmruthPillai/Reactive-Resume: A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!](https://github.com/AmruthPillai/Reactive-Resume)
+
 - [GitHub - Riaz-404/Portfolio: Personal portfolio build with HTML, CSS & JavaScript](https://github.com/Riaz-404/Portfolio)
 
 - Jekyll 框架：
@@ -51,13 +62,15 @@ password:
 
 - [GitHub - engenmt/my-eleventy-resume](https://github.com/engenmt/my-eleventy-resume)
 
+- [GitHub - WCY-dt/portfolio: A portfolio of myself.](https://github.com/WCY-dt/portfolio)
+
 
 
 ---
 
 ## 相册网页
 
-- [ ] 视频 + 相册静态网页较难找（少或效果不太满足要求）
+- [ ] 视频 + 相册静态网站模板较难找（少或效果不太满足要求）
 
 - 照片、视频墙：[GitHub - zhang-tong-yao/wall: Wall是一款快速分享资源应用程序。俗称“照片墙、视频墙”，基于Vue3 + Spring Boot开发的云共享资源应用系统。](https://github.com/zhang-tong-yao/wall)
 
@@ -251,10 +264,15 @@ mdbook serve --open
 
 - Rust 静态网站生成器：[GitHub - getzola/zola: A fast static site generator in a single binary with everything built-in. https://www.getzola.org](https://github.com/getzola/zola)
 
+- [GitHub - WCY-dt/blog: 我的博客](https://github.com/WCY-dt/blog)
+
+
 
 ---
 
 ## 其他
+
+- [GitHub - WCY-dt/mindclip: Short notes for websites, documents and inspiration. 为中意的网站、文档或者一闪而过的灵感添加笔记.](https://github.com/WCY-dt/mindclip)
 
 - 将浏览器书签导出成导航网站：[Guide - Pintree](https://pintree.io/guide-zh.html)
 

@@ -36,11 +36,12 @@ password:
     - [VASP 5.4.4极简安装方法（CentOS 7.6+ifort 19）\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/av39616222/)
     - [VASP最简单的安装方法（含全程视频演示） - 思想家公社的门口：量子化学·分子模拟·二次元](http://sobereva.com/455)
     - VASP6 编译（含 GPU 版本）：[编译版本6的VASP](https://blog.sbyu.top/post/5)
+    - [VASP6.5.0+Intel CPU编译并添加module环境 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=50668&extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline)
     - [VASP - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/engineeringscience/vasp.html)
     - [Instaling VASP - CodiMD](https://notes.sjtu.edu.cn/s/daoG4JIYX#)
 
 - 含 VASP 版本更新内容简要介绍：
-    - VASP 6.5.0 和 6.4.3: [Changelog - VASP Wiki](https://www.vasp.at/wiki/index.php/Changelog)
+    - VASP 6.5.0（新特性：电声耦合）和 6.4.3: [Changelog - VASP Wiki](https://www.vasp.at/wiki/index.php/Changelog)
     - [VASP - NSC](https://www.nsc.liu.se/software/installed/tetralith/vasp/)
 
 在 `makefile.include` 中的 OFLAG 参数里加入 -xhost，这样编译器会使得编译出的程序能够利用当前机子 CPU 能支持的最高档次的指令集以加速计算
@@ -60,18 +61,24 @@ password:
 - VASP.5.4.4、VASP.6.X.X 安装包路径：Master: `/opt/software`；将其拷贝到自己的用户目录下，传输至超算平台）
 
 - 编译选项：[Compiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Compiler_options)
+
 - 预编译选项：[Precompiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Precompiler_options)
+
 - [Linking to libraries - VASP Wiki](https://www.vasp.at/wiki/index.php/Linking_to_libraries)
+
 - [OpenACC GPU port of VASP - VASP Wiki](https://www.vasp.at/wiki/index.php/OpenACC_GPU_port_of_VASP)
 
 - makefile.include 不同架构的含义：[makefile.include - VASP Wiki](https://www.vasp.at/wiki/index.php/Makefile.include)
 
 - make.include 文件选择
+    - VASP.5.4.4 只支持 Intel Classic 编译器
+    - VASP 6 支持 Intel Classic 和 Intel oneAPI 编译器
 
 ```bash
 # Intel Composer suite and oneAPI Base + HPC toolkits for CPUs
 makefile.include.linux_intel             # VASP.5.X.X
 makefile.include.intel                   # VASP.6.X.X
+makefile.include.oneapi                  # VASP.6.X.X
 
 # GNU compilers for CPUs
 makefile.include.linux_gnu               # VASP.5.X.X
@@ -102,12 +109,12 @@ vasp.X.X.X (root directory)
                                        lib    parser   CUDA
 
 
-arch      # 针对不同架构的 Makefile 模板
-bin       # 编译后的可执行程序文件目录
-build     # 编译时自动复制 src 目录内源码后执行编译，会分别创建三个版本的子目录
-src       # 源码目录
-lib       # 库目录，对应以前的 vasp.lib 目录
-CUDA      # GPU CUDA 代码目录 
+arch           # 针对不同架构的 Makefile 模板
+bin            # 编译后的可执行程序文件目录
+build          # 编译时自动复制 src 目录内源码后执行编译，会分别创建三个版本的子目录
+src            # 源码目录
+lib            # 库目录，对应以前的 vasp.lib 目录
+CUDA           # GPU CUDA 代码目录 
 ```
 
 - VASP.6.X.X 源代码目录结构
@@ -126,6 +133,8 @@ CUDA      # GPU CUDA 代码目录
 
 - 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
 
+- `make -jN` 并行编译的特性只有 VASP6 才支持，VASP5 不支持
+
 - `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功
 
 - 编译得到的三个版本
@@ -141,9 +150,7 @@ vasp_gam             # gamma-only 版本
 
 ---
 
-### Intel oneAPI
-
-- 用到的编译器：icc、icpc、mpiifort
+### Intel oneAPI 套件
 
 - Master 上选择 intel_omp 编译，运行 `mpirun -n 2 vasp_std` 命令会报错；选择 Intel 编译正常
 
@@ -170,6 +177,16 @@ cp arch/makefile.include.intel makefile.include
 make  # 或 make all, make std
 
 # 为 vasp_std 等设置符号链接
+
+
+# 可修改内容
+# 添加 -diag-disable=10441 不让 icc 和 icpc 编译器在编译代码时每调用一次就跳出弃用警告
+# 修改前
+CC_LIB      = icc
+CXX_PARS    = icpc
+# 修改后
+CC_LIB      = icc -diag-disable=10441
+CXX_PARS    = icpc -diag-disable=10441
 ```
 
 - VASP.5.4.4 编译最后可能会出现的 remark（无影响）
@@ -257,10 +274,10 @@ make[2]: *** [makefile:171: c2f_interface.o] Error 1
 
 ---
 
-### GNU
+### GNU 套件
 
 - Mac M1：[VASP M1 Mac Compilation Guide · GitHub](https://gist.github.com/janosh/a484f3842b600b60cd575440e99455c0)
-    - Mac M1 gnu_omp 编译 VASP6 + HDF5（耗时 32 min 左右）
+    - gnu_omp 架构编译 VASP6 + HDF5（耗时 32 min 左右）
 
 - Linux
 
@@ -280,9 +297,9 @@ sudo apt install libscalapack-openmpi-dev  # 或 libscalapack-mpi-dev
 # VASP.5.4.4
 cp arch/makefile.include.linux_gnu makefile.include
 # VASP.6.3.0
-cp arch/makefile.include.gnu_omp makefile.include
+cp arch/makefile.include.gnu makefile.include
 
-# 修改 数值计算库 lib 在 makefile.include 中的具体路径
+# 修改数值计算库 lib 在 makefile.include 中的具体路径
 
 make  # 或 make all, make std
 ```

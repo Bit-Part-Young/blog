@@ -266,6 +266,8 @@ plt.ylabel("y 轴", fontproperties = zh_font)
 plt.legend(props={"family": "SimHei"})
 ```
 
+- 中文字体管理：[GitHub - Clarmy/mplfonts: Fonts manager for matplotlib](https://github.com/Clarmy/mplfonts)
+
 
 ---
 

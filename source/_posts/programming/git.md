@@ -105,6 +105,10 @@ WIP...
 - [Getting Started with: Git, GitHub, and GitHub pages - howtos](https://www.wgilpin.com/howto/howto_github.html)
 - Git 游戏：[Oh My Git!](https://ohmygit.org/)
 - [GitHub - hanyujie2002/wyag-zh: 自己动手写 Git 的中文翻译](https://github.com/hanyujie2002/wyag-zh)
+- [wizardzines.com/git-cheat-sheet.pdf](https://wizardzines.com/git-cheat-sheet.pdf)
+- [Inside .git](https://jvns.ca/blog/2024/01/26/inside-git/)
+- [约定式提交](https://www.conventionalcommits.org/zh-hans/v1.0.0/)
+
 
 
 ---

@@ -54,6 +54,12 @@ password:
     - [Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)
     - [Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
 
+- RDF 计算：[Tutorial: Radial Distribution Functions (RDF)](https://atomsk.univ-lille.fr/tutorial_rdf.php)
+
+- atomsk 支持的晶体结构类型：[Mode: create - Atomsk](https://atomsk.univ-lille.fr/doc/en/mode_create.html)
+
+- [atomsk多层碳纳米管建模示例](https://mp.weixin.qq.com/s/geQF9G9xC-f_90puwqI_tA)
+
 
 
 ---
@@ -144,7 +150,7 @@ make -f Makefile.macos atomsk
 
 ```bash
 -orient                     # 晶体取向
--rmatom                     # 删除原子
+-duplicate                  # 扩胞
 -rotate                     # 旋转轴
 -orthogonal-cell            # 转变为正交胞
 -fractional                 # 分数坐标；VASP 格式下
@@ -157,10 +163,13 @@ make -f Makefile.macos atomsk
 -center                     # 使体系移至 box 的中心
 -add-atom                   # 添加原子；可添加笛卡尔、分数坐标
 -wrap                       # 将胞外原子通过 PBC 到胞内
--properties
--remove-doubles
--mirror
+-properties                 # 设置 properties
+-remove-doubles             # 删除重复的原子
+-remove-atom                # 或 -rmatom；删除原子
+-mirror                     # 施加镜像操作（mirror transformation）
 -deform                     # 或 -def，通过施加正应变或切应变使体系变形（box 和 原子一起）
+-disturb                    # 随机移动原子位置
+-select                     # 根据准则选择原子
 ```
 
 - 常用 modes
@@ -168,6 +177,7 @@ make -f Makefile.macos atomsk
 ```bash
 --create                # 构建晶体结构
 --merge                 # 合并两个构型
+--rdf                   # RDF 计算
 
 # 报错内容：一次只能使用一个 mode
 X!X ERROR: only one mode can be used at a time.
@@ -191,6 +201,16 @@ xyz exyz sxyz
 # 构建晶体结构
 --create fcc 4.02 Al               # FCC
 --create hcp 2.92 4.61 Ti          # HCP，基矢: H1=[2-1-10], H2=[-12-10], H3=[0001]
+--create perovskite 3.905 Sr Ti O  # 钙钛矿结构
+
+# 支持的晶体结构类型
+bcc
+fcc
+hcp
+diamond
+perovskite
+rocksalt
+
 
 # 构建晶体特定取向的构型
 --create fcc 3.53 Ni -orient "[1-10]" "[11-2]" "[111]"

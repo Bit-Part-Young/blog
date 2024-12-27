@@ -1625,6 +1625,7 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 - cls 文档类文件内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
 
 - 简历
+    - 推荐：[GitHub - LiuX2018/CV](https://github.com/LiuX2018/CV)
     - [GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
     - 用的是 tectonic 引擎：[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
     - [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
@@ -1657,6 +1658,9 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 ---
 
 ## 问题
+
+- The font "Cochineal-Roman" cannot be found：该字体不适用于 xelatex/lualatex，而适用于 pdflatex
+    - [fonts - fontenc vs fontspec with XeLaTeX - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/448895/fontenc-vs-fontspec-with-xelatex)
 
 - [ ] 如何将自定义命令参数设置为 key-value 形式
 

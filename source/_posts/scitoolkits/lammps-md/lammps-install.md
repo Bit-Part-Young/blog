@@ -152,6 +152,7 @@ cmake -D PKG_KSPACE=yes  ../cmake
 -D GPU_API                    # opencl 或 cuda
 -D FFT                        # 指定 FFTW 库，默认是 FFTW3；可选值 FFTW3、MKL、NVPL、KISS；找不到时会使用 KISS
 -D WITH_JPEG=off              # 不使用 JPEG；会自动检查
+-D LAMMPS_GZIP=               # 使用
 make                          # 编译
 make install                  # 安装；默认安装到 ~/.local
 make install-python           # 安装 LAMMPS 的 Python 模块；作用是生成 whl 文件
@@ -406,6 +407,7 @@ write_restart
 ## MC2 LAMMPS 版本编译
 
 - LAMMPS 版本：22Aug2018
+
 - gibbs_multireplica.ccp 和 gibbs_multireplica.h 需要用到 LAPACK，使用 `make intel_cpu` 命令，由于 master、超算无 libjpeg 库，因此需修改/注释 Makefile.intel_cpu（文件路径：`MAKE/OPTION`） 中的 jpeg 相关选项（共 4 处）
 
 ```bash
