@@ -183,8 +183,8 @@ cell.lengths()             # 晶格常数
 cell.angles()              # 晶格角度
 numbers                    # 原子对应原子序数
 pbc                        # 周期性边界条件
-info                       # 给 Atoms 设置信息；dict；可用于写入 extxyz 格式文件
 constraints                # 获取约束信息（原子 x y z 轴固定信息）
+info                       # 给 Atoms 设置信息；dict；可用于写入 extxyz 格式文件
 
 
 # （一般）方法
@@ -227,6 +227,10 @@ get_forces()               # 每个原子的受力
 get_stress()               # 应力张量
 get_stresses()             # 每个原子的应力张量
 get_properties()           # 获取性质，如 ["energy", "forces", "stress"]
+get_total_energy()         # 总能量
+get_magnetic_moment()
+get_magnetic_moments()
+
 
 # set 方法
 set_chemical_symbols()     # 设置元素符号；可用于置换元素
@@ -251,7 +255,22 @@ formula = atoms.get_chemical_formula()
 composition = Formula(formula).count()
 
 # 构型中某一元素的浓度
-concentration = atoms.get_chemical_symbols().count("Pd") / len(atoms)
+concentration = atoms.get_chemical_symbols().count("Pd") / natoms
+
+
+# 原子对之间的最小、最大距离
+import numpy as np
+
+# 可考虑最小影像准则
+distances = atoms.get_all_distances()
+
+print(np.unique(distances)[1])       # 最小距离 
+print(np.unique(distances)[-1])      # 最小距离 
+
+
+# 判断 cell 是否为正交胞
+angles = atoms.cell.angles()
+is_orthogonal = all(abs(a - 90) < 1e-5 for a in angles)
 ```
 
 - 其他用法
@@ -739,8 +758,11 @@ db = connect(db_fn)            # 连接 db 文件
 db.metadata = {...}            # 给 db 添加元数据
 
 len(db)                        # 获取 db 文件中存储的结构数目
-db.count()
+db.count()                     # 同上
 db.count("vasp_calc=Yes")      # 添加 selection 筛选条件
+
+# 若不存在，写入 empty row 并返回整数 id
+id = db.reserve(key1=value1, key2=value2, ...)
 
 # 筛选 id<=5 的所有结构
 # selection 可以是 id 或其他 AtomsRow 中的 key
@@ -1008,4 +1030,11 @@ calc = SinglePointCalculator(atoms, **results)
 atoms.calc =  calc
 
 atoms.get_potential_energy()
+```
+
+---
+
+```python
+# 使用多种 calculator
+from ase.calculators.mixing import SumCalculator 
 ```

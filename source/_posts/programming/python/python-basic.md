@@ -1148,22 +1148,22 @@ parser = argparse.ArgumentParser(
     add_help=...,
     allow_abbrev=...,
 )
-# 参数
+# ArgumentParser() 参数
 prog              # 程序名称（可不添加）
 usage             # 程序使用方法（可不添加）
 formatter_class   # 自定义帮助文档的输出格式
-description=      # 程序描述
+description       # 程序描述
 epilog            # 在帮助信息结尾添加文本（如作者、版本、联系方式等）
-# formatter_class 常用值
-argparse.HelpFormatter                   # 默认
-argparse.ArgumentDefaultsHelpFormatter   # 显示参数默认值；可选参数设置 default 值后会显示，位置参数需设置 default 和 nargs 才会显示
-argparse.RawTextHelpFormatter            # 保持原格式
-
 add_help          # 是否自动添加 -h/--help 选项
 allow_abbrev      # 是否允许长选项使用非歧义缩写
 argument_default  # 所有参数的默认值
 conflict_handler  # 处理参数名冲突
 exit_on_error     # 遇到错误时是否应该退出程序
+
+# formatter_class 常用值
+argparse.HelpFormatter                   # 默认
+argparse.ArgumentDefaultsHelpFormatter   # 显示参数默认值；可选参数设置 default 值后会显示，位置参数需设置 default 和 nargs 才会显示
+argparse.RawTextHelpFormatter            # 保持原格式
 
 
 # 添加参数
@@ -1179,7 +1179,7 @@ parser.add_argument(
     required=...,
     help=...,
 )
-# 参数
+# add_argument() 参数
 name_or_flags     # 命令行参数名称（位置参数或可选参数）
 nargs             # 指定命令行中参数应消耗的值的数量；N、?、*、+
 const             # 常量值（只指定参数但不带值时，使用该 const 值，需结合 nargs=? 使用） 
@@ -1189,7 +1189,14 @@ choices           # 参数的允许值
 required          # 用于可选参数，默认 False；True 表示该参数必须指定
 help              # 参数的帮助信息
 metavar           # 将帮助信息中的参数用 metavar 的值替代（类似占位符）
-action            # （个人不常用）
+action            # 定义解析命令行选项时，如何处理该选项的值
+
+# action 可选值
+store             # 默认值，将参数值存储到变量中
+store_true        # 布尔值开关
+store_false       # 与 store 相反
+append            # 将参数值添加到列表中
+
 
 # 解析命令行参数
 args = parser.parse_args()

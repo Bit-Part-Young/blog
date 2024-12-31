@@ -38,6 +38,10 @@ password:
 # --------------------- FORCE FIELDS ------------------------
 ```
 
+```bash
+# 最小化过程中控制最大移动距离
+min_modify dmax
+```
 
 
 ---
@@ -90,6 +94,24 @@ variable         var equal "1 / (lx*2 + lx^2 / (3-lx))"
 # 若 foo 是未定义的变量
 variable         var1 equal "(foo * 2)"   # 不会报错
 variable         var2 equal $(foo * 2)    # 会报错
+```
+
+```bash
+# 单循环
+variable     i loop 3  # 声明变量
+print        "$i"      # 命令块
+next         i         # i 自增
+jump         SELF      # 重新读取本脚本
+
+# 嵌套循环
+label        lp
+variable     i loop 3
+variable     j loop 5
+print        "($i,$j)"
+next         j
+jump         SELF lp
+next         i
+jump         SELF lp
 ```
 
 

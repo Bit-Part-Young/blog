@@ -54,6 +54,59 @@ password:
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006009.png)
 
+- 具体全部功能
+
+```bash
+# 全部功能
+1. FCC/Diamond;               |  4. A3B;
+2. BCC;                       |  5. A2B;
+3. HCP/Graphene;              |  6. AB & ABXn;
+7. User defined;              |  8. Multi-layer.
+9. Xtal with interstitials;   | 10. Polycrystals;
+
+
+# 1. FCC/Diamond 可构建的位相
+1. [001] along z;        5. Diamond [001] along z;
+2. [110] along z;        6. Diamond [110] along z;
+3. [111] along z;        7. Diamond [111] along z;
+4. Primitive cell;       8. Diamond primitive;
+
+
+# 2. BCC 可构建的位相
+1. [001] along z;
+2. [110] along z;
+3. [111] along z;
+4. [112] along z;
+5. primitive cell;
+
+
+# 3. HCP/Graphene 可构建的位相
+1. [001]/[0001]   along z;      5. Graphene;
+2. [100]/[2-1-10] along z;      6. Graphite;
+3. [110]/[11-20]  along z;      7. [101]/[2-1-13] along z;
+4.[-110]/[-1100]  along z;      8. [112]/[11-26]  along z;
+
+
+# 4. A3B 具体可构建的结构
+1. A15;         5. D09;
+2. D019;        6. L12;
+3. D022;        7. L60;
+4. D03;
+
+
+# 5. A2B 具体可构建的结构
+1. C1 (Fluorite);
+2. C15 (Cu2Mg);
+3. C32 (AlB2);
+
+
+# 6. AB & ABXn 具体可构建的结构
+1. B1 (NaCl);        4. L10 (CuAu);
+2. B2 (CsCl);        5. B81 (a-NiAs);
+3. B3 (Zincblende);  6. B4 (Wurtzite);
+7. Perovskite;
+```
+
 ---
 
 - 编译：依赖 voro++；编译器可选择 gcc 或 icc

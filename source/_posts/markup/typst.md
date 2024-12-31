@@ -607,7 +607,9 @@ Show 规则用于全局替换
 
 - outline 目录：outrageous
 - 绘图（类似 LaTeX 中的 PGF/TikZ）：cetz
-- box 盒子（类似 LaTeX 中的 colorbox）：showybox
+- box 盒子（类似 LaTeX 中的 colorbox）
+    - showybox
+    - [GitHub - marc-thieme/frame-it](https://github.com/marc-thieme/frame-it)
 - math 数学：physica
 - table 表格：tablex、tablem
 - code 代码：codly
@@ -622,6 +624,7 @@ Show 规则用于全局替换
 - 表格中的科学计数格式化（小数点自动对齐）：[GitHub - Mc-Zen/zero: Advanced scientific number formatting for Typst.](https://github.com/Mc-Zen/zero)
 - 生成 Typst package 的文档：[tidy](https://github.com/Mc-Zen/tidy)
 - 使用 Font Awesome 图标：[GitHub - duskmoon314/typst-fontawesome](https://github.com/duskmoon314/typst-fontawesome)
+- admonitions：[GitHub - jomaway/typst-gentle-clues: Simple admonishment for typst](https://github.com/jomaway/typst-gentle-clues)
 
 
 ---
@@ -669,7 +672,9 @@ wget --recursive --no-parent --convert-links https://typst.app/docs/
     - [build.yml](https://github.com/howardlau1999/sysu-thesis-typst/blob/master/.github/workflows/build.yml)
     - [GitHub - lvignoli/typst-action: Typst GitHub action](https://github.com/lvignoli/typst-action)
 
-- 论文海报 poster：[Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
+- 论文海报 poster：
+    - [Kevin Bonham, PhD / bbm-poster-2024 · GitLab](https://gitlab.com/kescobo/bbm-poster-2024/)
+    - [GitHub - pncnmnp/typst-poster: An academic poster template for Typst](https://github.com/pncnmnp/typst-poster)
 
 - Elsevier 期刊模板
     - 预印版：

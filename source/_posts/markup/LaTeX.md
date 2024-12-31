@@ -233,7 +233,7 @@ bibtex-tidy refs.bib        # 基本使用
 bibtex-tidy refs.bib \
     --sort=-year,title \
     --sort-fields \
-    --omit=abstract,keywords \
+    --omit=abstract,keywords,file,urldate,langid,copyright,publisher,shorttitle \
     --blank-lines \
     --duplicates \
     --escape \

@@ -524,8 +524,9 @@ diamond                  # Si
 zincblende               # ZnS
 perovskite               # BaTiO3
 
+
 # 获取 Structure 某种元素的原子位点序号
-indices_nb = [i for i, site in enumerate(structure) if site.species_string == "Nb"]
+indices_Nb = [i for i, site in enumerate(structure) if site.species_string == "Nb"]
 ```
 
 
@@ -626,9 +627,22 @@ Lattice.from_parameters(5, 5, 5, 90, 90, 90)
 Lattice.cubic(5)
 
 # 属性
+abc                         # 点阵常数（长度）
+angles                      # 点阵常数（夹角）
+a                           # 点阵常数 a
+b                           # 点阵常数 b
+c                           # 点阵常数 c
+alpha                       # 点阵常数 alpha
+beta                        # 点阵常数 beta
+gamma                       # 点阵常数 gamma
 reciprocal_lattice          # 倒易点阵
+is_orthogonal               # 是否为正交胞
+is_3d_periodic              # 3 个方向是否都是周期性的
+matrix                      # 矩阵
+inv_matrix                  # 逆矩阵
 
 # 方法
+is_hexagonal                # 是否为六方胞
 d_hkl()                     # 获取晶面间距（不准确，不推荐用）
 get_wigner_seitz_cell()     # wigner seitz 原胞
 get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
@@ -1399,6 +1413,23 @@ from_endpoints()
 
 idpp_solver = IDPPSolver.from_endpoints()
 idpp_solver.run()
+```
+
+
+---
+
+### pymatgen.symmetry.bandstructure
+
+```python
+from pymatgen.symmetry.bandstructure import HighSymmKpath
+
+structure = ...
+kpath = HighSymmKpath(structure=structure)
+
+kpath.kpath
+
+kpath.kpath["kpoints"]
+kpath.kpath["path"]
 ```
 
 

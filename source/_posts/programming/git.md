@@ -737,10 +737,11 @@ git branch -vv             # 列出 repo 所有分支信息
 ### checkout
 
 ```bash
-git checkout <Branch>      # 切换分支
-git checkout -b <Branch>   # 创建并切换新分支
-git checkout -             # 迅速切换到上一个分支
-git checkout -- file       # 撤回对某个文件的修改
+git checkout <Branch>              # 切换分支
+git checkout -b <Branch>           # 创建并切换新分支；等同于 git switch -c
+git checkout -                     # 迅速切换到上一个分支
+git checkout -- file               # 撤回对某个文件的修改
+git checkout -t <remote>/<Branch>  # 切换至远程分支，并本地创建跟踪分支，等同于 git switch -t
 ```
 
 
