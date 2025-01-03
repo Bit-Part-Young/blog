@@ -196,6 +196,8 @@ write()                    # 写入构型格式文件
 edit()                     # 交互式修改（ASE GUI）
 pop()                      # 删除原子
 translate()                # 平移原子位置
+make_supercell()           # 构建超胞（可通过此将六方转正交胞）
+rotate()                   # 旋转（可绕轴旋转）
   
 center()                   # 在指定轴两端各添加真空层并移至该轴中心
 # 参数
@@ -536,7 +538,7 @@ equivalent_sites()        # 查看等同原子坐标
 
 - 构型文件读入、写出；可读入压缩格式文件内容；可支持的格式很多；[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
 
-- 部分构型文件格式只读或只写或可读入写入多帧构型数据
+- 部分构型文件格式只读 (R) 或只写 (W) 或可读入写入多帧构型 (RW+) 数据
 
 ```bash
 # 常用构型文件格式       读写情况
@@ -613,7 +615,7 @@ write(
 direct                   # 笛卡尔坐标/分数坐标
 sort                     # 按照元素的字母顺序对原子进行排序
 vasp5                    # 以 VASP5+ 格式写入
-ignore_constraints       # 是否忽略约束（固定原子信息）
+ignore_constraints       # 是否忽略约束（固定原子坐标信息）
 
 
 # 保存为 LAMMPS data 格式

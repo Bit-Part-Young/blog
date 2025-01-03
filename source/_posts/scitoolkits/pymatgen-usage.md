@@ -507,6 +507,7 @@ sort()                   # 排序（原子位点按电负性排序；in place）
 get_sorted_structure()   # 排序（not in place）
 apply_strain()           # 对点阵施加应变；默认会修改对象本身
 perturb()                # 对结构中的原子位点施加随机扰动以破坏对称性
+make_supercell()         # 构建超胞
 
 # 类方法
 from_spacegroup()        # 根据空间群构建结构
@@ -1454,6 +1455,7 @@ get_symmetry_dataset()                  # 获取结构的对称性数据集
 get_crystal_system()                    # 获取晶系（源码含空间群与晶系之间的关系）
 get_space_group_number()                # 空间群编号（编号越小，对称性越低）
 get_space_group_symbol()                # 空间群符号
+get_crystal_system()                    # 获取晶系
 
 
 symmetry_dataset = sga_analyzer.get_symmetry_dataset()

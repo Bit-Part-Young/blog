@@ -105,6 +105,8 @@ cargo install <package> --force
 cargo install --locked <package>
 # 列出所有安装的 packages 及对应的版本
 cargo install --list
+# 查找 package
+cargo search <package>
 
 cargo add <lib>
 

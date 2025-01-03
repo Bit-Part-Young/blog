@@ -1166,6 +1166,11 @@ argparse.ArgumentDefaultsHelpFormatter   # 显示参数默认值；可选参数�
 argparse.RawTextHelpFormatter            # 保持原格式
 
 
+# 若 description 内容很长，可进行以下操作
+parser.description += "..."
+parser.description += "..."
+
+
 # 添加参数
 parser.add_argument(
     "file",             # 位置参数；必须提供
