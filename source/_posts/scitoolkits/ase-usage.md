@@ -368,7 +368,7 @@ supercell = atoms * (2, 2, 2)
 
 - 注意事项：
     - fcc100、fcc110、bcc100、hcp10m10、diamond100 总是返回正交胞
-    - fcc111、bcc110、bcc110、hcp0001 可返回非正交胞和正交胞两种
+    - fcc111、bcc110、bcc111、hcp0001 可返回非正交胞和正交胞两种
     - fcc211 只返回正交胞；diamond111 只返回非正交胞
     - root surface 是什么含义？
 
@@ -405,7 +405,7 @@ diamond100
 diamond111
 # HCP 结构常见的 (0001) 面
 hcp0001
-hcp10m10               # size 设置有要求
+hcp10m10               # size 设置有要求；m 表示负号
 
 mx2                    # MoS2 二维材料的六方结构
 graphene               # 单层石墨烯
@@ -547,6 +547,7 @@ vasp-out              # R+
 vasp-xdatcar          # RW+
 xyz                   # RW+
 extxyz                # RW+
+xsd                   # RW
 lammps-data           # RW
 lammps-dump-text      # R+
 ```
@@ -665,6 +666,9 @@ write(
 ```python
 # LAMMPS data 格式
 from ase.io.lammpsdata import read_lammps_data, write_lammps_data
+
+# LAMMPS dump 格式
+from ase.io.lammpsrun import read_lammps_dump_text
 
 # VASP POSCAR 格式
 from ase.io.vasp import read_vasp, write_vasp

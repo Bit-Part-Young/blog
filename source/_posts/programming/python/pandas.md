@@ -126,7 +126,7 @@ df.iloc[:, 0]
 # 选择多列
 df[["col1", "col2"]]
 df.loc[:, ["col1", "col2"]]
-df.iloc[:, [2:5]]
+df.iloc[:, 2:5]
 
 # 选择行
 df.loc[1:3]        # 行标签索引默认是整数 0 - N-1，此时写法和 iloc 类似

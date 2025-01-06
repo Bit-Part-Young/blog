@@ -76,6 +76,7 @@ password:
 
 - [全网最全的模拟XRD衍射谱教程](https://mp.weixin.qq.com/s/fF6mKPl9NAqv4pfbzCZyLw)
 
+HCP 除 (001) 面的结构是六方，其他面的结构均为四方或正交
 
 
 ---
@@ -236,17 +237,21 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 
 ### 复杂结构
 
-- 方法 1：在文献中查找该结构的晶体学信息，若提到 prototype structure（原型结构），可在数据库（ICSD、MP、Aflow、Springer Materials 等）中找到对应原型结构的 cif 文件（**需留意 Wyckoff position 是否一致或接近**），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
+- 方法 1：在文献中查找该结构的晶体学信息，若提到 prototype structure（原型结构），可在数据库（AFLOW、MP、Springer Materials、ICSD 等）中找到对应的 cif 文件（**需留意 Wyckoff position 是否一致或接近，某些含有变量，不同的具体结构变量值会不同**），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
 
-- 方法 2: 手动构建，需以下晶体学信息：晶体结构（crystal structure）、点阵参数（lattice parameter）、空间群（space group number）、原子位置（Wyckoff letter & Wyckoff position）；使用 Pyxtal，ASE，pymatgen 或 Material Studio 构建
+- 方法 2: 手动构建，需以下晶体学信息：晶体结构（crystal structure）、点阵参数（lattice parameter）、空间群（space group number）、原子位置（Wyckoff letter & Wyckoff position）；使用 PyXtal，ASE，pymatgen 或 Material Studio 构建
 
 
 ---
 
 ### 表面
 
-- 不同方法生成常见指数面的表面模型的区别
-    - atomsk 生成的表面模型总是正交胞
+- 切复杂结构/高指数面的表面时，可优先使用 Material Studio 的 Build surface 功能，清晰直观，且能快速得到具体的坐标轴（用于 atomsk）
+
+- 不同方法生成常见低指数面的表面模型的区别
+    - FCC：(100)、(110) 面正交/立方，(111) 面六方
+    - BCC：(100) 面正交/立方，(110)、(111) 面六方
+    - atomsk 构建时，需要求坐标轴正交，因此生成的表面模型总是正交胞
     - ASE 中的部分表面模型总是正交胞，部分可指定为非正交或正交胞
     - latgen 可指定生成的表面模型为非正交或正交胞
     - pymatgen 生成的表面模型总不是正交胞（没有前三个工具好用）
@@ -266,6 +271,37 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
     - ASE：(n-1) \* d + vac
     - atomsk：n \* d + vac
     - latgen：n \* d + vac（可指定为 n 或 n-1）
+
+- BCC、FCC、HCP 常见表面/位向的具体坐标轴
+
+```bash
+# BCC、FCC
+
+# BCC 单胞 2 个原子，FCC 4 个；均为 2 个原子层
+"[010]" "[001]" "[100]"            # (100) 面；立方
+
+# BCC 单胞 4 个原子，FCC 2 个；均为 2 个原子层
+"[01-1]" "[011]" "[100]"           # (100) 面；正交
+
+# BCC 单胞 4 个原子，FCC 2 个；均为 2 个原子层
+"[1-10]" "[001]" "[110]"           # (110) 面；正交
+
+# 单胞各 6 个原子，均为 3 个原子层
+"[11-2]" "[-110]" "[111]"          # (111) 面；正交
+
+# (111) 面；六方；[01-1] * 2 + [1-10] 转正交
+"[01-1]" "[1-10]" "[111]"
+
+
+# HCP
+"[-12-10]" "[0001]" "[-1010]"      # (100) 面
+
+"[0001]" "[1-100]" "[-1-120]"      # (110) 面
+
+"[0001]" "[11-20]" "[1-100]"       # (-110) 面
+
+# (101) 面、(112) 面，latgen 与 atomsk 生成的结构有很大不同，不确定
+```
 
 
 ---

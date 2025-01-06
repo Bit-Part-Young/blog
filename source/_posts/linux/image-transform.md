@@ -45,14 +45,17 @@ svg2pdf file.svg
 
 - svg 图片生成及格式转换：[Text to SVG AI Generator : Create unique SVG illustration from text](https://svg.la/text-to-svg/)
 
-- 图片转成 AVI 格式：[IMG2AVIF](https://img2avif.com/)
+- 转 AVIF 格式：[IMG2AVIF](https://img2avif.com/)
+
+- 转 webp：`brew info webp`（可执行命令为 `img2webp`）
+
 
 
 ---
 
 ## ImageMagick 使用
 
->[利用Linux/shell中的命令编辑图片/视频和pdf文件](https://zhuanlan.zhihu.com/p/397857009)
+- [利用Linux/shell中的命令编辑图片/视频和pdf文件](https://zhuanlan.zhihu.com/p/397857009)
 
 - ImageMagick 中的 convert 命令行工具，可实现多种图片格式转换
     - 图片格式包括：tiff、png、jpg、svg、pdf 等
@@ -127,9 +130,15 @@ ps2pdf -dPDFSETTINGS=/ebook -dColorImageResolution=500 input.pdf output.pdf
 ## 图片压缩
 
 - [Squoosh](https://squoosh.app/)
+
 - [GitHub - joye61/pic-smaller: Pic Smaller – Compress JPEG, PNG, WEBP, AVIF and GIF images intelligently](https://github.com/joye61/pic-smaller)
+
 - [GitHub - Lymphatus/caesium-image-compressor](https://github.com/Lymphatus/caesium-image-compressor)
+
 - [GitHub - richhost/pixzip-lite: Easy to use batch image compression software. Powered by Svelte 🧡 Electron. 简单易用的批量图片压缩软件，使用 Svelte、Electron 构建。](https://github.com/richhost/pixzip-lite)
+
 - [iLoveIMG - 图像文件在线编辑工具](https://www.iloveimg.com/zh-cn)
-- [Compress JPG: Free Online Image Compressor | PNG, WebP & More - No Sign Up](https://compressjpg.io/)
+
+- [Compress JPG: Free Online Image Compressor - PNG, WebP & More - No Sign Up](https://compressjpg.io/)
+
 - 优化 PDF 文件体积：[GitHub - pts/pdfsizeopt: PDF file size optimizer](https://github.com/pts/pdfsizeopt)

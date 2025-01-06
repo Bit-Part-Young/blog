@@ -18,23 +18,15 @@ password:
 
 # OVITO 使用
 
-- [OVITO](https://www.ovito.org/)
+## 介绍
+
+- 官网：[OVITO](https://www.ovito.org/)
 
 - OVITO 2.9 版本的 Python script 功能可以免费使用，其他需要 Pro 版本
 
 - [OVITO 识别结构的几种方法](https://mp.weixin.qq.com/s/Jh9lQKRbpFyhUnu8aHJSog)
 
-- 选中某层原子：表达式选取 Expression selection
-
-- 无直接计算原子层间距的 Modification
-
-- [ovito_modifiers](https://www.ovito.org/docs/current/python/modules/ovito_modifiers.html)
-
-- POSCAR 格式，单个文件含多帧构型，会无法读取；LAMMPS 格式，单个文件含多帧构型，只会读取第一帧数据
-
-- macOS 版本的 OVITO 无法读取多帧构型数据
-
-- 支持 SFTP，可打开远程构型文件
+- 支持 SFTP，可打开远程文件
 
 - OVITO 菜单栏：
     - 主菜单
@@ -44,7 +36,34 @@ password:
     - 渲染标签
     - 叠层标签（添加坐标轴、colorbar 等）
 
-- Add Modification 内容
+- [14-5-Ovito可视化\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1kryVYtEcT)
+    - 原子轨迹跟踪显示
+    - 熔化过程中自由体积和中心对称参数的变化
+
+- [Ovito可视化堆垛层错、缺陷和原子应力\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ieyqYnEiq/)
+
+- 输出 RDF
+
+- [OVITO批量导入数据的功能](https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA)
+
+- OVITO 显示多晶不同颜色
+    - 方式 1：添加 CNA Modification
+    - 方式 2：添加 'Color coding' Modification，在右下方 'Input property' 选择 'Particle Identifier'，此时，**晶粒被设置为相同的颜色**；在颜色条下方点击 'Adjust range'，设置不同的颜色对应不同的晶粒 ID
+
+- [OVITO 选择原子的几种方法](https://zhuanlan.zhihu.com/p/10934298169)
+
+- [Ovito位错分析mesh透明度设置方法](https://mp.weixin.qq.com/s/LtkGpzszEg-Xx9XBZ0Am8w)
+
+- [OVITO 显示位错和缺陷的一个小技巧](https://mp.weixin.qq.com/s/AC3ZABp4CyhJlHwfbdLWqw)
+
+
+
+---
+
+## 使用
+
+- Add Modification 选项
+    - 无直接计算原子层间距的 Modification
 
 ```bash
 # Analysis
@@ -82,41 +101,26 @@ Common neighbor analysis          # CNA；识别原子对应的晶体结构
 # Visualization
 ```
 
-- [Ovito可视化弗伦克尔缺陷\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1v2yuYBEVg)
-    - WS 缺陷分析：查看空位和间隙原子数目
-    - 表达式选择：`Occupancy==0` 空位，`Occupancy>0` 间隙原子
-    - 着色：给空位和间隙原子分别着色
-
-- [14-5-Ovito可视化\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1kryVYtEcT)
-    - 原子轨迹跟踪显示
-    - 熔化过程中自由体积和中心对称参数的变化
-
-- [Ovito可视化堆垛层错、缺陷和原子应力\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ieyqYnEiq/)
-
-- 输出 RDF
-
-- [OVITO批量导入数据的功能](https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA)
-
-- OVITO 显示多晶不同颜色
-    - 方式 1：添加 CNA Modification
-    - 方式 2：添加 'Color coding' Modification，在右下方 'Input property' 选择 'Particle Identifier'，此时，**晶粒被设置为相同的颜色**；在颜色条下方点击 'Adjust range'，设置不同的颜色对应不同的晶粒 ID
-
-- [OVITO 选择原子的几种方法](https://zhuanlan.zhihu.com/p/10934298169)
-
-- [Ovito位错分析mesh透明度设置方法](https://mp.weixin.qq.com/s/LtkGpzszEg-Xx9XBZ0Am8w)
-
-- [OVITO 显示位错和缺陷的一个小技巧](https://mp.weixin.qq.com/s/AC3ZABp4CyhJlHwfbdLWqw)
-
-- [Expression selection - OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html)
+- 常用 Expression selection 值：[Expression selection - OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html)
 
 ```bash
-# 常用 Expression selection 值
 Position.X              # x 方向位置
 Position.Y              # y 方向位置
-Position.Z              # z 方向位置
-Occupancy               # 原子占位
+Position.Z              # z 方向位置；可用于选中原子层
 StructureType           # 晶体结构类型
+
+# 添加 WS 缺陷分析 Modification 后新增的 Attributes
+Occupancy               # 原子占位
 ```
+
+- 空位、间隙识别及数目统计步骤：[Ovito可视化弗伦克尔缺陷\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1v2yuYBEVg)
+    - Wigner-Seitz defect analysis：识别空位和间隙原子并统计对应数目
+    - Expression selection：`Occupancy==0` 空位，`Occupancy>0` 间隙原子
+    - Assign color：给空位和间隙原子分别着色以进行区分
+
+- 多面体模板匹配：[Polyhedral template matching — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/reference/pipelines/modifiers/polyhedral_template_matching.html)
+    - 可识别 Ordering types（L1_0、L1_2、B2、zincblende / wurtzite）
+
 
 
 ---

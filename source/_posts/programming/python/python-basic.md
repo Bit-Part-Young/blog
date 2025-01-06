@@ -1203,6 +1203,12 @@ store_false       # 与 store 相反
 append            # 将参数值添加到列表中
 
 
+# 将参数/选项添加到组中
+group = parser.add_argument_group()
+# 创建互斥的选项组
+group = parser.add_mutually_exclusive_group()
+
+
 # 解析命令行参数
 args = parser.parse_args()
 

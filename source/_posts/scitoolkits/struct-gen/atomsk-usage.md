@@ -31,34 +31,11 @@ password:
     - 无法直接构造八面体、四面体间隙的点缺陷
     - 可否建立 layer / 界面模型？
 
-
----
-
-### 参考资料
-
-- atomsk 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
-
-- [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
-
-- 查看所有的 options 和 modes 及其用法：[Documentioin - Atomsk](https://atomsk.univ-lille.fr/doc/en/index.html)
-
-- 层错构建：[Atomsk - Tutorial - Stacking fault](https://atomsk.univ-lille.fr/tutorial_stackingfault.php)
-
-- VESTA 中如何变换点阵（六方转正交）：[crystallography - How to transform lattice in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/7263/how-to-transform-lattice-in-vesta)
-
-- 六方胞的正交化（里面的示意图可供参考）：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)
-
-- 晶界构建（symmetric tilt、twist）：[Atomsk - Tutorial - Grain Boundaries](https://atomsk.univ-lille.fr/tutorial_grainboundaries.php)
-
-- 位错构建（刃、螺位错）：
-    - [Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)
-    - [Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
-
-- RDF 计算：[Tutorial: Radial Distribution Functions (RDF)](https://atomsk.univ-lille.fr/tutorial_rdf.php)
-
-- atomsk 支持的晶体结构类型：[Mode: create - Atomsk](https://atomsk.univ-lille.fr/doc/en/mode_create.html)
-
-- [atomsk多层碳纳米管建模示例](https://mp.weixin.qq.com/s/geQF9G9xC-f_90puwqI_tA)
+- 参考资料
+    - atomsk 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
+    - [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
+    - VESTA 中如何变换点阵（六方转正交）：[crystallography - How to transform lattice in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/7263/how-to-transform-lattice-in-vesta)
+    - 六方胞的正交化（里面的示意图可供参考）：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)
 
 
 
@@ -142,6 +119,66 @@ make -f Makefile.macos atomsk
 
 ## 使用
 
+- 配置文件（可选）：[Program behaviour: setting up a configuration file](https://atomsk.univ-lille.fr/doc/en/progbe_configfile.html)
+
+```bash
+# 配置文件路径
+~/.config/atomsk.conf
+
+# 内容
+colour yes
+colour_error red bold blink
+```
+
+- atomsk 中的变量可全小写/大写，如 box、z
+
+- atomsk 支持的构型文件格式
+
+```bash
+atsk abin bop bx cfg cel cif coo csv d12
+dat dd dlp fdf gin imd jems lmp mol
+pdb pos pw str vesta xmd xsf xv
+xyz exyz sxyz
+```
+
+- atomsk 支持的晶体结构构建类型：[Mode: create - Atomsk](https://atomsk.univ-lille.fr/doc/en/mode_create.html)
+
+```bash
+               <structure> | N.lattice cst. | N.at.sp.
+              -------------+----------------+----------
+CUBIC                  sc  |       1        |     1
+LATTICES              bcc  |       1        |   1 or 2
+                      fcc  |       1        |   1 or 2
+                  diamond  |       1        |   1 or 2
+                     L1_2  |       1        |     2
+                 fluorite  |       1        |     2
+                rock-salt  |       1        |     2
+               perovskite  |       1        |     3
+                      A15  |       1        |     2
+                      C15  |       1        |     2
+              -------------+----------------+----------
+TETRAGONAL             st  |  2 (a and c)   |   1 or 2
+LATTICES              bct  |  2 (a and c)   |   1 or 2
+                      fct  |  2 (a and c)   |   1 or 2
+              -------------+----------------+----------
+HEXAGONAL             hcp  |  2 (a and c)   |   1 or 2
+LATTICES         wurtzite  |  2 (a and c)   |     2
+                 graphite  |  2 (a and c)   |   1 or 2
+                       BN  |  2 (a and c)   |     2
+                      C14  |  2 (a and c)   |     2
+                      C36  |  2 (a and c)   |     2
+```
+
+- 常见模型构建
+    - 晶界构建（symmetric tilt、twist）：[Atomsk - Tutorial - Grain Boundaries](https://atomsk.univ-lille.fr/tutorial_grainboundaries.php)
+    - 位错构建（刃、螺位错）：
+        - [Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)
+        - [Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
+    - 层错构建：[Atomsk - Tutorial - Stacking fault](https://atomsk.univ-lille.fr/tutorial_stackingfault.php)
+    - [atomsk多层碳纳米管建模示例](https://mp.weixin.qq.com/s/geQF9G9xC-f_90puwqI_tA)
+
+- 查看所有的 options 和 modes 及其用法：[Documentioin - Atomsk](https://atomsk.univ-lille.fr/doc/en/index.html)
+
 - options：应用于体系的变换（transformations），用 `-` 区分
 
 - modes：允许执行特定的操作，构造，分析或操纵多个数据文件（operations, constructions, analysis, manipulate），用 `--` 区分
@@ -183,17 +220,17 @@ make -f Makefile.macos atomsk
 X!X ERROR: only one mode can be used at a time.
 ```
 
-- atomsk 支持的构型文件格式
+- Program behaviour
 
 ```bash
-# atomsk 支持的构型文件格式
-atsk abin bop bx cfg cel cif coo csv d12
-dat dd dlp fdf gin imd jems lmp mol
-pdb pos pw str vesta xmd xsf xv
-xyz exyz sxyz
+-ov            # overwrite；覆写文件
+-v N           # verbosity；
+# N 可选值
+0              # 不会输出内容到屏幕/log 文件，Errors、warnings、questions 仍会输出到屏幕 
+1              # 只输出内容到屏幕
+0              # 只输出内容到 log 文件
+0              # 输出内容到屏幕、log 文件
 ```
-
-- atomsk 中的变量可全小写/大写，如 box、z
 
 - 常用命令实例
 
@@ -248,14 +285,10 @@ atomsk POSCAR -fractional vasp     # 分数坐标
 # 输出文件可为具体文件名，也可为文件格式；输出文件可以是多个
 # 写入 cif 文件时，总是假设空间群为 P1，写入所有原子位置
 atomsk POSCAR xyz                  # 常用: xyz lammps/lmp vasp/pos cif
-
-
-# 常见表面的具体坐标轴
-"[010]" "[001]" "[100]"            # BCC、FCC (100)
-"[1-10]" "[001]" "[110]"           # BCC、FCC (110)
-"[11-2]" "[-110]" "[111]"          # BCC、FCC (111)
 ```
 
-- 多晶模型及界面模型（coating 模型，相对简单的）构建： [【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
+- RDF 计算：[Tutorial: Radial Distribution Functions (RDF)](https://atomsk.univ-lille.fr/tutorial_rdf.php)
+
+- 多晶模型及界面模型（coating 模型，相对简单的）构建：[【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
 
 - 多晶模型：基于 Voronoi tessellation 算法生成

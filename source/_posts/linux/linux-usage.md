@@ -201,9 +201,7 @@ bash --rcfile testrc  # 指定另一个脚本代替 .bashrc
 
 ### 常用命令
 
-- 参考：
-    - [Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
-    - [Shell - Isshiki修's Notebook](https://note.isshikih.top/tech_accu/tool/Shell/)
+- [Linux命令搜索引擎](https://wangchujiang.com/linux-command/)
 
 ---
 
@@ -212,35 +210,35 @@ bash --rcfile testrc  # 指定另一个脚本代替 .bashrc
 - 常用基本命令
 
 ```bash
-man                # 查看命令帮助
-echo               # 打印字符串
-pwd                # 显示当前路径
-cd                 # 切换目录
-ls                 # 列出目录内容；
-cat                # 显示文件内容
-tac                # 从最后一行显示文件内容
-head tail          # 打印文件首尾内容，默认 10 行
-less               # 逐页显示文件内容
-touch              # 创建文件/修改文件时间属性
-mkdir              # 创建目录
-mv                 # 移动/重命名
-cp                 # 复制
-rm                 # 删除
-rmdir              # 删除空目录
-diff               # 查看文件差异
-which              # 查看可执行命令所在路径
-cut                # 剪切命令
-clear              # 清屏
-reset              # 重置终端
-dirname            # 获取文件路径的目录部分
-basename           # 获取文件路径的文件部分
-chmod              # 变更文件或目录的权限
-chown              # 变更文件或目录的拥有者或所属群组
-time               # 统计指定命令运行耗时
-|                  # 管道符
->  >>              # 标准输出流重定向
-<                  # 标准输入流重定向
-2>  2>>            # 标准错误流重定向
+man                     # 查看命令帮助
+echo                    # 打印字符串
+pwd                     # 显示当前路径
+cd                      # 切换目录
+ls                      # 列出目录内容
+cat                     # 显示文件内容
+tac                     # 从最后一行显示文件内容
+head tail               # 打印文件首尾内容，默认 10 行
+less                    # 逐页显示文件内容
+touch                   # 创建文件/修改文件时间属性
+mkdir                   # 创建目录
+mv                      # 移动/重命名
+cp                      # 复制
+rm                      # 删除
+rmdir                   # 删除空目录
+diff                    # 查看文件差异
+which                   # 查看可执行命令所在路径
+cut                     # 剪切命令
+clear                   # 清屏
+reset                   # 重置终端
+dirname                 # 获取文件路径的目录部分
+basename                # 获取文件路径的文件部分
+chmod                   # 变更文件或目录的权限（rwx: 读、写、执行权限）
+chown                   # 变更文件或目录的拥有者或所属群组
+time                    # 统计指定命令运行耗时
+|                       # 管道符
+>  >>                   # 标准输出流重定向
+<                       # 标准输入流重定向
+2>  2>>                 # 标准错误流重定向
 ```
 
 - 常用基本命令进阶用法
@@ -307,15 +305,15 @@ tar -xzvf archive.tar.gz -C DEST
 # 排除指定文件
 tar -czvf archive.tar.gz --exclude=exclude_file file
 
-gzip -d all.gz  # 解压 .gz 文件
-gunzip all.gz   # 同上
+gzip -d all.gz             # 解压 .gz 文件
+gunzip all.gz              # 同上
 
-zip file.zip file         # 压缩
-zip -r xxx.zip directory  # 递归压缩目录
-unzip all.zip             # 解压 .zip 文件
+zip xxx.zip file           # 压缩
+zip -r xxx.zip directory   # 递归压缩目录
+unzip all.zip              # 解压 .zip 文件
 
-zcat     # 查看 .gz 文件
-bzcat    # 查看 .bz2 文件
+zcat           # 查看 .gz 文件
+bzcat          # 查看 .bz2 文件
 ```
 
 
@@ -327,6 +325,7 @@ bzcat    # 查看 .bz2 文件
 
 ```bash
 ln -s SRC DEST
+
 # 参数
 -f force    # 创建新链接前删除与之同名的文件或链接
 ```
@@ -387,7 +386,7 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 
 #### find
 
-查找文件
+- 查找文件
 
 ```bash
 # find 与另外两个命令对比
@@ -397,10 +396,7 @@ locate        # 通过数据库定位文件路径（可能需要自己安装，�
 # 常用参数
 -name          # 按照文件名查找
 -iname         # 按照文件名查找，忽略大小写
--type          # 文件类型
-      f        # 普通文件
-      d        # 目录
-      l        # 符号链接
+-type          # 文件类型（f 普通文件；d 目录；l 符号链接）
 -maxdepth      # 目录最大深度
 -mindepth      # 目录最小深度
 -size          # 文件大小
@@ -459,7 +455,7 @@ i\             # 在行前插入文本
 c\             # 替换行
 ```
 
-- 示例：
+- 示例
 
 ```bash
 # 替换指定字符串
