@@ -62,6 +62,10 @@ password:
 
 ## 使用
 
+- [OVITO常用的无需Python代码的后处理技巧](https://mp.weixin.qq.com/s/5vPyhEsVaOVAQV6XMMEg8g)
+
+- 直接导入构型/轨迹文件，下方默认有 Particles 信息；添加 Modification 后，会出现 Global Attributes、Data Tables 另外两种类型的数据（添加 DXA，会多出 Dislocation、Surfaces 数据）
+
 - Add Modification 选项
     - 无直接计算原子层间距的 Modification
 
@@ -104,9 +108,10 @@ Common neighbor analysis          # CNA；识别原子对应的晶体结构
 - 常用 Expression selection 值：[Expression selection - OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html)
 
 ```bash
-Position.X              # x 方向位置
-Position.Y              # y 方向位置
-Position.Z              # z 方向位置；可用于选中原子层
+Position.X              # x 方向笛卡尔坐标
+Position.Y              # y 方向笛卡尔坐标
+Position.Z              # z 方向笛卡尔坐标；可用于选中原子层
+ReducedPosition.Z       # z 方向分数坐标
 StructureType           # 晶体结构类型
 
 # 添加 WS 缺陷分析 Modification 后新增的 Attributes
@@ -129,9 +134,11 @@ Occupancy               # 原子占位
 
 - 官方教程：[OVITO Python](https://www.ovito.org/docs/current/python/index.html)
 
-- OVITO Python 脚本编写教程（主要是用来可视化）：
-    - [GitHub - stefanbringuier/HowToSOVITO: A series of recipes and tutorials on how to use python scripting with OVITO](https://github.com/stefanbringuier/HowToSOVITO)
-    - [How to Script with OVITO - How To Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO)
+- [ovito的python模块的工作流程](https://mp.weixin.qq.com/s/niqe0NKM6rUYzoZTjsMYpA)
+
+- [OVITO2.9后处理python脚本和一些python后处理代码](https://mp.weixin.qq.com/s/zZ5DTw59W72xkn0WP1D3FA)
+
+- 主要用于可视化：[How to Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO)
 
 - [Ovito高质量图片渲染Python模块 - Eastsheng's Wiki](https://eastsheng.github.io/MyWiki/wiki/2023/04/13/softwares/lammps/ovito_plot_rendering/)
 
@@ -146,7 +153,7 @@ Occupancy               # 原子占位
 - Pipeline 概念：[Pipeline concept — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/usage/pipeline.html#usage-modification-pipeline)
     - OVITO modifiers are analysis or property calculation/setting routines. For anything you want to do, in terms of analyzing your data from a atomistic simulation, you will use a modifier which is appended to the pipeline via `pipeline.modifiers.append(...)`.
 
-- 整体流程：导入构型数据，添加 modifier 进行处理，导出计算数据
+- 整体流程：导入构型数据，添加 modifier 进行处理，导出计算数据（**使用多个 modifier 时，需注意其顺序**）
 
 ```python
 from ovito.pipeline import Pipeline
@@ -154,7 +161,11 @@ from ovito.modifiers import ...
 from ovito.io import import_file
 
 # 导入构型/轨迹文件
-pipline = import_file()
+pipline = import_file("dump.lammpstrj")
+# 可使用通配符
+pipline = import_file("dump_*.lammpstrj")
+# 参数
+sort_particles           # 是否对原子进行排序
 
 modifier = ...
 
@@ -167,7 +178,7 @@ data = pipeline.compute()
 # 查看 data 相关属性
 # 不同 modifier 处理后，particles、attributes、table 会有不同
 list(data.particles.keys())                # 原子属性
-print(list(data.attributes.keys()))        # 全局属性
+list(data.attributes.keys()                # 全局属性
 list(data.tables.keys())                   # Tabulated data/DataTable
 
 
@@ -311,6 +322,25 @@ ExpressionSelectionModifier          # 表达式
 InvertSelectionModifier
 AssignColorModifier                  # 分配颜色/着色
 CalculateDisplacementsModifier
+DislocationAnalysisModifier          # 位错分析；DXA
+SelectTypeModifier
+DeleteSelectedModifier
+```
+
+- Global Attributes 和 Data Tables
+
+```python
+data.attributes[...]            # 获取 Global Attributes 中对应 keyword 的数据
+data.tables[...]                # 获取 Data Tables 中对应  keyword 的数据
+
+
+# CommonNeighborAnalysisModifier
+"CommonNeighborAnalysis.counts.FCC"
+"CommonNeighborAnalysis.counts.BCC"
+"CommonNeighborAnalysis.counts.HCP"
+"CommonNeighborAnalysis.counts.Other"
+
+"structures"
 ```
 
 - 格式转换（OVITO Python 中的 DataCollection 可转换成 ASE、pymatgen 的格式）

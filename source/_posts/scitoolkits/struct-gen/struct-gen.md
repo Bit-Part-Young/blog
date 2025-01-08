@@ -239,7 +239,11 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 
 - 方法 1：在文献中查找该结构的晶体学信息，若提到 prototype structure（原型结构），可在数据库（AFLOW、MP、Springer Materials、ICSD 等）中找到对应的 cif 文件（**需留意 Wyckoff position 是否一致或接近，某些含有变量，不同的具体结构变量值会不同**），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
 
-- 方法 2: 手动构建，需以下晶体学信息：晶体结构（crystal structure）、点阵参数（lattice parameter）、空间群（space group number）、原子位置（Wyckoff letter & Wyckoff position）；使用 PyXtal，ASE，pymatgen 或 Material Studio 构建
+- 方法 2: 手动构建，需以下晶体学信息，使用 PyXtal，ASE，pymatgen 或 Material Studio 构建
+    - 晶体结构（crystal structure）
+    - 点阵参数（lattice parameter）
+    - 空间群（space group number）
+    - 原子位置（Wyckoff letter & Wyckoff position）
 
 
 ---
@@ -272,21 +276,25 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
     - atomsk：n \* d + vac
     - latgen：n \* d + vac（可指定为 n 或 n-1）
 
-- BCC、FCC、HCP 常见表面/位向的具体坐标轴
+- BCC、FCC、Diamond、HCP 常见表面/位向的具体坐标轴
 
 ```bash
-# BCC、FCC
+# BCC、FCC、Diamond
 
 # BCC 单胞 2 个原子，FCC 4 个；均为 2 个原子层
+# Diamond 单胞 8 个原子；4 个原子层
 "[010]" "[001]" "[100]"            # (100) 面；立方
 
 # BCC 单胞 4 个原子，FCC 2 个；均为 2 个原子层
+# Diamond 单胞 4 个原子；4 个原子层
 "[01-1]" "[011]" "[100]"           # (100) 面；正交
 
 # BCC 单胞 4 个原子，FCC 2 个；均为 2 个原子层
+# Diamond 单胞 4 个原子；2 个原子层
 "[1-10]" "[001]" "[110]"           # (110) 面；正交
 
-# 单胞各 6 个原子，均为 3 个原子层
+# BCC、FCC 单胞均为 6 个原子；均为 3 个原子层
+# Diamond 单胞 6 个原子； 6 个原子层
 "[11-2]" "[-110]" "[111]"          # (111) 面；正交
 
 # (111) 面；六方；[01-1] * 2 + [1-10] 转正交
@@ -302,6 +310,12 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 
 # (101) 面、(112) 面，latgen 与 atomsk 生成的结构有很大不同，不确定
 ```
+
+- 使用 VESTA 构建不同位向（本质还是找到晶向的具体坐标轴值）：[VASP 高级教程[8]使用 VESTA 切表面 surface slab](https://mp.weixin.qq.com/s/jBXwke0XTDZbloIU0HVlvw)
+
+- LAMMPS 内置命令构建不同位向出现的问题：[好文：从源代码看 lammps 的建模 BUG](https://mp.weixin.qq.com/s/Q32HpdaFeO1ztI2EVuUDOw)
+    - LAMMPS 的建模源代码里面没有提供对于特殊晶体取向的判断以修正最小周期长度，而 atomsk 提供了
+    - 某些特殊的晶向指数, 在计算其最小的单位边长时, 是需要除以 2 的；BCC：1/2\[111\]、1/2\[531\]；FCC：1/2\[110\]、1/2\[112\]
 
 
 ---
@@ -341,6 +355,8 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 - [任意CSL值晶界建模(一)](https://mp.weixin.qq.com/s/u6qvvsnszPU6pr8u4O0Tgw)、[任意CSL值晶界建模(二)](https://mp.weixin.qq.com/s/ZXrnbjKbsKerm_ZVDSoDFQ)
 
 - aimsgb 程序：[aimsgb documentation](https://aimsgb-docs.readthedocs.io/)、[aimsgb - GitHub](https://github.com/ksyang2013/aimsgb)
+
+- [GitHub - nmdl-mizo/interface\_master: A python package building CSL or approximate CSL interfaces of any two lattices and computing cell of non-identical displacement (CNID).](https://github.com/nmdl-mizo/interface_master)
 
 - [GitHub - ab5424/agility: Repository for the Atomistic Grain Boundary and Interface Utility.](https://github.com/ab5424/agility)
 
@@ -404,12 +420,20 @@ Show the sigma values up to 10 (Note: * means twist GB, Theta is the rotation an
 ---
 
 
-CSL 重合位置点阵理论
+ (Coincidence Site Lattice, CSL) 重合位置点阵理论
 
+对称倾侧（斜）晶界 (Symmetrical Tilting Grain Boundaries, STGB)
 
 tilted grain boundaries 晶界面平行于旋转轴
 
 twisted grain boundary 晶界面垂直于旋转轴
+
+```bash
+m, n          # 整数
+[u v w]       # 晶粒旋转轴对应的晶向指数
+∑             # CSL 值
+α             # 奇数
+```
 
 
 根据特定晶界构建
@@ -422,7 +446,17 @@ twisted grain boundary 晶界面垂直于旋转轴
 ### 碳纳米管
 
 - [Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
+
 - [VASP视频教程-搭建模型-用vnl或ms搭建模型卷曲纳米碳管\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV14M4ye8EVX)
+
+- [VASP 高级教程[7]使用 VESTA 构建纳米管](https://mp.weixin.qq.com/s/6WO5A8Qa-XDyAEM0AbQVhQ)
+    - 先构建纳米带，再使其卷曲形成纳米管
+
+
+其他：
+- [构建任意形状超胞？](https://mp.weixin.qq.com/s/IxJ_7XXfhI3D0StJo_g9dw)
+- [构建根号n乘根号n的六角晶格(含代码)](https://mp.weixin.qq.com/s/UxAbaCxoH0WSLjLMbxi62A)
+- [转角电子学必备技能：构建转角结构实例](https://mp.weixin.qq.com/s/j6dARDTRI_4c6yiSijTvHQ)
 
 
 ---
@@ -437,8 +471,6 @@ twisted grain boundary 晶界面垂直于旋转轴
 - 对于六方结构，其中的原子位置坐标随基矢的选择会有些许不同，但本质一样都是一样的；
 - 基矢以逆时针为正方向；
 - C 的 ENMAX 为 400（所有元素中最大，所以 pymatgen 中 ENCUT 的默认设置为 520）。
-
-
 
 
 ![graphene-structure.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307151658266.png)
@@ -459,7 +491,6 @@ C
 direct
    0.0000000000000000    0.0000000000000000    0.0000000000000000 C
    0.3333333333333349    0.6666666666666697    0.0000000000000000 C
-
 ```
 
 ---

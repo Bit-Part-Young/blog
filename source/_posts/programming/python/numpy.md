@@ -324,5 +324,7 @@ integ()  # 不定积分
 
 polyfit(x, y, deg)        # n 次多项式拟合；返回多项式的系数
 # 参数
-deg                       # 多项式度数
+deg                       # 多项式阶数
+
+np.polyval()
 ```

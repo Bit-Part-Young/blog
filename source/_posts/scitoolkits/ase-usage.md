@@ -314,8 +314,9 @@ atoms = make_wire()
 
 - 结构建模
 
-- Bulk 晶体结构
-    - 参考：[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
+#### Bulk 晶体结构
+
+- 参考：[Building things — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/build.html#module-ase.build)
 
 ```python
 from ase.build import bulk
@@ -360,11 +361,18 @@ supercell = atoms * 2
 supercell = atoms * (2, 2, 2)
 ```
 
-- surface 表面模型
-    - 官方文档：[Surfaces — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/surface.html)
-    - 无法枚举出具有不同表面终端的所有表面（建议还是通过 Material Studio 或 pymatgen surface 模块或 atomsk 构建含该表面坐标的单胞，进而查看原子层数）
-    - 常见晶体结构（BCC、FCC、HCP、Diamond）的常见表面（100、110、111）构建函数，支持吸附位点（'ontop', 'bridge', 'hollow' 等）
-    - 指定面指数切表面（比 pymatgen surface 模块好用）
+
+---
+
+#### Surface 表面模型
+
+- 官方文档：[Surfaces — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/build/surface.html)
+
+- 无法枚举出具有不同表面终端的所有表面（建议还是通过 Material Studio 或 pymatgen surface 模块或 atomsk 构建含该表面坐标的单胞，进而查看原子层数）
+
+- 常见晶体结构（BCC、FCC、HCP、Diamond）的常见表面（100、110、111）构建函数，支持吸附位点（'ontop', 'bridge', 'hollow' 等）
+
+- 指定面指数切表面（比 pymatgen surface 模块好用）
 
 - 注意事项：
     - fcc100、fcc110、bcc100、hcp10m10、diamond100 总是返回正交胞
@@ -884,12 +892,36 @@ print(Bohr)
 - rdf 计算
 
 ```python
+from ase.geometry import ...
+
+# geometry 模块中的函数
+get_duplicate_atoms()       # 获取重复原子；可删除
+is_orthorhombic()           # 检查 cell 是否正交
+permute_axes()              # 扰动坐标轴
+wrap_positions()            # 
+
+
+# geometry 模块中的 Analysis 类
 from ase.geometry.analysis import Analysis
 
-rdf = Analysis(...).get_rdf()
-# 参数
-images               # Atoms
-element              # 可计算 partial rdf；默认计算 full rdf
+ana = Analysis()
+
+# 属性
+images
+nImages
+nl                            # 近邻列表
+all_bonds
+all_angles
+all_dihedrals
+unique_bonds
+unique_angles
+unique_dihedrals
+
+# 方法
+get_bonds()
+get_angles()
+get_dihedrals()
+get_rdf()                    # 计算 RDF（可计算 partial rdf）
 ```
 
 

@@ -366,7 +366,7 @@ read_restart file
 
 - 定义晶格类型，晶格常数，以及晶向方向
 
-- `orient x 1 0 0 orient y 0 1 0 orient z 0 0 1` 为默认值，可不用书写；改变晶向时，需满足**右手定则**
+- 默认值 `orient x 1 0 0 orient y 0 1 0 orient z 0 0 1`；改变晶向时，需满足**右手定则**（不推荐使用 LAMMPS 的内置命令构建特殊晶向的构型，生成的构型不正确）
 
 ```bash
 # 语法
@@ -384,11 +384,9 @@ lattice style scale keyword values ...
 
 # 示例
 lattice      none 1.0             # 默认设置
-lattice      fcc 3.52
-# BCC (100) 表面，orient 可去掉
-lattice      bcc 3.168 orient x 1 0 0 orient y 0 1 0 orient z 0 0 1
-# FCC (111) 表面
-lattice      fcc 3.615 orient x 1 1 -2 orient y -1 1 0 orient z 1 1 1
+lattice      bcc 3.168
+lattice      fcc 3.615
+lattice      hcp 3.2              # 正交坐标轴
 ```
 
 

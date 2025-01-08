@@ -1222,7 +1222,7 @@ from pymatgen.electronic_structure.cohp import ...
 
 #### structure_matcher
 
-结构相似度
+- 查看两个结构之间的相似度（是否相同/接近）
 
 ```python
 from pymatgen.analysis.structure_matcher import StructureMatcher
@@ -1297,7 +1297,7 @@ DeformedStructureSet()
 
 #### electronic_structure
 
-pymatgen 电子结构相关分析很多都是建立在 vasprun.xml 文件中提取数据之上的（与 vaspkit 有不同）
+- pymatgen 电子结构相关分析很多都是建立在 vasprun.xml 文件中提取数据之上的（与 vaspkit 有不同）
 
 
 ---
@@ -1353,6 +1353,8 @@ ax.figure.savefig()
 
 ```python
 from pymatgen.analysis.diffraction.xrd import XRDCalculator
+from pymatgen.analysis.diffraction.neutron import NDCalculator
+from pymatgen.analysis.diffraction.tem import TEMCalculator
 
 c = XRDCalculator()
 
@@ -1387,6 +1389,16 @@ plot_slab()                    # 可视化吸附位点
 
 ---
 
+#### prototype
+
+- 匹配晶体结构的 prototype（调用的是 AFLOW 的 prototype 数据）
+
+```python
+from pymatgen.analysis.prototype import ...
+```
+
+---
+
 #### diffusion
 
 - 扩散相关
@@ -1414,12 +1426,26 @@ from_endpoints()
 
 idpp_solver = IDPPSolver.from_endpoints()
 idpp_solver.run()
+
+
+# 概率密度
+from pymatgen.analysis.diffusion.aimd.pathway import ProbabilityDensityAnalysis
+from pymatgen.analysis.diffusion.analyzer import DiffusionAnalyzer
+
+diffusion_ana = DiffusionAnalyzer.from_structures()
+diffusion_ana.export_msdt()
+diffusion_ana.conductivity
+
+pda = ProbabilityDensityAnalysis.from_diffusion_analyzer(diffusion_ana)
+pda.to_chgcar()
 ```
 
 
 ---
 
 ### pymatgen.symmetry.bandstructure
+
+- 寻找高对称 K 点
 
 ```python
 from pymatgen.symmetry.bandstructure import HighSymmKpath
@@ -1439,6 +1465,8 @@ kpath.kpath["path"]
 ### pymatgen.symmetry.analyzer
 
 #### SpacegroupAnalyzer
+
+- 空间群分析
 
 ```python
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
@@ -1464,18 +1492,6 @@ number                                  # 空间群序号
 international                           # 空间群 International symbol
 equivalent_atoms                        # 等同原子
 wyckoffs                                # Wyckoff letters
-```
-
-空间群与晶系之间的关系：[Space group - Wikipedia](https://en.wikipedia.org/wiki/Space_group)
-
-```yaml
-1-2: "triclinic"
-3-15: "monoclinic"
-16-74: "orthorhombic"
-75-143: "tetragonal"
-143-167: "trigonal"
-168-194: "hexagonal"
-195-230: "cubic"
 ```
 
 
@@ -1544,20 +1560,22 @@ species_map = {"Si":{"Si":0.9, "C":0.1}}
 
 ### pymatgen.phonon
 
->[https://pymatgen.org/pymatgen.phonon.html](https://pymatgen.org/pymatgen.phonon.html)
+- [https://pymatgen.org/pymatgen.phonon.html](https://pymatgen.org/pymatgen.phonon.html)
 
 
 ---
 
 ### API
 
+- 调用 MP API 获取 MP 数据
+
 - 参考：
     - [新版和老版Materials Project API使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/10/b438dad131c8.html)
     - [利用Materials Project的API下载结构文件](https://zhuanlan.zhihu.com/p/618452536)
 
-- 调用 MP API 获取 MP 数据
+- [MPRester through proxy server - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprester-through-proxy-server/4485)
 
-- pymatgen 新 API：
+- 新 API：
     - API Key 获取：[Materials Project - API](https://materialsproject.org/api)
     - 官方教程：[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
 
@@ -1649,5 +1667,3 @@ spacegroup
 formation_energy_per_atom
 elasticity
 ```
-
-- [MPRester through proxy server - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprester-through-proxy-server/4485)

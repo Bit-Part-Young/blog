@@ -56,18 +56,17 @@ password:
 
 - [Mac\_张的个人空间-Mac\_张个人主页-哔哩哔哩视频](https://space.bilibili.com/49574614)
 
-- [大洋的朝九晚十的个人空间-大洋的朝九晚十个人主页-哔哩哔哩视频](https://space.bilibili.com/33734786)
-
 - [GitHub - macdao/ocds-guide-to-setting-up-mac: OCD's Guide to Setting up Mac](https://github.com/macdao/ocds-guide-to-setting-up-mac)
 
 - [摸鱼人的 macOS 工作流 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/282518)
 
 - [小张的分享中心首页 - 飞书云文档](https://qnswkjn28n.feishu.cn/wiki/T8uJwQH4YiIy7BkHyQpczpyDnug)
 
+- [大洋的朝九晚十的个人空间-大洋的朝九晚十个人主页-哔哩哔哩视频](https://space.bilibili.com/33734786)
+
 - macOS 内置命令行工具介绍：[Useful built-in macOS command-line utilities](https://weiyen.net/articles/useful-macos-cmd-line-utilities)
 
-SMB、VNC 屏幕共享服务
-- [「黑貓」把 Mac mini 用作家用服务器 | 入门教程 + 体验感受\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1mT41187DD/?spm_id_from=333.999.0.0)
+- SMB、VNC 屏幕共享服务：[「黑貓」把 Mac mini 用作家用服务器 - 入门教程 + 体验感受\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1mT41187DD/?spm_id_from=333.999.0.0)
 
 
 
