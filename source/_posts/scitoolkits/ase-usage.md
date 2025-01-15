@@ -486,16 +486,30 @@ view(atoms, viewer="ngl")
 
 ### ase.cell
 
-- 基矢
+- 基矢/点阵
 
 ```python
 from ase.cell import Cell
 
-# 设置基矢
+# 生成基矢
 cell = Cell.fromcellpar([3.31, 3.31, 3.31, 90, 90, 90])
-cell[:]
 
-cell.get_bravais_lattice()     # 获取布拉维点阵
+cell[:]                   # 3x3 矩阵
+
+
+# 方法
+lengths()                 # 点阵长度
+angles()                  # 点阵夹角
+get_bravais_lattice()     # 获取布拉维点阵
+bandpath()                # 能带路径
+reciprocal()              # 倒易点阵
+niggli_reduce()           # 
+minkowski_reduce()        # 
+
+# 属性
+volume                    # 体积
+orthorhombic              # 是否正交
+rank                      # 秩
 ```
 
 

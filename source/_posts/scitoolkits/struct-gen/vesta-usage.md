@@ -22,6 +22,8 @@ password:
 
 - [blog/Materials Studio-VESTA教程v1.4.docx at master · misaraty/blog · GitHub](https://github.com/misaraty/blog/blob/master/Materials%20Studio-VESTA%E6%95%99%E7%A8%8Bv1.4.docx)
 
+- 默认坐标轴与构型相距较远，可通过移动使其靠近
+
 - VESTA 除结构可视化外，也可以进行结构建模
 
 - 当 POSCAR 中的原子坐标有负值时，可使用 VESTA 导出使其变为正
@@ -39,6 +41,7 @@ password:
 - 图片保存成 png 时，Scale 设置成 3 及以上，清晰度较高
 
 - VESTA 可以获取理论 XRD 图谱：导入构型 - Utilities - Powder Diffraction Pattern - Calculate, Plot
+    - [用VESTA软件模拟粉末XRD图](https://zhuanlan.zhihu.com/p/611802795)
 
 - 无法显示原子类型图例（不同颜色及大小的球对应的元素）：[software - Atom legend in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/1867/atom-legend-in-vesta)
 

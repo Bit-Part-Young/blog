@@ -129,7 +129,9 @@ typst-upgrade file.typ       # 更新 packages 并覆写文件
 
 - 数学公式 OCR：[GitHub - ParaN3xus/typress: Typst Mathematical Expression OCR](https://github.com/ParaN3xus/typress)
 
-- 预览 Typst 的 Neovim 插件：[GitHub - chomosuke/typst-preview.nvim: Low latency typst preview for Neovim](https://github.com/chomosuke/typst-preview.nvim)
+- 预览/渲染 Typst 的 Neovim 插件：
+    - [GitHub - chomosuke/typst-preview.nvim: Low latency typst preview for Neovim](https://github.com/chomosuke/typst-preview.nvim)
+    - [GitHub - PartyWumpus/typst-concealer: A simple (experimental) neovim plugin to render typst inline using the kitty unicode graphics protocol](https://github.com/PartyWumpus/typst-concealer/)
 
 - 将 Typst 公式渲染成 svg 或 png：[GitHub - xingjian-zhang/typst2img: A fast script to render your Typst formulas to svg and png. Integrate formulas to your slides in seconds!](https://github.com/xingjian-zhang/typst2img/?tab=readme-ov-file)
 
@@ -589,6 +591,7 @@ Show 规则用于全局替换
 ```
 
 - 包可以是 package，也可以是 template
+
 - 已在官网上的 [packages](https://typst.app/universe)，以 `#import "@preview/pkg:1.0.0"` 格式导入，编译时会自动下载和自动导入 packages
 
 ```rust
@@ -686,7 +689,7 @@ wget --recursive --no-parent --convert-links https://typst.app/docs/
 
 - 将 Typst 内容渲染成网页
     - [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
-
+    - [GitHub - wenbin-liu/typst-hugo: A typst to html compiler for hugo](https://github.com/wenbin-liu/typst-hugo?tab=readme-ov-file)
 
 
 ---

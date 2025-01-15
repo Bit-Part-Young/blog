@@ -64,6 +64,8 @@ password:
 
 - [GitHub - WCY-dt/portfolio: A portfolio of myself.](https://github.com/WCY-dt/portfolio)
 
+- [GitHub - Arman19941113/dnd-resume: 🚀 简历生成工具，支持在线预览、打印 PDF](https://github.com/Arman19941113/dnd-resume)
+
 
 
 ---

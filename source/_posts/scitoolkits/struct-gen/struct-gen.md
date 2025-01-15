@@ -48,6 +48,10 @@ password:
     - [NOMAD CoE - NOMAD CoE](https://www.nomad-coe.eu/nomad-coe/)
     - [OQMD](https://www.oqmd.org/)
 
+[金属建模----任意晶向的FCC, BCC单晶建模](https://mp.weixin.qq.com/s/b9IJAirqQYQ3u_vtisDxVw)
+
+[文献中常见金属模型建模方法总结-双晶及双相篇](https://mp.weixin.qq.com/s/5iW4ZwFH6xWq_B3pyXx3Vg)
+
 
 ---
 
@@ -230,6 +234,8 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 
 - Springer Materials：[https://materials.springer.com/](https://materials.springer.com/)
 
+- [Aflow Advanced Search](http://aflowlib.duke.edu/search/ui/search/)
+
 - MP 等材料数据库中的结构文件有时对称性不一定正确，查看该数据库中已计算的性质是否与文献中的接近，以及最好进行静态计算检验一下
 
 
@@ -250,7 +256,7 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 
 ### 表面
 
-- 切复杂结构/高指数面的表面时，可优先使用 Material Studio 的 Build surface 功能，清晰直观，且能快速得到具体的坐标轴（用于 atomsk）
+- 切复杂结构/高指数面的表面时，可优先使用 Material Studio 的 'Build -- Surfaces -- Cleave Surface' 功能，清晰直观，且能快速得到具体的坐标轴（用于 atomsk）
 
 - 不同方法生成常见低指数面的表面模型的区别
     - FCC：(100)、(110) 面正交/立方，(111) 面六方
@@ -276,10 +282,12 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
     - atomsk：n \* d + vac
     - latgen：n \* d + vac（可指定为 n 或 n-1）
 
+- 特殊的表面可能会发生重构现象（Si）
+
 - BCC、FCC、Diamond、HCP 常见表面/位向的具体坐标轴
 
 ```bash
-# BCC、FCC、Diamond
+# BCC、FCC、Diamond（也适用于 B2）
 
 # BCC 单胞 2 个原子，FCC 4 个；均为 2 个原子层
 # Diamond 单胞 8 个原子；4 个原子层
@@ -321,6 +329,8 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 ---
 
 ### 界面/异质结
+
+- 使用 Material Studio 的 'Build -- Build Layers' 功能
 
 - [Materials Studio 入门到精通【16】简单界面模型的建立 - 知乎](https://zhuanlan.zhihu.com/p/346859236)
 

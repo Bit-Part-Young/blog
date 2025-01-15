@@ -41,6 +41,18 @@ password:
 ```bash
 # 最小化过程中控制最大移动距离
 min_modify dmax
+
+fix ave/time
+fix ave/correlate
+compute pressure            # 整体压强
+compute stress/atoms        # 局部压强
+
+compute chunk/atom
+compute msd/chunk
+
+compute cna/atom
+
+compute vacf
 ```
 
 
@@ -1025,6 +1037,8 @@ variable       msdt equal c_1[4]
 
 - custom style 中的参数：c_ID/c_ID[I] = 允许输出由 compute 计算的每原子向量或数组 (per-atom vectors or arrays)，这里 ID 应替换为先前在 in 文件中定义的计算的实际 ID（**ID 类似于一种变量**）
 
+- [LAMMPS学习系列（43） - dump输出坐标的几种格式](https://mp.weixin.qq.com/s/rEzHMkKAJk44hoKUcp_wtQ)
+
 ```bash
 # 语法
 dump ID group-ID style N file args
@@ -1041,7 +1055,9 @@ mass                  # 相对原子质量
 id                    # 原子 ID
 type                  # 原子类型
 x, y, z               # 笛卡尔坐标
-xs, ys, z             # 分数坐标
+xu, yu, zu            # 笛卡尔坐标（不做 PBC 处理）
+xs, ys, zs            # 分数坐标
+xsu, ysu, zsu         # 分数坐标（不做 PBC 处理）
 c_ID / c_ID[I]        # compute 命令计算的每原子向量或数组(per-atom vectors or arrays)
 
 # 示例
@@ -1053,6 +1069,8 @@ dump            1 all custom 500 dump.lammpstrj id type x y z
 
 ### dump_modify
 
+- 修改 dump 命令的预定义参数
+
 ```bash
 # 语法
 dump_modify dump-ID keyword values ...
@@ -1062,20 +1080,17 @@ dump_modify dump-ID keyword values ...
 sort
 append
 
-# sort 参数
-off
-id
-N
--N
+# sort 值
+off           # 乱序输出以提高性能；默认
+id            # 通过原子 ID 对输出进行排序
+N             # 通过第 N 列数据对输出进行升序排序
+-N            # 通过第 N 列数据对输出进行降序排序
 
 
 # 示例
 # 用于中断后重算时，将构型数据追加到之前的同名 dump 文件中
 dump_modify      1 append yes
 ```
-
-
-- keyword 为 sort 时：off 表示通常以不确定的顺序（串行或并行）写入；sort 的值为 id 时，表示通过原子 ID 对输出进行排序；N 或−N 表示按每个原子信息的第 N 列中的值按升序或降序对输出进行排序
 
 
 ---

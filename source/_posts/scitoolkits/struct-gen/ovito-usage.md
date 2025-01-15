@@ -63,6 +63,28 @@ password:
 ## 使用
 
 - [OVITO常用的无需Python代码的后处理技巧](https://mp.weixin.qq.com/s/5vPyhEsVaOVAQV6XMMEg8g)
+    - 仅保留位错与缺陷原子
+    - 输出各种位错线长度与位错密度的相关数据
+    - 输出每一帧中的不同相原子的数量的相关数据
+    - 统计每一帧中裂纹的表面积变化
+    - 为模型添加基础的光影
+    - 统计模型中的孔隙率（只适用 Pro 版）
+    - 绘制原子应力应变云图
+    - 根据 dump 文件输出的原子属性数据计算新的原子属性数据
+    - 对某一原子属性在空间上进行平均
+    - 对某一原子属性在一维和二维空间上绘制分布图（只适用 Pro 版）
+    - 绘制原子模型的表面轮廓线
+    - 切割展示模型的某一个晶面
+    - 结合 DXA 与汤普森四面体判定位错滑移面
+    - 选中特定原子修改颜色
+    - 修改原子的透明度
+    - 辅助建立含有非晶晶界的多晶原子模型
+    - 特定 Voronoi 指数的多面体团簇绘制
+    - 利用平移与周期性边界条件调整模型
+    - 冻结之前选择的原子以观察原子的移动趋势
+    - 在 OVITO 中绘制粒子属性的散点图与直方图
+    - 绘制原子位移矢量图
+    - 绘制特定原子的轨迹线
 
 - 直接导入构型/轨迹文件，下方默认有 Particles 信息；添加 Modification 后，会出现 Global Attributes、Data Tables 另外两种类型的数据（添加 DXA，会多出 Dislocation、Surfaces 数据）
 
@@ -71,38 +93,70 @@ password:
 
 ```bash
 # Analysis
+Atomic strain                     # 原子应变
+Bond analysis                     # 键分析
+Cluster analysis                  # 团簇分析
 Coordination analysis             # 配位分析
 Dislocation analysis (DXA)        # 位错分析
+Displacement vectors
+Elastic strain calculation
+Grain segmentation
 Histogram                         # 直方图
+Scatter plot
+Spatial binning
+Spatial correlation function
+Time averaging                    # 时间平均
+Time series                       # 时间序列
 Voronoi analysis                  # Voronoi 分析
 Wigner-Seitz defect analysis      # WS 缺陷分析
 
 # Coloring
+Ambient occlusion                 #
 Assign color                      # 分配颜色/着色
-Color coding
+Color by type                     #
+Color coding                      #
 
 # Modification
+Affine transformation
+Combine datasets
+Compute property
+Delete selected
+Freeze property
+Load trajectory
+Python script
 Replicate                         # 扩胞
-Slice                             # 切片 
-Smooth trajectory                 # 
-Unwrap trajectories               # 
+Slice                             # 切片
+Smooth trajectory                 #
+Unwrap trajectories               #
 Wrap at periodic boundaries       # 将 box 外原子移至 box 内
 
 # Selection
 Clear selection                   # 清除选择
+Expand selection
 Expression selection              # 表达式选择
+Invert selection                  # 反选
 Manual selection                  # 手动选择
 Select type                       # 选择（原子）类型
 
 # Python modifiers (pro)
 Calculate local entropy           # 计算局域熵
+Idendity fcc planar faults        #
+Render LAMMPS regions             #
+Shrink-wrap simulation box        #
 
 # Structure identification
-Ackland-Jones analysis            # 
-Centrosymmetry parameter          # CSP
-Common neighbor analysis          # CNA；识别原子对应的晶体结构
+Ackland-Jones analysis            #
+Centrosymmetry parameter          # 中心对称参数；CSP
+Chill+                            #
+Common neighbor analysis          # 共近邻原子分析；CNA
+Identify diamond structure        # 识别金刚石结构
+Polyhedral template matching      # 多面体模板匹配；PTM
 
 # Visualization
+Construct surface mesh
+Coordination polyhedra            # 配位多面体
+Create bonds
+Generate trajectory line          # 生成轨迹线
 ```
 
 - 常用 Expression selection 值：[Expression selection - OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html)
@@ -123,9 +177,18 @@ Occupancy               # 原子占位
     - Expression selection：`Occupancy==0` 空位，`Occupancy>0` 间隙原子
     - Assign color：给空位和间隙原子分别着色以进行区分
 
-- 多面体模板匹配：[Polyhedral template matching — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/reference/pipelines/modifiers/polyhedral_template_matching.html)
-    - 可识别 Ordering types（L1_0、L1_2、B2、zincblende / wurtzite）
+- 多面体模板匹配（PTM）：[Polyhedral template matching — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/reference/pipelines/modifiers/polyhedral_template_matching.html)
+    - 可识别的 Ordering types（L1_0、L1_2、B2、zincblende / wurtzite）
 
+- LAMMPS 与 OVITO 自带的结构分析模块包括：共近邻原子分析（Common Neighbor Analysis）；中心对称参数分析 (Centrosymetric Patameter) 与多面体模板匹配法（Polyhedral Template Matching）等。在分析点缺陷、线缺陷以及各种不同晶体结构时，这些方法是很有力、很方便的。需要指出的是，以上几种方法仅适用于已有良好定义的晶体，如 BCC、FCC、HCP、SC 等。对于不那么规则的晶体，例如单斜、三斜晶系等，可能会被错误的归入其它类别，或是归入 Others 中。
+
+- 局域有序参数法（Local Ordering Parameter）
+
+- [OVITO作图系列（小结）](https://mp.weixin.qq.com/s/0BM2SlTMsjhzH3df0UzcXw)
+
+- OVITO 中的渲染器：OpenGL renderer, Tachyon renderer, OSPRay renderer（后两者收费，其 Python API 可免费使用）
+
+DXA 算法只能单线程运行；CNA，Voronoi analysis，PTM 算法可并行
 
 
 ---
@@ -136,7 +199,17 @@ Occupancy               # 原子占位
 
 - [ovito的python模块的工作流程](https://mp.weixin.qq.com/s/niqe0NKM6rUYzoZTjsMYpA)
 
-- [OVITO2.9后处理python脚本和一些python后处理代码](https://mp.weixin.qq.com/s/zZ5DTw59W72xkn0WP1D3FA)
+- [OVITO2.9后处理python脚本和一些python后处理代码](https://mp.weixin.qq.com/s/zZ5DTw59W72xkn0WP1D3FA)（前 6 个官网有示例代码）
+    - 计算 MSD
+    - 自定义序参数（order parameter）
+    - 根据粒子的晶向对粒子进行着色
+    - 找到模型中所有重叠的原子
+    - 将模拟盒子的 6 个方向分别收缩到所有粒子的 6 个方向的坐标极限的
+    - 计算局域熵（local entropy）
+    - 统计 Voronoi 分析中出现频率最高的前 10 个 Voronoi 指数并将其输出
+    - 识别 FCC 晶体中的 ISF、ESF、TB 等面缺陷
+    - 识别 BCC 中的点缺陷和面缺陷
+
 
 - 主要用于可视化：[How to Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO)
 
@@ -317,12 +390,13 @@ CoordinationAnalysisModifier         # 配位分析
 TimeAveragingModifier                # 时间平均
 BondAnalysisModifier                 # 键分析
 CreateBondsModifier
-CommonNeighborAnalysisModifier
+CommonNeighborAnalysisModifier       # CNA
+AffineTransformationModifier
 ExpressionSelectionModifier          # 表达式
 InvertSelectionModifier
 AssignColorModifier                  # 分配颜色/着色
 CalculateDisplacementsModifier
-DislocationAnalysisModifier          # 位错分析；DXA
+DislocationAnalysisModifier          # 位错分析；DXA；需给定晶体结构
 SelectTypeModifier
 DeleteSelectedModifier
 ```
@@ -334,13 +408,23 @@ data.attributes[...]            # 获取 Global Attributes 中对应 keyword 的
 data.tables[...]                # 获取 Data Tables 中对应  keyword 的数据
 
 
-# CommonNeighborAnalysisModifier
+# CNA attributes
 "CommonNeighborAnalysis.counts.FCC"
 "CommonNeighborAnalysis.counts.BCC"
 "CommonNeighborAnalysis.counts.HCP"
+"CommonNeighborAnalysis.counts.ICO"
 "CommonNeighborAnalysis.counts.Other"
-
+# CNA tables
 "structures"
+
+# DXA attributes
+"DislocationAnalysis.cell_volume"
+"DislocationAnalysis.length.1/2<110>"
+"DislocationAnalysis.length.1/3<100>"
+"DislocationAnalysis.length.1/3<111>"
+"DislocationAnalysis.length.1/6<110>"
+"DislocationAnalysis.length.other"
+"DislocationAnalysis.total_line_length"
 ```
 
 - 格式转换（OVITO Python 中的 DataCollection 可转换成 ASE、pymatgen 的格式）

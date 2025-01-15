@@ -143,7 +143,7 @@ np.set_printoptions(suppress=True)      # 不使用科学计数法
 
 通用一元函数：参数是一个数组对象，函数会对数组进行元素级的处理
 
-```bash
+```python
 abs / fabs                       # 绝对值
 sqrt                             # 平方根
 square                           # 平方
@@ -177,7 +177,7 @@ intersect1d(x, y)    # 交集
 
 ### 统计
 
-`axis` 参数指定运算沿着哪一个轴来执行，不指定时为对整个数组
+- `axis` 参数指定运算沿着哪一个轴来执行，不指定时为对整个数组
 
 ```python
 np.sum()     # 加和
@@ -284,12 +284,14 @@ np.transpose()                  # 同上
 np.matmul()                     # 同上
 np.dot()                        # 矩阵 1D，点积；2D，矩阵相乘
 
+np.inner                        # 内积
 np.outer()                      # 1*n 一维列向量与 m*1 一维行向量外积得到 m*n 矩阵
 np.triu(..., k=...)             # 提取上三角矩阵；k 为偏移量
 arr.trace()                     # 对角线元素和
 np.linalg.trace()               # 对角线元素和
 np.linalg.matrix_rank()         # 矩阵的秩
 np.linalg.inv()                 # 求逆
+np.linalg.pinv()                # 伪逆（非方阵或奇异矩阵）
 np.linalg.det()                 # 求行列式
 np.linalg.eig()                 # 计算特征值、特征向量
 np.linalg.qr()                  # QR 分解
