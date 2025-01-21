@@ -99,6 +99,8 @@ https://<your_domain>/<GitHub_repo>/<repo_branch>
 
 - [GitHub - MarSeventh/CloudFlare-ImgBed: CloudFlare 图床，基于 CloudFlare Pages 的免费图片托管解决方案，支持 Telegram Bot 和 Cloudflare R2 等多种存储方式！](https://github.com/MarSeventh/CloudFlare-ImgBed)
 
+- [GitHub - My-Search/github-file-upload: github图床——让web页面来作为上传图片/文件的客户端](https://github.com/My-Search/github-file-upload)
+
 
 
 ---
