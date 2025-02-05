@@ -29,7 +29,7 @@ password:
 
 - [pymatgen](https://pymatgen.org/)
 - [ASE](https://wiki.fysik.dtu.dk/ase/)
-- atomsk：[Atomsk - GitHub](https://github.com/pierrehirel/atomsk)、[Atomsk 官网](https://atomsk.univ-lille.fr/)
+- [Atomsk](https://atomsk.univ-lille.fr/)
 - [latgen](https://github.com/lingtikong/latgen)
 - [PyXtal](https://pyxtal.readthedocs.io/)
 - Material Studio（Win + Linux）
@@ -41,16 +41,16 @@ password:
 
     - [CrystalMaker Software: Crystal & Molecular Structures Modelling and Diffraction](https://crystalmaker.com/)
 
-
-缺陷构型生成：[GitHub - nanyanshouhu/Defect\_generator](https://github.com/nanyanshouhu/Defect_generator)
+- 缺陷构型生成：[GitHub - nanyanshouhu/Defect\_generator](https://github.com/nanyanshouhu/Defect_generator)
 
 - 计算材料数据库
     - [NOMAD CoE - NOMAD CoE](https://www.nomad-coe.eu/nomad-coe/)
     - [OQMD](https://www.oqmd.org/)
 
-[金属建模----任意晶向的FCC, BCC单晶建模](https://mp.weixin.qq.com/s/b9IJAirqQYQ3u_vtisDxVw)
+- 金属建模
+    - [金属建模----任意晶向的FCC, BCC单晶建模](https://mp.weixin.qq.com/s/b9IJAirqQYQ3u_vtisDxVw)
+    - [文献中常见金属模型建模方法总结-双晶及双相篇](https://mp.weixin.qq.com/s/5iW4ZwFH6xWq_B3pyXx3Vg)
 
-[文献中常见金属模型建模方法总结-双晶及双相篇](https://mp.weixin.qq.com/s/5iW4ZwFH6xWq_B3pyXx3Vg)
 
 
 ---
@@ -72,22 +72,12 @@ password:
     - HCP：[Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/)
     - perovskite：[CaTiO3 - Perovskite: Interactive 3D Structure](https://www.chemtube3d.com/_perovskitefinal/)
 
-- HCP 结构单胞原子位置有两种形式：
-    - 一个原子在原点，另一个在胞内：latgen 和 ase，(0.0 0.0 0.0)、(2/3 1/3 0.5)
-    - 两个原子均在胞内：pymatgen 和 PyXtal，(1/3 2/3 1/4)、(2/3 1/3 3/4)
-    - 两种形式无本质区别，两者可通过过周期性平移进行互相转化
-    - [Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/) 有这两种形式的可视化
-
-- [全网最全的模拟XRD衍射谱教程](https://mp.weixin.qq.com/s/fF6mKPl9NAqv4pfbzCZyLw)
-
-HCP 除 (001) 面的结构是六方，其他面的结构均为四方或正交
-
 
 ---
 
-## 分析工具
+## 结构分析工具
 
-- crysinfo 程序（孔老师）：6a 选项查看 Assign Wyckoff letter（等同位点）
+- crysinfo 程序（孔老师）：6a 选项查看 Wyckoff letter
 
 - 结构原型分析：[GitHub - chuanxun/StructurePrototypeAnalysisPackage: Structure Prototype Analysis Package can analyze symmetry and compare similarity of a large number of atomic structures.](https://github.com/chuanxun/StructurePrototypeAnalysisPackage)
 
@@ -95,9 +85,9 @@ HCP 除 (001) 面的结构是六方，其他面的结构均为四方或正交
 
 - 含缺陷超胞生成、前/后处理和分析：[Doped code 介绍](https://mp.weixin.qq.com/s/r3ZabHXYAn2HJgyFxFmA-w)
 
-- Crystal Toolkit 可视化构型：
-    - 源码 [GitHub - materialsproject/crystaltoolkit](https://github.com/materialsproject/crystaltoolkit)
-    - 网页 [Crystal Toolkit - Materials Project](https://next-gen.materialsproject.org/toolkit)
+- Crystal Toolkit 可视化分析工具：
+    - 源码：[GitHub - materialsproject/crystaltoolkit](https://github.com/materialsproject/crystaltoolkit)
+    - 网页：[Crystal Toolkit - Materials Project](https://next-gen.materialsproject.org/toolkit)
 
 - AFLOW 线上工具：[AFlow - Automatic - FLOW for Materials Discovery](https://aflowlib.org/aflow-online/)；功能
     - 构型文件转换
@@ -125,6 +115,8 @@ cif2cell input.cif -p vasp --vasp-cartesian-positions
 findsym_cifinput input.cif > input1.cif  # 让 findsym 读起来更方便
 findsym input1.cif > output.cif          # 寻找对称性并输出
 ```
+
+- [全网最全的模拟XRD衍射谱教程](https://mp.weixin.qq.com/s/fF6mKPl9NAqv4pfbzCZyLw)
 
 
 
@@ -159,23 +151,24 @@ dump.lammpstrj    # LAMMPS 轨迹文件
 .arc              # DMol3；类似轨迹文件；Material Studio 可读
 ```
 
-- xyz 格式内容示例
+- xyz 格式内容示例（第二行为空或含注释）
 
 ```bash
+# 第二行内容为空
 2
 
 Nb      0.000000000000000      0.000000000000000      0.000000000000000
 Nb      1.660000000000000      1.660000000000000      1.660000000000000
 
 
-# posconv xyz 格式内容示例
+# posconv xyz 格式内容示例（第二行内容不为空；会显示基矢数据）
 2
 # BCC(001) cell with dimension 1 x 1 x 1 and a = 3.32
 Nb    0.000000000000000    0.000000000000000    0.000000000000000 crystal_vector  1    3.320000000000000    0.000000000000000    0.000000000000000
 Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector  2    0.000000000000000    3.320000000000000    0.000000000000000
 ```
 
-- extxyz 格式内容示例（第二行有信息）
+- extxyz 格式内容示例（第二行有晶体学信息）
 
 ```bash
 # 其他构型文件转换成 extxyz
@@ -241,6 +234,145 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 
 ---
 
+### 常见简单结构
+
+- 简单结构包括：BCC、FCC、HCP、Diamond
+
+- HCP 结构单胞原子位置有两种形式：
+    - 一个原子在原点，另一个在胞内：latgen 和 ASE，(0.0 0.0 0.0)、(2/3 1/3 0.5)
+    - 两个原子均在胞内：pymatgen 和 PyXtal，(1/3 2/3 1/4)、(2/3 1/3 3/4)
+    - 两种形式无本质区别，两者可通过周期性平移进行互相转化
+    - [Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/) 有这两种形式的可视化
+
+- 金刚石结构：
+    - 原胞原子位置：
+        - latgen、ASE：(0.0 0.0 0.0)、(0.25 0.25 0.25)
+        - pymatgen：(0.0 0.0 0.0)、(0.75 0.75 0.75)
+        - PyXtal：(0.0 0.0 0.0)、(0.75 0.75 0.75)
+    - 三种形式无本质区别，两者可通过周期性平移进行互相转化
+
+- HCP、Diamond 常用原子位置分数坐标写法（与 wyckoff positions 不同）
+
+```bash
+# HCP 常用原子位置分数坐标写法（ASE、latgen、atomsk）
+Mg2
+1.0
+    2.870000    0.000000    0.000000
+   -1.435000    2.485493    0.000000
+    0.000000    0.000000    3.500000
+Mg
+   2
+Direct
+0.000000    0.000000    0.000000 Mg
+0.666667    0.333333    0.500000 Mg
+
+
+# 金刚石结构常用原子位置分数坐标写法（ASE、latgen、atomsk）
+Sn8
+1.0
+   6.660000    0.000000    0.000000
+   0.000000    6.660000    0.000000
+   0.000000    0.000000    6.660000
+Sn
+8
+direct
+   0.00    0.00    0.00
+   0.50    0.50    0.00
+   0.00    0.50    0.50
+   0.50    0.00    0.50
+   0.25    0.25    0.25
+   0.75    0.75    0.25
+   0.75    0.25    0.75
+   0.25    0.75    0.75
+```
+
+- BCC、FCC、HCP、Diamond 原胞基矢
+
+```bash
+# BCC 原胞基矢
+-0.5 0.5 0.5
+0.5 -0.5 0.5
+0.5 0.5 -0.5
+
+# FCC/Diamond 原胞基矢
+0.0 0.5 0.5
+0.5 0.0 0.5
+0.5 0.5 0.0
+
+# HCP 原胞基矢
+0.5a -sqrt(3)/2a 0
+0.5a sqrt(3)/2a 0
+0 0 c
+
+# Diamond 原胞基矢
+0.0 0.5 0.5
+0.5 0.0 0.5
+0.5 0.5 0.0
+```
+
+
+---
+
+### 石墨、石墨烯
+
+- 石墨、石墨烯构建：[Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
+
+- 石墨：六方结构；a=2.46 Å，c=6.7 Å
+
+```bash
+#  参考文献
+https://doi.org/10.1016/B978-0-12-385469-8.00002-2
+https://doi.org/10.1073/pnas.2134173100
+
+# 石墨 POSCAR 文件
+graphite
+1.0
+   2.4638000000000000    0.0000000000000000    0.0000000000000000
+  -1.2319000000000000    2.1337133898440999    0.0000000000000000
+   0.0000000000000000    0.0000000000000000    6.6959999999999997
+C
+4
+direct
+   0.0000000000000000    0.0000000000000000    0.0000000000000000 C
+   0.3333333333333334    0.6666666666666667    0.0000000000000000 C
+   0.0000000000000000    0.0000000000000000    0.5000000000000000 C
+   0.6666666666666666    0.3333333333333334    0.5000000000000000 C
+```
+
+- 石墨烯：二维六方结构结构；石墨单层
+
+```bash
+# 参考文献
+CASTRO NETO A H, GUINEA F, PERES N M R, 等, 2009. The electronic properties of graphene\[J]. Reviews of Modern Physics, 81(1): 109-162.
+
+石墨烯 POSCAR 文件
+graphene
+1.0
+   2.4680000000000000    0.0000000000000000    0.0000000000000000
+  -1.2340000000000000    2.1373506965399902    0.0000000000000000
+   0.0000000000000000    0.0000000000000000   15.0000000000000000
+C
+2
+direct
+   0.0000000000000000    0.0000000000000000    0.0000000000000000 C
+   0.3333333333333349    0.6666666666666697    0.0000000000000000 C
+```
+
+
+---
+
+### 碳纳米管
+
+- [Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
+
+- [VASP视频教程-搭建模型-用vnl或ms搭建模型卷曲纳米碳管\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV14M4ye8EVX)
+
+- [VASP 高级教程 7 -- 使用 VESTA 构建纳米管](https://mp.weixin.qq.com/s/6WO5A8Qa-XDyAEM0AbQVhQ)
+    - 先构建纳米带，再使其卷曲形成纳米管
+
+
+---
+
 ### 复杂结构
 
 - 方法 1：在文献中查找该结构的晶体学信息，若提到 prototype structure（原型结构），可在数据库（AFLOW、MP、Springer Materials、ICSD 等）中找到对应的 cif 文件（**需留意 Wyckoff position 是否一致或接近，某些含有变量，不同的具体结构变量值会不同**），再将晶格常数和原子种类进行替换，替换为要构建结构的信息
@@ -250,6 +382,31 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
     - 点阵参数（lattice parameter）
     - 空间群（space group number）
     - 原子位置（Wyckoff letter & Wyckoff position）
+
+- 遇到的 Strukturbericht Designation 结构
+    - [The A15 Structure](https://www.atomic-scale-physics.de/lattice/struk/a15.html)
+    - [The NaCl (B1) Structure](https://www.atomic-scale-physics.de/lattice/struk/b1.html)
+    - [The CsCl (B2) Structure](https://www.atomic-scale-physics.de/lattice/struk/b2.html)
+    - [The Zincblende (B3) Structure](https://www.atomic-scale-physics.de/lattice/struk/b3.html)
+    - [The Wurtzite (B4) Structure](https://www.atomic-scale-physics.de/lattice/struk/b4.html)
+    - [The NiAs (B8\_1) Structure](https://www.atomic-scale-physics.de/lattice/struk/b8_1.html)
+    - [The AuCd (B19) Structure](https://www.atomic-scale-physics.de/lattice/struk/b19.html)
+    - [The Fluorite (C1) Structure](https://www.atomic-scale-physics.de/lattice/struk/c1.html)
+    - [The Cu\_2Mg Cubic Laves Structure (C15)](https://www.atomic-scale-physics.de/lattice/struk/c15.html)
+    - [The hexagonal omega (C32) Structure](https://www.atomic-scale-physics.de/lattice/struk/c32.html)
+    - [The AlFe\_3 (D0\_3) Structure](https://www.atomic-scale-physics.de/lattice/struk/d0_3.html)
+    - [The D0\_19 (Ni\_3 Sn) Structure](https://www.atomic-scale-physics.de/lattice/struk/d0_19.html)
+    - [The Al\_3 Ti (D0\_22) Structure](https://www.atomic-scale-physics.de/lattice/struk/d0_22.html)
+    - [The CuAu (L1\_0) Structure](https://www.atomic-scale-physics.de/lattice/struk/l1_0.html)
+    - [The Cu\_3Au (L1\_2) Structure](https://www.atomic-scale-physics.de/lattice/struk/l1_2.html)
+    - [The CuTi\_3 (L6\_0) Structure](https://www.atomic-scale-physics.de/lattice/struk/l6_0.html)
+    - Cr5B3：[AFLOW Prototype: A3B5\_tI32\_140\_ah\_cl](https://www.aflowlib.org/prototype-encyclopedia/A3B5_tI32_140_ah_cl.html)
+    - Mn5Si3：[AFLOW Prototype: A5B3\_hP16\_193\_dg\_g](https://www.aflowlib.org/prototype-encyclopedia/A5B3_hP16_193_dg_g.html)
+
+- 其他：
+    - [构建任意形状超胞？](https://mp.weixin.qq.com/s/IxJ_7XXfhI3D0StJo_g9dw)
+    - [构建根号n乘根号n的六角晶格(含代码)](https://mp.weixin.qq.com/s/UxAbaCxoH0WSLjLMbxi62A)
+    - [转角电子学必备技能：构建转角结构实例](https://mp.weixin.qq.com/s/j6dARDTRI_4c6yiSijTvHQ)
 
 
 ---
@@ -261,6 +418,7 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 - 不同方法生成常见低指数面的表面模型的区别
     - FCC：(100)、(110) 面正交/立方，(111) 面六方
     - BCC：(100) 面正交/立方，(110)、(111) 面六方
+    - HCP 除 (001) 面的结构是六方，其他面的结构均为四方或正交
     - atomsk 构建时，需要求坐标轴正交，因此生成的表面模型总是正交胞
     - ASE 中的部分表面模型总是正交胞，部分可指定为非正交或正交胞
     - latgen 可指定生成的表面模型为非正交或正交胞
@@ -319,7 +477,7 @@ ITEM: ATOMS id type xs ys zs                      # 原子 ID、类型、分数�
 # (101) 面、(112) 面，latgen 与 atomsk 生成的结构有很大不同，不确定
 ```
 
-- 使用 VESTA 构建不同位向（本质还是找到晶向的具体坐标轴值）：[VASP 高级教程[8]使用 VESTA 切表面 surface slab](https://mp.weixin.qq.com/s/jBXwke0XTDZbloIU0HVlvw)
+- 使用 VESTA 构建不同位向（本质还是找到晶向的具体坐标轴值）：[VASP 高级教程8 -- 使用 VESTA 切表面 surface slab](https://mp.weixin.qq.com/s/jBXwke0XTDZbloIU0HVlvw)
 
 - LAMMPS 内置命令构建不同位向出现的问题：[好文：从源代码看 lammps 的建模 BUG](https://mp.weixin.qq.com/s/Q32HpdaFeO1ztI2EVuUDOw)
     - LAMMPS 的建模源代码里面没有提供对于特殊晶体取向的判断以修正最小周期长度，而 atomsk 提供了
@@ -453,117 +611,14 @@ m, n          # 整数
 
 ---
 
-### 碳纳米管
-
-- [Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
-
-- [VASP视频教程-搭建模型-用vnl或ms搭建模型卷曲纳米碳管\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV14M4ye8EVX)
-
-- [VASP 高级教程[7]使用 VESTA 构建纳米管](https://mp.weixin.qq.com/s/6WO5A8Qa-XDyAEM0AbQVhQ)
-    - 先构建纳米带，再使其卷曲形成纳米管
-
-
-其他：
-- [构建任意形状超胞？](https://mp.weixin.qq.com/s/IxJ_7XXfhI3D0StJo_g9dw)
-- [构建根号n乘根号n的六角晶格(含代码)](https://mp.weixin.qq.com/s/UxAbaCxoH0WSLjLMbxi62A)
-- [转角电子学必备技能：构建转角结构实例](https://mp.weixin.qq.com/s/j6dARDTRI_4c6yiSijTvHQ)
-
-
----
-
-### 石墨烯
-
-- [Atomsk - Tutorial - Graphene and Nanotubes](https://atomsk.univ-lille.fr/tutorial_nanotubes.php)
-
-- 二维；六方结构；最近邻原子间距约为 1.42 埃
-
-注：
-- 对于六方结构，其中的原子位置坐标随基矢的选择会有些许不同，但本质一样都是一样的；
-- 基矢以逆时针为正方向；
-- C 的 ENMAX 为 400（所有元素中最大，所以 pymatgen 中 ENCUT 的默认设置为 520）。
-
-
-![graphene-structure.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307151658266.png)
-
-
->CASTRO NETO A H, GUINEA F, PERES N M R, 等, 2009. The electronic properties of graphene\[J/OL\]. Reviews of Modern Physics, 81(1): 109-162. DOI:10.1103/RevModPhys.81.109.
-
-
-石墨烯 POSCAR 文件
-```text
-graphene hexagonal
-1.0
-   2.4680000000000000    0.0000000000000000    0.0000000000000000
-  -1.2340000000000000    2.1373506965399902    0.0000000000000000
-   0.0000000000000000    0.0000000000000000   15.0000000000000000
-C
-2
-direct
-   0.0000000000000000    0.0000000000000000    0.0000000000000000 C
-   0.3333333333333349    0.6666666666666697    0.0000000000000000 C
-```
-
----
-
-### 石墨
-
-- 六方结构；z 轴方向长度约为 6.7 埃
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152230723.png)
-
->https://doi.org/10.1016/B978-0-12-385469-8.00002-2.
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152232968.png)
-
->[10.1073/pnas.2134173100](https://doi.org/10.1073/pnas.2134173100).
-
-
-石墨 POSCAR 文件
-```text
-graphite
-1.0
-   2.4638000000000000    0.0000000000000000    0.0000000000000000
-  -1.2319000000000000    2.1337133898440999    0.0000000000000000
-   0.0000000000000000    0.0000000000000000    6.6959999999999997
-C
-4
-direct
-   0.0000000000000000    0.0000000000000000    0.0000000000000000 C
-   0.3333333333333334    0.6666666666666667    0.0000000000000000 C
-   0.0000000000000000    0.0000000000000000    0.5000000000000000 C
-   0.6666666666666666    0.3333333333333334    0.5000000000000000 C
-```
-
-
----
-
-## 晶体学相关
-
-- [ ] 了解 aflow prototype 中的 primitive vectors 的公式及其含义，及如何实现 unit 与 primitive 互相转变的
-
-
-- [ ] D019 结构（Ti3Al）原子位点，mp 与 latgen 两者有区别（和 hcp 类似的问题）
-
-D019 Ti3Al 结构：[https://next-gen.materialsproject.org/materials/mp-1823?chemsys=Ti-Al&crystal_system=Hexagonal](https://next-gen.materialsproject.org/materials/mp-1823?chemsys=Ti-Al&crystal_system=Hexagonal)
-
----
-
-α2 相晶体学信息：晶体结构：D019；空间群：P63/mmc
-有序 B2/β 相晶体学信息：空间群：Pm-3m(3 的上面有横线) CsCl 原型结构
-O 相晶体学信息：晶体结构：三元有序 orthorhombic；空间群：Cmcm, oC16
-
-
----
-
 ## 其他
+
+Ti2AlNb O 相：三元有序 orthorhombic；空间群：Cmcm, oC16
 
 BCC 的第 N 近邻距离：[solid state chemistry - Calculate the third and fourth nearest neighbours in bcc - Chemistry Stack Exchange](https://chemistry.stackexchange.com/questions/99033/calculate-the-third-and-fourth-nearest-neighbours-in-bcc)
 
 [BCC金属中的间隙原子及建模](https://mp.weixin.qq.com/s/49yQ1ncwI5TzFdc5jmGFfw)
 
-金刚石结构 Si 原胞原子位点位置（latgen、ASE）：(0.0 0.0 0.0)、(0.25 0.25 0.25)；pymatgen 对应的原胞位置是 (0.0 0.0 0.0)、(0.75 0.75 0.75)
 
 - [ ] 原子半径没有统一值？
 
@@ -597,22 +652,3 @@ BINARY OXIDES
 ```
 
 晶胞转换（介绍了几种工具；内容一般）：[晶胞之间相互转换 - ZSaying](https://mixzeng.github.io/2020/12/27/crystal-cell-convert/)
-
----
-
-A15 A3B 型
-
-B1 NaCl 型
-
-D019 hcp 结构
-D022 正交结构
-
-Pearson 符号
-3 个符号表示
-晶系 +（P I R F SABC I）+ 数字（原子数）
-
-225 FCC 结构
-
-原型结构（最早发现的晶体）
-
----

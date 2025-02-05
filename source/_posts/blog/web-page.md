@@ -19,7 +19,7 @@ password:
 
 # 网页推荐
 
-注：大部分是静态网页。
+- 注：大部分是静态网页
 
 ---
 
@@ -127,12 +127,16 @@ http://machine_ip_address:2283/api  # 移动端登录
 ## 恋爱记录网页
 
 - [GitHub - saurabhnemade/will-you-be-my-valentine: A simple application to impress your loved ones on valentines day!!](https://github.com/saurabhnemade/will-you-be-my-valentine)
-- [GitHub - KanurkarPrateek/Valentines\_Day\_Proposal](https://github.com/KanurkarPrateek/Valentines_Day_Proposal)
-- [GitHub - nxuzy/love: love\_matters](https://github.com/nxuzy/love)、[恋爱申请书](https://nxuzy.github.io/love/)
-- [GitHub - xing16/ValentineDaySuprise: HMTL实现情人节告白气球，不一样的惊喜](https://github.com/xing16/ValentineDaySuprise)
-- [GitHub - Kicamon/Kicamon.github.io: 恋爱](https://github.com/Kicamon/Kicamon.github.io)
-- [Like\_Girl v5.2.0](https://lovey.kikiw.cn/) 、源码：[LikeGirl v5.2.0: 情侣小站](https://gitee.com/kiCode111/like-girl-v5.2.0)
 
+- [GitHub - KanurkarPrateek/Valentines\_Day\_Proposal](https://github.com/KanurkarPrateek/Valentines_Day_Proposal)
+
+- [GitHub - nxuzy/love: love\_matters](https://github.com/nxuzy/love)、[恋爱申请书](https://nxuzy.github.io/love/)
+
+- [GitHub - xing16/ValentineDaySuprise: HMTL实现情人节告白气球，不一样的惊喜](https://github.com/xing16/ValentineDaySuprise)
+
+- [GitHub - Kicamon/Kicamon.github.io: 恋爱](https://github.com/Kicamon/Kicamon.github.io)
+
+- [Like\_Girl v5.2.0](https://lovey.kikiw.cn/) 、源码：[LikeGirl v5.2.0: 情侣小站](https://gitee.com/kiCode111/like-girl-v5.2.0)
 
 
 
@@ -141,16 +145,28 @@ http://machine_ip_address:2283/api  # 移动端登录
 ## 引导页
 
 - [GitHub - 5ime/Index: 🏠 我的个人主页,引导页](https://github.com/5ime/Index)（个人倾向于这个）
+
 - [TonyCrane · Home](https://tonycrane.cc/)（无源码）
+
 - [GitHub - AnkorTn/AnkorTn.github.io](https://github.com/AnkorTn/AnkorTn.github.io)
+
 - [Home Page-fullPage](https://emilyzfive.github.io/HomePage/)
+
 - [钱辉 ♥ Blog](https://qianhuiya.github.io/)
+
 - [GitHub - EsunR/Blog-Index: 一个通用的个人网站的引导页、导航页模板](https://github.com/EsunR/Blog-Index)
+
 - [GitHub - NianBroken/Personal\_Sakura\_Guide\_Page](https://github.com/NianBroken/Personal_Sakura_Guide_Page)
+
 - [NianBroken](https://www.nianbroken.top/)
+
 - [GitHub - KawaiiZapic/Present: 一个简洁的个人主页,支持显示博客文章.](https://github.com/KawaiiZapic/Present)
+
 - [GitHub - QNquenan/homepage-for-vue3: 基于Vue3的主页](https://github.com/QNquenan/homepage-for-vue3)
+
 - [Biofy - 个性化主页 - 聚合社交信息 - 作品展示 - 数字名片](https://biofy.cn/)
+
+- [GitHub - zjzjzjzj1874/ai-sites: 一个简洁美观的个人导航网站，支持网站优先级排序和点击量统计功能。](https://github.com/zjzjzjzj1874/ai-sites)
 
 
 
@@ -165,11 +181,13 @@ http://machine_ip_address:2283/api  # 移动端登录
 - [GitHub - CodingWZL/wangzhilong.github.io: Zhilong Wang's Personal Homepage](https://github.com/CodingWZL/wangzhilong.github.io)
 
 
+
 ---
 
 ## 幻灯片 Slides
 
 - [GitHub - slidevjs/slidev: Presentation Slides for Developers](https://github.com/slidevjs/slidev)
+
 - [GitHub - stone-zeng/talks-slidev: Slidev sources for my talks](https://github.com/stone-zeng/talks-slidev)
 
 ```bash
@@ -178,6 +196,7 @@ npm init slidev@0.41.0
 ```
 
 - [使用 reveal-md 来写 Slides - Isshiki修's Notebook](https://note.isshikih.top/others/reveal-md2Slides/)
+
 - reveal-md 模板：
     - [GitHub - TonyCrane/slide-template: TonyCrane's slide template for reveal-md](https://github.com/TonyCrane/slide-template)
     - [GitHub - TonyCrane/MarkdownLecture: TonyCrane's markdown lecture for ZJU-MSC](https://github.com/TonyCrane/MarkdownLecture)

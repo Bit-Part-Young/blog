@@ -1138,9 +1138,7 @@ Host github.com
   Port 443
 
 # 方式 2
-# 打开仓库中的 .git/config 文件
-git config --local -e
-# 将 url 的 SSH 形式 改成 HTTPS
+# 打开仓库中的 .git/config 文件，将 url 的 SSH 形式 改成 HTTPS
 ```
 
 - Git 报错
@@ -1153,17 +1151,6 @@ error: RPC failed; Failed to connect to github.com port 443: Couldn't connect to
 # 若有 VPN 代理，设置代理
 git config --global http.proxy 127.0.0.1:7890
 git config --global https.proxy 127.0.0.1:7890
-```
-
-- Git 报错
-
-```bash
-# 报错内容
-error: cannot pull with rebase: You have unstaged changes.
-error: please commit or stash them.
-
-# 解决方法
-git config pull.rebase false
 ```
 
 - [ ] 交大 VPN 打开，会使得 SSH 连接 Git 失效（已水源提问，暂无法解决）

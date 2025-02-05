@@ -707,8 +707,8 @@ from ase.io.xsd import read_xsd, write_xsd
 ```python
 atoms = ...
 
-del atoms.arrays["force"]
-atoms.info = {}
+del atoms.arrays["forces"]    # 添加 forces 信息
+atoms.info = {}               # 添加 energy 等信息
 ```
 
 

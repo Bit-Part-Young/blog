@@ -55,6 +55,7 @@ password:
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404291006009.png)
 
 - 具体全部功能
+    - D019 的 wyckoff letter 为 2d、6h（D019 Ti3Al 则为 2c、6h）
 
 ```bash
 # 全部功能
