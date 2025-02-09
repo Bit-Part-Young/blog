@@ -72,6 +72,9 @@ password:
     - HCP：[Hexagonal close packing - hcp: Interactive 3D Structure](https://www.chemtube3d.com/hexagonal-close-packing/)
     - perovskite：[CaTiO3 - Perovskite: Interactive 3D Structure](https://www.chemtube3d.com/_perovskitefinal/)
 
+- VMD 可计算 RDF、统计键长、可视化磁化密度（magnetization denisty）
+
+
 
 ---
 
@@ -514,6 +517,10 @@ direct
 - [非晶合金建模系列(1):“熔化-淬火”的初始模型构建](https://mp.weixin.qq.com/s/qgmuUjBtUpRMfHwgnnWY7w)
 
 - [非晶合金建模系列(3)-“熔化-淬火”法实现非晶结构](https://mp.weixin.qq.com/s/gKJnYrRH_zz2RP7ilMjG-g)
+
+- 非晶相关结构分析：
+    - [结构分析方法(2)-五次对称性(Local five-fold symmetry)](https://mp.weixin.qq.com/s/DUmwlSsVHw6cZ2A7JBDBdQ)
+    - [结构分析方法(3)-梯度原子结构(Gradient atomic packing structure）](https://mp.weixin.qq.com/s/HkaZcbVYe80u8RhW3UOL2A)
 
 
 ---

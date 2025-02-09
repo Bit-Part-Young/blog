@@ -97,12 +97,12 @@ vmd....................To visualize md trajectories
 
 #### GPU 相关
 
-- 查看 cuda 是否安装
+- 查看 CUDA 是否安装（分为两种，驱动 driver 和运行 runtime）
 
 ```bash
-nvidia-smi            # NVIDIA 驱动
-nvcc --version
-/usr/local/cuda       # CUDA 库路径
+nvidia-smi            # 查看 NVIDIA 驱动及其支持的 CUDA 驱动最高版本
+nvcc --version        # 查看 CUDA 运行版本
+/usr/local/cuda       # CUDA 安装路径
 ```
 
 - GPU 信息及使用情况查看：`nvidia-smi`、[gpustat - Python](https://github.com/wookayin/gpustat)
@@ -112,7 +112,6 @@ watch -d2 nvidia-smi      # 持续查看 GPU 使用情况
 
 gpustat -i 2
 ```
-
 
 ![GPU 信息及资源占用率](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202402291942207.png)
 

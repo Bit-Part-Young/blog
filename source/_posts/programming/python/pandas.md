@@ -99,6 +99,9 @@ name
 
 
 df.corr()               # Pearson 相关系数矩阵
+
+# 设置浮点数精度
+pd.set_option("display.precision", 9)
 ```
 
 

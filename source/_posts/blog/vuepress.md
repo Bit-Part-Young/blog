@@ -32,6 +32,9 @@ password:
     - [vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope)
     - [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume)
 
+- Vitepress 框架主题
+    - 结合 Obsidian：[GitHub - nolebase/nolebase: A place to record memories, knowledge and ideas \| 记录回忆，知识和畅想的地方](https://github.com/nolebase/nolebase)
+
 - 参考资料：
     - [GitHub - vuepress/awesome-vuepress: 🎉 A curated list of awesome things related to VuePress](https://github.com/vuepress/awesome-vuepress)
 

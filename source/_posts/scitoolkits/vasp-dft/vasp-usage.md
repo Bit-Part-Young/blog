@@ -312,6 +312,8 @@ EDIFFG = -1E-02
 
 - 表面能计算收敛性测试：slab 层数、真空层层数
 
+- [【计算材料学-从算法原理到代码实现】视频教程 \| 4.12\_非对称模型表面能的VASP计算\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1jV411L7V3)
+
 
 ---
 

@@ -250,7 +250,9 @@ man -k xxx              # 检索关键字含有 xxx 的命令
 
 ls -a                   # 会列出 . 和 ..
 ls -A                   # almost all，不列出 . 和 ..
-ls -1 | grep -v 'XXX*'  # ls 不列出特定的文件/目录
+ls -1 | grep -v 'XXX*'  # 不列出特定的文件/目录
+ls -tr                  # -t 按修改时间排序（新文件排在前面）；-r 逆序排列
+ls -v                   # 按数值大小排序（默认字母顺序；使 10 显示在 9 后面）
 
 cd -                    # 返回上一次的目录
 
@@ -842,10 +844,6 @@ sed -n '$=' file
 - 示意图
 ![](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/Standard-unix-filesystem-hierarchy.svg)
 
-
-
-![ft.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202312311529652.png)
-
 ---
 
 - 注意事项：
@@ -853,25 +851,26 @@ sed -n '$=' file
     - `/usr/local/bin`：用户放置本地可执行程序的目录，不会被系统升级而覆盖同名文件
 
 ```bash
-/bin              # 基本二进制程序；对所有用户可用
-/sbin             # 系统二进制程序
+/bin              # 基本二进制文件；对所有用户可用
+/sbin             # 系统二进制文件
 /etc              # 配置文件
 /lib              # 库文件
-/usr              # 包含用户程序和数据
+/usr              # 用户程序和数据
   /usr/bin          # 用户二进制文件
-  /usr/sbin         #
-  /usr/lib          #
-  /usr/local        #
+  /usr/sbin         # 
+  /usr/lib          # 用户库文件
+  /usr/local        # 用户本地安装的程序（含 bin lib etc 等目录）
 /home             # 用户家目录
 /root             # root 用户家目录
-/var              # 变量/化文件
+/var              # 可变文件（日志、缓存）
   /var/cache        # 应用程序缓存数据
   /var/log          # 日志文件
-/tmp              # 临时文件
+/tmp              # 临时文件（重启不会保留）
 /boot             # 引导启动文件
+/dev              # 设备文件
 /proc             # 虚拟文件系统，以文件形式提供对内核和进程信息
 /mnt              # 临时挂载文件系统
-/opt              # 可选应用软件包
+/opt              # 可选/附加软件
 ```
 
 ---

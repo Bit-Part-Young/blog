@@ -36,14 +36,14 @@ ${MKLROOT}/lib/intel64     # MKL 库文件路径
 -lmkl_core                 # 核心库
 
 ${MKLROOT}/include/fftw    # FFTW
-${MKLROOT}/lib/intel64     # BLACS、LAPACK 和 SCALAPACK
+${MKLROOT}/lib/intel64     # BLACS、LAPACK 和 ScaLAPACK
 ```
 
-- Intel oneAPI 在官网只能下载最新版本；官网未对 Ubuntu23.04 进行测试；旧版下载：[Intel](https://get.hpc.dev/vault/intel/?sort=name&order=desc)
+- Intel oneAPI 在官网只能下载最新版本；旧版下载：[Intel](https://get.hpc.dev/vault/intel/?sort=name&order=desc)
 
-- intel-oneAPI/2023.2 是这一系列套件中最后一个支持经典 C/C++/Fortran 编译器的版本（Intel-oneAPI 2024 开始没有了 icc 和 icpc）
+- Intel-oneAPI/2023.2 是这一系列套件中最后一个支持经典 C/C++/Fortran 编译器的版本（Intel-oneAPI 2024 开始没有了 icc 和 icpc）
 
-- Intel® oneAPI Base Toolkit 2024 版包含的东西
+- Intel® oneAPI Base Toolkit 2024 版包含的东西（可不用全部安装）
 
 ```text
 Intel® oneAPI Collective Communications Library
@@ -62,7 +62,7 @@ Intel® VTune™ Profiler
 Optional: Intel® FPGA Add-on for oneAPI Base Toolkit
 ```
 
-- Intel® oneAPI HPC Toolkit 2024 版包含的东西（缺少 C++ Compiler Classic）
+- Intel® oneAPI HPC Toolkit 2024 版包含的东西（可不用全部安装；缺少 C++ Compiler Classic）
 
 ```text
 Intel® oneAPI DPC++/C++ Compiler (separate download required)
@@ -81,8 +81,7 @@ Intel® Trace Analyzer and Collector
 sudo sh ./l_BaseKit_p_XXX_offline.sh
 sudo sh ./l_HPCKit_p_XXX_offline.sh
 
-# 将以下命令添加到 ~/.bashrc 或 ~/.zshrc 中
-# 使得登录开启 Intel oneAPI 环境
+# 激活 Intel oneAPI 环境
 source /opt/intel/oneapi/setvars.sh intel64
 ```
 

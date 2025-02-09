@@ -567,11 +567,18 @@ equivalent_sites()        # 查看等同原子坐标
 vasp                  # RW
 vasp-out              # R+
 vasp-xdatcar          # RW+
+vasp-xml              # R+
 xyz                   # RW+
 extxyz                # RW+
 xsd                   # RW
+xtd                   # RW+
 lammps-data           # RW
 lammps-dump-text      # R+
+cube                  # RW
+cif                   # RW+
+espresso-in           # RW
+espresso-out          # R+
+gpumd                 # RW
 ```
 
 - 模块中的 `read()` 函数可自动识别文件格式
@@ -719,12 +726,25 @@ atoms.info = {}               # 添加 energy 等信息
 - 施加约束
 
 ```python
-from ase.constraints import FixAtoms
+from ase.constraints import FixAtoms, FixedLine, FixedPlane
 
 atoms = ...
 # 按照 原子类型或坐标 对原子坐标轴进行固定
 c = FixAtoms(mask=atoms.symbols == "Cu")
 c = FixAtoms(mask=atoms.positions[:, 2] < 1.0)
+
+# 允许沿 y 方向移动（固定 x、y 坐标轴）
+c = FixedLine(
+    indices=[atom.index for atom in atoms],
+    direction=[0, 0, 1],
+)
+
+# 允许 yz 面移动（固定 x 坐标轴）
+c = FixedPlane(
+    indices=[atom.index for atom in atoms],
+    direction=[1, 0, 0],
+)
+
 atoms.set_constraint(c)
 ```
 
@@ -961,6 +981,38 @@ neb.idpp_interpolate(fmax=0.1, optimizer=BFGS, steps=1000)
 
 ---
 
+### ase.md
+
+- md 相关算法
+
+```python
+from ase.md.langevin import Langevin
+```
+
+
+---
+
+### ase.filters
+
+```python
+# 结构优化，用于非 VASP 其他 Calculator（如 GPAW）
+from ase.filters import UnitCellFilter, FrechetCellFilter
+```
+
+
+---
+
+### ase.neighborlist
+
+- 近邻列表
+
+```python
+from ase.neighborlist import NeighborList
+```
+
+
+---
+
 ### ase.calculators
 
 - ASE 支持的 calculators：[Supported Calculators — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html#supported-calculators)
@@ -1025,6 +1077,18 @@ atoms.calc = calc                # 执行 VASP 计算
 atoms.set_calculator(calc)       # 同上，但写法过时
 
 atoms.get_potential_energy()     # 获取能量
+
+```
+
+```python
+from ase.calculators.vasp import Vasp
+
+calc = Vasp(directory=".")
+
+
+# 方法
+read_convergence()       # 是否收敛
+read_results()
 ```
 
 

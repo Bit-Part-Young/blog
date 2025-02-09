@@ -529,6 +529,7 @@ test expression      # 写法一
 [[ -f FILE ]]        # 文件
 [[ -d FILE ]]        # 目录
 [[ -e FILE ]]        # 文件/目录是否存在
+[[ -p FILE ]]        # 命名管道
 
 # 整数条件
 [[ NUM1 -eq NUM2 ]]  # 等于
@@ -621,8 +622,9 @@ while condition; do
   command
 done
 
-# 读取文件内容的每一行
-cat file.txt | while read line; do 
+
+# 逐行读取每行输入（文件或命令输出）
+cat file.txt | while read -r line; do
     echo $line
 done
 ```

@@ -57,7 +57,7 @@ sudo pacman -S clang
 bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 ```
 
-- cmake
+- cmake：有二进制版本
 
 ```bash
 sudo apt install cmake

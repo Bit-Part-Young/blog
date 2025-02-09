@@ -37,6 +37,45 @@ password:
 
 - packages 细节：[6.2. Package details — LAMMPS documentation](https://docs.lammps.org/Packages_details.html)
 
+- Accelerator pcakages（加速器）：[7.4. Accelerator packages — LAMMPS documentation](https://docs.lammps.org/Speed_packages.html)
+    - INTEL、GPU、KOKKOS、OPENMP、OPT（OPT、OPENMP 易安装）
+
+- 安装 GPU package（需确定 GPU 硬件类型及其架构、精度）
+
+```bash
+# cmake；GPU 硬件类型选择 CUDA
+-C ../cmake/presets/gpu-cuda.cmake -D GPU_ARCH=sm_90
+
+
+# sm_30 for Kepler (supported since CUDA 5 and until CUDA 10.x)
+# sm_35 or sm_37 for Kepler (supported since CUDA 5 and until CUDA 11.x)
+# sm_50 or sm_52 for Maxwell (supported since CUDA 6)
+# sm_60 or sm_61 for Pascal (supported since CUDA 8)
+# sm_70 for Volta (supported since CUDA 9)
+# sm_75 for Turing (supported since CUDA 10)
+# sm_80 or sm_86 for Ampere (supported since CUDA 11, sm_86 since CUDA 11.1)
+# sm_89 for Lovelace (supported since CUDA 11.8)
+# sm_90 for Hopper (supported since CUDA 12.0)
+```
+
+- 安装 LAMMPS Python 模块：[2.2. Installation — LAMMPS documentation](https://docs.lammps.org/Python_install.html)
+
+```bash
+# 需以 shared mode 编译 LAMMPS
+# cmake
+-D BUILD_SHARED_LIBS=yes
+# make
+make mode=shared
+
+# 安装 LAMMPS Python 模块
+make install-python
+
+# 验证
+from lammps import lammps
+
+lmp = lammps()
+```
+
 - 个人常用 packages
 
 ```bash
@@ -65,8 +104,6 @@ mc                           # 蒙特卡洛
 
 - [8.6.1. Using CMake with LAMMPS — LAMMPS documentation](https://docs.lammps.org/Howto_cmake.html)
 
-- [ ] 思源一号用 oneapi.cmake 编译选项，其中的 MPI 是 MPI STUBS，而非 intel 的 MPI（2024.03.16）
-
 - 编译步骤精简
 
 ```bash
@@ -75,29 +112,39 @@ module purge
 
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
-module load intel-oneapi-mpi/2021.4.0
+module load intel-oneapi-mpi/2021.12.1
 module load intel-oneapi-tbb/2021.4.0
 # Pi 上建议再 load 以下模块
 module load gcc/11.2.0
 module load cmake/3.26.3-gcc-11.2.0
 
+
 # 编译配置；oneapi 可改成 intel
-mkdir build && cd build
-# 编译配置中没有 FFT 信息
+mkdir build && cd $_
+# FFT 库默认是 KISS（若无单独编译 FFTW 并设置相关环境变量）
+# 手动安装 packages
 cmake -D PKG_MANYBODY=yes -D FFT=MKL -C ../cmake/presets/oneapi.cmake ../cmake
-# oneapi 最终编译可能会报错，改用 intel 进行编译配置；FFT 库默认会是 KISS（若无单独编译 FFTW 并设置相关环境变量）
-cmake -D PKG_MANYBODY=yes -D FFT=MKL -C ../cmake/presets/intel.cmake ../cmake
-# 或者
-cmake -C ../cmake/presets/basic.cmake -D FFT=MKL -C ../cmake/presets/intel.cmake ../cmake
+# 安装预设 packages
+cmake -C ../cmake/presets/basic.cmake -D FFT=MKL -C ../cmake/presets/oneapi.cmake ../cmake
+# 安装所有 packages，去掉需外部依赖的 packages
+# 额外去掉 RHEO、INTEL packages，否则会报错
+cmake -C ../cmake/presets/all_on.cmake -C ../cmake/presets/nolib.cmake -D PKG_INTEL=no -D PKG_RHEO=no -D FFT=MKL -D BUILD_SHARED_LIBS=yes -C ../cmake/presets/oneapi.cmake ../cmake
+
 
 # 编译
-make
+make -jN
 ```
 
-- 报错：[Gmake error during cmake build with intel compiler - LAMMPS / LAMMPS Installation - Materials Science Community Discourse](https://matsci.org/t/gmake-error-during-cmake-build-with-intel-compiler/54030)
+- 在思源平台编译 LAMMPS，得到的可执行文件，其 MPI 是 MPI STUBS，而非 Intel 的 MPI
+    - 原因：`module load intel-oneapi-mpi/2021.4.0` 无法识别 Intel MPI，而 `module load intel-oneapi-mpi/2021.12.1` 可成功识别 Intel MPI（其他版本的也可以）
+
+- 报错：`clang++: error: unknown argument: '-qopenmp;-qopenmp-simd'`
+    - [Gmake error during cmake build with intel compiler - LAMMPS / LAMMPS Installation - Materials Science Community Discourse](https://matsci.org/t/gmake-error-during-cmake-build-with-intel-compiler/54030)
+    - [\[BUG\] OpenMP: omp.h not found by CMake when using oneapi preset · Issue #4033 · lammps/lammps](https://github.com/lammps/lammps/issues/4033)
+    - 原因：cmake 版本偏旧，应更新 cmake
 
 ```bash
-# 编译配置命令: cmake -D PKG_MANYBODY=yes -C ../cmake/presets/oneapi.cmake ../cmake
+# 编译配置命令: 使用 oneapi.cmake
 # 报错内容
 clang++: error: unknown argument: '-qopenmp;-qopenmp-simd'
 make[2]: *** [CMakeFiles/lammps.dir/build.make:76: CMakeFiles/lammps.dir/home/yangsl/opt/lammps-29Aug2024/src/angle.cpp.o] Error 1
@@ -113,9 +160,9 @@ make: *** [Makefile:136: all] Error 2
 ll cmake/presets             # 列出预设 cmake 文件（自行选择安装 package）
 
 # 预设的需安装的 packages
-basic.cmake                  # package 数目: 4
-most.cmake                   # package 数目: 60+
-all_on.cmake                 # package 数目: 90+
+basic.cmake                  # package 数目: 4 (KSPACE MANYBODY MOLECULE RIGID)
+most.cmake                   # package 数目: 66
+all_on.cmake                 # package 数目: 93
 
 # 预设的编译 OPTIONS
 oneapi.cmake
@@ -125,17 +172,18 @@ clang.cmake
 
 
 # 配置编译选项 示例
-mkdir build-basic && cd build-basic
+mkdir build-basic && cd $_
 cmake -C ../cmake/presets/basic.cmake ../cmake
 
-mkdir build-most && cd build-most
+mkdir build-most && cd $_
 cmake -C ../cmake/presets/most.cmake ../cmake
 
 # 叠加配置编译 OPTIONS
-cmake -C ../cmake/presets/basic.cmake -C ../cmake/presets/kokkos-cuda.cmake ../cmake
+cmake -C ../cmake/presets/basic.cmake -C ../cmake/presets/oneapi.cmake ../cmake
 
 # 手动安装 packages
 cmake -D PKG_KSPACE=yes  ../cmake
+
 
 # cmake 参数；D 可以与后面的编译选项空一格空格
 -D BUILD_MPI                  # 构建 MPI 版本
@@ -150,54 +198,69 @@ cmake -D PKG_KSPACE=yes  ../cmake
 -D PKG_XXX=yes                # 安装 XXX package
 -D PKG_GPU=on                 # 导入/安装 GPU package
 -D GPU_API                    # opencl 或 cuda
--D FFT                        # 指定 FFTW 库，默认是 FFTW3；可选值 FFTW3、MKL、NVPL、KISS；找不到时会使用 KISS
+-D FFT                        # 指定 FFTW 库，默认 FFTW3；可选值 FFTW3、MKL、NVPL、KISS；找不到时会使用 KISS
 -D WITH_JPEG=off              # 不使用 JPEG；会自动检查
 -D LAMMPS_GZIP=               # 使用
+
+
 make                          # 编译
 make install                  # 安装；默认安装到 ~/.local
-make install-python           # 安装 LAMMPS 的 Python 模块；作用是生成 whl 文件
+make install-python           # 安装 LAMMPS Python 模块；作用是生成 whl 文件
 
 
 cmake --build . --target clean  # 删除编译的目标、库和可执行文件
-make clean                      # 同上
+make clean                    # 同上
 
 
-lmp -h                       # 显示已编译的 LAMMPS 版本的所有信息；可查看已安装的 packages
+lmp -h                        # 显示已编译的 LAMMPS 版本的所有信息；可查看已安装的 packages
 
 # 调用 GPU 加速计算，需加入 -sf -pk 两个 flag 
 mpirun -np 8 lmp_gpu -sf gpu -pk gpu 1 -in in.file
--sf                          # 在所有支持 GPU 加速的脚本命令前加上 gpu 前缀
--pk gpu N                    # GPU 数量
+-sf                           # 在所有支持 GPU 加速的脚本命令前加上 gpu 前缀
+-pk gpu N                     # GPU 数量
 ```
 
 - 配置好后，查看输出到屏幕的 `-- <<< Build configuration >>>` 编译配置进行检验，示例：
+    - Compilers and Flags
+    - MPI flags
+    - FT settings
 
 ```bash
 -- <<< Build configuration >>>
    LAMMPS Version:   20240829
    Operating System: Linux Ubuntu 22.04
-   CMake Version:    3.22.1
+   CMake Version:    3.31.5
    Build type:       RelWithDebInfo
-   Install path:     /XXX/.local
+   Install path:     /home/XXX/.local
    Generator:        Unix Makefiles using /usr/bin/gmake
--- Enabled packages: MANYBODY
+-- Enabled packages: AMOEBA;ASPHERE;BOCS;BODY;BPM;BROWNIAN;CG-DNA;CG-SPICA;CLASS2;COLLOID;COLVARS;CORESHELL;DIELECTRIC;DIFFRACTION;DIPOLE;DPD-BASIC;DPD-MESO;DPD-REACT;DPD-SMOOTH;DRUDE;EFF;EXTRA-COMMAND;EXTRA-COMPUTE;EXTRA-DUMP;EXTRA-FIX;EXTRA-MOLECULE;EXTRA-PAIR;FEP;GRANULAR;INTERLAYER;KSPACE;MANIFOLD;MANYBODY;MC;MEAM;MESONT;MGPT;MISC;ML-IAP;ML-POD;ML-RANN;ML-SNAP;ML-UF3;MOFFF;MOLECULE;OPENMP;OPT;ORIENT;PERI;PHONON;PLUGIN;POEMS;PTM;QEQ;QTB;REACTION;REAXFF;REPLICA;RIGID;SHOCK;SMTBQ;SPH;SPIN;SRD;TALLY;UEF;YAFF
 -- <<< Compilers and Flags: >>>
 -- C++ Compiler:     /opt/software/intel/oneapi/compiler/2022.1.0/linux/bin/icpx
       Type:          IntelLLVM
       Version:       2022.1.0
       C++ Standard:  11
       C++ Flags:     -Wall -Wextra -g -O2 -DNDEBUG
-      Defines:       LAMMPS_SMALLBIG;LAMMPS_MEMALIGN=64;LAMMPS_OMP_COMPAT=4;LAMMPS_GZIP
+      Defines:       LAMMPS_SMALLBIG;LAMMPS_MEMALIGN=64;LAMMPS_OMP_COMPAT=4;LAMMPS_GZIP;FFT_MKL;FFT_MKL_THREADS;LMP_OPENMP;LMP_PLUGIN
       Options:       -Wno-tautological-constant-compare;-Wno-unused-command-line-argument
+-- C compiler:       /opt/software/intel/oneapi/compiler/2022.1.0/linux/bin/icx
+      Type:          IntelLLVM
+      Version:       2022.1.0
+      C Flags:       -Wall -Wextra -g -O2 -DNDEBUG
 -- <<< Linker flags: >>>
 -- Executable name:  lmp
--- Static library flags:
+-- Shared library flags:
 -- <<< MPI flags >>>
 -- MPI_defines:      MPICH_SKIP_MPICXX;OMPI_SKIP_MPICXX;_MPICC_H
 -- MPI includes:     /opt/software/intel/oneapi/mpi/2021.6.0/include
 -- MPI libraries:    /opt/software/intel/oneapi/mpi/2021.6.0/lib/libmpicxx.so;/opt/software/intel/oneapi/mpi/2021.6.0/lib/libmpifort.so;/opt/software/intel/oneapi/mpi/2021.6.0/lib/release/libmpi.so;/lib/x86_64-linux-gnu/libdl.a;/lib/x86_64-linux-gnu/librt.a;/lib/x86_64-linux-gnu/libpthread.a;
--- Configuring done
--- Generating done
+-- <<< FFT settings >>>
+-- Primary FFT lib:  MKL
+-- Using double precision FFTs
+-- Using threaded FFTs
+-- Using builtin distributed FFT algorithms
+-- Configuring done (5.1s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/XXX/opt/lammps-29Aug2024/build
 ```
 
 

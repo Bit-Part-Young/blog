@@ -44,7 +44,6 @@ password:
     - VASP 6.5.0（新特性：电声耦合）和 6.4.3: [Changelog - VASP Wiki](https://www.vasp.at/wiki/index.php/Changelog)
     - [VASP - NSC](https://www.nsc.liu.se/software/installed/tetralith/vasp/)
 
-在 `makefile.include` 中的 OFLAG 参数里加入 -xhost，这样编译器会使得编译出的程序能够利用当前机子 CPU 能支持的最高档次的指令集以加速计算
 
 
 ---
@@ -54,11 +53,11 @@ password:
 ### 编译前须知
 
 - 编译条件
-    - Fortran、C、C++ 编译器
-    - 数值计算库：FFTW、BLAS、LAPACK、ScaLAPACK
-    - MPI
+    - 编译器：Fortran、C、C++
+    - 数值计算库：FFTW、BLAS、LAPACK、ScaLAPACK（高扩展的 LAPACK，主要用于分布式内存体系结构）
+    - MPI 实现：Intel MPI 或 Open MPI
 
-- VASP.5.4.4、VASP.6.X.X 安装包路径：Master: `/opt/software`；将其拷贝到自己的用户目录下，传输至超算平台）
+- 课题组服务器 VASP 安装包路径：Master: `/opt/software`；将其拷贝到自己的用户目录下，传输至超算平台
 
 - 编译选项：[Compiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Compiler_options)
 
@@ -76,12 +75,12 @@ password:
 
 ```bash
 # Intel Composer suite and oneAPI Base + HPC toolkits for CPUs
-makefile.include.linux_intel             # VASP.5.X.X
-makefile.include.intel                   # VASP.6.X.X
-makefile.include.oneapi                  # VASP.6.X.X
+makefile.include.linux_intel             # VASP.5.4.4
+makefile.include.intel                   # VASP.6.3.X 或 VASP.6.4.X
+makefile.include.oneapi                  # VASP.6.4.X
 
 # GNU compilers for CPUs
-makefile.include.linux_gnu               # VASP.5.X.X
+makefile.include.linux_gnu               # VASP.5.4.4
 makefile.include.gnu                     # VASP.6.X.X
 
 # NVIDIA HPC-SDK for CPU and GPU
@@ -147,12 +146,12 @@ vasp_gam             # gamma-only 版本
 
 - [VASP.6.4.3中新功能：固定轴优化](https://mp.weixin.qq.com/s/cZLf_B4LrvAClRNCmKRh6w)
 
+- 在 `makefile.include` 中的 OFLAG 参数里加入 `-xhost`，会使得编译出的程序能够利用当前机器 CPU 能支持的最高可用的指令集以加速计算
+
 
 ---
 
 ### Intel oneAPI 套件
-
-- Master 上选择 intel_omp 编译，运行 `mpirun -n 2 vasp_std` 命令会报错；选择 Intel 编译正常
 
 - 安装步骤
 
@@ -172,6 +171,7 @@ rm bin/*
 cp arch/makefile.include.linux_intel makefile.include
 # VASP.6.3.0
 cp arch/makefile.include.intel makefile.include
+# AMD CPU 需将 FFLAGS 中的 -xHOST 参数去掉
 
 # 编译；耗时 20-30 分钟
 make  # 或 make all, make std
@@ -206,6 +206,16 @@ CXX_PARS    = icpc
 CC_LIB      = icx
 CXX_PARS    = icpx
 ```
+
+- AMD CPU 使用 Intel oneAPI 套件编译出现的报错：[VASP编译偶遇“Function return parameter requires SSE register while SSE is disabled”](https://zhuanlan.zhihu.com/p/601580449)
+
+```bash
+# AMD CPU 直接使用 makefile.include.intel
+catastrophic error: Function return parameter requires SSE register while SSE is disabled.
+compilation aborted for minimax_functions1D.f90 (code 1)
+```
+
+- Master 上选择 intel_omp 编译，运行 `mpirun -n 2 vasp_std` 命令会报错；选择 Intel 编译正常
 
 
 ---
@@ -285,12 +295,12 @@ make[2]: *** [makefile:171: c2f_interface.o] Error 1
 # lib 路径
 /usr/lib/x86_64-linux-gnu
 
-# OpenMPI
+# Open MPI
 sudo apt install libopenmpi-dev
 
 # 数值计算库
 sudo apt install libfftw3-dev
-sudo apt install libblas-dev    # 或者 libopenblas-dev （优化版 BLAS）
+sudo apt install libblas-dev    # 或 libopenblas-dev （优化版 BLAS）
 sudo apt install liblapack-dev
 sudo apt install libscalapack-openmpi-dev  # 或 libscalapack-mpi-dev
 
@@ -307,6 +317,32 @@ make  # 或 make all, make std
 
 ---
 
+### AMD
+
+- 使用 AOCC + AOCL 安装（安装相对复杂）
+    - [各种版本VASP的编译-AMD yes（并不）篇](https://zhuanlan.zhihu.com/p/293300472)
+    - [AMD全家桶（AOCC+AOCL）编译vasp.5.4.4](https://zhuanlan.zhihu.com/p/557466113)
+    - [AOCC—AOCl 4.0 安装VASP 6.4.2 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-40792-1-1.html)
+    - [在AMD机器上安装DFT计算软件VASP.6.2.0简明教程 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-30264-1-1.html)
+    - [AMD EPYC - 基于AMD AOCC+AOCL的VASP编译和部署 & MKL库及平台效率优化\_哔哩哔哩\_bilibili](https://b23.tv/LalDMPO)
+
+```bash
+
+```
+
+- 相关报错
+
+```bash
+# 使用 makefile.include.gnu_ompi_aocl_omp；只安装 aocl-linux-gcc
+mpif90 -fopenmp -ffree-form -ffree-line-length-none -w -ffpe-summary=invalid,zero,overflow -march=native -fallow-argument-mismatch -O2 -I/opt/AMD/5.0.0/gcc/include  -c minimax_functions1D.f90
+f951: Fatal Error: Reading module ‘prec.mod’ at line 1 column 2: Unexpected EOF
+compilation terminated.
+make[2]: *** [makefile:166: minimax_functions1D.o] Error 1
+```
+
+
+---
+
 ### HDF5
 
 - 安装步骤
@@ -314,7 +350,7 @@ make  # 或 make all, make std
 ```bash
 wget https://hdf-wordpress-1.s3.amazonaws.com/wp-content/uploads/manual/HDF5/HDF5_1_14_3/src/hdf5-1.14.3.tar.gz
 
-# 配置 intel 版本
+# 配置 Intel 版本
 ./configure --enable-parallel --enable-fortran --enable-cxx --enable-unsupported \
             CC=mpiicc FC=mpiifort CXX=mpiicpc \
             --prefix=${HOME}/local/hdf5
@@ -358,7 +394,7 @@ h5dump data.h5   # 输出文件的详细结构和内容
 
 ---
 
-### VASP.6.3.0 + HDF5
+### VASP + HDF5
 
 - 参考：[编译支持HDF5的VASP - 哔哩哔哩](https://www.bilibili.com/read/cv15039734/)
 
@@ -366,8 +402,9 @@ h5dump data.h5   # 输出文件的详细结构和内容
 
 ```bash
 # 超算平台编译步骤
-# 导入 oneapi 套件；hdf5
+# 导入 Intel oneAPI 套件；hdf5
 module purge
+
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 module load hdf5/1.12.2-intel-2021.4.0
@@ -398,7 +435,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/lib
 
 ---
 
-## VASP + VTST 编译
+## VASP + VTST
 
 - 在 VASP 添加过渡态计算功能
 
@@ -499,26 +536,18 @@ make: *** [makefile:17: std] Error 2
 ulimit -s unlimited
 ```
 
+- [OneAPI问题：缺少libmkl_intel\_\*\_.so.\*文件的解决](https://zhuanlan.zhihu.com/p/589633827)
+
 ---
 
-AMD CPU 与 Intel CPU 编译 VASP 的区别
-[VASP编译偶遇“Function return parameter requires SSE register while SSE is disabled”](https://zhuanlan.zhihu.com/p/601580449)
-
-`-xHOST` 是一个编译器标志，通常用于告诉编译器针对运行当前编译过程的机器的最高可用指令集进行优化。这个标志是 Intel 编译器中的一部分，用于生成可以利用当前处理器所有高级特性的代码
-
-SCALAPACK：高扩展的 LAPACK，主要用于分布式内存体系结构
-
-[OneAPI问题：缺少libmkl_intel\_\*\_.so.\*文件的解决](https://zhuanlan.zhihu.com/p/589633827)
 
 [【VASP报错集锦 1】](https://zhuanlan.zhihu.com/p/536705200)
 
 ---
 
-自己安装的 Ubuntu 测试，Intel oneAPI 2023 版编译 VASP 6.3.0 报错
-
 ```bash
-minimax_functions1D.F(46): catastrophic error: Function return parameter requires SSE register while SSE is disabled.
-compilation aborted for minimax_functions1D.f90 (code 1)
+# VASP warning
+WARNING in EDDRMM: call to ZHEGV failed, returncode =   6  3      3
 ```
 
 ---

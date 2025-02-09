@@ -163,9 +163,7 @@ wslconfig                       # 查看 WSL 配置
 
 ### 其他
 
-- WSL2 安装 cuda：[win11+wls2+ubuntu2004配置cuda+cudnn+pytorch - LandWind - 博客园](https://www.cnblogs.com/LandWind/p/wsl2-cuda-cudnn-first-start.html)
-
-- cuda 的 API 分为两种类型，一种是驱动（driver）API，另一种是运行（runtime）API。`nvidia-smi` 查看的 cuda 版本是驱动 API 版本，`nvcc -V` 是运行 API
+- WSL 2 安装 CUDA：[win11+wls2+ubuntu2004配置cuda+cudnn+pytorch - LandWind - 博客园](https://www.cnblogs.com/LandWind/p/wsl2-cuda-cudnn-first-start.html)
 
 - 将 Windows Chrome 浏览器软链至 WSL 2 Ubuntu
 

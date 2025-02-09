@@ -549,12 +549,16 @@ chemical_system           # 所含的化学元素；dict
 chemical_system_set       # 所含的化学元素；以 - 连接的 str
 fractional_composition    # 分数成分
 reduced_composition       # 约化成分
+is_element                # 是否为纯元素
 
 # 方法
 get_atomic_fraction()     # 原子百分比
 get_wt_fraction()         # 质量百分比
 get_el_amt_dict()         # 返回元素及对应的数目；dict
 as_dict()                 # 基本同上
+to_html_string()          # 将化学式生成 HTML 格式（htmlify()）
+to_latex_string()         # 将化学式生成 LaTeX 格式（latexify()）
+to_unicode_string()       # 将化学式生成 unicode 格式（unicodeify()）
 ```
 
 
@@ -654,8 +658,48 @@ get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
 
 #### units
 
-```python
+- pymatgen 相关工具
 
+```python
+from pymatgen.util.string import ...
+
+
+# 函数
+formula_double_format()   # 将 Li1.0Fe1.0P1.0O4.0 -> LiFePO4
+latexify()                # 将化学式生成 LaTeX 格式
+htmlify()                 # 将化学式生成 HTML 格式
+unicodeify()              # 将化学式生成 unicode 格式
+latexify_spacegroup()     # 将空间群生成 LaTeX 格式
+unicodeify_spacegroup()   # 将空间群生成 unicode 格式
+
+
+from pymatgen.util.plotting import ...
+
+
+# 函数
+pretty_plot()
+pretty_polyfit_plot()
+periodic_table_heatmap()  # 
+format_formula()
+get_ax_fig()
+add_fig_kwargs()          # 装饰器
+
+
+from pymatgen.util.coord import ...
+
+
+# 函数
+get_angle()               # 获取两个向量的夹角
+```
+
+
+---
+
+#### bonds
+
+```python
+# 键长
+from pymatgen.core.bonds import get_bond_length
 ```
 
 
@@ -1082,6 +1126,45 @@ UnconvergedVASPWarning: vasprun.xml is an unconverged VASP run.
 Electronic convergence reached: True.
 Ionic convergence reached: False.
   warnings.warn(msg, UnconvergedVASPWarning)
+```
+
+
+---
+
+#### 其他
+
+```python
+from pymatgen.io.vasp.outputs import Elfcar, Chgcar
+```
+
+
+---
+
+### pymatgen.io.lammps
+
+#### data
+
+- 解析 LAMMPS data 格式文件
+
+```python
+from pymatgen.io.lammps.data import LammpsData
+
+# 方法
+write_file()        # 写入 LAMMPS data 格式文件
+
+# 类方法
+from_structure()    # 从 Structure 导入
+from_file()         # 从文件导入
+
+# 属性
+# 以 Pandas DataFrame 格式存储信息
+atoms               # 原子信息（type x y z 等）
+box                 # 盒子信息
+masses              # 相对原子质量
+atom_style          # atom_style 类型
+velocities          # 速度
+force_field         # 力场信息
+topology            # 拓扑信息
 ```
 
 

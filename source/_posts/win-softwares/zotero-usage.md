@@ -21,6 +21,8 @@ password:
 
 ## 介绍
 
+- [GitHub - redleafnew/Zotero\_introduction: A Short Chinese Introduction to Zotero](https://github.com/redleafnew/Zotero_introduction)
+
 - 文献管理软件，可通过浏览器插件保存网页中的文献，也可直接导入文献 PDF 文件
 
 - 可实现文献、文献中的批注云同步
