@@ -66,6 +66,8 @@ password:
 
 - [GitHub - Arman19941113/dnd-resume: 🚀 简历生成工具，支持在线预览、打印 PDF](https://github.com/Arman19941113/dnd-resume)
 
+- [GitHub - yabeiwu/yabeiwu.github.io](https://github.com/yabeiwu/yabeiwu.github.io)
+
 
 
 ---

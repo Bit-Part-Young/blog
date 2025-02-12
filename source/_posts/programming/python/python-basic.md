@@ -780,15 +780,19 @@ $ python script.py      # 直接运行；输出 hello
 class ClassName():
     """docstring"""
 
+    # 类变量
     a = 1
 
     def __init__(self, arg1, arg2):
+        # 实例变量
         self.arg1 = arg1
         self.arg2 = arg2
 
+    # 方法
     def method(self):
         print(self.arg1, self.arg2, self.a)
 
+    # 魔法方法
     def __str__():
         ...
 
@@ -801,6 +805,7 @@ class ClassName():
 
     @classmethod
 
+
 obj = ClassName(2, 3)     # 实例化
 obj.method()              # 使用实例方法 
 print(obj.a, obj.arg1)    # 访问类属性
@@ -808,7 +813,7 @@ print(obj.a, obj.arg1)    # 访问类属性
 
 
 ```python
-dir()       # 查看类的（实例）所有的属性和方法；函数的所有参数
+dir()           # 查看类的（实例）所有的属性和方法；函数的所有参数
 
 isinstance()    # 在类的初始化函数中对参数的类型进行判别并抛出异常
 
@@ -816,7 +821,7 @@ isinstance()    # 在类的初始化函数中对参数的类型进行判别并�
 @property       # 将方法伪装成属性；只读不可写
 @attr.setter    # 将属性变成可写
 
-# 特殊方法
+# 特殊方法/魔法方法
 __init__()
 __str__()
 __repr__()

@@ -546,8 +546,11 @@ ulimit -s unlimited
 ---
 
 ```bash
-# VASP warning
+# 在电子步中，有时会出现该 warning，code 对应的数字会有不同，影响是否大
+# 如何解决该问题
 WARNING in EDDRMM: call to ZHEGV failed, returncode =   6  3      3
+
+Error EDDDAV: Call to ZHEGV failed. Returncode =  25 2  48
 ```
 
 ---

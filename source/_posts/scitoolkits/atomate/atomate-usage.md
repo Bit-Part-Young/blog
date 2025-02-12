@@ -281,6 +281,8 @@ Analyze Elastic Data--71
 
 - [x] MONGOSH 使用（暂无必要）
 
+- [手把手教你注册MongoDB Atlas](https://mp.weixin.qq.com/s/jF5o7YNHw88uI7rjTxFkIw)
+
 
 ---
 

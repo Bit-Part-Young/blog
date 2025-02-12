@@ -397,9 +397,9 @@ OptimizeFW
 
 - `atomate/vasp/workflows/base`: raw workflows，需要更多参数设置
 
-用于 elastic tensor 的标准预设 workflow 使用了许多超出确定弹性张量所需的计算，这样可以得到一个高质量的张量，其中一些数值噪声会在重复计算中被消除。也可以生成 minimal 的 workflow，它既不使用更昂贵的 DFT 参数，也不进行扩展计算。使用该 workflow 生成的张量通常不太精确，但对于具有大量对称性的简单半导体通常足够使用。（摘自 workshop 2019）
+- `wf_elastic_constant()` 和 `wf_elastic_constant_minimal()` 之间的区别：用于 elastic tensor 的标准预设 workflow 使用了许多超出确定弹性张量所需的计算，这样可以得到一个高质量的张量，其中一些数值噪声会在重复计算中被消除。也可以生成 minimal 的 workflow，它既不使用更昂贵的 DFT 参数，也不进行扩展计算。使用该 workflow 生成的张量通常不太精确，但对于具有大量对称性的简单半导体通常足够使用。（摘自 workshop 2019）
 
-- [ ] 参数 `c` （Config dict，作为 `atomate.vasp.powerups` 模块中的 `add_common_powerups()` 函数参数）
+- 参数 `c` （Config dict，作为 `atomate.vasp.powerups` 模块中的 `add_common_powerups()` 函数参数）
 
 ```python
 # add_common_powerups() 支持以下 4 个 key
@@ -467,6 +467,52 @@ wf_thermal_expansion(structure, c=None)
 
 # NEB 计算
 wf_nudged_elastic_band(structures, parent, c=None)
+```
+
+- K 点默认参数设置
+
+```python
+reciprocal_density: 64     # 弛豫
+reciprocal_density: 100    # 静态 
+grid_density: 7000         # 弹性常数计算；第一步弛豫、ISIF = 2 弛豫部分
+```
+
+- 弹性常数计算 workflow 默认参数设置
+
+```python
+# 计算 2 阶弹性常数（默认）
+# 第一步弛豫
+{"ENCUT": 700, "EDIFF": 1e-6, "LAECHG": False, "LREAL": False}
+# ISIF = 2 弛豫部分
+{"ISIF": 2, "IBRION": 2, "NSW": 99, "ISTART": 1}
+
+
+# 计算 3 阶弹性常数
+Kpoints.automatic_density(structure, 40000, force_gamma=True)
+stencils = np.linspace(-0.075, 0.075, 7)
+
+
+# wf_elastic_constant_minimal() 设置
+stencil = np.arange(0.01, 0.01 * order, step=0.01)
+
+
+# wf_elastic() 会调用 get_wf_elastic_constant()
+# get_wf_elastic_constant() 源代码
+# Convert to conventional if specified
+if conventional:
+    structure = SpacegroupAnalyzer(structure).get_conventional_standard_structure()
+
+uis_elastic = {"IBRION": 2, "NSW": 99, "ISIF": 2, "ISTART": 1}
+vis = vasp_input_set or MPStaticSet(structure, user_incar_settings=uis_elastic)
+strains = []
+if strain_states is None:
+    strain_states = get_default_strain_states(order)
+if stencils is None:
+    stencils = [np.linspace(-0.01, 0.01, 5 + (order - 2) * 2)] * len(strain_states)
+if np.array(stencils).ndim == 1:
+    stencils = [stencils] * len(strain_states)
+for state, stencil in zip(strain_states, stencils):
+    strains.extend([Strain.from_voigt(s * np.array(state)) for s in stencil])
 ```
 
 

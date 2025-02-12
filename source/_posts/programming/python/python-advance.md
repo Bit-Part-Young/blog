@@ -185,6 +185,7 @@ package_name/
 # 结构 2
 src/
 
+# 配置文件
 setup.py
 setup.cfg
 pyproject.toml

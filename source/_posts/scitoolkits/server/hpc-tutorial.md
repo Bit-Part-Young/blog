@@ -105,6 +105,8 @@ nvcc --version        # 查看 CUDA 运行版本
 /usr/local/cuda       # CUDA 安装路径
 ```
 
+- [NVIDIA-SMI 显示的cuda version 是指当前版本还是最大可以支持的 cuda 版本？ - 知乎](https://www.zhihu.com/question/622711856/answer/3218272497)
+
 - GPU 信息及使用情况查看：`nvidia-smi`、[gpustat - Python](https://github.com/wookayin/gpustat)
 
 ```bash

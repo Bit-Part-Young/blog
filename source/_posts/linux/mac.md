@@ -140,8 +140,8 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 - 隐藏文件夹
 
 ```bash
-chflags hidder <path>      # 隐藏
-chflags nohidder <path>    # 取消隐藏
+chflags hidden <path>      # 隐藏
+chflags nohidden <path>    # 取消隐藏
 ```
 
 
@@ -187,7 +187,8 @@ command + shift + G          # 打开 “前往文件夹” 窗口
 command + shift + .          # 在 Finder 中显示隐藏的点文件
 command + ~                  # 切换同一个程序下的窗口
 command + M                  # 将最前方的窗口最小化至程序坞（不会出现在切换窗口中）
-command + H                  # 隐藏最前方 App 的窗口（会出现在切换窗口中）
+command + H                  # 隐藏当前 App 的窗口（会出现在切换窗口中）
+command + option + H         # 隐藏除当前窗口外的所有窗口
 option + shift + F1/2/11/12  # 更加细致地调节音量、亮度
 option + command + 5         # 显示截图、录屏选项
 command + F3                 # 返回桌面

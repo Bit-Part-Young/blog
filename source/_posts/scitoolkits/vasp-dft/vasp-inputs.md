@@ -42,6 +42,12 @@ password:
     - [求助VASP表面结构优化自旋极化ISPIN及MAGMOM设置问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-22387-1-1.html)
     - [vasp中如何确定所计算的体系要不要加自旋极化？ - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-11672-1-1.html)
 
+- [合集·老司机讲VASP](https://space.bilibili.com/597052183/lists/217922)
+
+- [合集·老司机讲密度泛函](https://space.bilibili.com/597052183/lists/212339)
+
+- [合集·老司机催化学习系列](https://space.bilibili.com/597052183/lists/211382)
+
 
 
 ---
@@ -501,6 +507,10 @@ High           # High Medium Low 为弃用值
 
 - 默认值：Normal
 
+- blocked-Davidson (DAV) 算法对应于 IALGO=38；RMM-DIIS (RMM) 算法对应于 IALGO=48
+
+- 建议通过 ALGO 选择算法而非 IALGO
+
 ```bash
 Normal         # blocked-Davidson 算法
 Fast           # 混合算法，初始几步采用 blocked-Davidson(DAV) 算法，之后采用 RMM-DIIS(RMM) 算法
@@ -716,7 +726,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 默认值：.FALSE.
 
-- 若 ADDGRID=.TRUE.，grid 将是 "fine "grid 的 8 倍；有助于降低力噪声
+- 若 ADDGRID=.TRUE.，grid 将是 "fine" grid 的 8 倍；有助于降低力噪声；不应在所有计算中将其作为默认的 tag
 
 
 ---
@@ -926,6 +936,8 @@ PE               # Perdew-Burke-Ernzerhof
 91               # Perdew -Wang 91
 PS               # PBEsol
 
+NELMDL           # 
+
 LNONCOLLINEAR    # 非共线磁结构计算
 
 LSORBIT          # 自旋轨道耦合计算
@@ -945,4 +957,10 @@ LEPSILON         #
 LBERRY           # Berry 相位法
 
 NUPDOWN          # 指定自旋向上和自旋向下的电子数差
+
+NSIM             # NSIM 设置由 RMM-DIIS 算法同时优化的 band 数；默认值 4
+
+NPLANE           # 在实空间中打开 plane-wise 数据分布；默认值 .TRUE.
+
+PSTRESS          # 设置外部压力（单位 kB）或对应力张量进行修正；默认值 0
 ```

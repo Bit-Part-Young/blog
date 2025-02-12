@@ -945,9 +945,10 @@ potcar.write_file("POTCAR")
 - 在 MPRelaxSet.yaml 参数设置文件中，KPOINTS 只能写如下几种参数
 
 ```bash
-grid_density                       # Kpoints.automatic_density
-reciprocal_density                 # KPoints.automatic_density_by_vol
-length                             # Kpoints.automatic
+# 在 VaspInputSet 类的 kpoints 属性中查看
+grid_density                       # Kpoints.automatic_density()
+reciprocal_density                 # KPoints.automatic_density_by_vol()
+length                             # Kpoints.automatic()（不推荐）
 line_density                       # line mode
 added_kpoints                      # specific k-points to include
 zero_weighted_reciprocal_density   # a zero weighted uniform mesh

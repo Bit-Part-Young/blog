@@ -215,7 +215,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 
 - 去除 C 盘及程序快捷方式的两个朝内的蓝色箭头（无法从根本上去除）：右键 - 属性 - 高级 - 取消勾选 “压缩内容以便节省磁盘空间”
 
-- 为 Microsoft Store 等设置本地代理（下载 EnableLoopback Utility）：[为Windows apps应用设置本地代理 - KiritoA's Blog](https://kiritox.me/setup-proxy-for-windows-apps/)
+- 为 Microsoft Store 等应用设置本地代理（下载 EnableLoopback Utility；实用）：[为Windows apps应用设置本地代理 - KiritoA's Blog](https://kiritox.me/setup-proxy-for-windows-apps/)
 
 - Microsoft 365 无法删除里面的应用
 

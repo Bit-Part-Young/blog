@@ -440,24 +440,78 @@ LELF        = .TRUE.
 
 ### 弹性常数计算
 
-- 可以用原胞计算弹性常数
+- 可用原胞计算弹性常数（但还是建议用单胞进行计算）
 
 - VASP 计算弹性常数，其 ENCUT 数值要比弛豫计算的更高，通常 1.5 倍 ENMAX
 
-[GitHub - haidi-ustc/VASP-Elastic: Extracts full elastic tensor from VASP OUTCAR and calculates some useful quantities](https://github.com/haidi-ustc/VASP-Elastic)
+- 计算得到的弹性常数值不是很准确
 
-计算得到的弹性常数值不是很准确
+- [【朱老师讲VASP】纯小白入门DFT计算：Si弹性常数计算\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Lo4y1a72j)
 
-- kBar=0.1GPa
+- [VASP报错及修复 - Yu-Xuan Blog](https://yxli8023.github.io/2021/12/19/VASP-Warning.html)
 
-- [ ] Nb 计算得到的弹性常数 C44 < 0，为什么？
+- [GitHub - haidi-ustc/VASP-Elastic: Extracts full elastic tensor from VASP OUTCAR and calculates some useful quantities](https://github.com/haidi-ustc/VASP-Elastic)
 
 ```bash
-IBRION = 6
-NFREE  = 4  # 4 或 2
-ISIF   = 3
+# INCAR 参数设置
+ENCUT   = 520      # 尽量高一些；个人设置 700
 
-# NSW 的设置，非 0 即可，与其具体值关系不大
+IBRION  = 6
+NSW     = 1
+NFREE   = 2        # 4 或 2
+POTIM   = 0.015
+ISIF    = 3
+
+
+# 单位换算
+1 kBar = 0.1 GPa
+
+
+# 获取弹性常数数据
+# 方式 1
+grep -A9 'TOTAL ELASTIC MODULI' OUTCAR
+# 方式 2
+vaspkit - 2 - 203
+
+
+# OSZICAR 相关内容
+Found     1 degrees of freedom:
+Adding 6 more for cell shape distortion
+
+# log/out 文件相关内容
+Found     1 degrees of freedom:
+Adding 6 more for cell shape distortion
+Finite differences POTIM= 0.01500 DOF=   7
+
+Finite differences progress:
+ Degree of freedom:   1/  7
+ Displacement:        2/  2
+ Total:               2/ 14
+
+# OUTCAR 相关内容
+Found     1 degrees of freedom:
+
+
+        Directions for atom     1:
+        --------------------------
+
+              1.0000000000000000      0.0000000000000000      0.0000000000000000
+        Strain: 6 additional degrees of freedom
+        ---------------------------------------
+ Finite differences:
+   Step               POTIM =   1.500000000000000E-002
+   Degrees of freedom DOF   =            7
+
+
+Finite differences progress:
+ Degree of freedom:   1/  7
+ Displacement:        2/  2
+ Total:               2/ 14
+
+
+# 相关 Warning（有无影响，影响是否大）
+VERY BAD NEWS! internal error in subroutine IBZKPT:
+Reciprocal lattice and k-lattice belong to different class of lattices. Often results are still useful...      96
 ```
 
 
