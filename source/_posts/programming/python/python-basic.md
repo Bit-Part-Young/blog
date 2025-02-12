@@ -362,6 +362,21 @@ for item in d.items():
 # 将 item 解包
 for key, value in d.items():
     ... 
+
+
+# 对字典列表进行排序
+dicts_lists = [
+    {"Name": "James", "Age": 20},
+    {"Name": "May", "Age": 14},
+    {"Name": "Katy", "Age": 23},
+]
+# 方式 1
+dicts_lists.sort(key=lambda item: item.get("Age"))
+# 方式 2
+from operator import itemgetter
+
+f = itemgetter("Name")
+dicts_lists.sort(key=f)
 ```
 
 
@@ -526,9 +541,9 @@ if value not in lst：  # 如果在则为 False
 
 ### 循环
 
-- python 中的 for 循环并不像 c 中是指定一个变量的变化方式，而是从列表 / 元组 / 迭代器等可迭代对象中遍历值
+- Python 中的 for 循环并不像 C 中是指定一个变量的变化方式，而是从列表/元组/迭代器等可迭代对象中遍历值
 
-- `range()` 得到的并不是列表，如果要用其生成列表要使用 `list(range(...))`
+- `range()` 生成的不是列表，需使用 `list(range(...))`
 
 ```python
 # 使用 range 来生成一串数字用来循环
@@ -543,6 +558,49 @@ for i in range(1, 10, 2):
 
 lst = list(range(10))      # 生成列表
 ```
+
+- 迭代器（Iterator）：一个实现了 `__iter__()` 和 `__next__()` 方法的对象
+    - `__iter__()`：返回迭代器本身
+    - `__next__()`：返回容器中的下一个元素，如果没有更多元素，抛出 `StopIteration` 异常
+
+```python
+# 创建一个迭代器类
+class MyIterator:
+    def __init__(self, start, end):
+        self.current = start
+        self.end = end
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.current < self.end:
+            self.current += 1
+            return self.current - 1
+        else:
+            raise StopIteration
+
+# 使用迭代器
+it = MyIterator(0, 5)
+for value in it:
+    print(value)
+```
+
+- 生成器（Generator）：一个特殊类型的迭代器。它使用函数生成序列，而不是一次性返回所有的元素。生成器函数使用 `yield` 关键字来生成值。当 `yield` 被调用时，函数会暂停并返回一个值，下一次调用时从暂停的位置继续执行（惰性求值）
+
+```python
+# 创建一个生成器函数
+def my_generator(start, end):
+    while start < end:
+        yield start
+        start += 1
+
+# 使用生成器
+gen = my_generator(0, 5)
+for value in gen:
+    print(value)
+```
+
 
 ---
 
@@ -774,7 +832,7 @@ $ python script.py      # 直接运行；输出 hello
 
 - 构造方法：`__init__()`，在类实例化时会被自动调用；用于设置实例属性
 
-
+- Enum 枚举类，适合用于多个常量的情境
 
 ```python
 class ClassName():
@@ -813,24 +871,75 @@ print(obj.a, obj.arg1)    # 访问类属性
 
 
 ```python
-dir()           # 查看类的（实例）所有的属性和方法；函数的所有参数
+dir()                  # 查看类的（实例）所有的属性和方法；函数的所有参数
+isinstance()           # 在类的初始化函数中对参数的类型进行判别并抛出异常
+hasattr(object, name)  # 检查对象是否拥有指定的属性
 
-isinstance()    # 在类的初始化函数中对参数的类型进行判别并抛出异常
 
 # 装饰器
 @property       # 将方法伪装成属性；只读不可写
 @attr.setter    # 将属性变成可写
 
 # 特殊方法/魔法方法
-__init__()
-__str__()
-__repr__()
-__len__()
-__add__()
+__init__()           # 实例化
+__str__()            # 将对象转换为字符串（不需要返回能够重建对象的字符串）
+__repr__()           # 将对象转换为字符串（尽量能通过 eval() 重建对象，便于调试）
+__len__()            # 返回对象的长度
+__add__()            # 定义对象的加法运算
 
 # 特殊属性
-__class__
-__name__
+__class__            # 获取对象的类，返回的是类的引用
+__name__             # 获取类、模块、函数等的名称，返回的是字符串
+```
+
+- 魔法方法使用示例
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __repr__(self):
+        # 这种格式可通过 eval 还原对象
+        return f"Point({self.x}, {self.y})"
+
+    def __str__(self):
+        return f"Point at ({self.x}, {self.y})"
+
+    def __len__(self):
+        return len(self.data)
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+
+# 创建对象
+p = Point(2, 3)
+print(repr(p))  # 输出: Point(2, 3)
+# 默认表示格式 <__main__.ClassName object at memory_location>
+
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+p3 = p1 + p2
+print(p3)       # 输出: Point(4, 6)
+```
+
+- `dataclass` 是一个装饰器，它简化了类的定义，特别是当类用于存储数据时。使用 `dataclass` 可自动生成一些常见的类方法，如 `__init__`、`__repr__`、`__eq__` 等；`field` 是与 `dataclass` 配合使用的，允许为 ` dataclass ` 中的字段添加更多的自定义选项。如可指定默认值、类型限制、字段是否包含在生成的 `__repr__` 或 `__eq__` 方法中等
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class Person:
+    name: str
+    age: int = 30
+    email: str = field(default="unknown", repr=False)
+
+# 创建对象
+p = Person(name="Alice")
+print(p)  # 输出: Person(name='Alice', age=30)
+
 ```
 
 

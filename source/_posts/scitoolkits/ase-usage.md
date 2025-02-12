@@ -985,8 +985,14 @@ neb.idpp_interpolate(fmax=0.1, optimizer=BFGS, steps=1000)
 
 - md 相关算法
 
+- 使用 ASE md 模块执行 MD 示例：[benchmarks/MACE/run\_mace\_md.py at main · deng-group/benchmarks · GitHub](https://github.com/deng-group/benchmarks/blob/main/MACE/run_mace_md.py)
+
 ```python
+from ase.md import MDLogger
 from ase.md.langevin import Langevin
+from ase.md.nptberendsen import NPTBerendsen
+from ase.md.nvtberendsen import NVTBerendsen
+from ase.md.velocitydistribution import MaxwellBoltzmannDistribution, Stationary
 ```
 
 

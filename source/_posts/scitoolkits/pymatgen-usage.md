@@ -857,11 +857,11 @@ from pymatgen.io.vasp.inputs import Kpoints
 automatic()                        # 弃用，建议使用 INCAR 中的 KSPAING 参数
 gamma_automatic()                  # kpts 参数：三个方向的 K 点密度
 monkhorst_automatic()              # 同上
-automatic_density()                # grid_density
-automatic_gamma_density()
-automatic_density_by_vol()         # reciprocal_density
-automatic_density_by_lengths()     # 依据晶格常数生成 K 点密度大小
-automatic_linemode()
+automatic_density()                # 当结构为面心或六方，或最终的 K 点数值为奇数时，会强制使用 Gamma centered meshes
+automatic_gamma_density()          # 同上；只用 Gamma centered meshes
+automatic_density_by_vol()         # 算法和 automatic_density() 相同
+automatic_density_by_lengths()     # 根据晶格常数生成 K 点密度
+automatic_linemode()               # 计算能带用
 
 
 # KPOINTS dict
@@ -944,7 +944,7 @@ potcar.write_file("POTCAR")
 
 - 在 MPRelaxSet.yaml 参数设置文件中，KPOINTS 只能写如下几种参数
 
-```bash
+```python
 # 在 VaspInputSet 类的 kpoints 属性中查看
 grid_density                       # Kpoints.automatic_density()
 reciprocal_density                 # KPoints.automatic_density_by_vol()

@@ -131,4 +131,5 @@ prefix + H J K L     # 调整窗格大小
 prefix + h j k l     # 导航窗格
 prefix + +           # 将当前窗格最大化为新窗口和最小化
 prefix + m           # 鼠标模式打开或关闭
+prefix + [           # 进入 copy-mode 模式，滚屏
 ```

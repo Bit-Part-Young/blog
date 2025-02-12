@@ -33,6 +33,8 @@ password:
     - 安装 packages：`make` 使用 `make yes-<package>`； `CMake` 使用 ` -D PKG_<NAME>=on`
     - Build LAMMPS
 
+- LAMMPS 可在已编译好的基础上添加其他 package 进行补充编译
+
 - 所有可用的 packages 及其描述：[6.1. Available Packages — LAMMPS documentation](https://docs.lammps.org/Packages_list.html)
 
 - packages 细节：[6.2. Package details — LAMMPS documentation](https://docs.lammps.org/Packages_details.html)
@@ -100,7 +102,7 @@ mc                           # 蒙特卡洛
 
 ## CMake 编译
 
-- 适用于较新版本的 LAMMPS
+- 适用于较新版本的 LAMMPS；优点：保持 src 目录干净
 
 - [8.6.1. Using CMake with LAMMPS — LAMMPS documentation](https://docs.lammps.org/Howto_cmake.html)
 
