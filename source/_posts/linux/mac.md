@@ -1,15 +1,16 @@
 ---
-title: Mac 使用
+title: MacBook 使用
 top: false
 pin: false
 cover:
 toc: true
 mathjax: true
 math: true
-summary: Mac 使用
-description: Mac 使用
+summary: MacBook  使用
+description: MacBook  使用
 tags:
-  - Mac
+  - MacBook
+  - macOS
 categories:
   - Linux
 date: 2023-12-15 14:45:00
@@ -22,14 +23,14 @@ password:
 ## 介绍
 
 - 优点：
-    - Macbook Air 轻便
+    - MacBook Air 轻便
     - 续航强
     - 屏幕、音质好
     - 触控板功能丰富
     - CPU 单核性能强
     - ...
 
-- 明确 Macbook 购买机型：
+- 明确 MacBook 购买机型：
     - [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
     - [2024年苹果 MacBook 选购指南(MacBook Air/Pro 的 M123/Pro/Max/Ultra有什么区别，13/14/15/16寸怎么选)](https://www.zhihu.com/tardis/zm/art/378347974?source_id=1003)
     - [Apple 苹果产品参数中心 / HubWeb.cn](https://hubweb.cn/)

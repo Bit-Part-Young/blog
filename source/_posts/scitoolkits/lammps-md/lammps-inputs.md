@@ -1162,6 +1162,20 @@ thermo_style custom step temp ke pe etotal
 
 ---
 
+### thermo_modify
+
+```text
+thermo_style custom step vol temp etotal pe press
+thermo_modify format 1 %12d
+thermo_modify format 2 %22.12f
+thermo_modify format 3 %22.12f
+thermo_modify format 4 %22.12f
+thermo_modify format 5 %22.12f
+```
+
+
+---
+
 ### start
 
 ---

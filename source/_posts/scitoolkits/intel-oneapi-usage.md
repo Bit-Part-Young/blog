@@ -104,14 +104,22 @@ mpicc           # 广泛用于编译 MPI 程序的通用 C 编译器包装器；
 
 
 # Intel Classic 编译器
+# /path/oneapi/compiler/2022.1.0/linux/bin/intel64
 icc
 icpc
 ifort
 
 # Intel oneAPI 编译器
+# /path/oneapi/compiler/2022.1.0/linux/bin
 icx
 icpx
 ifx
+
+# Intel MPI
+# /path/oneapi/mpi/2021.6.0/bin
+mpiicc
+mpiicpc
+mpiifort
 
 # GNU 编译器
 gcc

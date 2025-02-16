@@ -960,7 +960,9 @@ NUPDOWN          # 指定自旋向上和自旋向下的电子数差
 
 NSIM             # NSIM 设置由 RMM-DIIS 算法同时优化的 band 数；默认值 4
 
-NPLANE           # 在实空间中打开 plane-wise 数据分布；默认值 .TRUE.
+LPLANE           # 在实空间中打开 plane-wise 数据分布；默认值 .TRUE.
 
 PSTRESS          # 设置外部压力（单位 kB）或对应力张量进行修正；默认值 0
+
+LSCALU           # 在波函数的正交归一化中打开并行 LU 分解（使用scaLAPACK）；默认值 .FALSE.；大多数情况比串行 LU 分解慢
 ```

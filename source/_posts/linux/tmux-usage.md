@@ -127,9 +127,20 @@ cp .tmux/.tmux.conf.local .
 ```bash
 prefix + -           # 垂直拆分当前窗格
 prefix + _           # 水平拆分当前窗格
+prefix + x           # 关闭当前窗格
+prefix + ;           # 光标切换到上一个窗格
+prefix + o           # 光标切换到下一个窗格
+prefix + > / <       # 交换窗格
 prefix + H J K L     # 调整窗格大小
 prefix + h j k l     # 导航窗格
 prefix + +           # 将当前窗格最大化为新窗口和最小化
 prefix + m           # 鼠标模式打开或关闭
-prefix + [           # 进入 copy-mode 模式，滚屏
+prefix + [ / Enter   # 进入 copy-mode 模式，滚屏
 ```
+
+
+---
+
+### 相关问题
+
+- [ ] tmux 底部如何显示当前路径（安装了 ohmytmux，会无法实现此功能？建议拆分窗格查看）

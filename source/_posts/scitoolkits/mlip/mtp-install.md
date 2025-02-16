@@ -23,11 +23,11 @@ password:
 
 ## 安装
 
-- 安装 Tutorial：
+- 安装教程：
     - [installation tutorial · Wiki · Alexander Shapeev / MLIP-2 Tutorials · GitLab](https://gitlab.com/ashapeev/mlip-2-tutorials/-/wikis/installation-tutorial)
     - [README.md · master · Alexander Shapeev / LAMMPS-MLIP interface · GitLab](https://gitlab.com/ashapeev/interface-lammps-mlip-2/-/blob/master/README.md)
 
-- 编译步骤：先编译 MLIP，再编译 MLIP 与 LAMMPS 的接口
+- 编译步骤：先编译 MLIP-2，再编译 MLIP-2 与 LAMMPS 的接口
 
 ```bash
 # 导入 oneAPI 套件
@@ -37,14 +37,14 @@ module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-tbb/2021.4.0
 
-# 编译 MLIP
+# 编译 MLIP-2
 git clone https://gitlab.com/ashapeev/mlip-2.git
 cd mlip-2
-./configure          # 生成 make 目录；自动检测所在平台是否有 MPI 环境
+./configure          # 生成 make/config.mk 文件；会自动检测所在平台是否有 MPI 环境以及编译器（GPU 或 Intel）
 make mlp             # 生成 bin 和 obj 目录
 make libinterface    # 生成 lib 目录
 
-# 编译 MLIP 与 LAMMPS 的接口
+# 编译 MLI-2P 与 LAMMPS 的接口
 cd ..
 git clone https://gitlab.com/ashapeev/interface-lammps-mlip-2.git .
 cd interface-lammps-mlip-2
@@ -75,6 +75,41 @@ serial
 ---
 
 ## 相关问题
+
+- 用 cmake 编译 MLIP-2 会报错
+
+```bash
+/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o: warning: relocation against `_ZTV20CombinedAnyLocalMLIP' in read-only section `.text._ZN20CombinedAnyLocalMLIPC2EP12AnyLocalMLIPS1_PSo[_ZN20CombinedAnyLocalMLIPC5EP12AnyLocalMLIPS1_PSo]'
+/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o: in function `RunAllTestsDev(bool)':
+/home/XXX/opt/mlip-2/dev_src/mlp/dev_self_test.cpp:167: undefined reference to `CombinedAnyLocalMLIP::CalcE(Configuration&)'
+/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o: in function `CombinedAnyLocalMLIP::~CombinedAnyLocalMLIP()':
+/home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
+/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
+/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
+/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
+/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
+/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o:/home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: more undefined references to `vtable for CombinedAnyLocalMLIP' follow
+/usr/bin/ld: warning: creating DT_TEXTREL in a PIE
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/mlp.dir/build.make:650: mlp] Error 1
+make[1]: *** [CMakeFiles/Makefile2:874: CMakeFiles/mlp.dir/all] Error 2
+make: *** [Makefile:146: all] Error 2
+```
+
+- 将 MLIP-2 的 LAMMPS 接口用 cmake 编译会报错： [cmake (#14) · Issues · Alexander Shapeev / LAMMPS-MLIP interface · GitLab](https://gitlab.com/ashapeev/interface-lammps-mlip-2/-/issues/14)
+
+```bash
+/usr/bin/ld: liblammps.a(pair_MLIP.cpp.o): in function `LAMMPS_NS::PairMLIP::~PairMLIP()':
+/home/XXX/opt/lammps-29Aug2024/src/pair_MLIP.cpp:67: undefined reference to `MLIP_finalize()'
+/usr/bin/ld: liblammps.a(pair_MLIP.cpp.o): in function `LAMMPS_NS::PairMLIP::compute(int, int)':
+/home/XXX/opt/lammps-29Aug2024/src/pair_MLIP.cpp:85: undefined reference to `MLIP_calc_nbh(int, int*, int*, int**, int, int, double**, int*, double**, double&, double*, double**)'
+/usr/bin/ld: /home/XXX/opt/lammps-29Aug2024/src/pair_MLIP.cpp:123: undefined reference to `MLIP_calc_cfg(int, double*, double**, int*, int*, double&, double**, double*)'
+/usr/bin/ld: liblammps.a(pair_MLIP.cpp.o): in function `LAMMPS_NS::PairMLIP::init_style()':
+/home/XXX/opt/lammps-29Aug2024/src/pair_MLIP.cpp:211: undefined reference to `MLIP_init(char const*, char const*, int, double&, int&)'
+/usr/bin/ld: /home/XXX/opt/lammps-29Aug2024/src/pair_MLIP.cpp:209: undefined reference to `MLIP_init(char const*, char const*, int, double&, int&)'
+/usr/bin/ld: /home/XXX/opt/lammps-29Aug2024/src/pair_MLIP.cpp:206: undefined reference to `MLIP_finalize()'
+collect2: error: ld returned 1 exit status
+```
 
 - 不建议在 Arm 平台编译，可 module load 的程序少且版本旧；不建议在 Manager 编译，Intel 版本较老
 

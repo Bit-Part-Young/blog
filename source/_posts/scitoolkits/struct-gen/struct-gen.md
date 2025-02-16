@@ -172,9 +172,15 @@ Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector
 ```
 
 - extxyz 格式内容示例（第二行有晶体学信息）
+    - 第 1 行：原子数目
+    - 第 2 行：必须有 `Lattice`、`Properties` 参数；常见参数有 `pbc`
+        - `Properties=property_name:data_type:number_of_columns` 规定原子信息数组每一列的信息
+        - 常用 `property_name`：species、pos、Z、mass、charge；virial、stress（须为 3x3=9 个分量）
+        - `data_type`：分为 S、I、R、L 分别对应 string、integer、real、logical
+    - 第 3+ 行：与 Properties 对应的列
 
 ```bash
-# 其他构型文件转换成 extxyz
+# extxyz 基本格式示例
 32
 Lattice="6.57 0.0 0.0 0.0 6.57 0.0 0.0 0.0 11.88" Properties=species:S:1:pos:R:3 pbc="T T T"
 Nb       1.09062000       4.37562000      10.09800000
@@ -187,16 +193,16 @@ Nb       2.19438000       1.09062000      10.09800000
 
 ```bash
 # atom_style 为 atomic 时的内容
-Nb5Si3_alpha.lammps-data (written by ASE) 
+Nb5Si3_alpha.lammps-data (written by ASE)
 
-32 	 atoms 
+32 	 atoms
 2  atom types
 0.0      6.5700000000000003  xlo xhi
 0.0      6.5700000000000003  ylo yhi
 0.0      11.880000000000001  zlo zhi
 
 
-Atoms 
+Atoms
 
      1   2      1.0906200000000001      4.3756200000000005      10.098000000000001
      2   2      2.1943800000000002      1.0906200000000001      10.098000000000001

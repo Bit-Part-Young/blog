@@ -892,6 +892,18 @@ kpoints_dict = {
 
 
 kpoints = Kpoints.from_dict(kpoints_dict)
+
+
+# 生成 K-Path
+from pymatgen.core.structure import Structure
+from pymatgen.io.vasp.inputs import Kpoints
+from pymatgen.symmetry.bandstructure import HighSymmKpath
+
+structure = Structure.from_file("POSCAR")
+kpath = HighSymmKpath(structure)
+# division = 20 vaspkit 默认值
+kpoints = Kpoints.automatic_linemode(divisions=20, ibz=kpath)
+print(kpoints)
 ```
 
 
@@ -949,7 +961,7 @@ potcar.write_file("POTCAR")
 grid_density                       # Kpoints.automatic_density()
 reciprocal_density                 # KPoints.automatic_density_by_vol()
 length                             # Kpoints.automatic()（不推荐）
-line_density                       # line mode
+line_density                       # line mode；手动构建，而非调用 Kpoints.automatic_linemode()
 added_kpoints                      # specific k-points to include
 zero_weighted_reciprocal_density   # a zero weighted uniform mesh
 zero_weighted_line_density         # a zero weighted line mode mesh

@@ -593,8 +593,11 @@ awk '{printf "%s", $0} END {print ""}' file
 # 第 1、2 列交换
 awk '{ temp = $1; $1 = $2; $2 = temp; print }' file
 
+# 将第 2 列数值相加
+awk '{sum += $2} END {print sum}' file
+
 # 逆向排列
-awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}'
+awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}' file
 
 # 列拼接文件
 awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat
