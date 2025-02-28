@@ -79,7 +79,7 @@ dav.jianguoyun.com/dav
 
 - 注：主要针对 Zotero 7
 
-- [Zotero 插件商店 - Zotero 中文社区](https://zotero-chinese.com/plugins/)（为插件都提供了多个下载地址）
+- [Zotero 插件商店 - Zotero 中文社区](https://zotero-chinese.com/plugins/)（为插件都提供了多个下载源地址）
 - Add-on Market for Zotero：直接在 Zotero 内安装插件（最优先推荐）
 - Translate for Zotero：翻译插件（可设置百度翻译的 API key）
 - Jasminum：中文插件（CNKI）
@@ -94,6 +94,7 @@ dav.jianguoyun.com/dav
 - Zotero IF Pro Max
 - Zotero Citation Counts Manager
 - Zotero Style：容易卡顿
+- [GitHub - northword/zotero-itemtree-expand: Zotero 插件，令文库条目列表换行以便阅读全部标题。](https://github.com/northword/zotero-itemtree-expand)
 
 
 

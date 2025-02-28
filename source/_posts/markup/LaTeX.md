@@ -1638,6 +1638,7 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
     - [GitHub - saadq/resumake.io: 📝 A website for automatically generating elegant LaTeX resumes.](https://github.com/saadq/resumake.io)
     - [jsonresume.org](https://jsonresume.org/)
     - [GitHub - VatsalSy/Vatsal\_CV: This is the LaTeX source code of my CV](https://github.com/VatsalSy/Vatsal_CV)
+    - [GitHub - HouJP/resume: 使用LaTeX编译生成的中英文个人简历](https://github.com/HouJP/resume)
 
 - 国自然基金 LaTeX 模板：
     - [GitHub - huangwb8/ChineseResearchLaTeX: 中国科研常用LaTeX模板集](https://github.com/huangwb8/ChineseResearchLaTeX)

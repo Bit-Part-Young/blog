@@ -442,26 +442,28 @@ MITNEBSet class
 
 ### pymatgen.core
 
-- pymatgen 核心模块，常用的子模块有：`structure`、`sites`、`lattice`、`composition`
+- pymatgen 核心模块，常用的子模块有：`structure`、`sites`、`lattice`、`composition`、`periodic_table`
 
 ---
 
 #### structure
 
-- `Structure` 类继承自 `IStructure`
+- 晶体结构模块
 
-- `Structure` 与 `Molecule` 类的区别
-    - `Molecule` 类的基本参数为 `species`、 `coords`，`Structure` 还需指定 `lattice` 参数
-    - `Molecule` 类的 `coords` 参数值需是笛卡尔坐标形式，`Structure` 类可以是笛卡尔和分数两种坐标形式
-    - `Molecule` 本质上是 Site objects 的列表；`Structure` 本质上是 PeriodicSites objects 的列表；可以像 list 一样进行操作
+- Structure 类继承自 IStructure
+
+- Structure 与 Molecule 类的区别
+    - Molecule 类的基本参数为 `species`、 `coords`，Structure 还需指定 `lattice` 参数
+    - Molecule 类的 `coords` 参数值需是笛卡尔坐标形式，Structure 类可以是笛卡尔和分数两种坐标形式
+    - Molecule 本质上是 Site objects 的列表；Structure 本质上是 PeriodicSites objects 的列表；可以像 list 一样进行操作
 
 - 查看方法是否会直接修改对象本身：检查是否有 `in_place` 参数及注释是否有 "in place" 字样（“原地” 的意思）
 
-- `Structure` 无 `wrap()` 方法（根据 PBC 条件将胞外原子移至胞内），ASE 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
+- Structure 类无 `wrap()` 方法（根据 PBC 条件将胞外原子移至胞内），ASE 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
 
-- 复杂结构 pymatgen 无法通过 `to_primitive()` 方法（以及 vaspkit）将单胞转化成原胞
+- 复杂结构无法通过 `to_primitive()` 方法（以及 vaspkit）将单胞转化成原胞
 
-- `Structure` 类相关属性和方法：
+- Structure 类相关属性和方法：
 
 ```python
 from pymatgen.core.structure import Structure
@@ -535,6 +537,8 @@ indices_Nb = [i for i, site in enumerate(structure) if site.species_string == "N
 
 #### composition
 
+- 成分/化学式模块
+
 ```python
 from pymatgen.core.composition import Composition
 
@@ -566,7 +570,7 @@ to_unicode_string()       # 将化学式生成 unicode 格式（unicodeify()）
 
 #### periodic_table
 
-- 查看元素周期表中元素的信息；Element 类继承自 ElementBase
+- 元素周期表模块，查看元素信息；Element 类继承自 ElementBase
 
 ```python
 from pymatgen.core.periodic_table import Element
@@ -663,7 +667,6 @@ get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
 ```python
 from pymatgen.util.string import ...
 
-
 # 函数
 formula_double_format()   # 将 Li1.0Fe1.0P1.0O4.0 -> LiFePO4
 latexify()                # 将化学式生成 LaTeX 格式
@@ -675,18 +678,16 @@ unicodeify_spacegroup()   # 将空间群生成 unicode 格式
 
 from pymatgen.util.plotting import ...
 
-
 # 函数
 pretty_plot()
 pretty_polyfit_plot()
-periodic_table_heatmap()  # 
+periodic_table_heatmap()  #
 format_formula()
 get_ax_fig()
 add_fig_kwargs()          # 装饰器
 
 
 from pymatgen.util.coord import ...
-
 
 # 函数
 get_angle()               # 获取两个向量的夹角
@@ -696,6 +697,8 @@ get_angle()               # 获取两个向量的夹角
 ---
 
 #### bonds
+
+- 键
 
 ```python
 # 键长
@@ -707,7 +710,7 @@ from pymatgen.core.bonds import get_bond_length
 
 #### surface
 
-- 总体而言，该模块生成表面模型没有 ASE 相关模块或 atomsk 或 latgen 好用
+- 表面 slab 模块；总体而言，该模块生成表面模型没有 ASE 相关模块或 atomsk 或 latgen 好用
 
 - [Chap.11 计算小白硬学VASP —— 构建slab模型 - A&H](https://andyhox.github.io/2024/08/05/Learn-VASP-from-pymatgen-11/)
 
@@ -742,7 +745,7 @@ min_vacuum_size         # 真空层最小厚度
 center_slab             # 是否将原子移至 z 方向中间
 in_unit_planes          # 设置 min_slab_size 和 min_vacuum_size 参数的单位，False 为 Angstrom，True 为 slab 层数
 primitive               # 是否将生成的 slab reduce 成 primitive cell
-max_normal_search       # 
+max_normal_search       #
 reorient_lattice        # 使 c 方向平行于第三个点阵矢量
 
 # 方法
@@ -772,7 +775,7 @@ slabs[0]
 
 ### pymatgen.io.ase
 
-- `AseAtomsAdaptor`：将 ase 中的 `atoms` 类与 pymatgen 中的 `Structure` 类互相转换
+- `AseAtomsAdaptor`：将 ASE 中的 `Atoms` 类与 pymatgen 中的 `Structure` 类互相转换
 
 ```python
 from pymatgen.io.ase import AseAtomsAdaptor
@@ -787,14 +790,14 @@ get_atoms()         # Structure 转 atoms
 
 ### pymatgen.io.atat
 
-只有 Mcsqs 类（功能较一般）
+- 只有 Mcsqs 类（功能较一般）
 
 
 ---
 
 ### pymatgen.io.vasp.help
 
-查看 VASP 参数 help
+- 查看 VASP 参数 help
 
 ```python
 from pymatgen.io.vasp.help import VaspDoc
@@ -847,7 +850,7 @@ incar.write_file("INCAR")
 
 - 生成 K 点密度的 classmethod 大多都有 `force_gamma` 参数
 
-- `automatic_density_by_vol()` classmethod 生成的三个方向的 K 点密度公式可理解为： reciprocal_density \* (2\*π / lattice_constant)；`kppvol` 参数值设置可参考 `MPStaticSet` 类中的代码
+- `automatic_density_by_vol()` 类方法生成的三个方向的 K 点密度公式可理解为： reciprocal_density \* (2\*π / lattice_constant)；`kppvol` 参数值设置可参考 `MPStaticSet` 类中的代码
 
 ```python
 from pymatgen.io.vasp.inputs import Kpoints
@@ -929,11 +932,10 @@ site_symbols                # 原子种类
 
 #### Potcar
 
-读取和写入 POTCAR 文件的 object，由 PotcarSingle object （单个 POTCAR） 的列表组成
+- 读取和写入 POTCAR 文件的 object，由 `PotcarSingle` object （单个 POTCAR） 的列表组成
 
 ```python
 from pymatgen.io.vasp.inputs import Potcar
-
 
 # 这里的 symbols 是元素赝势符号，而非元素符号
 potcar = Potcar(
@@ -1042,7 +1044,7 @@ drift                          # 每个离子步的 Total drift
 run_stats                      # "Total CPU time used (sec)" 相关内容
 final_energy                   # "energy(sigma->0)"
 final_energy_wo_entrp          # "energy without entropy"
-final_fr_energy                # "free energy TOTEN"    
+final_fr_energy                # "free energy TOTEN"
 
 # 方法
 read_pattern()                 # 通用 pattern 解析
@@ -1372,7 +1374,7 @@ from pymatgen.analysis.interfaces.zsl import ZSLGenerator
 zsl                              # Zur 和 McGill 晶格匹配算法 模块
 ZSLGenerator                     # 基于 zsl 算法的界面生成 类
 
-coherent_interfaces              # 
+coherent_interfaces              #
 CoherentInterfaceBuilder         # 共格界面构建 类
 ```
 

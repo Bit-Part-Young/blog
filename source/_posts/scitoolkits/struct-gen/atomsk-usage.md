@@ -31,6 +31,8 @@ password:
     - 无法直接构造八面体、四面体间隙的点缺陷
     - 可否建立 layer / 界面模型？
 
+- 只能构建 BCC、FCC、HCP 结构的特殊取向，其他结构不能（会报错）
+
 - 参考资料
     - atomsk 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
     - [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)

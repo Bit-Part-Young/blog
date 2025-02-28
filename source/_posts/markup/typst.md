@@ -628,6 +628,7 @@ Show 规则用于全局替换
 - 生成 Typst package 的文档：[tidy](https://github.com/Mc-Zen/tidy)
 - 使用 Font Awesome 图标：[GitHub - duskmoon314/typst-fontawesome](https://github.com/duskmoon314/typst-fontawesome)
 - admonitions：[GitHub - jomaway/typst-gentle-clues: Simple admonishment for typst](https://github.com/jomaway/typst-gentle-clues)
+- 定理环境：[GitHub - OrangeX4/typst-theorion: Out-of-the-box, customizable and multilingual theorem environment package for Typst.](https://github.com/OrangeX4/typst-theorion)
 
 
 ---
@@ -690,6 +691,10 @@ wget --recursive --no-parent --convert-links https://typst.app/docs/
 - 将 Typst 内容渲染成网页
     - [GitHub - Myriad-Dreamin/typst-book: A simple tool for creating modern online books in pure typst.](https://github.com/Myriad-Dreamin/typst-book/)
     - [GitHub - wenbin-liu/typst-hugo: A typst to html compiler for hugo](https://github.com/wenbin-liu/typst-hugo?tab=readme-ov-file)
+
+- 笔记模板
+    - [GitHub - OrangeX4/typst-ori: Simple enough but expressive template for notes, reports, and documents for Typst.](https://github.com/OrangeX4/typst-ori)
+
 
 
 ---

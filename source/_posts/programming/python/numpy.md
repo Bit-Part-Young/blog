@@ -74,8 +74,8 @@ np.eye()                # 单位阵
 np.zeros()              # 全为 0
 np.ones()               # 全为 1
 np.full()               # 填充
-np.arange()             # 范围
-np.linspace()           # 等差
+np.arange()             # 范围（不包含终点值）
+np.linspace()           # 等差（默认包含终点值）
 np.logspace()           # 等比
 np.fromstring()         # 从字符串提取数据
 

@@ -22,7 +22,7 @@ password:
 
 ## 介绍
 
-- 包括 INCAR、POSCAR、KPOINTS 和 POTCAR4 个输入文件
+- 包括 INCAR、POSCAR、KPOINTS 和 POTCAR 4 个输入文件
 
 ---
 

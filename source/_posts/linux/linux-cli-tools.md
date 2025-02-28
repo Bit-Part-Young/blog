@@ -37,6 +37,7 @@ password:
     - [GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
     - 有意思/搞笑的 GitHub repo：[GitHub - terremoth/awesome-hilarious-repos: Awesome hilarious github repositories](https://github.com/terremoth/awesome-hilarious-repos)
     - [My Favorite CLI Tools](https://switowski.com/blog/favorite-cli-tools/)
+    - [GitHub - sts10/rust-command-line-utilities: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
 
 
 
@@ -126,7 +127,9 @@ Markdown 相关
     - [frogmouth](https://github.com/Textualize/frogmouth)
     - [glow](https://github.com/charmbracelet/glow)
     - [GitHub - swsnr/mdcat: cat for markdown](https://github.com/swsnr/mdcat)
-    - 以 PPT 形式查看 md 文档：[GitHub - maaslalani/slides: Terminal based presentation tool](https://github.com/maaslalani/slides)
+    - 以 PPT 形式查看 Markdown 文档：[GitHub - maaslalani/slides: Terminal based presentation tool](https://github.com/maaslalani/slides)
+
+- 搜索 Makrdown 元素：[GitHub - yshavit/mdq: like jq but for Markdown: find specific elements in a md doc](https://github.com/yshavit/mdq)
 
 
 ---

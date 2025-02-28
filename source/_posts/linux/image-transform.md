@@ -45,6 +45,8 @@ svg2pdf file.svg
 
 - svg 图片生成及格式转换：[Text to SVG AI Generator : Create unique SVG illustration from text](https://svg.la/text-to-svg/)
 
+- [GitHub - liujuntao123/new-svg-viewer: 一个界面清爽，功能齐全的 SVG 预览工具](https://github.com/liujuntao123/new-svg-viewer)
+
 - 转 AVIF 格式：[IMG2AVIF](https://img2avif.com/)
 
 - 转 webp：`brew info webp`（可执行命令为 `img2webp`）

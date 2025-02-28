@@ -90,6 +90,8 @@ password:
 
 - [GitHub - hunshcn/gh-proxy: github release、archive以及项目文件的加速项目](https://github.com/hunshcn/gh-proxy)
 
+- [GitHub - antfu-collective/sponsorkit: 💖 Toolkit for generating sponsors images 😄](https://github.com/antfu-collective/sponsorkit)
+
 
 ---
 

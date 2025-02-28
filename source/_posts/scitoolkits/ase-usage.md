@@ -854,10 +854,11 @@ for row in db.select("id<=10"):
 - 优化器（优化算法）
 
 ```python
-# 优化器
-from ase.optimize.lbfgs import LBFGS
-
-from ase.optimize import QuasiNewton
+from ase.optimize import QuasiNewton  # 等于 BFGSLineSearch
+from ase.optimize.bfgs import BFGS
+from ase.optimize.fire import FIRE
+from ase.optimize.lbfgs import LBFGS, LBFGSLineSearch
+from ase.optimize.mdmin import MDMin
 ```
 
 
@@ -996,6 +997,26 @@ from ase.md.langevin import Langevin
 from ase.md.nptberendsen import NPTBerendsen
 from ase.md.nvtberendsen import NVTBerendsen
 from ase.md.velocitydistribution import MaxwellBoltzmannDistribution, Stationary
+```
+
+### ase.phonons
+
+- 有限位移法计算声子谱
+
+```python
+# 示例
+from ase.phonons import Phonons
+
+N = 25
+ph = Phonons(atoms, calc, supercell=(N, N, N), delta=0.05)
+ph.run()
+ph.read(acoustic=True)
+
+kpath = atoms.cell.bandpath(
+    [["G", "X", "U"], ["K", "G", "L", "W", "X"]],
+    npoints=100,
+)
+bs = ph.get_band_structure(kpath)
 ```
 
 
@@ -1162,4 +1183,8 @@ atoms.get_potential_energy()
 ```python
 # 使用多种 calculator
 from ase.calculators.mixing import SumCalculator 
+
+# dftd3
+from ase.calculators.dftd3 import DFTD3
+from dftd3.ase import DFTD3 as SimpleD3
 ```
