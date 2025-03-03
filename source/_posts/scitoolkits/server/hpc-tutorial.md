@@ -37,13 +37,15 @@ password:
 - `/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中
 
 ```bash
-cat /proc/cpuinfo       # CPU 信息查看
-cat /proc/meminfo       # 内存信息查看
-free -h                 # 内存使用情况查看
-nvidia-smi              # GPU 信息、使用情况查看
+cat /proc/cpuinfo          # CPU 信息查看；或 lscpu
+cat /proc/meminfo          # 内存信息查看；lsmem
+free -h                    # 内存使用情况查看
+nvidia-smi                 # GPU 信息、使用情况查看
+nvidia-smi -L              # 显示连接的 GPU 信息
+
 
 # 赝势路径
-/work/backup/.vasp_pot/    # Master
+/work/backup/.vasp_pot     # Master
 /opt/.vasp_pot             # Manager
 ```
 
@@ -101,7 +103,7 @@ vmd....................To visualize md trajectories
 
 ```bash
 nvidia-smi            # 查看 NVIDIA 驱动及其支持的 CUDA 驱动最高版本
-nvcc --version        # 查看 CUDA 运行版本
+nvcc --version        # 查看 CUDA 运行版本（Master 上显示的路径在 hpc_sdk中）
 /usr/local/cuda       # CUDA 安装路径
 ```
 
@@ -349,20 +351,26 @@ sinfo                        # 查看集群状态
    
 scontrol show job            # 所有作业详细状态
 scontrol show job JOBID      # 指定作业详细状态
+scontrol show node nodename  # 列出节点详细状态
 sinfo --partition=64c512g    # 查看特定队列
 
-# 节点状态
-drain                        # 节点故障
-alloc                        # 节点在用
-idle                         # 节点可用
-down                         # 节点下线
-mix                          # 节点部分占用，但仍有剩余资源
+# sinfo 会显示的节点状态
+idle                         # 节点处于空闲状态
+mix                          # 节点部分 CPU 资源被占用
+alloc                        # 节点所有 CPU 资源都被占用
+down                         # 节点故障暂不可用
+drain                        # 节点故障，但不影响已运行的作业
 
 # 作业状态
-R                            # 正在运行
-PD                           # 正在排队
+R                            # RUNNING；正在运行
+PD                           # PENDING；正在排队
 CG                           # 即将完成
-CD                           # 已完成
+CD                           # COMPLETED；已完成
+F                            # FAILED；运行失败
+S                            # SUSPENDED；挂起
+CA                           # CANCELED；作业被取消
+TO                           # TIMEOUT；超时
+
 
 # 详细状态内容
 UserId|WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime
@@ -681,13 +689,14 @@ mpirun ${HOME}/bin/vasp_std
 
 **注：相关命令含义**
 ```bash
+# 内存及堆栈限制，防止因任务运行所需内存等过大导致服务器崩溃及死机
 ulimit -s unlimited
+ulimit -l unlimited
 
 export OMP_NUM_THREADS=1
 export I_MPI_ADJUST_REDUCE=3
 ```
 
-- `ulimit -s unlimited` - 设置进程的堆栈大小限制。通过指定 `unlimited`，表示将堆栈大小限制设置为无限制。堆栈是用于存储函数调用和局部变量的内存区域，增加堆栈大小限制可以允许进程使用更多的堆栈空间。这对于需要递归调用或者使用大量局部变量的程序可能是必需的。
 - `export OMP_NUM_THREADS=1` - 设置 `OMP_NUM_THREADS` 环境变量，并将其值设为 1。`OMP_NUM_THREADS` 是 OpenMP 库使用的一个环境变量，用于指定并行计算时使用的线程数。在这里，将线程数设置为 1 表示只使用一个线程进行并行计算。这可以用于限制并行化的程度，特别是当希望使用单线程执行时。
 - `export I_MPI_ADJUST_REDUCE=3` - 设置 `I_MPI_ADJUST_REDUCE` 环境变量，并将其值设为 3。`I_MPI_ADJUST_REDUCE` 是 Intel MPI 库使用的一个环境变量，用于调整 MPI 库中用于并行归约操作（reduce operation）的算法。将该变量设置为 3 表示使用性能优化的归约算法。这可以提高 MPI 程序中归约操作的效率。
 
@@ -779,6 +788,53 @@ module purge
 bash test.sh
 ```
 
+
+---
+
+### Master 任务提交脚本示例
+
+- VASP + 调用 CPU
+
+```bash
+#!/bin/bash
+
+#SBATCH -J VASP
+#SBATCH -p CLUSTER
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=16
+#SBATCH -t 1000:00:00
+#SBATCH -e %j.err
+#SBATCH -o %j.out
+
+ulimit -s unlimited
+ulimit -l unlimited
+
+mpirun -np $SLURM_NPROCS vasp_std | tee vasp.log
+```
+
+- LAMMPS + 调用 GPU
+
+```bash
+#!/bin/bash
+
+#SBATCH -J VASP
+#SBATCH -p CLUSTER
+#SBATCH --gres=gpu:2
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=16
+#SBATCH -t 1000:00:00
+#SBATCH -e %j.err
+#SBATCH -o %j.out
+
+
+ulimit -s unlimited
+ulimit -l unlimited
+
+# GPU 加速
+mpirun -np $SLURM_NPROCS lmp_gpu -sf gpu -pk gpu 2 -i in.lmp | tee lammps.log
+# CPU 计算
+mpirun -np $SLURM_NPROCS lmp_gpu -i in.lmp | tee > lammps.log
+```
 
 ---
 

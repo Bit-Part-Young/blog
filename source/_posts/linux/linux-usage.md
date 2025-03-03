@@ -764,6 +764,8 @@ ps -p PID -o ...
 user           # 用户
 lstart         # 开始时间；详细
 lstart         # 同上；简短
+psr            # 进行运行对应的 CPU 编号
+comm           # 命令行
 
 # 统计每个用户的进程数
 ps hax -o user | sort | uniq -c | sort -r
@@ -832,6 +834,11 @@ grep -c '' file
 awk 'END { print NR }' file
 wc -l file
 sed -n '$=' file
+
+# 获取关键词的下一行内容
+# 相同的关键词有多个时，grep 得到的内容会多出 --- 一行内容
+grep -A 1 'Size' filename | awk 'NR % 3 == 2 {print $1}'
+sed -n '/Size/{n;p}' filename
 ```
 
 

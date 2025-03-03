@@ -88,15 +88,6 @@ source /opt/intel/oneapi/setvars.sh intel64
 - 检查
 
 ```bash
-icc -v
-icpc -v
-ifort -v
-mpiicc -v
-mpiifort -v
-
-icx -v
-icpx -v
-
 # icc mpiicc mpicc 三者区别
 icc             # Intel C Compiler；Intel 提供的高性能 C 编译器
 mpiicc          # MPI Intel C Compiler；基于 icc 的 MPI 版本，特殊的编译器包装器，用于编译使用 MPI 的并行程序；Intel MPI + icc

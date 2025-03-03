@@ -45,8 +45,8 @@ password:
 - 安装 GPU package（需确定 GPU 硬件类型及其架构、精度）
 
 ```bash
-# cmake；GPU 硬件类型选择 CUDA
--C ../cmake/presets/gpu-cuda.cmake -D GPU_ARCH=sm_90
+# cmake；GPU 硬件类型选择 CUDA；sm_86 或 sm_89
+-C ../cmake/presets/gpu-cuda.cmake -D GPU_ARCH=sm_86
 
 
 # sm_30 for Kepler (supported since CUDA 5 and until CUDA 10.x)
@@ -58,6 +58,21 @@ password:
 # sm_80 or sm_86 for Ampere (supported since CUDA 11, sm_86 since CUDA 11.1)
 # sm_89 for Lovelace (supported since CUDA 11.8)
 # sm_90 for Hopper (supported since CUDA 12.0)
+```
+
+- 安装 KOKKOS package：[3.7. Packages with extra build options — LAMMPS documentation](https://docs.lammps.org/Build_extras.html#kokkos)
+
+```bash
+# 使用 CUDA (NVIDIA GPU)
+# 方式 1
+-C ../cmake/presets/kokkos-cuda.cmake
+
+# 方式 2
+-D PKG_KOKKOS=ON
+-D Kokkos_ENABLE_CUDA=ON
+-D Kokkos_ARCH_AMDAVX=ON              # HOSTARCH；需根据自己的 CPU 类型进行修改
+-D Kokkos_ARCH_AMPERE100=ON           # GPUARCH；；需根据自己的 GPU 类型进行修改
+-D Kokkos_ENABLE_OPENMP=ON
 ```
 
 - 安装 LAMMPS Python 模块：[2.2. Installation — LAMMPS documentation](https://docs.lammps.org/Python_install.html)

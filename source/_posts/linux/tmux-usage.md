@@ -85,15 +85,17 @@ prefix + "       # 划分上下两个窗格
 ```bash
 tmux -V                               # 查看版本
 tmux source-file ~/.tmux.conf         # 刷新配置
-tmux new -s <session-name>            # 新建 session，默认从 0 开始
+tmux new -s session_name              # 新建 session，默认从 0 开始
 tmux detach                           # 分离 session
 tmux ls                               # list-sessions；列出所有 sessions
 tmux a                                # attach；重新连接 session
-tmux attach -t <session-name>         # 同上
-tmux kill-session -t <session-name>   # 杀死
+tmux attach -t  session_name          # 同上
+tmux kill-session -t  session_name    # 杀死
 tmux kill-session -a                  # 杀死除当前 session 的其他
-tmux switchc -t <session-name>        # 切换
-tmux rename-session -t 0 <new-name>   # 重命名
+tmux switchc -t  session_name         # 切换
+tmux rename-session -t 0  new_name    # 重命名
+
+tmux capture-pane -pt session_name    # 将指定 session 的窗口内容保存到缓冲区
 
 # 查看 tmux session 中的 pane 中的命令完成情况
 # 若为 bash/zsh，则命令已完成；若为具体命令，则命令正在运行
@@ -101,7 +103,7 @@ tmux list-panes -a -F "#{session_name}:#{pane_id} #{pane_current_command}"
 # # 查看 tmux session 中的 pane 中的进程 ID
 tmux list-panes -a -F "#{session_name}:#{pane_id} #{pane_pid}"
 # 根据 pane 的进程 ID 查看具体命令
-ps f -o pid,cmd --ppid $pane_pid
+ps f -o pid,cmd --ppid ${pane_pid}
 ```
 
 

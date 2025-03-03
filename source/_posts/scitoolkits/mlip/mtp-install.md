@@ -37,30 +37,33 @@ module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
 module load intel-oneapi-tbb/2021.4.0
 
+
 # 编译 MLIP-2
 git clone https://gitlab.com/ashapeev/mlip-2.git
 cd mlip-2
-./configure          # 生成 make/config.mk 文件；会自动检测所在平台是否有 MPI 环境以及编译器（GPU 或 Intel）
+./configure          # 生成 make/config.mk 文件；会自动检测所在平台是否有 MPI 环境及编译器（GPU 或 Intel）；可将 XXX_LIB 改成 Intel oneAPI 的编译器（icx、icpx、ifx）
 make mlp             # 生成 bin 和 obj 目录
 make libinterface    # 生成 lib 目录
 
-# 编译 MLI-2P 与 LAMMPS 的接口
+
+# 编译 MLIP-2 与 LAMMPS 的接口
 cd ..
-git clone https://gitlab.com/ashapeev/interface-lammps-mlip-2.git .
+git clone https://gitlab.com/ashapeev/interface-lammps-mlip-2.git
 cd interface-lammps-mlip-2
 cp ../mlip-2/lib/lib_mlip_interface.a .
 
-# 在 preinstall.sh 文件结尾添加需安装的 package
-make yes-<package>
-# 不需要添加 make yes-STUBS
-# 可注释 install.sh 脚本中的 make mpi-stubs 命令
+# 在 preinstall.sh 脚本中添加需安装、卸载的 package
+# preinstall.sh 作用：拷贝 mlip lib 到 LAMMPS lib 目录 和 USER-MLIP 到 LAMMPS src 目录
+make yes-basic
+# 注释 install.sh 脚本中的 make mpi-stubs 命令
 
-# 编译写法
+# 编译写法；可在 make $TARGET -lgfortran 命令所在行后面添加 -jN 并行编译
 ./install.sh <path-to-lammps> <lammps-target>
 # 示例
 ./install.sh ../lammps-29Aug2024 intel_cpu_intelmpi
 
 # 其他 LAMMPS target
+oneapi
 g++_mpich
 mpi
 g++_serial
@@ -76,19 +79,10 @@ serial
 
 ## 相关问题
 
-- 用 cmake 编译 MLIP-2 会报错
+- 用 cmake 编译 MLIP-2 会报错：[Intel oneAPI compilation ERROR: undefined reference to \`vtable for CombinedAnyLocalMLIP' (#44) · Issues · Alexander Shapeev / MLIP version 2 · GitLab](https://gitlab.com/ashapeev/mlip-2/-/issues/44)
 
 ```bash
-/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o: warning: relocation against `_ZTV20CombinedAnyLocalMLIP' in read-only section `.text._ZN20CombinedAnyLocalMLIPC2EP12AnyLocalMLIPS1_PSo[_ZN20CombinedAnyLocalMLIPC5EP12AnyLocalMLIPS1_PSo]'
-/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o: in function `RunAllTestsDev(bool)':
-/home/XXX/opt/mlip-2/dev_src/mlp/dev_self_test.cpp:167: undefined reference to `CombinedAnyLocalMLIP::CalcE(Configuration&)'
-/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o: in function `CombinedAnyLocalMLIP::~CombinedAnyLocalMLIP()':
-/home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
-/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
-/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
-/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
-/usr/bin/ld: /home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: undefined reference to `vtable for CombinedAnyLocalMLIP'
-/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o:/home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: more undefined references to `vtable for CombinedAnyLocalMLIP' follow
+/usr/bin/ld: CMakeFiles/mlp.dir/dev_src/mlp/dev_self_test.cpp.o:/home/XXX/opt/mlip-2/dev_src/mlp/../combined_any_local_mlip.h:63: more undefined references to `vtable for CombinedAnyLocalMLIP follow
 /usr/bin/ld: warning: creating DT_TEXTREL in a PIE
 collect2: error: ld returned 1 exit status
 make[2]: *** [CMakeFiles/mlp.dir/build.make:650: mlp] Error 1
@@ -96,7 +90,7 @@ make[1]: *** [CMakeFiles/Makefile2:874: CMakeFiles/mlp.dir/all] Error 2
 make: *** [Makefile:146: all] Error 2
 ```
 
-- 将 MLIP-2 的 LAMMPS 接口用 cmake 编译会报错： [cmake (#14) · Issues · Alexander Shapeev / LAMMPS-MLIP interface · GitLab](https://gitlab.com/ashapeev/interface-lammps-mlip-2/-/issues/14)
+- 用 cmake 编译 MLIP-2 的 LAMMPS 接口会报错： [cmake (#14) · Issues · Alexander Shapeev / LAMMPS-MLIP interface · GitLab](https://gitlab.com/ashapeev/interface-lammps-mlip-2/-/issues/14)
 
 ```bash
 /usr/bin/ld: liblammps.a(pair_MLIP.cpp.o): in function `LAMMPS_NS::PairMLIP::~PairMLIP()':
