@@ -123,6 +123,18 @@ pip install -U dpdata
 
 - 生成 Deep Potential：[GitHub - hsulab/GDPy: Generating Deep Potential with Python](https://github.com/hsulab/GDPy)
 
+[机器学习力场训练集可视化 - 知乎](https://zhuanlan.zhihu.com/p/677527443)
+
+```python
+from deepmd.infer import DeepPot
+
+dp = DeepPot(args.model)
+
+# 获取 DP 描述符
+descriptor = dp.eval_descriptor()
+
+dp.eval()
+```
 
 
 
@@ -354,16 +366,30 @@ disp_freq
 
 ### dpdata
 
-dpdata：将多种构型文件格式转换成 deepmd 格式（转换成其他格式的功能一般）
-
-
+- dpdata：将多种构型文件格式转换成 deepmd 格式（转换成其他格式的功能一般）
 
 ```python
 import dpdata
 
+d_outcar = dpdata.LabeledSystem("OUTCAR", fmt="vasp/outcar")
 
-# 格式
-cp2k/output
+d_outcar["energies"]
+d_outcar["forces"]
+d_outcar["virials"]
+
+d_outcar.get_nframes()
+d_outcar.get_natoms()
+
+# keys；无 stress key
+atom_names
+atom_numbs
+atoms_types
+cells                    # 获取的是 VOLUME and BASIS
+coords
+energies                 # 获取的是 free  energy   TOTEN 
+forces
+virials                  # 获取的是 FORCE on cell =-STRESS in cart. coord.  units 中的 Total
+
 
 dpdata.LabeledSystem('OUTCAR').to()
 

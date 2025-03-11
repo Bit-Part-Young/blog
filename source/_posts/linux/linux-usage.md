@@ -102,15 +102,15 @@ cat /etc/issue
 - 系统资源查看
 
 ```bash
-lscpu          # 查看 CPU 信息
-lsmem          # 查看内存信息
-lspci          # 查看 PCI 设备信息
+lscpu                 # 查看 CPU 信息
+lsmem                 # 查看内存信息
+lspci                 # 查看 PCI 设备信息
 
-intel_gpu_top  # Intel 集显
+intel_gpu_top         # Intel 集显
 
-free -gh       # 以 GB 单位显示内存使用情况
-vmstat -S M    # 以 MB 单位显示虚拟内存使用情况
-htop           # 显示系统资源；增强版 top
+free -gh              # 以 GB 单位显示内存使用情况
+vmstat -S M           # 以 MB 单位显示虚拟内存使用情况
+htop                  # 显示系统资源；增强版 top
 ```
 
 - 图片查看：`eog` 或 `display`
@@ -175,8 +175,8 @@ Linux 发行版更新的时候，会更新 `/etc` 里面的文件，比如 `/etc
 修改个人的登录环境，一般是写在 `~/.bash_profile` 里面。
 
 ```bash
-bash --login      # 强制执行登录 Session 会执行的脚本
-bash --noprofile  # 跳过上面这些 Profile 脚本
+bash --login          # 强制执行登录 Session 会执行的脚本
+bash --noprofile      # 跳过上面这些 Profile 脚本
 ```
 
 ---
@@ -191,7 +191,7 @@ bash --noprofile  # 跳过上面这些 Profile 脚本
 `~/.bashrc` 通常是最重要的脚本。非登录 Session 默认会执行它，而登录 Session 一般也会通过调用执行它。每次新建一个 Bash 窗口，就相当于新建一个非登录 Session，所以 `~/.bashrc` 每次都会执行。注意，执行脚本相当于新建一个非互动的 Bash 环境，但是这种情况不会调用 `~/.bashrc`。
 
 ```bash
-bash --norc    # 禁止在非登录 Session 执行 ~/.bashrc 脚本
+bash --norc           # 禁止在非登录 Session 执行 ~/.bashrc 脚本
 
 bash --rcfile testrc  # 指定另一个脚本代替 .bashrc
 ```
@@ -287,17 +287,17 @@ cut -d, -f3 file  # 从每一行文本中提取以逗号分隔的第三个字段
 
 ```bash
 # 常用参数
--c             # 创建归档
--x             # 从归档中提取文件
--v             # 显示详细信息
--f             # 指定归档文件名称
--z             # tar.gz 格式
--j             # tar.bz2 格式
--J             # tar.xz 格式
---zstd         # tar.zst 格式
--t             # 显示归档文件中的内容，而非提取文件
--C             # 指定路径
---exclude      # 排除指定文件或目录
+-c                    # 创建归档
+-x                    # 从归档中提取文件
+-v                    # 显示详细信息
+-f                    # 指定归档文件名称
+-z                    # tar.gz 格式
+-j                    # tar.bz2 格式
+-J                    # tar.xz 格式
+--zstd                # tar.zst 格式
+-t                    # 显示归档文件中的内容，而非提取文件
+-C                    # 指定路径
+--exclude             # 排除指定文件或目录
 
 
 # 示例
@@ -329,7 +329,7 @@ bzcat          # 查看 .bz2 文件
 ln -s SRC DEST
 
 # 参数
--f force    # 创建新链接前删除与之同名的文件或链接
+-f                    # 强制；创建新链接前删除与之同名的文件或链接
 ```
 
 
@@ -341,18 +341,18 @@ ln -s SRC DEST
 
 ```bash
 # 常用参数
--o             # 写入到文件中（指定文件名）
--O             # 同上（保存文件名与远程文件相同）
---progress     # 显示进度条
--L             # 跟随服务器的重定向
--C             # 下载中断时，继续下载，通常与 -o 一起使用
--I             # 仅获取 HTTP 响应头而不下载响应体
--i             # 获取 HTTP 响应头、下载响应体
--v             # 显示完整的 HTTP 通信过程
--s             # 安静模式
--f             # 请求发生错误时，返回非零的退出状态码，表示请求失败
--S             # 在发生错误时显示错误信息
--X             # 指定请求使用的 HTTP 方法，如 GET, POST, PUT 等
+-o                    # 写入到文件中（指定文件名）
+-O                    # 同上（保存文件名与远程文件相同）
+--progress            # 显示进度条
+-L                    # 跟随服务器的重定向
+-C                    # 下载中断时，继续下载，通常与 -o 一起使用
+-I                    # 仅获取 HTTP 响应头而不下载响应体
+-i                    # 获取 HTTP 响应头、下载响应体
+-v                    # 显示完整的 HTTP 通信过程
+-s                    # 安静模式
+-f                    # 请求发生错误时，返回非零的退出状态码，表示请求失败
+-S                    # 在发生错误时显示错误信息
+-X                    # 指定请求使用的 HTTP 方法，如 GET, POST, PUT 等
 
 
 # 示例
@@ -373,8 +373,8 @@ curl ascii.live/parrot
 
 ```bash
 # 参数
--P         # 指定保存目录
--O         # 指定保存文件名
+-P                    # 指定保存目录
+-O                    # 指定保存文件名
 
 
 # 示例
@@ -392,22 +392,21 @@ wget https://gitee.com/Devkings/oh_my_zsh_install/raw/master/install.sh -O insta
 
 ```bash
 # find 与另外两个命令对比
-whereis       # 查找程序的二进制文件、源代码文件和 man 手册路径
-locate        # 通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
+whereis               # 查找程序的二进制文件、源代码文件和 man 手册路径
+locate                # 通过数据库定位文件路径（可能需要自己安装，数据库更新慢）
 
 # 常用参数
--name          # 按照文件名查找
--iname         # 按照文件名查找，忽略大小写
--type          # 文件类型（f 普通文件；d 目录；l 符号链接）
--maxdepth      # 目录最大深度
--mindepth      # 目录最小深度
--size          # 文件大小
--regex         # 正则表达式匹配
--iregex        # 正则表达式匹配，忽略大小写
--exec          # 执行指令
--ok            # 执行指令，但需确认
--perm          # 按照文件权限查找；111 精确匹配，/111 任意一个匹配，-111 都必须匹配
-
+-name                 # 按照文件名查找
+-iname                # 同上，忽略大小写
+-type                 # 文件类型（f 普通文件；d 目录；l 符号链接）
+-maxdepth             # 目录最大深度
+-mindepth             # 目录最小深度
+-size                 # 文件大小
+-regex                # 正则表达式匹配
+-iregex               # 同上；忽略大小写
+-exec                 # 执行指令
+-ok                   # 同上；但需确认
+-perm                 # 按照文件权限查找；111 精确匹配，/111 任意一个匹配，-111 都必须匹配
 
 # 示例
 # 查找 txt 或 pdf 文件
@@ -444,17 +443,17 @@ strings libstdc++.so.6 | grep GLIBCXX
 sed [options] 'command' file(s)
 
 # 常用 options
--i             # 直接修改文件内容，而不是输出到标准输出
--n             # 只处理特定行，常与 p 命令一起使用
--e             # 多个命令
+-i                    # 直接修改文件内容，而不是输出到标准输出
+-n                    # 只处理特定行，常与 p 命令一起使用
+-e                    # 多个命令
 
 # 常用命令
-s              # 替换指定字符串
-d              # 删除行
-p              # 打印行
-a\             # 在行后添加文本
-i\             # 在行前插入文本
-c\             # 替换行
+s                     # 替换指定字符串
+d                     # 删除行
+p                     # 打印行
+a\                    # 在行后添加文本
+i\                    # 在行前插入文本
+c\                    # 替换行
 ```
 
 - 示例
@@ -483,7 +482,7 @@ sed '$d' file              # 删除最后一行
 sed 'N,Md' file            # 删除第 N-M 行
 sed '/^$/d' file           # 删除空白行
 
-# 打印行；这里的 command 可不加引号
+# 打印行；command 可不加引号
 sed -n 4p file             # 打印第 4 行
 sed -n 4,8p file           # 打印第 4-8 行
 
@@ -503,29 +502,29 @@ sed -e '1d' -e '$d' file   # 删除多行
 
 ```bash
 # 常用参数
--i             # 忽略字符大小写
--n             # 显示行号
--c             # 统计匹配的行数
--A N           # N 数字；输出匹配行及之后 N 行
--B N           # N 数字；输出匹配行及之前 N 行
--C N           # N 数字；输出匹配行及之前后各 N 行
--E             # 使用扩展正则表达式
--o             # 只输出匹配到的部分
--v             # 反向匹配，即输出不匹配指定模式的行
--I             # 跳过二进制文件 等同于 --binary-files=without-match
---exclude-dir  # 排除目录
---exclude      # 排除文件
--r             # 递归
--h             # 在匹配内容前标示文件名
--H             # 在匹配内容前不标示文件名
--l             # 列出匹配内容前所属文件名
--L             # 列出无匹配内容的文件名
--m N           # 找到 N 行结果后停止查找，用来限制匹配行数
+-q                    # 安静模式
+-i                    # 忽略字符大小写
+-n                    # 显示行号
+-c                    # 统计匹配的行数
+-A N                  # N 数字；输出匹配行及之后 N 行
+-B N                  # N 数字；输出匹配行及之前 N 行
+-C N                  # N 数字；输出匹配行及之前后各 N 行
+-E                    # 使用扩展正则表达式
+-o                    # 只输出匹配到的部分
+-v                    # 反向匹配，即输出不匹配指定模式的行
+-I                    # 跳过二进制文件 等同于 --binary-files=without-match
+--exclude-dir         # 排除目录
+--exclude             # 排除文件
+-r                    # 递归
+-h                    # 在匹配内容前标示文件名
+-H                    # 在匹配内容前不标示文件名
+-l                    # 列出匹配内容前所属文件名
+-L                    # 列出无匹配内容的文件名
+-m N                  # 找到 N 行结果后停止查找，用来限制匹配行数
 
-egrep          # 等同于 grep -E
+egrep                 # 等同于 grep -E
 
-grep -E 'word1|word2' file  # 匹配多个 pattern
-egrep 'word1|word2' file    # 同上
+grep -E 'p1|p2' file  # 匹配多个 pattern
 ```
 
 
@@ -570,11 +569,14 @@ END {
 - 常用功能 awk 命令实现
 
 ```bash
-awk '{ print NR, $0 }' file  # 输出文件内容并显示行号
-awk 'END { print NR }' file  # 统计行数
-awk '$3 == 0' file           # 输出第三列为 0 的行
-awk 'NR % 2 == 1' file       # 打印奇数行
-awk '{ print $NF }' file     # 输出最后一列
+awk '{ print NR, $0 }' file        # 输出文件内容并显示行号
+awk 'END { print NR }' file        # 统计行数
+awk '$3 == 0' file                 # 输出第三列为 0 的行
+awk 'NR % 2 == 1' file             # 输出奇数行
+awk 'NR <= 3' file                 # 输出前 3 行
+awk '{ print $NF }' file           # 输出最后一列
+awk '/kwd/{flag=1} flag' file      # 输出匹配的关键词所在行至最后一行的内容
+awk '/kwd1/,/kwd2/' file           # 输出匹配的关键词之间的行内容
 
 # 返回总字段数
 awk '{ nf = nf + NF } END { print nf }' file
@@ -694,6 +696,28 @@ nl -n ln file   # 行号在荧幕的最左方显示
 nl -n rn file   # 行号在自己栏位的最右方显示，且不加 0
 nl -n rz file   # 行号在自己栏位的最右方显示，且加 0
 nl -b a file    # 表示不论是否为空行，也同样列出行号
+```
+
+- stat：查看文件的创建时间和最新修改时间
+
+```bash
+stat file
+
+# 信息
+Access              # 文件上次访问时间
+Modify              # 文件内容的最后修改时间
+Change              # 文件的元数据（权限、所有者等）最后修改的时间
+Birth               # 文件的创建时间（超算文件系统不支持）
+
+# 输出示例
+  File: file
+  Size: 34680         Blocks: 72         IO Block: 4096   regular file
+Device: 800h/2048d    Inode: 332005565   Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1010/  XXX)   Gid: ( 1011/  XXX)
+Access: 2025-03-06 10:31:27.649498750 +0800
+Modify: 2025-03-06 03:15:05.169757697 +0800
+Change: 2025-03-06 10:29:34.115994373 +0800
+ Birth: 2025-03-06 10:29:34.115994373 +0800
 ```
 
 - type：判断命令的类型/来源（内置命令，外部程序）

@@ -223,14 +223,14 @@ get_distance()             # 两原子间的距离
 get_distances()            # 第 i 个原子与给定原子列表间的距离
 
 # get 方法；需添加 calculator 才能使用的方法
-get_potential_energy()     # 总能量
+get_potential_energy()     # 总能量；单位 eV
+get_forces()               # 每个原子的受力；单位 eV/Å
+get_stress()               # 应力张量；单位 eV/Å^3；voigt 参数
 get_potential_energies()   # 每个原子的能量
-get_forces()               # 每个原子的受力
-get_stress()               # 应力张量
 get_stresses()             # 每个原子的应力张量
 get_properties()           # 获取性质，如 ["energy", "forces", "stress"]
 get_total_energy()         # 总能量
-get_magnetic_moment()
+get_magnetic_moment()      # 磁矩
 get_magnetic_moments()
 
 
@@ -267,7 +267,7 @@ import numpy as np
 distances = atoms.get_all_distances()
 
 print(np.unique(distances)[1])       # 最小距离 
-print(np.unique(distances)[-1])      # 最小距离 
+print(np.unique(distances)[-1])      # 最大距离 
 
 
 # 判断 cell 是否为正交胞
@@ -714,8 +714,21 @@ from ase.io.xsd import read_xsd, write_xsd
 ```python
 atoms = ...
 
-del atoms.arrays["forces"]    # 添加 forces 信息
+del atoms.arrays["forces"]    # 删除 forces 信息
 atoms.info = {}               # 添加 energy 等信息
+
+# 从 extxyz 文件只能通过 get_potential_energy() 直接获取能量
+# 而无法通过 get_forces() get_stress() 获取力、应力信息
+xyz_fn = "train.xyz"
+atoms_list = read(xyz_fn, index=":", format="extxyz")
+atoms = atoms_list[0]
+
+energy = atoms.get_potential_energy()   # 可以
+forces = atoms.get_forces()             # 不可以；会报错
+stress = atoms.get_stress()             # 不可以；会报错
+forces = atoms.arrays["forces"]         # 可以
+stress = atoms.info["stress"]           # 可以
+virial = atoms.info["virial"]           # 可以
 ```
 
 
@@ -892,15 +905,18 @@ ground_state_magnetic_moments  # 基态磁矩
 ASE 中的物理单位，电子伏特 eV、埃 Å，开尔文 K 和原子质量单位定义为 1.0
 
 ```python
-from ase.units import Bohr, Hartree, eV, kJ, mol
+from ase.units import Bohr, Hartree, eV, kJ, mol, GPa
 
 # 能量: 1 eV = ... kJ/mol = ... Hartree = ... Ry
-print(1 / (1 * kJ / mol))
-print(1 / (1 * Hartree))
-print(1 / (1 * Ry))
+print(1 / (kJ / mol))
+print(1 / Hartree)
+print(1 / Ry)
 
 # 长度单位
 print(Bohr)
+
+# 应力单位
+print(1 / GPa)
 ```
 
 
@@ -984,20 +1000,25 @@ neb.idpp_interpolate(fmax=0.1, optimizer=BFGS, steps=1000)
 
 ### ase.md
 
-- md 相关算法
+- ASE 中的 MD 相关算法
+
+- ASE 中的两种常见控压（压浴）方法：Parrinello-Rahman、Berendsen
 
 - 使用 ASE md 模块执行 MD 示例：
     - [benchmarks/MACE/run\_mace\_md.py at main · deng-group/benchmarks · GitHub](https://github.com/deng-group/benchmarks/blob/main/MACE/run_mace_md.py)
     - [Tools\_MLIP/ASE\_MD/mdAseMace.py at main · weltidom/Tools\_MLIP · GitHub](https://github.com/weltidom/Tools_MLIP/blob/main/ASE_MD/mdAseMace.py)
 
-
 ```python
 from ase.md import MDLogger
+from ase.md.npt import NPT
 from ase.md.langevin import Langevin
 from ase.md.nptberendsen import NPTBerendsen
 from ase.md.nvtberendsen import NVTBerendsen
 from ase.md.velocitydistribution import MaxwellBoltzmannDistribution, Stationary
 ```
+
+
+---
 
 ### ase.phonons
 
@@ -1107,7 +1128,6 @@ atoms.calc = calc                # 执行 VASP 计算
 atoms.set_calculator(calc)       # 同上，但写法过时
 
 atoms.get_potential_energy()     # 获取能量
-
 ```
 
 ```python

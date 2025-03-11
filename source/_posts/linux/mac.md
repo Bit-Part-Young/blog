@@ -515,6 +515,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - PotPlayer
     - MobaXterm
     - WinSCP
+    - TIM
 
 
 ---
@@ -819,12 +820,12 @@ brew install fontconfig        # 需安装此才有 fc-list 等命令
 
 - 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
 - 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)
-    - 卸载 GUI，直接将 TeX 移入废纸篓
+    - 卸载 GUI 应用（`/Applications/TeX`），直接将 TeX 移入废纸篓
     - 卸载 TeX Distribution
     - 卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
 ```bash
-brew install --cask mactex-no-gui  # 不建议
+brew install --cask mactex-no-gui  # 安装方式 2；不建议
 
 sudo rm -rf /Library/TeX
 sudo rm -rf /usr/local/texlive

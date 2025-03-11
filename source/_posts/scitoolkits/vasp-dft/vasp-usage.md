@@ -230,13 +230,20 @@ ISIF   = 2
 
 ---
 
-### 孤立原子计算
+### 孤立原子能量
 
-- 建立一个简单立方胞（SC），将原子置于中心；K 点密度为 1\*1\*1，Gamma-centered MP
+- 需添加自旋；建立一个简单立方胞（SC），将原子置于中心；盒子大小需收敛性测试；K 点密度为 1\*1\*1，Gamma-centered MP
 
 ```bash
 
 ```
+
+
+---
+
+### 内聚能
+
+- 分子动力学中不考虑自能，孤立原子能量为 0，体系平均原子能量即为内聚能；DFT 中孤立原子能量不为 0
 
 
 ---
@@ -265,7 +272,11 @@ ISIF   = 2
 
 ---
 
-### 弛豫计算
+### 弛豫/结构优化计算
+
+- 建议结构优化（尤其变胞优化）后再进行一次静态计算的原因（能量更准确）：Hartree 势积分格点的问题；因为积分格点是从最开始定死的，变胞优化完之后沿用的是优化前的格点结果自然会有点问题（来自 GPUMD 学习交流群）
+
+- 高精度结构优化：ISIF=3 优化 --> ISIF=2 优化（基本 1-2 步结束）--> scf 单点能计算
 
 - INCAR 参数示例：
 
@@ -535,16 +546,62 @@ LVHAR  = .TRUE.
 
 - 参考：
     - [【VASP 基础 03】关于 VAPS 分子动力学的计算细节](https://zhuanlan.zhihu.com/p/1103173525)
+    - [Category:Thermostats - VASP Wiki](https://www.vasp.at/wiki/index.php/Category:Thermostats)
+    - [Category:Molecular dynamics - VASP Wiki](https://www.vasp.at/wiki/index.php/Category:Molecular_dynamics)
+    - [Liquid Si - Standard MD - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Standard_MD)
+    - [NpT ensemble - VASP Wiki](https://www.vasp.at/wiki/index.php/NpT_ensemble)
+    - [VASP跑AIMD模拟熔盐结构时，计算方案、系综、模型尺寸等设置是否正确](http://ccc.keinsci.com/thread-26694-1-1.html)
+
+- 主要考虑 NVT 系综（NPT 用的情况不多？近几年 VASP 才有 NPT 系综；由于计算胞很小，体积变化可能会很剧烈；截断能包括的 K 点数目取自第一帧数据不变，变体积会不准确）
+
+- 盒子多大/多少个原子时，设为 1x1x1 并用 vasp_gam 版本运行 AIMD（没有确定的标准）
+
+- NVT AIMD 的起始温度和终止温度直接设置为目标温度，起始温度可不用设为 0K（升温很快）
+
+- 势函数训练集 AIMD 采样大多用的是 NVT，几乎不用 NPT
+
+```bash
+# LANGEVIN_GAMMA、LANGEVIN_GAMMA_L 这两个额外 tag 必须设置
+# PMASS 可选 tag
+LANGEVIN_GAMMA              # 原子自由度的 langevin 摩擦系数
+LANGEVIN_GAMMA_L            # 点阵自由度的 langevin 摩擦系数
+PMASS                       # 点阵自由度的虚拟质量
+```
+
+- 系综
+    - NVE 系综：MDALGO=1, ANDERSEN_PROB=0.0
+    - NVT 系综：ISIF=2, MDALGO=1 (Andersen)、2 (Nose-Hoover)、3 (Langevin)、4 (NHC)、5 (CSVR)、13 (Multiple Andersen)
+    - NPT 系综：ISIF=3, MDALGO=3 (Langevin)
+    - NPH 系综：ISIF=3, MDALGO=3, LANGEVIN_GAMMA=LANGEVIN_GAMMA_L=0.0
+    - 所有热浴在 NVT 系综都可用，但目前 Langevin 热浴只在 NPT 系综中可用
 
 - 参数设置
 
 ```bash
 # INCAR 参数设置
-MDALGO      = 2
-SMASS       = 0
+ENCUT   = 400      # 不用很高
+EDIFF   = 1E-5     # 不用很小
+ISMEAR  = 0
+SIGMA   = 0.05
+LWAVE   = .FALSE.
+LCHARG  = .FALSE.
+LREAL   = Auto
+PREC    = Normal
+ALGO    = Fast
 
-TEBEG       = 300
-TEEND       = 300
+IBRION  = 0        # 开启 AIMD
+MDALGO  = 2        # MDALGO、ISIF 控制系综和热浴
+ISIF    = 2
+SMASS   = 0        # 控制 AIMD 运行过程中的速度
+ISYM    = 0        # 关闭对称性
+
+POTIM   = 1        # 时间步长（单位 fs）
+NSW     = 10000    # 跑多少步；10 ps
+
+TEBEG   = 300      # 起始温度
+TEEND   = 300      # 终止温度
+
+NWRITE  = 0        # 长时 AIMD，建议取 0/1
 
 
 # 数据获取

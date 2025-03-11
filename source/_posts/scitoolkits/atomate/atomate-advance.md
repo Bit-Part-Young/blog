@@ -19,6 +19,8 @@ password:
 
 # atomate 进阶使用
 
+结合 VASP + phono3py 的 atomate 工作流：[GitHub - MatFrontier/ph3pywf](https://github.com/MatFrontier/ph3pywf)
+
 ml-atomate：[GitHub - takahashi-akira-36m/ml\_atomate: Machine learning-assisted Atomate code for autonomous computational materials screening.](https://github.com/takahashi-akira-36m/ml_atomate)
 
 [atomate. utils package](https://atomate.org/atomate.utils.html](https://atomate.org/atomate.utils.html))

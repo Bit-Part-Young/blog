@@ -1146,6 +1146,29 @@ Ionic convergence reached: False.
 
 ---
 
+#### Vaspout
+
+- 解析 vaspout.h5 文件（pymatgen 2025.03.10 版本支持）；需安装 h5py 包
+
+```python
+from pymatgen.io.vasp.outputs import Vaspout
+
+vaspout = Vaspout("vaspout.h5")
+
+# 属性
+incar
+poscar
+kpoints
+potcar
+converged
+initial_structure
+final_structure
+final_energy
+```
+
+
+---
+
 #### 其他
 
 ```python
@@ -1191,7 +1214,12 @@ topology            # 拓扑信息
 
 - Plotter 类的 sigma 参数使绘制出的图平滑（sigma=0.05 相对好一些；**若平滑后使原本的部分数据信息损失，建议不设置该参数！**）
 
+---
+
+#### 态密度
+
 - 态密度 DOS 数据获取与绘图
+
     - label 颜色自定义：修改源代码（获取 ax 的方法不行）
     - 使用 pymatgen 模块绘制 DOS 图时，相对会耗时一些，**建议将 DOS 数据获取后单独存储为数据文件自己绘制**
 
@@ -1281,7 +1309,9 @@ ax.set_xlim(...)
 plt.savefig(...)    # 保存图片，可不使用 dos_plot.save_plot()
 ```
 
-- 能带 BandStructure
+---
+
+#### 能带
 
 ```python
 import matplotlib.pyplot as plt
@@ -1307,10 +1337,18 @@ bsdos_plot = BSDOSPlotter(bs_projection=None, dos_projection=None)
 bsdos_plot.get_plot(bs=bs_data, dos=dos_data)
 ```
 
-- COHP (Crystal orbital Hamilton population)
+---
+
+#### COHP
+
+- [ ] COHP (Crystal orbital Hamilton population) 与 ICOHP 之间的区别是什么
+
+[sampleScript/RHEAs/COHP.py at master · Jeffery-Li0513/sampleScript · GitHub](https://github.com/Jeffery-Li0513/sampleScript/blob/master/RHEAs/COHP.py)
 
 ```python
-from pymatgen.electronic_structure.cohp import ...
+from pymatgen.electronic_structure.cohp import Cohp, get_integrated_cohp_in_energy_range
+from pymatgen.electronic_structure.plotter import CohpPlotter
+from pymatgen.io.lobster import Cohpcar, Icohplist
 ```
 
 
@@ -1327,6 +1365,11 @@ from pymatgen.analysis.structure_matcher import StructureMatcher
 
 sm = StructureMatcher()
 sm.fit(structure1, structure2)
+
+# 参数
+ltol               # 默认值 0.2
+stol               # 默认值 0.3
+angle_tol          # 默认值 5
 ```
 
 
@@ -1764,4 +1807,81 @@ formula
 spacegroup
 formation_energy_per_atom
 elasticity
+```
+
+
+---
+
+#### 获取表面性质、晶界数据
+
+- 只能通过 API 下载表面性质、晶界构型及对应数据（对应于页面 Properties 部分的 Surface、Heterostructures 内容）
+
+- 获取表面性质、晶界数据
+```python
+import os
+
+from mp_api.client import MPRester
+
+API_KEY = os.getenv("PMG_MAPI_KEY")
+with MPRester(api_key=API_KEY) as mpr:
+    # 获取 表面性质 数据
+    surface_properties_doc = mpr.materials.surface_properties.search(material_ids=["mp-75"])
+
+    print(len(surface_properties_doc))  # 1
+    print(len(surface_properties_doc[0].surfaces))  # 13
+    print(surface_properties_doc[0].surfaces[0].miller_index)
+    print(surface_properties_doc[0].surfaces[0].structure)
+
+    # 获取 晶界 数据
+    grain_boundary_doc = mpr.materials.grain_boundaries.search(material_ids=["mp-75"])
+
+    print(len(grain_boundary_doc))  # 10
+    print(grain_boundary_doc[0].sigma)
+    print(grain_boundary_doc[0].initial_structure)
+    print(grain_boundary_doc[0].final_structure)
+
+
+```
+
+- 查看表面性质、晶界可获取的数据
+
+```python
+from emmet.core.grain_boundary import GrainBoundaryDoc
+from emmet.core.surface_properties import SurfacePropDoc
+
+print(GrainBoundaryDoc.model_fields.keys())
+dict_keys(
+    [
+        "material_id",
+        "sigma",
+        "type",
+        "rotation_axis",
+        "gb_plane",
+        "rotation_angle",
+        "gb_energy",
+        "initial_structure",
+        "final_structure",
+        "pretty_formula",
+        "w_sep",
+        "cif",
+        "chemsys",
+        "last_updated",
+    ]
+)
+
+print(SurfacePropDoc.model_fields.keys())
+dict_keys(
+    [
+        "surfaces",
+        "weighted_surface_energy_EV_PER_ANG2",
+        "weighted_surface_energy",
+        "surface_anisotropy",
+        "pretty_formula",
+        "shape_factor",
+        "weighted_work_function",
+        "has_reconstructed",
+        "material_id",
+        "structure",
+    ]
+)
 ```

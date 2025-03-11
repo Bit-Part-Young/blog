@@ -492,7 +492,6 @@ GPU 作业请至 dgx2 队列或思源一号a100队列；
 
 - **192c6t 和 huge 大内存队列，核数有一定要求，且排队时间较长**
 
-
 ```bash
 # 192c6t 队列
 sbatch: error: The cpu demand is lower than 48. Please submit to huge or cpu partition.

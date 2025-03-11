@@ -629,6 +629,7 @@ Show 规则用于全局替换
 - 使用 Font Awesome 图标：[GitHub - duskmoon314/typst-fontawesome](https://github.com/duskmoon314/typst-fontawesome)
 - admonitions：[GitHub - jomaway/typst-gentle-clues: Simple admonishment for typst](https://github.com/jomaway/typst-gentle-clues)
 - 定理环境：[GitHub - OrangeX4/typst-theorion: Out-of-the-box, customizable and multilingual theorem environment package for Typst.](https://github.com/OrangeX4/typst-theorion)
+- 化学式、化学反应：[GitHub - Typsium/typsium: The main Typsium package. Typeset chemical formulas and reactions.](https://github.com/Typsium/typsium)
 
 
 ---
@@ -670,6 +671,8 @@ wget --recursive --no-parent --convert-links https://typst.app/docs/
     - [GitHub - howardlau1999/sysu-thesis-typst: 中山大学学位论文 Typst 模板](https://github.com/howardlau1999/sysu-thesis-typst)
     - [简易上海交通大学学位论文 Typst 模板](https://typst.app/project/rI2NZaeIAMwgmyBXnz6tdF)
     - [GitHub - tzhTaylor/typst-sjtu-thesis-master: SJTU Master Thesis Typst Template](https://github.com/tzhTaylor/typst-sjtu-thesis-master/)
+    - [GitHub - tzhTaylor/typst-sjtu-thesis-midterm](https://github.com/tzhTaylor/typst-sjtu-thesis-midterm)
+    - [GitHub - tzhTaylor/touying-sjtu: 基于 Touying 的上海交通大学 Typst 幻灯片模板 (Typst Slide Theme for SJTU Based on Touying)](https://github.com/tzhTaylor/touying-sjtu)
     - 机器学习领域的系列论文模板：[GitHub - daskol/typst-templates: A list of paper templates in the area of machine learning.](https://github.com/daskol/typst-templates)
 
 - Typst 文档编译 Github Actions：

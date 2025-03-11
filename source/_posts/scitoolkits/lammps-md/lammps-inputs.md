@@ -218,7 +218,7 @@ newton flag1 flag2
 # flag2：开关键相互作用[on/off]
 
 # 示例
-newton on  # 默认设置
+newton on            # 默认设置
 ```
 
 
@@ -240,7 +240,7 @@ newton on  # 默认设置
     - 时间：ps
     - 能量：eV
     - 力：eV/Å
-    - 应力：bars
+    - 压强：bars=0.1 MPa
     - 温度：K
     - 速度：Å/ps
 
@@ -250,7 +250,7 @@ newton on  # 默认设置
     - 时间：fs
     - 能量：kcal/mol
     - 力：(kcal/mol)/Å
-    - 应力：atmospheres
+    - 压强：atmospheres
     - 速度：Å/fs
 
 ```bash
@@ -337,27 +337,35 @@ atom-ID molecule-ID atom-type q x y z    # full
 
 ### write_data
 
-- 写出 LAMMPS data 构型格式文件
+- 将构型保存成 LAMMPS data 格式文件
 
 - 使用 LAMMPS 内置命令构建模型后，需设置原子类型对应的相对原子质量（也可势函数），再使用 `write_data`，否则会报错
 
 ```bash
-# 语法
-write_data file
+write_data data.lmp
 ```
 
 
 ---
 
-### read_restart
+### read_restart、restart、write_restart
 
-- 用来读入之前的模拟过程保存下的重启动文件；可以帮助你实现接着之前的模拟过程继续进行
+- 用于重启计算（二进制文件）
 
-- 这些重启动文件一般来说是不能拷贝到其他的机器使用的，但你可以使用工具 `restart2data` 将其转换成文本文件
+- 体系大，驰豫时间也对应长，在体系驰豫后保存 restart 文件，可直接读取用于后续的模拟过程，无需再进行驰豫，可提高效率
+
+- 在能量最小化或驰豫阶段，一般只需在驰豫结束保存一个 restart 文件即可
+
+- LAMMPS 源码 tools 目录下的 restart2data 工具，可将二进制 restart 文件转换成 LAMMPS data 构型格式文件，以便 `read_data` 读入
+
+- restart 文件存储、不会存储的信息：
 
 ```bash
-# 语法
-read_restart file
+read_restart restart.equil
+
+restart 10000 restart.equil         # 周期性；每隔 10000 步保存一次，restart.equil.* 文件
+
+write_restart restart.equil         # 一次性
 ```
 
 
@@ -376,29 +384,53 @@ read_restart file
 
 ### lattice
 
-- 定义晶格类型，晶格常数，以及晶向方向
+- 定义点阵
 
-- 默认值 `orient x 1 0 0 orient y 0 1 0 orient z 0 0 1`；改变晶向时，需满足**右手定则**（不推荐使用 LAMMPS 的内置命令构建特殊晶向的构型，生成的构型不正确）
+- 改变晶向时，需满足**右手定则**（不推荐使用 LAMMPS 的内置命令构建特殊晶向的构型，生成的构型不正确）
 
 ```bash
 # 语法
 lattice style scale keyword values ...
 
-# style：none bcc fcc hcp diamond hex sc custom
+# style
+none
+bcc
+fcc
+hcp                            # 正交胞，4 个原子，c=sqrt(8/3)
+diamond
+hex
+sc
+custom                         # 自定义
 
-# scale：晶格与模拟盒子之间的比例因子
+# scale 点阵常数（除 LJ unit 外）
 
-# keyword/value：没有或多个
-# keyword = orient origin spacing a1 a2 a3 basis
-# orient values = dim i j k
-# dim = x y z
-# i,j,k = 整数晶向方向
+# keyword
+orient                         # 位向
+a1, a2, a3                     # 点阵矢量
+basis                          # 胞内原子位置的分数坐标
+
+# 默认值
+origin = 0.0 0.0 0.0
+orient = x 1 0 0, orient = y 0 1 0, orient = z 0 0 1
+a1 = 1 0 0, a2 = 0 1 0, a3 = 0 0 1
+
 
 # 示例
-lattice      none 1.0             # 默认设置
+lattice      none 1.0          # 默认设置
 lattice      bcc 3.168
-lattice      fcc 3.615
-lattice      hcp 3.2              # 正交坐标轴
+
+# 自定义 HCP 
+variable     a equal 2.95
+variable     b equal $a*sqrt(3.0)
+variable     c equal 4.67
+lattice      custom 1.0 &
+             a1  $a   0.0  0.0          &
+             a2  0.0  $b   0.0          &
+             a3  0.0  0.0  $c           &
+             basis 0.00  0.00000  0.00  &
+             basis 0.50  0.50000  0.00  &
+             basis 0.00  0.33333  0.50  &
+             basis 0.50  0.83333  0.50
 ```
 
 
@@ -826,20 +858,37 @@ fix 1 all nvt temp 300.0 300.0 100.0
 
 ### fix box/relax
 
+- 在能量最小化过程中对模拟盒施加外部压力或应力张量。这样就可以在最小化迭代过程中改变模拟盒的大小和形状，使最终构型既是原子势能的能量最小值，又使系统压力张量接近指定的外部张量。从概念上讲，指定正压就像挤压模拟盒；负压通常允许模拟盒膨胀
+
+- 正交盒子有 3 个可调维度（x、y、z），三斜/非正交盒子有 6 个可调维度（x、y、z、xy、yz、xz）
+
+-  `iso` 关键字表示在计算压力（静水压力）时将所有 3 个对角线分量耦合在一起，并将尺寸一起扩张/收缩
+
+- `aniso` 关键字表示使用应力张量的 Pxx、Pyy 和 Pzz 分量作为驱动力和指定的标量外部压力，对 x、y 和 z 维度进行独立控制
+
+- `tri` 关键字表示 x、y、z、xy、xyz 和 yz 维度是独立控制的，使用各自的应力分量作为驱动力，指定的标量压力作为外部法向应力
+
+- `vmax` 关键字用于限制能量最小化一次迭代中盒子体积的变化分数。若在最小化过程中压力没有稳定下来，可能是因为体积波动太大
+
+- 默认值：vmax=0.0001
+
 ```bash
 fix ID group-ID box/relax keyword value ...
+
+
+# iso Ptarget 等效于
+x Ptarget y Ptarget z Ptarget couple xyz
+# aniso Ptarget 等效于
+x Ptarget y Ptarget z Ptarget couple none
+# tri Ptarget 等效于
+x Ptarget y Ptarget z Ptarget xy 0.0 yz 0.0 xz 0.0 couple none
+
+
+# BCC、FCC
+fix  1 all box/relax iso 0.0 vmax 0.01
+# 正交晶系
+fix  1 all box/relax aniso 0.0 vmax 0.01
 ```
-
-- 在能量最小化期间，将外部压力或应力张量应用于模拟盒。这允许盒子的大小和形状在最小化器的迭代过程中变化，从而最终构型将是原子势能的能量最小值，并且系统压力张量将接近指定的外部张量。从概念上讲，指定正压力就像挤压模拟盒；负压通常允许盒子膨胀。
-
-- 外部压力张量用*iso*, *aniso*, *tri*, *x*, *y*, *z*, *xy*, *xz*, *yz*, and *couple*关键词。这些关键字使您能够指定外部应力张量的所有 6 个分量，并将这些分量耦合在一起，以便在最小化过程中与它们所表示的尺寸一起变化。
-- 应力张量的 6 个分量中的每一个的目标压力 Ptarget 可以通过 x、y、z、xy、xz、yz 关键字独立指定，这些关键字对应于 6 个模拟盒维度。例如，如果使用 y 关键字，则在最小化期间 y 框长度将发生变化。如果使用 xy 关键字，xy 倾斜因子将更改。如果未指定该组件，长方体尺寸将不会更改。
-
-- 关键字 iso 表示在计算压力（静水压力）时将所有三个对角分量连接在一起，并将尺寸放大/缩小在一起。value = Ptarget
-- 关键词 aniso 意味着 x、y 和 z 维度是使用应力张量的 Pxx、Pyy 和 Pzz 分量作为驱动力和指定的标量外部压力独立控制的。
-- vmax 关键字可用于限制在最小化器的一次迭代中可能发生的模拟盒体积的分数变化。如果在最小化期间压力没有稳定下来，这可能是因为体积波动太大。指定的分数必须大于 0.0，且应小于 1.0。值 0.001 表示当指定了 xyz 对时，体积在一次迭代中的变化不能超过 1/10。对于任何其他情况，这意味着模拟框的线性尺寸变化都不能超过 1/10。
-
-- 默认值：dilate = all, vmax = 0.0001, nreset = 0
 
 
 ---
@@ -1112,15 +1161,10 @@ dump-ID           # 先前定义的dump ID
 
 - 输出热力学信息（如温度、能量、压强）；可以是变量
 
+- 默认值 `thermo 0`
+
 ```bash
-# 语法
-thermo N
-
-N                  # 每 N 步输出一次热力学信息
-
-# 示例
-thermo          0         # 默认设置
-thermo          100
+thermo          100      # 每 100 步输出一次热力学信息
 ```
 
 
@@ -1141,14 +1185,15 @@ multi
 yaml
 
 # custom args = list of keywords
-atoms                    # 原子总数目
+atoms                    # 原子数
 step                     # 输出运行的步数是多少
-temp                     # 体系的温度
-ke                       # 体系的动能
-pe                       # 体系的总势能
-etotal                   # 体系的总能量
-pxx, pyy, pzz, pxy ...   # 表示体系各个方向的压强
-count(all)               # 计算总原子数目
+temp                     # 体系温度
+ke                       # 体系动能
+pe                       # 体系总势能
+etotal                   # 体系总能量
+press                    # 压强
+pxx, pyy, pzz, pxy...    # 6 个分量的压强张量
+count(all)               # 计算原子总数
 dt                       # 步长
 lx,ly,lz                 # 盒子三个方向的长度
 cpu                      #
@@ -1156,7 +1201,7 @@ tpcpu                    #
 v_name                   # 变量
 
 # 示例
-thermo_style custom step temp ke pe etotal
+thermo_style      custom step temp ke pe etotal
 ```
 
 
@@ -1164,8 +1209,9 @@ thermo_style custom step temp ke pe etotal
 
 ### thermo_modify
 
-```text
+```bash
 thermo_style custom step vol temp etotal pe press
+# 格式化
 thermo_modify format 1 %12d
 thermo_modify format 2 %22.12f
 thermo_modify format 3 %22.12f
@@ -1173,14 +1219,6 @@ thermo_modify format 4 %22.12f
 thermo_modify format 5 %22.12f
 ```
 
-
----
-
-### start
-
----
-
-### write_restart
 
 ---
 
