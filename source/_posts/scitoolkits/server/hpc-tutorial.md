@@ -29,7 +29,7 @@ password:
 - Linux 系统：Ubuntu 22.04，内核：5.19.0-43-generic
 - root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
 - 任务调度系统：Slurm
-- CPU：Intel Xeon Platinum 8369B，共 64 核
+- CPU：2 $\times$ 32 核 Intel Xeon Platinum 8369B，共 64 核
 - GPU：2 $\times$ 24G RTX 3090；调用 GPU 时只能一整块调用，显存自动分配
 - Intel 套件：Intel-oneAPI 2022.1.0
 - 内存：共 512G
@@ -37,16 +37,26 @@ password:
 - `/home/share` 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中
 
 ```bash
-cat /proc/cpuinfo          # CPU 信息查看；或 lscpu
-cat /proc/meminfo          # 内存信息查看；lsmem
-free -h                    # 内存使用情况查看
-nvidia-smi                 # GPU 信息、使用情况查看
-nvidia-smi -L              # 显示连接的 GPU 信息
+cat /proc/cpuinfo     # CPU 信息查看；或 lscpu
+cat /proc/meminfo     # 内存信息查看；lsmem
+free -h               # 内存使用情况查看
+nvidia-smi            # GPU 信息、使用情况查看
+nvidia-smi -L         # 显示连接的 GPU 信息
+
+
+# 查看物理 CPU 数目（几块 CPU）
+lscpu | grep Sock
+cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l
+
+# 查看逻辑 CPU 数目（CPU 有几个核）
+lscpu | grep sock
+cat /proc/cpuinfo | grep "processor" | wc -l
+nproc
 
 
 # 赝势路径
-/work/backup/.vasp_pot     # Master
-/opt/.vasp_pot             # Manager
+/work/backup/.vasp_pot  # Master
+/opt/.vasp_pot          # Manager
 ```
 
 ---
@@ -119,7 +129,7 @@ gpustat -i 2
 
 ![GPU 信息及资源占用率](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202402291942207.png)
 
-输出信息解读：两个 GPU 都在高负载运行（GPU 利用率 100%，温度分别为 77 摄氏度和 72 摄氏度），并且接近其功率上限。GPU 上的内存几乎被完全利用，表明运行的进程（主要是 python）正在积极使用 GPU 资源。
+- 输出信息解读：两个 GPU 都在高负载运行（GPU 利用率 100%，温度分别为 77 摄氏度和 72 摄氏度），并且接近其功率上限。GPU 上的内存几乎被完全利用，表明运行的进程正在积极使用 GPU 资源
 
 ```bash
 # GPU 列表
@@ -1026,7 +1036,7 @@ make install  # 安装
 
 ---
 
-## posconv、NumNei
+### posconv、NumNei
 
 - 具体安装步骤见：
 
@@ -1086,43 +1096,6 @@ make install  # 安装
 
 ---
 
-### LAMMPS
-
-使用 cmake 编译
-
-```bash
-wget https://download.lammps.org/tars/lammps-2Aug2023.tar.gz
-tar -xzvf lammps-2Aug2023.tar.gz
-cd lammps-2Aug2023
-
-# 导入 oneAPI 套件
-module purge
-module load intel-oneapi-compilers/2021.4.0
-module load intel-oneapi-mkl/2021.4.0
-module load intel-oneapi-mpi/2021.4.0
-# 建议再导入该 oneAPI 模块
-module load intel-oneapi-tbb/2021.4.0
-
-# 编译配置
-mkdir build && cd build
-# C++ 等编译器均为 GNU套件的
-cmake -C ../cmake/presets/most.cmake ../cmake
-
-# oneapi 可替换成 intel
-# oneapi IntelLLVM C++ 编译器为 intel oneapi 的 icpx
-# intel Intel C++ 编译器为 intel oneapi 的 icpc
-cmake \
-    -C ../cmake/presets/most.cmake \
-    -C ../cmake/presets/oneapi.cmake \
-    ../cmake
-
-# 编译
-make  # cmake --build .
-```
-
-
----
-
 ### vaspkit
 
 - VASP 预、后处理工具；[Overview — VASPKIT 1.5 documentation](https://vaspkit.com/)
@@ -1157,20 +1130,6 @@ vaspkit             # 进入交互模式
 vaspkit < XXX.in    # 推荐此命令，适用于批处理
 
 echo -e "102\n2\n0.04\n" | vaspkit
-```
-
-
----
-
-### phonopy
-
-- [phonopy](https://phonopy.github.io/phonopy/)：计算声子谱
-
-安装
-
-```bash
-conda install -c conda-forge phonopy
-pip install -U phonopy
 ```
 
 

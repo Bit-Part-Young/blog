@@ -66,25 +66,14 @@ password:
 
 - 可通过修改 INCAR 文件中的 NWRITE 参数来选择写入 OUTCAR 文件的输出量
 
-- 相关数据提取
+- 基本信息提取
 
 ```bash
+# 元素符号
+grep "TITEL" OUTCAR  | awk '{print $4}' | awk -F"_" '{print $1}' | awk '!seen[$0]++'
 
-total drift           # 每个离子步，结构中所有原子在 x y z 方向的受力变化总和
-
-# 获取受力数据
-n=48                  # 原子数
-lines=`awk '{i=0}/TOTAL-FORCE/{getline; while(i<n) {getline; print $4,$5,$6; i++} i=0}' n=$n < OUTCAR`
-echo $lines
-
-# 能量之间的差异
-F = E + PV - TS           # 总能；自由能公式；T=0 时，F=U
-free energy TOTEN         # 自由能
-energy without entropy    # 不含 T*S 熵项的自由能
-E0                        # sigma -> 0 时的能量
-
-# 结构优化/弛豫结束标志
-reached required accuracy - stopping structural energy minimisation
+# 元素对应数目
+grep "ions per type" OUTCAR  | tail -n 1 | awk -F"=" '{print $2}'
 
 # 构型原子数
 # 方式 1
@@ -95,14 +84,17 @@ natoms=$(grep 'NIONS' OUTCAR | tail -n 1 | awk '{print $12}')
 # 平均原子体积
 vol=$(grep 'volume of cell' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
 
-# 平均原子能量
-eng=$(grep 'free  energy' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
+grep 'NSW' OUTCAR         # 查看 INCAR 相关参数数值
+```
 
-# 磁矩 需设置 ISPIN=2
-mag=$(grep 'mag=' OSZICAR | awk '{print $10}')
+- 能量信息提取
 
-# 耗时
-sec=$(grep 'Total CPU time used' OUTCAR | awk '{print $6}')
+```bash
+# 能量之间的差异
+F = E + PV - TS           # 总能；自由能公式；T=0 时，F=U
+free energy TOTEN         # 自由能
+energy without entropy    # 不含 T*S 熵项的自由能
+E0                        # sigma -> 0 时的能量
 
 # 电子步能量
 # 'energy without' 'free energy' 之间只有一个空格
@@ -113,6 +105,37 @@ grep  'energy without entropy' OUTCAR
 # 'energy  without' 或 'free  energy' 之间有两个空格
 grep 'free  energy' OUTCAR
 grep  'energy  without entropy' OUTCAR
+
+
+# 平均原子能量
+eng=$(grep 'free  energy' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
+```
+
+- 力提取
+
+```bash
+total drift           # 每个离子步，结构中所有原子在 x y z 方向的受力变化总和
+
+# 每个离子步的原子位置及对应受力
+awk '/TOTAL-FORCE/,/total drift/' OUTCAR
+
+# 每个离子步的原子受力
+n=48                  # 原子数
+lines=$(awk '{i=0}/TOTAL-FORCE/{getline; while(i<n) {getline; print $4,$5,$6; i++} i=0}' n=$n < OUTCAR)
+echo $lines
+```
+
+- 其他
+
+```bash
+# 结构优化/弛豫结束标志
+reached required accuracy - stopping structural energy minimisation
+
+# 磁矩 需设置 ISPIN=2
+mag=$(grep 'mag=' OSZICAR | awk '{print $10}')
+
+# 耗时
+sec=$(grep 'Total CPU time used' OUTCAR | awk '{print $6}')
 
 # 由 KPOINTS 生成的 K 点总数
 head -n 38 IBZKPT | tail -n 35 | awk '{sum+=$4} END {print sum}'
@@ -127,8 +150,6 @@ grep -i 'nbands' OUTCAR
 # 输出内容示例；也可得到不可约布里渊区 K 点数
 k-points           NKPTS =     35   k-points in BZ     NKDIM =     35   number of bands    NBANDS=      9
 
-# 查看 NEDOS、EMIN、EMAX 数值
-grep -E 'NEDOS|EMIN' OUTCAR
 
 # TODO: 待说明含义
 awk 'BEGIN{i=1} /dos>/,\
@@ -141,7 +162,7 @@ ef=`awk '/efermi/ {print $3}' vasprun.xml`
 
 - 示例内容：[13\_vasp/V2PC/02\_static\_calculation\_output.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/02_static_calculation_output.md)
 
-```text
+```bash
  vasp.5.4.4.18Apr17-6-g9f103f2a35 (build Nov 17 2020 17:54:46) complex
 
  executed on             LinuxIFC date 2023.09.26  17:09:42
@@ -281,7 +302,6 @@ tot          0.000   0.000   0.000   0.000
                           Minor page faults:        29744
                           Major page faults:            6
                  Voluntary context switches:         2545
-
 ```
 
 
