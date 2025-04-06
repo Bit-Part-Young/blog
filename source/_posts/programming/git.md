@@ -129,6 +129,8 @@ WIP...
 
 - 查看 Git repo 的统计信息：[GitHub - arzzen/git-quick-stats](https://github.com/arzzen/git-quick-stats)
 
+- 显示 Git 仓库的提交者统计：[GitHub - sinclairtarget/git-who: Git blame for file trees](https://github.com/sinclairtarget/git-who)
+
 - 以 SQL 的方式查询 Git 仓库相关内容：[Git Query language](https://amrdeveloper.github.io/GQL/)
 
 - 根据 commit 记录生成 changelog：[GitHub - orhun/git-cliff: A highly customizable Changelog Generator that follows Conventional Commit specifications ⛰️](https://github.com/orhun/git-cliff)

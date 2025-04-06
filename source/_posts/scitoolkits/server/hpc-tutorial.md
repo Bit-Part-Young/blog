@@ -105,9 +105,37 @@ viscal.................To calculate shear viscosity based on Green-Kubo method
 vmd....................To visualize md trajectories
 ```
 
+
+---
+
+#### Intel Xeon CPU 相关
+
+- Intel 至强处理器的数字和后缀可以表示性能、功能和代次 [英特尔® 至强® 可扩展处理器编号和后缀](https://www.intel.cn/content/www/cn/zh/support/articles/000059657/processors/intel-xeon-processors.html)
+    - 四位数字序列的第一个数字表示处理器级别：8、9 铂；
+    - 第二个数字表示处理器代次：1-6
+    - 第三位和第四位数字表示 SKU 编号：这些数字不代表任何特定功能。通常，性能越好的处理器具有较大的 SKU 编号
+
+- [至强处理器 - 英特尔® 产品规范](https://www.intel.cn/content/www/cn/zh/ark.html#@PanelLabel595)
+
+- [List of Intel Xeon processors (Ice Lake-based) - Wikipedia](https://en.wikipedia.org/wiki/List_of_Intel_Xeon_processors_(Ice_Lake-based))
+
+
 ---
 
 #### GPU 相关
+
+- [llm\_note/4-hpc\_basic/英伟达GPU架构总结.md at main · harleyszhang/llm\_note · GitHub](https://github.com/HarleysZhang/llm_note/blob/main/4-hpc_basic/%E8%8B%B1%E4%BC%9F%E8%BE%BEGPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93.md)（含 V100、A100、H100 GPU 介绍）
+
+- NVIDIA GPU 参数：
+    - CUDA Core（NVIDIA GPU 的计算核心单元）
+    - Tensor Core（专门用于深度学习任务中的张量计算）
+    - RT Core（加速光线追踪计算）
+
+- NVIDIA GPU 架构：Volta（伏特，第 6 代）、Turing（图灵，第 7 代）、Ampere（安培、第 8 代）、Hopper（霍珀，第 9 代）
+
+- V100、A800（A100 中国特供版）、H800（H100 中国特供版）
+
+---
 
 - 查看 CUDA 是否安装（分为两种，驱动 driver 和运行 runtime）
 
@@ -364,14 +392,14 @@ scontrol show job JOBID      # 指定作业详细状态
 scontrol show node nodename  # 列出节点详细状态
 sinfo --partition=64c512g    # 查看特定队列
 
-# sinfo 会显示的节点状态
+# sinfo 节点状态
 idle                         # 节点处于空闲状态
 mix                          # 节点部分 CPU 资源被占用
 alloc                        # 节点所有 CPU 资源都被占用
 down                         # 节点故障暂不可用
 drain                        # 节点故障，但不影响已运行的作业
 
-# 作业状态
+# squeue 作业状态
 R                            # RUNNING；正在运行
 PD                           # PENDING；正在排队
 CG                           # 即将完成
@@ -480,8 +508,8 @@ arm128c256g    每核2G内存    arm
 cpu            每核4G内存    pi
 small          每核4G内存    pi
 dgx2           每核6G内存    pi
-**huge           每核35G内存   pi
-192c6t         每核31G内存   pi**
+huge           每核35G内存   pi
+192c6t         每核31G内存   pi
 cpu，small和dgx2队列作业运行时间最长7天，huge和192c6t最长2天。作业延长需发邮件申请，附上用户名和作业ID，延长后的作业最长运行时间不超过14天。
 ```
 
@@ -514,12 +542,12 @@ sbatch: error: Batch job submission failed: Unspecified error
 
 - 超算收费情况（2023.05.30）
 
-```text
+```bash
 交我算平台集群总费用为CPU，GPU和存储费用之和。费率标准如下：
 
-CPU 价格：0.04元/核/小时（Pi 2.0集群 cpu/small/huge/192c6t/debug 队列）
+CPU 价格：0.04元/核/小时（Pi 2.0集群 cpu/small/huge/192c6t/debug 队列） # 0.02 2025.03.30
 
-                   0.05 元/核/小时（思源一号集群 64c512g 队列）
+                   0.05 元/核/小时（思源一号集群 64c512g 队列） # 0.03 2025.03.30
 
                    0.01元/核小时（arm128c256g队列）
 GPU 价格：2 元/卡/小时（dgx2队列 V100 GPU）
@@ -1015,6 +1043,13 @@ srun -p cpu -n 1 --pty /bin/bash
 srun -p 64c512g -n 1 --pty /bin/bash
 ```
 
+- posconv、NumNei、latgen、dumpana、atomsk
+
+- VASP.5.4.4、VASP.6.3.0、HDF5、VTST：[VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
+
+- 超算高版本 glibc 编译：[glibc - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/glibc.html)
+
+- 超算上没有 mpi4py（需自己安装）：[Mpi4py - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/mpi4py.html)
 
 ---
 
@@ -1032,66 +1067,6 @@ srun -p 64c512g -n 1 --pty /bin/bash
 make          # 编译
 make install  # 安装
 ```
-
-
----
-
-### posconv、NumNei
-
-- 具体安装步骤见：
-
-
----
-
-### latgen
-
-- 具体安装步骤见：
-
-
----
-
-### dumpana
-
-- 具体安装步骤见：
-
-
----
-
-### atomsk
-
-- 具体安装步骤见：
-
-
----
-
-### VASP.5.4.4
-
-- 具体安装步骤见：
-    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
-
-
----
-
-### HDF5
-
-- 具体安装步骤见：
-    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
-
-
----
-
-### VASP.6.3.0 + HDF5
-
-- 具体安装步骤见：
-    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
-
-
----
-
-### VASP + VTST
-
-- 具体安装步骤见：
-    - [VASP 编译 - Wiki of NES Lab](https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/)
 
 
 ---
@@ -1209,24 +1184,6 @@ pip install .
 ### Tex Live
 
 - Tex Live 版本：思源一号 2018；Pi 2013；Manager 2015；Master 未安装
-
-- 具体安装步骤见：
-
-
----
-
-### ATAT
-
-WIP...
-
-
----
-
-### 其他
-
-- 超算高版本 glibc 编译：[glibc - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/glibc.html)
-- 超算上没有 mpi4py（得自己安装）：[Mpi4py - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/mpi4py.html)
-
 
 
 ---

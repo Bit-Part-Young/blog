@@ -30,6 +30,7 @@ password:
     - [fluid](https://github.com/fluid-dev/hexo-theme-fluid)
     - [stun](https://github.com/liuyib/hexo-theme-stun)
     - [maupassant](https://github.com/tufu9441/maupassant-hexo)（简洁风）
+    - [final](https://github.com/hoytzhang/hexo-theme-final)
     - [keep](https://github.com/XPoet/hexo-theme-keep)
     - [sea](https://github.com/hai-zou/hexo-theme-sea)
     - [redefine](https://github.com/EvanNotFound/hexo-theme-redefine)

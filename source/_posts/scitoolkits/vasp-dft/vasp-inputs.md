@@ -60,15 +60,15 @@ password:
     - 第 1 行：Comment line 注释行；可对体系进行描述，也可空着
     - 第 2-5 行：Scaling factor and lattice，缩放因子和基矢；与体系的晶格常数符合即可；第二行值如果为负数，表示体积
     - 第 6-7 行：Ion species and numbers，元素种类（VASP4 可没有该行）及对应原子数目；**元素种类的顺序需与 POTCAR 文件中的一致**；
-    - 第 8-N 行：Ion positions 原子坐标；Direct（首字母大写或只写 D 均可）表示分数坐标，Cartesian（或 C）表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定；**默认值为 T，表示该方向可运动，F 表示固定**）
+    - 第 8-N 行：Ion positions 原子坐标；Direct/D 表示分数坐标，Cartesian/C 表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定；**默认值为 T，表示该方向可运动，F 表示固定**）
     - 原子坐标信息之后是原子的初始速度信息（一般可不用设置）
 
 - 注意事项：
     - VASP 根据 POSCAR 文件确定体系的对称性。原子位置精度不够（位数太少）是一个常见错误。为更好地利用 VASP 中的对称性，强烈建议在 POSCAR 文件中指定至少 7 位有效数字的原子位置（和晶格参数，最好多一些）
 
-- 示例：
 
-```text
+```bash
+# 示例
 Cubic BN
 3.57
 0.0 0.5 0.5
@@ -80,19 +80,7 @@ Direct
 0.00 0.00 0.00
 0.25 0.25 0.25
 
-
-MgO Fm-3m (No. 225)
-1.0
- 2.606553 0.000000 1.504894
- 0.868851 2.457482 1.504894
- 0.000000 0.000000 3.009789
- Mg O
- 1 1
-direct
- 0.000000 0.000000 0.000000 Mg
- 0.500000 0.500000 0.500000 O
-
-
+# 含原子坐标固定信息
 Cubic BN
 3.57
 0.00000000 0.50000000 0.50000000
@@ -112,7 +100,7 @@ direct
 
 ## POTCAR
 
-- VASP6 与 VASP5 相比，赝势基本不变，只有小部分变动，如氧的更高截断能测试，如 700eV 等：[求助！跪求一套VASP 6 版本的赝势 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-44530-1-1.html)
+- VASP6 与 VASP5 相比，赝势基本不变，只有小部分变动（如 O_h，5.4 为 700.0 eV，6.4 为 765.519 eV 等：[求助！跪求一套VASP 6 版本的赝势 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-44530-1-1.html)
 
 - [Available pseudopotentials - VASP Wiki](https://www.vasp.at/wiki/index.php/Available_pseudopotentials)：含 PBE52、PBE54、PBE64 赝势介绍，赝势加后缀之间的区别
 
@@ -120,7 +108,7 @@ direct
 
 - 赝势文件；包含计算体系中每种元素的赝势（元素种类的数量大于 1，只需将各元素种类的 POTCAR 文件依次连接起来即可，与 POSCAR 文件中元素种类顺序对应）
 
- - 赝势目录一般含 LDA，PBE，和 PW91 三个子目录
+- 赝势目录一般含 LDA，PBE，和 PW91 三个子目录
 
 - PBE 赝势可分为：无后缀、\_pv、\_sv、\_d 和数字后缀，即 semi-core 的 p、s、d 层电子当做价电子处理
 
@@ -323,7 +311,7 @@ Gamma          ! generate a Gamma centered mesh
     - 第 2 行：设置 K 点数目，非 0 数字表示每条线之间划分的 K 点数目
     - 第 3 行：生成 K 点方式
 
-```text
+```bash
 k points along high symmetry lines
  40              ! number of points per line
 line mode
@@ -377,6 +365,7 @@ k*a ~ 15 Å     # 绝缘体
     - INCAR 中的参数中的 L 开头表示逻辑数
     - INCAR 参数名称写错，VASP 会忽略，不影响
     - 参数设置的第一个数值为默认值，忽略后续同参数的数值设置
+    - .FALSE. 可简写为 F，.TRUE. 可简写为 T
 
 
 ---
@@ -422,9 +411,9 @@ k*a ~ 15 Å     # 绝缘体
 
 ### ISPIN
 
-- 是否考虑自旋极化
+- 是否考虑自旋极化（1 不考虑；2 考虑）
 
-- 默认值：1（不考虑）；2（考虑）
+- 默认值：1
 
 - 若确定研究体系不含磁性，尽量不开启自旋极化（计算量至少是原本的 2 倍以上；但并不会对计算的性质结果产生影响，可检查添加自旋后的计算磁矩是否接近 0）；若含磁性，可先不开启自旋极化，进行结构优化，将其生成的电荷密度文件作为后续开启自旋极化计算的电荷密度输入
 
@@ -468,6 +457,20 @@ k*a ~ 15 Å     # 绝缘体
 .FALSE.        # 倒空间
 .TRUE.         # 实空间
 Auto / A       # 实空间；自动优化
+
+
+# 相关 warning
+ -----------------------------------------------------------------------------
+|                                                                             |
+|  ADVICE TO THIS USER RUNNING 'VASP/VAMP'   (HEAR YOUR MASTER'S VOICE ...):  |
+|                                                                             |
+|      You have a (more or less) 'large supercell' and for larger cells       |
+|      it might be more efficient to use real space projection opertators     |
+|      So try LREAL= Auto  in the INCAR   file.                               |
+|      Mind:          For very  accurate calculation you might also keep the  |
+|      reciprocal projection scheme          (i.e. LREAL=.FALSE.)             |
+|                                                                             |
+ -----------------------------------------------------------------------------
 ```
 
 
@@ -524,6 +527,8 @@ Damped         # damped velocity friction 算法
 
 - [DFT计算软件中展宽的取值含义](https://mp.weixin.qq.com/s/LeUBraeu7mwUn7nD6tKa0g)
 
+- [Smearing technique - VASP Wiki](https://www.vasp.at/wiki/index.php/Smearing_technique)
+
 - 费米狄拉克分布示意图及展宽处理
 
 ![image.png](https://image-bed.seekanotherland.xyz/image-bed/main/m1air/202412031039272.png)
@@ -533,6 +538,8 @@ Damped         # damped velocity friction 算法
 - 默认值：1
 
 - ISMEAR=0 在大多数情况下会得到非常合理的结果
+
+- 原子受力和应力与 `free energy` 一致，而不是 `sigma->0` 外推能量，因此需确保原子受力和应力收敛于对应的 SIGMA 值
 
 - ISMEAR=-5 时，SIGMA=0，费米狄拉克分布，不会有展宽；电子态的占据是整数占据（0 或 1）；无平滑处理，DOS 绘制普遍毛刺较多
 
@@ -558,7 +565,7 @@ N              # N 为数字；Methfessel-Paxton order N（默认 1）
 -5             # Blöchl 纠正的 tetrahedron
 
 
-# ISMEAR=-5，K 点数目小于 4 时，会报错
+# ISMEAR=-5，K 点总数目小于 4 时，会报错
 VERY BAD NEWS! internal error in subroutine IBZKPT:
 Tetrahedron method fails for NKPT<4. NKPT =       1
 ```
@@ -800,14 +807,17 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 默认值：2；可选值：0-4
 
+- f+l 表示第一步和最后一步离子步， f 表示第一个离子步，i 表示每个离子步，e 表示每个电子步，X 表示适用时（when applicable）
+
 - 长时间的 MD 运行，建议 NWRITE 设置为 0 或 1；短时间运行设置为 2
 
 ```bash
-3      # 写入的内容最详细
-4      # 只用于 debugging
+0         # 只写入第一步和最后一步的基矢、受力信息（vasprun.xml 中仍含每个离子步的相关信息）
+0         # 写入每个离子步的基矢、受力信息
+3         # 写入的内容最详细
+4         # 只用于 debugging
 ```
 
-- f+l 表示第一步和最后一步离子步， f 表示第个离子步，i 表示每个离子步，e 表示每个电子步，X 表示适用时（when applicable）
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307162218175.png)
 
@@ -896,32 +906,110 @@ WIP...
 
 - 若设置了 LELF，则必须在 INCAR 文件中明确设置 NPAR=1
 
+---
+
+### PSTRESS
+
+- 设置外部压力（Pully Stress，单位 kB）或对应力张量进行修正
+
+- 默认值：0
+
 
 ---
 
-### KPAR
+### NBLOCK
 
--  determines the number of **k**-points that are to be treated in parallel
+- 每 NBLOCK 个电子步后，对关联函数和 DOS 被计算，且构型写入到 XDATCAR 文件中
 
 - 默认值：1
 
-
----
-
-### NPAR
-
-- determines the number of bands that are treated in parallel
-
-- 默认值：核数
+- 推荐设置成 1, 其计算开销很小；仅在长时 AIMD 或使用 MLFF 时，可将 NBLOCK 提高至 10 甚至 100
 
 
 ---
 
-### NCORE
+### SMASS
 
-- determines the number of compute cores that work on an individual orbital
+- 控制 AIMD 运行过程中的速度
 
-- 默认值：1
+- 默认值：-3
+
+- 对于特定体系，Nosé-mass 的设置应使温度振荡频率与典型的 “声子” 频率近似相同
+
+```bash
+-3              # 模拟 NVE 系综
+-2              # 初始速度保持不变
+-1              # 每 NBLOCK 个离子步缩放速度
+≥0              # 模拟正则系综，使用 Nosé 算法，控制温度振荡频率
+0               # 选择相当于 40 个时间步长的 Nosé-mass
+```
+
+
+---
+
+### POMASS
+
+- 元素的原子相对质量（数组）
+
+- 默认缺省，会从 POTCAR 文件中读取
+
+
+---
+
+### KPAR、NPAR、NCORE
+
+- [VASP 并行参数设置 - 知乎](https://zhuanlan.zhihu.com/p/485153538)
+
+- KPAR: 同时计算多少个 K 点（determines the number of **k**-points that are to be treated in parallel）；默认值：1
+
+- NPAR：每个 K 点同时计算多少条能带/轨道（determines the number of bands that are treated in parallel）；默认值：核数
+
+- NCORE: 一条带由多少个核来计算（determines the number of compute cores that work on an individual orbital）；默认值：1；NCORE=总核数/KPAR/NPAR（**NPAR 和 NCORE 只能设置其中之一**）
+
+- VASP 计算里，平均而言，一个原子贡献 4 个价电子，4 个带
+
+- KPAR 最大可设为布里渊区不可约 K 点数，取决于 KPOINTS 文件设置及结构对称性
+
+- NPAR (或 NCORE) 和 KPAR 参数可以同时设置，对计算效率影响较大。并非所有可能的组合都能提供比默认值更好的计算效率
+
+- 小体系并行：小体系的特点是原子数少，K 点较多，能带少；因此 KPAR 应尽可能设大, NPAR 可设为 1
+
+- 中等体系并行：在中等规模的体系（20-100 个原子）中，情况会有所不同。此时，计算的不可约 k 点的数量很少（5-50），而电子能带的数量会很大（>100）
+
+```bash
+# K 点、能带数目 示例
+# FCC Al；4 原子；K 点 11x11x11
+k-points           NKPTS =     56   k-points in BZ     NKDIM =     56   number of bands    NBANDS=     12
+# HCP 正交 Ti；4 原子；K 点 15x9x10
+k-points           NKPTS =    240   k-points in BZ     NKDIM =    240   number of bands    NBANDS=     32
+# HCP 正交 Ti；2x2x2 32 原子；K 点 7x5x5
+k-points           NKPTS =     36   k-points in BZ     NKDIM =     36   number of bands    NBANDS=    240
+# BCC Ti；2x2x2 16 原子；K 点 7x7x7
+k-points           NKPTS =     20   k-points in BZ     NKDIM =     20   number of bands    NBANDS=    128
+
+
+# KPAR、NPAR、NCORE 报的 warning
+ -----------------------------------------------------------------------------
+|                                                                             |
+|           W    W    AA    RRRRR   N    N  II  N    N   GGGG   !!!           |
+|           W    W   A  A   R    R  NN   N  II  NN   N  G    G  !!!           |
+|           W    W  A    A  R    R  N N  N  II  N N  N  G       !!!           |
+|           W WW W  AAAAAA  RRRRR   N  N N  II  N  N N  G  GGG   !            |
+|           WW  WW  A    A  R   R   N   NN  II  N   NN  G    G                |
+|           W    W  A    A  R    R  N    N  II  N    N   GGGG   !!!           |
+|                                                                             |
+|      For optimal performance we recommend to set                            |
+|        NCORE= 4 - approx SQRT( number of cores)                             |
+|      NCORE specifies how many cores store one orbital (NPAR=cpu/NCORE).     |
+|      This setting can  greatly improve the performance of VASP for DFT.     |
+|      The default,   NCORE=1            might be grossly inefficient         |
+|      on modern multi-core architectures or massively parallel machines.     |
+|      Do your own testing !!!!                                               |
+|      Unfortunately you need to use the default for GW and RPA calculations. |
+|      (for HF NCORE is supported but not extensively tested yet)             |
+|                                                                             |
+ -----------------------------------------------------------------------------
+```
 
 
 ---
@@ -962,8 +1050,6 @@ NUPDOWN          # 指定自旋向上和自旋向下的电子数差
 NSIM             # NSIM 设置由 RMM-DIIS 算法同时优化的 band 数；默认值 4
 
 LPLANE           # 在实空间中打开 plane-wise 数据分布；默认值 .TRUE.
-
-PSTRESS          # 设置外部压力（单位 kB）或对应力张量进行修正；默认值 0
 
 LSCALU           # 在波函数的正交归一化中打开并行 LU 分解（使用scaLAPACK）；默认值 .FALSE.；大多数情况比串行 LU 分解慢
 ```

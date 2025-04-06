@@ -352,4 +352,8 @@ go install github.com/fogleman/primitive@latest
 export PATH=$(go env GOPATH)/bin:$PATH
 
 primitive -i input.png -o output.png -n 100
+
+
+# mdq 使用
+car *.md | mdq '# title'
 ```

@@ -58,7 +58,7 @@ password:
 
     - 模拟盒子设置（Setup simulation box）：boundary、change_box、create_box、dimension、lattice、region
 
-    - 原子设置（Setup atoms）：atom_style、atom_style、create_atoms、delete_atoms、displace_atoms、group、mass、read_data、read_dump、read_restart、replicate、set、velocity
+    - 原子设置（Setup atoms）：atom_style、create_atoms、delete_atoms、displace_atoms、group、mass、read_data、read_dump、read_restart、replicate、set、velocity
 
     - 势函数（力场 Force fields）：pair_style、pair_coeff、pair_modify、pair_write
 
@@ -78,6 +78,7 @@ password:
     - 蒙特卡洛 MC 相关命令：`fix gcmc`、`fix atom/swap`、`fix sgcmc`
 
 - [LAMMPS 最重要的两种符号：引号与美元符号](https://mp.weixin.qq.com/s/q81ngjKF6cN2l4o_7d4sow)
+- [5.2. Parsing rules for input scripts — LAMMPS documentation](https://docs.lammps.org/Commands_parse.html)
     - `$()` 的作用和 `""` 很像（允许空格的出现），前者是立即计算转换成数值的（所有出现 `$` 的地方都如此），后者不会立即计算
     - `print` 命令把变量的值输出时，须用 `$` 而不能用引号。因为引号在 `print` 后面时字符串的作用会被强化，而传递参数的作用会被弱化
 
@@ -491,16 +492,53 @@ pair_coeff        * * CuYM.eam.alloy Cu
 
 - 定义近邻列表；只计算与在该原子截断距离内的原子的相互作用；近邻列表就是为了更新每个原子截断距离内的原子位置而设定的
 
+
+```bash
+max neighbors/atom: 2000, page size: 100000
+
+master list distance cutoff = 6.95
+
+# 近邻列表的一些属性, 以及构建方法
+# 永久/临时/额外
+1 neighbor lists, perpetual/occasional/extra = 1 0 0
+# 计算量减半
+attributes: half, newton on
+# bin：表明 LAMMPS 使用的是基于网格索引的近邻列表构建法, 时间复杂度为 O(N)
+pair build: half/bin/atomonly/newton
+stencil: half/bin/3d
+
+bin: standard
+```
+
+一个原子能够拥有的最多的近邻原子数量是 2000（默认值）
+
+构建的近邻列表的半径 = 势函数的截断半径 + skin 值
+
+atomonly：表明当前模型中参与计算受力的只有原子, 无键, 角, 二面角
+
+page size 则是表明 LAMMPS 里面存储了多少个近邻对；默认值 100000；page_size 至少大于一个原子的最大的近邻原子数量的 10 倍
+
+需要在内存中记录下每个近邻对中的中心原子和近邻原子的 ID,以便于后续在模拟中使用这些 ID 进行数组索引. 而 page_size 就是 LAMMPS 为存储这些近邻对的原子 ID 而申请的内存空间.
+
+Dangerous builds, 该数值表示的是存在潜在漏算风险的近邻列表的重构次数。在 LAMMPS 中, 若不使用 neighbor_modify 命令进行调整, 近邻列表的构建默认是每运行一步都检查一次近邻列表是否存在需要重构的风险, 若发现存在需要重构的近邻列表, 会延迟运行 10 步之后（非立即重构）, 再进行重构近邻列表
+
+LAMMPS 采用的判定是否需要重构是非常保守的策略。自从上一次重构近邻列表之后, 一旦有某个原子的位移超过 skin 值的一半, LAMMPS 就判定需要进行邻居列表重构
+
+Dangerous builds 的数量不为 0, 并不意味着模拟中就一定出现了漏算或者错算。但对于一个正确的模拟来说, 无论跑多少步, Dangerous builds 都应该保持为 0。也可使用 `neigh_modify every 1 delay 0 check yes` 命令, 以稍微增加一些计算量的代价, 确保每次需要更新近邻列表的时候都立即更新, 而不会有任何的延迟
+
+并不是所有的势函数都支持使用 openMP 进行并行, 但是所有的势函数都绝对支持基于 MPI 的并行
+
 - 此命令设置影响 pairwise neighbor lists 构建的参数。所有原子对的 neighbor cutoff 距离等于其力截止加上 skin 距离，都存储在列表中。通常，skin 距离越大，需要构建的 neighbor lists 就越少，但每个时间步都必须检查更多的对以确定可能的力相互作用。skin 的默认值取决于模拟的单位选择；请参见下面的默认值。
 
 - style 的值表示选择构建近邻列表的算法。bin style 通过 binning 创建列表，binning 是一种与 N/P（每个处理器的原子数）线性缩放的操作，其中 N=原子总数，P=处理器数 (processors)。它几乎总是比缩放为 (N/P)^2 的 nsq style 快。
 
-- 2.0 bin for units = real or metal, skin = 2.0 Angstroms
+- 默认值：2.0 bin for units = real or metal, skin = 2.0 Angstroms
 
 ```bash
+# 语法
 neighbor skin style
 
-skin                 # 超出力截止的额外距离
+skin                 # 超出势函数的截断半径的额外距离
 
 # style
 bin
@@ -519,14 +557,13 @@ neighbor          2.0 nsq
 
 ### neigh_modify
 
-- 设置影响成对近邻列表建立和使用的参数；一次模拟可能需要多个近邻列表
+- 设置近邻列表构建和使用的参数；一次模拟可能需要多个近邻列表
 
-- 默认值：delay = 0, every = 1, check = yes, once = no, cluster = no, include = all (same as no include option defined), exclude = none, page = 100000, one = 2000, and binsize = 0.0.
+- *every*, *delay*, *check*, and *once*选项影响模拟运行时生成列表的频率。*delay*设置意味着在上一次构建之后至少 N 个步骤之前从不构建新列表。*every*设置意味着每 M 步尝试构建列表（after the delay has passed）。如果*check*设置为 no，则在满足延迟和每个设置的第一步上构建列表。如果*check*设置为 yes，则*every*和*delay*设置将确定何时可能执行构建，但只有在自上次邻居列表构建以来至少有一个原子移动了超过 neighbor skin 距离（在 neighbor 命令中指定）一半的情况下，才会进行实际构建
 
-- 此命令设置影响 pairwise neighbor lists 的生成和使用的参数。根据定义的对相互作用和其他命令，模拟可能需要一个或多个邻居列表。
+- `once` 只在开始运行时构建一次近邻列表，并且从不重新构建，除非在写入 restart 文件时，或使用 fix 相关命令（如 fix deposit、fix evaporate）。检查是否应该重构近邻列表耗时很少
 
-- *every*, *delay*, *check*, and *once*选项影响模拟运行时生成列表的频率。*delay*设置意味着在上一次构建之后至少 N 个步骤之前从不构建新列表。*every*设置意味着每 M 步尝试构建列表（after the delay has passed）。如果*check*设置为 no，则在满足延迟和每个设置的第一步上构建列表。如果*check*设置为 yes，则*every*和*delay*设置将确定何时可能执行构建，但只有在自上次邻居列表构建以来至少有一个原子移动了超过 neighbor skin 距离（在 neighbor 命令中指定）一半的情况下，才会进行实际构建。
-- 如果*once*设置为 yes，则 neighbor lists 仅在每次运行开始时构建一次，并且从不重新构建，除非在写入重新启动文件时执行步骤，或在修复强制进行重建时执行步骤（例如，创建或删除原子的修复，如 fix deposit or fix evaporate）。只有当您确定原子移动的距离不够远，无法重建 neighbor lists 时，才能进行此设置，例如运行冷晶体模拟。请注意，检查是否应该重建邻居列表并不昂贵。
+- 默认值：delay=0, every=1, check=yes, once=no, page=100000, one=2000, binsize=0.0
 
 ```bash
 # 语法
@@ -536,7 +573,7 @@ neigh_modify keyword values ...
 delay                # 在上一次构建之后至少N步之前，永远不要构建新的列表
 everry               # delay pass后，每M步建立列表
 check                # yes/no
-once                 # yes/no
+once                 # yes/no；只在开始运行时构建一次近邻列表
 
 
 # 示例
@@ -548,9 +585,9 @@ neigh_modify      every 2 delay 10 check yes page 100000
 
 ### group
 
-- 对原子进行分组；group-ID 被用到 velocity、fix、compute、dump 等命令中（最多支持 32 个 group）
+- 对原子进行分组；group-ID 可被用于 velocity、fix、compute、dump 等命令中（最多支持 32 个 group）
 
-- 即使不对原子进行分组，LAMMPS 也会设置一个默认的 `all` 原子组，即将所有的原子全部划分到 all 组内
+- 即使不对原子进行分组，LAMMPS 也会设置一个默认的 `all` group-ID，即将所有的原子全部划分到 all 组内
 
 ```bash
 # 语法
@@ -804,7 +841,7 @@ Minimization stats:
 
 ### set
 
-- 设置原子性质
+- 设置原子类型
 
 ```bash
 # 语法
@@ -825,19 +862,19 @@ type/subset               # 具体数目替换
 
 # 示例
 # 按 type 替换
-set        type 1 type/fraction 2 0.5 12393
-set        type 1 type/ratio 2 0.5 12393
-set        type 1 type/subset 2 100 1239
+set               type 1 type/fraction 2 0.5 12393
+set               type 1 type/ratio 2 0.5 12393
+set               type 1 type/subset 2 100 1239
 
 # 按 group 替换
-region     top block INF INF INF INF 20 INF units box
-group      top region top
-set        group top type/fraction 2 1 23985
+region            top block INF INF INF INF 20 INF units box
+group             top region top
+set               group top type/fraction 2 1 23985
 
 # 按 region 替换
-region     mid block INF INF 18 32 INF INF units box
-group      mid region mid
-set        region mid type/fraction 2 0.3 23985
+region            mid block INF INF 18 32 INF INF units box
+group             mid region mid
+set               region mid type/fraction 2 0.3 23985
 ```
 
 
@@ -861,6 +898,7 @@ name                    # 定义的变量名
 index                   # 可选值（字符串）
 equal                   # 等于；数值，常量，数学操作，thermo 关键字，函数（数学、group、region），引用
 loop                    # 循环；从 1 开始
+string                  # 字符串变量
 
 # region functions
 count(group)            # 统计 region 中 group 的原子数
@@ -902,6 +940,7 @@ args                 # style 参数
 mass                 # 相对原子质量
 id                   # 原子 ID
 type                 # 原子类型
+element              # 原子对应元素
 x, y, z              # 笛卡尔坐标
 xu, yu, zu           # 笛卡尔坐标（不做 PBC 处理）
 xs, ys, zs           # 分数坐标
@@ -982,6 +1021,7 @@ ID                   # 为 fix 命令分配 ID
 fix ave/time
 fix ave/correlate
 
+fix temp/rescale
 
 # 示例
 fix               1 all nvt temp 300 300 100.0
@@ -1033,6 +1073,10 @@ fix ID group-ID nve
 
 - 温度、压强不是保持不变，而是会有振荡，振幅与 Tdamp、Pdamp 有关
 
+- 使用 npt 时必须保证在至少一个方向上控压，且这个方向的边界条件必须是 p
+
+- `iso`
+
 ```bash
 # 语法
 fix ID group-ID style_name keyword value ...
@@ -1041,6 +1085,9 @@ fix ID group-ID style_name keyword value ...
 nvt
 npt
 nph
+
+# keyword
+drag                 # 热浴/压浴的 drag 因子；没必要加（以前算力不足时的做法）
 
 # keyword value
 # temp
@@ -1058,13 +1105,13 @@ fix               1 all nvt temp 300.0 300.0 100.0
 
 ### fix box/relax
 
-- 在能量最小化过程中对模拟盒施加外部压力或应力张量。这样就可以在最小化迭代过程中改变模拟盒的大小和形状，使最终构型既是原子势能的能量最小值，又使系统压力张量接近指定的外部张量。从概念上讲，指定正压就像挤压模拟盒；负压通常允许模拟盒膨胀
+- 在能量最小化过程中对模拟盒子施加外部压力或应力张量。这样就可以在最小化迭代过程中改变模拟盒子的大小和形状，使最终构型既是原子势能的能量最小值，又使系统压力张量接近指定的外部张量。从概念上讲，指定正压 -- 挤压模拟盒子，负压通常允许模拟盒子膨胀
 
 - 正交盒子有 3 个自由度（x、y、z），三斜/非正交盒子有 6 个自由度（x、y、z、xy、yz、xz）
 
--  `iso` 表示根据静水压（压强张量对角分量的平均值）控制三个盒子矢量的长度，且按同一比例缩放
+-  `iso` 表示根据静水压（压强张量对角分量的平均值）控制三个盒子矢量的长度，且按同一比例缩放（x、y、z 三个方向同时耦合控压）
 
-- `aniso` 表示根据静水压控制三个盒子矢量的长度，但允许独立变化
+- `aniso` 表示根据静水压控制三个盒子矢量的长度，但允许独立变化（x、y、z 三个方向各自独立控压，不进行耦合）
 
 - `tri` 表示根据静水压控制所有盒子自由度，且允许独立变化
 
@@ -1073,6 +1120,7 @@ fix               1 all nvt temp 300.0 300.0 100.0
 - 默认值：vmax=0.0001
 
 ```bash
+# 语法
 fix ID group-ID box/relax keyword value ...
 
 # iso Ptarget 等效于
@@ -1095,7 +1143,29 @@ fix               1 all box/relax aniso 0.0 vmax 0.01
 ### fix deform
 
 ```bash
+# 语法
+fix ID group-ID deform N parameter style args ... keyword value ...
 
+
+N                    # 每 N 个时间步长进行盒子变形
+
+# 参数
+x y z xy xz yz
+
+# style
+final
+delta
+scale
+erate                # 工程应变率
+trate                # 真实应变率
+
+remap x              # 重新映射原子坐标至变形中的盒子；即原子坐标随盒子尺寸改变
+
+
+# 示例
+variable          srate0 equal 1.0e10            # 实际应变速率 10^10 /s
+variable          srate equal "v_srate0/1.0e12"  # 单位转换 s -> ps 0.01 /ps
+fix	              1 all deform 1 x erate ${srate} units box remap x
 ```
 
 
@@ -1114,21 +1184,29 @@ unfix fix-ID
 unfix           2
 ```
 
+
 ---
 
 ### delete_atoms
 
-- 删除原子（重叠或距离过近的原子）
+- 删除原子
+
+- 删除原子后，原子 ID 不连续，使用 `compress yes` 可对 ID 序号进行压缩，即重新排序，产生连续的原子 ID。
+
+- 默认设置：compress=yes, bond=no, mol=no
 
 ```bash
 # 语法
 delete_atoms style args keyword value ...
 
 # style
-group
-region
-overlap               # 必须先定义 pair_style
-random
+group                # 删除 group 内的原子
+region               # 删除 region 内的原子
+overlap              # 删除重叠原子
+random               # 随机删除原子
+
+# overlap 参数
+cutoff group1-ID group2-ID
 
 # keyword，值均为 no/yes
 compress
@@ -1139,20 +1217,101 @@ mol
 # 示例
 delete_atoms      group 1
 delete_atoms      region 2
+delete_atoms      overlap 0.3 g1 g2
 ```
-
-- **如果 compress 关键字设置为 yes，那么在原子被删除后，原子 ID 将被重新分配，以便从 1 到系统中的原子数**。请注意，对于分子系统（请参见 atom_style 命令），无论压缩设置如何，都不会这样做，因为这会破坏已指定的键连接。但是，reset_atom_ids 命令可以在该命令之后使用，以完成相同的任务。
-
-- 默认设置是：compress = yes, bond = no, mol = no
 
 
 ---
 
 ### displace_atoms
 
-- 移动原子位置
+- 移动原子位置、旋转
 
 ```bash
+# 语法
+displace_atoms group-ID style args keyword value ...
+
+# style
+move                 # 移动原子位置
+rmap
+random               # 移动的位移随机
+rotate
+
+
+# 示例
+
+```
+
+
+---
+
+### change_box
+
+- 改变盒子的体积/形状/边界条件
+
+```bash
+# 语法
+change_box group-ID parameter args ... keyword args ...
+
+# parameter
+x y z xy yz xz       # 6 个分量
+boundary             # 改变边界条件
+ortho                # 使盒子正交
+triclinic            # 使盒子三斜
+set                  # 保存当前的盒子的状态
+remap                # 重新映射原子坐标
+
+# x y z xy yz xz 参数值
+final                # 绝对值
+delta                # 相对值
+scale                # 缩放
+volume               # 保持体积不变
+
+
+# 示例
+# 使 x=0 移至盒子中心
+variable          hx equal "(xhi - xlo)/2"
+change_box        all x final -${hx} ${hx} remap units box
+# z 方向添加 5Å 的真空层
+change_box        all z delta 0 5
+# x 扩 1.1 倍，z 缩 1.1 倍
+change_box        all x scale 1.1 z volume
+# x 扩 1.1 倍，y、z 缩 √1.1 倍
+change_box        all x scale 1.1 y volume z volume
+# x、y 扩 1.1 倍，z 缩 1.21 倍
+change_box        all x scale 1.1 z volume y scale 1.1 z volume
+```
+
+
+---
+
+### box
+
+- large 表示允许非正交盒子的倾斜系数可以是任意数（tilt factors），默认值为 small
+
+```bash
+box               tilt large
+```
+
+
+---
+
+### replicate
+
+- 扩胞
+
+```bash
+replicate         1 2 3
+```
+
+
+---
+
+### atom_modify
+
+```bash
+map
+sort
 ```
 
 
@@ -1257,6 +1416,8 @@ write_restart     restart.equil
 
 - 每 N 步输出文本内容（用于调试）
 
+- 默认选项：无文件输出，screen=yes，输出文件中的标题行 title string（# 号是自带的）`# Fix print output for fix-ID`
+
 ```bash
 # 语法
 fix ID group-ID print N string keyword value ...
@@ -1264,16 +1425,13 @@ fix ID group-ID print N string keyword value ...
 N                    # 每 N 步输出
 
 # keyword
-file                 # 写入内容到文件
+file                 # 写入内容到文件；文件名不能为变量？
 append               # 追加内容到文件
 screen               # 是否输出到屏幕；yes/no
 
 
 # 示例
-fix               extra all print 100 "Coords of marker atom =$x $y $z" file coord.txt
-
-# 输出文件中的默认标题行（# 号是自带的）
-# Fix print output for fix-ID
+fix               1 all print 100 "${strain} ${stress}" file strain_stress.dat screen no
 ```
 
 
@@ -1390,31 +1548,44 @@ next              a t x myTemp
 
 ### if
 
-- 在输入文件中提供一个 if-then-else 功能
+- 在输入文件中提供 if-then-else 功能
 
 ```bash
 # 语法
-if boolean then t1 t2 ... elif boolean f1 f2 ... elif boolean f1 f2 ... else e1 e2 ...
+if boolean then t1 t2 ... elif boolean f1 f2 ... else e1 e2 ...
 
-# 示例
-if                "$i==1" then "shell rm data"
+
+# 示例；中间不能有空行，否则会报错
+if                "${pot_type} == TaNbVMoW_mtp" then &
+"pair_style        mlip TaNbVMoW_mtp.ini" &
+"pair_coeff        * *" &
+elif              "${pot_type} == eam" &
+"pair_style        eam/alloy" &
+"pair_coeff        * * Nb.eam.alloy Nb" &
+else              "print 'No Match'"
 ```
+
 
 ---
 
 ### print
 
-- 打印一个文本字符串到屏幕和日志文件
+- 打印文本字符串到屏幕和日志文件
 
 ```bash
 # 语法
 print string keyword value
 
 # keyword
-file                 # 写入文件；无法用变量？
+file                 # 写入文件
 append               # 追加内容到文件
 screen               # yes/no
 universe             # yes/no
+
+# 示例
+variable          outputfn string "file.dat"
+# 格式化输出；只能格式化 thermo 关键字的变量
+print             "$(v_N) $(v_pe:%15.6f)" file ${outputfn}
 ```
 
 
@@ -1467,6 +1638,11 @@ rdf                  # 计算 rdf
 msd                  # 计算 MSD
 temp
 voronoi/atom
+
+
+reduce sum
+reduce ave
+
 
 
 # 示例

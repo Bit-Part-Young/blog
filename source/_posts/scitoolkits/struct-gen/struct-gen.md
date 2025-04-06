@@ -452,6 +452,7 @@ direct
 - 特殊的表面可能会发生重构现象（Si）
 
 - BCC、FCC、Diamond、HCP 常见表面/位向的具体坐标轴
+    - FCC 结构 2 奇 1 偶的晶向对应的边长数值需除以 2
 
 ```bash
 # BCC、FCC、Diamond（也适用于 B2）

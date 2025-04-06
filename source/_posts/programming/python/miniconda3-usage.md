@@ -297,13 +297,14 @@ pip uninstall <package>   # 可添加 -y 参数
 - 常用 packages：多个 packages 一行命令安装可能出现报错，建议单个安装
 
 ```bash
-pip install -U ipython ipykernel pymatgen ase pyxtal
+pip install -U ipykernel pymatgen ase pyxtal
 ```
 
 - 列出已安装 packages
 
 ```bash
 pip freeze
+pip list
 ```
 
 - 查看具体 package 信息：该 `pip` 命令比 `conda list <package>` 命令更详细，可以查看 package 的版本、安装路径、依赖关系等信息
@@ -319,23 +320,33 @@ Home-page: http://scikit-learn.org
 Author:
 Author-email:
 License: new BSD
-Location: /home/yslarch/src/miniconda3/lib/python3.10/site-packages
+Location: path/miniconda3/lib/python3.10/site-packages
 Requires: joblib, numpy, scipy, threadpoolctl
 Required-by:
+```
+
+- 缓存
+
+```bash
+pip cache dir              # 列出缓存路径
+pip cache info             # 显示缓存信息
+pip cache purge            # 清除缓存中的所有条目
+pip cache remove ...       # 清除缓存中的 packages
 ```
 
 
 ---
 
-### 用 venv 创建虚拟环境
+### venv 创建虚拟环境
 
 - 使用 `venv` 创建轻量级 “虚拟环境”
+
 - VSCode 的 Python 插件无法直接识别由 `venv` 生成的虚拟环境，需手动输入解释器路径
 
 ```bash
-python -m venv venv  # 创建
-source venv/bin/activate  # 激活
-deactivate  # 退出
+python -m venv venv        # 创建
+source venv/bin/activate   # 激活
+deactivate                 # 退出
 ```
 
 
@@ -356,8 +367,8 @@ brew install uv
 # cargo 安装速度慢，不推荐
 cargo install --git https://github.com/astral-sh/uv uv
 
-uv self update   # 更新
-uv cache prune   # 删除缓存
+uv self update             # 更新
+uv cache prune             # 删除缓存
 ```
 
 - 使用
@@ -377,7 +388,7 @@ uv pip install <package>   # 安装 package；与 pip 基本一致
 
 - mamba：Conda 平替，在解析和安装包时比 Conda 快得多
 
-- micromamba 类似 miniconda，使用与 Conda 非常类似，配置文件可使用已存在的 `~/. condarc`
+- micromamba 类似 miniconda，使用与 Conda 非常类似，配置文件可使用已存在的 `~/.condarc`
 
 - 某些情况下会出现问题？（个人不再使用）
 

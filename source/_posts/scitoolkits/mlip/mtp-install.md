@@ -65,7 +65,7 @@ make yes-basic
 ./install.sh ../lammps-29Aug2024 intel_cpu_intelmpi
 
 # 其他 LAMMPS target
-oneapi
+oneapi               # 可使用这个
 g++_mpich
 mpi
 g++_serial
@@ -131,5 +131,3 @@ make[1]: *** [Makefile:98: ../lmp_intel_cpu_intelmpi] Error 1
 make mpi-stubs
 make intel_cpu_intelmpi -lgfortran
 ```
-
-- MTP 机器学习势函数没有 GPU 版本

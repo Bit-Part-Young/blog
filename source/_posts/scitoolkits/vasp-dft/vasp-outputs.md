@@ -64,9 +64,9 @@ password:
     - 局域电荷和磁矩
     - 介电性质
 
-- 可通过修改 INCAR 文件中的 NWRITE 参数来选择写入 OUTCAR 文件的输出量
+- 可通过修改 INCAR 中的 NWRITE 参数来选择写入 OUTCAR 文件的输出信息量
 
-- 基本信息提取
+- 基本信息（构型、INCAR 参数等）提取
 
 ```bash
 # 元素符号
@@ -85,6 +85,18 @@ natoms=$(grep 'NIONS' OUTCAR | tail -n 1 | awk '{print $12}')
 vol=$(grep 'volume of cell' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
 
 grep 'NSW' OUTCAR         # 查看 INCAR 相关参数数值
+
+# 查看由 KSAPCING 参数生成的 K 点数目
+grep 'generate k-points' OUTCAR
+
+# 查看不可约 K 点数目
+grep 'irreducible k-points' OUTCAR
+
+# 查看不可约 K 点数目、能带数
+grep 'NKPTS' OUTCAR
+
+# 查看 KPAR、NPAR、NCORE 参数
+grep 'distr' OUTCAR
 ```
 
 - 能量信息提取
@@ -94,7 +106,7 @@ grep 'NSW' OUTCAR         # 查看 INCAR 相关参数数值
 F = E + PV - TS           # 总能；自由能公式；T=0 时，F=U
 free energy TOTEN         # 自由能
 energy without entropy    # 不含 T*S 熵项的自由能
-E0                        # sigma -> 0 时的能量
+E0                        # sigma->0 时的能量
 
 # 电子步能量
 # 'energy without' 'free energy' 之间只有一个空格
@@ -106,23 +118,43 @@ grep  'energy without entropy' OUTCAR
 grep 'free  energy' OUTCAR
 grep  'energy  without entropy' OUTCAR
 
-
 # 平均原子能量
 eng=$(grep 'free  energy' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
 ```
 
-- 力提取
+- 原子受力提取
+    - total drift：每个离子步中，所有原子对应 x y z 方向的受力之和；有数值噪声，会产生误差；若误差值大于设定的 EDIFFG 值，则说明所谓的力收敛是不正确的
+    - `TOTAL-FORCE` table 中输出的力是已修正过的（x y z 方向的受力之和为 0）
 
 ```bash
-total drift           # 每个离子步，结构中所有原子在 x y z 方向的受力变化总和
-
 # 每个离子步的原子位置及对应受力
 awk '/TOTAL-FORCE/,/total drift/' OUTCAR
 
 # 每个离子步的原子受力
-n=48                  # 原子数
+n=48
 lines=$(awk '{i=0}/TOTAL-FORCE/{getline; while(i<n) {getline; print $4,$5,$6; i++} i=0}' n=$n < OUTCAR)
 echo $lines
+
+
+# total drift 不为 0 的一些示例
+# HCP Ti 基态结构 静态计算
+POSITION                                       TOTAL-FORCE (eV/Angst)
+-----------------------------------------------------------------------------------
+     0.00000      0.00000      0.00000        -0.000000      0.000000      0.000000
+     1.46785      0.84746      2.32309         0.000000      0.000000      0.000000
+-----------------------------------------------------------------------------------
+   total drift:                               -0.002829      0.001634      0.000000
+
+
+# HCP 正交 Ti 基态结构 静态计算
+POSITION                                       TOTAL-FORCE (eV/Angst)
+-----------------------------------------------------------------------------------
+     0.00000      0.00000      0.00000         0.000000     -0.002278     -0.000000
+     1.46785      2.54239      0.00000         0.000000     -0.002278     -0.000000
+     1.46785      0.84746      2.32309        -0.000000      0.002278     -0.000000
+     0.00000      3.38986      2.32309        -0.000000      0.002278      0.000000
+-----------------------------------------------------------------------------------
+   total drift:                               -0.005658     -0.000032      0.000002
 ```
 
 - 其他
@@ -137,7 +169,7 @@ mag=$(grep 'mag=' OSZICAR | awk '{print $10}')
 # 耗时
 sec=$(grep 'Total CPU time used' OUTCAR | awk '{print $6}')
 
-# 由 KPOINTS 生成的 K 点总数
+# 由 KPOINTS 生成的 K 点总数（仅示例）
 head -n 38 IBZKPT | tail -n 35 | awk '{sum+=$4} END {print sum}'
 
 # 不可约布里渊区 K 点数
@@ -149,18 +181,9 @@ grep 'irreducible k-points' OUTCAR
 grep -i 'nbands' OUTCAR
 # 输出内容示例；也可得到不可约布里渊区 K 点数
 k-points           NKPTS =     35   k-points in BZ     NKDIM =     35   number of bands    NBANDS=      9
-
-
-# TODO: 待说明含义
-awk 'BEGIN{i=1} /dos>/,\
-                /\/dos>/ \
-                 {a[i]=$2 ; b[i]=$3 ; i=i+1} \
-     END{for (j=12;j<i-5;j++) print a[j],b[j]}' vasprun.xml > dos.dat
-
-ef=`awk '/efermi/ {print $3}' vasprun.xml`
 ```
 
-- 示例内容：[13\_vasp/V2PC/02\_static\_calculation\_output.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/02_static_calculation_output.md)
+- OUTCAR 示例内容：[13\_vasp/V2PC/02\_static\_calculation\_output.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/02_static_calculation_output.md)
 
 ```bash
  vasp.5.4.4.18Apr17-6-g9f103f2a35 (build Nov 17 2020 17:54:46) complex

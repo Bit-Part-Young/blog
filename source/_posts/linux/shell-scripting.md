@@ -203,6 +203,8 @@ echo     # 输出一行空行
 ```bash
 # 输出固定位数
 printf "%05d\n" 123  # 输出 5 位数，00123
+# 控制输出变量的宽度和对齐方式
+printf "%-20s %-10s %-15s %-10s\n" "${i}" "${num_scf}" "${energy}" "${mag}"
 ```
 
 
@@ -450,12 +452,12 @@ array+=(value2)
 unset array[1]
 
 # 获取数组元素
-echo ${array[*]}   # 所有元素；* 或 @
+echo ${array[@]}   # 所有元素；* 或 @
 echo ${array}      # 第一个元素
 echo ${array[0]}   # 第一个元素
 
 # 获取数组长度
-echo ${#array[*]}  # * 或 @
+echo ${#array[@]}  # * 或 @
 echo ${#array[0]}  # 第一个元素的长度
 
 # 提取数组序号
@@ -464,10 +466,14 @@ ${!array[*]}       # * 或 @
 # 切片
 ${array[@]:position:length}
 
+# 遍历数组
+for(( i=1; i<${#array[@]}; i++ )); do
+    echo ${array[${i}]}
+done
+
 # 数组合并
 array1=(xxx); array2=(xxx)
 array_merge=(${array1[*]} ${array2[*]})
-
 ```
 
 ---

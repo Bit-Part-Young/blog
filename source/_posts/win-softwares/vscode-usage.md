@@ -200,6 +200,17 @@ Crtl + 点击图片          # 缩小图片
         },
     },
     "isort.args":["--profile", "black"],
+
+}
+```
+
+- Pylance 配置
+
+```json
+{
+    // Pylance 配置
+    // Exclude all files from workspace, enabling IntelliSense support for open files only
+    "python.analysis.exclude": ["**"],
 }
 ```
 

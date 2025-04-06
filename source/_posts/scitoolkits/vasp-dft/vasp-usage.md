@@ -166,14 +166,6 @@ GW 计算
 >[表面吸附分子的振动自由能计算 - 知乎](https://zhuanlan.zhihu.com/p/397862258)
 
 
-```text
-# 用的是哪个泛函？
-   TITEL  = PAW Ni
-   TITEL  = PAW C
-   TITEL  = PAW O
-```
-
-
 - [ ] K 点网格某方向数值为奇数，$\Gamma$ 中心？
 >[VASP K点问题 - 知乎](https://zhuanlan.zhihu.com/p/397873103)
 
@@ -186,13 +178,11 @@ GW 计算
     - [利用分子动力学轨迹计算粒子运动的均方位移和扩散系数 - 知乎](https://zhuanlan.zhihu.com/p/542642528)
 
 - 注意事项：
-    - VASP 官网计算示例
     - VASP 官网算例中的部分 POSCAR 文件格式非 VASP5 版本
     - VASP Wiki 中的示例 POSCAR 格式和 POTCAR 文件（PAW 格式）较老？
     - FCC Ni 及 Ni(100) 表面的 DOS 计算，没有先进行自洽计算
     - Ni(100) 表面的能带结构计算，K-path 是 reziprok 方式，非 Line-Mode，vaspkit 和 pymatgen 无法获取数据，只能使用 p4vasp？
     - NiO：反铁磁
-    - [ ] DOS 计算过程中 ISMEAR=0 和 -5 的差别是什么：[Part 2: More silicon](https://www.vasp.at/tutorials/latest/bulk/part2/)
 
 
 
@@ -202,16 +192,16 @@ GW 计算
 
 ```bash
 # 能带结构、DOS 计算
-ISTART = 1
-ICHARG = 11
+ISTART   = 1
+ICHARG   = 11
 
 # 其余计算
-ISTART = 0
-ICHARG = 2
+ISTART   = 0
+ICHARG   = 2
 
 # 断点后续算；其他参数值不改变
-ISTART = 1
-ICHARG = 1
+ISTART   = 1
+ICHARG   = 1
 ```
 
 
@@ -219,12 +209,11 @@ ICHARG = 1
 
 ### 静态计算
 
-- INCAR 参数示例：
-
 ```bash
-IBRION = -1
-NSW    = 0
-ISIF   = 2
+# INCAR 重要参数
+IBRION   = -1
+NSW      = 0
+ISIF     = 2
 ```
 
 
@@ -232,10 +221,24 @@ ISIF   = 2
 
 ### 孤立原子能量
 
-- 需添加自旋；建立一个简单立方胞（SC），将原子置于中心；盒子大小需收敛性测试；K 点密度为 1\*1\*1，Gamma-centered MP
+- [Calculation of atoms - VASP Wiki](https://www.vasp.at/wiki/index.php/Calculation_of_atoms)
+
+- [计算单个原子能量时如何选择空间群 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-31030-1-1.html)
+
+- 需添加自旋；建立简单立方胞（SC，15 Å 足够），将原子置于中心或原点；K 点密度为 1\*1\*1，Gamma-centered MP
 
 ```bash
+# INCAR 重要参数
+ISPIN    = 2              # 开启自旋
 
+KSPACING = 1.0            # 可确保 K 点密度为 1x1x1
+KGAMMA   = .TRUE.
+
+ISMEAR   = 0              # 使用 Gaussian smearing
+SIGMA    = 0.001          # 展宽值取小；或 0.05
+NELM     = 300            # 增加电子步
+
+ISYM     = 0              # 关闭对称性
 ```
 
 
@@ -243,7 +246,11 @@ ISIF   = 2
 
 ### 内聚能
 
-- 分子动力学中不考虑自能，孤立原子能量为 0，体系平均原子能量即为内聚能；DFT 中孤立原子能量不为 0
+- 内聚能（cohesive energy/atomization energy）定义：孤立原子结合成固体/晶体时释放的能量，为正值（一般以这个为准）；部分定义为其逆过程，为负值
+
+- 分子动力学中部分经验势函数不考虑自能，孤立原子能量为 0，体系平均原子能量即为内聚能
+
+- DFT 中孤立原子能量不为 0
 
 
 ---
@@ -263,7 +270,7 @@ ISIF   = 2
     - 之后进行 K 点测试（ENCUT 为 1.3ENMAX）
     - 之后进行 ENCUT 测试（K 点密度选择达到收敛性标准的）
     - 采用达到收敛性标准的 K 点密度 + ENCUT 进行细结构优化
-    - 个人经验：计算体系含 C 时，可不进行 ENCUT 测试，直接使其为 520（C 赝势中的 ENMAX=400）
+    - 个人经验：计算体系含 C/O 时，可不进行 ENCUT 测试，直接使其为 520（ENMAX 均为 400.0）
 
 ```bash
 
@@ -282,37 +289,44 @@ ISIF   = 2
 
 ```bash
 Global Parameters
-ISTART =  0
-ICHARG =  2
-ISPIN  =  1
-ENCUT  =  400
-PREC   =  Accurate
+SYSTEM   = Relaxation
+ISTART   = 0
+ICHARG   = 2
+ISPIN    = 1
+LCHARG   = .FALSE.
+LWAVE    = .FALSE.
+PREC     = Accurate
+LREAL    = .FALSE.
+ENCUT    = 500
+
+KSPACING = 0.15
+KGAMMA   = .TRUE.
 
 Electronic Relaxation
-ISMEAR = 0
-SIGMA  = 0.05
-NELMIN = 6
-NELM   = 90
-EDIFF  = 1E-06
+ALGO     = Normal
+ISMEAR   = 1
+SIGMA    = 0.05
+EDIFF    = 1E-06
+NELM     = 300
+NELMIN   = 6
 
-Ionic Relaxation
-NSW    = 100
-IBRION = 2
-ISIF   = 3
-EDIFFG = -1E-02
+Ionic Relxation
+NSW      = 150
+IBRION   = 2
+ISIF     = 3
+EDIFFG   = -1E-02
+
+NPAR     = 4
 ```
 
 
 ---
 
-### 确定晶格常数
+### （平衡）晶格常数
 
-- EOS 拟合方法（扫描法）
+- EOS 拟合（扫描法）：在晶格常数附近取 N 个点，分别进行单点能计算，进行 EOS 拟合
 
-在晶格常数的实验值附近取 10 个点，分别进行单点计算；用能量最小值作为判据
-
-- 直接（弛豫）优化方法
-
+- 直接弛豫
 
 用力弛豫时，若存在内变量的体系，如固溶体，溶质原子几乎不会待在在平衡位置（有可能），近邻的溶剂原子偏离其理想位置，因此需要对它们的位置进行弛豫，用扫描的方法，不做弛豫，得不到准确的位置，因此需要用到弛豫的方法；对于计算胞对称性不太好，用扫描法，一般适合只有一个变量变化，变量多，需要用弛豫的方法（hcp 结构）
 
@@ -332,9 +346,9 @@ EDIFFG = -1E-02
 
 - 空位、间隙原子形成能
 
-超胞尽可能是立方体
+- 超胞尽可能是立方体形状
 
-要做原子数 n（不能太大）和空位形成能的收敛性测试
+- 要做原子数 n（不能太大）和空位形成能的收敛性测试
 
 
 ---
@@ -364,8 +378,9 @@ EDIFFG = -1E-02
 - 态密度相关输出文件：DOSCAR、PROCAR
 
 ```bash
-# 能带计算
-ISMEAR = 0
+ISMEAR   = -5             # DOS计算
+
+ISMEAR   = 0              # 能带计算
 ```
 
 
@@ -398,10 +413,10 @@ ISMEAR = 0
 
 ```bash
 # INCAR 参数设置
-IBRION      = -1
-NSW         = 0
-LCHARG      = .TRUE.
-LAECHG      = .TRUE.      # Bader 计算
+IBRION   = -1
+NSW      = 0
+LCHARG   = .TRUE.
+LAECHG   = .TRUE.         # Bader 计算
 
 
 # 后处理
@@ -442,8 +457,8 @@ VACUUM VOLUME:              0.0000
 - 在自洽计算中添加/修改以下参数；计算结束后，得到 ELFCAR 文件；使用 VESTA 进行可视化；可将 ELF 图与构型视图叠放在一起，对照效果更好
 
 ```bash
-PREC        = Accurate
-LELF        = .TRUE.
+PREC     = Accurate
+LELF     = .TRUE.
 ```
 
 
@@ -465,13 +480,13 @@ LELF        = .TRUE.
 
 ```bash
 # INCAR 参数设置
-ENCUT   = 520      # 尽量高一些；个人设置 700
+ENCUT    = 520            # 尽量高一些；个人设置 700
 
-IBRION  = 6
-NSW     = 1
-NFREE   = 2        # 4 或 2
-POTIM   = 0.015
-ISIF    = 3
+IBRION   = 6
+NSW      = 1
+NFREE    = 2        # 4 或 2
+POTIM    = 0.015
+ISIF     = 3
 
 
 # 单位换算
@@ -535,8 +550,8 @@ Reciprocal lattice and k-lattice belong to different class of lattices. Often re
 - 步骤：结构弛豫；静态计算（修改以下 INCAR 参数）
 
 ```bash
-NSW    = 0
-LVHAR  = .TRUE.
+NSW      = 0
+LVHAR    = .TRUE.
 ```
 
 
@@ -545,7 +560,7 @@ LVHAR  = .TRUE.
 ### AIMD 计算
 
 - 参考：
-    - [【VASP 基础 03】关于 VAPS 分子动力学的计算细节](https://zhuanlan.zhihu.com/p/1103173525)
+    - [【VASP 基础 03】关于 VAPS 分子动力学的计算细节 - 知乎](https://zhuanlan.zhihu.com/p/1103173525)
     - [Category:Thermostats - VASP Wiki](https://www.vasp.at/wiki/index.php/Category:Thermostats)
     - [Category:Molecular dynamics - VASP Wiki](https://www.vasp.at/wiki/index.php/Category:Molecular_dynamics)
     - [Liquid Si - Standard MD - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Standard_MD)
@@ -560,14 +575,6 @@ LVHAR  = .TRUE.
 
 - 势函数训练集 AIMD 采样大多用的是 NVT，几乎不用 NPT
 
-```bash
-# LANGEVIN_GAMMA、LANGEVIN_GAMMA_L 这两个额外 tag 必须设置
-# PMASS 可选 tag
-LANGEVIN_GAMMA              # 原子自由度的 langevin 摩擦系数
-LANGEVIN_GAMMA_L            # 点阵自由度的 langevin 摩擦系数
-PMASS                       # 点阵自由度的虚拟质量
-```
-
 - 系综
     - NVE 系综：MDALGO=1, ANDERSEN_PROB=0.0
     - NVT 系综：ISIF=2, MDALGO=1 (Andersen)、2 (Nose-Hoover)、3 (Langevin)、4 (NHC)、5 (CSVR)、13 (Multiple Andersen)
@@ -575,40 +582,60 @@ PMASS                       # 点阵自由度的虚拟质量
     - NPH 系综：ISIF=3, MDALGO=3, LANGEVIN_GAMMA=LANGEVIN_GAMMA_L=0.0
     - 所有热浴在 NVT 系综都可用，但目前 Langevin 热浴只在 NPT 系综中可用
 
-- 参数设置
+- NPT 参数设置
+
+```bash
+PSTRESS                     # Parinello-Rahman 压浴控制目标压强
+
+# LANGEVIN_GAMMA、LANGEVIN_GAMMA_L 这两个额外 tag 必须设置
+# PMASS 可选 tag
+LANGEVIN_GAMMA              # 原子自由度的 langevin 摩擦系数
+LANGEVIN_GAMMA_L            # 点阵自由度的 langevin 摩擦系数
+PMASS                       # 点阵自由度的虚拟质量
+```
+
+- NVT 参数设置
 
 ```bash
 # INCAR 参数设置
-ENCUT   = 400      # 不用很高
-EDIFF   = 1E-5     # 不用很小
-ISMEAR  = 0
-SIGMA   = 0.05
-LWAVE   = .FALSE.
-LCHARG  = .FALSE.
-LREAL   = Auto
-PREC    = Normal
-ALGO    = Fast
+ENCUT    = 400            # 不用很高
+EDIFF    = 1E-5           # 不用很小；EDIFFG 不用于 AIMD
+ISMEAR   = 0              # 不用设置成 1
+SIGMA    = 0.05
+LWAVE    = .FALSE.
+LCHARG   = .FALSE.
+LREAL    = Auto
+PREC     = Normal
+ALGO     = Fast
 
-IBRION  = 0        # 开启 AIMD
-MDALGO  = 2        # MDALGO、ISIF 控制系综和热浴
-ISIF    = 2
-SMASS   = 0        # 控制 AIMD 运行过程中的速度
-ISYM    = 0        # 关闭对称性
+IBRION   = 0              # 开启 AIMD
+MDALGO   = 2              # MDALGO、ISIF 控制系综和热浴
+ISIF     = 2
+SMASS    = 0              # 控制 AIMD 运行过程中的速度
+ISYM     = 0              # 关闭对称性
 
-POTIM   = 1        # 时间步长（单位 fs）
-NSW     = 10000    # 跑多少步；10 ps
+POTIM   = 1               # 时间步长（单位 fs）
+NSW     = 10000           # 跑多少步；10 ps
 
-TEBEG   = 300      # 起始温度
-TEEND   = 300      # 终止温度
+TEBEG   = 300             # 起始温度
+TEEND   = 300             # 终止温度
 
-NWRITE  = 0        # 长时 AIMD，建议取 0/1
+NWRITE  = 1               # 长时 AIMD，建议取 1/0
 
 
 # 数据获取
 # 压强
-grep "external pressure" OUTCAR | awk '{print $4}'
+grep 'external pressure' OUTCAR | awk '{print $4}'
+
+# 运行步数，温度
+grep 'T= ' OSZICAR | awk '{print $1 " " $3 " " }'
 ```
 
+进行 NVT 模拟时，不会设置 PSTRESS，所以 Pullay stress=0
+
+原子数越多，温度波动越小
+
+外压 `external pressure` 数值 = `Total in kB` XX、YY、ZZ 分量之和的平均值 - `Pullay stress`
 
 基于分子动力学模拟，可以通过对速度自关联函数（velocity autocorrelation function，VACF）进行傅里叶变换得到材料的振动态密度（vibrational density of states， VDOS）。VACF 是根据动力学模拟出来的轨迹文件和速度文件，求算系统在某一时刻的速度与另一时刻速度的关联程度的函数，直接看 VACF 并不能很直观的得到一些信息，而 VDOS 直接对应实验红外光谱，可以直观的对高温或高压下的振动变化情况等进行分析。
 

@@ -92,7 +92,7 @@ tmux a                                # attach；重新连接 session
 tmux attach -t  session_name          # 同上
 tmux kill-session -t  session_name    # 杀死
 tmux kill-session -a                  # 杀死除当前 session 的其他
-tmux switchc -t  session_name         # 切换
+tmux switch -t session_name           # 切换
 tmux rename-session -t 0  new_name    # 重命名
 
 tmux capture-pane -pt session_name    # 将指定 session 的窗口内容保存到缓冲区

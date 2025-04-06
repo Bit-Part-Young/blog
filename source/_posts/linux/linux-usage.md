@@ -250,6 +250,7 @@ man -k xxx              # 检索关键字含有 xxx 的命令
 
 ls -a                   # 会列出 . 和 ..
 ls -A                   # almost all，不列出 . 和 ..
+ls -d */                # 只列出目录
 ls -1 | grep -v 'XXX*'  # 不列出特定的文件/目录
 ls -tr                  # -t 按修改时间排序（新文件排在前面）；-r 逆序排列
 ls -v                   # 按数值大小排序（默认字母顺序；使 10 显示在 9 后面）
@@ -511,6 +512,7 @@ sed -e '1d' -e '$d' file   # 删除多行
 -C N                  # N 数字；输出匹配行及之前后各 N 行
 -E                    # 使用扩展正则表达式
 -o                    # 只输出匹配到的部分
+-P                    # 
 -v                    # 反向匹配，即输出不匹配指定模式的行
 -I                    # 跳过二进制文件 等同于 --binary-files=without-match
 --exclude-dir         # 排除目录
@@ -525,6 +527,8 @@ sed -e '1d' -e '$d' file   # 删除多行
 egrep                 # 等同于 grep -E
 
 grep -E 'p1|p2' file  # 匹配多个 pattern
+
+grep '\-1.2' file     # 匹配负数时需 \ 转义 
 ```
 
 
@@ -577,6 +581,7 @@ awk 'NR <= 3' file                 # 输出前 3 行
 awk '{ print $NF }' file           # 输出最后一列
 awk '/kwd/{flag=1} flag' file      # 输出匹配的关键词所在行至最后一行的内容
 awk '/kwd1/,/kwd2/' file           # 输出匹配的关键词之间的行内容
+awk '{printf "%.5f\n", $1}' file   # 保留 5 位小数输出
 
 # 返回总字段数
 awk '{ nf = nf + NF } END { print nf }' file

@@ -16,7 +16,7 @@ abbrlink: 650351
 password:
 ---
 
-# deepmd 使用
+# DeepMD 使用
 
 ## 介绍
 
@@ -63,7 +63,7 @@ stress = atoms.get_stress()
 ```bash
 sel_a
 
-se_e2_r
+se_e2_a
 se_e3
 se_atten
 ```
@@ -402,6 +402,43 @@ training_systems["energies"]
 predict["energies"]
 ```
 
+- 扰动（点阵 + 原子位置）：
+    - [tools/create-perturb.py at main · tang070205/tools · GitHub](https://github.com/tang070205/tools/blob/main/create-perturb.py)
+    - [GPUMDkit/Scripts/sample\_structures/perturb\_structure.py at main · zhyan0603/GPUMDkit · GitHub](https://github.com/zhyan0603/GPUMDkit/blob/main/Scripts/sample_structures/perturb_structure.py)
+
+```python
+import dpdata
+
+pert_num = 2
+perturbed_system = dpdata.System("POSCAR").perturb(
+    pert_num=pert_num,
+    cell_pert_fraction=0.03,
+    atom_pert_distance=0.01,
+    atom_pert_style="uniform",
+    atom_pert_prob=1.0,
+)
+
+for i in range(pert_num):
+    # 方式 1
+    perturbed_system.to(
+        "vasp/poscar",
+        f"pert/POSCAR.{i}",
+        frame_idx=i,
+    )
+    # 方式 2
+    perturbed_system.sub_system(i).to(
+        "vasp/poscar",
+        f"pert/POSCAR.{i}",
+    )
+
+
+# 参数
+pert_num                     # 每帧构型生成扰动新构型的数目
+cell_pert_fraction           # cell 变形比例；对角线 [-x, +x] 均匀分布扰动，非对角线 [-0.5x, +0.5x] 均匀分布扰动
+atom_pert_distance           # 原子移/扰动距离
+atom_pert_style              # 原子移/扰动距离的分布；normal uniform const
+atom_pert_prob               # 每帧构型中要扰动的原子数目比例
+```
 
 ---
 

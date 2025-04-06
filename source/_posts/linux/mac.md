@@ -816,24 +816,6 @@ brew install fontconfig        # 需安装此才有 fc-list 等命令
 
 ---
 
-#### MacTeX 安装与卸载
-
-- 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
-- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)
-    - 卸载 GUI 应用（`/Applications/TeX`），直接将 TeX 移入废纸篓
-    - 卸载 TeX Distribution
-    - 卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
-
-```bash
-brew install --cask mactex-no-gui  # 安装方式 2；不建议
-
-sudo rm -rf /Library/TeX
-sudo rm -rf /usr/local/texlive
-```
-
-
----
-
 #### Rime 输入法引擎 + 雾凇拼音
 
 - 参考：

@@ -100,11 +100,17 @@ tlmgr update --self --all    # 更新
 
 - 安装：[MacTeX - TeX Users Group](https://www.tug.org/mactex/mactex-download.html)；在官网上下载最新 pkg 包，双击，按照提示安装
 
-- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)；卸载 GUI，直接将 TeX 移入废纸篓；卸载 TeX Distribution；卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
+- 卸载：[Uninstalling - MacTeX - TeX Users Group](https://tug.org/mactex/uninstalling.html)
+    - 卸载 GUI 应用（`/Applications/TeX`），直接将 TeX 移入废纸篓
+    - 卸载 TeX Distribution
+    - 卸载 Ghostscript（删除较复杂；通常在 `/usr/local/share` 或 `/usr/local/bin` 目录）
 
 ```bash
+brew install --cask mactex-no-gui  # brew 安装；不建议
+
 sudo rm -rf /Library/TeX
 sudo rm -rf /usr/local/texlive
+sudo rm -rf /usr/local/share/ghostscript
 ```
 
 - MacTeX 本质上就是 TeX Live，只不过捆绑了 Ghostscript（处理 PS 图片文件转换成 pdf 文件） 和一些 GUI 程序（BibDesk、TeXShop、Tex Live Utility 等），做成了便于安装的 pkg 包而已。pkg 包内的安装脚本会设置好环境变量

@@ -1305,10 +1305,11 @@ const             # 常量值（只指定参数但不带值时，使用该 const
 default           # 参数的默认值（未指定参数时，使用该 default 值）
 type              # 该命令行参数应被转换成的类型
 choices           # 参数的允许值
-required          # 用于可选参数，默认 False；True 表示该参数必须指定
+required          # 可选参数是否必须指定，默认 False
 help              # 参数的帮助信息
 metavar           # 将帮助信息中的参数用 metavar 的值替代（类似占位符）
 action            # 定义解析命令行选项时，如何处理该选项的值
+dest              # 自定义命令行参数解析后的存储变量名，
 
 # action 可选值
 store             # 默认值，将参数值存储到变量中

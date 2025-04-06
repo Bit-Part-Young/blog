@@ -67,6 +67,11 @@ df = pd.DataFrame(data, index=[0, 1, 2])
 df = pd.DataFrame([data, data])
 
 print(df)
+
+# 输出显示格式
+# 输出显示全部行和列数据
+pd.set_option("display.max_columns", None)
+pd.set_option("display.max_rows", None)
 ```
 
 

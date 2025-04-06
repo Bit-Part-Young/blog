@@ -39,6 +39,9 @@ password:
     - VESTA 中如何变换点阵（六方转正交）：[crystallography - How to transform lattice in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/7263/how-to-transform-lattice-in-vesta)
     - 六方胞的正交化（里面的示意图可供参考）：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)
 
+- FCC 孪晶：
+    - [Atomsk - Tutorial - Twin boundary](https://atomsk.univ-lille.fr/tutorial_twin.php)
+    - [ATOMSK建模 Stacking Fault](https://mp.weixin.qq.com/s/o0ldM-87tGulOEIBFXSsSw)
 
 
 ---
@@ -189,10 +192,11 @@ LATTICES         wurtzite  |  2 (a and c)   |     2
 
 ```bash
 -orient                     # 晶体取向
--duplicate                  # 扩胞
+-duplicate                  # 或 -dup；扩胞
 -rotate                     # 旋转轴
 -orthogonal-cell            # 转变为正交胞
--fractional                 # 分数坐标；VASP 格式下
+-reduce-cell                # 保持周期性的同时减小胞的大小
+-fractional                 # 或 -frac；分数坐标（VASP 格式）
 -sort                       # 根据 properties 对原子进行排序
 -fix                        # 固定原子坐标轴
 -shift                      # 移动原子
@@ -200,13 +204,13 @@ LATTICES         wurtzite  |  2 (a and c)   |     2
 -wrap                       # 将胞外原子施加 PBC 移至胞内
 -cell                       # 修改 box 的 cell vector；可 add、set、rm
 -center                     # 使体系移至 box 的中心
--add-atom                   # 添加原子；可添加笛卡尔、分数坐标
+-add-atom                   # 添加原子
 -wrap                       # 将胞外原子通过 PBC 到胞内
 -properties                 # 设置 properties
 -remove-doubles             # 删除重复的原子
 -remove-atom                # 或 -rmatom；删除原子
 -mirror                     # 施加镜像操作（mirror transformation）
--deform                     # 或 -def，通过施加正应变或切应变使体系变形（box 和 原子一起）
+-deform                     # 或 -def；通过施加正应变或切应变使体系变形（box 和 原子一起）
 -disturb                    # 随机移动原子位置
 -select                     # 根据准则选择原子
 ```
@@ -256,9 +260,6 @@ rocksalt
 
 -duplicate 1 1 4                   # 构建超胞
 
-# 添加原子（分数坐标）
--add-atom Si at 0.25*box 0.33*box 0.5*box
-
 -sort species pack                 # 将相同的元素排在一起（写入 VASP POSCAR 有用）
 
 # 笛卡尔、分数坐标互相转换（用于 VASP）
@@ -278,6 +279,15 @@ atomsk POSCAR -fractional vasp     # 分数坐标
 
 -center 0/com                      # 移动所有原子，使其质心在 box 中心；会使位于 box 边缘的原子位点稍微往胞里靠，和 ase Atoms 的 center 方法效果不同
 
+# 添加原子（分数坐标）
+-add-atom Si at 0.25*box 0.33*box 0.5*box
+
+# 给定准则选择原子
+# 选择矩形盒子内的原子；矩形盒子区域 X=[0;1.0*box], Y==[0.5*box;1.0*box], Z=[0.48*box;0.52*box]
+-select in box 0 0.5*box 0.48*box 1.0*box 1.0*box 0.52*box
+-select in box 0 0.48*box 0.48*box 1.0*box 0.52*box 0.52*box
+# 多个 select 是 || 的效果，而不是 && 的效果
+-select above 0.48*box z -select below 0.52*box z -select above 0.48*box y Ti -substitute Ti Al
 
 # 线性插值；用于 NEB
 --interpolate initial.vasp final.vasp 7 vasp
@@ -293,4 +303,5 @@ atomsk POSCAR xyz                  # 常用: xyz lammps/lmp vasp/pos cif
 
 - 多晶模型及界面模型（coating 模型，相对简单的）构建：[【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
 
-- 多晶模型：基于 Voronoi tessellation 算法生成
+- 多晶模型：基于 Voronoi tessellation（泰森多边形镶嵌） 算法生成
+    - [LAMMPS 笔记：Atomsk 生成多晶](https://zhuanlan.zhihu.com/p/617697569)
