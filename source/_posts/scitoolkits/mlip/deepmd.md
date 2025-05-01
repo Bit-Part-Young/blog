@@ -394,6 +394,21 @@ virials                  # 获取的是 FORCE on cell =-STRESS in cart. coord.  
 dpdata.LabeledSystem('OUTCAR').to()
 
 
+# 常用格式
+"deepmd/raw"
+"deepmd/npy"
+"vasp/poscar"
+"vasp/contcar"
+"vasp/string"
+"vasp/outcar"
+"lammps/lmp"
+"lammps/dump"
+"pymatgen/structure"
+"pymatgen/molecule" 
+"pymatgen/computedstructureentry"
+"ase/structure"                  
+
+
 # 预测数据和原始数据之间的比较
 training_systems = dpdata.LabeledSystem()
 predict = training_systems.predict("graph.pb")
@@ -418,6 +433,7 @@ perturbed_system = dpdata.System("POSCAR").perturb(
     atom_pert_prob=1.0,
 )
 
+# 保存结构
 for i in range(pert_num):
     # 方式 1
     perturbed_system.to(
@@ -430,6 +446,13 @@ for i in range(pert_num):
         "vasp/poscar",
         f"pert/POSCAR.{i}",
     )
+
+# 方式 3
+atoms_list = perturbed_system.to("ase/structure")
+write(xyz_fn, atoms_list, format="extxyz", append=True)
+
+
+# 会调用 get_cell_perturb_matrix()、get_atom_perturb_vector() 函数
 
 
 # 参数

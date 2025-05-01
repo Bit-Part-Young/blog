@@ -70,43 +70,36 @@ password:
 
 ```bash
 # 元素符号
-grep "TITEL" OUTCAR  | awk '{print $4}' | awk -F"_" '{print $1}' | awk '!seen[$0]++'
+grep 'TITEL' OUTCAR  | awk '{print $4}' | awk -F'_' '{print $1}' | awk '!seen[$0]++'
 
 # 元素对应数目
-grep "ions per type" OUTCAR  | tail -n 1 | awk -F"=" '{print $2}'
+grep 'ions per type' OUTCAR  | tail -n 1 | awk -F'=' '{print $2}'
 
 # 构型原子数
 # 方式 1
-natoms=$(sed -n '7p' POSCAR | awk '{ for(i=1; i<=NF; i++) a+=$i; print a} ')
-# 方式 2
 natoms=$(grep 'NIONS' OUTCAR | tail -n 1 | awk '{print $12}')
+# 方式 2
+natoms=$(sed -n '7p' POSCAR | awk '{ for(i=1; i<=NF; i++) a+=$i; print a}')
 
 # 平均原子体积
 vol=$(grep 'volume of cell' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')
 
-grep 'NSW' OUTCAR         # 查看 INCAR 相关参数数值
 
-# 查看由 KSAPCING 参数生成的 K 点数目
-grep 'generate k-points' OUTCAR
-
-# 查看不可约 K 点数目
-grep 'irreducible k-points' OUTCAR
-
-# 查看不可约 K 点数目、能带数
-grep 'NKPTS' OUTCAR
-
-# 查看 KPAR、NPAR、NCORE 参数
-grep 'distr' OUTCAR
+grep 'NSW' OUTCAR                     # 查看 INCAR 相关参数数值
+grep 'generate k-points' OUTCAR       # 查看由 KSAPCING 参数生成的 K 点数目
+grep 'irreducible k-points' OUTCAR    # 查看不可约 K 点数目
+grep 'NKPTS' OUTCAR                   # 查看不可约 K 点数目、能带数
+grep 'distr' OUTCAR                   # 查看 KPAR、NPAR、NCORE 参数
 ```
 
 - 能量信息提取
 
 ```bash
 # 能量之间的差异
-F = E + PV - TS           # 总能；自由能公式；T=0 时，F=U
-free energy TOTEN         # 自由能
-energy without entropy    # 不含 T*S 熵项的自由能
-E0                        # sigma->0 时的能量
+F = E + PV - TS                       # 总能；自由能公式；T=0 时，F=U
+free energy TOTEN                     # 自由能
+energy without entropy                # 不含 T*S 熵项的自由能
+E0                                    # sigma->0 时的能量
 
 # 电子步能量
 # 'energy without' 'free energy' 之间只有一个空格
@@ -127,8 +120,11 @@ eng=$(grep 'free  energy' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}'
     - `TOTAL-FORCE` table 中输出的力是已修正过的（x y z 方向的受力之和为 0）
 
 ```bash
-# 每个离子步的原子位置及对应受力
+# 获取每个离子步的原子位置及对应受力
 awk '/TOTAL-FORCE/,/total drift/' OUTCAR
+
+# 获取第 N 个离子步的原子位置及对应受力
+awk '/TOTAL-FORCE/ {flag++} flag==N {print} /total drift/ {if (flag==N) {exit}}' N=1 OUTCAR
 
 # 每个离子步的原子受力
 n=48
@@ -472,21 +468,41 @@ energy     DOS(up) DOS(dwn)  integrated DOS(up) integrated DOS(dwn)
 
 ## PCDAT
 
-- 含对关联函数（pair correlation function；AIMD 常用）；对于 AIMD，写入平均对关联函数
+- 对于 AIMD，写入平均对关联函数（pair correlation function）
 
+- 每行内容的描述
+    - 第 1 行：1（固定输出），原子数，1（固定输出），0（固定输出），平均原子体积，温度
+    - 第 2 行：CAR（固定输出）
+    - 第 3 行：INCAR 文件 Header
+    - 第 4 行：0，0，0（全为固定输出）
+    - 第 5 行：1（固定输出），NBLOCK
+    - 第 6 行：NPACO，NPACO，NPACO
+    - 第 7 行：NPACO
+    - 第 8 行：0.1\*10\^-9（固定输出）
+    - 第 9 行：APACO\*10\^-9/NPACO
+    - 第 10 行：NSW/NBLOCK/KBLOCK
+    - 第 11 行：POTIM\*10\^-9，norm of lattice vector 1\*10\^-10，norm of lattice vector 2\*10\^-10，norm of lattice vector 3\*10\^-10
+    - 第 12 行（第 12 行 - 12+NPACO）：输入平均温度/(NBLOCK\*KBLOCK)，实际平均温度
+    - 接下来的 NPACO 行显示每个 speceis combination 的 PCF
 
 
 ---
 
 ## IBZKPT
 
-- 含不可约布里渊区 k 点数目、坐标及权重
+- 含不可约布里渊区 K 点数目、坐标及权重
 
-- 与 KPOINTS 文件兼容，如果在 KPOINTS 文件中选择了自动生成 k 点网格，则会生成 IBZKPT 文件。
+- 与 KPOINTS 文件兼容，若在 KPOINTS 文件中选择了自动生成 K 点网格，则会生成 IBZKPT 文件
+
+- 生成的 N1 \* N2 \* N3 对应为 IBZKPT 对应 Reciprocal lattice 行后面的第 4 列数据加和
+
+```bash
+awk '/Reciprocal/,/Tetrahedra/' IBZKPT | awk '{sum += $4} END {print sum}'
+```
 
 - 示例
 
-```text
+```bash
 Automatically generated mesh
       35
 Reciprocal lattice
@@ -525,7 +541,7 @@ Reciprocal lattice
    -0.44444444444444    0.44444444444444    0.11111111111111            24
    -0.33333333333333    0.44444444444444    0.11111111111111            24
    -0.33333333333333    0.44444444444444    0.22222222222222            24
-Tetrahedra
+Tetrahedra     # 设置 ISMEAR=-5 才会出现
        115    0.00022862368541
         24         1         2         2         6
         48         2         6         7        13

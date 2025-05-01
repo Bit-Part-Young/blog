@@ -82,6 +82,7 @@ np.fromstring()         # 从字符串提取数据
 # 随机
 np.random.rand()        # 0-1 随机小数
 np.random.randint()     # 随机整数
+np.random.randn()       # 标准正态分布随机数（均值为 0，标准差为 1）
 np.random.normal()      # 正态分布随机数
 np.random.uniform()     # 均匀分布随机数
 

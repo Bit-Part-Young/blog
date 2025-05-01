@@ -433,6 +433,8 @@ create_atoms      2 box basis 1 1 basis 2 1 basis 3 2 basis 4 2
 
 - 势函数类型
 
+- ZBL：[pair\_style zbl command — LAMMPS documentation](https://docs.lammps.org/pair_zbl.html)
+
 ```bash
 # 语法
 pair_style style args
@@ -441,10 +443,15 @@ pair_style style args
 # 示例
 # 默认设置，可用于只创建并输出构型文件
 pair_style        none
+
 # 只创建对势需要的近邻列表，不计算力和能量
 pair_style        zero
-# eam 势
+
+# EAM
 pair_style        eam/alloy
+
+# ZBL 势；inner outer 截断半径
+pair_style        zbl 3.0 4.0
 ```
 
 
@@ -1464,6 +1471,8 @@ fix               1 all print 100 "${strain} ${stress}" file strain_stress.dat s
 
 - 运行 parallel hybrid molecular dynamics/Monte Carlo (MD/MC) 模拟
 
+- 2024 年引入的
+
 - [LAMMPS 蒙特卡洛 MC 模拟案例](https://mp.weixin.qq.com/s/79qR5g0m9FlpgE-JAO7J-Q)
 
 - LAMMPS 示例代码路径 `examples/mc/in.sgcmc.eam`
@@ -1480,6 +1489,32 @@ deltamu              # 化学势差
 
 
 ```
+
+
+---
+
+### fix phonon
+
+- [Fetching Title#3ues](https://docs.lammps.org/fix_phonon.html)
+
+- 基于涨落 - 耗散理论（luctuation-dissipation theory）计算动力学矩阵
+
+- 该 fix 命令假设体系为具有周期性点阵的晶体。体系的温度不应超过熔点，以保持体系为固态
+
+```bash
+# 语法
+fix ID group-ID phonon N Noutput Nwait map_file prefix keyword values ...
+
+N                    # 每隔 N 时间步测量一次格林函数
+deltamu              # 化学势差
+Noutput              # 每隔 Nouput 测量输出一次动力学矩阵
+Nwait                # 在测量前等待 Nwait 时间步
+map_file             # map 文件或 GAMMA
+prefix               # 输出文件的前缀
+```
+
+
+---
 
 ### jump
 

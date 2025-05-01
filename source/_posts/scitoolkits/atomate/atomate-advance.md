@@ -479,44 +479,6 @@ reciprocal_density: 100    # 静态
 grid_density: 7000         # 弹性常数计算；第一步弛豫、ISIF = 2 弛豫部分
 ```
 
-- 弹性常数计算 workflow 默认参数设置
-
-```python
-# 计算 2 阶弹性常数（默认）
-# 第一步弛豫
-{"ENCUT": 700, "EDIFF": 1e-6, "LAECHG": False, "LREAL": False}
-# ISIF = 2 弛豫部分
-{"ISIF": 2, "IBRION": 2, "NSW": 99, "ISTART": 1}
-
-
-# 计算 3 阶弹性常数
-Kpoints.automatic_density(structure, 40000, force_gamma=True)
-stencils = np.linspace(-0.075, 0.075, 7)
-
-
-# wf_elastic_constant_minimal() 设置
-stencil = np.arange(0.01, 0.01 * order, step=0.01)
-
-
-# wf_elastic() 会调用 get_wf_elastic_constant()
-# get_wf_elastic_constant() 源代码
-# Convert to conventional if specified
-if conventional:
-    structure = SpacegroupAnalyzer(structure).get_conventional_standard_structure()
-
-uis_elastic = {"IBRION": 2, "NSW": 99, "ISIF": 2, "ISTART": 1}
-vis = vasp_input_set or MPStaticSet(structure, user_incar_settings=uis_elastic)
-strains = []
-if strain_states is None:
-    strain_states = get_default_strain_states(order)
-if stencils is None:
-    stencils = [np.linspace(-0.01, 0.01, 5 + (order - 2) * 2)] * len(strain_states)
-if np.array(stencils).ndim == 1:
-    stencils = [stencils] * len(strain_states)
-for state, stencil in zip(strain_states, stencils):
-    strains.extend([Strain.from_voigt(s * np.array(state)) for s in stencil])
-```
-
 
 ---
 

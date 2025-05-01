@@ -221,6 +221,7 @@ model.to(device)
 
 ### 超算
 
+- [计算系统 - 上海交大超算平台用户手册](https://docs.hpc.sjtu.edu.cn/system/computesystem.html)
 - Linux 系统：Rocky Linux（基于 Centos）
 - root 权限：无；无法使用 yum 命令安装软件程序
 - 任务调度系统：Slurm；Pi、ARM、思源一号提交的任务在任一平台都可以看到
@@ -239,7 +240,10 @@ model.to(device)
 ### SSH 登录
 
 - [通过 SSH 登录集群 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/login/sshlogin.html)
+
 - 超算平台的 SSH 端口均为默认值 22，`-p 22` 可省略
+
+- 登录密码输错 5 词，需等待一段时候才能再次登录
 
 ```bash
 # manager
@@ -381,16 +385,36 @@ Load key "id_rsa": bad permissions
 
 ```bash
 # 常用命令
-sbatch job.slurm             # 提交作业
-squeue                       # 查看作业状态
-scancel                      # 删除作业
-scontrol                     # 查看作业详细状态
+sbatch job.slurm             # 提交任务
+squeue                       # 查看任务状态
+scancel                      # 删除任务
+scontrol                     # 查看任务详细状态
 sinfo                        # 查看集群状态
    
-scontrol show job            # 所有作业详细状态
-scontrol show job JOBID      # 指定作业详细状态
-scontrol show node nodename  # 列出节点详细状态
+scontrol show job            # 所有任务详细状态
+scontrol show job JobId      # 指定任务详细状态
+scontrol show node NodeName  # 节点详细状态
 sinfo --partition=64c512g    # 查看特定队列
+
+# 格式化输出队列、节点信息
+sinfo -o "%.15P %.6D %.7G %.7t %.14C %.10e %.9O"
+
+%c                           # 每个节点的 CPU 数目
+%C                           # 每个节点的 CPU 数目，以 "allocated/idle/other/total" 格式
+%D                           # 节点数
+%e                           # 总内存，单位 MB
+%G                           # 与节点关联的 GPU 资源
+%N                           # 节点名称
+%O                           # CPU 负载
+%P                           # 队列名称
+%t                           # 节点状态，紧凑形式
+
+# 示例 Master
+PARTITION  NODES    GRES   STATE  CPUS(A/I/O/T)   FREE_MEM  CPU_LOAD
+  CLUSTER      1   gpu:2     mix     16/48/0/64     475653     43.01
+      cpu      1  (null)   alloc    120/0/0/120     241975    120.00
+      cpu      1   gpu:1   alloc    120/0/0/120     159938    120.00
+
 
 # sinfo 节点状态
 idle                         # 节点处于空闲状态
@@ -399,7 +423,8 @@ alloc                        # 节点所有 CPU 资源都被占用
 down                         # 节点故障暂不可用
 drain                        # 节点故障，但不影响已运行的作业
 
-# squeue 作业状态
+
+# squeue 任务状态
 R                            # RUNNING；正在运行
 PD                           # PENDING；正在排队
 CG                           # 即将完成
@@ -409,9 +434,20 @@ S                            # SUSPENDED；挂起
 CA                           # CANCELED；作业被取消
 TO                           # TIMEOUT；超时
 
+# 显示正在运行的任务信息（JobId STATE WORK_DIR）
+squeue -u yangsl -t RUNNING --format "%.9i %.8T   %Z"
 
-# 详细状态内容
-UserId|WorkDir|JobState|JobId|JobName|NumNodes|NumCPUs|StdErr|StdOut|Command|RunTime
+
+# 查看一周内提交至 Slurm 队列系统的已完成任务信息（完善该 Shell 脚本，参数设为天数）
+sacct --starttime=2025-04-05 --endtime=2025-04-12 --state=COMPLETED --format=JobID,JobName,State,Start,End,Elapsed,Workdir
+
+JobID                        # 任务 ID
+JobName                      # 任务名称
+State                        # 状态
+Start                        # 开始时间
+End                          # 结束时间
+Elapsed                      # 耗时
+Workdir                      # 工作目录
 ```
 
 
@@ -501,32 +537,20 @@ Time Use    # 实际时间 * 节点数
 - 参考：[快速上手 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/quickstart/index.html)
 
 - 超算队列内存情况
-
-```text
-arm128c256g    每核2G内存    arm
-64c512g        每核8G内存    siyuan
-cpu            每核4G内存    pi
-small          每核4G内存    pi
-dgx2           每核6G内存    pi
-huge           每核35G内存   pi
-192c6t         每核31G内存   pi
-cpu，small和dgx2队列作业运行时间最长7天，huge和192c6t最长2天。作业延长需发邮件申请，附上用户名和作业ID，延长后的作业最长运行时间不超过14天。
-```
+    - arm128c256g 每核 2G 内存 arm
+    - 64c512g 每核 8G 内存 siyuan
+    - cpu 每核 4G 内存 pi
+    - small 每核 4G 内存 pi
+    - dgx2 每核 6G 内存 pi
+    - huge 每核 35G 内存 pi
+    - 192c6t 每核 31G 内存 pi
+    - cpu，small 和 dgx2 队列作业运行时间最长 7 天，huge 和 192c6t 最长 2 天。作业延长需发邮件申请，附上用户名和作业 ID，延长后的作业最长运行时间不超过 14 天
 
 - 队列资源选择
-
-```text
-资源如何选择？
-交我算HPC+AI平台采用 CentOS 的操作系统，配以 Slurm 作业调度系统，所有计算节点资源和存储资源，均可统一调用。
-
-若是大规模的 CPU 作业，可选择 CPU 队列或思源一号64c512g队列，支持万核规模的并行；
-
-若是小规模测试，可选 small 队列或思源一号64c512g队列；
-
-GPU 作业请至 dgx2 队列或思源一号a100队列；
-
-**大内存作业可选择 huge 或 192c6t 两种队列**。
-```
+    - 若是大规模的 CPU 作业，可选择 CPU 队列或思源一号 64c512g 队列，支持万核规模的并行
+    - 若是小规模测试，可选 small 队列或思源一号 64c512g 队列
+    - GPU 作业请至 dgx2 队列或思源一号 a100 队列
+    - 大内存作业可选择 huge 或 192c6t 两种队列
 
 - **192c6t 和 huge 大内存队列，核数有一定要求，且排队时间较长**
 
@@ -562,109 +586,35 @@ GPU 价格：2 元/卡/小时（dgx2队列 V100 GPU）
 - 超算软件模块使用：[软件模块使用方法 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/module.html)
 
 ```bash
-module avail/av         # 查看超算预部署软件模块
-module av [MODULE]      # 查看具体模块
-module load [MODULE]    # 加载相应软件模块
-module unload [MODULE]  # 卸载相应软件模块
-module list             # 列出已加载模块
-module purge            # 清除所有已加载软件模块
-module show [MODULE]    # 列出该模块的信息，如路径（lib 及 include 等）、环境变量等
+module avail/av            # 查看超算预部署软件模块
+module av [MODULE]         # 查看具体模块
+module load [MODULE]       # 加载相应软件模块
+module unload [MODULE]     # 卸载相应软件模块
+module list                # 列出已加载模块
+module purge               # 清除所有已加载软件模块
+module show [MODULE]       # 列出该模块的信息，如路径（lib include 等）、环境变量等
 ```
-
----
-
-- 超算代理相关设置：[常见问题 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/transport/faq.html#id1)
-
-思源一号克隆 GitHub repo（或 wget 下载网络文件） 速度慢或无法进行；Pi 则正常。
-
-解决方案：在计算节点上运行（有时也还是不稳定）或使用 [Github 增强 - 高速下载](https://greasyfork.org/zh-CN/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD) 油猴插件，选择合适的 URL 进行克隆。
-
-计算节点是通过 proxy 节点代理进行网络访问的，因此一些软件需要特定的代理设置。需要找到软件的配置文件，修改软件的代理设置。
-
-```bash
-echo $http_proxy $https_proxy $no_proxy  # 查看代理
-```
-
-git、wget、curl 等软件支持通用变量，代理参数设置为：
-
-```bash
-# 思源一号计算节点通用代理设置
-https_proxy=http://proxy2.pi.sjtu.edu.cn:3128
-http_proxy=http://proxy2.pi.sjtu.edu.cn:3128
-no_proxy=puppet,proxy,172.16.0.133,pi.sjtu.edu.cn
-
- # π2.0 计算节点通用代理设置
-http_proxy=http://proxy.pi.sjtu.edu.cn:3004/
-https_proxy=http://proxy.pi.sjtu.edu.cn:3004/
-no_proxy=puppet
-```
-
-Python、MATLAB、Rstudio、fasterq-dump 等软件需要查询软件官网确定配置参数：
-
-```bash
-### fasterq-dump 文件，配置文件路径 ~/.ncbi/user-settings.mkfg
-
-# 思源一号节点代理设置
-/tools/prefetch/download_to_cache = "true"
-/http/proxy/enabled = "true"
-/http/proxy/path = "http:/proxy2.pi.sjtu.edu.cn:3128"
-
-# π2.0 节点代理设置
-/tools/prefetch/download_to_cache = "true"
-/http/proxy/enabled = "true"
-/http/proxy/path = "http://proxy.pi.sjtu.edu.cn:3004"
-
-### Python 需要在代码里面指定代理设置，不同Python包代理参数可能不同
-
-# 思源一号节点代理设置
-proxies = {
-    'http': 'http://proxy2.pi.sjtu.edu.cn:3128',
-    'https': 'http://proxy2.pi.sjtu.edu.cn:3128',
-}
-# π2.0 节点代理设置
-proxies = {
-    'http': 'http://proxy.pi.sjtu.edu.cn:3004',
-    'https': 'http://proxy.pi.sjtu.edu.cn:3004',
-}
-
-### MATLAB
-
-# 思源一号节点代理设置
-proxy2.pi.sjtu.edu.cn:3128
-
-# π2.0 节点代理设置
-proxy.hpc.sjtu.edu.cn:3004
-```
-
----
-
-注意：
-
-- **队列一般不设置独占节点（不能加 `#SBATCH --exclusive`）**
-- **超算平台无法安装 OVITO**，可视化平台有 OVITO，按小时收费
-- 登录密码输错 5 词，需等待一段时候才能再次登录
 
 
 ---
 
 ### 任务提交示例
 
-- 以下任务提交脚本代码使用的思源一号中的 64c512g 队列；超算中有许多不同版本的程序，可根据自身需求 `module load` 相应版本的程序
-
-- SBATCH 相关参数
+- SBATCH 参数
 
 ```bash
-#SBATCH --job-name=vasp_job
-#SBATCH --account=wen
-#SBATCH --time=01:00:00
-#SBATCH --nodes=1
-#SBATCH --ntasks=24
-#SBATCH --ntasks-per-node=1
-#SBATCH --mem=50GB
-#SBATCH -o %j.out
-#SBATCH -e %j.err
+--job-name=[name]          # 或 -J；任务名称
+--nodes=[count]            # 或 -N；节点数
+--ntasks=[count]           # 或 -n；该任务使用 count 个核
+--ntasks-per-node=[count]  # 每个节点使用 count 个核；--ntasks 参数的优先级高于该参数
+--partition [partition]    # 或 -p；指定队列
+--output=[file_name]       # 或 -o；标准输出文件
+--error=[file_name]        # 或 -e；标准错误文件  
+--time=[dd-hh:mm:ss]       # 或 -t；允许作业运行的最大时间
+--exclusive                # 独占节点（应尽可能避免）
+--nodelist=[nodes]         # 或 -w；指定节点
+--exclude=[nodes]          # 或 -x；排除指定节点
 
-#SBATCH --exclusive
 ```
 
 
@@ -672,12 +622,10 @@ proxy.hpc.sjtu.edu.cn:3004
 
 #### VASP
 
-- 思源一号 VASP
-
 ```bash
 #!/bin/bash
 
-#SBATCH -J vasp
+#SBATCH -J VASP
 #SBATCH -p 64c512g
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
@@ -686,68 +634,32 @@ proxy.hpc.sjtu.edu.cn:3004
 
 module purge
 
+ulimit -s unlimited
+
+# 思源
 module load vasp/5.4.4-intel-2021.4.0
 # module load vasp/6.2.1-intel-2021.4.0-cuda-11.5.0
 
-ulimit -s unlimited
-
 mpirun vasp_std
-```
 
----
-
-- 本地编译的 VASP
-
-```bash
-#!/bin/bash
-
-#SBATCH -J vasp
-#SBATCH -p 64c512g
-#SBATCH -N 1
-#SBATCH --ntasks-per-node=1
-#SBATCH -o %j.out
-#SBATCH -e %j.err
-
-module purge
-
-# 导入 oneAPI 套件
+# 自行编译的 VASP
 module load intel-oneapi-compilers/2021.4.0
 module load intel-oneapi-mpi/2021.4.0
 module load intel-oneapi-mkl/2021.4.0
-
-ulimit -s unlimited
-
-export OMP_NUM_THREADS=1
-export I_MPI_ADJUST_REDUCE=3
 
 mpirun ${HOME}/bin/vasp_std
 ```
 
 
-**注：相关命令含义**
-```bash
-# 内存及堆栈限制，防止因任务运行所需内存等过大导致服务器崩溃及死机
-ulimit -s unlimited
-ulimit -l unlimited
-
-export OMP_NUM_THREADS=1
-export I_MPI_ADJUST_REDUCE=3
-```
-
-- `export OMP_NUM_THREADS=1` - 设置 `OMP_NUM_THREADS` 环境变量，并将其值设为 1。`OMP_NUM_THREADS` 是 OpenMP 库使用的一个环境变量，用于指定并行计算时使用的线程数。在这里，将线程数设置为 1 表示只使用一个线程进行并行计算。这可以用于限制并行化的程度，特别是当希望使用单线程执行时。
-- `export I_MPI_ADJUST_REDUCE=3` - 设置 `I_MPI_ADJUST_REDUCE` 环境变量，并将其值设为 3。`I_MPI_ADJUST_REDUCE` 是 Intel MPI 库使用的一个环境变量，用于调整 MPI 库中用于并行归约操作（reduce operation）的算法。将该变量设置为 3 表示使用性能优化的归约算法。这可以提高 MPI 程序中归约操作的效率。
-
 ---
 
 #### LAMMPS
 
-- 思源一号 LAMMPS
-
 ```bash
 #!/bin/bash
 
-#SBATCH --job-name=lmp
-#SBATCH --partition=64c512g
+#SBATCH -J LAMMPS
+#SBATCH -P 64c512g
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH --output=%j.out
@@ -755,31 +667,12 @@ export I_MPI_ADJUST_REDUCE=3
 
 module purge
 
+# 思源
 module load lammps/20220324-intel-2021.4.0-omp
-
-mpirun lmp -i in.test
-```
-
----
-
-- 超算 Pi 新 CPU 队列 LAMMPS
-
-```bash
-#!/bin/bash
-
-#SBATCH -J lmp_pi
-#SBATCH -p cpu
-#SBATCH -N 1
-#SBATCH --ntasks-per-node=1
-#SBATCH -o %j.out
-#SBATCH -e %j.err
-
-module purge
-
-# 该版本的 LAMMPS 只安装了 4 个 packages；建议手动编译安装
+# Pi
 module load lammps/20230802-oneapi-2021.4.0
 
-mpirun lmp -in in.test
+mpirun lmp -i in.lmp
 ```
 
 
@@ -790,7 +683,7 @@ mpirun lmp -in in.test
 ```bash
 #!/bin/bash
 
-#SBATCH -J python
+#SBATCH -J Python
 #SBATCH -p 64c512g
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
@@ -813,7 +706,7 @@ python test.py
 ```bash
 #!/bin/bash
 
-#SBATCH -J bash
+#SBATCH -J Bash
 #SBATCH -p 64c512g
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
@@ -830,48 +723,96 @@ bash test.sh
 
 ### Master 任务提交脚本示例
 
-- VASP + 调用 CPU
+- 不建议跨 node\[1-2\] 与 master 节点（两者 CPU 世代不同）
+
+- 使用 node\[1-2\] 中的 2 个节点
+
+```bash
+#SBATCH -p cpu
+#SBATCH -N 2
+#SBATCH -n 40
+
+#SBATCH -x master
+
+#SBATCH --no-requeue           # 取消集群断电重启后任务自动提交
+```
+
+- 使用 node\[1-2\] 中的 1 个节点（不指定节点）
+
+```bash
+#SBATCH -p cpu
+#SBATCH -N 1
+#SBATCH -n 40                  # 或 #SBATCH --ntasks-per-node=40
+
+#SBATCH -x master
+
+#SBATCH --no-requeue           # 取消集群断电重启后任务自动提交
+```
+
+- 使用 node\[1-2\] 中的 1 个节点（指定节点）
+
+```bash
+#SBATCH -p cpu
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=40
+
+#SBATCH -w node2               # 指定节点
+#SBATCH -x node1               # 排除指定节点；多个的写法 node1,master
+
+#SBATCH --no-requeue           # 取消集群断电重启后任务自动提交
+```
+
+- VASP
 
 ```bash
 #!/bin/bash
 
 #SBATCH -J VASP
-#SBATCH -p CLUSTER
+#SBATCH -p cpu
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=16
-#SBATCH -t 1000:00:00
-#SBATCH -e %j.err
+#SBATCH -t 72:00:00
 #SBATCH -o %j.out
+#SBATCH -e %j.err
+
+#SBATCH -w node2
+#SBATCH -x node1
+
+#SBATCH --no-requeue
 
 ulimit -s unlimited
 ulimit -l unlimited
 
-mpirun -np $SLURM_NPROCS vasp_std | tee vasp.log
+mpirun vasp.5.std
 ```
 
-- LAMMPS + 调用 GPU
+- LAMMPS
 
 ```bash
 #!/bin/bash
 
-#SBATCH -J VASP
-#SBATCH -p CLUSTER
+#SBATCH -J LAMMPS
+#SBATCH -p cpu
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=16
+#SBATCH -t 72:00:00
+#SBATCH -o %j.out
+#SBATCH -e %j.err
+
 #SBATCH --gres=gpu:2
-#SBATCH -N 1
-#SBATCH --ntasks-per-node=16
-#SBATCH -t 1000:00:00
-#SBATCH -e %j.err
-#SBATCH -o %j.out
 
+#SBATCH --no-requeue
 
 ulimit -s unlimited
 ulimit -l unlimited
 
-# GPU 加速
-mpirun -np $SLURM_NPROCS lmp_gpu -sf gpu -pk gpu 2 -i in.lmp | tee lammps.log
+
 # CPU 计算
-mpirun -np $SLURM_NPROCS lmp_gpu -i in.lmp | tee > lammps.log
+mpirun lmp_cpu -i in.lmp
+# GPU 加速
+mpirun lmp_gpu -i in.lmp -sf gpu -pk gpu 2
 ```
+
 
 ---
 
@@ -900,9 +841,6 @@ slurm_load_jobs error: Slurm backup controller in standby mode
 ### 相关问题
 
 - [查看作业资源信息 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/resource.html)
-
-- `mpirun` 和 `srun` 的区别：[srun和mpirun的区别](http://bbs.keinsci.com/thread-23497-1-1.html)；srun 是 Slurm 作业调度系统中的命令，用于启动和管理分布式并行作业；mpirun 是 MPI 环境中 （实现形式有 openmpi，mpich，intel mpi 等）的一个命令，与作业调度系统无关
-
 
 
 ---
@@ -1178,12 +1116,6 @@ CMAKE_CXX_FLAGS="-DNDEBUG -O2 -mtune=native -march=native" \\
 pip install .
 ```
 
-
----
-
-### Tex Live
-
-- Tex Live 版本：思源一号 2018；Pi 2013；Manager 2015；Master 未安装
 
 
 ---

@@ -527,31 +527,64 @@ make: *** [makefile:17: std] Error 2
 
 ---
 
-## 相关问题
+## VASP 报错
 
-- VASP 运行出现 `forrtl` 报错：[forrtl: severe (174): SIGSEGV, segmentation fault occurred - My Community](https://www.vasp.at/forum/viewtopic.php?t=17257)
+- [【VASP报错集锦 1】](https://zhuanlan.zhihu.com/p/536705200)
+
+- forrtl 报错：[forrtl: severe (174): SIGSEGV, segmentation fault occurred - My Community](https://www.vasp.at/forum/viewtopic.php?t=17257)
 
 ```bash
-# 在 提交脚本 / 终端 / ~/.{bash,zsh}rc 中添加命令
+# 在 脚本/终端 中添加命令
 ulimit -s unlimited
 ```
 
-- [OneAPI问题：缺少libmkl_intel\_\*\_.so.\*文件的解决](https://zhuanlan.zhihu.com/p/589633827)
+- SYMPREC 报错：在 INCAR 中添加 `ISYM=0`
+    - [POSMAP internal error: symmetry equivalent atom not found ... - 知乎](https://zhuanlan.zhihu.com/p/611339883)
+    - [用vaspkit中应变能量法计算弹性模量，出现对称度的问题，SYMPREC从-3调整到-9都不行 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-25280-1-1.html)
 
----
+```bash
+# ~/yangsl/work/Ti-Al-Nb-Zr-V-Mo-MLIP/GSFE/Nb-GSFE-123/6
+# ISYM=0
+POSMAP internal error: symmetry equivalent atom not found,
+  you might try decreasing or increasing SYMPREC by an order of magnitude.
 
 
-[【VASP报错集锦 1】](https://zhuanlan.zhihu.com/p/536705200)
+# ~/yangsl/work/Ti-Al-Nb-Zr-V-Mo-MLIP/GSFE/V-GSFE/3-123/6
+# ISYM=0
+VERY BAD NEWS! internal error in subroutine PRICEL (probably precision problem, try to change SYMPREC in INCAR ?):
+Sorry, number of cells and number of vectors did not agree.       3
+```
 
----
+- EDDDAV 报错：[VASP报错 Error EDDDAV: Call to ZHEGV failed. Returncode = 25 2 48 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=508)
+    - 检查在第几步离子步时报错以及原子受力情况
+
+```bash
+# ~/work/Ti-Al-Nb-Zr-V-Mo-MLIP/sia/Mo-sia/1-O
+# 第一个离子步结束后就报错，部分原子受力过大，尝试减小 POTIM（默认 0.5）
+# POTIM=0.2，未报错
+Error EDDDAV: Call to ZHEGV failed. Returncode =  11 2  16
+```
+
+- EDDRMM 警告：可不用管
 
 ```bash
 # 在电子步中，有时会出现该 warning，code 对应的数字会有不同，影响是否大
 # 如何解决该问题（无统一的解决方法）
 WARNING in EDDRMM: call to ZHEGV failed, returncode =   6  3      3
-
-Error EDDDAV: Call to ZHEGV failed. Returncode =  25 2  48
 ```
+
+- [OneAPI问题：缺少libmkl_intel\_\*\_.so.\*文件的解决](https://zhuanlan.zhihu.com/p/589633827)
+
+- 其他
+
+```bash
+# ~/work/Ti-Al-Nb-Zr-V-Mo-MLIP/GSFE/Mo-GSFE-112/4
+# 拷贝 CONTCAR 为 POSCAR 续算，无报错
+ZBRENT: fatal error in bracketing
+    please rerun with smaller EDIFF, or copy CONTCAR
+    to POSCAR and continue
+```
+
 
 ---
 

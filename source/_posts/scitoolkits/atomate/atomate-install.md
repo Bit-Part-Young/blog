@@ -25,9 +25,13 @@ sticky: "99"
 ## 安装
 
 - atomate 安装：[Installing atomate — atomate 1.0.3 documentation](https://atomate.org/installation.html)
+
 - **必要条件**：VASP 计算软件与 MongoDB 数据库账号
+
 - [pymatgen](https://pymatgen.org/)：输入文件生成，输出文件的数据提取与分析
+
 - [custodian](http://materialsproject.github.io/custodian/)：运行计算代码（VASP），执行错误检查与纠正
+
 - [FireWorks](https://materialsproject.github.io/fireworks/)：设计、管理、执行 workflow
 
 
@@ -35,7 +39,7 @@ sticky: "99"
 
 ### 安装流程
 
-- 使用 conda 创建 Python 虚拟环境，如 atomate_env（名字任意），安装 atomate 包（会自动安装 pymatgen custodian 和 FireWorks 依赖 packages）
+- 使用 conda 创建 Python 虚拟环境，如 atomate_env（名字可任意），安装 atomate（会自动安装 pymatgen、custodian、FireWorks 依赖 packages）
 
 - pymatgen 和 custodian 包更新频率相比 atomate 和 FireWorks 要高很多
 
@@ -45,7 +49,6 @@ sticky: "99"
 pip install atomate
 
 pip install -U pymatgen custodian
-
 ```
 
 
@@ -70,9 +73,12 @@ atomate_env
 └── logs/
 ```
 
+
 ---
 
-- `db.json` 文件内容：连接 MongoDB 数据库（注：除了 port 条目（entry）的 value 是整数；其他都是字符串，且条目及对应的 value 值都应用双引号）；不能有注释 `//`，否则会报错（无法解析）从而无法将计算数据存储至 MongoDB 中
+#### db.json
+
+- 连接 MongoDB 数据库（注：除了 port 条目（entry）的 value 是整数；其他都是字符串，且条目及对应的 value 值都应用双引号）；不能有注释 `//`，否则会报错（无法解析）从而无法将计算数据存储至 MongoDB 中
 
 ```json
 {
@@ -88,9 +94,50 @@ atomate_env
 }
 ```
 
+
 ---
 
-- `my_fworker.yaml` 文件内容：
+#### FW_config .yaml
+
+- 配置 Fireworks
+
+```yaml
+ADD_USER_PACKAGES:
+  - atomate.vasp.firetasks
+CONFIG_FILE_DIR: <INSTALL_DIR>/config
+ECHO_TEST: Atomate environment of SLY
+QUEUE_UPDATE_INTERVAL: 5
+ALWAYS_CREATE_NEW_BLOCK: True
+RAPIDFIRE_SLEEP_SECS: 10
+```
+
+- 默认参数设置：`fireworks/fw_config.py`；[Modifying the FW Config — FireWorks 2.0.4 documentation](https://materialsproject.github.io/fireworks/config_tutorial.html)
+
+```python
+RAPIDFIRE_SLEEP_SECS = 60    # seconds to sleep between rapidfire loops
+```
+
+- 需将其路径添加到 PATH 中
+
+```bash
+export FW_CONFIG_FILE=<_dir>/config/FW_config.yaml
+```
+
+- 若 atomate 环境有多个，可进行如下设置（可使用 `$HOME` 等变量；切换 atomate 环境后，`source` 使其生效）：
+
+```bash
+conda_venv_name=$(conda info -e | grep \* | awk '{print $1}')
+if [[ $conda_venv_name == atomate_env1 ]]; then
+   export FW_CONFIG_FILE=<INSTALL_DIR1>/config/FW_config.yaml
+elif [[ $conda_venv_name == atomate_env2 ]]; then
+   export FW_CONFIG_FILE=<INSTALL_DIR2>/config/FW_config.yaml
+fi
+```
+
+
+---
+
+#### my_fworker .yaml
 
 ```yaml
 name: <WORKER_NAME>
@@ -102,9 +149,10 @@ env:
     scratch_dir: null  # optional
 ```
 
+
 ---
 
-- `my_launchpad.yaml` 文件内容：
+#### my_launchpad.yaml
 
 ```yaml
 host: <HOSTNAME>
@@ -119,94 +167,56 @@ user_indices: []
 wf_user_indices: []
 ```
 
+
 ---
 
-- `my_qadapter.yaml` 文件内容：配置队列系统；当作业提交到队列系统时，会自动生成 Slurm 或 PBS 提交脚本文件
+#### my_qadapter .yaml
+
+- [Writing Queue Adapters — FireWorks 2.0.4 documentation](https://materialsproject.github.io/fireworks/qadapter_programming.html)
+
+- 配置队列系统；当作业提交到队列系统时，会自动生成 Slurm 或 PBS 提交脚本文件（`FW_submit.script`）
 
 ```yaml
-host: <HOSTNAME>
-port: <PORT>
-name: <DB_NAME>
-username: <ADMIN_USERNAME>
-password: <ADMIN_PASSWORD>
 _fw_name: CommonAdapter
 _fw_q_type: SLURM
-rocket_launch: rlaunch rapidfire
+rocket_launch: rlaunch -c <INSTALL_DIR>/config rapidfire
 nodes: 1
 ntasks: 1
 ntasks_per_node: 1
-walltime: 72:00:00
-queue: CLUSTER
+walltime: "72:00:00"
+queue: cpu
 account: null
 job_name: null
-pre_rocket: null
+pre_rocket: |+
+  ulimit -s unlimited
+  ulimit -l unlimited
+
 post_rocket: null
 logdir: <INSTALL_DIR>/logs
 ```
 
-参数说明：
-
-```bash
-_fw_q_type      # 调度系统类型，如 SLURM PBS 等
-queue           # 队列名称；如 Master 服务器中的 CLUSTER 队列
-walltime        # 作业最长运行时间
-```
-
-注：若无法提交到队列系统，rocket_launch 可进行以下修改：
-
-```yaml
-rocket_launch: rlaunch -c <INSTALL_DIR>/config rapidfire
-```
 
 ---
 
-- `FW_config.yaml` 文件内容：
+#### 配置 pymatgen
 
-```yaml
-CONFIG_FILE_DIR: <INSTALL_DIR>/config
+- VASP 赝势路径 + Material Project 网站 API
 
-# 该参数对应设置应该是在 fireworks 包中的
-# fireworks/scripts/qlaunch_run.py 约第 242 行
-# 队列更新间隔
-QUEUE_UPDATE_INTERVAL: 5
-```
-
-需将其路径添加到 PATH 中：
-
-```bash
-export FW_CONFIG_FILE=<atomate_config_dir>/config/FW_config.yaml
-```
-
-若 atomate 环境有多个，可进行如下设置（可使用 `$HOME` 等变量；切换 atomate 环境后，`source` 使其生效）：
-
-```bash
-conda_venv_name=$(conda info -e | grep \* | awk '{print $1}')
-if [[ $conda_venv_name == atomate_env1 ]]; then
-   export FW_CONFIG_FILE=<atomate_config_dir1>/config/FW_config.yaml
-elif [[ $conda_venv_name == atomate_env2 ]]; then
-   export FW_CONFIG_FILE=<atomate_config_dir2>/config/FW_config.yaml
-fi
-```
-
----
-
-- 配置 pymatgen：VASP 赝势路径 + Material Project 网站 API
-
-方式 1：新建 `~/.pmgrc.yaml` 或 `~/.config/.pmgrc.yaml` 文件，添加以下内容
+- 方式 1：新建 `~/.pmgrc.yaml` 或 `~/.config/.pmgrc.yaml` 文件，添加以下内容
 
 ```yaml
 PMG_VASP_PSP_DIR: <psp_dir>
 PMG_MAPI_KEY: <api_key>
 ```
 
-方式 2：使用 pmg 命令来生成配置文件
+- 方式 2：使用 pmg 命令来生成配置文件
 
 ```bash
 pmg config --add PMG_VASP_PSP_DIR <psp_dir>
 pmg config --add PMG_MAPI_KEY <api_key>
 ```
 
-赝势目录结构：
+- 赝势目录结构
 
 ```text
 pseudopotentials
@@ -227,15 +237,16 @@ pseudopotentials
     └── ...
 ```
 
+- pymatgen 寻找 POTCAR 路径的两种形式
+
 ```bash
-# pymatgen 寻找 POTCAR 的两种路径形式
 # 形式 1 所有元素 POTCAR 在一个目录下；可以是压缩文件
 psp_dir/POT_GGA_PAW_PBE/POTCAR.XXX
 # 形式 2 元素 POTCAR 按元素分类在子目录下
 psp_dir/POT_GGA_PAW_PBE/XXX/POTCAR
 ```
 
-注：若 `<psp_dir>` 赝势目录下没有 `POT_GGA_PAW_PBE` 名称目录，可设置软链接：
+注：若 `<psp_dir>` 目录下无 `POT_GGA_PAW_PBE` 名称目录，可设置软链接
 
 ```bash
 ln -s PBE_folder POT_GGA_PAW_PBE
@@ -247,14 +258,7 @@ ln -s PBE_folder POT_GGA_PAW_PBE
 
 ## 相关问题
 
-- custodian 版本过高出现的报错（custodian 2023.3.10 版本以上，运行 atomate 会出错；**现已解决**）
-
-```bash
-    from custodian.vasp.handlers import (
-ImportError: cannot import name 'MaxForceErrorHandler' from 'custodian.vasp.handlers' (/home/yslarch/src/miniconda3/lib/python3.10/site-packages/custodian/vasp/handlers.py)
-```
-
-- 配置文件中的 db.json 路径没有设置正确：**db.json 的文件路径需设置为绝对路径**
+- db.json 中的文件路径没有设置为绝对路径
 
 ```bash
 ValueError: Could not get next FW id! If you have not yet initialized the database, please do so by performing a database reset (e.g., lpad reset)

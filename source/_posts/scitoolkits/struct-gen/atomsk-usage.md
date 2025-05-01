@@ -195,7 +195,7 @@ LATTICES         wurtzite  |  2 (a and c)   |     2
 -duplicate                  # 或 -dup；扩胞
 -rotate                     # 旋转轴
 -orthogonal-cell            # 转变为正交胞
--reduce-cell                # 保持周期性的同时减小胞的大小
+-reduce-cell                # 保持周期性的同时减小胞的大小；参数值 x/y/z/p
 -fractional                 # 或 -frac；分数坐标（VASP 格式）
 -sort                       # 根据 properties 对原子进行排序
 -fix                        # 固定原子坐标轴
@@ -257,6 +257,8 @@ rocksalt
 
 # 构建晶体特定取向的构型
 --create fcc 3.53 Ni -orient "[1-10]" "[11-2]" "[111]"
+
+-reduce-cell p                     # 寻找原胞
 
 -duplicate 1 1 4                   # 构建超胞
 

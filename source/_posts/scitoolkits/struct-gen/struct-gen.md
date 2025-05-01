@@ -452,7 +452,8 @@ direct
 - 特殊的表面可能会发生重构现象（Si）
 
 - BCC、FCC、Diamond、HCP 常见表面/位向的具体坐标轴
-    - FCC 结构 2 奇 1 偶的晶向对应的边长数值需除以 2
+    - FCC 结构 2 奇 1 偶的晶向对应方向的盒子长度需除以 2
+    - BCC 结构 3 奇的晶向对应方向的盒子长度需除以 2
 
 ```bash
 # BCC、FCC、Diamond（也适用于 B2）
@@ -478,7 +479,9 @@ direct
 
 
 # HCP
-"[-12-10]" "[0001]" "[-1010]"      # (100) 面
+# 单胞 4 个原子；4 个原子层；层间距不相等
+# 单胞边长 a c √3a
+"[-12-10]" "[0001]" "[-1010]"      # (100) 面；
 
 "[0001]" "[1-100]" "[-1-120]"      # (110) 面
 
@@ -621,6 +624,18 @@ m, n          # 整数
 根据特定晶界构建
 
 寻找晶界
+
+
+---
+
+### 位错
+
+- 各向同性下的位错构建
+    - [金属建模 - 在各向同性材料中引入位错](https://mp.weixin.qq.com/s/g1LipqYCTSAoAh-BsXw-zQ)
+    - 刃位错：[Atomsk - Tutorial - Edge dislocation in Al](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)
+    - 螺位错：[Atomsk - Tutorial - Screw dislocation in Al](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
+
+- 各向异性下的位错构建：[Atomsk - Tutorial - Dislocations in Anisotropic Medium](https://atomsk.univ-lille.fr/tutorial_Fe_disloc.php)
 
 
 ---

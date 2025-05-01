@@ -638,6 +638,8 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 默认值：-1（NSW=-1 或 0）；0（其他情况，执行 AIMD）
 
+- IBRION=-1 时，避免设置 NSW>0, 否则重新计算相同结构 NSW 次
+
 - 除 0 外，其他算法都最终弛豫到能量局域最小值
 
 - 结构优化
@@ -766,6 +768,15 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 - 若对称性打开，则 NWRITE=3 将对称操作写入 OUTCAR 文件
 
 - 该 tag 的 VASP 官网中还讲解了对称性的相关内容
+
+- 缺陷（空位、掺杂、表面）计算，设置 ISYM=0 会对最终的计算能量、构型是否有影响（**最后的能量和构型均一样，无影响，但更耗时，耗时是原来的 4 倍**）
+
+- [请问关于VASP中的ISYM设置 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-39089-1-1.html)
+
+```bash
+# 测试计算路径
+~/work/Ti-Al-Nb-Zr-V-Mo-MLIP/sia/Nb-sia/5-dumbbell-100-2
+```
 
 
 ---

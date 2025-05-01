@@ -786,16 +786,16 @@ markersize            # ms；marker 尺寸
 ax.scatter(x, y, s, c, cmap, ...)
 
 # 参数
-s           # marker size；float 或 array-like
-c           # marker colors；array-like 或 color list；该参数可结合 colorbar 使用
-cmap        # colormap
+s                     # marker size；float 或 array-like
+c                     # marker colors；array-like 或 color list；该参数可结合 colorbar 使用
+cmap                  # colormap
 
 
 # 直方图
 ax.hist(x, bins, histtype, edgecolor, ...)
 
-bins        # 将 x 范围等分成 bins 份
-edgecolor   # 边缘颜色
+bins                  # 将 x 范围等分成 bins 份
+edgecolor             # 边缘颜色
 
 
 # 水平线

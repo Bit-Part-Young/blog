@@ -62,26 +62,28 @@ password:
 
 ## 使用
 
+- 利用 ovito 计算 RDF、键角分布、键长分布：[NEP\_GT/NEP\_RDF/NEP\_RDF.ipynb at main · wangchr1617/NEP\_GT · GitHub](https://github.com/wangchr1617/NEP_GT/blob/main/NEP_RDF/NEP_RDF.ipynb)
+
 - [OVITO常用的无需Python代码的后处理技巧](https://mp.weixin.qq.com/s/5vPyhEsVaOVAQV6XMMEg8g)
     - 仅保留位错与缺陷原子
     - 输出各种位错线长度与位错密度的相关数据
     - 输出每一帧中的不同相原子的数量的相关数据
     - 统计每一帧中裂纹的表面积变化
-    - 为模型添加基础的光影
+    - 为模型添加基础的光影（OVITO 提供的基础光影效果 Ambient Occlusion）
     - 统计模型中的孔隙率（只适用 Pro 版）
     - 绘制原子应力应变云图
     - 根据 dump 文件输出的原子属性数据计算新的原子属性数据
     - 对某一原子属性在空间上进行平均
     - 对某一原子属性在一维和二维空间上绘制分布图（只适用 Pro 版）
     - 绘制原子模型的表面轮廓线
-    - 切割展示模型的某一个晶面
+    - 切割展示模型的某一个晶面（通过 Slice）
     - 结合 DXA 与汤普森四面体判定位错滑移面
     - 选中特定原子修改颜色
     - 修改原子的透明度
     - 辅助建立含有非晶晶界的多晶原子模型
     - 特定 Voronoi 指数的多面体团簇绘制
-    - 利用平移与周期性边界条件调整模型
-    - 冻结之前选择的原子以观察原子的移动趋势
+    - 利用平移与周期性边界条件调整模型（通过 Affine transformation 和 wrap at period boundary）
+    - 冻结之前选择的原子以观察原子的移动趋势（通过 Freeze property）
     - 在 OVITO 中绘制粒子属性的散点图与直方图
     - 绘制原子位移矢量图
     - 绘制特定原子的轨迹线

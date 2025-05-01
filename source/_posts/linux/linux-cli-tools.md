@@ -51,9 +51,9 @@ password:
 
 系统相关
 
-- Shell（个人感觉没有 zsh 好用）
+- Shell（个人感觉都没有 zsh 好用）
     - nushell
-    - fish
+    - fish（默认设置自带自动补全功能）
 
 - 快速跳转目录：[z - jump around](https://github.com/rupa/z)（可用于 Bash 和 zsh）
 

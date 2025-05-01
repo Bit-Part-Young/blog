@@ -115,6 +115,8 @@ h+k = -i
 
 ## Pearson 符号
 
+- 英文字符和数字均正体
+
 - Pearson Symbol：第一个小写英文字母表示晶系，第二个大写英文字母表示布拉维点阵，第三个数字表示单胞中的原子数
 
 ```bash
@@ -136,6 +138,8 @@ C                   # 底心（A、B 面的有心化用 C 代替）
 ---
 
 ## Strukturbericht Designation
+
+- 英文字符斜体，数字正体
 
 - Strukturbericht Designation：结构符号，由大写英文字母 + 数字组成，字母表示结构的类型，数字表示顺序号
 

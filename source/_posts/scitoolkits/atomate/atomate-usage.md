@@ -26,11 +26,11 @@ sticky: "98"
 
 - 官网：[atomate (Materials Science Workflows) — atomate 1.0.3 documentation](https://atomate.org/)
 
-- 高通量计算（主要 VASP）工具；主要在队列系统（Slurm、PBS 等）上运行；自动生成、保存作业运行过程中的所有记录（输入文件、输出文件、数据提取、错误信息等）；
+- 高通量计算（主要 VASP）工具；主要在队列系统（如 Slurm、PBS 等）上运行；自动生成、保存任务运行过程中的所有记录（输入文件、输出文件、数据提取、错误信息等）
 
-- 数据保存到数据库（MongoDB）中，易于获取、查询、分析；
+- 数据存储于数据库（MongoDB）中，易于获取、查询、分析
 
-- 提供了许多性质计算（静态、弛豫、弹性常数、能带、EOS、体模量、NEB）的标准 workflow，只需提供晶体结构（POSCAR），即可进行高通量计算；标准的 workflow 可以进行自定义修改；
+- 提供了许多性质计算（静态、弛豫、弹性常数、能带、EOS、体模量、NEB）的标准 workflow，只需提供晶体结构（POSCAR），即可进行高通量计算；标准的 workflow 可以进行自定义修改
 
 - 可自定义设计新的性质计算 workflow
 
@@ -55,9 +55,9 @@ Workflow，Firework（Firework 的列表可称做 fireworks），Firetask（一�
 
 ## 使用
 
-### 相关命令行命令
+### lpad
 
-- `lpad`：管理 launchpad
+- 管理 launchpad
 
 ```bash
 # lpad 参数
@@ -95,9 +95,10 @@ lpad get_wflows -s FIZZLED -d more
 # 查看 fireworks 的计算目录
 lpad get_launchdir fw_id
 
-lpad defuse_wflows -s READY/WAITING  # defuse workflow
-
-lpad delete_wflows  # delete workflow  两者区别是什么？
+defuse_wflows               # cancel (de-fuse)
+reignite_wflows             # reignite (un-cancel)
+archive_wflows              # 存档（soft-remove）
+delete_wflows               # 永远删除
 
 # 以下两个命令不推荐使用
 # 重设lpad，所有 lpad 中的 fireworks 都会被删除
@@ -107,7 +108,11 @@ lpad reset
 lpad init
 ```
 
-- `qlaunch`：将 workflow 提交到超算队列
+---
+
+### qlaunch
+
+- 将 workflow 提交到超算队列
     - 过程：先创建 `block_date/launcher_date` workflow 目录（`qlaunch rapidfire` 命令；`qlaunch singleshot` 无此步骤），之后生成 `FW_submit.script` Slurm 提交脚本，再在此目录下创建 `launcher_date` firework 计算目录
 
 - `qlaunch rapidfire` 若出现以下提示时，不会再提交作业
@@ -122,9 +127,17 @@ No READY jobs detected
 qlaunch (-r) rapidfire            # 一次提交多个任务
 qlaunch rapidfire --nlaunches 5   # 指定提交任务数
 qlaunch singleshot                # 一次提交一个任务
+
+# 参数
+-q
 ```
 
-- `rlaunch`：直接在计算平台本地上运行计算
+
+---
+
+### rlaunch
+
+- 直接在计算平台本地上运行计算
 
 ```bash
 rlaunch singleshot     # 会将当前目录下的所有文件分别单独压缩成 gz 格式
@@ -227,42 +240,75 @@ lpad.add_wf(wf)
 print("The elastic constant test workflow is added.")
 ```
 
-- 弹性常数计算时，若该 workflow 有部分变形的 firework 计算结束，部分 fizzled，它会先根据已计算的变形 firework 数据进行拟合得到弹性数据，因此**需检查该 workflow 中的所有 firework 是否都计算完成并检验结果是否合理**；修改相关错误，重新提交 fizzled fw 后（之前错误生成的输入文件会进行更新），分析那步 fw 会处于 WAITING 状态，以进行更新
+- atomate 中计算弹性常数使用的是应力 - 应变法；先结构优化，再施加变形并 ISIF=2 弛豫 （用到的是 StaticSetOne.yaml 文件中的参数），最后拟合弹性常数并计算弹性性质
+
+- 弹性常数计算 workflow 的 `fw.name`
+
+```bash
+Ni-elastic structure optimization--78
+Ni-elastic deformation 0--77
+...
+Ni-elastic deformation 5--72
+Analyze Elastic Data--71
+```
+
+- 运行弹性常数计算 workflow 时，若部分变形的 firework 计算结束，部分 fizzled，它会先根据已计算的变形 firework 的数据进行弹性常数拟合，因此**需检查该 workflow 中的所有 firework 是否都计算完成并检验结果是否合理**
 
 - atomate 计算弹性常数得到的弹性张量中 POSCAR-format (raw) 与 IEEE-format (ieee_format) 之间的区别：
     - [Elastic Constants - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/elasticity)
     - 有时相同，有时不同（存在旋转关系），可使用 `pymatgen.core.tensors.Tensor` 类的 `get_ieee_rotation()` 方法进行转换
     - 建议采用 POSCAR-format
 
-- 自定义弹性常数计算 workflow 的弹性数据保存到 db 中的 collection 的名字
-
 ```python
-# 修改弹性常数计算 workflow 主要的两个文件路径
-atomate/vasp/workflows/base/elastic.py
+# 弹性常数计算 workflow 程序实现涉及的文件路径
+# wf_elastic_constant()
 atomate/vasp/workflows/presets/core.py
 
-# atomate/vasp/firetasks/parse_outputs.py 中的 ElasticTensorToDb 类（修改 "elasticity" 即可）
-db.db["elasticity"]
+# get_wf_elastic_constant()
+atomate/vasp/workflows/base/elastic.py
 
-# 或 atomate/vasp/workflows/base/elastic.py 中的 get_wf_elastic_constant() 有涉及
+# ElasticTensorToDb 类；含弹性常数拟合细节
+# 自定义弹性数据保存到 db 中的 collection 的名称：修改 "elasticity" 即可，即 db.db["elasticity"]
+atomate/vasp/firetasks/parse_outputs.py
 ```
 
-atomate 中计算弹性常数默认用法：应力 - 应变法（从 Si 的弹性常数计算示例中看出）
-
-
-变形（进行静态计算，用到的是 StaticSetOne.yaml 文件中的参数）
-
-
----
-
-弹性常数计算 workflow 的 `fw.name`
+- 弹性常数计算 workflow 默认参数设置
 
 ```python
-Ni-elastic structure optimization--78
-Ni-elastic deformation 0--77
-...
-Ni-elastic deformation 5--72
-Analyze Elastic Data--71
+# 计算 2 阶弹性常数（默认）
+# 第一步弛豫
+{"ENCUT": 700, "EDIFF": 1e-6, "LAECHG": False, "LREAL": False}
+# ISIF = 2 弛豫部分
+{"ISIF": 2, "IBRION": 2, "NSW": 99, "ISTART": 1}
+
+
+# 计算 3 阶弹性常数
+Kpoints.automatic_density(structure, 40000, force_gamma=True)
+stencils = np.linspace(-0.075, 0.075, 7)
+
+
+# wf_elastic_constant_minimal() 设置
+stencil = np.arange(0.01, 0.01 * order, step=0.01)
+
+
+# wf_elastic() 会调用 get_wf_elastic_constant()
+# get_wf_elastic_constant() 源代码
+# Convert to conventional if specified
+if conventional:
+    structure = SpacegroupAnalyzer(structure).get_conventional_standard_structure()
+
+uis_elastic = {"IBRION": 2, "NSW": 99, "ISIF": 2, "ISTART": 1}
+vis = vasp_input_set or MPStaticSet(structure, user_incar_settings=uis_elastic)
+strains = []
+if strain_states is None:
+    strain_states = get_default_strain_states(order)
+if stencils is None:
+    # 应变范围为 -10% ~ 10%，间隔 5%
+    stencils = [np.linspace(-0.01, 0.01, 5 + (order - 2) * 2)] * len(strain_states)
+if np.array(stencils).ndim == 1:
+    stencils = [stencils] * len(strain_states)
+for state, stencil in zip(strain_states, stencils):
+    strains.extend([Strain.from_voigt(s * np.array(state)) for s in stencil])
 ```
 
 
@@ -348,7 +394,7 @@ documents = atomate_db.collection.find(query, projection)
 document = atomate_db.collection.find_one(query, projection)
 ```
 
-可用 Projection Operators ：[Query and Projection Operators - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors)
+可用 Projection Operators：[Query and Projection Operators - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors)
 
 find() manual：[db.collection.find() - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
 

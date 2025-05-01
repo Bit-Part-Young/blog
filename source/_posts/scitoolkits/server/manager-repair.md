@@ -108,6 +108,6 @@ sudo chmod 666 /dev/null   # 修改 /dev/null 权限，需输入 manager 用户�
 
 ## 办公室打印机
 
-- 306 办公室 HP 打印机 WiFi：DIRECT-da-HP M232 LaserJet
+- 306 办公室 HP 打印机 WiFi：DIRECT-da-HP M232 LaserJet（不是 DIRECT-14-HP M232 LaserJet、DIRECT-8E-HP M429fdw LJ）
 
-- 新连接密码查看方式：按打印机旁边的 `i` 按钮，会打印其自身的一些信息，其中包括 'Wi-Fi Direct Password'，值为新的 WiFi 密码（**破折号也是密码的一部分**）
+- 新连接密码查看方式：按打印机旁边的 `i` 按钮（按 2 次），会打印其自身的一些信息，其中包括 'Wi-Fi Direct Password'，值为新的 WiFi 密码（**破折号也是密码的一部分**）
