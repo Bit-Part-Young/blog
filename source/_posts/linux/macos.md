@@ -1,15 +1,14 @@
 ---
-title: MacBook 使用
+title: macOS 使用
 top: false
 pin: false
 cover:
 toc: true
 mathjax: true
 math: true
-summary: MacBook  使用
-description: MacBook  使用
+summary: macOS 使用
+description: macOS  使用
 tags:
-  - MacBook
   - macOS
 categories:
   - Linux
@@ -18,17 +17,17 @@ abbrlink: 858625
 password:
 ---
 
-# Mac 使用
+# macOS 使用
 
 ## 介绍
 
-- 优点：
-    - MacBook Air 轻便
-    - 续航强
-    - 屏幕、音质好
-    - 触控板功能丰富
+- macOS 产品：MacBook（Air 和 Pro）、Mac Studio、iMac
+
+- MacBook 优点：
     - CPU 单核性能强
-    - ...
+    - 触控板功能丰富
+    - 轻便、续航强（Air）
+    - 屏幕、音质好（Pro）
 
 - 明确 MacBook 购买机型：
     - [Mac - 机型比较](https://www.apple.com.cn/mac/compare/)
@@ -78,16 +77,27 @@ password:
 ### 基本设置
 
 - 不同的 macOS 版本对应的操作设置会有不同，建议在官网上查询
+
 - macOS 对大小写不敏感，Linux 和 Windows 对大小写敏感
+
 - MacBook 中的大部分程序的**设置快捷键**都是 `command +,`
+
 - MacBook 接入鼠标，滚轮控制的上下滚动与 Windows 相反（可借助 Mos 软件使其保持一致）
+
 - [修改用户名](https://support.apple.com/zh-cn/102547)：需创建另一个用户，登录该用户，在其系统设置中修改原用户名
+
 - [删除用户](https://support.apple.com/zh-cn/guide/mac-help/mchlp1557/mac)
+
 - [Apple ID 申请](https://support.apple.com/zh-cn/108647)
+
 - 英文大小写转换：点按「中/英」键即可切换中英文；切换成大写，长按两秒「中英」键，直至亮灯；按住 shift 键的同时输入字母
+
 - 程序坞（Dock）相关：双手指点击触控板的软件 logo，可将软件 logo 在程序坞中保留或移除，进而从 Dock 中移除一些不常用的软件 logo
+
 - 小组件设置：点击菜单栏右上角的时钟，会有其他的小组件，可移除，保留 “每日使用情况” 小组件
+
 - 默认终端 Theme 设置：设置 - Profile - Pro Theme，点击下方的默认按钮
+
 - **MacBook 合盖不休眠**：系统设置 - 电池 - 勾选 “使用电源适配器供电且显示器关闭时，防止自动进入睡”
 
 - 接入 Windows 键盘，进行修饰键的键位重映射：
@@ -112,18 +122,30 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### 系统设置相关
 
-- 修改系统语言：系统设置 - 通用 - 语言与 地区 - 简体中文，将其向上拖到第一个
+- 修改系统语言：系统设置 - 通用 - 语言与地区 - 简体中文，将其向上拖到第一个
+
 - macOS 版本升级到最新：系统设置 - 通用 - 软件更新
+
 - 修改电脑名称：系统设置 - 通用 - 关于本机
+
 - 文本字体：系统设置 - 文本字体（使用 `MesloLGM Nerd Font`）
+
 - 菜单栏设置：系统设置 - 控制中心 - 选择模块应用 “不在菜单栏显示”
+
 - 台前调度：系统设置 - 桌面与程序坞 - 桌面与台前调度 - 打开 “台前调度”
+
 - 去掉留在程序坞中最近打开过的软件：系统设置 - 桌面与程序坞 - 取消勾选 “在程序坞中显示建议 App 和最近使用的 App”
+
 - 关闭开机时的声音：系统设置 - 声音 - 取消勾选 “启动时播放声音”
+
 - 调整键盘背光、键重复速率和重复前延迟：系统设置 - 键盘
+
 - 显示电池百分比：系统设置 - 控制中心 - 电池 - 显示百分比
+
 - 时钟 24 小时格式：系统设置 - 日期与时间 - 24 小时制
+
 - 外部显示器设置：系统设置 - 显示器 - 内建显示器用作主显示器，适配此 MacBook 名称；外部显示器用作内建显示器的镜像，适配此 MacBook 名称
+
 - 摇动鼠标指针以定位：系统设置 - 辅助功能 - 显示 - 指针，摇动鼠标指针以定位（快速移动鼠标指针以使其变大）
 
 
@@ -132,12 +154,19 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 #### 访达相关
 
 - 访达中显示路径栏和状态栏：显示 - 显示路径栏和状态栏；鼠标靠近路径栏，右键可以拷贝路径名称
+
 - 隐藏 “最近使用”：访达 - 设置 - 边栏 - 取消勾选 “最近使用”
+
 - 文件夹用图标展示时，右键 - 查看显示选项 - 勾选 “显示项目简介” 和 “用作默认”
+
 - 访达可以打开多个标签页，打开多个窗口时，可以合并所有窗口
+
 - 右键文件，选择快速操作，有 “创建 PDF”、“转换图像”、“移除背景”等操作
+
 - 按住 `command` 键，可以将文件夹拖到工具栏中，实现快速访问
+
 - 更改同类型文件的默认打开方式：选中文件，右键 - 显示简介 - 打开方式，选择指定的默认应用程序，全部更改；[基础教程：如何更改 Mac 文件的默认打开方式 - 少数派](https://sspai.com/post/28394)
+
 - 隐藏文件夹
 
 ```bash
@@ -150,11 +179,14 @@ chflags nohidden <path>    # 取消隐藏
 
 #### 触控板相关
 
->三指拖移会与三指上下左右轻扫会冲突，不能同时设置
+- 三指拖移会与三指上下左右轻扫会冲突，不能同时设置
 
 - 三指拖移文件/文件夹/窗口：系统设置 - 辅助功能 - 指针控制 - 触控板选项 - 拖移样式 - 三指拖移
+
 - 切换全屏显示的程序：四指左右轻扫
+
 - 调度中心：四指上下轻扫（比 `command + tab` 要简便一些）
+
 - 返回桌面：四指向外扩展；可设置**触发角**，使光标移动到屏幕右下角时返回桌面
 
 
@@ -175,7 +207,7 @@ chflags nohidden <path>    # 取消隐藏
 
 # 强制关机：按住 Touch ID 直到屏幕变黑并且电脑关闭
 
-# 打开 Alfred，输入 Restart、Sleep、Shut down 实现重启、睡眠、关机
+# 唤起 Alfred 软件，输入 Restart、Sleep、Shut down 实现重启、睡眠、关机
 
 Space                        # 预览功能
 command + Space              # 聚焦搜索（没有 Alfred 的 option + Space 好用）
@@ -217,13 +249,21 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 ### 软件/程序安装及设置
 
 - 网络上下载的程序安装包安装到 Mac 上，需将包（`*.app`）移动到 Applications 里；卸载：直接将其移到废纸篓
+
 - `.pkg` 格式：安装包；`.dmg`：portable 版本
+
 - [macOS 破解软件、游戏 - appstorrent.ru](https://appstorrent.ru/)
+
 - [🍏 我的 macOS 常用软件 - 老胡的周刊](https://weekly.howie6879.com/soft/mac.html)
+
 - [GitHub - hzlzh/Best-App: 收集&推荐优秀的 Apps/硬件/技巧/周边等](https://github.com/hzlzh/Best-App)
+
 - [GitHub - Louiszhai/tool: 开发效率提升：Mac生产力工具链推荐](https://github.com/Louiszhai/tool)
+
 - [r/MacApps - reddit](https://www.reddit.com/r/macapps/)
+
 - [Curated Collection of Free Apps : r/macapps - reddit](https://www.reddit.com/r/macapps/comments/1f6asg4/curated_collection_of_free_apps/)
+
 - [产品中心-Better365\_产品中心](https://www.better365.cn/apps.html)
 
 
@@ -742,11 +782,11 @@ brew uninstall --ignore-dependencies <package>
 # 查看已安装的包的依赖，树形显示
 brew deps --installed --tree [package]
 
-brew cleanup -n           # 查看可清理的旧版本包
-brew cleanup              # 清理所有包的旧版本
-brew cleanup --prune=all  # 删除缓存
+brew cleanup -n                # 查看可清理的旧版本包
+brew cleanup                   # 清理所有包的旧版本
+brew cleanup --prune=all       # 删除缓存
 
-brew tap <user/repo>      # 添加第三方软件仓库
+brew tap <user/repo>           # 添加第三方软件仓库
 ```
 
 - 若通过 brew 安装的程序有以下提示，说明可以进行命令自动补全，需进行以下设置：
@@ -786,7 +826,9 @@ mail       # cron 任务执行完成后若有输出会通过 Unix 邮件系统�
 #### 字体安装
 
 - 方法一：手动下载字体，双击安装字体
+
 - 方法二：brew 命令行安装
+
 - 中文字体推荐：[霞鹜文楷](https://github.com/lxgw/LxgwWenKai)、[得意黑](https://github.com/atelier-anchor/smiley-sans)
 
 ```bash
@@ -996,7 +1038,7 @@ make: *** [dumpana] Error 1
 
 - macOS 彻底删除 Node.js：[javascript - How do I completely uninstall Node.js, and reinstall from beginning (Mac OS X) - Stack Overflow](https://stackoverflow.com/questions/11177954/how-do-i-completely-uninstall-node-js-and-reinstall-from-beginning-mac-os-x)
 
-- Mac M1 运行 node、npm 报 `rsh: Command not found.` 错误，是由于 ATAT 编译后也有可执行命令 node（默认使用 rsh 远程登录（较早的远程访问工具之一，但由于安全隐患较大，现在很少使用），-s，指定使用 ssh），系统将 Node.js 的 node 指向了 ATAT 的，导致该错误出现。
+- 运行 node、npm 报 `rsh: Command not found.` 错误，是由于 ATAT 编译后也有可执行命令 node（默认使用 rsh 远程登录（较早的远程访问工具之一，但由于安全隐患较大，现在很少使用），-s，指定使用 ssh），系统将 Node.js 的 node 指向了 ATAT 的，导致该错误出现。
 
 - Mac 中的 Vim Delete 键无法向左删除：[vim中delete（backspace）键不能向左删除 - 脚本小娃子 - 博客园](https://www.cnblogs.com/shengulong/p/10530188.html)
 
@@ -1004,7 +1046,7 @@ make: *** [dumpana] Error 1
 set backspace=2
 ```
 
-- 查看 Mac GPU 信息：
+- 查看 macOS GPU 信息：
     - 系统设置 - 通用 - 系统报告 - 图形卡/显示器
     - 运行命令：`system_profiler SPDisplaysDataType`
 
@@ -1021,7 +1063,7 @@ curl cip.cc
 curl ipinfo.io/ip
 ```
 
-- 安装 Java：Java 存档下载：[Java Archive Downloads - Java SE 18](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
+- 安装 Java：Java 老版本下载：[Java Archive Downloads - Java SE 18](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
 
 ```bash
 brew install openjdk  # 安装 Java

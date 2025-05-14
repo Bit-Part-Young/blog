@@ -97,7 +97,7 @@ atomate_env
 
 ---
 
-#### FW_config .yaml
+#### FW_config.yaml
 
 - 配置 Fireworks
 
@@ -137,7 +137,9 @@ fi
 
 ---
 
-#### my_fworker .yaml
+#### my_fworker.yaml
+
+- 见 `fireworks/core/fworker.py` 中的 FWorker 类
 
 ```yaml
 name: <WORKER_NAME>
@@ -153,6 +155,8 @@ env:
 ---
 
 #### my_launchpad.yaml
+
+- 见 `fireworks/core/launchpad.py` 中的 LaunchPad 类
 
 ```yaml
 host: <HOSTNAME>
@@ -170,11 +174,11 @@ wf_user_indices: []
 
 ---
 
-#### my_qadapter .yaml
+#### my_qadapter.yaml
 
 - [Writing Queue Adapters — FireWorks 2.0.4 documentation](https://materialsproject.github.io/fireworks/qadapter_programming.html)
 
-- 配置队列系统；当作业提交到队列系统时，会自动生成 Slurm 或 PBS 提交脚本文件（`FW_submit.script`）
+- 配置队列系统；自动生成提交任务至队列系统的脚本文件（`FW_submit.script`）
 
 ```yaml
 _fw_name: CommonAdapter
