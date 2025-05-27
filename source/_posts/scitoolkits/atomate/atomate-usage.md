@@ -88,16 +88,19 @@ lpad get_fws -s FIZZLED -d more
 # 查看 workflow （所属 fireworks 及其计算目录）
 lpad get_wflows
 lpad get_wflows -i 1
-# -t 参数需安装 prettytable
-lpad get_wflows -s FIZZLED -t -m 5
 lpad get_wflows -s FIZZLED -d more
+# -t 参数需安装 prettytable 包
+lpad get_wflows -s FIZZLED -t -m 5
 
 # 查看 fireworks 的计算目录
 lpad get_launchdir fw_id
 
-defuse_wflows               # cancel (de-fuse)
-reignite_wflows             # reignite (un-cancel)
-archive_wflows              # 存档（soft-remove）
+# 其他子命令
+pause_fws                   # 暂停单个 Firework
+resume_fws                  # 恢复系列 Fireworks
+defuse_wflows               # cancel (de-fuse) 整个 Workflow
+reignite_wflows             # reignite (un-cancel) 整个 Workflow
+archive_wflows              # 存档（soft-remove） 整个 Workflow
 delete_wflows               # 永远删除
 
 # 以下两个命令不推荐使用
@@ -107,6 +110,7 @@ lpad reset
 # 初始化，一般不用？
 lpad init
 ```
+
 
 ---
 

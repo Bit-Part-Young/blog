@@ -396,6 +396,10 @@ scontrol show job JobId      # 指定任务详细状态
 scontrol show node NodeName  # 节点详细状态
 sinfo --partition=64c512g    # 查看特定队列
 
+# 需要 root 用户进行操作
+scontrol suspend JobId       # 挂起任务（释放资源）
+scontrol resume JobId        # 恢复任务
+
 # 格式化输出队列、节点信息
 sinfo -o "%.15P %.6D %.7G %.7t %.14C %.10e %.9O"
 

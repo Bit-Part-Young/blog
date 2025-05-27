@@ -66,7 +66,6 @@ password:
 - 注意事项：
     - VASP 根据 POSCAR 文件确定体系的对称性。原子位置精度不够（位数太少）是一个常见错误。为更好地利用 VASP 中的对称性，强烈建议在 POSCAR 文件中指定至少 7 位有效数字的原子位置（和晶格参数，最好多一些）
 
-
 ```bash
 # 示例
 Cubic BN
@@ -356,6 +355,7 @@ k*a ~ 15 Å     # 绝缘体
     - 离子优化相关参数：IBRION、POTIM、NSW、EDIFFG
     - 态密度相关参数：LORBIT、EMIN 、EMAX、NEDOS
     - 能带相关参数：NBANDS
+    - 高压相关参数：PSTRESS
 
 - 对于大体系，建议增加 NELM 和 NSW 数值
 

@@ -573,6 +573,15 @@ Error EDDDAV: Call to ZHEGV failed. Returncode =  11 2  16
 WARNING in EDDRMM: call to ZHEGV failed, returncode =   6  3      3
 ```
 
+- LAPACK 报错：[请求赐教，VASP计算中报错LAPACK:Routine ZPOTRF failed!是什么原因导致的呀？ - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-23398-1-1.html)
+
+```bash
+# 一开始就报错，添加 ISYM=0 可解决
+LAPACK: Routine ZPOTRF failed!           5           1           1
+LAPACK: Routine ZPOTRF failed!
+LAPACK: Routine ZPOTRF failed!          27           1           1
+```
+
 - [OneAPI问题：缺少libmkl_intel\_\*\_.so.\*文件的解决](https://zhuanlan.zhihu.com/p/589633827)
 
 - 其他

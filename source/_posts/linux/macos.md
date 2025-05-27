@@ -395,6 +395,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 - 截图
     - Snipaste（无 OCR）
     - Shottr（可长截图、OCR）
+    - 滚动截屏：[ScrollSnap](https://github.com/Brkgng/ScrollSnap)
 
 - 图床
     - PicGo
