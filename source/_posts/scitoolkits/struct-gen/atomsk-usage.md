@@ -307,3 +307,45 @@ atomsk POSCAR xyz                  # 常用: xyz lammps/lmp vasp/pos cif
 
 - 多晶模型：基于 Voronoi tessellation（泰森多边形镶嵌） 算法生成
     - [LAMMPS 笔记：Atomsk 生成多晶](https://zhuanlan.zhihu.com/p/617697569)
+
+```bash
+# 创建单晶的种子
+atomsk --create fcc 4.041 Al Al.lmp
+
+# polycrystal.txt
+box 100 100 100      # 设置多晶模型盒子大小
+random 6             # 设置晶粒数目（随机位置和方向）
+
+# 生成多晶
+atomsk --polycrystal Al.lmp polycrystal.txt -wrap Al_polycrystal.lmp
+
+# 删除距离过近的原子
+atomsk Al_polycrystal.lmp -remove-doubles 0.2 final.lmp
+
+
+# 输出信息文件
+*_size-dist.txt      # 晶粒大小的分布
+*_param.txt          # 节点的位置和旋转信息
+*_nodes.xsf          # 最终的节点位置
+*_id-size.txt        # 晶粒中的原子数目和晶粒体积
+*_grain-com.xsf      # 晶粒质心的位置
+```
+
+- 等原子比四元随机固溶体
+
+```bash
+a=3.254
+
+# 替换比例 20% 25% 33.33% 50%
+# 全部 -> 等原子比五元
+# 后 3 个 -> 等原子比四元
+# 后 2 个 -> 等原子比三元
+
+atomsk --create bcc ${a} Nb -duplicate 20 20 20 tmp1.cfg
+atomsk tmp1.cfg -select random 25% Nb -sub Nb Ti tmp2.cfg
+atomsk tmp2.cfg -select random 33.33% Nb -sub Nb Al tmp3.cfg
+# -sort species pack vasp 或 TiAlNbMo_random.lmp
+atomsk tmp3.cfg -select random 50% Nb -sub Nb Mo -sort species pack vasp
+
+rm -f *.cfg
+```

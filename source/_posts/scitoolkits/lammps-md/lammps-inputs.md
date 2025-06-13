@@ -450,6 +450,10 @@ pair_style        zero
 # EAM
 pair_style        eam/alloy
 
+# MEAM
+pair_style        meam
+pair_style        meam/spline
+
 # ZBL 势；inner outer 截断半径
 pair_style        zbl 3.0 4.0
 ```
@@ -470,6 +474,10 @@ pair_coeff I J args
 # * * 表示 span 所有元素，考虑任意的两个原子间的相互作用
 # 对于含多种元素的势函数，若只用到部分元素，其它元素可不写出
 pair_coeff        * * CuYM.eam.alloy Cu
+
+pair_coeff        * * library.meam Si si.meam Si
+
+pair_coeff        * * Ti.meam.spline Ti
 ```
 
 
@@ -1326,10 +1334,16 @@ sort
 
 ### read_data
 
+- [lammps建模技巧，read_data读入模型后新增其它类型原子2种方法](https://zhuanlan.zhihu.com/p/416836127)
+
 - 读取 LAMMPS data 构型格式文件（可读取 gzip 格式）
 
 ```bash
 read_data         data.lmp
+
+
+# 新增原子类型
+read_data         data.lmp extra/atom/types 1
 ```
 
 - LAMMPS data 文件格式：[read\_data command — LAMMPS documentation](https://docs.lammps.org/read_data.html)
@@ -1499,7 +1513,7 @@ deltamu              # 化学势差
 
 - 基于涨落 - 耗散理论（luctuation-dissipation theory）计算动力学矩阵
 
-- 该 fix 命令假设体系为具有周期性点阵的晶体。体系的温度不应超过熔点，以保持体系为固态
+- 该 fix 命令假设体系为具有周期性点阵的晶体。体系的温度不应超过熔点，以保持体系为固态；金属间化合物可以，半导体可能不太行
 
 ```bash
 # 语法
@@ -1703,6 +1717,16 @@ compute msd/chunk
 compute cna/atom
 
 compute vacf
+
+
+compute myRDF all rdf 200 cutoff 10
+fix myRDE all ave/time 100 5 1000 c_myRDF[*] file rdf.dat mode vector
+
+compute myMSD all msd
+fix msd all ave/time 10 100 1000 c_myMSD[1] c_myMSD[2] c_myMSD[3] c_myMSD|4] file msd.dat
+
+compute myVACF all vacf
+fix VACF all ave/time 1 12 ${ndump} c_myVACF[1] c_myVACF[2] c_myVACF[3] c_myVACF[4] file vacf.dat
 ```
 
 

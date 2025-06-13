@@ -88,11 +88,16 @@ bg %n                 # 将挂起的进程在后台继续运行（不占用终�
 
 ### 参考资料
 
+- Bash 脚本语法规范：[GitHub - bahamas10/bash-style-guide: A style guide for writing safe, predictable, and portable bash scripts (not sh!)](https://github.com/bahamas10/bash-style-guide)
+
 - [Bash 脚本教程 - 网道](https://wangdoc.com/bash/)
+
 - 速查表：[Bash 备忘清单 & bash cheatsheet & Quick Reference](https://wangchujiang.com/reference/docs/bash.html)
-- [shell脚本基础 - cherry](https://jaav.com.cn/posts/1b2.html)
+
 - Shell 脚本案例：[GitHub - jacobproject/Shell\_Scripts: Shell Scripts examples](https://github.com/jacobproject/Shell_Scripts)
+
 - [GitHub - bobbyiliev/introduction-to-bash-scripting: Free Introduction to Bash Scripting eBook](https://github.com/bobbyiliev/introduction-to-bash-scripting)
+
 - Shell 代码优化：[Advanced Shell Scripting Techniques](https://omid.dev/2024/06/19/advanced-shell-scripting-techniques-automating-complex-tasks-with-bash/)
 
 Bash 命令报错时，仍会继续执行后面的代码
@@ -343,6 +348,7 @@ ${str^}    # 首字母大写
 - 大括号 `{}` 处理字符串：
     - 主要利用 Bash 的参数展开（parameter expansion）功能来实现
     - 参考：[Bash笔记](https://zhuanlan.zhihu.com/p/524196855)
+    - `{}` 中的内容不能是浮点数
 
 ```bash
 # 基于模式匹配进行字符串剪裁

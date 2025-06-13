@@ -161,15 +161,14 @@ GW 计算
     - [Partial DOS of CO on Ni 111 surface - VASP Wiki](https://www.vasp.at/wiki/index.php/Partial_DOS_of_CO_on_Ni_111_surface)
     - [Ex49 功函数（work function）的计算（一） - Learn VASP The Hard Way](https://www.bigbrosci.com/2018/09/03/ex49/)
 
-
 - [ ] 振动频率计算的意义？NFREE 参数，振动 mode？
->[表面吸附分子的振动自由能计算 - 知乎](https://zhuanlan.zhihu.com/p/397862258)
-
+- [表面吸附分子的振动自由能计算 - 知乎](https://zhuanlan.zhihu.com/p/397862258)
 
 - [ ] K 点网格某方向数值为奇数，$\Gamma$ 中心？
->[VASP K点问题 - 知乎](https://zhuanlan.zhihu.com/p/397873103)
 
->[晶体高对称点 - 知乎](https://zhuanlan.zhihu.com/p/423772139)
+- [VASP K点问题 - 知乎](https://zhuanlan.zhihu.com/p/397873103)
+
+- [晶体高对称点 - 知乎](https://zhuanlan.zhihu.com/p/423772139)
 
 - AIMD 相关
     - Si 熔化 AIMD 计算：[Liquid Si - Standard MD - VASP Wiki](https://www.vasp.at/wiki/index.php/Liquid_Si_-_Standard_MD)
@@ -647,6 +646,11 @@ grep 'T= ' OSZICAR | awk '{print $1 " " $3 " " }'
 基于分子动力学模拟，可以通过对速度自关联函数（velocity autocorrelation function，VACF）进行傅里叶变换得到材料的振动态密度（vibrational density of states， VDOS）。VACF 是根据动力学模拟出来的轨迹文件和速度文件，求算系统在某一时刻的速度与另一时刻速度的关联程度的函数，直接看 VACF 并不能很直观的得到一些信息，而 VDOS 直接对应实验红外光谱，可以直观的对高温或高压下的振动变化情况等进行分析。
 
 >[AIMD结合vaspkit计算振动态密度](https://mp.weixin.qq.com/s/gqM5c1P3BtIqi0h_tVTj5g)
+
+- 系综参数设置
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/20250604212826371.png)
+
 
 
 ---

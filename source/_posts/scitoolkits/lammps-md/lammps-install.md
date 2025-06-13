@@ -33,7 +33,14 @@ password:
     - 安装 packages：`make` 使用 `make yes-<package>`； `CMake` 使用 ` -D PKG_<NAME>=on`
     - Build LAMMPS
 
-- LAMMPS 可在已编译好的基础上添加其他 package 进行补充编译
+- **LAMMPS 可在已编译好的基础上添加其他 package 进行补充编译**
+
+```bash
+# cmake
+cmake -D PKG_XXX=on ../cmake
+# make
+make yes-XXX
+```
 
 - 所有可用的 packages 及其描述：[6.1. Available Packages — LAMMPS documentation](https://docs.lammps.org/Packages_list.html)
 

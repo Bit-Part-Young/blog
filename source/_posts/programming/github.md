@@ -97,6 +97,8 @@ password:
 
 ### GitHub Markdown
 
+- [GitHub - jerry1100/github-markdown-printer: Print GitHub Flavored Markdown exactly as it appears on GitHub](https://github.com/jerry1100/github-markdown-printer)
+
 - 生成 TOC：
     - [GitHub - ekalinin/github-markdown-toc: Easy TOC creation for GitHub README.md](https://github.com/ekalinin/github-markdown-toc)
     - [GitHub - ekalinin/github-markdown-toc.go: Easy TOC creation for GitHub README.md (in go)](https://github.com/ekalinin/github-markdown-toc.go)

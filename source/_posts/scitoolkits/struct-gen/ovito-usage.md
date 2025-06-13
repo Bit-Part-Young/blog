@@ -22,7 +22,7 @@ password:
 
 - 官网：[OVITO](https://www.ovito.org/)
 
-- OVITO 2.9 版本的 Python script 功能可以免费使用，其他需要 Pro 版本
+- OVITO 2.9 版本的 Python script 功能可免费使用，其他需要 Pro 版本
 
 - [OVITO 识别结构的几种方法](https://mp.weixin.qq.com/s/Jh9lQKRbpFyhUnu8aHJSog)
 
@@ -44,11 +44,11 @@ password:
 
 - 输出 RDF
 
-- [OVITO批量导入数据的功能](https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA)
+- [OVITO 批量导入数据](https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA)：先导入一个构型文件，在界面右中区域，Data source 选择文件名称，External file 中的 Search pattern 设置成 `*.xyz` 之类的，下方的 Options 可根据情况设置
 
-- OVITO 显示多晶不同颜色
-    - 方式 1：添加 CNA Modification
-    - 方式 2：添加 'Color coding' Modification，在右下方 'Input property' 选择 'Particle Identifier'，此时，**晶粒被设置为相同的颜色**；在颜色条下方点击 'Adjust range'，设置不同的颜色对应不同的晶粒 ID
+- [OVITO 显示多晶不同颜色](https://mp.weixin.qq.com/s/4V4ePbP0DskpSRk1p1GEnA)
+    - 方式 1：添加 CNA Modification，晶粒和晶界显示不同的颜色
+    - 方式 2：添加 'Color coding' Modification（在右下方 'Input property' 选择 'Particle Identifier'，在颜色条下方点击 'Adjust range'），不同的颜色对应不同的晶粒 ID
 
 - [OVITO 选择原子的几种方法](https://zhuanlan.zhihu.com/p/10934298169)
 
@@ -56,13 +56,27 @@ password:
 
 - [OVITO 显示位错和缺陷的一个小技巧](https://mp.weixin.qq.com/s/AC3ZABp4CyhJlHwfbdLWqw)
 
+- OVITO 全局修改所有元素类型的 display radius：Application Settings -- Particles -- Particle types；`Restore built-in defaults` 按钮可恢复默认值；[Particle-related settings — OVITO User Manual 3.12.4 documentation](https://www.ovito.org/manual/reference/app_settings/particle_settings.html)
+
+```bash
+# display radius 统一修改成 0.7
+# 元素  原始 display radius
+Ti     1.47
+Al     1.43
+Nb     1.47
+Mo     1.54
+Zr     1.6
+V      1.53
+```
 
 
 ---
 
 ## 使用
 
-- 利用 ovito 计算 RDF、键角分布、键长分布：[NEP\_GT/NEP\_RDF/NEP\_RDF.ipynb at main · wangchr1617/NEP\_GT · GitHub](https://github.com/wangchr1617/NEP_GT/blob/main/NEP_RDF/NEP_RDF.ipynb)
+- OVITO 无法计算单原子应力（是势函数的工作）
+
+- 利用 OVITO 计算 RDF、键角分布、键长分布：[NEP\_GT/NEP\_RDF/NEP\_RDF.ipynb at main · wangchr1617/NEP\_GT · GitHub](https://github.com/wangchr1617/NEP_GT/blob/main/NEP_RDF/NEP_RDF.ipynb)
 
 - [OVITO常用的无需Python代码的后处理技巧](https://mp.weixin.qq.com/s/5vPyhEsVaOVAQV6XMMEg8g)
     - 仅保留位错与缺陷原子
@@ -71,9 +85,9 @@ password:
     - 统计每一帧中裂纹的表面积变化
     - 为模型添加基础的光影（OVITO 提供的基础光影效果 Ambient Occlusion）
     - 统计模型中的孔隙率（只适用 Pro 版）
-    - 绘制原子应力应变云图
-    - 根据 dump 文件输出的原子属性数据计算新的原子属性数据
-    - 对某一原子属性在空间上进行平均
+    - **绘制原子应力应变云图**
+    - **根据 dump 文件输出的原子属性数据计算新的原子属性数据（静水应力 (Hydrostatic stress) 与米塞斯应力 (Von mises stress) 的计算）**
+    - **对某一原子属性在空间上进行平均（处理原子应力云图）**
     - 对某一原子属性在一维和二维空间上绘制分布图（只适用 Pro 版）
     - 绘制原子模型的表面轮廓线
     - 切割展示模型的某一个晶面（通过 Slice）
@@ -90,8 +104,12 @@ password:
 
 - 直接导入构型/轨迹文件，下方默认有 Particles 信息；添加 Modification 后，会出现 Global Attributes、Data Tables 另外两种类型的数据（添加 DXA，会多出 Dislocation、Surfaces 数据）
 
-- Add Modification 选项
-    - 无直接计算原子层间距的 Modification
+
+---
+
+### Add Modification 选项
+
+- 无直接计算原子层间距的 Modification
 
 ```bash
 # Analysis
@@ -161,7 +179,12 @@ Create bonds
 Generate trajectory line          # 生成轨迹线
 ```
 
-- 常用 Expression selection 值：[Expression selection - OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html)
+
+---
+
+### 常用 Expression selection 值
+
+- [Expression selection - OVITO](https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html)
 
 ```bash
 Position.X              # x 方向笛卡尔坐标
@@ -179,8 +202,8 @@ Occupancy               # 原子占位
     - Expression selection：`Occupancy==0` 空位，`Occupancy>0` 间隙原子
     - Assign color：给空位和间隙原子分别着色以进行区分
 
-- 多面体模板匹配（PTM）：[Polyhedral template matching — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/reference/pipelines/modifiers/polyhedral_template_matching.html)
-    - 可识别的 Ordering types（L1_0、L1_2、B2、zincblende / wurtzite）
+- 多面体模板匹配（PTM）：[Polyhedral template matching — OVITO User Manual 3.12.4 documentation](https://www.ovito.org/docs/current/reference/pipelines/modifiers/polyhedral_template_matching.html)
+    - 可识别的 Ordering types（L1_0、L1_2、B2、zincblende / wurtzite）；**实际效果不好**
 
 - LAMMPS 与 OVITO 自带的结构分析模块包括：共近邻原子分析（Common Neighbor Analysis）；中心对称参数分析 (Centrosymetric Patameter) 与多面体模板匹配法（Polyhedral Template Matching）等。在分析点缺陷、线缺陷以及各种不同晶体结构时，这些方法是很有力、很方便的。需要指出的是，以上几种方法仅适用于已有良好定义的晶体，如 BCC、FCC、HCP、SC 等。对于不那么规则的晶体，例如单斜、三斜晶系等，可能会被错误的归入其它类别，或是归入 Others 中。
 
@@ -212,7 +235,6 @@ DXA 算法只能单线程运行；CNA，Voronoi analysis，PTM 算法可并行
     - 识别 FCC 晶体中的 ISF、ESF、TB 等面缺陷
     - 识别 BCC 中的点缺陷和面缺陷
 
-
 - 主要用于可视化：[How to Script with OVITO](https://stefanbringuier.github.io/HowToSOVITO)
 
 - [Ovito高质量图片渲染Python模块 - Eastsheng's Wiki](https://eastsheng.github.io/MyWiki/wiki/2023/04/13/softwares/lammps/ovito_plot_rendering/)
@@ -223,14 +245,29 @@ DXA 算法只能单线程运行；CNA，Voronoi analysis，PTM 算法可并行
 
 - 支持的输入文件格式：[Input file formats — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/reference/file_formats/file_formats_input.html#file-formats-input)
 
-- 可导出的文件格式：[ovito.io.export_file — OVITO Python Reference 3.11.3 documentation](https://www.ovito.org/docs/current/python/modules/ovito_io.html#ovito.io.export_file)
+- 取消 OVITO Python 相关 warning 的输出
+
+```python
+import warnings
+
+warnings.filterwarnings("ignore", message=".*OVITO.*PyPI")
+
+# 选择性添加
+import ovito._extensions.pyscript
+```
 
 - Pipeline 概念：[Pipeline concept — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/usage/pipeline.html#usage-modification-pipeline)
     - OVITO modifiers are analysis or property calculation/setting routines. For anything you want to do, in terms of analyzing your data from a atomistic simulation, you will use a modifier which is appended to the pipeline via `pipeline.modifiers.append(...)`.
 
-- 整体流程：导入构型数据，添加 modifier 进行处理，导出计算数据（**使用多个 modifier 时，需注意其顺序**）
+
+---
+
+### 整体流程
+
+- 导入构型数据，添加 modifier 进行处理，导出计算数据（**使用多个 modifier 时，需注意其顺序**）
 
 ```python
+from ovito.data import DataCollection, Particles, CutoffNeighborFinder, NearestNeighborFinder
 from ovito.pipeline import Pipeline
 from ovito.modifiers import ...
 from ovito.io import import_file
@@ -268,34 +305,55 @@ for data in pipeline.frames:
     ...
 ```
 
-- Pipeline、DataCollection 类相关
+
+---
+
+### Pipeline 类
 
 ```python
-# DataCollection 相关
-list(data.particles.keys())    # 查看原子属性；不同输出文件格式，可能会有不同
-# POSCAR
-['Position', 'Particle Type']
-# dump.lammpstrj / xyz
-['Particle Identifier', 'Particle Type', 'Position']
-
-data.particles.positions       # 原子位置
-data.particles.count           # 原子数
-
-# 查看原子种类及其 ID
-for type in data_init.particles.particle_types.types:
-    print(type.id, type.name)
-
-
 # Pipeline 类
 # 属性
-num_frames                    # 构型帧数
-frames                        # 所有构型（数据）
+num_frames                    # 构型帧数；或 source.num_frames
+frames                        # 所有构型（的数据）
 
 # 方法
 add_to_scene()                # 用于可视化
 ```
 
-- 数据导出
+
+---
+
+### DataCollection 类
+
+```python
+# 属性
+particles
+cell
+attributes
+tables
+
+
+# particles 属性
+list(data.particles.keys())        # 查看原子属性；不同输出文件格式，可能会有不同
+# POSCAR
+['Position', 'Particle Type']
+# dump.lammpstrj / xyz
+['Particle Identifier', 'Particle Type', 'Position']
+
+data.particles.positions           # 原子位置
+data.particles.count               # 原子数
+
+# 查看原子种类（元素）及其 ID 信息
+for type in data_init.particles.particle_types.types:
+    print(type.id, type.name)
+```
+
+
+---
+
+### 构型/数据导出
+
+- 可导出的文件格式：[ovito.io.export_file — OVITO Python Reference 3.11.3 documentation](https://www.ovito.org/docs/current/python/modules/ovito_io.html#ovito.io.export_file)
 
 ```python
 from ovito.io import export_file
@@ -378,7 +436,12 @@ export_file(
 )
 ```
 
-- [ovito.modifiers — OVITO Python Reference 3.11.3 documentation](https://www.ovito.org/docs/current/python/modules/ovito_modifiers.html)
+
+---
+
+### modifiers
+
+- modifiers Python API 及对应的 GUI 名称：[ovito.modifiers — OVITO Python Reference 3.12.4 documentation](https://www.ovito.org/docs/current/python/modules/ovito_modifiers.html)
 
 ```python
 from ovito.modifiers import ...
@@ -394,42 +457,60 @@ BondAnalysisModifier                 # 键分析
 CreateBondsModifier
 CommonNeighborAnalysisModifier       # CNA
 AffineTransformationModifier
-ExpressionSelectionModifier          # 表达式
-InvertSelectionModifier
+ExpressionSelectionModifier          # 表达式选择
 AssignColorModifier                  # 分配颜色/着色
-CalculateDisplacementsModifier
+CalculateDisplacementsModifier       # 计算原子的位移矢量；可用于计算 MSD
 DislocationAnalysisModifier          # 位错分析；DXA；需给定晶体结构
-SelectTypeModifier
-DeleteSelectedModifier
+InvertSelectionModifier              # 反选
+SelectTypeModifier                   # 选择类型（结构类型等）
+DeleteSelectedModifier               # 删除选择的
 ```
 
-- Global Attributes 和 Data Tables
+
+---
+
+### particles、Global Attributes、Data Tables
 
 ```python
+data.particles[...]             # 获取 particle 中对应 keyword 的数据
 data.attributes[...]            # 获取 Global Attributes 中对应 keyword 的数据
-data.tables[...]                # 获取 Data Tables 中对应  keyword 的数据
+data.tables[...]                # 获取 Data Tables 中对应 keyword 的数据
 
 
 # CNA attributes
-"CommonNeighborAnalysis.counts.FCC"
 "CommonNeighborAnalysis.counts.BCC"
+"CommonNeighborAnalysis.counts.FCC"
 "CommonNeighborAnalysis.counts.HCP"
 "CommonNeighborAnalysis.counts.ICO"
-"CommonNeighborAnalysis.counts.Other"
+"CommonNeighborAnalysis.counts.OTHER"
 # CNA tables
 "structures"
 
+
 # DXA attributes
-"DislocationAnalysis.cell_volume"
+"DislocationAnalysis.cell_volume"          # 可用于计算位错密度
+"DislocationAnalysis.total_line_length"
+"DislocationAnalysis.length.other"
 "DislocationAnalysis.length.1/2<110>"
 "DislocationAnalysis.length.1/3<100>"
 "DislocationAnalysis.length.1/3<111>"
 "DislocationAnalysis.length.1/6<110>"
-"DislocationAnalysis.length.other"
-"DislocationAnalysis.total_line_length"
+
+
+# SelectTypeModifier attributes
+"SelectType.num_selected"
+
+
+# CalculateDisplacementsModifier particles
+"Displacement Magnitude"
 ```
 
-- 格式转换（OVITO Python 中的 DataCollection 可转换成 ASE、pymatgen 的格式）
+
+---
+
+### 格式转换
+
+- OVITO Python 中的 DataCollection 可转换成 ASE、pymatgen 的格式
 
 ```python
 from ovito.io.ase import ase_to_ovito, ovito_to_ase
@@ -442,7 +523,10 @@ atoms = ovito_to_ase(data)
 structure = ovito_to_pymatgen(data)
 ```
 
-- 计算 RDF
+
+---
+
+### 计算 RDF
 
 ```python
 pipeline.modifiers.append(
@@ -456,11 +540,79 @@ pipeline.modifiers.append(
 # 只输出第一帧的数据
 print(pipeline.compute().tables["coordination-rdf"].xy())
 
-# 会输出每帧的数据
+# 输出每帧的数据
 for data in pipeline.frames:
     print(data.tables["coordination-rdf"].xy())
 
 # 对所有帧的数据做平均
 pipeline.modifiers.append(TimeAveragingModifier(operate_on="table:coordination-rdf"))
 print(pipeline.compute().tables["coordination-rdf[average]"].xy())
+```
+
+
+---
+
+### 统计多晶模型中晶界和 Bulk 区域的元素分布及占比
+
+```python
+cna_modifier = CommonNeighborAnalysisModifier()
+pipeline.modifiers.append(cna_modifier)
+
+select_type_modifier = SelectTypeModifier(
+    operate_on="particles",
+    property="Structure Type",
+    types={
+        # Bulk 区域
+        # CommonNeighborAnalysisModifier.Type.OTHER,
+        # 晶界区域
+        # CommonNeighborAnalysisModifier.Type.BCC,
+        CommonNeighborAnalysisModifier.Type.FCC,
+        CommonNeighborAnalysisModifier.Type.HCP,
+        CommonNeighborAnalysisModifier.Type.ICO,
+    },
+)
+pipeline.modifiers.append(select_type_modifier)
+
+pipeline.modifiers.append(DeleteSelectedModifier())
+
+print(pipeline.modifiers)
+
+element_info_list = []
+for frame in range(pipeline.num_frames):
+    data = pipeline.compute(frame)
+
+    print(f"No. {frame} frame processed.")
+
+    partcle_type_array = data.particles["Particle Type"]
+    type_count_tuple = np.unique(partcle_type_array, return_counts=True)
+    # {1: 100, ...}
+    type_count_dict = dict(zip(type_count_tuple[0], type_count_tuple[1]))
+
+    # {"frame": 1, "Ti": 100, ...}
+    element_count_dict = {"frame": frame}
+    for type in data.particles.particle_types.types:
+        element_count_dict[type.name] = type_count_dict[type.id]
+
+    element_info_list.append(element_count_dict)
+
+df = pd.DataFrame(element_info_list)
+```
+
+
+---
+
+### 位错分析
+
+```python
+
+```
+
+
+---
+
+### 计算 MSD
+
+- [NEP\_GT/NEP\_MSD/NEP\_MSD.ipynb at main · wangchr1617/NEP\_GT · GitHub](https://github.com/wangchr1617/NEP_GT/blob/main/NEP_MSD/NEP_MSD.ipynb)
+
+```python
 ```

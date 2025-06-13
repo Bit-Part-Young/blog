@@ -618,7 +618,6 @@ module show [MODULE]       # 列出该模块的信息，如路径（lib include 
 --exclusive                # 独占节点（应尽可能避免）
 --nodelist=[nodes]         # 或 -w；指定节点
 --exclude=[nodes]          # 或 -x；排除指定节点
-
 ```
 
 
@@ -727,7 +726,7 @@ bash test.sh
 
 ### Master 任务提交脚本示例
 
-- 不建议跨 node\[1-2\] 与 master 节点（两者 CPU 世代不同）
+- 不建议跨 node\[1-2\] 与 master 节点（这 2 种节点的 CPU 世代不同）
 
 - 使用 node\[1-2\] 中的 2 个节点
 
@@ -815,6 +814,33 @@ ulimit -l unlimited
 mpirun lmp_cpu -i in.lmp
 # GPU 加速
 mpirun lmp_gpu -i in.lmp -sf gpu -pk gpu 2
+```
+
+- NEP & GPUMD
+
+```bash
+#!/bin/bash
+
+#SBATCH -J GPU
+#SBATCH -p gpu
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=1
+#SBATCH -t 72:00:00
+#SBATCH -o %j.out
+#SBATCH -e %j.err
+
+#SBATCH --gres=gpu:1
+
+#SBATCH --no-requeue
+
+
+if [[ "$SLURMD_NODENAME" == 'master' ]]; then
+  gpumd
+  # nep
+elif [[ "$SLURMD_NODENAME" == 'node2' ]]; then
+  gpumd_node2
+  # nep_node2
+fi
 ```
 
 

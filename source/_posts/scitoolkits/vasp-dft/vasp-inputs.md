@@ -700,7 +700,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - EDIFFG 为正值，表示两离子步间的总能变化小于 EDIFFG 时，弛豫结束；为负值，表示受力小于 |EDIFFG|时，弛豫结束（绝对值，更方便的设置）；EIDIFF=0 时，运行 NSW 步后，离子步结束
 
-- EDIFFG 不用于 AIMD
+- **EDIFFG 不用于 AIMD**
 
 
 ---
@@ -824,7 +824,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 ```bash
 0         # 只写入第一步和最后一步的基矢、受力信息（vasprun.xml 中仍含每个离子步的相关信息）
-0         # 写入每个离子步的基矢、受力信息
+1         # 写入每个离子步的基矢、受力信息
 3         # 写入的内容最详细
 4         # 只用于 debugging
 ```
@@ -930,11 +930,22 @@ WIP...
 
 ### NBLOCK
 
-- 每 NBLOCK 个电子步后，对关联函数和 DOS 被计算，且构型写入到 XDATCAR 文件中
+- 每 NBLOCK 个离子步后，对关联函数和 DOS 被计算，且构型写入到 XDATCAR 文件中
 
 - 默认值：1
 
 - 推荐设置成 1, 其计算开销很小；仅在长时 AIMD 或使用 MLFF 时，可将 NBLOCK 提高至 10 甚至 100
+
+- 使用 `ML_MODE = run` 预测模式时，更倾向于用 `ML_OUTBLOCK` tag
+
+
+---
+
+### KBLOCK
+
+- 每 NBLOCK \* KBLOCK 个离子步后，对关联函数和 DOS 的平均值写入 PCDAT 和 DOSCAR 文件中
+
+- 默认值：NSW 参数值
 
 
 ---
@@ -963,6 +974,30 @@ WIP...
 - 元素的原子相对质量（数组）
 
 - 默认缺省，会从 POTCAR 文件中读取
+
+
+---
+
+### PMASS
+
+- 为点阵自由度分配虚拟质量（单位 amu；NPT 系综的 Parinello-Rahman 算法）
+
+- 默认值：1000
+
+
+---
+
+### LANGEVIN_GAMMA、LANGEVIN_GAMMA_L
+
+- LANGEVIN_GAMMA (γ) 原子自由度的 Langevin 摩擦系数，LANGEVIN_GAMMA_L 点阵自由度的 Langevin 摩擦系数
+
+- NVT 系综，Langevin 热浴需设置 LANGEVIN_GAMMA；NPT 系综，Langevin 热浴需设置 LANGEVIN_GAMMA 和 LANGEVIN_GAMMA_L
+
+- 对于所有的 non-Langevin 原子，γ 值为 0
+
+- LANGEVIN_GAMMA 默认是：0.0 x 元素种类数；LANGEVIN_GAMMA_L 默认值：0.0
+
+- LANGEVIN_GAMMA 建议设置值：10.0；LANGEVIN_GAMMA_L 建议设置值：1.0
 
 
 ---

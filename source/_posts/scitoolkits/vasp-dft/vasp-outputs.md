@@ -22,11 +22,8 @@ password:
 
 - 输出文件结构示例
 
-```text
+```bash
 .
-├── AECCAR0
-├── AECCAR1
-├── AECCAR2
 ├── CHG
 ├── CHGCAR
 ├── CONTCAR
@@ -110,6 +107,8 @@ grep  'energy without entropy' OUTCAR
 # 'energy  without' 或 'free  energy' 之间有两个空格
 grep 'free  energy' OUTCAR
 grep  'energy  without entropy' OUTCAR
+
+energy=$(grep 'E0' OSZICAR | tail -n 1 | awk '{print $5}')
 
 # 平均原子能量
 eng=$(grep 'free  energy' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n}')

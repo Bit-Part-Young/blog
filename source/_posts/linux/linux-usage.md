@@ -409,11 +409,18 @@ locate                # 通过数据库定位文件路径（可能需要自己�
 -ok                   # 同上；但需确认
 -perm                 # 按照文件权限查找；111 精确匹配，/111 任意一个匹配，-111 都必须匹配
 
+
 # 示例
 # 查找 txt 或 pdf 文件
 find . -type f -name "*.txt" -or -name "*.pdf"
+
 # 查找 tar.gz 文件并删除
 find . -type f -name "*.tar.gz" -exec rm {} +
+
+# 查找文件（使用 for 循环等长 Shell 命令）
+# for f 为简略写法，可全写为 for f in $@
+# 第 2 个 bash 是脚本名，可任意命名
+find . -type f -name "*.txt" -exec bash -c "for f; do echo $f; done" bash {} +
 
 
 # 安装 locate
@@ -529,6 +536,9 @@ egrep                 # 等同于 grep -E
 grep -E 'p1|p2' file  # 匹配多个 pattern
 
 grep '\-1.2' file     # 匹配负数时需 \ 转义 
+
+
+grep -c "^[[:space:]]*$" file    # 统计空行
 ```
 
 
@@ -610,7 +620,7 @@ awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}' file
 awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat
 
 # 去除重复行（包括空行）
-awk '!seen [$0]++' file
+awk '!seen[$0]++' file
 # 去除重复行（不包括空行）
 awk '!seen[$0]++ || $0 == ""' file
 ```

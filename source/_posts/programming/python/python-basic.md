@@ -1311,7 +1311,7 @@ metavar           # 将帮助信息中的参数用 metavar 的值替代（类似
 action            # 定义解析命令行选项时，如何处理该选项的值
 dest              # 自定义命令行参数解析后的存储变量名，
 
-# action 可选值
+# action 可选值    
 store             # 默认值，将参数值存储到变量中
 store_true        # 布尔值开关
 store_false       # 与 store 相反
