@@ -33,7 +33,6 @@ password:
     - [【计算材料学-从算法原理到代码实现】视频教程 - 4.1\_VASP的Intel\_OneAPI安装教程\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1tN411D7Hn/?spm_id_from=333.999.0.0)
     - [intel oneAPI以及vasp5.4.4安装](http://bbs.keinsci.com/thread-28200-1-1.html)
     - [Ubuntu18.04编译VASP5.4.4的详细步骤 - 哔哩哔哩](https://www.bilibili.com/read/cv3794759)
-    - [VASP 5.4.4极简安装方法（CentOS 7.6+ifort 19）\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/av39616222/)
     - [VASP最简单的安装方法（含全程视频演示） - 思想家公社的门口：量子化学·分子模拟·二次元](http://sobereva.com/455)
     - VASP6 编译（含 GPU 版本）：[编译版本6的VASP](https://blog.sbyu.top/post/5)
     - [VASP6.5.0+Intel CPU编译并添加module环境 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=50668&extra=page%3D1%26filter%3Dauthor%26orderby%3Ddateline)
@@ -43,6 +42,10 @@ password:
 - 含 VASP 版本更新内容简要介绍：
     - VASP 6.5.0（新特性：电声耦合）和 6.4.3: [Changelog - VASP Wiki](https://www.vasp.at/wiki/index.php/Changelog)
     - [VASP - NSC](https://www.nsc.liu.se/software/installed/tetralith/vasp/)
+
+- [1.仅优化二维VASP编译.md](https://github.com/lhycms/QM/blob/main/DFT/VASP/%E7%BC%96%E8%AF%91/1.%E4%BB%85%E4%BC%98%E5%8C%96%E4%BA%8C%E7%BB%B4VASP%E7%BC%96%E8%AF%91.md)
+
+- [VASP固定基矢优化结构 - Misaraty](https://www.misaraty.com/2021-01-11_vasp%E5%9B%BA%E5%AE%9A%E5%9F%BA%E7%9F%A2%E4%BC%98%E5%8C%96%E7%BB%93%E6%9E%84/)：对于二维材料，固定 z 方向晶胞参数不变（固定 z 轴），优化 x、y 晶胞参数
 
 
 
@@ -59,6 +62,8 @@ password:
 
 - 课题组服务器 VASP 安装包路径：Master: `/opt/software`；将其拷贝到自己的用户目录下，传输至超算平台
 
+- `make -jN` 并行编译的特性只有 VASP.6.X.X 才支持，VASP.5.X.X 不支持
+
 - 编译选项：[Compiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Compiler_options)
 
 - 预编译选项：[Precompiler options - VASP Wiki](https://www.vasp.at/wiki/index.php/Precompiler_options)
@@ -71,7 +76,7 @@ password:
 
 - make.include 文件选择
     - VASP.5.4.4 只支持 Intel Classic 编译器
-    - VASP 6 支持 Intel Classic 和 Intel oneAPI 编译器
+    - VASP.6.X.X 支持 Intel Classic 和 Intel oneAPI 编译器
 
 ```bash
 # Intel Composer suite and oneAPI Base + HPC toolkits for CPUs
@@ -84,7 +89,6 @@ makefile.include.linux_gnu               # VASP.5.4.4
 makefile.include.gnu                     # VASP.6.X.X
 
 # NVIDIA HPC-SDK for CPU and GPU
-# VASP.5.X.X GPU
 makefile.include.nvhpc_ompi_mkl_omp_acc  # VASP.6.X.X GPU
 ```
 
@@ -132,15 +136,13 @@ CUDA           # GPU CUDA 代码目录
 
 - 三种版本可分开进行编译：`make std`，`make gam`，`make ncl`
 
-- `make -jN` 并行编译的特性只有 VASP6 才支持，VASP5 不支持
-
 - `bin` 目录若出现 `vasp_std`, `vasp_gam`, `vasp_ncl` 可执行文件，则表示编译成功
 
 - 编译得到的三个版本
 
 ```bash
 vasp_std             # standard 标准版本
-vasp_ncl             # non-collinear 非共线版本；考虑磁结构，如 SOC
+vasp_ncl             # non-collinear 非共线版本；考虑磁性，如 SOC
 vasp_gam             # gamma-only 版本
 ```
 
@@ -151,7 +153,7 @@ vasp_gam             # gamma-only 版本
 
 ---
 
-### Intel oneAPI 套件
+### CPU 版本 + Intel oneAPI 套件
 
 - 安装步骤
 
@@ -174,9 +176,11 @@ cp arch/makefile.include.intel makefile.include
 # AMD CPU 需将 FFLAGS 中的 -xHOST 参数去掉
 
 # 编译；耗时 20-30 分钟
-make  # 或 make all, make std
+make                # 或 make all
+# 单独版本编译
+make std            # 或 make gam, make ncl
 
-# 为 vasp_std 等设置符号链接
+# 为 vasp_* 等设置符号链接
 
 
 # 可修改内容
@@ -220,71 +224,7 @@ compilation aborted for minimax_functions1D.f90 (code 1)
 
 ---
 
-### GPU
-
-- 参考：[Ubuntu安装GPU版VASP6.4.3（含NVIDIA显卡驱动安装更新）](https://blog.csdn.net/liouver/article/details/140653183)
-
-- VASP GPU 版本在小体系下，计算速度与 CPU 版本差不多；大体系下会有加速效果（占用显存较多，一个进程可达 6-7G）
-
-- 安装步骤
-
-```bash
-# 考虑在已安装 CPU 版本的情况下另外安装 GPU版本
-
-# 将 nvfortran 所在路径添加到 PATH
-
-# 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_cpu
-
-mkdir build.gpu
-
-cp arch/makefile.include.nvhpc_ompi_mkl_omp_acc makefile.include.gpu
-
-# 设置符号链接
-ln -s makefile.include.gpu makefile.include
-
-make PREFIX=./build.gpu  # make PREFIX=./build.gpu std
-
-# 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_gpu
-
-
-# makefile.include 修改内容
-
-# 若已将 nvfortran 所在路径添加到 PATH，以下内容可不修改
-CPP
-
-CC
-FC
-FCL
-
-FC_LIB
-CC_LIB
-
-CXX_PARS
-
-# 若已将 nvfortran 所在路径添加到 PATH，以下内容可保持注释状态不变
-NVHPC
-NVVERSION
-NVROOT
-```
-
-- 出现以下报错：
-    - 解决方法：将 nvfortran 所在路径添加到环境变量 `export PATH=${PATH}:/path/to/nvfortran`
-
-```bash
---------------------------------------------------------------------------
-The Open MPI wrapper compiler was unable to find the specified compiler
-nvfortran in your PATH.
-
-Note that this compiler was either specified at configure time or in
-one of several possible environment variables.
---------------------------------------------------------------------------
-make[2]: *** [makefile:171: c2f_interface.o] Error 1
-```
-
-
----
-
-### GNU 套件
+### CPU 版本 + GNU 套件
 
 - Mac M1：[VASP M1 Mac Compilation Guide · GitHub](https://gist.github.com/janosh/a484f3842b600b60cd575440e99455c0)
     - gnu_omp 架构编译 VASP6 + HDF5（耗时 32 min 左右）
@@ -317,7 +257,68 @@ make  # 或 make all, make std
 
 ---
 
-### AMD
+### NVIDIA GPU 版本
+
+- 参考
+    - [Ubuntu安装GPU版VASP6.4.3（含NVIDIA显卡驱动安装更新）](https://blog.csdn.net/liouver/article/details/140653183)
+    - [vasp安装步骤 - 哔哩哔哩](https://www.bilibili.com/opus/910950614915088404)
+
+- 不建议编译 VASP 5.4.4 的 GPU 版本，建议编译 VASP 6.X.X 的 GPU 版本
+
+- VASP GPU 版本在小体系下，计算速度与 CPU 版本差不多；大体系下会有加速效果（占用显存较多，一个进程可达 6-7G）
+
+- NVIDIA HPC-SDK 相关环境变量
+
+```bash
+export NVIDIA_HPC_SDK_ROOT=/opt/nvidia/hpc_sdk/Linux_x86_64/23.5
+export PATH=${NVIDIA_HPC_SDK_ROOT}/compilers/bin:$PATH
+export PATH=${NVIDIA_HPC_SDK_ROOT}/comm_libs/mpi/bin:$PATH
+export LD_LIBRARY_PATH=${NVIDIA_HPC_SDK_ROOT}/comm_libs/mpi/lib:$LD_LIBRARY_PATH
+
+# 可选
+# 单独激活 Intel oneAPI MKL
+source /opt/intel/oneapi/mkl/2023.1.0/env/vars.sh intel64 --force
+export MANPATH=${NVIDIA_HPC_SDK_ROOT}/compilers/man:$MANPATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NVIDIA_HPC_SDK_ROOT}/compilers/extras/qd/lib
+```
+
+- 修改 makefile.include 文件内容
+    - 修改 `CC`、`FC`、`FCL` 中的 ccXX（计算能力与显卡型号匹配） 和 CUDA 版本（安装的 CUDA toolkit 版本）
+    - Intel oneAPI MKL 有 SCALAPACK，可将 SCALAPACK_ROOT 所在的 2 行注释掉
+
+- 安装步骤
+
+```bash
+# 设置 NVIDIA HPC-SDK 相关环境变量（使用 GPU 版本进行计算时也需要设置）
+
+# 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_cpu
+
+mkdir build-gpu
+
+# 若已编译 CPU 版本
+cp makefile.include makefile.include.cpu
+
+cp arch/makefile.include.nvhpc_ompi_mkl_omp_acc makefile.include.gpu
+
+# 设置符号链接
+ln -s makefile.include.gpu makefile.include
+
+# 修改 makefile.include 文件内容
+
+# 编译 3 个版本
+make PREFIX=./build-gpu
+# std 版本单独编译
+make PREFIX=./build-gpu std
+
+# 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_gpu
+```
+
+
+---
+
+### AMD GPU 版本
+
+- 相对复杂，不建议尝试
 
 - 使用 AOCC + AOCL 安装（安装相对复杂）
     - [各种版本VASP的编译-AMD yes（并不）篇](https://zhuanlan.zhihu.com/p/293300472)
@@ -523,18 +524,3 @@ make[1]: *** [makefile:130: all] Error 1
 make[1]: Leaving directory 'XXX/vtst-vasp630/build/std'
 make: *** [makefile:17: std] Error 2
 ```
-
-
-- [1.仅优化二维VASP编译.md](https://github.com/lhycms/QM/blob/main/DFT/VASP/%E7%BC%96%E8%AF%91/1.%E4%BB%85%E4%BC%98%E5%8C%96%E4%BA%8C%E7%BB%B4VASP%E7%BC%96%E8%AF%91.md)
-
-[VASP固定基矢优化结构 - Misaraty](https://www.misaraty.com/2021-01-11_vasp%E5%9B%BA%E5%AE%9A%E5%9F%BA%E7%9F%A2%E4%BC%98%E5%8C%96%E7%BB%93%E6%9E%84/)：对于二维材料，固定 z 方向晶胞参数不变（固定 z 轴），优化 x、y 晶胞参数
-
----
-
-- NVHPC 和 OpenACC 介绍（ChatGPT4 生成）
-
-NVHPC（NVIDIA HPC 编译器套件）是由 NVIDIA 提供的一套编译器工具集，专门为高性能计算（HPC）应用设计。它包括了 C、C++ 和 Fortran 语言的编译器，以及对 CUDA 架构的支持。NVHPC 编译器针对 NVIDIA GPU 优化，使得开发者能够有效地将高性能计算任务加速。此外，这个套件还包含了数学库、通信库和调试工具，帮助开发者提高应用程序的性能和可靠性。
-
-OpenACC 是一个开放的编程标准，旨在简化 CPU 和 GPU 等异构计算设备上的并行编程。它允许开发者通过简单的编译器指令来标记代码中的并行区域，无需深入了解底层的硬件架构。这种方式使得代码能够保持可读性和可移植性，同时能够在不同的硬件平台上实现有效的执行。OpenACC 广泛用于科学计算和工程仿真领域，尤其是在需要大规模数据处理和计算的应用中。
-
-NVHPC 编译器套件支持 OpenACC 标准，使得使用这一标准的代码可以直接在 NVIDIA 的 GPU 上进行编译和运行，从而实现高效的加速效果。这种结合提供了一种强大的工具，以利用现代硬件的并行处理能力，加速科学和工程计算的应用程序。

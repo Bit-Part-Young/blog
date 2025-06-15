@@ -305,8 +305,17 @@ atomsk POSCAR xyz                  # 常用: xyz lammps/lmp vasp/pos cif
 
 - 多晶模型及界面模型（coating 模型，相对简单的）构建：[【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
 
-- 多晶模型：基于 Voronoi tessellation（泰森多边形镶嵌） 算法生成
-    - [LAMMPS 笔记：Atomsk 生成多晶](https://zhuanlan.zhihu.com/p/617697569)
+---
+
+### 多晶模型
+
+- [Atomsk - Tutorial - Polycrystals](https://atomsk.univ-lille.fr/tutorial_polycrystal.php)
+
+- [LAMMPS 笔记：Atomsk 生成多晶](https://zhuanlan.zhihu.com/p/617697569)
+
+- 基于 Voronoi tessellation（泰森多边形镶嵌） 算法生成
+
+- 种子可以不必须是单胞，而是任何原子体系
 
 ```bash
 # 创建单晶的种子
@@ -331,7 +340,12 @@ atomsk Al_polycrystal.lmp -remove-doubles 0.2 final.lmp
 *_grain-com.xsf      # 晶粒质心的位置
 ```
 
-- 等原子比四元随机固溶体
+
+---
+
+### 等原子比四元随机固溶体
+
+- 若将 tmp\*.cfg 换成 lmp 格式，无替换效果
 
 ```bash
 a=3.254

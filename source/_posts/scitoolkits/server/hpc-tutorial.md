@@ -141,6 +141,7 @@ vmd....................To visualize md trajectories
 
 ```bash
 nvidia-smi            # 查看 NVIDIA 驱动及其支持的 CUDA 驱动最高版本
+nvidia-smi -L         # GPU 数量和型号
 nvcc --version        # 查看 CUDA 运行版本（Master 上显示的路径在 hpc_sdk中）
 /usr/local/cuda       # CUDA 安装路径
 ```
