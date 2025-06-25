@@ -48,23 +48,17 @@ password:
 
 - 软件包安装、管理工具：Scoop
 
-- 笔记管理：
-    - Obsidian
-    - Typora（破解版）
+- 笔记管理：Obsidian
 
 - 终端模拟器：
+    - Windows Terminal（Windows 11 自带）
     - MobaXterm
-    - Termius
-    - Tabby
-    - Windows Terminal（Windows 11 会自带）
 
 - 代码编辑器：
-    - VSCode
+    - Cursor
     - VSCode-Insiders
 
-- 浏览器：
-    - Chrome
-    - Arc（不是很好用）
+- 浏览器：Chrome
 
 - 文献管理：Zotero
 
@@ -86,11 +80,7 @@ password:
 
 - PT 资源下载：qBittorrent
 
-- 网络代理：
-    - Clash
-    - V2ray
-
-- 资源嗅探下载： IDM
+- 网络代理：Clash
 
 - 压缩、解压缩：WinRAR
 
@@ -98,20 +88,14 @@ password:
     - PicGo
     - PicList
 
-- 调节显示器亮度：
-    - Twinkle Tray
-    - Monitorian（sRGB 和开启 HDR，亮度会无法调节，作用有限）
-
 - 联想工具箱：[GitHub - BartoszCichecki/LenovoLegionToolkit: Lightweight Lenovo Vantage and Hotkeys replacement for Lenovo Legion laptops.](https://github.com/BartoszCichecki/LenovoLegionToolkit/)
-
-- 微信、Tim 等
 
 
 ---
 
 ### Scoop 安装
 
-软件/程序及安装前后需注意事项介绍见：[Linux 命令行工具 - Seek Another Land](https://seekanotherland.xyz/hexo-demo/posts/16854.html)。
+软件/程序及安装前后需注意事项介绍见：[Linux 命令行工具 - Seek Another Land](https://seekanotherland.xyz/hexo-demo/posts/16854.html)
 
 - 图片查看：jpegview
 
@@ -123,7 +107,7 @@ password:
 
 - 网速监控：TrafficMonitor
 
-- 程序卸载：geekuninstaller
+- 程序卸载：Geek Uninstaller
 
 - 美化 Windows Terminal：oh-my-posh
 
@@ -150,13 +134,15 @@ scoop install smiley-sans       # 得意黑
 
 ## 设置
 
-- [Windows 11系统终极优化指南](https://zhuanlan.zhihu.com/p/693407803)
+- 网络代理软件开启 TUN 模式（虚拟网卡模式），而非系统代理，可解决 OneDrive、Microsoft Store 无法打开/登录的问题
+
+- [Windows 11 系统终极优化指南](https://zhuanlan.zhihu.com/p/693407803)
 
 - [接纳不等于忍受，为舒服使用 Windows 11 的若干优化调整记录 - 少数派](https://sspai.com/post/92064)
 
-- 将默认桌面、视频、照片、音乐目录路径迁移出 C 盘
+- 将默认桌面、视频、照片、音乐目录路径迁移至非 C 盘
 
-- Chrome、Edge 浏览器下载路径迁移出 C 盘
+- Chrome、Edge 浏览器下载路径迁移至非 C 盘
 
 - 关闭小组件、任务视图：设置 -- 个性化 -- 任务栏项
 
@@ -189,7 +175,7 @@ reg.exe delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a
 taskkill /f /im explorer.exe & start explorer.exe
 ```
 
-- 取消 Win11 息屏断网：控制面板 - 网络和 Internet - 网络和共享中心 - 更改适配器设置 - 选中网络，属性，配置，电源管理，取消勾选“允许计算机关闭设备以节约电源”；[更新win11以后，休眠模式下断网，怎么改？ - 知乎](https://www.zhihu.com/question/498326700)
+- 取消 Win11 息屏断网：控制面板 -- 网络和 Internet -- 网络和共享中心 -- 更改适配器设置 -- 选中网络，属性，配置，电源管理，取消勾选 “允许计算机关闭设备以节约电源”；[更新win11以后，休眠模式下断网，怎么改？ - 知乎](https://www.zhihu.com/question/498326700)
 
 ```text
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046D02}\LanguageProfile\0x00000804\{89E1D5C2-A068-44B6-B820-F8406C8A4706}
@@ -209,21 +195,11 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CTF\TIP\{0055AAB0-EACB-46DB-9BB4-1B97FC046
 
 - 修复电脑：制作 Windows 安装的 U 盘，在 BIOS 中将 USB 驱动器设置为启动优先项（拯救者进入 BIOS 菜单快捷键：启动时连续按 F2 键），选择 “修复计算机”
 
-- [免费下载缺失的 DLL 文件 - DLL‑files.com](https://cn.dll-files.com/)
-
 - [解决windows显示开启HDR后chrome内截图泛白问题\_截图浏览器变色\_Athus\_c的博客-CSDN博客](https://blog.csdn.net/Athus_c/article/details/106494715)
 
-- 去除 C 盘及程序快捷方式的两个朝内的蓝色箭头（无法从根本上去除）：右键 - 属性 - 高级 - 取消勾选 “压缩内容以便节省磁盘空间”
-
-- 为 Microsoft Store 等应用设置本地代理（下载 EnableLoopback Utility；实用）：[为Windows apps应用设置本地代理 - KiritoA's Blog](https://kiritox.me/setup-proxy-for-windows-apps/)
+- 去除 C 盘及程序快捷方式的两个朝内的蓝色箭头（**无法从根本上去除**）：右键 -- 属性 -- 高级 -- 取消勾选 “压缩内容以便节省磁盘空间”
 
 - Microsoft 365 无法删除里面的应用
-
-- X-Rite Color Assistant 是联想的色彩管理软件
-
-- [ ] 如何关闭 Office 模板（去除其广告）
-
-- [ ] Bose qc45 两侧如何清理
 
 - 删除 2345 王牌输入法：`win + R`，输入 `regedit`，搜索以下内容并删除；[如何彻底删除2345输入法？ - 知乎](https://www.zhihu.com/question/37679187)
 

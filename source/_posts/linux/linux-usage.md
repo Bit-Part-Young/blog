@@ -110,7 +110,7 @@ intel_gpu_top         # Intel 集显
 
 free -gh              # 以 GB 单位显示内存使用情况
 vmstat -S M           # 以 MB 单位显示虚拟内存使用情况
-htop                  # 显示系统资源；增强版 top
+htop                  # 增强版 top
 ```
 
 - 图片查看：`eog` 或 `display`

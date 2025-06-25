@@ -96,9 +96,9 @@ password:
 
 - 小组件设置：点击菜单栏右上角的时钟，会有其他的小组件，可移除，保留 “每日使用情况” 小组件
 
-- 默认终端 Theme 设置：设置 - Profile - Pro Theme，点击下方的默认按钮
+- 默认终端 Theme 设置：设置 -- Profile -- Pro Theme，点击下方的默认按钮
 
-- **MacBook 合盖不休眠**：系统设置 - 电池 - 勾选 “使用电源适配器供电且显示器关闭时，防止自动进入睡”
+- **MacBook 合盖不休眠**：系统设置 -- 电池 - 勾选 “使用电源适配器供电且显示器关闭时，防止自动进入睡”
 
 - 接入 Windows 键盘，进行修饰键的键位重映射：
     - Alt（相当于 option 键）和 Win 键（相当于 command 键）互换，Fn 和 Ctrl 键无法互换（联想 USB 薄膜键盘）；
@@ -122,42 +122,42 @@ defaults delete com.apple.dock "autohide-delay" && killall Dock​
 
 #### 系统设置相关
 
-- 修改系统语言：系统设置 - 通用 - 语言与地区 - 简体中文，将其向上拖到第一个
+- 修改系统语言：系统设置 -- 通用 -- 语言与地区 -- 简体中文，将其向上拖到第一个
 
-- macOS 版本升级到最新：系统设置 - 通用 - 软件更新
+- macOS 版本升级到最新：系统设置 -- 通用 -- 软件更新
 
-- 修改电脑名称：系统设置 - 通用 - 关于本机
+- 修改电脑名称：系统设置 -- 通用 -- 关于本机
 
-- 文本字体：系统设置 - 文本字体（使用 `MesloLGM Nerd Font`）
+- 文本字体：系统设置 -- 文本字体（使用 `MesloLGM Nerd Font`）
 
-- 菜单栏设置：系统设置 - 控制中心 - 选择模块应用 “不在菜单栏显示”
+- 菜单栏设置：系统设置 -- 控制中心 -- 选择模块应用 “不在菜单栏显示”
 
-- 台前调度：系统设置 - 桌面与程序坞 - 桌面与台前调度 - 打开 “台前调度”
+- 台前调度：系统设置 -- 桌面与程序坞 -- 桌面与台前调度 -- 打开 “台前调度”
 
-- 去掉留在程序坞中最近打开过的软件：系统设置 - 桌面与程序坞 - 取消勾选 “在程序坞中显示建议 App 和最近使用的 App”
+- 去掉留在程序坞中最近打开过的软件：系统设置 -- 桌面与程序坞 -- 取消勾选 “在程序坞中显示建议 App 和最近使用的 App”
 
-- 关闭开机时的声音：系统设置 - 声音 - 取消勾选 “启动时播放声音”
+- 关闭开机时的声音：系统设置 -- 声音 -- 取消勾选 “启动时播放声音”
 
 - 调整键盘背光、键重复速率和重复前延迟：系统设置 - 键盘
 
-- 显示电池百分比：系统设置 - 控制中心 - 电池 - 显示百分比
+- 显示电池百分比：系统设置 -- 控制中心 -- 电池 -- 显示百分比
 
-- 时钟 24 小时格式：系统设置 - 日期与时间 - 24 小时制
+- 时钟 24 小时格式：系统设置 -- 日期与时间 - 24 小时制
 
-- 外部显示器设置：系统设置 - 显示器 - 内建显示器用作主显示器，适配此 MacBook 名称；外部显示器用作内建显示器的镜像，适配此 MacBook 名称
+- 外部显示器设置：系统设置 -- 显示器 -- 内建显示器用作主显示器，适配此 MacBook 名称；外部显示器用作内建显示器的镜像，适配此 MacBook 名称
 
-- 摇动鼠标指针以定位：系统设置 - 辅助功能 - 显示 - 指针，摇动鼠标指针以定位（快速移动鼠标指针以使其变大）
+- 摇动鼠标指针以定位：系统设置 -- 辅助功能 -- 显示 -- 指针，摇动鼠标指针以定位（快速移动鼠标指针以使其变大）
 
 
 ---
 
 #### 访达相关
 
-- 访达中显示路径栏和状态栏：显示 - 显示路径栏和状态栏；鼠标靠近路径栏，右键可以拷贝路径名称
+- 访达中显示路径栏和状态栏：显示 -- 显示路径栏和状态栏；鼠标靠近路径栏，右键可以拷贝路径名称
 
-- 隐藏 “最近使用”：访达 - 设置 - 边栏 - 取消勾选 “最近使用”
+- 隐藏 “最近使用”：访达 -- 设置 -- 边栏 -- 取消勾选 “最近使用”
 
-- 文件夹用图标展示时，右键 - 查看显示选项 - 勾选 “显示项目简介” 和 “用作默认”
+- 文件夹用图标展示时，右键 -- 查看显示选项 -- 勾选 “显示项目简介” 和 “用作默认”
 
 - 访达可以打开多个标签页，打开多个窗口时，可以合并所有窗口
 
@@ -181,7 +181,7 @@ chflags nohidden <path>    # 取消隐藏
 
 - 三指拖移会与三指上下左右轻扫会冲突，不能同时设置
 
-- 三指拖移文件/文件夹/窗口：系统设置 - 辅助功能 - 指针控制 - 触控板选项 - 拖移样式 - 三指拖移
+- 三指拖移文件/文件夹/窗口：系统设置 -- 辅助功能 -- 指针控制 -- 触控板选项 -- 拖移样式 -- 三指拖移
 
 - 切换全屏显示的程序：四指左右轻扫
 
@@ -313,7 +313,8 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Rectangle
     - Loop
 
-- 切换窗口：AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
+- 切换窗口
+    - AltTab（显示窗口内容；`command + Tab` 键的窗口切换不会显示窗口内容）
 
 - 菜单栏管理
     - Ice
@@ -333,12 +334,16 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Mac Mouse Fix
 
 - 输入法切换
-    - 自动切换输入法 Lite 版
     - [Input Source Pro](https://inputsource.pro/zh-CN)
+    - 自动切换输入法 Lite 版
 
 - 可视化键盘输入：KeyCastr
 
 - 键盘映射：[Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements)
+
+- 快捷键控制鼠标
+    - [GitHub - jaywcjlove/mousio](https://github.com/jaywcjlove/mousio)
+    - [GitHub - jaywcjlove/mousio-hint](https://github.com/jaywcjlove/mousio-hint)
 
 - 风扇控制：Mac Fan Control
 
@@ -409,13 +414,13 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - codye
     - carbon
 
-- 瀑布流图片查看器：FlowVision
+- 瀑布流图片查看器：FlowVision（一般）
 
 ---
 
 **文档写作**
 
-- Markdown 笔记管理：
+- Markdown 笔记管理
     - Obsidian
     - Typora
     - MarkText
@@ -445,7 +450,9 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 **网络**
 
-- 网络代理：ClashX
+- 网络代理
+    - ClashX
+    - Clash Verge
 
 - 异地组网、内网穿透：Tailscale（跨平台）
 
@@ -477,12 +484,12 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 **其他**
 
 - 文本编辑器
-    - Notepad--
     - CotEditor
+    - Notepad--
     - [micro](https://github.com/zyedidia/micro)（基于终端的文本编辑器）
 
 - 代码编辑器
-    - VSCode
+    - Cursor
     - VSCode-Insiders
 
 - 终端模拟器
@@ -492,7 +499,6 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Termius
     - kitty
     - [Warp](https://www.warp.dev/)（需注册；有 AI 功能）
-    - shell360（类似 Termius）
 
 - 浏览器
     - Chrome
@@ -501,7 +507,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - Zen
 
 - 任务 To Do 清单
-    - Things（只限苹果产品）
+    - Things（只限苹果设备）
     - Microsoft To Do（跨平台）
 
 - 邮件服务
@@ -571,13 +577,11 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 - macOS Word 使用
     - 深/浅色模式：设置 -- 常规 -- 个性化
-    - 录入 “□方框中打钩” 符号：插入 -- 高级符号 -- 选择 "Wingdings 2" 字体
+    - 录入 “□ 方框中打钩” 符号：插入 -- 高级符号 -- 选择 "Wingdings 2" 字体
     - 手写电子签名制作：在纸上写签名，拍照，插入到 Word -- 图片格式，颜色，重新着色选择 “黑白 25” -- 截图保存
 
-- Notepad-- macOS 安装：[macOS Sonoma 14.1.1安装提示已损坏 · Issue #I8JTJN · 爬山虎/ndd - Gitee.com](https://gitee.com/cxasm/notepad--/issues/I8JTJN)
-
 - VSCode-Insdiers 的命令行启动工具安装：
-    - 方式 1：命令面板 - Install 'code-insiders' command in PATH（每次有升级会弹窗）
+    - 方式 1：命令面板 -- Install 'code-insiders' command in PATH（每次有升级会弹窗）
     - 方式 2：在官网上下载 CLI 版本，将其拷贝到 bin 目录中
 
 - kitty 使用：
@@ -589,7 +593,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
         - [kitty.conf - kitty](https://sw.kovidgoyal.net/kitty/conf/)
         - 参考配置文件：[dotfiles/kitty/.config/kitty at main · Fireond/dotfiles · GitHub](https://github.com/Fireond/dotfiles/tree/main/kitty/.config/kitty)
         - 指针动画：[Neovide like cursor animation in kitty terminal : r/KittyTerminal](https://www.reddit.com/r/KittyTerminal/comments/1g7vkwt/neovide_like_cursor_animation_in_kitty_terminal/)
-    - [x] kitty 如何升级（建议官网下载 Release，使用 Homebrew 速度很慢）
+    - kitty 如何升级：建议官网下载 Release，使用 Homebrew 速度很慢）
     - [x] 如何将 kitty 的窗口信息放到上面，而非默认的下方（设置 `tab_bar_edge` 参数）：[Share your tab bar style · kovidgoyal/kitty · Discussion #4447 · GitHub](https://github.com/kovidgoyal/kitty/discussions/4447)
 
 ```bash
@@ -608,30 +612,20 @@ kitty +kitten ssh server        # 连接远程服务器
 ```
 
  - Termius 设置：
-    - [ ] Termius 无法复制粘贴
     - 跨平台，多端数据记录同步；有学生认证
     - 可 ssh 远程连接和 sftp 远程文件传输
     - 可保存并显示历史命令
-    - 字体设置：设置 - Terminal - Text Size 上方，选择 “Meslo”
-    - 连接本地终端：Hosts - TERMINAL
-    - 可保存自定义 Theme；不错的预设 Theme：
-        - Monokai
-        - Pro
-        - Solarized Dark（个人主要采用该 Theme）
-        - Atom One Dark
-        - Tokyo Night
+    - 字体设置：设置 -- Terminal - Text Size 上方，选择 “Meslo”
+    - 连接本地终端：Hosts -- TERMINAL
 
-- iTerm2 设置
-    - 字体：Prefrences - profiles - text
+- iTerm2 设置：
+    - 字体：Prefrences -- profiles -- text
     - 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
-    - [x] 如何存储 SSH 登录服务器的账号密码（无直接的方式，password manager 非直接存储 SSH 密码；kitty、Tabby 也是如此，Termius 可以）
 
-- Raindrop 中的书签用预览模式打开，有时会打不开
-
-- 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 - 高级 - 持续时间缩短成 1.5
+- 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 -- 高级 -- 持续时间缩短成 1.5
     - [In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
 
-- Alfred 搜索内容设置：Features - Default Results，可以勾选 Essential 和 Extras 中的所有内容（文件夹、文本文件、文档、图片、压缩文件等）
+- Alfred 搜索内容设置：Features -- Default Results，可以勾选 Essential 和 Extras 中的所有内容（文件夹、文本文件、文档、图片、压缩文件等）
 
 ```bash
 open XXX      # 打开文件
@@ -673,9 +667,7 @@ bclm read
 keyNotFound(code: "CHWA")
 ```
 
-- [Cannot install MarkText 0.17.0rc2-arm64 on M1 MacBook Air · Issue #2983 · marktext/marktext · GitHub](https://github.com/marktext/marktext/issues/2983)
-
-- Syncthing 的同步速度较慢（最高仅 1-2 MB/s，一般几十 - 几百 K/s）
+- Syncthing 的同步速度较慢（最高仅 1-2 MB/s）
 
 - LocalSend 连接 SJTU WiFi 无法互相发现设备，使用手机热点可以
     - SJTU 的公共 WiFi 不支持局域网下设备互相发现（AP 隔离，导致不能正常使用）
@@ -685,7 +677,7 @@ keyNotFound(code: "CHWA")
 - Tailscale 安装与配置：
     - [部署TailScale实现异地组网+全内网设备远程访问！一次上手Tailscale！轻松打通内外网！群晖、威联通NAS部署Tailscale内网穿透！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768?p=1)
     - [TailScale子网路由配置，实现使用原生内网IP远程访问，异地组网更加优雅！TailScale Subnet Router使用教程！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ns4y1p768/?p=2)
-    - [ ] macOS `tailscale ssh` 无法使用（sandbox 原因）
+    - macOS `tailscale ssh` 无法使用（sandbox 原因）
     - IPv6 不需要做穿透，外网也能连：[IPv6 不需要做穿透，外网也能连 - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/214653)
     - 交大接入有线网会分配一个公网 IPv6 地址
 
@@ -852,8 +844,8 @@ brew install font-lxgw-wenkai  # 霞鹜文楷
 brew install fontconfig        # 需安装此才有 fc-list 等命令
 
 # Mac 字体路径
-/Library/Fonts   # 系统
-~/Library/Fonts  # 用户
+/Library/Fonts                 # 系统
+~/Library/Fonts                # 用户
 ```
 
 
@@ -949,9 +941,9 @@ key_binder:
 
 #### Safari 浏览器
 
-- 下载的压缩文件的不自动解压：设置 - 通用 - 取消勾选 “自动打开 “安全” 文件”
+- 下载的压缩文件的不自动解压：设置 -- 通用 -- 取消勾选 “自动打开 XXX”
 
-- [x] 无痕浏览模式打开新标签页时如何保留原有标签页网站的登录信息（好像不行；Chrome 可以） ✅ 2024-11-03
+- 无痕浏览模式打开新标签页时无法保留原有标签页网站的登录信息（Chrome 可以）
 
 ---
 
@@ -1039,7 +1031,7 @@ make: *** [dumpana] Error 1
 
 - macOS 彻底删除 Node.js：[javascript - How do I completely uninstall Node.js, and reinstall from beginning (Mac OS X) - Stack Overflow](https://stackoverflow.com/questions/11177954/how-do-i-completely-uninstall-node-js-and-reinstall-from-beginning-mac-os-x)
 
-- 运行 node、npm 报 `rsh: Command not found.` 错误，是由于 ATAT 编译后也有可执行命令 node（默认使用 rsh 远程登录（较早的远程访问工具之一，但由于安全隐患较大，现在很少使用），-s，指定使用 ssh），系统将 Node.js 的 node 指向了 ATAT 的，导致该错误出现。
+- 运行 node、npm 报 `rsh: Command not found.` 错误，是由于 ATAT 编译后也有可执行命令 node（默认使用 rsh 远程登录（较早的远程访问工具之一，但由于安全隐患较大，现在很少使用），-s，指定使用 ssh），系统将 Node.js 的 node 指向了 ATAT 的，导致该错误出现
 
 - Mac 中的 Vim Delete 键无法向左删除：[vim中delete（backspace）键不能向左删除 - 脚本小娃子 - 博客园](https://www.cnblogs.com/shengulong/p/10530188.html)
 
@@ -1048,10 +1040,10 @@ set backspace=2
 ```
 
 - 查看 macOS GPU 信息：
-    - 系统设置 - 通用 - 系统报告 - 图形卡/显示器
+    - 系统设置 - 通用 -- 系统报告 -- 图形卡/显示器
     - 运行命令：`system_profiler SPDisplaysDataType`
 
-- 查看网线 IP 地址：系统设置 - 网络 - USB XXX LAN，IP 地址
+- 查看网线 IP 地址：系统设置 -- 网络 -- USB XXX LAN，IP 地址
 
 ```bash
 # 获取本机 WiFi IP 地址（局域网 IP 地址）
@@ -1067,10 +1059,10 @@ curl ipinfo.io/ip
 - 安装 Java：Java 老版本下载：[Java Archive Downloads - Java SE 18](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
 
 ```bash
-brew install openjdk  # 安装 Java
+brew install openjdk
 ```
 
-- 在 Mac 本地运行 SD：[GitHub - MochiDiffusion/MochiDiffusion: Run Stable Diffusion on Mac natively](https://github.com/MochiDiffusion/MochiDiffusion)
+- 在 Mac 本地运行 Stable Diffusion：[GitHub - MochiDiffusion/MochiDiffusion: Run Stable Diffusion on Mac natively](https://github.com/MochiDiffusion/MochiDiffusion)
 
 - [国行Mac电脑如何开启Apple Intelligence\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV198p4e2Eg7)
 
@@ -1088,7 +1080,8 @@ brew install openjdk  # 安装 Java
 - macOS 中终端下安全删除文件工具（可恢复）：[GitHub - hotoo/rm-trash](https://github.com/hotoo/rm-trash)
 
 ```bash
-npm i rm-trash -g  # 安装
+# 安装
+npm i rm-trash -g
 ```
 
 - 在 macOS 中，LAPACK 库是作为 Accelerate.framework 框架的一部分被提供的
@@ -1117,21 +1110,17 @@ For pkg-config to find lapack you may need to set:
 
 ## 相关问题
 
-### VSCode Insiders 相关
-
-- 将 Vscode Insiders 从 Downloads 放入到 Applications
-    - 可直接拖到侧边栏的 Applications 中
-    - [Moving VS Code Insiders ARM to programs "folder" on M1 mac makes it unable to start (crashes/exits immediately). Can only start from "downloads" folder · Issue #113751 · microsoft/vscode · GitHub](https://github.com/microsoft/vscode/issues/113751)
+### VSCode 相关
 
 - 终端切换（Windows 端的快捷键无法切换）
-    - 命令面板 - 聚焦下一终端组 / 在终端组聚焦下一终端
+    - 命令面板 -- 聚焦下一终端组 / 在终端组聚焦下一终端
 
 ```bash
 shift + command + [ / ]     # 上下关系
 option + command + ← /︎ →    # 左右关系
 ```
 
-- Mac 的 VSCode 系列中的 Vim 插件快捷键无法连续移动：[GitHub - VSCodeVim/Vim: :star: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim#mac)
+- Vim 插件快捷键无法连续移动：[GitHub - VSCodeVim/Vim: :star: Vim for Visual Studio Code](https://github.com/VSCodeVim/Vim#mac)
 
 ```bash
 $ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
@@ -1143,14 +1132,14 @@ $ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool fal
 
 ### 软件安装问题
 
-- 身份不明开发者：按住 `Control` 键，点击 App，弹出的窗口会有打开按钮；[Mac如何打开身份不明开发者的程序？ - 知乎](https://www.zhihu.com/question/52623818)
+- 身份不明开发者：按住 `Control` 键，点击 App，弹出的窗口会有打开按钮
 
 - [Apple 无法检查 App 是否包含恶意软件 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/guide/mac-help/mchleab3a043/mac)
 
-- 文件已损坏：[PicGo arm64文件已损坏](https://github.com/Molunerfinn/PicGo/issues/1055)
+- XXX 程序文件已损坏
 
 ```bash
-sudo xattr -d com.apple.quarantine "/Applications/PicGo.app"
+sudo xattr -d com.apple.quarantine "/Applications/XXX.app"
 ```
 
 
@@ -1177,13 +1166,6 @@ export HOMEBREW_MACOS_VERSION=14.5
     - 将磁盘格式化成 exFAT 格式（兼容 macOS 和 Windows，在 Windows 上会对应有隐藏的点文件）
     - 软件：大部分需收费
 
-- [ ] BetterTouchTool 如何使用
-
-
-- [ ] Mac 如何安装 Parallels Desktop20 最新破解版
-[PD虚拟机，Parallels Desktop 20.0.0最新中文版，支持Mac所有机型【永久使用】](https://mp.weixin.qq.com/s/iFvLMVxYekal87ZsBhQ9pA)
-
-
 - 无法直接创建文件（可通过终端 `touch` 命令或安装 “超级右键” 软件），只能创建文件夹
 
 - 终端模拟器 SSH 连接远程服务器，打开 GUI 程序：[Enable X11 forward for ssh to load images from remote server on MacOS Mojave · GitHub](https://gist.github.com/fengyuentau/7c43c06fb563752b6947affaf4677f2a)
@@ -1195,5 +1177,3 @@ export HOMEBREW_MACOS_VERSION=14.5
 - [Word for Mac彻底删除Endnote插件的方法 - 知乎](https://zhuanlan.zhihu.com/p/29321865)
 
 - Final Cut Pro 软件无法打开 mkv 格式文件（和 PR 一样）
-
-- [ ] 如何安装黑苹果

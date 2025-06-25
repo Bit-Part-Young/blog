@@ -31,13 +31,21 @@ Rust、Julia、Fortran 没有类的概念
 ### 参考资料
 
 - [关于本书 - Rust语言圣经(Rust Course)](https://course.rs/)；[GitHub - sunface/rust-course](https://github.com/sunface/rust-course)
+
 - [Rusty Book - Rusty Book(锈书)](https://rusty.course.rs/about.html)
+
 - [Rust - 鹤翔万里的笔记本](https://note.tonycrane.cc/cs/pl/rust/)
+
 - [GitHub - rust-lang-cn/book-cn: Rust 程序设计语言 中文版](https://github.com/rust-lang-cn/book-cn)
+
 - [Rust 程序设计语言 - Rust 程序设计语言 中文版](https://rustwiki.org/zh-CN/book/)
+
 - [Introduction - PyO3 user guide](https://pyo3.rs/)
+
 - [GitHub - mainmatter/100-exercises-to-learn-rust: A self-paced course to learn Rust, one exercise at a time.](https://github.com/mainmatter/100-exercises-to-learn-rust)
+
 - [GitHub - rust-lang/rustlings: :crab: Small exercises to get you used to reading and writing Rust code!](https://github.com/rust-lang/rustlings)
+
 - [GitHub - guofei9987/rs\_lib: Rust调用C的例子（混合编程）](https://github.com/guofei9987/rs_lib)
 
 - [萌的 4 分钟！Rust 光速入门！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1bg411W757/)
@@ -47,6 +55,7 @@ Rust、Julia、Fortran 没有类的概念
 Rust 练习：
 
 - [GitHub - feint123/code-search: a command code tools of search](https://github.com/feint123/code-search)
+
 - [【编程】用rust写了一个超好用的命令行代码搜索工具！\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV196WNeWEJE)
 
 ---
@@ -64,6 +73,7 @@ Rust 练习：
 ### Rust 环境安装
 
 - [rustup | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/rustup/)
+
 - [Rust Toolchain 反向代理使用帮助 — USTC Mirror Help  文档](https://mirrors.ustc.edu.cn/help/rust-static.html)
 
 ```bash
@@ -146,10 +156,9 @@ registry = "sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/"
 cargo new <project>
 
 # 运行项目
-cargo run     # cargo r；默认使用调试模式编译
-cargo run -- arg1 arg2  # 将参数参数传递给程序，用 -- 隔开
-cargo run --release  # 使用发布模式编译（优化更好，但编译速度较慢）
-
+cargo run                  # cargo r；默认使用调试模式编译
+cargo run -- arg1 arg2     # 将参数参数传递给程序，用 -- 隔开
+cargo run --release        # 使用发布模式编译（优化更好，但编译速度较慢）
 
 # 代码验证
 cargo check
@@ -167,18 +176,16 @@ cargo build --release
 
 
 项目结构
-```text
+
+```bash
 ├── .git
 ├── .gitignore
-├── Cargo.toml
+├── Cargo.lock    # 项目依赖详细清单
+├── Cargo.toml    # 项目数据描述文件
 └── src
     └── main.rs
 ```
 
-
-`Cargo.toml`：项目数据描述文件
-
-`Cargo.lock`：项目依赖详细清单
 
 若项目是一个可运行的程序时，可上传 `Cargo.lock`；若是一个依赖库项目，建议将其添加到 `.gitignore` 中
 
@@ -273,6 +280,8 @@ topgrade -n            # 不实际运行
 
 ### 变量
 
+- 若创建了一个变量却不在任何地方使用它，Rust 通常会给你一个警告，因为这可能会是个 BUG
+
 ```rust
 let x = 5;
 // 变量可变
@@ -283,8 +292,6 @@ let _x = 5;
 // 常量
 const
 ```
-
->若创建了一个变量却不在任何地方使用它，Rust 通常会给你一个警告，因为这可能会是个 BUG
 
 
 ---

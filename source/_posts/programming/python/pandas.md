@@ -49,7 +49,7 @@ password:
 ```python
 import pandas as pd
 
-pd.__version__   # 查看 pandas 版本
+pd.__version__           # 查看 pandas 版本
 
 # 二维数据结构
 df = pd.DataFrame(...)
@@ -228,6 +228,10 @@ pd.read_json("output.json", orient="records", lines=True)
 {"A":[1,2,3],"B":"x"}
 {"A":[4,5,6],"B":"y"}
 {"A":[7,8,9],"B":"z"}
+
+
+df.to_markdown()         # 转换成 Markdown 表格
+df.to_latex()            # 转换成 LaTeX 表格
 ```
 
 

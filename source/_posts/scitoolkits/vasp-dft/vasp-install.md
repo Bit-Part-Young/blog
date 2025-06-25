@@ -265,21 +265,25 @@ make  # 或 make all, make std
 
 - 不建议编译 VASP 5.4.4 的 GPU 版本，建议编译 VASP 6.X.X 的 GPU 版本
 
-- VASP GPU 版本在小体系下，计算速度与 CPU 版本差不多；大体系下会有加速效果（占用显存较多，一个进程可达 6-7G）
+- VASP GPU 版本不支持 `-j` 并行编译？
+
+- VASP GPU 版本在小体系下，计算速度与 CPU 版本差不多；大体系下会有加速效果 (400 个原子以上？)
+
+- VASP GPU 版本占用显存较多，可达 GPU 的显存容量
 
 - NVIDIA HPC-SDK 相关环境变量
 
 ```bash
-export NVIDIA_HPC_SDK_ROOT=/opt/nvidia/hpc_sdk/Linux_x86_64/23.5
+export NVIDIA_HPC_SDK_ROOT=/opt/nvidia/hpc_sdk/Linux_x86_64/XX.X
 export PATH=${NVIDIA_HPC_SDK_ROOT}/compilers/bin:$PATH
 export PATH=${NVIDIA_HPC_SDK_ROOT}/comm_libs/mpi/bin:$PATH
 export LD_LIBRARY_PATH=${NVIDIA_HPC_SDK_ROOT}/comm_libs/mpi/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=${NVIDIA_HPC_SDK_ROOT}/compilers/extras/qd/lib:$LD_LIBRARY_PATH
 
 # 可选
 # 单独激活 Intel oneAPI MKL
-source /opt/intel/oneapi/mkl/2023.1.0/env/vars.sh intel64 --force
+source /opt/intel/oneapi/mkl/XXXX.X.X/env/vars.sh intel64 --force
 export MANPATH=${NVIDIA_HPC_SDK_ROOT}/compilers/man:$MANPATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NVIDIA_HPC_SDK_ROOT}/compilers/extras/qd/lib
 ```
 
 - 修改 makefile.include 文件内容
@@ -295,7 +299,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NVIDIA_HPC_SDK_ROOT}/compilers/extras
 
 mkdir build-gpu
 
-# 若已编译 CPU 版本
+# 若已编译 CPU 版本，重命名
 cp makefile.include makefile.include.cpu
 
 cp arch/makefile.include.nvhpc_ompi_mkl_omp_acc makefile.include.gpu
@@ -313,12 +317,57 @@ make PREFIX=./build-gpu std
 # 将 bin 目录中的 vasp_* 重命名为对应的 vasp_*_gpu
 ```
 
+- VASP GPU 版本性能
+    - [A100还是4090? VASP的GPU性能测试及调优策略 - 硬件配置与采购 - 计算化学公社](http://bbs.keinsci.com/thread-45195-1-1.html)
+    - [VASP 用 GPU 加速后似乎没有 CPU 并行快 - 高性能计算、集群、并行技术 - 计算化学公社 - 第2页](http://bbs.keinsci.com/thread-21177-2-1.html)
+    - [求助VASP是否编译GPU版本问题 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-35206-1-1.html)
+
+- VASP GPU 版本速度测试（粗略）
+
+```bash
+# BCC Nb 4x4x4 128 个原子，KSPACING=0.15，静态计算
+node2 60 CPU 核 耗时 42min
+1 块 4090 耗时 46min
+1 块 3090 耗时 1h 39min
+2 块 3090 耗时 1h 10min
+
+# BCC Nb 6x6x6 432 个原子，单个 Γ 点，静态计算（加速效果明显）
+1 块 4090 耗时 1h 2min
+
+# FCC Al 3x3x3 108 个原子，KSPACING=0.15，静态计算
+1 块 3090 耗时 7min
+```
+
+- **目前 openacc 版本的 VASP 用了 nccl，只能用一个 CPU 核带一块 GPU，因而 CPU 单核性能会对计算结果有影响**
+
+- 游戏显卡，跑经典 MD 非常有优势，跑第一性原理无明显优势？
+
+```bash
+# 只有 1 块 GPU，使用多个 CPU 核会报错
+WARNING: INIT_ACC: several MPI-ranks need to share a GPU, which is not
+    supported by NCCL. The use of NCCL will be switched off. To avoid this,
+    reduce the number of MPI-ranks: #-of-ranks <= #-of-GPUs (on every node!).
+    
+The function MPI_FINALIZE was invoked multiple times in a single
+process on host node2, PID 3122551.
+
+This indicates an erroneous MPI program; MPI_FINALIZE is only allowed
+to be invoked exactly once in a process.
+
+MPI_ABORT was invoked on rank 11 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+```
+
 
 ---
 
 ### AMD GPU 版本
 
-- 相对复杂，不建议尝试
+- **相对复杂，不建议尝试**
 
 - 使用 AOCC + AOCL 安装（安装相对复杂）
     - [各种版本VASP的编译-AMD yes（并不）篇](https://zhuanlan.zhihu.com/p/293300472)

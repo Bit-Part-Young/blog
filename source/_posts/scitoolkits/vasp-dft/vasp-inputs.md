@@ -769,12 +769,12 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 该 tag 的 VASP 官网中还讲解了对称性的相关内容
 
-- 缺陷（空位、掺杂、表面）计算，设置 ISYM=0 会对最终的计算能量、构型是否有影响（**最后的能量和构型均一样，无影响，但更耗时，耗时是原来的 4 倍**）
+- 缺陷（空位、掺杂、表面）计算，设置 ISYM=0 会对最终的计算能量、构型是否有影响（**最后的能量和构型均一样，无影响，但更耗时，耗时是原来的 4 倍（粗略测试）**）
 
 - [请问关于VASP中的ISYM设置 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-39089-1-1.html)
 
 ```bash
-# 测试计算路径
+# 测试路径
 ~/work/Ti-Al-Nb-Zr-V-Mo-MLIP/sia/Nb-sia/5-dumbbell-100-2
 ```
 

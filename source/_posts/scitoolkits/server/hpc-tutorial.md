@@ -39,7 +39,7 @@ password:
 ```bash
 cat /proc/cpuinfo     # CPU 信息查看；或 lscpu
 cat /proc/meminfo     # 内存信息查看；lsmem
-free -h               # 内存使用情况查看
+free -gh              # 内存使用情况查看（以 GB 为单位）
 nvidia-smi            # GPU 信息、使用情况查看
 nvidia-smi -L         # 显示连接的 GPU 信息
 
@@ -50,8 +50,16 @@ cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l
 
 # 查看逻辑 CPU 数目（CPU 有几个核）
 lscpu | grep sock
+lscpu | grep -E '^CPU\(s\):'
 cat /proc/cpuinfo | grep "processor" | wc -l
 nproc
+
+
+# 查看系统负载
+top
+htop
+uptime
+vmstat
 
 
 # 赝势路径
@@ -61,7 +69,7 @@ nproc
 
 ---
 
-- Master 上已安装的程序/软件：`cat /opt/bin/README` 查看
+- Master 上已安装的孔老师的程序/软件：`cat /opt/bin/README` 查看
 
 ```bash
 # Code                 Function
@@ -137,6 +145,10 @@ vmd....................To visualize md trajectories
 
 ---
 
+- CUDA Toolkit 下载：[CUDA Toolkit Downloads - NVIDIA Developer](https://developer.nvidia.com/cuda-downloads)
+
+- NVIDIA HPC SDK 下载：[NVIDIA HPC SDK Current Release Downloads - NVIDIA Developer](https://developer.nvidia.com/hpc-sdk-downloads)
+
 - 查看 CUDA 是否安装（分为两种，驱动 driver 和运行 runtime）
 
 ```bash
@@ -152,6 +164,7 @@ nvcc --version        # 查看 CUDA 运行版本（Master 上显示的路径在 
 
 ```bash
 watch -d2 nvidia-smi      # 持续查看 GPU 使用情况
+nvidia-smi -l             # 持续查看 GPU 使用情况（每秒刷新一次）
 
 gpustat -i 2
 ```

@@ -21,17 +21,17 @@ password:
 
 ## Shell 介绍
 
-Shell 原意是 “外壳”，跟 kernel（内核）相对应，比喻内核外面的一层，即用户跟内核交互的对话界面。
+Shell 原意是 “外壳”，跟 kernel（内核）相对应，比喻内核外面的一层，即用户跟内核交互的对话界面
 
-首先，Shell 是一个程序，提供一个与用户对话的环境。这个环境只有一个命令提示符，让用户从键盘输入命令，所以又称为命令行环境（command line interface，CLI）。Shell 接收到用户输入的命令，将命令送入操作系统执行，并将结果返回给用户。
+首先，Shell 是一个程序，提供一个与用户对话的环境。这个环境只有一个命令提示符，让用户从键盘输入命令，所以又称为命令行环境（command line interface，CLI）。Shell 接收到用户输入的命令，将命令送入操作系统执行，并将结果返回给用户
 
-其次，Shell 是一个命令解释器，解释用户输入的命令。它支持变量、条件判断、循环操作等语法，所以用户可以用 Shell 命令写出各种小程序，又称为脚本（script）。这些脚本都通过 Shell 的解释执行，而不通过编译。
+其次，Shell 是一个命令解释器，解释用户输入的命令。它支持变量、条件判断、循环操作等语法，所以用户可以用 Shell 命令写出各种小程序，又称为脚本（script）。这些脚本都通过 Shell 的解释执行，而不通过编译
 
-终端模拟器：terminal emulator，一个模拟命令行窗口的程序，让用户在一个窗口中使用命令行环境，并且提供各种附加功能，比如调整颜色、字体大小、行距等。
+终端模拟器：terminal emulator，一个模拟命令行窗口的程序，让用户在一个窗口中使用命令行环境，并且提供各种附加功能，比如调整颜色、字体大小、行距等
 
-不同 Linux 发行版（准确地说是不同的桌面环境）带有的终端程序是不一样的，比如 KDE 桌面环境的终端程序是 konsole，Gnome 桌面环境的终端程序是 gnome-terminal，用户也可以安装第三方的终端程序。
+不同 Linux 发行版（准确地说是不同的桌面环境）带有的终端程序是不一样的，比如 KDE 桌面环境的终端程序是 konsole，Gnome 桌面环境的终端程序是 gnome-terminal，用户也可以安装第三方的终端程序
 
-主要的 Shell 有 sh、bash、csh、tcsh、ksh、zsh、fish；Bash 是目前最常用的 Shell。
+主要的 Shell 有 sh、bash、csh、tcsh、ksh、zsh、fish；Bash 是目前最常用的 Shell
 
 ```bash
 # 查看 Shell
@@ -39,7 +39,7 @@ cat /etc/shells  # 查看当前的 Linux 系统安装的所有 Shell
 echo $SHELL      # 当前设备的默认 Shell
 ps               # 一般来说，ps 命令结果的倒数第二行是当前 Shell
 
-# 切换默认 Shell 
+# 默认 Shell 切换
 chsh -s /bin/zsh
 sudo chsh -s /usr/bin/zsh root
 

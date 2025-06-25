@@ -27,9 +27,9 @@ password:
 
 ## 自带邮件关联教育邮箱
 
-- 网页版交大邮箱界面不是很美观，可使用 Windows 邮件关联教育邮箱。
+- 网页版交大邮箱界面不是很美观，可使用 Windows 邮件关联教育邮箱
 
-- 管理账户 - 添加账户 - 高级设置 - Internet 电子邮件 - 传入、传出电子邮件服务器填 `mail.sjtu.edu.cn`，账户类型选择 `IMAP4` - 登录
+- 管理账户 - 添加账户 -- 高级设置 -- Internet 电子邮件 -- 传入、传出电子邮件服务器填 `mail.sjtu.edu.cn`，账户类型选择 `IMAP4` -- 登录
 
 - qq 邮箱设置：[qq 邮箱 SMTP/IMAP 服务](https://wx.mail.qq.com/list/readtemplate?name=app_intro.html#/agreement/authorizationCode)
 
@@ -52,7 +52,6 @@ scoop install oh-my-posh
 
 scoop bucket add nerd-fonts
 scoop install nerd-fonts/Meslo-NF
-
 ```
 
 - 初始化 oh-my-posh
@@ -149,8 +148,10 @@ scoop cache rm -a              # 删除缓存
 scoop cleanup -a               # 删除所有旧版本
 scoop uninstall scoop          # 卸载 Scoop
 
+
 scoop config name value        # 配置 scoop
-# 配置文件路径 ~/.config/scoop/config.json
+# 配置文件路径
+~/.config/scoop/config.json
 ```
 
 
@@ -171,7 +172,7 @@ scoop config name value        # 配置 scoop
 - MobaXterm：远程服务器连接工具；集成 X11 和 SFTP；可自动识别已安装的 WSL
     - [【终端】全能终端神器MobaXterm\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ze41157SP)
     - [Mobaxterm: how to prevent ssh session from exiting? - Stack Overflow](https://stackoverflow.com/questions/57385896/mobaxterm-how-to-prevent-ssh-session-from-exiting)
-    - [ ] Mobaxterm 左侧文件目录无法随右侧终端命令实时改变（暂无法解决）
+    - Mobaxterm 左侧文件目录经常无法随右侧终端命令实时改变（暂无法解决）
 
 - WinSCP：远程服务器文件传输工具，比在 MobaXterm 上拖拽传输好用一些
 
@@ -215,41 +216,37 @@ onlinelibrary.wiley.com
     - 类似于 Mac 的空格键；有插件可实现预览 Office 套件文件，但效果不是很好
     - [GitHub - QL-Win/QuickLook.Plugin.OfficeViewer: Word, Excel, and PowerPoint plugin for QuickLook.](https://github.com/QL-Win/QuickLook.Plugin.OfficeViewer)
 
-- Rime 输入法引擎 + 雾凇拼音（Windows 端个人感觉不是很好用）
+- Rime 输入法引擎 + 雾凇拼音（**Windows 端个人感觉不是很好用**）
     - [Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)
     - [小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
+
+- 锁定键盘（**实用**）：[GitHub - Nigh/I-wanna-clean-keyboard](https://github.com/Nigh/I-wanna-clean-keyboard)
+
+- 切换同一程序下的不同窗口（同 macOS 中的快捷键，**实用**）：[GitHub - sigoden/window-switcher](https://github.com/sigoden/window-switcher)
+
+- 优化 Windows 11 系统的脚本（**实用**）：[GitHub - Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat)
+
+- 自动切换中英文输入法（**实用**）：[GitHub - flyinclouds/KBLAutoSwitch](https://github.com/flyinclouds/KBLAutoSwitch)
+
+- 右键菜单（**实用**）：[GitHub - moudey/Shell: Powerful context menu manager for Windows File Explorer](https://github.com/moudey/Shell)
 
 - 调节显示器亮度：Twinkle Tray（部分显示器设备无效；一般）
 
 - [GitHub - Planshit/Tai: 👻 在Windows上统计软件使用时长和网站浏览时长](https://github.com/Planshit/Tai)
 
-- 切换同一程序下的不同窗口（macOS 中的快捷键）：[GitHub - sigoden/window-switcher: Easily switch between windows of the same app with Alt+\` (Backtick), also switch between apps with Alt+Tab.](https://github.com/sigoden/window-switcher)
-
-- 自动切换中英文输入法：[GitHub - flyinclouds/KBLAutoSwitch: AHK自动切换中英文输入法，输入法，自动切换](https://github.com/flyinclouds/KBLAutoSwitch)
-
 - 类似 macOS 中的触发角：[GitHub - flexits/HotCornersWin: Add macOS hot corners function to Windows 10](https://github.com/flexits/HotCornersWin)
 
 - 应用窗口居中和大小重置：[GitHub - Devail1/window-center-resize: A utility application that allows you to easily center and resize windows on your desktop using customizable keyboard shortcuts.](https://github.com/Devail1/window-center-resize)
 
----
+- 为 Windows 系统提供 Vim 风格的快捷键（**感觉一般**）：[GitHub - pit-ray/win-vind: You can operate Windows with key bindings like Vim.](https://github.com/pit-ray/win-vind)
 
->以下软件并未实际下载使用测试
+- Windows 常见的 CLI 包管理器 GUI（**感觉一般**）：[GitHub - marticliment/UniGetUI](https://github.com/marticliment/UniGetUI)
 
-- Window 平铺窗口：[GitHub - eythaann/Seelen-UI: The Fully Customizable Desktop Environment for Windows 10/11.](https://github.com/eythaann/Seelen-UI)
-
-- 锁定键盘：[GitHub - Nigh/I-wanna-clean-keyboard](https://github.com/Nigh/I-wanna-clean-keyboard)
-
-- 右键菜单：[GitHub - moudey/Shell: Powerful context menu manager for Windows File Explorer](https://github.com/moudey/Shell)
-
-- 为 Windows 系统提供 Vim 风格的快捷键：[GitHub - pit-ray/win-vind: You can operate Windows with key bindings like Vim.](https://github.com/pit-ray/win-vind)
-
-- 优化 Windows 11 系统的脚本：[GitHub - Raphire/Win11Debloat](https://github.com/Raphire/Win11Debloat)
+- [GitHub - the1812/Malware-Patch: 阻止中国流氓软件的管理员授权. / Prevent UAC authorization of Chinese malware.](https://github.com/the1812/Malware-Patch)
 
 - 查看磁盘占用：[WinDirStat - Windows Directory Statistics](https://windirstat.net/)
 
-- Windows 常见的 CLI 包管理器 GUI：[GitHub - marticliment/UniGetUI](https://github.com/marticliment/UniGetUI)
-
-- [GitHub - the1812/Malware-Patch: 阻止中国流氓软件的管理员授权. / Prevent UAC authorization of Chinese malware.](https://github.com/the1812/Malware-Patch)
+- Window 平铺窗口：[GitHub - eythaann/Seelen-UI: The Fully Customizable Desktop Environment for Windows 10/11.](https://github.com/eythaann/Seelen-UI)
 
 - 删除 Outlook：[GitHub - matej137/OutlookRemover: a little batch file that permanently removes the Outlook (New) app from Windows 10/11](https://github.com/matej137/OutlookRemover)
 

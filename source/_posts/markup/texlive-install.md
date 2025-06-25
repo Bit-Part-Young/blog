@@ -78,14 +78,14 @@ export PATH=$HOME/local/texlive/2023/bin/x86_64-linux:$PATH
 - 跨版本更新
 
 ```bash
-rm 2023/tlpkg/backups        # 删除包的备份
+rm 2023/tlpkg/backups/*      # 删除包的备份
 cp -a 2023 2024              # 耗时较久
 
 # 更新 ~/.{bash,zsh}rc 中 TeX Live 环境变量的年份
 
 # 下载 update-tlmgr-latest.sh
 wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
-sh update-tlmgr-latest.sh -- --upgrade
+bash update-tlmgr-latest.sh -- --upgrade
 
 tlmgr update --self --all    # 更新
 ```
