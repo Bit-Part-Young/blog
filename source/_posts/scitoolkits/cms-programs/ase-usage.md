@@ -198,7 +198,7 @@ pop()                      # 删除原子
 translate()                # 平移原子位置
 make_supercell()           # 构建超胞（可通过此将六方转正交胞）
 rotate()                   # 旋转（可绕轴旋转）
-  
+
 center()                   # 在指定轴两端各添加真空层并移至该轴中心
 # 参数
 vacuum                     # 真空层厚度
@@ -211,9 +211,9 @@ set_xxx()
 
 # get 方法
 get_pbc()                  # 周期性边界条件
-get_cell()                 # 基矢
+get_cell()                 # 点阵
 get_volume()               # 体积
-get_masses()               # 原子对应原子质量；np.ndarray
+get_masses()               # 原子对应相对原子质量；np.ndarray
 get_atomic_numbers()       # 原子对应原子序数；np.ndarray
 get_positions()            # 笛卡尔坐标；wrap 参数默认为 False
 get_scaled_positions()     # 分数坐标；wrap 参数默认为 True
@@ -221,6 +221,7 @@ get_chemical_formula()     # 化学式
 get_chemical_symbols()     # 化学符号列表
 get_distance()             # 两原子间的距离
 get_distances()            # 第 i 个原子与给定原子列表间的距离
+get_array()
 
 # get 方法；需添加 calculator 才能使用的方法
 get_potential_energy()     # 总能量；单位 eV
@@ -234,9 +235,18 @@ get_magnetic_moment()      # 磁矩
 get_magnetic_moments()
 
 
-# set 方法
+# set 方法；无法设置体积
+set_array()
 set_chemical_symbols()     # 设置元素符号；可用于置换元素
 set_constraints()          # 施加约束；通常需结合 ase.constraints 的 FixAtoms 函数使用，直接设置 False/True 或 0/1 的列表无效果
+set_cell()                 # 设置点阵
+set_positions()            # 设置原子位置坐标
+set_scaled_positions()     # 设置原子位置分数坐标
+set_pbc()                  # 设置周期性边界条件
+
+
+# 其他
+new_array()                # 将单个原子的信息添加至 properties 中
 ```
 
 - 晶体结构常用变量获取
@@ -266,8 +276,8 @@ import numpy as np
 # 可考虑最小影像准则
 distances = atoms.get_all_distances()
 
-print(np.unique(distances)[1])       # 最小距离 
-print(np.unique(distances)[-1])      # 最大距离 
+print(np.unique(distances)[1])       # 最小距离
+print(np.unique(distances)[-1])      # 最大距离
 
 
 # 判断 cell 是否为正交胞
@@ -376,9 +386,10 @@ supercell = atoms * (2, 2, 2)
 
 - 注意事项：
     - fcc100、fcc110、bcc100、hcp10m10、diamond100 总是返回正交胞
-    - fcc111、bcc110、bcc111、hcp0001 可返回非正交胞和正交胞两种
+    - fcc111、bcc110、bcc111、hcp0001 可返回非正交胞和正交胞两种（优先正交胞）
     - fcc211 只返回正交胞；diamond111 只返回非正交胞
-    - root surface 是什么含义？
+    - size 设置有要求，一般是需要设置 y 方向的 size 数值为偶数
+    - [ ] root surface 是什么含义？
 
 ```python
 from ase.build import ...
@@ -399,26 +410,31 @@ layers                 # 指最小一个完整单元的 slab，而非具体的�
 vacuum                 # z 方向两端添加真空层
 
 
-# FCC 结构常见的 (100)、(110)、(111) 面
-fcc100
-fcc110
-fcc111
-fcc211                 # 设置有要求
-# BCC 结构常见的 (100)、(110)、(111) 面
-bcc100
-bcc110
-bcc111
+# FCC 结构常见的 (100)、(110)、(111) 面；正交胞情况下
+fcc100                 # 具体晶向（x、y 可交换） "[01-1]" "[011]" "[100]"
+fcc110                 # 具体晶向 "[001]" "[1-10]" "[110]"
+fcc111                 # 具体晶向 "[-110]" "[11-2]" "[111]"；非正交，γ 为 120
+fcc211                 # 
+
+# BCC 结构常见的 (100)、(110)、(111) 面；正交胞情况下
+bcc100                 # 具体晶向 "[010]" "[001]" "[100]"
+bcc110                 # 具体晶向 "[001]" "[1-10]" "[110]"；非正交，γ 为 109.47
+bcc111                 # 具体晶向 "[-110]" "[11-2]" "[111]"；非正交，γ 为 120
+
 # Diamond 结构常见的 (100)、(111) 面
 diamond100
 diamond111
+
 # HCP 结构常见的 (0001) 面
-hcp0001
-hcp10m10               # size 设置有要求；m 表示负号
+hcp0001                # 具体晶向 "[2-1-10]" "[-12-10]" "[0001]"
+hcp10m10               # m 表示负号；具体晶向 "[-12-10]" "[0001]" "[-1010]"
 
 mx2                    # MoS2 二维材料的六方结构
 graphene               # 单层石墨烯
+
 # 纳米带结构
 graphene_nanoribbon    # 石墨烯纳米带
+
 # tube 结构
 nanotube               # 纳米管
 
@@ -432,11 +448,11 @@ atoms = fcc100(
     orthogonal=True,
 )
 # 通用参数
-symbol            # 元素符号
-a                 # 晶格常数
-vacuum            # z 轴两端添加真空层
-size              # 指的是层数？
-orthogonal        # 是否转换成正交胞
+symbol                 # 元素符号
+a                      # 晶格常数
+vacuum                 # z 轴两端添加真空层
+size                   # x y 轴对应的数值表示超胞，z 轴对应的数值表示具体的原子层数（不是最小一个完整单元的 slab）
+orthogonal             # 是否转换成正交胞
 ```
 
 - 其他
@@ -503,8 +519,8 @@ angles()                  # 点阵夹角
 get_bravais_lattice()     # 获取布拉维点阵
 bandpath()                # 能带路径
 reciprocal()              # 倒易点阵
-niggli_reduce()           # 
-minkowski_reduce()        # 
+niggli_reduce()           #
+minkowski_reduce()        #
 
 # 属性
 volume                    # 体积
@@ -583,8 +599,6 @@ gpumd                 # RW
 
 - 模块中的 `read()` 函数可自动识别文件格式
 
-- 将 OUTCAR 每个离子步信息转换成 extxyz 格式：[Convert VASP OUTCAR to extxyz file for NequIP input · GitHub](https://gist.github.com/simonbatzner/c2b05d38789b67f6fe5d3c75a4f2223d)
-
 - 写法一：在 `read()`、`write()` 函数中指定 `format` 参数，即具体构型文件格式
 
 ```python
@@ -633,8 +647,8 @@ append=                  # 是否写入多帧数据
 
 # 保存为 VASP POSCAR 格式
 write(
-    output_vasp_fn,
-    images=structure,
+    output_fn,
+    images=atoms,
     format="vasp",
     direct=True,
     sort=True,
@@ -649,23 +663,23 @@ ignore_constraints       # 是否忽略约束（固定原子坐标信息）
 
 
 # 保存为 LAMMPS data 格式
-lammps_data_fn = ...
-ele_list = ["Si", "Nb"]
+element_list = ["Si", "Nb"]
 write(
-    lammps_data_fn,
+    output_fn,
     images=atoms,
     format="lammps-data",
-    specorder=ele_list,
+    specorder=element_list,
     units="metal",
     atom_style="atomic",
+    masses=True,
 )
 # 参数
-specorder                # 指定 atom type 顺序；默认按照元素符号字母排序
+specorder                # 指定 atom types 顺序；默认按照元素符号字母排序
 
 
 # 读取 LAMMPS data 格式
 atoms = read(
-    lammps_data_fn,
+    structure_fn,
     format="lammps-data",
     units="metal",
     style="atomic",
@@ -683,7 +697,7 @@ Z_of_type                # dict，键为 type 编号，值为对应的元素原�
 atoms_list = read("OUTCAR", index=":")
 
 write(
-    extxyz_fn,
+    output_fn,
     atoms_list,
     format="extxyz",
     append=True,
@@ -697,13 +711,22 @@ write(
 from ase.io.lammpsdata import read_lammps_data, write_lammps_data
 
 # LAMMPS dump 格式
-from ase.io.lammpsrun import read_lammps_dump_text
+from ase.io.lammpsrun import (
+    read_lammps_dump,
+    read_lammps_dump_binary,
+    read_lammps_dump_text,
+)
 
 # VASP POSCAR 格式
 from ase.io.vasp import read_vasp, write_vasp
 
 # VASP 输出文件格式 OUTCAR、XDATCAR、vasprun.xml
-from ase.io.vasp import read_vasp_out, read_vasp_xdatcar, write_vasp_xdatcar, read_vasp_xml
+from ase.io.vasp import (
+    read_vasp_out,
+    read_vasp_xdatcar,
+    read_vasp_xml,
+    write_vasp_xdatcar,
+)
 
 # Material Studio xsd 格式
 from ase.io.xsd import read_xsd, write_xsd
@@ -894,7 +917,7 @@ cohesive_energies              # 内聚能
 reference_states               # 基态
 atomic_masses                  # 相对原子能量
 vdw_radii                      # 范德华半径
-ground_state_magnetic_moments  # 基态磁矩 
+ground_state_magnetic_moments  # 基态磁矩
 ```
 
 
@@ -915,150 +938,8 @@ print(1 / Ry)
 # 长度单位
 print(Bohr)
 
-# 应力单位
+# 应力单位  GPa = 1/160.21766208
 print(1 / GPa)
-```
-
-
----
-
-### ase.phasediagram
-
-- 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/phasediagram/phasediagram.html)
-
-- 没有 pymatgen 对应的模块功能丰富且绘图效果好看
-
-
----
-
-### ase.cluster
-
-- 纳米颗粒/团簇
-
-
----
-
-### ase.geometry
-
-- rdf 计算
-
-```python
-from ase.geometry import ...
-
-# geometry 模块中的函数
-get_duplicate_atoms()       # 获取重复原子；可删除
-is_orthorhombic()           # 检查 cell 是否正交
-permute_axes()              # 扰动坐标轴
-wrap_positions()            # 
-
-
-# geometry 模块中的 Analysis 类
-from ase.geometry.analysis import Analysis
-
-ana = Analysis()
-
-# 属性
-images
-nImages
-nl                            # 近邻列表
-all_bonds
-all_angles
-all_dihedrals
-unique_bonds
-unique_angles
-unique_dihedrals
-
-# 方法
-get_bonds()
-get_angles()
-get_dihedrals()
-get_rdf()                    # 计算 RDF（可计算 partial rdf）
-```
-
-
----
-
-### ase.neb
-
-- [Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
-
-- [使用ASE实现idpp方法插值NEB路径](https://mp.weixin.qq.com/s/En5MN5vhS-zXFoeoZ6kR1Q)
-
-```python
-from ase.neb import NEB
-from ase.optimize import BFGS
-
-images = ...
-
-neb = NEB(images, k=0.1)
-# IDPP 插值
-neb.idpp_interpolate(fmax=0.1, optimizer=BFGS, steps=1000)
-```
-
-
----
-
-### ase.md
-
-- ASE 中的 MD 相关算法
-
-- ASE 中的两种常见控压（压浴）方法：Parrinello-Rahman、Berendsen
-
-- 使用 ASE md 模块执行 MD 示例：
-    - [benchmarks/MACE/run\_mace\_md.py at main · deng-group/benchmarks · GitHub](https://github.com/deng-group/benchmarks/blob/main/MACE/run_mace_md.py)
-    - [Tools\_MLIP/ASE\_MD/mdAseMace.py at main · weltidom/Tools\_MLIP · GitHub](https://github.com/weltidom/Tools_MLIP/blob/main/ASE_MD/mdAseMace.py)
-
-```python
-from ase.md import MDLogger
-from ase.md.npt import NPT
-from ase.md.langevin import Langevin
-from ase.md.nptberendsen import NPTBerendsen
-from ase.md.nvtberendsen import NVTBerendsen
-from ase.md.velocitydistribution import MaxwellBoltzmannDistribution, Stationary
-```
-
-
----
-
-### ase.phonons
-
-- 有限位移法计算声子谱
-
-```python
-# 示例
-from ase.phonons import Phonons
-
-N = 25
-ph = Phonons(atoms, calc, supercell=(N, N, N), delta=0.05)
-ph.run()
-ph.read(acoustic=True)
-
-kpath = atoms.cell.bandpath(
-    [["G", "X", "U"], ["K", "G", "L", "W", "X"]],
-    npoints=100,
-)
-bs = ph.get_band_structure(kpath)
-```
-
-
----
-
-### ase.filters
-
-```python
-# 结构优化，用于非 VASP 其他 Calculator（如 GPAW）
-from ase.filters import UnitCellFilter, FrechetCellFilter
-```
-
-
----
-
-### ase.neighborlist
-
-- 近邻列表
-
-```python
-from ase.neighborlist import NeighborList
 ```
 
 
@@ -1202,9 +1083,154 @@ atoms.get_potential_energy()
 
 ```python
 # 使用多种 calculator
-from ase.calculators.mixing import SumCalculator 
+from ase.calculators.mixing import SumCalculator
 
 # dftd3
 from ase.calculators.dftd3 import DFTD3
 from dftd3.ase import DFTD3 as SimpleD3
+```
+
+
+---
+
+### ase.phasediagram
+
+- 相图绘制（2 维，3 维）：[Phase diagrams and Pourbaix diagrams — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/phasediagram/phasediagram.html)
+
+- 没有 pymatgen 对应的模块功能丰富且绘图效果好看
+
+
+---
+
+### ase.cluster
+
+- 纳米颗粒/团簇
+
+
+---
+
+### ase.geometry
+
+- rdf 计算
+
+```python
+from ase.geometry import ...
+
+# geometry 模块中的函数
+get_duplicate_atoms()       # 获取重复原子；可删除
+is_orthorhombic()           # 检查 cell 是否正交
+permute_axes()              # 扰动坐标轴
+wrap_positions()            #
+
+
+# geometry 模块中的 Analysis 类
+from ase.geometry.analysis import Analysis
+
+ana = Analysis()
+
+# 属性
+images
+nImages
+nl                            # 近邻列表
+all_bonds
+all_angles
+all_dihedrals
+unique_bonds
+unique_angles
+unique_dihedrals
+
+# 方法
+get_bonds()
+get_angles()
+get_dihedrals()
+get_rdf()                    # 计算 RDF（可计算 partial rdf）
+```
+
+
+---
+
+### ase.neb
+
+- [Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
+
+- [使用ASE实现idpp方法插值NEB路径](https://mp.weixin.qq.com/s/En5MN5vhS-zXFoeoZ6kR1Q)
+
+```python
+from ase.mep import NEB, idpp_interpolate
+from ase.optimize import BFGS
+
+images = ...
+
+neb = NEB(images, k=0.1)
+
+neb.interpolate(method="linear")
+# IDPP 插值
+neb.interpolate(method="idpp")
+neb.idpp_interpolate(fmax=0.1, optimizer=BFGS, steps=1000)
+```
+
+
+---
+
+### ase.md
+
+- ASE 中的 MD 相关算法
+
+- ASE 中的两种常见控压（压浴）方法：Parrinello-Rahman、Berendsen
+
+- 使用 ASE md 模块执行 MD 示例：
+    - [benchmarks/MACE/run\_mace\_md.py at main · deng-group/benchmarks · GitHub](https://github.com/deng-group/benchmarks/blob/main/MACE/run_mace_md.py)
+    - [Tools\_MLIP/ASE\_MD/mdAseMace.py at main · weltidom/Tools\_MLIP · GitHub](https://github.com/weltidom/Tools_MLIP/blob/main/ASE_MD/mdAseMace.py)
+
+```python
+from ase.md import MDLogger
+from ase.md.npt import NPT
+from ase.md.langevin import Langevin
+from ase.md.nptberendsen import NPTBerendsen
+from ase.md.nvtberendsen import NVTBerendsen
+from ase.md.velocitydistribution import MaxwellBoltzmannDistribution, Stationary
+```
+
+
+---
+
+### ase.phonons
+
+- 有限位移法计算声子谱
+
+```python
+# 示例
+from ase.phonons import Phonons
+
+N = 25
+ph = Phonons(atoms, calc, supercell=(N, N, N), delta=0.05)
+ph.run()
+ph.read(acoustic=True)
+
+kpath = atoms.cell.bandpath(
+    [["G", "X", "U"], ["K", "G", "L", "W", "X"]],
+    npoints=100,
+)
+bs = ph.get_band_structure(kpath)
+```
+
+
+---
+
+### ase.filters
+
+```python
+# 结构优化，用于非 VASP 其他 Calculator（如 GPAW）
+from ase.filters import UnitCellFilter, FrechetCellFilter
+```
+
+
+---
+
+### ase.neighborlist
+
+- 近邻列表
+
+```python
+from ase.neighborlist import NeighborList
 ```

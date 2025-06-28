@@ -145,9 +145,11 @@ vmd....................To visualize md trajectories
 
 ---
 
-- CUDA Toolkit 下载：[CUDA Toolkit Downloads - NVIDIA Developer](https://developer.nvidia.com/cuda-downloads)
+- [CUDA Toolkit 下载](https://developer.nvidia.com/cuda-downloads)
 
-- NVIDIA HPC SDK 下载：[NVIDIA HPC SDK Current Release Downloads - NVIDIA Developer](https://developer.nvidia.com/hpc-sdk-downloads)
+- [NVIDIA HPC SDK 下载](https://developer.nvidia.com/hpc-sdk-downloads)
+
+- [PyTorch 下载](https://pytorch.org/get-started/locally/)
 
 - 查看 CUDA 是否安装（分为两种，驱动 driver 和运行 runtime）
 

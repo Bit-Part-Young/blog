@@ -42,7 +42,7 @@ password:
 
 - Materials Project 官方文档：[Materials Project Documentation](https://docs.materialsproject.org/)
     - Materials Project 推荐赝势：[Pseudo-potentials - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology/calculation-details/gga+u-calculations/pseudopotentials)
-    - 含 MP 在计算中所采用的具体参数及其说明（如截断能为 520eV 是由元素周期表所有元素中最大截断能的 1.3 倍得到的）： [Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)
+    - MP 计算所采用的具体参数及其说明（如截断能为 520eV 是由元素周期表所有元素赝势中最大截断能的 1.3 倍得到的）： [Materials Methodology - Materials Project Documentation](https://docs.materialsproject.org/methodology/materials-methodology)
 
 - [GitHub - computron/pymatgen\_tutorials: Tutorials for using the pymatgen library](https://github.com/computron/pymatgen_tutorials)
 
@@ -113,35 +113,31 @@ from pymatgen.core import Structure, Composition ...
 
 ## 使用
 
-- 使用：[Usage - pymatgen](https://pymatgen.org/usage.html)
+### 基本
 
-- pymatgen 的包 (package、subpackage) 是目录, 模块 (module、submodule) 是文件; import 既可以导入包和子包, 也可以导入模块和子模块； [ug-materials-simulation/pymatgen/包和模块结构.ipynb at master · xiangzhouzhang/ug-materials-simulation · GitHub](https://github.com/xiangzhouzhang/ug-materials-simulation/blob/master/pymatgen/%E5%8C%85%E5%92%8C%E6%A8%A1%E5%9D%97%E7%BB%93%E6%9E%84.ipynb)
+- 使用：[Usage - pymatgen](https://pymatgen.org/usage.html)
 
 - 查看 pymatgen 相关信息
 
 ```python
 import pymatgen.core
-import sys
 
-sys.version                  # 查看 Python 版本
-pymatgen.core.__version__    # 查看 pymatgen 版本
-pymatgen.core.__file__       # 查看 pymatgen 安装路径
+pymatgen.core.__version__    # pymatgen 版本
+pymatgen.core.__file__       # pymatgen 安装路径
+```
 
-# 获取 .pmgrc 配置文件内容
+- 获取 .pmgrc 配置文件内容
+
+```python
 from pymatgen.core import SETTINGS
 
 PMG_VASP_PSP_DIR = SETTINGS.get("PMG_VASP_PSP_DIR")
-
-# 可解析压缩文件路径
-from monty.os.path import zpath
-
-path = ...
-path = zpath(path)
 ```
 
 - pymatgen 支持的构型文件格式
 
 ```python
+# pymatgen/core/structure.py
 FileFormats = Literal[
     "cif",
     "poscar",
@@ -161,17 +157,59 @@ FileFormats = Literal[
 - pymatgen 中可指定的泛函类型
 
 ```python
-FUNCTIONAL_CHOICES= ['PBE', 'PBE_52', 'PBE_54', 'LDA', 'LDA_52', 'LDA_54', 'PW91', 'LDA_US', 'PW91_US', 'Perdew-Zunger81']
+# pymatgen/io/vasp/sets.py
+UserPotcarFunctional = Literal[
+    "PBE",
+    "PBE_52",
+    "PBE_54",
+    "PBE_64",
+    "LDA",
+    "LDA_52",
+    "LDA_54",
+    "PW91",
+    "LDA_US",
+    "PW91_US",
+]
+
 ```
 
 - MP 晶体 DFT code 用的是 VASP，分子用的是 Q-Chem
 
-- `MSONable` 类：MSON（Monty JSON）；MSONable 对象必须实现 `as_dict()` 方法，该方法须返回可序列化为 JSON 的字典，且须支持无参数。静态方法 `from_dict()`，从 `as_dict()` 方法生成的字典中重建对象。`as_dict()` 方法应该包含 `@module` 和 `@class` 键，这将允许 MontyEncoder 动态反序列化该类。
+- `MSONable` 类：MSON（Monty JSON）；MSONable 对象必须实现 `as_dict()` 方法，该方法须返回可序列化为 JSON 的字典，且须支持无参数；以及实现 `from_dict()` 类方法，即从 `as_dict()` 方法生成的字典中重建对象；`as_dict()` 方法应该包含 `@module` 和 `@class` 键，这将允许 MontyEncoder 动态反序列化该类
 
-- monty 包：对 json/yaml/msgpack 等文件格式进行 serialization
+- monty 包：对 json/yaml/msgpack 等文件格式进行序列化（比 json 模块好用很多，推荐！）
 
 ```python
 from monty.serialization import loadfn, dumpfn
+from pymatgen.core.structure import Structure
+
+# 方式 1；推荐
+json_fn = "structure.json"
+
+# 导入 json 文件
+structure = loadfn(json_fn)
+# dump json 文件
+dumpfn(structure.as_dict(), json_fn)
+
+
+# 方式 2
+import json
+
+# 导入 json 文件
+with open(json_fn) as file:
+    dct = json.load(file)
+    structure = Structure.from_dict(dct)
+
+# dump json 文件
+with open(json_fn, "w") as file:
+    json.dump(structure.as_dict(), file)
+
+
+# 可解析压缩文件路径
+from monty.os.path import zpath
+
+path = ...
+path = zpath(path)
 ```
 
 
@@ -179,7 +217,7 @@ from monty.serialization import loadfn, dumpfn
 
 ### 工作流
 
-pymatgen 典型工作流
+- pymatgen 典型工作流
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202310231537005.png)
 
@@ -191,7 +229,8 @@ pymatgen 典型工作流
 - 不是太好用，建议直接写脚本
 
 ```bash
-pmg subcommand -h  # 查看子命令帮助
+# 查看子命令帮助
+pmg subcommand -h
 
 # 分析当前路径，会将生成的数据打包压缩成文件
 pmg analyze .
@@ -208,7 +247,7 @@ pmg structure --convert --filenames POSCAR *.cif
 pmg view POSCAR
 ```
 
-- pymatgen 的 cli 可以使用 argcomplete 库（`pyamtgen/cli/pmg.py`；用于 cli 命令的补全）
+- pymatgen 的 cli 可使用 argcomplete 库（`pyamtgen/cli/pmg.py`；用于 cli 命令的补全）
 
 ```python
     try:
@@ -233,99 +272,62 @@ from pymatgen.core.lattice import Lattice
 from pymatgen.core.structure import Structure
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 
-# 标准方法
+# 创建结构
+# 方式 1 标准方法
 structure = Structure(
-    Lattice.cubic(4.2),
-    ["Cs", "Cl"],
-    [[0, 0, 0], [0.5, 0.5, 0.5]],
+    lattice=Lattice.cubic(4.2),
+    species=["Cs", "Cl"],
+    coords=[[0, 0, 0], [0.5, 0.5, 0.5]],
 )
 
-# 利用空间群对称性创建结构
+# 方式 2 利用空间群
 structure = Structure.from_spacegroup(
-    "Fm-3m",
-    Lattice.cubic(3),
-    ["Li", "O"],
-    [[0.25, 0.25, 0.25], [0, 0, 0]],
+    sg="Fm-3m",
+    lattice=Lattice.cubic(3),
+    species=["Li", "O"],
+    coords=[[0.25, 0.25, 0.25], [0, 0, 0]],
 )
 
-# 保存成其他文件格式
+
+# 读取结构（str、dict、文件）
+structure = Structure.from_str(open("CsCl.cif").read(), fmt="cif")
+structure = Structure.from_file("POSCAR")
+structure = Structure.from_dict()
+
+
+# 保存成构型文件
 structure.to(filename="POSCAR", fmt="poscar")
-# 不提供 filename 参数，返回 string
+# 只提供 fmt 参数，返回 string
 structure.to(fmt="poscar")
 # 只提供 filename 参数，会自动识别其格式
 structure.to(filename="POSCAR")
-structure.to(filename="CsCl.cif")
 
-# 从 str 或文件中读取结构
-structure = Structure.from_str(open("CsCl.cif").read(), fmt="cif")
-structure = Structure.from_file("CsCl.cif")
 
 # 改变位点元素种类
 structure[1] = "F"
 
 # 改变位点元素种类和坐标
-structure[1] = "Cl", [0.51, 0.51, 0.51]
+structure[1] = "F", [0.51, 0.51, 0.51]
 
 # 元素替换
 structure["Cs"] = "K"
 
-# 生成无序结构
-# 与 SQS 是不同的概念
-# 部分占据的无序结构无法保存成 POSCAR
-structure["K"] = "K0.5Na0.5"
-
-# structure 类似 list，支持大部分的 list 方法
-# reverse, append, extend, pop, index, count
+# Structure 类与 list 相似，支持大部分的 list 方法
+# 如 reverse, append, extend, pop, index, count
 structure.reverse()
 structure.append("F", [0.9, 0.9, 0.9])
+
+# 获取 structure 某种元素的原子位点序号
+indices_Nb = [i for i, site in enumerate(structure) if site.species_string == "Nb"]
 
 # 超胞构建
 structure * 2
 structure * (2, 2, 2)
 structure.make_supercell([2, 2, 2])
-```
 
----
-
-pymatgen 的许多类都有 `as_dict()` 方法和 `from_dict()` 静态方法的实现。虽然 python 确实提供了 pickling 功能（实现对象序列化和反序列化的方式），但 pickle 在代码修改方面往往是非常脆弱的。`as_dict()` 提供了一种以更稳健的方式保存工作的方法，且更容易阅读。将 object 输入某些数据库，如 MongoDB，也特别有用。`as_dict()` 规范是由 monty 库（pymatgen 产生的一个通用 python 补充库）提供的。
-
-```python
-with open('structure.json', 'w') as file:
-    json.dump(structure.as_dict(), file)
-```
-
-```python
-with open('structure.json') as file:
-    dct = json.load(file)
-    structure = Structure.from_dict(dct)
-```
-
-可使用 PyYAML 包的 yaml 代替上述任何 json 命令来创建 yaml 文件（JSON 格式效率高，读写速度快，但可读性差；YAML 解析速度慢，但更适合人类阅读）
-
-更精细地控制从文件读取解析结构，可以使用特定的 io 包。这些包也提供了导出文件格式的方法。
-
-```python
-from pymatgen.io.cif import CifParser
-
-parser = CifParser("mycif.cif")
-structure = parser.get_structures()[0]
-```
-
-```python
-from pymatgen.io.vasp.inputs import Poscar
-
-poscar = Poscar.from_file("POSCAR")
-structure = poscar.structure
-```
-
-```python
-from pymatgen.io.xyz import XYZ
-from pymatgen.io.gaussian import GaussianInput
-
-xyz = XYZ.from_file('methane.xyz')
-gau = GaussianInput(xyz.molecule,
-                    route_parameters={'SP': "", "SCF": "Tight"})
-gau.write_file('methane.inp')
+# 生成无序结构
+# 与 SQS 是不同的概念；部分占据的无序结构无法保存成 POSCAR
+structure["K"] = "K0.5Na0.5"
 ```
 
 
@@ -340,21 +342,18 @@ gau.write_file('methane.inp')
 
 ### 计算输入输出管理
 
-- pymatgen.io 模块包含一些计算软件（主要是 VASP）的输入文件编写、解析与输出文件解析子模块
+- pymatgen.io 模块包含一些计算软件（主要是 VASP）的输入文件编写与解析和输出文件解析子模块
 
-- 输入管理的核心类是 `InputSet`。 `InputSet` object 包含计算输入文件所需的所有数据。具体来说，`write_input()` 方法，可将所有文件写到指定位置。`InputGenerator` 类可以看作是完成特定计算任务的 recipe，而 `InputSet` 则包含这些 recipes 以应用于特定体系或结构
+- 输入管理的核心类是 InputSet（如 VaspInputSet）。InputSet 对象包含计算输入文件所需的所有数据。可使用 `write_input()` 方法将所有输入文件生成到指定路径；可使用 `from_directory()` 静态方法从计算目录中构建 InputSet
 
-- 也可以使用 `InputSet.from_directory()` 从计算目录中构建 pymatgen `InputSet`
-
-- 许多解析输出文件的类继承自 `InputFile`，其提供了一个读写文件的标准接口
+- 许多解析输出文件的类继承自 InputFile，其提供了一个读写文件的标准接口
 
 
 ---
 
 ### 其他
 
-- pymatgen 构型可视化
-    - [Pymatgen - how to visualize a crystal structure? - Materials Project / Materials Project Data/API - Materials Science Community Discourse](https://matsci.org/t/pymatgen-how-to-visualize-a-crystal-structure/2761)
+- pymatgen 构型可视化：[Pymatgen - how to visualize a crystal structure? - Materials Project / Materials Project Data/API - Materials Science Community Discourse](https://matsci.org/t/pymatgen-how-to-visualize-a-crystal-structure/2761)
 
 ```python
 # 可视化原子构型
@@ -415,6 +414,9 @@ from pymatgen.core.interface import GrainBoundary, GrainBoundaryGenerator
 read_neb()
 
 MITNEBSet class
+
+
+from pymatgen.command_line.bader_caller import bader_analysis_from_path
 ```
 
 
@@ -442,7 +444,7 @@ MITNEBSet class
 
 ### pymatgen.core
 
-- pymatgen 核心模块，常用的子模块有：`structure`、`sites`、`lattice`、`composition`、`periodic_table`
+- pymatgen 核心模块，常用子模块：structure、sites、 lattice、 composition、 periodic_table
 
 ---
 
@@ -453,13 +455,13 @@ MITNEBSet class
 - Structure 类继承自 IStructure
 
 - Structure 与 Molecule 类的区别
-    - Molecule 类的基本参数为 `species`、 `coords`，Structure 还需指定 `lattice` 参数
+    - Molecule 类的基本参数为 `species`、 `coords`，Structure 类还需指定 `lattice` 参数
     - Molecule 类的 `coords` 参数值需是笛卡尔坐标形式，Structure 类可以是笛卡尔和分数两种坐标形式
-    - Molecule 本质上是 Site objects 的列表；Structure 本质上是 PeriodicSites objects 的列表；可以像 list 一样进行操作
+    - Molecule 类本质上是 Site objects 的列表；Structure 类本质上是 PeriodicSites objects 的列表；两者均可类似 list 一样进行操作
 
 - 查看方法是否会直接修改对象本身：检查是否有 `in_place` 参数及注释是否有 "in place" 字样（“原地” 的意思）
 
-- Structure 类无 `wrap()` 方法（根据 PBC 条件将胞外原子移至胞内），ASE 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
+- Structure 类无 `wrap()` 方法（根据 PBC 将胞外原子移至胞内），ASE 有：[pymatgen - What Does the coordinate list next to the cartesian coordinates of an atom represent in neighbor\_list - Stack Overflow](https://stackoverflow.com/questions/54356049/what-does-the-coordinate-list-next-to-the-cartesian-coordinates-of-an-atom-repre)
 
 - 复杂结构无法通过 `to_primitive()` 方法（以及 vaspkit）将单胞转化成原胞
 
@@ -470,66 +472,62 @@ from pymatgen.core.structure import Structure
 
 
 # 属性
-index                    # 原子位点序号
-num_sites                # 原子数；int
-composition.num_atoms    # 原子数；float
-n_elems                  # 元素数
-symbol_set               # 元素种类；tuple；会进行排序
-types_of_species         # 元素种类；Element
-formula                  # 化学式
-compsition               # 成分；as_dict() 转换成字典形式
-cart_coords              # 笛卡尔坐标
-frac_coords              # 分数坐标
-lattice                  # 点阵
-       .abc              # 晶格常数
-volume                   # 体积
-density                  # 密度
-center_of_mass           # 质心
-site_properties          # dict；位点性质，如 selective_dynamics
-charge                   # 电荷
+index                     # 原子位点序号
+num_sites                 # 原子数；int
+composition.num_atoms     # 原子数；float
+n_elems                   # 元素数
+symbol_set                # 元素种类；tuple；会进行排序
+types_of_species          # 元素种类；Element
+formula                   # 化学式
+compsition                # 成分；as_dict() 转换成字典形式
+cart_coords               # 笛卡尔坐标
+frac_coords               # 分数坐标
+lattice                   # 点阵
+       .abc               # 晶格常数
+volume                    # 体积
+density                   # 密度
+center_of_mass            # 质心
+site_properties           # dict；位点性质，如 selective_dynamics、magmom
+charge                    # 电荷
 
 # 方法
-make_supercell()         # 建立超胞
-append()                 # 添加原子位点
-remove_species()         # 删除元素种类
-remove_sites()           # 删除原子位点
-replace_species()        # 替换元素种类
-translate_sites()        # 移动原子位点
-add_site_property()      # 添加位点性质
-remove_site_property()   # 移除位点性质
-get_neighbors()          # 给定半径，获取给定原子位点的近邻原子
-get_all_neighbors()      # 给定半径，获取所有原子位点的近邻原子
-get_distance()           # 获取两个原子位点间的距离
-get_space_group_info()   # 获取空间群信息
-to_cell()                # 获取单/原胞
-to_conventional()        # 获取单胞；调用 to_cell()
-to_primitive()           # 获取原胞；同上
-interpolate()            # 在两个构型间插值，用于 NEB 计算
-sort()                   # 排序（原子位点按电负性排序；in place）
-get_sorted_structure()   # 排序（not in place）
-apply_strain()           # 对点阵施加应变；默认会修改对象本身
-perturb()                # 对结构中的原子位点施加随机扰动以破坏对称性
-make_supercell()         # 构建超胞
+make_supercell()          # 建立超胞
+append()                  # 添加原子位点
+remove_species()          # 删除元素种类
+remove_sites()            # 删除原子位点
+replace_species()         # 替换元素种类
+translate_sites()         # 移动原子位点
+add_site_property()       # 添加位点性质
+remove_site_property()    # 移除位点性质
+get_neighbors()           # 给定半径，获取给定原子位点的近邻原子
+get_all_neighbors()       # 给定半径，获取所有原子位点的近邻原子
+get_distance()            # 获取两个原子位点间的距离
+get_space_group_info()    # 获取空间群信息
+to_cell()                 # 获取单/原胞
+to_conventional()         # 获取单胞；调用 to_cell()
+to_primitive()            # 获取原胞；同上
+interpolate()             # 在两个构型间插值，用于 NEB 计算
+sort()                    # 排序（原子位点按电负性排序；in place）
+get_sorted_structure()    # 排序（not in place）
+apply_strain()            # 对点阵施加应变；默认会修改对象本身
+perturb()                 # 对结构中的原子位点施加随机扰动以破坏对称性
+make_supercell()          # 构建超胞
 
 # 类方法
-from_spacegroup()        # 根据空间群构建结构
-from_prototype()         # 通过原型结构快速构建结构；实际调用的是 from_spacegroup()
+from_spacegroup()         # 根据空间群构建结构
+from_prototype()          # 通过原型结构快速构建结构；实际调用的是 from_spacegroup()
 
 # 可支持的 prototype
-bcc                      # Nb
-fcc                      # Al
-hcp                      # Mg
-fluorite, caf2           # CaF2
-antifluorite             # Na2O
-rocksalt                 # NaCl
-cscl                     # CsCl
-diamond                  # Si
-zincblende               # ZnS
-perovskite               # BaTiO3
-
-
-# 获取 Structure 某种元素的原子位点序号
-indices_Nb = [i for i, site in enumerate(structure) if site.species_string == "Nb"]
+bcc                       # Nb
+fcc                       # Al
+hcp                       # Mg
+fluorite, caf2            # CaF2
+antifluorite              # Na2O
+rocksalt                  # NaCl
+cscl                      # CsCl
+diamond                   # Si
+zincblende                # ZnS
+perovskite                # BaTiO3
 ```
 
 
@@ -570,19 +568,20 @@ to_unicode_string()       # 将化学式生成 unicode 格式（unicodeify()）
 
 #### periodic_table
 
-- 元素周期表模块，查看元素信息；Element 类继承自 ElementBase
+- 元素周期表模块，查看元素信息/数据
 
 ```python
 from pymatgen.core.periodic_table import Element
 
 # 属性
 data                       # 所有数据
+data["Density of solid"]   # 密度
 Z                          # 原子序数
 number                     # 同上
 symbol                     # 元素符号
 long_name                  # 元素的长名称（单词）
 atomic_mass                # 相对原子质量
-atomic_radius_calculated   # 计算的原子半径；经验值
+atomic_radius              # 计算的原子半径；经验值
 van_der_waals_radius       # 范德华半径；经验值
 ionic_radii                # 离子半径
 electronic_structure       # 电子结构（可查看元素价电子排布）
@@ -609,15 +608,15 @@ print_periodic_table()     # 打印元素周期表
 
 #### sites
 
-- 原子位点
+- 原子位点模块
 
 ```python
 from pymatgen.core.sites import Site, PeriodicSite
 
 # 属性
-coords
-frac_coords
-specie
+coords                     # 原子位置笛卡尔坐标
+frac_coords                # 原子位置分数坐标
+specie                     # 原子种类
 ```
 
 
@@ -625,7 +624,7 @@ specie
 
 #### lattice
 
-- 点阵
+- 点阵模块
 
 ```python
 from pymatgen.core.lattice import Lattice
@@ -636,25 +635,25 @@ Lattice.from_parameters(5, 5, 5, 90, 90, 90)
 Lattice.cubic(5)
 
 # 属性
-abc                         # 点阵常数（长度）
-angles                      # 点阵常数（夹角）
-a                           # 点阵常数 a
-b                           # 点阵常数 b
-c                           # 点阵常数 c
-alpha                       # 点阵常数 alpha
-beta                        # 点阵常数 beta
-gamma                       # 点阵常数 gamma
-reciprocal_lattice          # 倒易点阵
-is_orthogonal               # 是否为正交胞
-is_3d_periodic              # 3 个方向是否都是周期性的
-matrix                      # 矩阵
-inv_matrix                  # 逆矩阵
+abc                        # 点阵常数（长度）
+angles                     # 点阵常数（夹角）
+a                          # 点阵常数 a
+b                          # 点阵常数 b
+c                          # 点阵常数 c
+alpha                      # 点阵常数 alpha
+beta                       # 点阵常数 beta
+gamma                      # 点阵常数 gamma
+reciprocal_lattice         # 倒易点阵
+is_orthogonal              # 是否为正交胞
+is_3d_periodic             # 3 个方向是否都是周期性的
+matrix                     # 矩阵
+inv_matrix                 # 逆矩阵
 
 # 方法
-is_hexagonal                # 是否为六方胞
-d_hkl()                     # 获取晶面间距（不准确，不推荐用）
-get_wigner_seitz_cell()     # wigner seitz 原胞
-get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
+is_hexagonal               # 是否为六方胞
+d_hkl()                    # 获取晶面间距（不准确，不推荐用）
+get_wigner_seitz_cell()    # wigner seitz 原胞
+get_brillouin_zone()       # 布里渊区；倒易点阵的 wigner seitz 原胞
 ```
 
 
@@ -668,12 +667,12 @@ get_brillouin_zone()        # 布里渊区；倒易点阵的 wigner seitz 原胞
 from pymatgen.util.string import ...
 
 # 函数
-formula_double_format()   # 将 Li1.0Fe1.0P1.0O4.0 -> LiFePO4
-latexify()                # 将化学式生成 LaTeX 格式
-htmlify()                 # 将化学式生成 HTML 格式
-unicodeify()              # 将化学式生成 unicode 格式
-latexify_spacegroup()     # 将空间群生成 LaTeX 格式
-unicodeify_spacegroup()   # 将空间群生成 unicode 格式
+formula_double_format()    # 将 Li1.0Fe1.0P1.0O4.0 -> LiFePO4
+latexify()                 # 将化学式生成 LaTeX 格式
+htmlify()                  # 将化学式生成 HTML 格式
+unicodeify()               # 将化学式生成 unicode 格式
+latexify_spacegroup()      # 将空间群生成 LaTeX 格式
+unicodeify_spacegroup()    # 将空间群生成 unicode 格式
 
 
 from pymatgen.util.plotting import ...
@@ -681,16 +680,16 @@ from pymatgen.util.plotting import ...
 # 函数
 pretty_plot()
 pretty_polyfit_plot()
-periodic_table_heatmap()  #
+periodic_table_heatmap()   #
 format_formula()
 get_ax_fig()
-add_fig_kwargs()          # 装饰器
+add_fig_kwargs()           # 装饰器
 
 
 from pymatgen.util.coord import ...
 
 # 函数
-get_angle()               # 获取两个向量的夹角
+get_angle()                # 获取两个向量的夹角
 ```
 
 
@@ -736,20 +735,20 @@ get_d()                 # 获取 slab 的原子层间距
 from pymatge.core.surface import SlabGenerator
 
 
-SlabGenerator           # 类；构建指定晶面的 slab 模型
+SlabGenerator              # 类；构建指定晶面的 slab 模型
 # 参数
-initial_structure       # 初始结构，需是单胞
-miller_index            # 晶面密勒指数
-min_slab_size           # slab 最小尺寸
-min_vacuum_size         # 真空层最小厚度
-center_slab             # 是否将原子移至 z 方向中间
-in_unit_planes          # 设置 min_slab_size 和 min_vacuum_size 参数的单位，False 为 Angstrom，True 为 slab 层数
-primitive               # 是否将生成的 slab reduce 成 primitive cell
-max_normal_search       #
-reorient_lattice        # 使 c 方向平行于第三个点阵矢量
+initial_structure          # 初始结构，需是单胞
+miller_index               # 晶面密勒指数
+min_slab_size              # slab 最小尺寸
+min_vacuum_size            # 真空层最小厚度
+center_slab                # 是否将原子移至 z 方向中间
+in_unit_planes             # 设置 min_slab_size 和 min_vacuum_size 参数的单位，False 为 Angstrom，True 为 slab 层数
+primitive                  # 是否将生成的 slab reduce 成 primitive cell
+max_normal_search          #
+reorient_lattice           # 使 c 方向平行于第三个点阵矢量
 
 # 方法
-get_slabs()             # 获取所有的 slab 构型（数量含义为该 slab 模型下不同终端的数量）
+get_slabs()                # 获取所有的 slab 构型（数量含义为该 slab 模型下不同终端的数量）
 
 
 # 示例
@@ -775,14 +774,16 @@ slabs[0]
 
 ### pymatgen.io.ase
 
+- ASE 接口
+
 - `AseAtomsAdaptor`：将 ASE 中的 `Atoms` 类与 pymatgen 中的 `Structure` 类互相转换
 
 ```python
 from pymatgen.io.ase import AseAtomsAdaptor
 
 # 静态方法
-get_structure()     # atoms 转 Structure
-get_atoms()         # Structure 转 atoms
+get_structure()            # atoms 转 Structure
+get_atoms()                # Structure 转 atoms
 ```
 
 
@@ -790,7 +791,21 @@ get_atoms()         # Structure 转 atoms
 
 ### pymatgen.io.atat
 
+- ATAT 接口
+
 - 只有 Mcsqs 类（功能较一般）
+
+
+---
+
+### pymatgen.io.phonopy
+
+- Phonopy 接口
+
+```python
+from pymatgen.io.phonopy import get_phonopy_structure, get_pmg_structure
+
+```
 
 
 ---
@@ -919,10 +934,10 @@ from pymatgen.io.vasp.inputs import Poscar
 
 
 # 属性
-structure                   # 关联的结构
-comment                     # POSCAR 文件开头的 comment string；# 开头会读取不了
-natoms                      # 原子数目
-site_symbols                # 原子种类
+structure                  # 关联的结构
+comment                    # POSCAR 文件开头的 comment string；# 开头会读取不了
+natoms                     # 原子数目
+site_symbols               # 原子种类
 
 # 方法
 ```
@@ -950,7 +965,49 @@ potcar.write_file("POTCAR")
 
 ### pymatgen.io.vasp.sets
 
-- `MPRelaxSet`、`MPStaticSet` 等类均继承于 `VaspInputSet`，都有 `write_input()` 方法（可能会发生 POSCAR 中的元素重新排序的情况）
+- `VaspInputSet` 类
+
+```python
+from pymatgen.io.vasp.sets import VaspInputSet
+
+VaspInputSet(...)
+
+# 参数
+user_incar_settings        # 自定义 INCAR 参数
+user_kpoints_settings      # 自定义 KPOINTS 参数
+user_potcar_settings       # 自定义元素赝势
+user_potcar_functional     # 自定义泛涵
+force_gamma                # 是否使用 Gamma-centered K 点生成方式
+config_dict                # config_dict["POTCAR"]["Mg"]
+use_structure_charge       # 若为 True，会将体系的电荷赋值给 INCAR 中的 NELECT 参数
+
+# 方法
+write_input()              # 生成 VASP 计算用的 4 个输入文件；可能会发生 POSCAR 中的元素重新排序的情况
+# 参数
+output_dir=...
+potcar_spec=True
+
+# 静态方法
+from_prev_calc()           # 基于之前的 VASP 计算目录中生成静态计算输入文件
+```
+
+- 不同 project 的 VASP 输入文件参数设置 yaml 文件
+
+```python
+# 弛豫计算；MP 默认的输入文件参数设置
+# 没有设置 EDIFFG；EDIFF 设置的是 EDIFF_PER_ATOM: 5.0e-05
+# 没有 MPStaticSet.yaml
+# MPSCANRelaxSet 有设置 EDIFFG
+pymatgen/io/vasp/MPRelaxSet.yaml
+
+# INCAR 文件中的 MAGMOM 元素磁矩参数
+pymatgen/io/vasp/VASPIncarBase.yaml
+
+# MIT 团队高通量项目的输入文件参数设置
+pymatgen/io/vasp/MITRelaxSet.yaml
+```
+
+- `MPRelaxSet`、`MPStaticSet` 等类均继承于 `VaspInputSet`（很重要，多仔细阅读其 docstring）
 
 - `MPRelaxSet` 没有设置 EDIFFG 参数：[MPRelaxSet.write\_input() no EDIFFG in INCAR - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprelaxset-write-input-no-ediffg-in-incar/44359)
 
@@ -969,22 +1026,11 @@ zero_weighted_reciprocal_density   # a zero weighted uniform mesh
 zero_weighted_line_density         # a zero weighted line mode mesh
 ```
 
+- 常见计算类型 Set
+
 ```python
-## yaml 文件
-# 弛豫计算；MP 默认的输入文件参数设置
-# 没有设置 EDIFFG；EDIFF 设置的是 EDIFF_PER_ATOM: 5.0e-05
-# 没有 MPStaticSet.yaml
-# MPSCANRelaxSet 有设置 EDIFFG
-pymatgen/io/vasp/MPRelaxSet.yaml
-
-# INCAR 文件中的 MAGMOM 元素磁矩参数
-pymatgen/io/vasp/VASPIncarBase.yaml
-
-# MIT 团队高通量项目的输入文件参数设置
-pymatgen/io/vasp/MITRelaxSet.yaml
-
-
-## 该模块中的类
+# MP 表示 Matetials Project
+# MVL 表示 Materials Virtual Lab
 MPRelaxSet         # 弛豫计算；reciprocal_density: 64
 MPStaticSet        # 静态计算；参数基于 MPRelaxSet
 MPMetalRelaxSet    # 金属体系的弛豫计算；参数基于 MPRelaxSet；"ISMEAR": 1, "SIGMA": 0.2，"reciprocal_density": 200
@@ -992,34 +1038,49 @@ MPHSERelaxSet      # 和 MPRelaxSet 一样，有添加 HSE 参数和 vdW 纠正
 MatPESStaticSet    # 生成 potential energy surface(PES) 数据
 MPHSEBSSet         # HSE 能带结构计算
 MPSOCSet           # SOC 计算
-MVLElasticSet      # MVL 表示 Materials Virtual Lab；弹性常数计算
+MVLElasticSet      # 弹性常数计算
 MVLGWSet           # GW 计算
 MVLSlabSet         # 表面 slab 计算
 MVLGBSet           # 晶界计算
 LobsterSet         # Lobster 计算
+MVLNPTMDSet        # NPT 系综 AIMD 计算
+```
 
+- MPRelaxSet.yaml 文件主要参数设置
 
-from pymatgen.io.vasp.sets import VaspInputSet
+```yaml
+PARENT: VASPIncarBase
+INCAR:
+  ALGO: FAST
+  EDIFF_PER_ATOM: 5.0e-05
+  ENCUT: 520
+  IBRION: 2
+  ISIF: 3
+  ISMEAR: -5
+  ISPIN: 2
+  LORBIT: 11
+  LREAL: AUTO
+  LWAVE: false
+  NELM: 100
+  NSW: 99
+  PREC: Accurate
+  SIGMA: 0.05
+KPOINTS:
+  reciprocal_density: 64
+POTCAR_FUNCTIONAL: PBE
+```
 
-VaspInputSet(...)
+- `MVLNPTMDSet` NPT 系综 AIMD 参数设置
 
-# 参数
-user_incar_settings         # 自定义 INCAR 参数
-user_kpoints_settings       # 自定义 KPOINTS 参数
-user_potcar_settings        # 自定义元素赝势
-user_potcar_functional      # 自定义泛涵
-force_gamma                 # 是否使用 Gamma-centered K 点生成方式
-config_dict                 # config_dict["POTCAR"]["Mg"]
-use_structure_charge        # 若为 True，会将体系的电荷赋值给 INCAR 中的 NELECT 参数
-
-# 方法
-write_input()               # 生成 VASP 计算用的 4 个输入文件
-# 参数
-output_dir=...
-potcar_spec=True
-
-# 静态方法
-from_prev_calc()            # 基于之前的 VASP 计算目录中生成静态计算输入文件
+```python
+# pymatgen/io/vasp/sets.py
+"LANGEVIN_GAMMA": [10] * self.structure.n_elems,
+"LANGEVIN_GAMMA_L": 1,
+"NBLOCK": 1,
+"KBLOCK": 100,
+"PMASS": 10,
+"PSTRESS": 0,
+"SMASS": 0,
 ```
 
 
@@ -1040,16 +1101,16 @@ from pymatgen.io.vasp.ouputs import Outcar
 
 
 # 属性
-drift                          # 每个离子步的 Total drift
-run_stats                      # "Total CPU time used (sec)" 相关内容
-final_energy                   # "energy(sigma->0)"
-final_energy_wo_entrp          # "energy without entropy"
-final_fr_energy                # "free energy TOTEN"
+drift                      # 每个离子步的 Total drift
+run_stats                  # "Total CPU time used (sec)" 相关内容
+final_energy               # "energy(sigma->0)"
+final_energy_wo_entrp      # "energy without entropy"
+final_fr_energy            # "free energy TOTEN"
 
 # 方法
-read_pattern()                 # 通用 pattern 解析
-read_table_pattern()           # 解析类列表数据；分成 header、main body 和 footer 三部分，返回 main body 中的内容
-read_neb()                     # 读取 VASP 中常规的 NEB 或 CINEB 数据
+read_pattern()             # 通用 pattern 解析
+read_table_pattern()       # 解析类列表数据；分成 header、main body 和 footer 三部分，返回 main body 中的内容
+read_neb()                 # 读取 VASP 中常规的 NEB 或 CINEB 数据
 
 
 # 示例
@@ -1077,12 +1138,12 @@ from pymatgen.io.vasp.ouputs import Oszicar
 
 
 # 属性
-ionic_steps                     # 离子步数据
-electronic_steps                # 电子步数据
-final_energy                    # E0
-all_energies                    # 电子步 + 离子步
+ionic_steps                # 离子步数据
+electronic_steps           # 电子步数据
+final_energy               # E0
+all_energies               # 电子步 + 离子步
 # 方法
-as_dict()                       # key 为 ionic_steps 和 electronic_steps 的 dict
+as_dict()                  # key 为 ionic_steps 和 electronic_steps 的 dict
 ```
 
 
@@ -1096,29 +1157,29 @@ BSVasprun 类：Vasprun 的优化版本（继承至 Vasprun），只解析能带
 from pymatgen.io.vasp.ouputs import Vasprun
 
 # 属性
-converged               # 检查离子步、电子步是否都收敛
-converged_electronic    # 检查电子步是否收敛
-converged_ionic         # 检查离子步是否收敛
-incar                   # INCAR 文件内容
-kpoints                 # KPOINTS 文件内容
-potcar_spec             # POTCAR 种类
-potcar_symbols          # POTCAR 符号
-vasp_version            # VASP 版本
-initial_structure       # 初始构型
-final_structure         # 最终构型
-structures              # 每个离子步构型
-final_energy            # 最终能量 E0
-nionic_steps            # 离子步步数
-ionic_steps             # 每步离子步内容
-complete_dos            # 获取 DOS 数据
-tdos                    # 总态密度
-idos                    # 积分态密度
-pdos                    # 类型是列表；索引方式 pdos[atomindex][orbitalindex]
+converged                  # 检查离子步、电子步是否都收敛
+converged_electronic       # 检查电子步是否收敛
+converged_ionic            # 检查离子步是否收敛
+incar                      # INCAR 文件内容
+kpoints                    # KPOINTS 文件内容
+potcar_spec                # POTCAR 种类
+potcar_symbols             # POTCAR 符号
+vasp_version               # VASP 版本
+initial_structure          # 初始构型
+final_structure            # 最终构型
+structures                 # 每个离子步构型
+final_energy               # 最终能量 E0
+nionic_steps               # 离子步步数
+ionic_steps                # 每步离子步内容
+complete_dos               # 获取 DOS 数据
+tdos                       # 总态密度
+idos                       # 积分态密度
+pdos                       # 类型是列表；索引方式 pdos[atomindex][orbitalindex]
 
 # 方法
-as_dict()               # 将解析的 vasprun.xml 数据转换为 dict
-get_computed_entry()    # 将 vasprun.xml 中的计算结果转换为 ComputedEntry 对象
-get_band_structure()    # 获取能带结构数据；line_mode=True
+as_dict()                  # 将解析的 vasprun.xml 数据转换为 dict
+get_computed_entry()       # 将 vasprun.xml 中的计算结果转换为 ComputedEntry 对象
+get_band_structure()       # 获取能带结构数据；line_mode=True
 
 # 每个 ionic_step 所含的数据 dict key
 dict_keys(
@@ -1188,21 +1249,38 @@ from pymatgen.io.vasp.outputs import Elfcar, Chgcar
 from pymatgen.io.lammps.data import LammpsData
 
 # 方法
-write_file()        # 写入 LAMMPS data 格式文件
+write_file()               # 写入 LAMMPS data 格式文件
 
 # 类方法
-from_structure()    # 从 Structure 导入
-from_file()         # 从文件导入
+from_structure()           # 从 Structure 导入
+from_file()                # 从文件导入
 
 # 属性
 # 以 Pandas DataFrame 格式存储信息
-atoms               # 原子信息（type x y z 等）
-box                 # 盒子信息
-masses              # 相对原子质量
-atom_style          # atom_style 类型
-velocities          # 速度
-force_field         # 力场信息
-topology            # 拓扑信息
+atoms                      # 原子信息（type x y z 等）
+box                        # 盒子信息
+masses                     # 相对原子质量
+atom_style                 # atom_style 类型
+velocities                 # 速度
+force_field                # 力场信息
+topology                   # 拓扑信息
+```
+
+
+---
+
+### pymatgen.io.phonopy
+
+```python
+from pymatgen.io.phonopy import get_phonopy_structure, get_pmg_structure
+
+
+# 函数
+get_phonopy_structure      # 将 Structure 转换成 PhonopyAtoms
+get_pmg_structure          # 将 PhonopyAtoms 转换成 Structure
+
+get_phonon_band_structure_from_fc
+get_phonon_dos_from_fc
 ```
 
 
@@ -1383,14 +1461,14 @@ angle_tol          # 默认值 5
 from pymatgen.analysis.eos import BirchMurnaghan
 
 eos = BirchMurnaghan(volumes=..., energies=...)
-eos.fit()         # EOS 拟合
+eos.fit()                  # EOS 拟合
 
-eos.results       # EOS 拟合结果
-eos.v0            # 平衡体积拟合值
-eos.e0            # 平衡能量拟合值
-eos.b0_GPa        # 体模量 B 拟合值
+eos.results                # EOS 拟合结果
+eos.v0                     # 平衡体积拟合值
+eos.e0                     # 平衡能量拟合值
+eos.b0_GPa                 # 体模量 B 拟合值
 
-eos.plot()        # 绘制 EOS 拟合曲线
+eos.plot()                 # 绘制 EOS 拟合曲线
 ```
 
 
@@ -1414,11 +1492,11 @@ from pymatgen.analysis.interfaces.coherent_interfaces import CoherentInterfaceBu
 from pymatgen.analysis.interfaces.zsl import ZSLGenerator
 
 
-zsl                              # Zur 和 McGill 晶格匹配算法 模块
-ZSLGenerator                     # 基于 zsl 算法的界面生成 类
+zsl                        # Zur 和 McGill 晶格匹配算法 模块
+ZSLGenerator               # 基于 zsl 算法的界面生成 类
 
-coherent_interfaces              #
-CoherentInterfaceBuilder         # 共格界面构建 类
+coherent_interfaces        #
+CoherentInterfaceBuilder   # 共格界面构建 类
 ```
 
 
@@ -1426,11 +1504,24 @@ CoherentInterfaceBuilder         # 共格界面构建 类
 
 #### elasticity
 
+- [Calculation error of elastic tensors - Materials Project / Materials Project Data/API - Materials Science Community Discourse](https://matsci.org/t/calculation-error-of-elastic-tensors/2721)
+
 ```python
+from pymatgen.analysis.elasticity import ElasticTensor, Strain, Stress
 # 施加正应变/剪切应变，生成变形后的结构
 from pymatgen.analysis.elasticity import DeformedStructureSet
 
 DeformedStructureSet()
+
+Stress()
+Strain()
+
+
+ElasticTensor
+
+calculate_stress()
+
+from_voigt()
 ```
 
 
@@ -1455,9 +1546,16 @@ DeformedStructureSet()
 # 绘制相图 Convex Hull
 from pymatgen.analysis.phase_diagram import PDEntry, PhaseDiagram
 from pymatgen.core.composition import Composition
+from pymatgen.entries.computed_entries import ComputedEntry
+from pymatgen.io.vasp.outputs import Vasprun
 
+# 方式 1
 entry1 = PDEntry(composition=..., energy=...)
-entry2 = ...
+# 方式 2
+entry2 = ComputedEntry(composition=..., energy=...)
+# 方式 3
+vasprun = Vasprun("vasprun.xml")
+entry3 = vasprun.get_computed_entry()
 ...
 
 entries = [entry1, entry2, ...]
@@ -1520,11 +1618,11 @@ get_pattern(structure).d_hkls
 from pymatgen.analysis.adsorption import AdsorbateSiteFinder, plot_slab
 
 # 方法
-find_adsorption_sites()        # 搜索吸附位点
-add_adsorbate()                # 添加吸附原子/分子
+find_adsorption_sites()    # 搜索吸附位点
+add_adsorbate()            # 添加吸附原子/分子
 
 # 函数
-plot_slab()                    # 可视化吸附位点
+plot_slab()                # 可视化吸附位点
 ```
 
 
@@ -1701,187 +1799,13 @@ species_map = {"Si":{"Si":0.9, "C":0.1}}
 
 ### pymatgen.phonon
 
-- [https://pymatgen.org/pymatgen.phonon.html](https://pymatgen.org/pymatgen.phonon.html)
-
-
----
-
-### API
-
-- 调用 MP API 获取 MP 数据
-
-- 参考：
-    - [新版和老版Materials Project API使用指南 - Jun's Blog](https://www.jun997.xyz/2022/04/10/b438dad131c8.html)
-    - [利用Materials Project的API下载结构文件](https://zhuanlan.zhihu.com/p/618452536)
-
-- [MPRester through proxy server - pymatgen - Materials Science Community Discourse](https://matsci.org/t/mprester-through-proxy-server/4485)
-
-- 新 API：
-    - API Key 获取：[Materials Project - API](https://materialsproject.org/api)
-    - 官方教程：[Getting Started - Materials Project Documentation](https://docs.materialsproject.org/downloading-data/using-the-api/getting-started)
-
-- 安装
-
-```bash
-pip install -U mp_api
-```
-
-- 新 API 使用
-
 ```python
-# 新 API 模块导入
-from mp_api.client import MPRester
-
-with MPRester("api-key") as mpr:
-    docs = mpr.materials.summary.search(...)
-
-    # 查看可获取内容的字段，可用做筛选 query data 的参数
-    mpr.materials.summary.available_fields
-
-    # 根据元素获取 ComputedStructureEntry
-    mpr.get_entries_in_chemsys()
-
-    # 能带、DOS
-    mpr.get_bandstructure_by_material_id()
-    mpr.get_dos_by_material_id()
-
-    # 声子
-    mpr.get_phonon_bandstructure_by_material_id()
-    mpr.get_phonon_dos_by_material_id()
-
-    # 相图（可绘制二、三、四元相图）
-    mpr.materials.thermo.get_phase_diagram_from_chemsys(chemsys=...,)
-    chemsys="Ti-Al"          # 二元
-    chemsys="Ti-Al-Nb"       # 三元
-    chemsys="Ti-Al-Nb-Zr"    # 四元
+from pymatgen.phonon.bandstructure import PhononBandStructureSymmLine
+from pymatgen.phonon.dos import PhononDos as PhononDosObject
+from pymatgen.phonon.plotter import PhononBSPlotter, PhononDosPlotter, ThermoPlotter
 
 
-
-# search() 参数
-material_ids=["mp-149"]  # 根据材料 ID
-chemsys="Si-O",          # 仅含 Si O 两种元素的材料
-elements=["Si", "O"]     # 至少含 Si O 两种元素的材料
-has_props=["dos"]        # 是否有该性质
-fields=["band_gap"]      # 字段
-is_stable=True           # 是否为稳定材料
-
-
-# fields 参数常用字段
-material_id                # MP 对该材料标注的 ID；需 str()
-composition_reduced        # 成分（约化）；需 as_dict()
-formula_pretty             # 化学式（约化）
-structure                  # 结构
-symmetry
-        .crystal_system    # 晶系；需 str()
-        .symbol            # 空间群
-nsites                     # 构型原子数
-energy_per_atom            # 能量/原子
-formation_energy_per_atom  # 形成能/原子
-energy_above_hull          # 形成能与在 Hull 上的形成能差值
-is_stable                  # 材料是否是稳定的
-fields_not_requested       # 列出未请求的字段
-```
-
-- 旧 API 使用
-
-```python
-# 旧 API模块导入
-from pymatgen.ext.matproj import MPRester
-
-# 从 MP 获取结构
-with MPRester("api-key") as mpr:
-
-    # 相关方法源码路径 pymatgen/ext/matproj_legacy.py
-    mpr.query()                         # 采用类 MongoDB 的 query 语法从 MP 中获取数据
-    mpr.get_structure_by_material_id()  # 根据材料 ID 获取结构
-    mpr.get_download_info()             # 获取来自 NoMaD repository 的裸 VASP 输出文件 URL
-    mpr.get_gb_data()                   # 获取晶界数据
-    mpr.get_surface_data()              # 获取表面能数据
-
-# query 参数
-criteria                   # query 准则
-properties                 # 性质
-
-# properties 列表内容
-formula
-spacegroup
-formation_energy_per_atom
-elasticity
-```
-
-
----
-
-#### 获取表面性质、晶界数据
-
-- 只能通过 API 下载表面性质、晶界构型及对应数据（对应于页面 Properties 部分的 Surface、Heterostructures 内容）
-
-- 获取表面性质、晶界数据
-```python
-import os
-
-from mp_api.client import MPRester
-
-API_KEY = os.getenv("PMG_MAPI_KEY")
-with MPRester(api_key=API_KEY) as mpr:
-    # 获取 表面性质 数据
-    surface_properties_doc = mpr.materials.surface_properties.search(material_ids=["mp-75"])
-
-    print(len(surface_properties_doc))  # 1
-    print(len(surface_properties_doc[0].surfaces))  # 13
-    print(surface_properties_doc[0].surfaces[0].miller_index)
-    print(surface_properties_doc[0].surfaces[0].structure)
-
-    # 获取 晶界 数据
-    grain_boundary_doc = mpr.materials.grain_boundaries.search(material_ids=["mp-75"])
-
-    print(len(grain_boundary_doc))  # 10
-    print(grain_boundary_doc[0].sigma)
-    print(grain_boundary_doc[0].initial_structure)
-    print(grain_boundary_doc[0].final_structure)
-
-
-```
-
-- 查看表面性质、晶界可获取的数据
-
-```python
-from emmet.core.grain_boundary import GrainBoundaryDoc
-from emmet.core.surface_properties import SurfacePropDoc
-
-print(GrainBoundaryDoc.model_fields.keys())
-dict_keys(
-    [
-        "material_id",
-        "sigma",
-        "type",
-        "rotation_axis",
-        "gb_plane",
-        "rotation_angle",
-        "gb_energy",
-        "initial_structure",
-        "final_structure",
-        "pretty_formula",
-        "w_sep",
-        "cif",
-        "chemsys",
-        "last_updated",
-    ]
-)
-
-print(SurfacePropDoc.model_fields.keys())
-dict_keys(
-    [
-        "surfaces",
-        "weighted_surface_energy_EV_PER_ANG2",
-        "weighted_surface_energy",
-        "surface_anisotropy",
-        "pretty_formula",
-        "shape_factor",
-        "weighted_work_function",
-        "has_reconstructed",
-        "material_id",
-        "structure",
-    ]
-)
+# 声子谱绘图
+phonon_bs_plotter = PhononBSPlotter(bs=ph_bs)
+phonon_bs_plotter.save_plot()
 ```

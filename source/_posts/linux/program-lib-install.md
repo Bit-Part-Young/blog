@@ -24,8 +24,7 @@ password:
 ```bash
 sudo apt install tree
 
-# 源码编译
-# 可能会连接不上
+# 源码编译；可能会无法连接
 wget https://mama.indstate.edu/users/ice/tree/src/tree-2.1.1.tgz --no-check-certificate
 
 make PREFIX=. install && make clean

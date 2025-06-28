@@ -24,10 +24,11 @@ password:
 
 - 命令行工具安装方式：
     - 官网下载二进制文件
+        - 管理从 GitHub 下载的二进制文件：[bin](https://github.com/marcosnils/bin)、[stew](https://github.com/marwanhawari/stew)
     - 包管理器
-        - Linux：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）
+        - Linux：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）、Homebrew（不是太好用）
         - Windows：Scoop、Winget、Chocolatey 等
-        - macOS：Homebrew
+        - macOS：Homebrew（也支持 Linux，）
         - 程序端：Python（pip、pipx、conda），Rust（cargo），Nodejs（npm），Go（go）
     - 从 [webinstall.dev](https://webinstall.dev/) 网站安装（后三者可以在无 root 权限情况下安装）
     - 源码编译安装
@@ -47,7 +48,7 @@ password:
 
 ### 概览
 
->lsd、ripgrep、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo 安装
+>lsd、ripgrep、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo / bin / stew 工具进行安装
 
 系统相关
 
@@ -212,7 +213,7 @@ Markdown 相关
 
 ```bash
 # 搜索整个 apt package；回车安装
-apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse \ --preview-window=right:70%:wrap \ --preview 'apt-cache show {1}' | xargs -r sudo apt install -y
+apt-cache search '' | sort | cut --delimiter ' ' --fields 1 | fzf --multi --cycle --reverse --preview-window=right:70%:wrap --preview 'apt-cache show {1}' | xargs -r sudo apt install -y
 
 # 用 bat 作为 previewer
 fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
@@ -356,4 +357,17 @@ primitive -i input.png -o output.png -n 100
 
 # mdq 使用
 car *.md | mdq '# title'
+
+
+# yazi 配置
+# 路径 ~/.config/yazi/yazi.toml
+[mgr]
+ratio           = [ 2, 2, 4 ]     # 父目录，当前路径，预览三者之间的比例
+
+[preview]
+max_width       = 1000
+image_quality   = 90
+
+[tasks]
+image_bound     = [ 0, 0 ]        # 0 表示不限制图片的大小
 ```

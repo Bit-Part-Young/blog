@@ -168,7 +168,6 @@ wslconfig                       # 查看 WSL 配置
 - 将 Windows Chrome 浏览器软链至 WSL 2 Ubuntu
 
 ```bash
-
 sudo ln -sf /mnt/d/XXX/chrome.exe /usr/bin/chrome
 ```
 

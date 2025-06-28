@@ -26,7 +26,7 @@ password:
 
 ## BCC 结构
 
-- BCC 结构间隙位置示意图
+- BCC 结构间隙位置示意图（扁八面体间隙、非正四面体间隙）
 
 ![BCC-intestitial-sites-1.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307152048455.png)
 
@@ -117,7 +117,7 @@ direct
 
 - latgen 中关于 HCP 间隙原子位置的选项（2 个八面体间隙 + 4 个四面体间隙）
 
-```text
+```bash
 There are 2 octahedral interstitial sites within lattice HCP(001):
   1) [0.333333 0.666667 0.25]
   2) [0.333333 0.666667 0.75]

@@ -29,18 +29,32 @@ WIP...
 ### 参考资料
 
 - Bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
+
+
 - [Comprehensive Linux Cheatsheet](https://gto76.github.io/linux-cheatsheet/)
+
 - 在线的 Unix 和 Linux 手册页（man 页）：[Linux Man Pages Online](http://man.he.net/)
+
 - Shell 基础及 CLI 工具推荐：[lec1.md](https://github.com/TonyCrane/PracticalSkillsTutorial/blob/master/slides/src/lec1.md)
+
 - 中科大 Linux 教程：[欢迎 - Linux 101](https://101.lug.ustc.edu.cn/)
+
 - [GitHub - ustclug/Linux201-docs: Linux 201 进阶教程阅读资料](https://github.com/ustclug/Linux201-docs)
+
 - [GitHub - linuxhitchhiker/THGLG: Linux 漫游指南](https://github.com/linuxhitchhiker/THGLG)
+
 - [GitHub - dunwu/linux-tutorial: :penguin: Linux教程，主要内容：Linux 命令、Linux 系统运维、软件运维、精选常用Shell脚本](https://github.com/dunwu/linux-tutorial)
+
 - [真有人用Linux？（Linux下的工作、科研、学习与生活） - 水源社区](https://shuiyuan.sjtu.edu.cn/t/topic/281312)
+
 - [工具是第一生产力——Linux入门教程](https://ysyx.oscc.cc/slides/2306/02.html)
+
 - Linux 设置：[Setting up Linux • Linux tutorial](https://pranabdas.github.io/linux/setup)
+
 - [GitHub - dibingfa/flash-linux0.11-talk: 你管这破玩意叫操作系统源码 — 像小说一样品读 Linux 0.11 核心代码](https://github.com/dibingfa/flash-linux0.11-talk)
+
 - Linux 内核与发行版之间的关系与区别：[Linux的发行版 描述不同发行版之间的区别与联系 - 法月将臣 - 博客园](https://www.cnblogs.com/feifa/p/15430524.html)
+
 - [Linux 教程 - Note/wiki/linux\_teach.md at master · Kicamon/Note · GitHub](https://github.com/Kicamon/Note/blob/master/wiki/linux_teach.md)
 
 - Linux 软件：[Office & Productivity Apps - AlternativeTo](https://alternativeto.net/category/productivity/)

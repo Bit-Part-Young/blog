@@ -31,9 +31,6 @@ password:
 
 - TeX Live 跨版本升级：[Upgrade - TeX Live - TeX Users Group](https://tug.org/texlive/upgrade.html)
 
-
-![different schemes of texlive](https://i.stack.imgur.com/Edat8.png)
-
 - 信息查看
 
 ```bash
@@ -66,6 +63,7 @@ cd install-tl-*
 
 # 安装
 perl ./install-tl --scheme=full    # 或 medium small
+# 参数含义
 --no-interaction    # 不进行交互
 -gui                #  启用 GUI 安装程序
 
@@ -168,8 +166,9 @@ texlive/XXXX/tlpkg/backups          # tlmgr 升级的包的备份；可删除
 sudo tlmgr backup --all --clean=0   # 删除上述目录中的备份
 
 tlmgr update --self --all           # 升级全部宏包
---self      # 更新 tlmgr 命令本身
---all       # 更新 TeX Live 系统中的所有宏包和字体
+# 参数含义
+--self                              # 更新 tlmgr 命令本身
+--all                               # 更新 TeX Live 系统中的所有宏包和字体
 
 tlmgr option repository             # 查看当前使用的源
 tlmgr option repository url         # 换源
