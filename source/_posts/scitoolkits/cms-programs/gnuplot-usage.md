@@ -167,8 +167,14 @@ grid                      # 网格
 # 其他
 set border lw 2.0         # 设置坐标轴线宽
 
+
 # 添加垂直线
+# 指定 y 的范围
 set arrow 1 nohead from 0.1,0 to 0.1,1
+# 自适应当前绘图的 y 轴范围
+# dashtype 1 实线（默认）；2：短虚线；3 点线；4 长短虚线
+set arrow 1 nohead from 0.5, graph 0 to 0.5, graph 1 dashtype 4 lw 3
+
 
 # 设置 x 轴刻度标签
 set xtics ("{/Symbol G}" 0, "X" 0.1)

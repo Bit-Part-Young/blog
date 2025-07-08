@@ -264,7 +264,12 @@ np.dump()               # 保存数组到二进制文件中
 np.tofile()             # 将数组写入文件中
 
 np.savetxt()
+
 np.loadtxt()
+# 参数
+skiprows
+use_cols                # 指定列数据
+
 
 # 从普通文本中读取数据
 np.genfromtxt()

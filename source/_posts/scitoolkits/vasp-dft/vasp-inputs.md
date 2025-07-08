@@ -60,7 +60,7 @@ password:
     - 第 1 行：Comment line 注释行；可对体系进行描述，也可空着
     - 第 2-5 行：Scaling factor and lattice，缩放因子和基矢；与体系的晶格常数符合即可；第二行值如果为负数，表示体积
     - 第 6-7 行：Ion species and numbers，元素种类（VASP4 可没有该行）及对应原子数目；**元素种类的顺序需与 POTCAR 文件中的一致**；
-    - 第 8-N 行：Ion positions 原子坐标；Direct/D 表示分数坐标，Cartesian/C 表示笛卡尔坐标（若第 8 行是 Selective Dynamics，原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定；**默认值为 T，表示该方向可运动，F 表示固定**）
+    - 第 8-N 行：Ion positions 原子坐标；Direct/D 表示分数坐标，Cartesian/C 表示笛卡尔坐标（若第 8 行是 Selective Dynamics，可简写成 S/SD；原子位置后面每个方向需添加 T/F，表示是否对 x y z 方向进行固定；**默认值为 T，表示该方向可运动，F 表示固定**；CONTCAR 中也对应会有该信息）
     - 原子坐标信息之后是原子的初始速度信息（一般可不用设置）
 
 - 注意事项：

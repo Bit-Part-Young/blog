@@ -334,6 +334,8 @@ node2 60 CPU 核 耗时 42min
 # BCC Nb 6x6x6 432 个原子，单个 Γ 点，静态计算（加速效果明显）
 1 块 4090 耗时 1h 2min
 
+# BCC 原胞 Nb 6x6x6 216 个原子，KSPACING=0.15，静态计算；报显存不足的错
+
 # FCC Al 3x3x3 108 个原子，KSPACING=0.15，静态计算
 1 块 3090 耗时 7min
 ```
@@ -517,7 +519,7 @@ IF (LCHAIN) CALL chain_init( T_INFO, IO)
 CALL chain_init( T_INFO, IO)
 ```
 
-- 备份 `src/chain.F`；复制 vtstcode-XXX 中对应 VASP 版本（如 vtstcode5、vtstcode6.3；vtstcode6.3 中多了 `ml_pyamff.F` 文件和 `pyamff_fortran/` 目录）的目录下的所有文件到 `src/`：
+- 备份 `src/chain.F`；拷贝 vtstcode-XXX 中对应 VASP 版本（如 vtstcode5、vtstcode6.3；vtstcode6.3 中多了 `ml_pyamff.F` 文件和 `pyamff_fortran/` 目录）的目录下的所有文件到 `src/`：
 
 ```bash
 cp src/chain.F src/chain.F-org
@@ -572,4 +574,19 @@ cp: cannot stat 'vasp': No such file or directory
 make[1]: *** [makefile:130: all] Error 1
 make[1]: Leaving directory 'XXX/vtst-vasp630/build/std'
 make: *** [makefile:17: std] Error 2
+```
+
+
+---
+
+- 计算完成后，OUTCAR 尾部会多出以下内容
+
+```bash
+stress matrix after NEB project (eV)
+     0.00481      0.00000      0.00000
+     0.00000      0.00481     -0.00000
+     0.00000      0.00000      0.00481
+ FORCES: max atom, RMS     0.000000    0.000000
+ FORCE total and by dimension    0.000000    0.000000
+ Stress total and by dimension    0.008333    0.004811
 ```

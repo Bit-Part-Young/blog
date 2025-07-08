@@ -23,9 +23,15 @@ password:
 
 ## 介绍
 
+- VASP 预、后处理工具
+    - 预处理：不同计算作业的输入文件生成与检验；结构对称性分析等
+    - 后处理：力学性质；AIMD；能带；态密度；费米面分析等
+
 - VASPKIT 官方教程：[Tutorials — VASPKIT 1.5 documentation](https://vaspkit.com/tutorials.html)
 
 - VASPKIT Features：[Features — VASPKIT 1.5 documentation](https://vaspkit.com/features.html)
+
+- [VASPKIT 功能及教程贴汇总](https://mp.weixin.qq.com/s/JjDxW7fxR8EUJDFLgtIQTQ)
 
 - ATOMKIT 介绍：[ATOMKIT Code — VASPKIT 1.5 documentation](https://vaspkit.com/atomkit.html)
 
@@ -34,38 +40,41 @@ password:
 - [vaspkit pro](https://vaspkit.com/vaspkitpro.html) 有进阶功能（能使用 Structure Utility 中的全部功能）
 
 
+
 ---
 
 ## 使用
 
-- [VASPKIT 功能及教程贴汇总](https://mp.weixin.qq.com/s/JjDxW7fxR8EUJDFLgtIQTQ)
+### 安装
 
-- vaspkit 处理 DOS、能带计算数据演示：[13\_vasp/V2PC/01\_K\_Path\_Bulk\_Structure.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/01_K_Path_Bulk_Structure.md)
-
-- vaspkit 中的 INCAR 选项
-    - SR：标准弛豫，只弛豫原子位置，晶胞体积、形状不变，ISIF=2
-    - LR：点阵弛豫，全弛豫，ISIF=3
-
-- vaspkit 生成的 HCP 结构（及对称性不是很高的结构） KPOINTS 文件中的 K 点生成方式是 Gamma-center（无论选择 G 还是 MP，会自动纠正）
-
-- vaspkit K 点设置：推荐精度：0.03（梅师兄）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 k\*a 值大于 30，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；0.03 对应的 K 点密度是 1/0.03=33.33
-
-- vaspkit 的能带结构数据获取前提是 K-path 是 Line-Mode 的
-
-- 能带绘制相关数据文件：`REFORMATTED_BAND.dat`、`KLABELS`
-
-- 态密度绘制相关数据文件：`TDOS.dat`、`IDOS.dat`（积分 DOS）
-
-- 没有绘制体系分态密度（总的 s、p、d 轨道）选项
-
-- 将自己的脚本作为 vaspkit 的补充功能（整合进 VASP）：拷贝脚本至 `vaspkit.X.X.X/utilities` 目录，在 `~/.vaspkit` 中的 `#USER_DEFINED` 处按示例格式填写内容（实用性一般）；参考：[atom_constrain.py程序: 固定原子层坐标](https://mp.weixin.qq.com/s/0-ldDyDSb-t2d7yIyC7h_A)
+- 在 [vaspkit - Binaries](https://sourceforge.net/projects/vaspkit/files/Binaries/) 中下载 vaspkit 最新版本，解压，拷贝配置文件，对可执行文件设置软链接
 
 ```bash
-#USER_DEFINED
-#           id      interpreter      script          argv       description
-u3        python      layers_count.py   .TRUE.      count_atomic_layer
-#END_USER_DEFINED
+cp how_to_set_environment_variables ~/.vaspkit
+
+# 自定义参数
+PBE_PATH                   # PBE 赝势路径；需是完整路径，不能使用环境变量
+VASPKIT_UTILITIES_PATH     # vaspkit 工具路径
+PYTHON_BIN                 # Python 解释器路径；可选
 ```
+
+
+---
+
+### 命令行使用
+
+```bash
+vaspkit -help       # 查看帮助
+vaspkit             # 进入交互模式
+vaspkit < XXX.in    # 推荐此命令，适用于批处理
+
+echo -e "102\n2\n0.04\n" | vaspkit
+```
+
+
+---
+
+### utilities 目录
 
 - vaspkit 源码中的 utilities 目录结构
 
@@ -95,6 +104,38 @@ cif2pos.py             # cif 转 VASP POSCAR 格式
 vbz.py                 # 可视化 Brillouin Zone
 get_lattice.f90        #
 bader2pqr.py           # 将 bader 输出转成 pqr 文件用于 VMD 可视化
+```
+
+
+---
+
+### 其他
+
+- vaspkit 处理 DOS、能带计算数据演示：[13\_vasp/V2PC/01\_K\_Path\_Bulk\_Structure.md at main · Yiwei666/13\_vasp · GitHub](https://github.com/Yiwei666/13_vasp/blob/main/V2PC/01_K_Path_Bulk_Structure.md)
+
+- vaspkit 中的模板 INCAR 选项
+    - SR：标准弛豫，只弛豫原子位置，晶胞体积、形状不变，ISIF=2
+    - LR：点阵弛豫，全弛豫，ISIF=3
+
+- 在 vaspkit 中，对于 HCP 及对称性不是很高的结构，K 点生成方式是 Gamma center（无论选择 G 还是 MP，会自动纠正）
+
+- vaspkit K 点设置：推荐精度：0.03（梅师兄）；trick：每个方向上的 k 点数与其对应的晶格常数的乘积 k\*a 值大于 30，为推荐 k 点密度；每个方向上的 ka 尽可能保持相同或接近；0.03 对应的 K 点密度是 1/0.03=33.33
+
+- vaspkit 的能带结构数据获取前提是 K-path 为 Line-Mode
+
+- 能带绘制相关数据文件：`REFORMATTED_BAND.dat`、`KLABELS`
+
+- 态密度绘制相关数据文件：`TDOS.dat`、`IDOS.dat`（积分 DOS）
+
+- 没有绘制体系分态密度（总的 s、p、d 轨道）选项
+
+- 将自己的脚本作为 vaspkit 的补充功能（整合进 VASP）：拷贝脚本至 `vaspkit.X.X.X/utilities` 目录，在 `~/.vaspkit` 中的 `#USER_DEFINED` 处按示例格式填写内容（**实用性一般**）；参考：[atom_constrain.py程序: 固定原子层坐标](https://mp.weixin.qq.com/s/0-ldDyDSb-t2d7yIyC7h_A)
+
+```bash
+#USER_DEFINED
+#           id      interpreter      script          argv       description
+u3        python      layers_count.py   .TRUE.      count_atomic_layer
+#END_USER_DEFINED
 ```
 
 

@@ -761,6 +761,8 @@ virial = atoms.info["virial"]           # 可以
 
 - 施加约束
 
+- 注：pymatgen 只支持 ASE 中的 FixAtoms and FixCartesian，其他 constraints 在 Atoms 转 Structure 时不会被设置
+
 ```python
 from ase.constraints import FixAtoms, FixedLine, FixedPlane
 
@@ -769,7 +771,7 @@ atoms = ...
 c = FixAtoms(mask=atoms.symbols == "Cu")
 c = FixAtoms(mask=atoms.positions[:, 2] < 1.0)
 
-# 允许沿 y 方向移动（固定 x、y 坐标轴）
+# 允许沿 z 方向移动（固定 x、y 坐标轴）
 c = FixedLine(
     indices=[atom.index for atom in atoms],
     direction=[0, 0, 1],
@@ -828,9 +830,11 @@ ax.set_title(label=None)
 
 ### ase.db
 
-- db 文件
+- ASE databases 文件
 
-- `db.select(sort)` 中的 `sort` 为 含 key 的 str，含 `-` 时，降序
+- db 文件 TUI 接口：[GitHub - steenlysgaard/texase: A textual user interface for ASE databases](https://github.com/steenlysgaard/texase)
+
+- `db.select(sort=...)` 中的 `sort` 为含 key 的 str，含 `-` 时，降序
 
 ```python
 from ase.db import connect

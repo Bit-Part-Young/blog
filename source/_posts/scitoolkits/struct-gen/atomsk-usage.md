@@ -274,8 +274,8 @@ atomsk POSCAR -fractional vasp     # 分数坐标
 -shift 0 0 15 -cell add 15 z       # 在 z 轴下半部分添加真空层
 
 # 固定原子坐标轴
--fix x -fix y                      # 固定所有原子的 x、y 轴
--fix x below 4.05 z                # 原子 z 轴坐标低于一定值，其 x 轴被固定
+-fix x -fix y                      # 固定原子的 x、y 轴
+-fix x below 4.05 z                # 根据 z 轴数值固定 x 轴
 
 -def zx 5%                         # 使 z 轴沿 x 方向进行切应变
 

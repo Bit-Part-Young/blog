@@ -28,7 +28,7 @@ password:
 
 - Linux 系统：Ubuntu 22.04，内核：5.19.0-43-generic
 - root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
-- 任务调度系统：Slurm
+- 作业调度系统：Slurm
 - CPU：2 $\times$ 32 核 Intel Xeon Platinum 8369B，共 64 核
 - GPU：2 $\times$ 24G RTX 3090；调用 GPU 时只能一整块调用，显存自动分配
 - Intel 套件：Intel-oneAPI 2022.1.0
@@ -136,7 +136,7 @@ vmd....................To visualize md trajectories
 
 - NVIDIA GPU 参数：
     - CUDA Core（NVIDIA GPU 的计算核心单元）
-    - Tensor Core（专门用于深度学习任务中的张量计算）
+    - Tensor Core（专门用于深度学习作业中的张量计算）
     - RT Core（加速光线追踪计算）
 
 - NVIDIA GPU 架构：Volta（伏特，第 6 代）、Turing（图灵，第 7 代）、Ampere（安培、第 8 代）、Hopper（霍珀，第 9 代）
@@ -225,9 +225,9 @@ model.to(device)
 
 - Linux 系统：Ubuntu 16.04；内核：4.15.0-120-generic
 - root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序
-- 任务调度系统：PBS
+- 作业调度系统：PBS
 - CPU：Intel Xeon E5520、Intel Xeon E5630（node 9）、Intel Xeon E5-2620（node 11）；共 100 核，共 12 个节点（node1~11 + manager；其中 node2，6，7，8 经常 down）
-- GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理任务）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）
+- GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理作业）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）
 - 内存：登录、Manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G
 - Intel 套件：Composer XE 2015
 - glibc 版本过低（编译安装新版本较为复杂）
@@ -240,7 +240,7 @@ model.to(device)
 - [计算系统 - 上海交大超算平台用户手册](https://docs.hpc.sjtu.edu.cn/system/computesystem.html)
 - Linux 系统：Rocky Linux（基于 Centos）
 - root 权限：无；无法使用 yum 命令安装软件程序
-- 任务调度系统：Slurm；Pi、ARM、思源一号提交的任务在任一平台都可以看到
+- 作业调度系统：Slurm；Pi、ARM、思源一号提交的作业在任一平台都可以看到
 - CPU、内存：超算中的 CPU 核有内存配比限制
 - GPU：超算的 GPU 队列很难排到
 - 程序/软件：Pi 的一些基础程序的版本比思源一号旧许多；查看：`module av`
@@ -290,6 +290,8 @@ ssh username@armlogin.hpc.sjtu.edu.cn
 
 - 交大超算登录现需要与 jAccount 绑定：[账号安全信息管理 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/accounts/security.html)
 
+- [SSH 使用技巧 - Linux 201](https://201.ustclug.org/dev/ssh/)
+
 - 无需输入用户名和密码即可登录，还可以作为服务器的别名来简化使用。免密登录需建立从远程主机（集群的登录节点）到本地主机的 SSH 信任关系。建立信任关系后，双方将通过 SSH 密钥对进行身份验证。
 
 - 在本地主机上生成的 SSH 密钥对，输入以下命令，**持续 Enter 即可**；将在 `~/.ssh`（或 `C:\User\username\.ssh`） 路径下生成密钥对文件 `id_rsa` 和 `id_rsa.pub`；将 `id_rsa.pub` 的内容（注意字符之间只有一个空格，复制后需注意）添加到远程主机的 `~/.ssh/authorized_keys` 文件中。
@@ -299,6 +301,8 @@ ssh-keygen -t rsa
 ```
 
 - 密钥对生成方式有 ssh-keygen 和 putty（ppk 格式，WinSCP 软件密钥验证需该格式），其中后者可通过 Mobaxterm 软件中 tool 工具中的 MobaKeyGen 来生成（在空白处乱按加快生成速度；将生成的公钥保存成 file.pub，私钥保存成 file.ppk）。
+
+- `~/.ssh/authorized_keys` 文件是 SSH 服务端用于验证客户端公钥的文件，每行一个公钥
 
 - 设置服务器别名：编辑或创建 `~/.ssh/config`（或 `C:\User\XXX\.ssh\config`）
 
@@ -384,37 +388,84 @@ Load key "id_rsa": bad permissions
 - 在超算上使用 Python 插件中的 Pylance 语言服务器（LSP）以及 Jupyter 插件，常会出现 Pylance 崩溃的问题（Pi 稍微稳定些），因为超算的登录节点资源有限，建议将 Pylance 换成 Jedi（功能不及 Pylance），会稍微稳定些；建议不在超算平台上使用 Jupyter Notebook；Master 暂无相关问题
 
 
+---
+
+### 跳板
+
+- SSH 通过跳板机（登录节点）直接访问内网机器（计算节点）
+
+- SSH config 中的 RemoteCommand 命令实际作用不大，不建议使用
+
+```bash
+# 查看（内网）IP 地址
+hostname -I
+ip a | grep inet
+
+ss -tuln      # 查看有哪些端口正在监听
+
+
+Host login
+    HostName login_ip
+    User username
+    Port ...
+    IdentityFile ~/.ssh/id_rsa
+
+Host target
+    HostName ip_target
+    User username_target
+    Port ...
+    IdentityFile ~/.ssh/id_rsa
+    ProxyJump login  # 关键参数
+```
+
 
 ---
 
-## 任务准备、提交、检查
+## 作业准备、提交、检查
 
 - 参考：[超算中作业管理系统PBS/LSF/Slurm的常用命令 - Ji-Huan Guan](https://www.guanjihuan.com/archives/42460)
 
 ---
 
-### Slurm 任务调度系统
+### Slurm 作业调度系统
+
+- Slurm 无法指定 CPU 核由具体单独的一颗 CPU 全部提供；[How to ask SLURM scheduler for CPUs on the same socket/NUMA node? - Stack Overflow](https://stackoverflow.com/questions/77990469/how-to-ask-slurm-scheduler-for-cpus-on-the-same-socket-numa-node)（该 URL 并未提供解决方案）
 
 - [Slurm 作业调度系统 - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/job/slurm.html)
 
-- 通过 Jobid 来进入计算目录：[A12 通过job-ID快速进入计算目录 - Learn VASP The Hard Way](https://www.bigbrosci.com/2018/12/15/A12/)
+- 介绍很详细：[简介 — 中国科大超级计算中心用户使用手册 ：2024-05-18 版文档](https://scc.ustc.edu.cn/zlsc/user_doc/html/slurm/slurm.html)
 
 ```bash
+# 基本术语
+socket                       # CPU 插槽，可简单理解为 CPU
+core                         # CPU 核，单颗 CPU 可以具有多颗 CPU 核
+job                          # 作业
+job step                     # 作业步，单个作业（job）可以有个多作业步
+tasks                        # 作业数，单个作业或作业步可有多个作业，一般一个作业需一个 CPU 核，可理解为所需的 CPU 核数
+rank                         # 秩，如 MPI 进程号
+
+
 # 常用命令
-sbatch job.slurm             # 提交任务
-squeue                       # 查看任务状态
-scancel                      # 删除任务
-scontrol                     # 查看任务详细状态
-sinfo                        # 查看集群状态
-   
-scontrol show job            # 所有任务详细状态
-scontrol show job JobId      # 指定任务详细状态
+sbatch job.slurm             # 提交作业
+squeue                       # 查看作业状态
+scancel                      # 删除作业
+scontrol                     # 查看作业详细状态
+sinfo                        # 查看集群状态（显示队列、节点信息）
+
+scontrol show job            # 所有作业详细状态
+scontrol show job JobId      # 指定作业详细状态
 scontrol show node NodeName  # 节点详细状态
 sinfo --partition=64c512g    # 查看特定队列
 
 # 需要 root 用户进行操作
-scontrol suspend JobId       # 挂起任务（释放资源）
-scontrol resume JobId        # 恢复任务
+scontrol suspend JobId       # 挂起作业（释放资源）
+scontrol resume JobId        # 恢复作业
+
+# 修改排队作业的所需 CPU 核数、指定节点、排除节点（也可修改其他作业参数）
+scontrol update JobId=... NumTasks=...
+scontrol update JobId=... NumCPUs=...
+scontrol update JobId=... NodeList=... ExcNodeList=...
+
 
 # 格式化输出队列、节点信息
 sinfo -o "%.15P %.6D %.7G %.7t %.14C %.10e %.9O"
@@ -444,7 +495,7 @@ down                         # 节点故障暂不可用
 drain                        # 节点故障，但不影响已运行的作业
 
 
-# squeue 任务状态
+# squeue 作业状态
 R                            # RUNNING；正在运行
 PD                           # PENDING；正在排队
 CG                           # 即将完成
@@ -454,15 +505,15 @@ S                            # SUSPENDED；挂起
 CA                           # CANCELED；作业被取消
 TO                           # TIMEOUT；超时
 
-# 显示正在运行的任务信息（JobId STATE WORK_DIR）
-squeue -u yangsl -t RUNNING --format "%.9i %.8T   %Z"
+# 显示正在运行的作业信息（JobId STATE WORK_DIR）
+squeue -t RUNNING --format "%.9i %.8T   %Z"
 
 
-# 查看一周内提交至 Slurm 队列系统的已完成任务信息（完善该 Shell 脚本，参数设为天数）
+# 查看一周内提交至 Slurm 队列系统的已完成作业信息（完善该 Shell 脚本，参数设为天数）
 sacct --starttime=2025-04-05 --endtime=2025-04-12 --state=COMPLETED --format=JobID,JobName,State,Start,End,Elapsed,Workdir
 
-JobID                        # 任务 ID
-JobName                      # 任务名称
+JobID                        # 作业 ID
+JobName                      # 作业名称
 State                        # 状态
 Start                        # 开始时间
 End                          # 结束时间
@@ -473,15 +524,13 @@ Workdir                      # 工作目录
 
 ---
 
-### PBS 任务调度系统
+### PBS 作业调度系统
 
-- Manager 为此作业调度系统
-
-- `submit` 命令是孔老师写的一个 PBS 任务提交脚本
+- Manager 中的 `submit` 命令是孔老师写的一个 PBS 作业提交脚本
 
 - `-nc` 参数含义：不将文件复制到计算节点中；**推荐用带 `-nc` 参数的命令**
 
-- 提交任务命令会自动生成对应的 `PBS.batch` 脚本；当提交的任务出错时，修改 `PBS.batch` 脚本内容，之后可使用 `qsub PBS.batch` 命令提交任务
+- 提交作业命令会自动生成对应的 `PBS.batch` 脚本；当提交的作业出错时，修改 `PBS.batch` 脚本内容，之后可使用 `qsub PBS.batch` 命令提交作业
 
 ```bash
 #  常用命令
@@ -503,11 +552,11 @@ qstat                  # 显示所有作业的状态
       -x               # 已完成的作业
 
 
-# VASP 任务提交命令
+# VASP 作业提交命令
 submit -nc -n 8 vasp
 submit -n 8 vasp
 
-# LAMMPS 任务提交命令
+# LAMMPS 作业提交命令
 submit -nc -n 8 lmp -in in.file
 submit -n 8 lmp -in in.file
 
@@ -535,13 +584,13 @@ alias qa='qstat -a'
 alias qn='qstat -u xxx|wc -l|awk '\\''{if ($1>0) print "Number of jobs by xxx: " $1-5; else print "Number of jobs by xxx: 0"}'\\'';qstat -a|wc -l|awk '\\''{print "Number of jobs by all: " $1-5}'\\'''
 
 # q 相关命令
-qstat       # 查看所有任务的状态
-qa          # 查看所有任务的状态（信息比 qstat 详细）
-q           # 查看自己任务的状态
+qstat       # 查看所有作业的状态
+qa          # 查看所有作业的状态（信息比 qstat 详细）
+q           # 查看自己作业的状态
 qq          # 查看计算节点的状态（excl 正在运行；free 空闲；down 出现故障）
-run         # 查看自己任务的结果输出路径和信息
-qn          # 查看自己提交任务的数量和 manager 目前已提交的任务总数
-ssh node02  # 连接计算节点；任务到了截止时间后程序会终止，只会输出 error 和 out 文件，可通过 ssh node 节点到计算该任务的节点中去，在 scratch 目录中可以找到该任务计算的结果
+run         # 查看自己作业的结果输出路径和信息
+qn          # 查看自己提交作业的数量和 manager 目前已提交的作业总数
+ssh node02  # 连接计算节点；作业到了截止时间后程序会终止，只会输出 error 和 out 文件，可通过 ssh node 节点到计算该作业的节点中去，在 scratch 目录中可以找到该作业计算的结果
 
 # 计算时间
 Elap Time   # 实际时间（小时: 分）
@@ -618,15 +667,15 @@ module show [MODULE]       # 列出该模块的信息，如路径（lib include 
 
 ---
 
-### 任务提交示例
+### 作业提交示例
 
 - SBATCH 参数
 
 ```bash
---job-name=[name]          # 或 -J；任务名称
+--job-name=[name]          # 或 -J；作业名称
 --nodes=[count]            # 或 -N；节点数
---ntasks=[count]           # 或 -n；该任务使用 count 个核
---ntasks-per-node=[count]  # 每个节点使用 count 个核；--ntasks 参数的优先级高于该参数
+--ntasks=[count]           # 或 -n；该作业使用的 CPU 核数
+--ntasks-per-node=[count]  # 每个节点使用的 CPU 核数；--ntasks 参数的优先级高于该参数
 --partition [partition]    # 或 -p；指定队列
 --output=[file_name]       # 或 -o；标准输出文件
 --error=[file_name]        # 或 -e；标准错误文件  
@@ -740,7 +789,9 @@ bash test.sh
 
 ---
 
-### Master 任务提交脚本示例
+### Master 作业提交脚本示例
+
+- 课题组服务器，提交的作业使用的 CPU 核数由 2 颗 CPU（Socket）分别部分提供时，计算速度会很慢（16 原子扰动胞 20 核计算，由原本的 5min 变成 60min，慢了 20 倍），终端使用 mpirun 运行作业的速度则是正常的
 
 - 不建议跨 node\[1-2\] 与 master 节点（这 2 种节点的 CPU 世代不同）
 
@@ -753,7 +804,7 @@ bash test.sh
 
 #SBATCH -x master
 
-#SBATCH --no-requeue           # 取消集群断电重启后任务自动提交
+#SBATCH --no-requeue           # 取消集群断电重启后作业自动提交
 ```
 
 - 使用 node\[1-2\] 中的 1 个节点（不指定节点）
@@ -765,7 +816,7 @@ bash test.sh
 
 #SBATCH -x master
 
-#SBATCH --no-requeue           # 取消集群断电重启后任务自动提交
+#SBATCH --no-requeue           # 取消集群断电重启后作业自动提交
 ```
 
 - 使用 node\[1-2\] 中的 1 个节点（指定节点）
@@ -778,7 +829,7 @@ bash test.sh
 #SBATCH -w node2               # 指定节点
 #SBATCH -x node1               # 排除指定节点；多个的写法 node1,master
 
-#SBATCH --no-requeue           # 取消集群断电重启后任务自动提交
+#SBATCH --no-requeue           # 取消集群断电重启后作业自动提交
 ```
 
 - VASP
@@ -862,11 +913,11 @@ fi
 
 ---
 
-### 任务状态检查
+### 作业状态检查
 
-- 任务提交后，会生成 `jobid.err` 和 `jobid.out` 文件
-    - `err` 文件为空（大部分情况下），表示提交的任务未出错
-    - `err` 文件不为空，表示提交的任务出错；需查看 `err` 文件中的出错提示，进行修改
+- 作业提交后，会生成 `jobid.err` 和 `jobid.out` 文件
+    - `err` 文件为空（大部分情况下），表示提交的作业未出错
+    - `err` 文件不为空，表示提交的作业出错；需查看 `err` 文件中的出错提示，进行修改
     - 若 `err`、`out` 文件出现以下内容，大概率为超算平台出现故障，请与相关负责人联系
 
 ```bash
@@ -1035,131 +1086,15 @@ srun -p 64c512g -n 1 --pty /bin/bash
 
 - 超算上没有 mpi4py（需自己安装）：[Mpi4py - 上海交大超算平台用户手册 Documentation](https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/mpi4py.html)
 
----
-
-### 源码编译
-
-- 参考：[linux源码编译安装软件原理 - 人生的哲理 - 博客园](https://www.cnblogs.com/renshengdezheli/p/13954234.html)
-
-- 编译前，需理解 Makefile 文件中的命令含义！
+- 源码编译一般步骤（编译前，需理解 Makefile 文件中的命令含义！）
 
 ```bash
-./configure   # 配置、生成 Makefile 文件
+./configure        # 配置、生成 Makefile 文件
 # 常见参数
---prefix      # 自定义安装路径
+--prefix           # 自定义安装路径
 
-make          # 编译
-make install  # 安装
-```
-
-
----
-
-### vaspkit
-
-- VASP 预、后处理工具；[Overview — VASPKIT 1.5 documentation](https://vaspkit.com/)
-- 预处理：不同计算任务的输入文件生成与检验；结构对称性分析等
-- 后处理：力学性质；能带；态密度；费米面分析等
-- 安装：在 [vaspkit - Binaries](https://sourceforge.net/projects/vaspkit/files/Binaries/) 中下载 vaspkit 最新版本，解压，拷贝配置文件，对可执行文件设置软链接
-
-```bash
-cp how_to_set_environment_variables ~/.vaspkit
-
-# 自定义参数
-PBE_PATH                   # PBE 赝势路径；需是完整路径，不能使用环境变量
-VASPKIT_UTILITIES_PATH     # vaspkit 工具路径
-PYTHON_BIN                 # python 路径；可选
-```
-
-- 赝势：可拷贝 Master 或 Manager 上的赝势上传到超算目录；赝势格式如下：
-
-```text
-pseudopotentials
-├── lda_paw
-│   ├── Ag
-│   │   ├── POTCAR
-│   │   └── PSCTR
-```
-
-- 使用教程：[Tutorials — VASPKIT 1.5 documentation](https://vaspkit.com/tutorials.html#quick-start)
-
-```bash
-vaspkit -help       # 查看帮助
-vaspkit             # 进入交互模式
-vaspkit < XXX.in    # 推荐此命令，适用于批处理
-
-echo -e "102\n2\n0.04\n" | vaspkit
-```
-
-
----
-
-### sqsgen
-
-- 安装：[How to install sqsgen? — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/installation_guide.html)
-- 命令行使用：[CLI reference — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/cli_interface.html)
-- 多亚点阵 sqsgen 生成示例：[Advanced topics — sqsgenerator 0.2 documentation](https://sqsgenerator.readthedocs.io/en/latest/advanced_topics.html)
-
----
-
-sqs 生成程序
-
-- 目标函数为 WC 参数；
-- 生成速度相比 ATAT 及 ICET 相关模块要快，功能也更多；
-- 10000 个原子构型的 sqs 生成速度在 2min 以内；
-- 可事先估计生成 sqs 结构所耗费时间；可计算 WC 参数等；
-- 浓度用具体的原子数目表示，比百分比形式更方便；
-- 有 OpenMP 和 OpenMP+MPI 两种版本。
-
----
-
-conda 版本（OpenMP 版本）
-
-```bash
-conda create --name sqsgen python=3
-
-conda install -c conda-forge sqsgenerator
-
-# 导出构型文件需要以下 package
-pip install pymatgen ase
-```
-
----
-
-编译版本（OpenMP+MPI）
-
-```bash
-conda create --name sqsgen -c conda-forge boost boost-cpp cmake gxx_linux-64 libgomp numpy pip python=3
-
-git clone https://github.com/dgehringer/sqsgenerator.git
-```
-
-- OpenMP 版本
-
-```bash
-conda activate sqsgen
-cd sqsgenerator
-
-SQS_Boost_INCLUDE_DIR="${CONDA_PREFIX}/include" \\
-SQS_Boost_LIBRARY_DIR_RELEASE="${CONDA_PREFIX}/lib" \\
-CMAKE_CXX_COMPILER="g++" \\
-CMAKE_CXX_FLAGS="-DNDEBUG -O2 -mtune=native -march=native" \\
-pip install .
-```
-
-- OpenMP+MPI 版本
-
-```bash
-conda activate sqsgen
-cd sqsgenerator
-
-SQS_MPI_HOME="${HOME}/yangsl/src/openmpi" \\
-SQS_USE_MPI=ON \\
-SQS_Boost_INCLUDE_DIR="${CONDA_PREFIX}/include" \\
-SQS_Boost_LIBRARY_DIR_RELEASE="${CONDA_PREFIX}/lib" \\
-CMAKE_CXX_COMPILER="g++" \\
-CMAKE_CXX_FLAGS="-DNDEBUG -O2 -mtune=native -march=native" \\
-pip install .
+make               # 编译
+make install       # 安装
 ```
 
 
@@ -1207,7 +1142,7 @@ pip install .
 
 - 报错作业咨询，请将用户名、作业 ID、路径、作业脚本名邮件发至 [hpc@sjtu.edu.cn](mailto:hpc@sjtu.edu.cn)。
 - NodeFail：计算节点故障导致作业运行失败，重新提交作业即可，失败作业的机时系统会自动返还。
-- 运行程序时提示缺少 xxx.so 文件或者显示任务被 kill：如果是在登录节点出现该报错，请申请计算节点再做尝试。
+- 运行程序时提示缺少 xxx.so 文件或者显示作业被 kill：如果是在登录节点出现该报错，请申请计算节点再做尝试。
 
 ---
 

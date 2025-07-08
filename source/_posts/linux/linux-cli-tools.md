@@ -24,7 +24,7 @@ password:
 
 - 命令行工具安装方式：
     - 官网下载二进制文件
-        - 管理从 GitHub 下载的二进制文件：[bin](https://github.com/marcosnils/bin)、[stew](https://github.com/marwanhawari/stew)
+        - 管理从 GitHub 下载的二进制文件：[bin](https://github.com/marcosnils/bin)、[stew](https://github.com/marwanhawari/stew)、[eget](https://github.com/zyedidia/eget)、[dra](https://github.com/devmatteini/dra)
     - 包管理器
         - Linux：Ubuntu（apt、snap 等）、Arch Linux（pacman、yay 等）、Homebrew（不是太好用）
         - Windows：Scoop、Winget、Chocolatey 等
@@ -37,6 +37,7 @@ password:
     - [命令行常用工具的替代品 - 阮一峰的网络日志](https://www.ruanyifeng.com/blog/2022/01/cli-alternative-tools.html)
     - [GitHub - ibraheemdev/modern-unix: A collection of modern/faster/saner alternatives to common unix commands.](https://github.com/ibraheemdev/modern-unix)
     - 有意思/搞笑的 GitHub repo：[GitHub - terremoth/awesome-hilarious-repos: Awesome hilarious github repositories](https://github.com/terremoth/awesome-hilarious-repos)
+    - [GitHub - Correia-jpv/fucking-awesome-cli-apps](https://github.com/Correia-jpv/fucking-awesome-cli-apps)
     - [My Favorite CLI Tools](https://switowski.com/blog/favorite-cli-tools/)
     - [GitHub - sts10/rust-command-line-utilities: A curated list of command-line utilities written in Rust](https://github.com/sts10/rust-command-line-utilities)
 
@@ -88,6 +89,7 @@ password:
 - 替代 `top`
     - [btop](https://github.com/aristocratos/btop)
     - [htop](https://github.com/htop-dev/htop)
+    - [pumas](https://github.com/graelo/pumas)（只用于 Apple Silicon）
 
 - 查看系统资源：[glances](https://github.com/nicolargo/glances)
 
@@ -101,13 +103,16 @@ password:
     - [neofetch](https://github.com/dylanaraps/neofetch)、[neofetch-themes](https://github.com/Chick2D/neofetch-themes)
     - [fastfetch](https://github.com/fastfetch-cli/fastfetch)（比 neofetch 更快）
     - [hyfetch](https://github.com/hykilpikonna/hyfetch)
-    - macchina
+    - [macchina](https://github.com/Macchina-CLI/macchina)
+    - [cpufetch](https://github.com/Dr-Noob/cpufetch)（不支持 Apple Silicon）
 
 - 磁盘分析
     - [ncdu](https://dev.yorhel.nl/ncdu)（有时较耗时）
     - dysk（仅限 Linux）
 
 - 查看 coreutils 工具的进度条：[progress](https://github.com/Xfennec/progress)
+
+- 交互式杀掉进程：[pik](https://github.com/jacek-kurlit/pik)
 
 - 安全替代 `rm` 
     - [trash.sh](https://github.com/qqAys/trash.sh)

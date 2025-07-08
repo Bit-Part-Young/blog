@@ -205,6 +205,8 @@ chflags nohidden <path>    # 取消隐藏
 
 # 剪切移动文件：command + C 复制，然后 command + option + V 将其移动到目标目录
 
+# 按住 command 键，可移动非当前窗口
+
 # 强制关机：按住 Touch ID 直到屏幕变黑并且电脑关闭
 
 # 唤起 Alfred 软件，输入 Restart、Sleep、Shut down 实现重启、睡眠、关机
@@ -621,9 +623,8 @@ kitty +kitten ssh server        # 连接远程服务器
 - iTerm2 设置：
     - 字体：Prefrences -- profiles -- text
     - 主题：[GitHub - cdalvaro/github-vscode-theme-iterm](https://github.com/cdalvaro/github-vscode-theme-iterm?tab=readme-ov-file)
-
-- 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 -- 高级 -- 持续时间缩短成 1.5
-    - [In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
+    - neovim 编辑退出后内容仍显示在屏幕中：解决方法 Preferences -- Profile -- "Save lines to scrollback in alternate screen mode" 取消勾选；[iTerm2 : Prevent lines from vim from going into scroll back](https://apple.stackexchange.com/questions/356481/iterm2-prevent-lines-from-vim-from-going-into-scroll-back)
+    - 使用 Mos 后，iTerm2 的滚轮速度会加快：设置 -- 高级 -- 持续时间缩短成 1.5；[In iTerm2, scrolling speeds don't change properly in mouse-enabled programs · Issue #82 · Caldis/Mos · GitHub](https://github.com/Caldis/Mos/issues/82)
 
 - Alfred 搜索内容设置：Features -- Default Results，可以勾选 Essential 和 Extras 中的所有内容（文件夹、文本文件、文档、图片、压缩文件等）
 

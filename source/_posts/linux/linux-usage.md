@@ -30,6 +30,9 @@ WIP...
 
 - Bash 速查表：[bash cheatsheet](https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh)
 
+- [GitHub - trinib/Linux-Bash-Commands: :godmode: Ultimate list of Linux bash commands, cheatsheets and resources](https://github.com/trinib/Linux-Bash-Commands)
+
+- [GNU Coreutils 中的所有命令](https://www.gnu.org/software/coreutils/manual/html_node/index.html)
 
 - [Comprehensive Linux Cheatsheet](https://gto76.github.io/linux-cheatsheet/)
 
@@ -276,9 +279,15 @@ mkdir -p xxx/xxx        # 创建多级目录；不会报错
 
 tail -n +2 file         # 从第二行开始输出内容
 
+# cp 相关参数
+--preserve=timestamps   # 保留时间戳  
+--preserve=mode         # 保留模式  
+--preserve=ownership    # 保留所有权  
+-p                      # 包括上述三者
+
 # 建议设置的命令 alias
 alias mv="mv -v"
-alias cp="cp -v"
+alias cp="cp -pv"
 alias rm="rm -v"
 
 # 对比目录差异
@@ -630,8 +639,11 @@ awk '{sum += $2} END {print sum}' file
 # 逆向排列
 awk '{ for (i = NF; i > 0; i = i - 1) {printf("%s ", $i)} {printf("\n")}}' file
 
-# 列拼接文件
-awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > concat
+# 列拼接
+awk 'FNR == NR {a[NR] = $0; next} {print a[FNR], $0}' file1 file2 > file.concat
+
+# 去除一行末尾多余的空格
+sed 's/[[:space:]]\+$//' file
 
 # 去除重复行（包括空行）
 awk '!seen[$0]++' file
@@ -770,6 +782,8 @@ file         # 文件
 date                       # Sun Mar 12 00:32:26 CST 2023
 date +%Y%m%d               # 20240228
 date +"%Y/%m/%d %H:%M:%S"  # 2023/03/12 00:32:33
+
+date -d "next Friday"      # 通过字符串描述显示时间
 ```
 
 - hostname：输出主机名
@@ -874,6 +888,12 @@ zcat                   # 查看 gz 压缩文件内容
 cal 2024               # 显示 2024 年的日历；或 cal 8 2024，精确到月
 
 env                    # 显示环境变量
+
+factor                 # 对正整数进行质因数分解
+
+tty                    # 
+
+numfmt                 # 数字格式化
 
 pstree                 # 将所有进程以树状图显示
 nmon                   # 监控系统资源（应该不常用）

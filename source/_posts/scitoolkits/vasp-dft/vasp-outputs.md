@@ -164,6 +164,9 @@ mag=$(grep 'mag=' OSZICAR | awk '{print $10}')
 # 耗时
 sec=$(grep 'Total CPU time used' OUTCAR | awk '{print $6}')
 
+# 查看每个离子步的耗时
+grep -iE 'loop\+' OUTCAR
+
 # 由 KPOINTS 生成的 K 点总数（仅示例）
 head -n 38 IBZKPT | tail -n 35 | awk '{sum+=$4} END {print sum}'
 
@@ -378,6 +381,8 @@ DAV:  13    -0.675771007310E+02   -0.31732E-07   -0.91291E-05  2928   0.667E-02
 - VASP 计算结束后的构型文件
 
 - CONTCAR 中的 CONT 是继续的意思
+
+- VASP OUTCAR 中晶格常数精度是 10 位有效数字，CONTCAR 中是 16 位有效数字
 
 
 

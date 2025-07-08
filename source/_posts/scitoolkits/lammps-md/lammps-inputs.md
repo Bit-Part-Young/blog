@@ -392,7 +392,7 @@ create_box        2 box bond/type 2
 # 语法
 create_atoms type style args keyword values ...
 
-type       # 原子类型
+type                # 原子类型
 
 # style
 box                 # 在盒子内填充原子

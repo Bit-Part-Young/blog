@@ -93,6 +93,7 @@ export I_MPI_ADJUST_REDUCE=3
     - [如何解决sub space Matrix is not hermitian in DAV 报错？ - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-39103-1-1.html)
 
 ```bash
+# 在服务器 node 节点上 层错构型计算 出现该报错
 WARNING: Sub-Space-Matrix is not hermitian in DAV
 
 # 解决方法

@@ -33,13 +33,20 @@ password:
     - 安装 packages：`make` 使用 `make yes-<package>`； `CMake` 使用 ` -D PKG_<NAME>=on`
     - Build LAMMPS
 
-- **LAMMPS 可在已编译好的基础上添加其他 package 进行补充编译**
+- **LAMMPS 可在已编译好的基础上添加其他 package 或 pair_style 源码进行增量编译**
 
 ```bash
 # cmake
 cmake -D PKG_XXX=on ../cmake
 # make
 make yes-XXX
+
+
+# 可增量编译（cmake 已测试，make 未测试）
+# 拷贝 tabgap pair_style 源代码文件
+cp lammps/pair_tabgap.* LAMMPS_PATH/src/
+# 编译
+make -jN
 ```
 
 - 所有可用的 packages 及其描述：[6.1. Available Packages — LAMMPS documentation](https://docs.lammps.org/Packages_list.html)
@@ -346,16 +353,16 @@ yes-all                      # 93 个 packages；使用 make no-lib 变成 65 �
 
 # Build LAMMPS
 # 根据 OPTIONS 编译；优先考虑使用
-serial                  # GNU g++ compiler, no MPI
-mpi                     # MPI with its default compiler
-intel_cpu_intelmpi      # INTEL package, Intel MPI, MKL FFT
-oneapi                  # Intel oneAPI
+serial                       # GNU g++ compiler, no MPI
+mpi                          # MPI with its default compiler
+intel_cpu_intelmpi           # INTEL package, Intel MPI, MKL FFT
+oneapi                       # Intel oneAPI
 
 # 根据 MACHINE 编译
-mac                     # Apple PowerBook G4 laptop, c++, no MPI
-mac_mpi                 # Apple laptop, MacPorts Open MPI 1.4.3, gcc 4.8, jpeg
-ubuntu                  # Ubuntu Linux box, g++, openmpi, FFTW3
-ubuntu_simple           # Ubuntu Linux box, g++, openmpi, KISS FFT
+mac                          # Apple PowerBook G4 laptop, c++, no MPI
+mac_mpi                      # Apple laptop, MacPorts Open MPI 1.4.3, gcc 4.8, jpeg
+ubuntu                       # Ubuntu Linux box, g++, openmpi, FFTW3
+ubuntu_simple                # Ubuntu Linux box, g++, openmpi, KISS FFT
 
 # 查看 预设 make 文件
 ll MAKE                      # 列出预设 make 文件

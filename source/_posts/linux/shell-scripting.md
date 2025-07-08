@@ -35,24 +35,25 @@ Shell 原意是 “外壳”，跟 kernel（内核）相对应，比喻内核外
 
 ```bash
 # 查看 Shell
-cat /etc/shells  # 查看当前的 Linux 系统安装的所有 Shell
-echo $SHELL      # 当前设备的默认 Shell
-ps               # 一般来说，ps 命令结果的倒数第二行是当前 Shell
+cat /etc/shells       # 已安装的 Shell
+echo $SHELL           # 默认 Shell
+echo $0               # 当前 Shell
+ps -p $$ -o comm=     # 同上
 
 # 默认 Shell 切换
 chsh -s /bin/zsh
 sudo chsh -s /usr/bin/zsh root
 
-bash             # 进入 Shell
-exit             # 退出 Shell，或 Crtl + D
+bash                  # 进入 Shell
+exit                  # 退出 Shell，或 Crtl + D
 
 # Shell 命令格式
 # command 具体的命令或可执行文件
 # arg1 ... argN 传递给命令的参数，可选
 command [ arg1 ... [ argN ]]
 # 参数的短长形式作用完全一样，前者便于输入，后者便于理解
--v                 # 短形式
---verbose          # 长形式
+-v                    # 短形式
+--verbose             # 长形式
 ```
 
 ---
@@ -412,6 +413,7 @@ echo $(( a=1 ))
 - 浮点数运算
     - Bash 不支持浮点运算，需借助 bc（basic calculator）, awk 处理
     - [linux shell 实现 四则运算（整数及浮点） 简单方法 - 程默 - 博客园](https://www.cnblogs.com/chengmo/archive/2010/09/30/1839556.html)
+    - awk 默认 print 输出的精度为 6 位有效数字；bc 默认的 scale（小数位数）是 0
 
 ```bash
 echo "5.01-4*2.0" | bc
@@ -433,10 +435,8 @@ echo "scale=2; 10/3" | bc | cut -d "." -f1
 ```bash
 # 整型变量自增
 a=1; echo $a
-# 方式1
-let a++; echo $a
-# 方式2
-let a+=1; echo $a
+let a++; echo $a        # 方式1
+let a+=1; echo $a       # 方式2
 ```
 
 

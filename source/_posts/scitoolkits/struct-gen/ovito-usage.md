@@ -42,7 +42,7 @@ password:
 
 - [Ovito可视化堆垛层错、缺陷和原子应力\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1ieyqYnEiq/)
 
-- 输出 RDF
+- 球棍模型：添加 create bonds 的 modification
 
 - [OVITO 批量导入数据](https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA)：先导入一个构型文件，在界面右中区域，Data source 选择文件名称，External file 中的 Search pattern 设置成 `*.xyz` 之类的，下方的 Options 可根据情况设置
 

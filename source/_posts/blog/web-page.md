@@ -290,6 +290,10 @@ mdbook serve --open
 
 - [GitHub - WCY-dt/blog: 我的博客](https://github.com/WCY-dt/blog)
 
+- 将 GitHub Issues 转成博客平台：[GitHub - SimonAKing/Gwitter: Turn GitHub Issues into your personal microblog platform](https://github.com/SimonAKing/Gwitter)
+
+- 这个比较合适：[GitHub - lin-snow/Ech0: Ech0 - 开源、自托管、专注思想流动的轻量级发布平台](https://github.com/lin-snow/Ech0)
+
 
 
 ---
