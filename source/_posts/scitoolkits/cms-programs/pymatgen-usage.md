@@ -177,7 +177,7 @@ UserPotcarFunctional = Literal[
 
 - `MSONable` 类：MSON（Monty JSON）；MSONable 对象必须实现 `as_dict()` 方法，该方法须返回可序列化为 JSON 的字典，且须支持无参数；以及实现 `from_dict()` 类方法，即从 `as_dict()` 方法生成的字典中重建对象；`as_dict()` 方法应该包含 `@module` 和 `@class` 键，这将允许 MontyEncoder 动态反序列化该类
 
-- monty 包：对 json/yaml/msgpack 等文件格式进行序列化（比 json 模块好用很多，推荐！）
+- monty 包：对 json/yaml/msgpack 等文件格式进行序列化（**比 json 模块好用很多，推荐！**）
 
 ```python
 from monty.serialization import loadfn, dumpfn
@@ -306,8 +306,11 @@ structure.to(filename="POSCAR")
 # 改变位点元素种类
 structure[1] = "F"
 
-# 改变位点元素种类和坐标
+# 改变位点元素种类和坐标；对于 Structure 为分数坐标，Molecule 为分数坐标
 structure[1] = "F", [0.51, 0.51, 0.51]
+
+# 无法直接改变某一位点的坐标
+structure[1] = [0.51, 0.51, 0.51]     # 会报错
 
 # 元素替换
 structure["Cs"] = "K"
@@ -326,7 +329,7 @@ structure * (2, 2, 2)
 structure.make_supercell([2, 2, 2])
 
 # 生成无序结构
-# 与 SQS 是不同的概念；部分占据的无序结构无法保存成 POSCAR
+# 与 SQS 是不同的概念；部分占据的无序结构无法保存成 POSCAR，应保存为 cif 格式
 structure["K"] = "K0.5Na0.5"
 ```
 
@@ -491,12 +494,13 @@ site_properties           # dict；位点性质，如 selective_dynamics、magmo
 charge                    # 电荷
 
 # 方法
+copy()                    # 拷贝 Structure；默认不会拷贝 site_properties，需要参数进行控制
 make_supercell()          # 建立超胞
 append()                  # 添加原子位点
 remove_species()          # 删除元素种类
 remove_sites()            # 删除原子位点
 replace_species()         # 替换元素种类
-translate_sites()         # 移动原子位点
+translate_sites()         # 移动原子位点；可单个、多个位点
 add_site_property()       # 添加位点性质
 remove_site_property()    # 移除位点性质
 get_neighbors()           # 给定半径，获取给定原子位点的近邻原子
@@ -528,6 +532,26 @@ cscl                      # CsCl
 diamond                   # Si
 zincblende                # ZnS
 perovskite                # BaTiO3
+
+
+# 示例
+# F F T: only relax along z direction
+natoms = len(structure)
+site_property = np.zeros((natoms, 3), dtype=int)
+site_property[:, -1] = 1
+
+# 建议最后将 site_property 由 numpy.ndarray 转换成 list
+# pymongo 不支持，会导致用于 atomate 计算时出现报错
+structure.add_site_property("selective_dynamics", site_property.tolist())
+
+
+# 将 z 轴坐标接近于 1.0 的的原子移至胞内
+index_selected = np.where(
+    np.isclose(structure.frac_coords[:, 2], 1.0, atol=1e-6),
+)[0]
+structure.translate_sites(
+    index_selected, [0.0, 0.0, -1.0], frac_coords=True, to_unit_cell=True
+)
 ```
 
 
@@ -1057,17 +1081,45 @@ INCAR:
   IBRION: 2
   ISIF: 3
   ISMEAR: -5
-  ISPIN: 2
-  LORBIT: 11
+  ISPIN: 2                     # 建议设为 1
+  LORBIT: 11                   # 建议设为 0
   LREAL: AUTO
   LWAVE: false
   NELM: 100
   NSW: 99
   PREC: Accurate
   SIGMA: 0.05
+  LASPH: true                  # 建议设为 false
 KPOINTS:
   reciprocal_density: 64
 POTCAR_FUNCTIONAL: PBE
+```
+
+- VaspInputSet 类中对 INCAR LMAXMIX 参数的设置（VASP 默认值为 2）
+
+```python
+# pymatgen/io/vasp/sets.py 第 644 ~ 656 行
+# 原子序数大于 20 时，LMAXMIX 设置成 4（含 d 电子）
+# 原子序数大于 56 时，LMAXMIX 设置成 6（含 f 电子）
+# LMAXMIX 对非自洽计算能带非常重要
+
+# 背景：在 VASP 计算中，LMAXMIX 参数影响电荷密度混合的球谐展开的最大角动量数。对于含有 d 或 f 电子的体系，通常需要设置更高的 LMAXMIX 值以获得更准确的结果
+# 历史做法：以前，只有在启用 Hubbard U（LDA+U）修正时，才会自动设置 LMAXMIX，这是根据 VASP 官方手册的建议
+# 新发现：经过调查发现，即使没有启用 Hubbard U，仅仅是 SCF（自洽场）到 NonSCF（非自洽场）计算之间，如果不设置合适的 LMAXMIX，也会导致结果有显著差异
+
+# Modify LMAXMIX if you have d or f electrons present. Note that if the user
+# explicitly sets LMAXMIX in settings it will override this logic.
+# Previously, this was only set if Hubbard U was enabled as per the VASP manual
+# but following an investigation it was determined that this would lead to a
+# significant difference between SCF -> NonSCF even without Hubbard U enabled.
+# Thanks to Andrew Rosen for investigating and reporting.
+if "LMAXMIX" not in settings:
+    # contains f-electrons
+    if any(el.Z > 56 for el in structure.composition):
+        incar["LMAXMIX"] = 6
+    # contains d-electrons
+    elif any(el.Z > 20 for el in structure.composition):
+        incar["LMAXMIX"] = 4
 ```
 
 - `MVLNPTMDSet` NPT 系综 AIMD 参数设置

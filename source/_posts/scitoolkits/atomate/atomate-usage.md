@@ -61,15 +61,15 @@ Workflow，Firework（Firework 的列表可称做 fireworks），Firetask（一�
 
 ```bash
 # lpad 参数
--i            # ID
--s            # 状态；有 READY/WAITING/COMPLETED/FIZZLED/RUNNING
-              # DEFUSED 该 firework 不运行
--m            # max
--t            # 以表格形式列出 workflow 中 firework 的状态
--d            # all 会显示 firework 之间的关联
-              # count 统计数目
-              # ids 统计 id
-              # more 输出中的 _exception 字段会显示 custodian 的相关 warning 或报错
+-i                          # ID
+-s                          # 状态；有 READY/WAITING/COMPLETED/FIZZLED/RUNNING
+                            # DEFUSED 该 firework 不运行
+-m                          # max
+-t                          # 以表格形式列出 workflow 中 firework 的状态
+-d                          # all 会显示 firework 之间的层级关系
+                            # count 统计数目
+                            # ids 统计 id
+                            # more 输出中的 _exception 字段会显示 custodian 的相关 warning 或报错
 
 # 查看 fireworks 报告
 lpad report
@@ -117,7 +117,7 @@ lpad init
 ### qlaunch
 
 - 将 workflow 提交到超算队列
-    - 过程：先创建 `block_date/launcher_date` workflow 目录（`qlaunch rapidfire` 命令；`qlaunch singleshot` 无此步骤），之后生成 `FW_submit.script` Slurm 提交脚本，再在此目录下创建 `launcher_date` firework 计算目录
+    - 过程：先创建 `block_<date>/launcher_<date>` workflow 目录（`qlaunch rapidfire` 命令；`qlaunch singleshot` 无此步骤），之后生成 `FW_submit.script` Slurm 提交脚本，再在此目录下创建 `<launcher_date>` firework 计算目录
 
 - `qlaunch rapidfire` 若出现以下提示时，不会再提交作业
 
@@ -128,12 +128,9 @@ No READY jobs detected
 ```
 
 ```bash
-qlaunch (-r) rapidfire            # 一次提交多个任务
-qlaunch rapidfire --nlaunches 5   # 指定提交任务数
-qlaunch singleshot                # 一次提交一个任务
-
-# 参数
--q
+qlaunch (-r) rapidfire            # 一次提交多个作业
+qlaunch rapidfire --nlaunches 5   # 指定提交作业数
+qlaunch singleshot                # 一次提交一个作业
 ```
 
 
@@ -351,8 +348,9 @@ for state, stencil in zip(strain_states, stencils):
 ```python
 import os
 from atomate.vasp.database import VaspCalcDb
+from monty.serialization import dumpfn, loadfn
 
-# 方式 1
+# 方式 1 直接变量赋值
 db_json_path = ...
 # 方式 2 将 db.json 放入 ~/.{bash,zsh}rc 文件中
 db_json_path = os.getenv("DB_JSON_PATH")
@@ -363,11 +361,13 @@ elasticity_collection = atomate_db.db["elasticity"]
 # 吉布斯计算任务 collection
 gibbs_collection = atomate_db.db["gibbs_tasks"]
 
+
 # find() 可以使用 Projection Operators（以 $ 开头）
 query = {"task_label": "volume relaxation"}
 query = {"task_id": {"$gt": 18, "$lt": 44}}
 query = {"tags.solute": {"$in": solute_list}}
 query = {"completed_at": {"$regex": "2022-08-05 *"}}
+
 
 # 0: 不提取数据；1: 提取数据
 projection = {
@@ -377,7 +377,6 @@ projection = {
     "completed_at": 1,
     "state": 1,
     "task_label": 1,
-    "formula_reduced_abc": 1,
     "run_stats": 1,
     "input": 1,
     "output": 1,
@@ -392,27 +391,32 @@ count = atomate_db.collection.aggregate([{"$match": query}, {"$count": "total"}]
 # 方式 3 不行？
 count = db.collection.find(query).count()
 
+
 # 获取满足 query projection 条件的所有 documents
 documents = atomate_db.collection.find(query, projection)
-# 一条 document
+# 获取一条 document
 document = atomate_db.collection.find_one(query, projection)
+# 对 document 进行排序；sort() 参数为 query dict 中的 key
+documents = atomate_db.collection.find(query, projection).sort(...)
+
+
+# 将获取的 documents dump 至 json 文件
+dumpfn(list(documents), "documents.json")
+
+
+# 导入 json 数据文件
+documents_list = loadfn(input_data_fn)
+
+for document in documents_list:
+    # 从 dict 获取的 value 直接就是 Structure object 
+    structure: Structure = document["input"]["structure"]
+    energy = document["output"]["energy"]
 ```
 
-可用 Projection Operators：[Query and Projection Operators - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors)
+- 可用 Projection Operators：[Query and Projection Operators - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors)
 
-find() manual：[db.collection.find() - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/)
+- [https://github.com/hackingmaterials/atomate/issues/445](https://github.com/hackingmaterials/atomate/issues/445)
 
-- `find()` 或 `find_one()` 返回的结果是 `pymongo.cursor` 对象，可以将其转化成 json 或 dataframe 的形式
-
-参考链接：[https://www.geeksforgeeks.org/convert-pymongo-cursor-to-json/](https://www.geeksforgeeks.org/convert-pymongo-cursor-to-json/)；[https://www.geeksforgeeks.org/convert-pymongo-cursor-to-dataframe](https://www.geeksforgeeks.org/convert-pymongo-cursor-to-dataframe)
-
-- 判断 `find()` 或 `find_one()` 返回的结果是否是空的
-
-参考链接：[https://www.geeksforgeeks.org/how-to-check-if-the-pymongo-cursor-is-empty](https://www.geeksforgeeks.org/how-to-check-if-the-pymongo-cursor-is-empty/?ref=lbp)
-
-统计 key 的个数：[https://stackoverflow.com/questions/12536592/mongodb-iterate-over-collection-by-key](https://stackoverflow.com/questions/12536592/mongodb-iterate-over-collection-by-key)
-
->[https://github.com/hackingmaterials/atomate/issues/445](https://github.com/hackingmaterials/atomate/issues/445)
 
 ---
 
@@ -420,10 +424,9 @@ find() manual：[db.collection.find() - MongoDB Manual v7.0](https://www.mongodb
 
 ```python
 # 输入构型
-input_structure_dict = document["input"]["structure"]
+input_structure = document["input"]["structure"]
 # 输出构型
-output_structure_dict = document["output"]["structure"]
-structure = Structure.from_dict(...)
+output_structure = document["output"]["structure"]
 
 # 能量
 energy = document["output"]["energy"]
@@ -437,9 +440,10 @@ document["run_stats"]["overall"]["Total CPU time used (sec)"]
 dir_name = document["dir_name"]
 calc_path = (re.search("/dssg.*", dir_name)).group()
 
-# add_tags 中添加的一些 tag
+# add_tags() 中添加的一些 tag
 document["tags"]["XXX"]
 
+# 以下数据可对 Structure 进行操作获取
 # 原子数
 natoms = document["nsites"]
 # 元素数
@@ -448,16 +452,6 @@ nelements = document["nelements"]
 volume = document["output"]["structure"]["lattice"]["volume"]
 # 平均原子体积
 volume_pa = volume / natoms
-```
-
----
-
-- MongoDB 中的 atomate documet 数据无法直接全部写入到 json 文件中
-    - 其 key 和 dict 涉及到 str 均使用单引号
-    - json 文件不识别 bool 变量？
-
-```json
-'_id': ObjectId('62dbb72c531c489b7a006879')
 ```
 
 
@@ -500,7 +494,7 @@ dict_keys(
 )
 ```
 
-`calcs_reversed` key 下的 keys （需添加 `[0]`；含大部分同级下的 keys）
+- `calcs_reversed` key 下的 keys （需添加 `[0]`；含大部分同级下的 keys）
 
 ```json
 dict_keys(

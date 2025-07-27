@@ -29,20 +29,18 @@ password:
 ulimit -s unlimited
 ```
 
-- SYMPREC 报错：
+- SYMPREC 相关报错：
     - 解决方法：在 INCAR 中添加 `ISYM=0`
     - [POSMAP internal error: symmetry equivalent atom not found ... - 知乎](https://zhuanlan.zhihu.com/p/611339883)
     - [用vaspkit中应变能量法计算弹性模量，出现对称度的问题，SYMPREC从-3调整到-9都不行 - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-25280-1-1.html)
 
 ```bash
 # ~/yangsl/work/Ti-Al-Nb-Zr-V-Mo-MLIP/GSFE/Nb-GSFE-123/6
-# ISYM=0
 POSMAP internal error: symmetry equivalent atom not found,
   you might try decreasing or increasing SYMPREC by an order of magnitude.
 
 
 # ~/yangsl/work/Ti-Al-Nb-Zr-V-Mo-MLIP/GSFE/V-GSFE/3-123/6
-# ISYM=0
 VERY BAD NEWS! internal error in subroutine PRICEL (probably precision problem, try to change SYMPREC in INCAR ?):
 Sorry, number of cells and number of vectors did not agree.       3
 ```

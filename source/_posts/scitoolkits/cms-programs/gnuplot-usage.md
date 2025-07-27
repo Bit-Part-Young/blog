@@ -122,6 +122,10 @@ plot "thermo.out" every ::0::199 u 1:3 w p pt 7 ps 0.2 lc rgb "red" title "heat"
      "thermo.out" every ::200::300 u 1:3 w p pt 7 ps 0.2 lc rgb "blue" title "cooling" \
 
 
+# 使用偶数行数据进行绘制
+plot "<(awk 'NR % 2 == 1' data.txt)" ...
+
+
 # 使用循环绘制多个曲线
 legend_titles = "x y z"
 plot for [i=2:4] "mvac.out" u 1:i with l lw 7-i title word(legend_titles, i-1)

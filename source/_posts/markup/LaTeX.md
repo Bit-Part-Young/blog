@@ -373,7 +373,7 @@ latex -C                    # 删除辅助文件 + PDF
 
 ---
 
-`.latexmkrc` ：latexmk 配置文件；通常包含以下内容：
+`.latexmkrc`：latexmk 配置文件；通常包含以下内容：
 
 - 构建引擎的选择：如 pdfLaTeX、XeLaTeX 或 LuaLaTeX
 - 构建参数：设置构建过程中的各种参数，如输出文件类型、编译次数、文件清理选项等
@@ -1624,16 +1624,16 @@ LaTeX 默认在 `\chapter`、`\section` 等章节标题命令之后的第一段�
 - [GitHub - ElegantLaTeX/ElegantBook](https://github.com/ElegantLaTeX/ElegantBook)
 - cls 文档类文件内容注释很详细：[GitHub - CheckBoxStudio/BUAAThesis: 北航研究生学位论文模板（Word+LaTeX）.](https://github.com/CheckBoxStudio/BUAAThesis)
 
-- 简历
-    - 推荐：[GitHub - LiuX2018/CV](https://github.com/LiuX2018/CV)
+- 简历（找工作简历，建议留有地方贴图片）
+    - 推荐：[GitHub - LiuX2018/CV](https://github.com/LiuX2018/CV)（有地方贴图片；利用 curve 类；中文会报错？）
     - [GitHub - jankapunkt/latexcv: :necktie: A collection of cv and resume templates written in LaTeX. Leave an issue if your language is not supported!](https://github.com/jankapunkt/latexcv)
     - 用的是 tectonic 引擎：[GitHub - philipempl/modern-latex-cv: A professional and modern CV in LaTex](https://github.com/philipempl/modern-latex-cv)
     - [GitHub - AntObi/academicCV: LaTeX template for academic CV](https://github.com/AntObi/academicCV)
     - [GitHub - sinaatalay/rendercv: LaTeX CV generator from a YAML/JSON input file.](https://github.com/sinaatalay/rendercv)
     - 部分格式可作为参考将其转换成 Typst 写法：[GitHub - Troublor/curriculum-vitae: My Curriculum Vitae (CV)](https://github.com/Troublor/curriculum-vitae)
     - [GitHub - ml-evs/CV: My TeX CV built with moderncv.](https://github.com/ml-evs/CV)
-    - [A Customised CurVe CV - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/a-customised-curve-cv/mvmbhkwsnmwv)
-    - [GitHub - rasenior/CV: CV using CurVe in LaTeX](https://github.com/rasenior/CV)
+    - [A Customised CurVe CV - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/a-customised-curve-cv/mvmbhkwsnmwv)（有地方贴图片）
+    - [GitHub - rasenior/CV: CV using CurVe in LaTeX](https://github.com/rasenior/CV)（有地方贴图片）
     - [GitHub - bocklund/resume: Brandon Bocklund Resume](https://github.com/bocklund/resume) （适合学术用）
     - [GitHub - saadq/resumake.io: 📝 A website for automatically generating elegant LaTeX resumes.](https://github.com/saadq/resumake.io)
     - [jsonresume.org](https://jsonresume.org/)

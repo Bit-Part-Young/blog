@@ -98,6 +98,16 @@ plt.style.available
 plt.style.use()
 ```
 
+```python
+# 自定义刻度标签 {x} 表示当前刻度值
+# 方式 1
+ax.yaxis.set_major_formatter("{x:.2f}")
+
+# 方式 2
+from matplotlib.ticker import StrMethodFormatter
+
+ax.yaxis.set_major_formatter(StrMethodFormatter("{x:.1f}"))
+```
 
 
 ---
@@ -1080,7 +1090,12 @@ fig.set_size_inches(8, 6)
     - [GitHub - Billingegroup/bg-mpl-stylesheets: Matplotlib style sheets](https://github.com/Billingegroup/bg-mpl-stylesheets)
     - [Changes to the default style — Matplotlib 3.9.2 documentation](https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html)
 
-- [ ] Matplotlib mplstyle 写法
+- [ ] Matplotlib mplstyle 写法：[CGCNN\_VFE/pre\_and\_post\_processing/npj\_custom\_format.mplstyle at main · Materials-Computation-Data-Science-MCDC/CGCNN\_VFE · GitHub](https://github.com/Materials-Computation-Data-Science-MCDC/CGCNN_VFE/blob/main/pre_and_post_processing/npj_custom_format.mplstyle)
+
+```bash
+axes.titlesize : 24
+axes.labelsize : 24
+```
 
 - hatch：填充样式
 

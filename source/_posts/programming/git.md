@@ -890,7 +890,7 @@ git diff --stat
 git diff --stat file
 
 # 查看两次提交之间的差异
-git diff <commit_id_1> <commit_id_2> --stat
+git diff <commit_id1> <commit_id2> --stat
 
 # 查看特定提交的所有改动统计
 git show <commit_id> --stat

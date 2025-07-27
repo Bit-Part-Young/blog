@@ -761,7 +761,7 @@ virial = atoms.info["virial"]           # 可以
 
 - 施加约束
 
-- 注：pymatgen 只支持 ASE 中的 FixAtoms and FixCartesian，其他 constraints 在 Atoms 转 Structure 时不会被设置
+- **注：pymatgen 只支持 ASE 中的 FixAtoms and FixCartesian，其他 constraints 在 Atoms 转 Structure 时不会被设置**
 
 ```python
 from ase.constraints import FixAtoms, FixedLine, FixedPlane

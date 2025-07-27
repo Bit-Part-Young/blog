@@ -171,11 +171,6 @@ from atomate.utils.utils import ...
 get_wf_from_spec_dict()     # 通过 yaml 文件导入 workflow
 get_meta_from_structure()   #
 get_fws_and_tasks           # 获取给定 workflow 的 fw_ids 和 task_ids
-
-
-from monty.serialization import loadfn
-
-loadfn()                  # 导入 yaml 文件
 ```
 
 
@@ -297,6 +292,8 @@ if __name__ == '__main__':
 
 ## 相关问题
 
+- 注：随着 atomate 及其依赖 package 版本的更新，以下问题可能会被解决
+
 - 部分 workflow 有 VASP 计算过程，但无法将计算数据保存到 MongoDB 中（个人理解）
     - 参考：[Check returncode to raise CustodianError() leading some trouble · Issue #41 · materialsproject/custodian · GitHub](https://github.com/materialsproject/custodian/issues/41)
     - 源代码修改：将 `custodian/custodian.py` 中 `Custodian` 类的 `__init__` 方法 `terminate_on_nonzero_returncode ` 参数值改成 `False`
@@ -322,11 +319,6 @@ bson.errors.InvalidDocument: cannot encode object: True, of type: <class 'numpy.
 ```bash
 - `ModuleNotFoundError: No module named 'pymatgen.transformations.defect_transformations’`
 ```
-
----
-
-修改 workflow 的 db_file 路径需要修改 firework 中的相关定义
-
 
 
 ---
@@ -383,11 +375,18 @@ add_tags()             # 给 namefile 添加 tag
 
 - atomate 中预设的 VASP firework
 
+- `double_relaxation_run` 的含义为 `Returns a list of two jobs corresponding to an AFLOW style double relaxation run`
+
 ```python
 from atomate.vasp.fireworks.core import ...
 
-StaticFW
-OptimizeFW
+StaticFW                 # 静态计算
+OptimizeFW               # 结构优化
+ScanOptimizeFW           # 使用 SCAN metaGGA functional 结构优化
+
+
+# OptimizeFW 类参数
+job_type                 # 默认值为 "double_relaxation_run"，可选值 "normal"、"full_opt_run"、"neb"
 ```
 
 
@@ -486,7 +485,7 @@ grid_density: 7000         # 弹性常数计算；第一步弛豫、ISIF = 2 弛
 
 - 参考：[Customize KPOINTs without using user\_kpoints\_settings (dict) - Atomate - Materials Science Community Discourse](https://matsci.org/t/customize-kpoints-without-using-user-kpoints-settings-dict/35309)
 
-- 修改 VASP workflow 中的计算输入参数设置
+- 修改 workflow 中的 VASP 计算输入参数设置
 
 ```python
 from atomate.vasp.powerups import ...
@@ -504,11 +503,9 @@ clear_modify()
 use_fake_vasp()           # 不实际进行运算，主要起演示 atomate 计算流程作用
 
 use_no_vasp()
-```
 
-示例
 
-```python
+# 示例
 wf = add_modify_incar(
     wf,
     modify_incar_params={
@@ -516,7 +513,7 @@ wf = add_modify_incar(
             "EDIFFG": -0.05,
         },
     },
-    fw_name_constraint="optimization",
+    fw_name_constraint="optimization",    # 仅对特定的 firework 起作用
 )
 
 wf = add_modify_potcar(
@@ -529,20 +526,14 @@ wf = add_modify_potcar(
     fw_name_constraint=None,
 )
 
-# Gamma 无法变成 Monkhorst？
-kpoints_update_dict = {
-    "comment": "Automatic kpoint scheme",
-    "num_kpts": 0,
-    "generation_style": "Monkhorst",
-    "kpts": [[10, 10, 10]],
-    "kpts_shift": [0.0, 0.0, 0.0],
-    "kpts_weights": None,
-    "coord_type": None,
-    "labels": None,
-    "tet_number": 0,
-    "tet_weight": 0,
-    "tet_connections": None,
-}
+wf = add_modify_kpoints(
+    wf,
+    modify_kpoints_params={
+        "kpoints_update": {
+            "kpts": [[10, 10, 10]],
+        },
+    },
+)
 ```
 
 ---

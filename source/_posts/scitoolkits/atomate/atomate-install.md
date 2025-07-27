@@ -62,15 +62,15 @@ pip install -U pymatgen custodian
 
 - atomate 配置文件目录结构（目录名可任意）
 
-```text
-atomate_env
+```bash
+atomate-env
 ├── config/
 │   ├── db.json
 │   ├── FW_config.yaml
 │   ├── my_fworker.yaml
 │   ├── my_launchpad.yaml
 │   └── my_qadapter.yaml
-└── logs/
+└── logs/                      # 空目录即可
 ```
 
 
@@ -104,8 +104,8 @@ atomate_env
 ```yaml
 ADD_USER_PACKAGES:
   - atomate.vasp.firetasks
-CONFIG_FILE_DIR: <INSTALL_DIR>/config
-ECHO_TEST: Atomate environment of SLY
+CONFIG_FILE_DIR: /home/XXX/.config/atomate-env/config
+ECHO_TEST: Atomate environment
 QUEUE_UPDATE_INTERVAL: 5
 ALWAYS_CREATE_NEW_BLOCK: True
 RAPIDFIRE_SLEEP_SECS: 10
@@ -114,13 +114,13 @@ RAPIDFIRE_SLEEP_SECS: 10
 - 默认参数设置：`fireworks/fw_config.py`；[Modifying the FW Config — FireWorks 2.0.4 documentation](https://materialsproject.github.io/fireworks/config_tutorial.html)
 
 ```python
-RAPIDFIRE_SLEEP_SECS = 60    # seconds to sleep between rapidfire loops
+RAPIDFIRE_SLEEP_SECS = 60      # seconds to sleep between rapidfire loops
 ```
 
 - 需将其路径添加到 PATH 中
 
 ```bash
-export FW_CONFIG_FILE=<_dir>/config/FW_config.yaml
+export FW_CONFIG_FILE=/home/XXX/.config/atomate-env/config/FW_config.yaml
 ```
 
 - 若 atomate 环境有多个，可进行如下设置（可使用 `$HOME` 等变量；切换 atomate 环境后，`source` 使其生效）：
@@ -143,12 +143,12 @@ fi
 
 ```yaml
 name: <WORKER_NAME>
-category: ''
-query: '{}'
-env:
-    db_file: <INSTALL_DIR>/config/db.json
-    vasp_cmd: <VASP_CMD>  # eg: mpirun vasp_std
-    scratch_dir: null  # optional
+category: ""
+query: "{}"
+env:                           # 环境变量 dict
+    db_file: /home/XXX/.config/atomate-env/config/db.json
+    vasp_cmd: "mpirun vasp_std"
+    scratch_dir: null
 ```
 
 
@@ -164,11 +164,11 @@ port: <PORT>
 name: <DB_NAME>
 username: <ADMIN_USERNAME>
 password: <ADMIN_PASSWORD>
-ssl_ca_file: null
+ssl_ca_file: null              # Path to any client certificate to be used for mongodb connection；默认值为 None
 logdir: null
-strm_lvl: INFO
-user_indices: []
-wf_user_indices: []
+strm_lvl: INFO                 # the logger stream level；默认值为 INFO
+user_indices: []               # list of 'fireworks' collection indexes to be built；默认值为 []
+wf_user_indices: []            # list of 'workflows' collection indexes to be built；默认值为 []
 ```
 
 
@@ -180,23 +180,25 @@ wf_user_indices: []
 
 - 配置队列系统；自动生成提交任务至队列系统的脚本文件（`FW_submit.script`）
 
+- 支持的队列系统、对应模板文件、对应变量：`fireworks/user_objects/queue_adapters`
+
 ```yaml
 _fw_name: CommonAdapter
 _fw_q_type: SLURM
-rocket_launch: rlaunch -c <INSTALL_DIR>/config rapidfire
+rocket_launch: rlaunch -c /home/XXX/.config/atomate-env/config rapidfire
 nodes: 1
 ntasks: 1
 ntasks_per_node: 1
 walltime: "72:00:00"
 queue: cpu
-account: null
-job_name: null
+account: null                
+job_name: null                 # 默认值为 FW_job
 pre_rocket: |+
   ulimit -s unlimited
   ulimit -l unlimited
 
 post_rocket: null
-logdir: <INSTALL_DIR>/logs
+logdir: /home/XXX/.config/atomate-env/logs
 ```
 
 

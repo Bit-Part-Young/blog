@@ -35,25 +35,25 @@ Shell 原意是 “外壳”，跟 kernel（内核）相对应，比喻内核外
 
 ```bash
 # 查看 Shell
-cat /etc/shells       # 已安装的 Shell
-echo $SHELL           # 默认 Shell
-echo $0               # 当前 Shell
-ps -p $$ -o comm=     # 同上
+cat /etc/shells         # 已安装的 Shell
+echo $SHELL             # 默认 Shell
+echo $0                 # 当前 Shell
+ps -p $$ -o comm=       # 同上
 
 # 默认 Shell 切换
 chsh -s /bin/zsh
 sudo chsh -s /usr/bin/zsh root
 
-bash                  # 进入 Shell
-exit                  # 退出 Shell，或 Crtl + D
+bash                    # 进入 Shell
+exit                    # 退出 Shell，或 Crtl + D
 
 # Shell 命令格式
 # command 具体的命令或可执行文件
 # arg1 ... argN 传递给命令的参数，可选
 command [ arg1 ... [ argN ]]
 # 参数的短长形式作用完全一样，前者便于输入，后者便于理解
--v                    # 短形式
---verbose             # 长形式
+-v                      # 短形式
+--verbose               # 长形式
 ```
 
 ---
@@ -61,25 +61,25 @@ command [ arg1 ... [ argN ]]
 Shell 终端快捷键
 
 ```bash
-Tab                   # 命令补全
-Ctrl + C              # 中止命令
-Ctrl + D              # 键盘输入结束，可用于退出 Shell 窗口
-Crtl + A              # 光标移动到命令首
-Crtl + E              # 光标移动到命令尾
-Alt + B               # 光标向左移动一个单词
-Ctrl + ←              # 同上
-Alt + F               # 光标向右移动一个单词
-Ctrl + →              # 同上
-Crtl + W              # 删除光标左方的单词
-Alt + D               # 删除光标右方的单词
-Crtl + R              # 搜索之前输入过的命令
-Crtl + G              # 退出历史搜索模式
-Crtl + ↓              # 跳转至底部
-Crtl + L              # 将底部内容移至最上方
-Ctrl + Z              # 将当前正在运行的前台进程暂停（挂起）并放到后台
+Tab                     # 命令补全
+Ctrl + C                # 中止命令
+Ctrl + D                # 键盘输入结束，可用于退出 Shell 窗口
+Crtl + A                # 光标移动到命令首
+Crtl + E                # 光标移动到命令尾
+Alt + B                 # 光标向左移动一个单词
+Ctrl + ←                # 同上
+Alt + F                 # 光标向右移动一个单词
+Ctrl + →                # 同上
+Crtl + W                # 删除光标左方的单词
+Alt + D                 # 删除光标右方的单词
+Crtl + R                # 搜索之前输入过的命令
+Crtl + G                # 退出历史搜索模式
+Crtl + ↓                # 跳转至底部
+Crtl + L                # 将底部内容移至最上方
+Ctrl + Z                # 将当前正在运行的前台进程暂停（挂起）并放到后台
 
-fg %n                 # n 为 job number；将挂起的进程回调到前台继续运行
-bg %n                 # 将挂起的进程在后台继续运行（不占用终端的输入和输出）
+fg %n                   # n 为 job number；将挂起的进程回调到前台继续运行
+bg %n                   # 将挂起的进程在后台继续运行（不占用终端的输入和输出）
 ```
 
 注：Shell 脚本中，缩进的标准并没有一个严格的规定，常见的缩进宽度是 2 个或 4 个空格（个人现采用 2 个空格的缩进宽度）
@@ -118,13 +118,13 @@ export GOPROXY=https://goproxy.cn,direct
 # 安装
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 
-shfmt script.sh     # 打印格式化后的内容，不修改文件内容
-shfmt -w script.sh  # 将格式化后的内容写入文件
+shfmt script.sh         # 打印格式化后的内容，不修改文件内容
+shfmt -w script.sh      # 将格式化后的内容写入文件
 
 # 参数
--i n                # 指定缩进空格
--mn                 # 启用最小化模式，通常删除不必要的空格和换行符
--ln                 # 指定方言 bash/posix/mksh/bats
+-i n                    # 指定缩进空格
+-mn                     # 启用最小化模式，通常删除不必要的空格和换行符
+-ln                     # 指定方言 bash/posix/mksh/bats
 ```
 
 - 代码检查：ShellCheck；Web 版本：[ShellCheck – shell script analysis tool](https://www.shellcheck.net/)
@@ -133,8 +133,8 @@ shfmt -w script.sh  # 将格式化后的内容写入文件
 shellcheck [option] script.sh
 
 # 参数
--s   # 指定方言 sh, bash, dash, ksh, busybox
--f   # 指定输出格式 checkstyle, diff, gcc, json, json1, quiet, tty
+-s                      # 指定方言 sh, bash, dash, ksh, busybox
+-f                      # 指定输出格式 checkstyle, diff, gcc, json, json1, quiet, tty
 ```
 
 - VSCode 中的 shellcheck、shell-format 插件不是很好用（建议直接使用其命令行工具）
@@ -169,10 +169,10 @@ npm i -g bash-language-server
 
 ```bash
 # 方式 1
-bash script.sh      # 或 sh script.sh
+bash script.sh          # 或 sh script.sh
 
 # 方式 2 赋予可执行权限
-chmod +x script.sh  # Linux 文件颜色变绿；macOS，变红
+chmod +x script.sh      # Linux 文件颜色变绿；macOS 变红
 ./script.sh
 ```
 
@@ -198,21 +198,21 @@ comment 2
 -  `echo` 自动添加换行符， `printf` 不会
 
 ```bash
-echo     # 输出一行空行
+echo                    # 输出一行空行
 
 # 参数
--n       # 不自动换行
--e       # 转义字符
+-n                      # 不自动换行
+-e                      # 转义字符
 ```
 
 
 ```bash
 # 输出固定位数
-printf "%05d\n" 123  # 输出 5 位数，00123
+printf "%05d\n" 123     # 输出 5 位数，00123
 
 # 控制变量的输出宽度和对齐方式；无居中对齐
-printf "%-5s\n" "${i}"      # 左对齐
-printf "%5s\n" "${i}"       # 右对齐
+printf "%-5s\n" "${i}"  # 左对齐
+printf "%5s\n" "${i}"   # 右对齐
 ```
 
 
@@ -226,25 +226,25 @@ printf "%5s\n" "${i}"       # 右对齐
 - 输出变量：`export`
 
 ```bash
-var="letter"      # 定义变量
-echo $var         # 使用变量；或 echo ${var}
-unset var         # 删除变量
-export var=value  # 输出变量
+var="letter"            # 定义变量
+echo $var               # 使用变量；或 echo ${var}
+unset var               # 删除变量
+export var=value        # 输出变量
 ```
 
 - 特殊变量
 
 ```bash
-$0   # 当前 Shell 的名称（在命令行直接执行时）或脚本名（在脚本中执行时）
-$n   # n 为数字，第 n 个参数
-$#   # 脚本的参数数量
-$?   # 上一个命令的退出码（成功返回 0，失败返回非零数值）
-$_   # 上一个命令的最后一个参数
-$*   # 脚本的参数值；将所有参数视为一个整体
-$@   # 脚本的参数值；所有参数是独立的
-$$   # 当前 Shell 的进程 ID
-$!   # 最近一个后台执行的异步命令的进程 ID
-$-   # 当前 Shell 的启动参数
+$0                      # 当前 Shell 的名称（在命令行直接执行时）或脚本名（在脚本中执行时）
+$n                      # n 为数字，第 n 个参数
+$#                      # 脚本的参数数量
+$?                      # 上一个命令的退出码（成功返回 0，失败返回非零数值）
+$_                      # 上一个命令的最后一个参数
+$*                      # 脚本的参数值；将所有参数视为一个整体
+$@                      # 脚本的参数值；所有参数是独立的
+$$                      # 当前 Shell 的进程 ID
+$!                      # 最近一个后台执行的异步命令的进程 ID
+$-                      # 当前 Shell 的启动参数
 
 
 # 示例
@@ -269,7 +269,7 @@ done
 - `shift` 命令可以改变脚本参数，每次执行都会移除脚本当前的第一个参数，使得后面的参数向前一位
 
 ```bash
-shift n         # 移除 n 个参数
+shift n                 # 移除 n 个参数
 ```
 
 - 环境变量
@@ -284,15 +284,15 @@ export PATH=$PATH:$HOME/bin  # 方式 1
 export PATH=$HOME/bin:$PATH  # 方式 2
 
 # 常见环境变量
-HOME           # 用户主目录
-HOST           # 当前主机名称
-PATH           # 指定可执行文件的默认路径；由冒号分开的目录列表
-RANDOM         # 生成 0~32767 之间的随机数
-[RANDOM%num]   # 生成 0~num 之间的随机数
-PWD            # 当前工作目录
-PS1            # 命令提示符
-DISPLAY        # 图形环境的显示器名字，通常是 :0，表示 X Server 的第一个显示器
-IFS            # 内部字段分隔符，Internal Field Separator
+HOME                    # 用户主目录
+HOST                    # 当前主机名称
+PATH                    # 指定可执行文件的默认路径；由冒号分开的目录列表
+RANDOM                  # 生成 0~32767 之间的随机数
+[RANDOM%num]            # 生成 0~num 之间的随机数
+PWD                     # 当前工作目录
+PS1                     # 命令提示符
+DISPLAY                 # 图形环境的显示器名字，通常是 :0，表示 X Server 的第一个显示器
+IFS                     # 内部字段分隔符，Internal Field Separator
 ```
 
 ---
@@ -303,11 +303,11 @@ IFS            # 内部字段分隔符，Internal Field Separator
 - 双引号会展开变量和命令，特殊字符保留（美元符号、反引号和反斜杠，星号会变成普通字符）；保存原始命令的输出格式
 
 ```bash
-echo $'it\'s'    # 单引号中使用单引号，在最前面加 $
-echo "it's"      # 在双引号之中使用单引号
+echo $'it\'s'           # 单引号中使用单引号，在最前面加 $
+echo "it's"             # 在双引号之中使用单引号
 
-echo $(cal)      # 单行输出
-echo "$(cal)"    # 原始格式输出
+echo $(cal)             # 单行输出
+echo "$(cal)"           # 原始格式输出
 ```
 
 
@@ -325,8 +325,8 @@ echo ${#str[0]}
 ${str:offset:length}
 # 示例
 echo ${str:1:4}
-echo ${str:1}      # 省略 length，表示到字符串结尾
-echo ${str: -4}    # 从倒数第 4 个字符开始；负号前须有空格
+echo ${str:1}           # 省略 length，表示到字符串结尾
+echo ${str: -4}         # 从倒数第 4 个字符开始；负号前须有空格
 echo ${str: -4:2}
 
 ## 字符串大小写转换
@@ -338,10 +338,10 @@ echo "hello world" | tr '[:lower:]' '[:upper:]'
 echo "hello world" | awk '{ print toupper($0) }'
 
 # Bash 4.0 及更高版本中有效
-${str,,}   # 小写
-${str,}    # 首字母小写
-${str^^}   # 大写
-${str^}    # 首字母大写
+${str,,}                # 小写
+${str,}                 # 首字母小写
+${str^^}                # 大写
+${str^}                 # 首字母大写
 ```
 
 ---
@@ -354,27 +354,28 @@ ${str^}    # 首字母大写
 ```bash
 # 基于模式匹配进行字符串剪裁
 var="sample.bk.tar.gz"
+
 # 常用于删除字符串前缀
-${var#*.}       # 删除字符串开头部分，最短匹配；输出 "bk.tar.gz"
-${var##*.}      # 删除字符串开头部分，最长匹配；输出 "gz"
+${var#*.}               # 删除字符串开头部分，最短匹配；输出 "bk.tar.gz"
+${var##*.}              # 删除字符串开头部分，最长匹配；输出 "gz"
 # 常用于删除字符串后缀
-${var%.*}       # 删除字符串末尾部分，最短匹配；输出 "sample.bk.tar"
-${var%%.*}      # 删除字符串末尾部分，最长匹配；输出 "sample"
+${var%.*}               # 删除字符串末尾部分，最短匹配；输出 "sample.bk.tar"
+${var%%.*}              # 删除字符串末尾部分，最长匹配；输出 "sample"
 
 # 按字符位置截取字符串
-${var:N:M}      # 从第 N 个位置开始，截取 M 个字符
+${var:N:M}              # 从第 N 个位置开始，截取 M 个字符
 
 # 字符串替换
-${var/a/b}      # 把变量中的第一个 a 替换成 b
-${var//a/b}     # 把变量中的所有 a 替换成 b
+${var/a/b}              # 把变量中的第一个 a 替换成 b
+${var//a/b}             # 把变量中的所有 a 替换成 b
 
 # 生成字符串列表、序列
-echo beg{i,a,u}n  # 输出 begin began begun
-echo {0..5}       # 等价于 seq 0 5
-echo {00..8..2}   # 00 02 04 06 08
+echo beg{i,a,u}n        # 输出 begin began begun
+echo {0..5}             # 等价于 seq 0 5
+echo {00..8..2}         # 00 02 04 06 08
 
-#复制文件夹中的多个文件到当前路径；可结合通配符使用
-cp /path/{file1,file2,file3,file4} .
+# 拷贝多个文件到当前路径；可结合通配符使用
+cp {file1,file2,file3,file4} .
 ```
 
 
@@ -385,9 +386,9 @@ cp /path/{file1,file2,file3,file4} .
 - 简单数学运算：原生 Bash 不支持，可通过 `expr` 命令实现
 
 ```bash
-val=`expr 2 + 2`       # 表达式和运算符之间要有空格
+val=`expr 2 + 2`        # 表达式和运算符之间要有空格
 
-val=`expr 2 \* 3`      # 乘法运算：须加反斜杠
+val=`expr 2 \* 3`       # 乘法运算：须加反斜杠
 ```
 
 ---
@@ -446,9 +447,9 @@ let a+=1; echo $a       # 方式2
 
 ```bash
 # 元素用空格分割开
-array=(value0 value1)  # 写法 1
+array=(value0 value1)   # 写法 1
 
-array=(                # 写法 2
+array=(                 # 写法 2
   value0
   value1
 )
@@ -460,16 +461,16 @@ array+=(value2)
 unset array[1]
 
 # 获取数组元素
-echo ${array[@]}   # 所有元素；* 或 @
-echo ${array}      # 第一个元素
-echo ${array[0]}   # 第一个元素
+echo ${array[@]}        # 所有元素；* 或 @
+echo ${array}           # 第一个元素
+echo ${array[0]}        # 第一个元素
 
 # 获取数组长度
-echo ${#array[@]}  # * 或 @
-echo ${#array[0]}  # 第一个元素的长度
+echo ${#array[@]}       # * 或 @
+echo ${#array[0]}       # 第一个元素的长度
 
 # 提取数组序号
-${!array[*]}       # * 或 @
+${!array[*]}            # * 或 @
 
 # 切片
 ${array[@]:position:length}
@@ -481,7 +482,7 @@ done
 
 # 数组合并
 array1=(xxx); array2=(xxx)
-array_merge=(${array1[*]} ${array2[*]})
+array=(${array1[*]} ${array2[*]})
 ```
 
 ---

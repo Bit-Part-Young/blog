@@ -513,9 +513,12 @@ sed '$d' file              # 删除最后一行
 sed 'N,Md' file            # 删除第 N-M 行
 sed '/^$/d' file           # 删除空白行
 
-# 打印行；command 可不加引号
-sed -n 4p file             # 打印第 4 行
-sed -n 4,8p file           # 打印第 4-8 行
+# 输出行；command 可不加引号
+sed -n 4p file             # 输出第 4 行
+sed -n 4,8p file           # 输出第 4-8 行
+sed -n 'n;p' txt           # 输出偶数行
+sed -n '2~2p' txt          # 同上
+sed -n '1~2p' txt          # 输出奇数行
 
 # 替换行
 sed '1c\xxx' file          # 替换第 1 行内容

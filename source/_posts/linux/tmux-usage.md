@@ -78,11 +78,35 @@ ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 ```
 
-- copy-mode 配置
+- 常用配置
+    - `-n` 表示该按键绑定是“全局快捷键”，即不需要先按 prefix 键，直接按组合键就能触发
+    - `M` 键表示表示 Meta 键，通常是 Alt/Option 键
 
 ```bash
+# copy-mode 配置
 # 设置快捷键为 vim 风格，默认是 Emacs 风格
 setw -g mode-keys vi
+
+# 智能分割窗格
+bind i run-shell " \
+if [ $(( \$(tmux display -p '8*#{pane_width}-20*#{pane_height}') )) -lt 0 ]; then \
+  tmux splitw -v -c '#{pane_current_path}'; \
+else \
+  tmux splitw -h -c '#{pane_current_path}'; \
+fi"
+
+# 没有效果？
+bind -n M-O next-layout
+
+# 调整窗格大小
+bind -n S-Up    resize-pane -U 5
+bind -n S-Down  resize-pane -D 5
+bind -n S-Left  resize-pane -L 5
+bind -n S-Right resize-pane -R 5
+
+# 移动窗口在底部状态栏的位置
+bind -n M-S-Left swap-window -t -1\; select-window -t -1
+bind -n M-S-Right swap-window -t +1\; select-window -t +1
 ```
 
 

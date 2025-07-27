@@ -66,20 +66,22 @@ new_arr = arr[arr[:, 1].argsort()]
 ```python
 import numpy as np
 
-# 从列表创建
-np.array([1, 2, 3])
+# 从列表创建数组
+np.array([1, 2, 3])         # 一维
+np.array([[1, 2], [3, 4]])  # 二维
 
-# 从内置函数创建
+# 从内置函数创建数组
 np.eye()                # 单位阵
 np.zeros()              # 全为 0
 np.ones()               # 全为 1
 np.full()               # 填充
+np.diag()               # 对角线
 np.arange()             # 范围（不包含终点值）
 np.linspace()           # 等差（默认包含终点值）
 np.logspace()           # 等比
 np.fromstring()         # 从字符串提取数据
 
-# 随机
+# 创建随机数组
 np.random.rand()        # 0-1 随机小数
 np.random.randint()     # 随机整数
 np.random.randn()       # 标准正态分布随机数（均值为 0，标准差为 1）
@@ -137,7 +139,8 @@ np.cbrt()               # 立方根
 np.log2()               # 对数计算
 np.round()              # 保留小数位数
 
-np.set_printoptions(suppress=True)      # 不使用科学计数法
+# 不使用科学计数法并指定精度
+np.set_printoptions(precision=5, suppress=True)
 ```
 
 ---
@@ -166,11 +169,11 @@ rint / round                     # 四舍五入
 通用二元函数：参数是两个数组对象，函数会对两个数组中的对应元素进行运算
 
 ```python
-np.allclose(x, y)    # 检查数组 x 和 y 元素是否几乎相等
-np.dot(x, y)         # 点积运算
-np.inner(x, y)       # 内积运算
-np.cross(x, y)       # 叉积运算
-intersect1d(x, y)    # 交集
+np.allclose(x, y)       # 检查数组 x 和 y 元素是否几乎相等
+np.dot(x, y)            # 点积运算
+np.inner(x, y)          # 内积运算
+np.cross(x, y)          # 叉积运算
+intersect1d(x, y)       # 交集
 ```
 
 
@@ -181,12 +184,12 @@ intersect1d(x, y)    # 交集
 - `axis` 参数指定运算沿着哪一个轴来执行，不指定时为对整个数组
 
 ```python
-np.sum()     # 加和
-np.mean()    # 算术平均值
-np.min()     # 最小值
-np.max()     # 最大值
-np.std()     # 标准差
-np.var()     # 方差
+np.sum()                # 加和
+np.mean()               # 算术平均值
+np.min()                # 最小值
+np.max()                # 最大值
+np.std()                # 标准差
+np.var()                # 方差
 ```
 
 
@@ -199,36 +202,43 @@ np.var()     # 方差
 - 方式 2：通过数组对象本身的方法（即 `array.method()`），如数组创建函数，数学和线性代数操作等
 
 ```python
-np.copy()             # 拷贝
+np.copy()               # 拷贝
 
 np.diff()
 
-np.reshape()          # 改变数组形状；当一个维度的参数值为 -1 时，会自动推断出该维度的值
-np.all()              # 判断数组是否所有元素都是 True
-np.any()              # 判断数组是否有为 True 的元素
+np.reshape()            # 改变数组形状；当一个维度的参数值为 -1 时，会自动推断出该维度的值
 
-tolist()              # 转换成 list 类型
+tolist()                # 转换成 list 类型
 
+np.flatten()            # 扁平化
 
-np.flatten()          # 扁平化
-
-np.unique()           # 去重；返回的元素是排序过的（从小到大）
+np.unique()             # 去重；返回的元素是排序过的（从小到大）
 # 参数
-return_count=True     # 返回相同元素的数目
+return_count=True       # 返回相同元素的数目
 
-np.hstack()           # 横向堆叠多个数组构成新数组
-np.vstack()           # 纵向堆叠多个数组构成新数组
-np.append()           # 追加元素
-np.insert()           # 插入元素
-np.where()            # 条件查询
-np.argwhere()         # 满足条件的元素索引
+np.append()             # 追加元素
+np.insert()             # 插入元素
 
-np.remainder()        # 计算数组余数
+np.where()              # 条件查询
+np.argwhere()           # 满足条件的元素索引
 
-np.isclose()          # 比较两个数值是否在某个容忍范围内接近相等
+np.where(array > 1.0)   # 返回满足条件的数组元素索引
+
+np.all()                # 判断数组是否所有元素都是 True
+np.any()                # 判断数组是否有为 True 的元素
+
+np.hstack()             # 横向堆叠多个数组构成新数组
+np.vstack()             # 纵向堆叠多个数组构成新数组
+
+np.remainder()          # 计算数组余数
+
+np.isclose()            # 比较两个数值是否在某个容忍范围内接近相等
 # 参数
-rtol                  # 相对容忍值
-atol                  # 绝对容忍值
+rtol                    # 相对容忍值
+atol                    # 绝对容忍值
+
+np.tril()               # 提取下三角矩阵；参数 k 为对角线的偏移量（默认为 0）
+np.triu()               # 提取上三角矩阵
 ```
 
 
@@ -242,15 +252,18 @@ atol                  # 绝对容忍值
 
 ```python
 np.save("*.npy", arr)   # 存储到 npy 文件格式
+
 np.savez("*.npz", ...)  # 存储到 npz 文件格式
-*args        # 位置参数，保存的数组将按顺序存储，名称为 arr_0 ...
-**kwds       # 关键字参数，给数组指定名称
+# 参数
+*args                   # 位置参数，保存的数组将按顺序存储，名称为 arr_0 ...
+**kwds                  # 关键字参数，给数组指定名称
 
 # 用关键字参数将数组存储到 npz 文件
 kwargs = {}
 for i in range(3):
     kwargs[f"array_{i}"] = ...
     np.savez("*.npz", **kwargs)
+
 
 np.load(file)           # 导入 npy npz 文件
 
@@ -320,18 +333,18 @@ from numpy.polynomial import Polynomial
 p = Polynomial((2, 3, 1))
 
 
-coeffs  # 获取多项式系数
+coeffs                  # 获取多项式系数
 coefficients
 
-roots  # 获取多项式的根
+roots                   # 获取多项式的根
 
-deriv()  # 求导
-integ()  # 不定积分
+deriv()                 # 求导
+integ()                 # 不定积分
 
 
-polyfit(x, y, deg)        # n 次多项式拟合；返回多项式的系数
+polyfit(x, y, deg)      # n 次多项式拟合；返回多项式的系数
 # 参数
-deg                       # 多项式阶数
+deg                     # 多项式阶数
 
 np.polyval()
 ```

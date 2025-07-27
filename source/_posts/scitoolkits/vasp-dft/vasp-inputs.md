@@ -722,7 +722,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 和适当的 RWIGS 一起，决定 PROCAR 或 PROOUT 文件是否被写入。LORBIT>=10 时，不需要 RWIGS 标签
 
-- 默认值：None
+- 默认值：0
 
 ![LORBIT-tag.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202307151730319.png)
 
@@ -881,6 +881,23 @@ WIP...
 - 默认值：.FALSE.
 
 - 利于精确总能计算、能带结构计算（f、所有 3d、第二周期的磁性原子）
+
+- 对 DFT+U, HSE, metaGGA, vdw-DFT 重要
+
+- 开启后，会增加计算耗时（增加不算太多？）
+
+
+---
+
+### LMAXMIX
+
+- DFT+U 时，含 d、f 电子的元素值需增大
+
+- 对非自洽计算能带非常重要
+
+- 默认值：2
+
+- 值增大，会增加计算耗时（增加不算太多？）
 
 
 ---

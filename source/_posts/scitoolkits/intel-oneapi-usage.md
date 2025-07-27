@@ -36,7 +36,11 @@ ${MKLROOT}/lib/intel64     # MKL 库文件路径
 -lmkl_core                 # 核心库
 
 ${MKLROOT}/include/fftw    # FFTW
-${MKLROOT}/lib/intel64     # BLACS、LAPACK 和 ScaLAPACK
+${MKLROOT}/lib/intel64     # 含 BLACS、LAPACK 和 ScaLAPACK
+
+# 不确定是否正确
+BLAS_LIBS      = -lmkl_intel_lp64  -lmkl_sequential -lmkl_core
+SCALAPACK_LIBS = -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64
 ```
 
 - Intel oneAPI 在官网只能下载最新版本；旧版下载：[Intel](https://get.hpc.dev/vault/intel/?sort=name&order=desc)

@@ -461,10 +461,14 @@ sinfo --partition=64c512g    # 查看特定队列
 scontrol suspend JobId       # 挂起作业（释放资源）
 scontrol resume JobId        # 恢复作业
 
-# 修改排队作业的所需 CPU 核数、指定节点、排除节点（也可修改其他作业参数）
+# 修改排队作业的所需 CPU 核数、指定节点、排除节点、优先级（也可修改其他作业参数）
 scontrol update JobId=... NumTasks=...
 scontrol update JobId=... NumCPUs=...
+# 指定 2 个节点时会出现问题，建议只指定 1 个节点
 scontrol update JobId=... NodeList=... ExcNodeList=...
+# 默认 SLURM 的优先级值范围是 0 到 4294967295（即 2³²−1），值越大，优先级越高
+# 需管理员权限
+scontrol update JobId=... Priority=...
 
 
 # 格式化输出队列、节点信息
@@ -791,9 +795,9 @@ bash test.sh
 
 ### Master 作业提交脚本示例
 
-- 课题组服务器，提交的作业使用的 CPU 核数由 2 颗 CPU（Socket）分别部分提供时，计算速度会很慢（16 原子扰动胞 20 核计算，由原本的 5min 变成 60min，慢了 20 倍），终端使用 mpirun 运行作业的速度则是正常的
+- 课题组服务器，提交的作业使用的 CPU 核数由 2 颗 CPU（Socket）分别部分提供时，计算速度会很慢（16 原子扰动胞 20 核计算，由原本的 5min 变成 60min，慢了 20 倍），终端使用 mpirun 运行作业的速度则是正常的（但只能在终端中运行 1 个命令，超过 1 个速度就会非常慢，大概率也会影响到队列中正在运行的作业）
 
-- 不建议跨 node\[1-2\] 与 master 节点（这 2 种节点的 CPU 世代不同）
+- 不建议跨 node\[1-2\] 与 master 节点（这 2 种节点的 CPU 世代不同），也不建议跨 node\[1-2\] 节点，也不建议跨物理 CPU
 
 - 使用 node\[1-2\] 中的 2 个节点
 
