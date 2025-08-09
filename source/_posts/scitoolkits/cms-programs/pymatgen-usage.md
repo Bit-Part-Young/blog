@@ -516,6 +516,7 @@ get_sorted_structure()    # 排序（not in place）
 apply_strain()            # 对点阵施加应变；默认会修改对象本身
 perturb()                 # 对结构中的原子位点施加随机扰动以破坏对称性
 make_supercell()          # 构建超胞
+scale_lattice             # 缩放 cell
 
 # 类方法
 from_spacegroup()         # 根据空间群构建结构

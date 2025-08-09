@@ -191,6 +191,10 @@ Markdown 相关
 
 - [sshx](https://github.com/ekzhang/sshx)：通过链接共享终端（可创建多个终端画布）
 
+- [sshs](https://github.com/quantumsheep/sshs)：使用 `~/.ssh/config` 列出和连接 hosts
+
+- [zenta 🧘‍♂️](https://github.com/e6a5/zenta)：快速恢复专注
+
 - 富文本：[rich](https://github.com/textualize/rich)
 
 - 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
@@ -364,8 +368,7 @@ primitive -i input.png -o output.png -n 100
 car *.md | mdq '# title'
 
 
-# yazi 配置
-# 路径 ~/.config/yazi/yazi.toml
+# yazi 配置 ~/.config/yazi/yazi.toml
 [mgr]
 ratio           = [ 2, 2, 4 ]     # 父目录，当前路径，预览三者之间的比例
 
@@ -375,4 +378,19 @@ image_quality   = 90
 
 [tasks]
 image_bound     = [ 0, 0 ]        # 0 表示不限制图片的大小
+
+
+# 实用 yazi 插件 ~/.config/yazi/keymap.toml
+git clone https://github.com/DreamMaoMao/easyjump.yazi.git ~/.config/yazi/plugins/easyjump.yazi
+git clone https://github.com/DreamMaoMao/searchjump.yazi.git ~/.config/yazi/plugins/searchjump.yazi
+
+[[mgr.prepend_keymap]]
+on   = [ "e" ]
+run  = "plugin easyjump"
+desc = "easyjump"
+
+[[mgr.prepend_keymap]]
+on   = [ "i" ]
+run  = "plugin searchjump"
+desc = "searchjump mode"
 ```

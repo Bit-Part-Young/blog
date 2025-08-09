@@ -273,9 +273,9 @@ from ovito.modifiers import ...
 from ovito.io import import_file
 
 # 导入构型/轨迹文件
-pipline = import_file("dump.lammpstrj")
+pipeline = import_file("dump.lammpstrj")
 # 可使用通配符
-pipline = import_file("dump_*.lammpstrj")
+pipeline = import_file("dump_*.lammpstrj")
 # 参数
 sort_particles           # 是否对原子进行排序
 
@@ -376,7 +376,7 @@ key                   # 若为 "txt/table" 格式，可添加该参数导出对�
 "txt/table"           # 导出 DataTable
 "xyz"
 "vasp"
-"lammps/data"
+"lammps/data"         # 和 LAMMPS data 文件格式内容有些许差异
 "lammps/dump"
 "imd"
 "netcdf/amber"

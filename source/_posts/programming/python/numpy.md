@@ -157,7 +157,7 @@ sign                             # 符号函数
 ceil / floor                     # 向上/下取整
 isnan                            # 返回布尔数组；NaN 为 True，非 NaN 为 False
 isfinite / isinf                 # 判断数值是否为无穷大
-cos / cosh / sin                 # 三角函数
+cos / cosh / sin                 # 三角函数；其参数为弧度制
 sinh / tan / tanh                # 三角函数
 arccos / arccosh / arcsin        # 反三角函数
 arcsinh / arctan / arctanh       # 反三角函数
@@ -239,6 +239,9 @@ atol                    # 绝对容忍值
 
 np.tril()               # 提取下三角矩阵；参数 k 为对角线的偏移量（默认为 0）
 np.triu()               # 提取上三角矩阵
+
+np.deg2rad()            # 角度制转弧度制
+np.rad2deg()            # 弧度制转角度制
 ```
 
 

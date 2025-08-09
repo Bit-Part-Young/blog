@@ -681,16 +681,20 @@ specorder                # 指定 atom types 顺序；默认按照元素符号�
 atoms = read(
     structure_fn,
     format="lammps-data",
-    units="metal",
-    style="atomic",
     Z_of_type={
         1: atomic_numbers["Si"],
         2: atomic_numbers["Nb"],
     },
+    sort_by_id=False,
+    units="metal",
+    style="atomic",
 
 )
 # 参数
 Z_of_type                # dict，键为 type 编号，值为对应的元素原子序数；若为 None，有 Masses 信息，会根据其猜测原子序号，否则 type 编号对应的元素原子序数默认为 H He ... 等
+read_image_flags         # 读取 LAMMPs data 文件中 image flag，默认为 True
+sort_by_id               # 为 True 时，原子的 id 不连续时，会出现报错；为 False，不会报错，建议设为 False
+
 
 
 # 将 OUTCAR 中每个离子步信息写入 extxyz

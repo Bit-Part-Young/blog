@@ -178,6 +178,8 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 - Easy Typing：书写体验增强；功能包含编辑时自动格式化文本和符号编辑增强
     - 快速生成特定编程语言的代码块： [有没有快捷的方式可以完成用来表示代码块的markdown字符的输入 - 疑问解答 - Obsidian 中文论坛](https://forum-zh.obsidian.md/t/topic/22475)
 
+- Exmemo Client：优化本地搜索插件
+
 - Advanced Tables：Markdown 表格增强；按 Tab 键自动补全 Markdown 表格所需格式
 
 - Editing Toolbar：在文档编辑栏上方添加类似 Office 的工具栏

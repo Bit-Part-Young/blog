@@ -276,11 +276,14 @@ atomate/vasp/firetasks/parse_outputs.py
 - 弹性常数计算 workflow 默认参数设置
 
 ```python
-# 计算 2 阶弹性常数（默认）
-# 第一步弛豫
+# 计算 2 阶弹性常数参数设置（默认）
+# 第一步弛豫，其余参数由 MPRelaxSet 控制
 {"ENCUT": 700, "EDIFF": 1e-6, "LAECHG": False, "LREAL": False}
-# ISIF = 2 弛豫部分
+# 变形部分，ISIF = 2 弛豫，其余参数由 MPStaticSet 控制，如 ENCUT=500 
 {"ISIF": 2, "IBRION": 2, "NSW": 99, "ISTART": 1}
+
+kpts_settings = {"grid_density": 7000}
+stencils = None
 
 
 # 计算 3 阶弹性常数
@@ -316,9 +319,9 @@ for state, stencil in zip(strain_states, stencils):
 
 ---
 
-## MongoDB Compass 使用
+## 计算数据获取
 
-### 数据库连接
+### 使用 MongoDB Compass 连接数据库
 
 - 连接数据库：New connection - Advanced Connection Options
     - General: Connection String Scheme 选择 mongodb；填写 Host
@@ -326,14 +329,14 @@ for state, stencil in zip(strain_states, stencils):
 
 - 修改连接的 connection 名称："New Connection" 有编辑选项
 
-- [x] MONGOSH 使用（暂无必要）
-
 - [手把手教你注册MongoDB Atlas](https://mp.weixin.qq.com/s/jF5o7YNHw88uI7rjTxFkIw)
 
 
 ---
 
-### 使用
+### MongoDB Compass 使用
+
+- 新版 MongoDB Compass 可以修改一个页面下的 Document 条数（25-100）
 
 - MongoDB 中存储的每条数据称为 document，具体数据值通过字段查询（即 dict 中的 key 和 value）
 
@@ -343,7 +346,12 @@ for state, stencil in zip(strain_states, stencils):
 {"tags.structure_id": "ICET-Training-No-00754"}
 ```
 
-- atomate 连接 MongoDB，数据获取与筛选
+
+---
+
+### 使用 atomate 连接 MongoDB 数据库并筛选、获取数据
+
+#### 连接数据库
 
 ```python
 import os
@@ -360,8 +368,19 @@ atomate_db = VaspCalcDb.from_db_file(db_json_path)
 elasticity_collection = atomate_db.db["elasticity"]
 # 吉布斯计算任务 collection
 gibbs_collection = atomate_db.db["gibbs_tasks"]
+```
 
 
+---
+
+#### 筛选、获取数据
+
+- 可用 Projection Operators：[Query and Projection Operators - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors)
+
+- [https://github.com/hackingmaterials/atomate/issues/445](https://github.com/hackingmaterials/atomate/issues/445)
+
+
+```python
 # find() 可以使用 Projection Operators（以 $ 开头）
 query = {"task_label": "volume relaxation"}
 query = {"task_id": {"$gt": 18, "$lt": 44}}
@@ -396,9 +415,10 @@ count = db.collection.find(query).count()
 documents = atomate_db.collection.find(query, projection)
 # 获取一条 document
 document = atomate_db.collection.find_one(query, projection)
-# 对 document 进行排序；sort() 参数为 query dict 中的 key
+# 对 document 进行排序；sort() 参数为 query 中的 key
 documents = atomate_db.collection.find(query, projection).sort(...)
-
+# 从 elasticity_collection 筛选数据
+documnets_elasticity = elasticity_collection.find(query)
 
 # 将获取的 documents dump 至 json 文件
 dumpfn(list(documents), "documents.json")
@@ -410,12 +430,9 @@ documents_list = loadfn(input_data_fn)
 for document in documents_list:
     # 从 dict 获取的 value 直接就是 Structure object 
     structure: Structure = document["input"]["structure"]
+    # 不支持该写法 document["output.energy"]
     energy = document["output"]["energy"]
 ```
-
-- 可用 Projection Operators：[Query and Projection Operators - MongoDB Manual v7.0](https://www.mongodb.com/docs/manual/reference/operator/query/#std-label-query-selectors)
-
-- [https://github.com/hackingmaterials/atomate/issues/445](https://github.com/hackingmaterials/atomate/issues/445)
 
 
 ---
@@ -572,11 +589,13 @@ dict_keys(
 
 ---
 
-### 相关问题
+## 相关问题
 
-- 新版 MongoDB Compass 可以修改一个页面下的 Document 条数（25-100）
+- 注：随着 atomate 及其依赖 package 版本的更新，以下问题可能会被解决
 
-- Master `db.json` 问题：Host 只能写数字的形式，SiYuan 可以写字符串的形式（在 MongoDB Compass 填写的 Host 也需对应的形式）
+- KSPACING 参数和 KPOINTS 文件：atomate 中的 `wf_structure_optimization()` 和 `wf_static()` 函数中的源代码中的 `MPStaticSet()` 或 `MPRelaxSet()` 没有设置 `user_kpoints_settings` 参数，因此在使用 `add_modify_incar` 时添加 KSPCAING 和 KGAMMA 参数时，可不生成 KPOINTS 文件。而 `wf_elastic_constant()` 函数有设置，因此都会生成 KPOINTS 文件，KSPACING 设置无效果；可注释掉 `user_kpoints_settings` 参数，使 KSPACING 重新起效果（在 `pymatgen/io/vasp/sets.py` `VASPInputSets` 中有相关代码及注释，第 264 行）
+
+- Master 服务器上 `db.json` 文件中的 Host 写法：Host 只能写数字的形式，超算上可以写字符串的形式（在 MongoDB Compass 填写的 Host 也需对应的形式）
 
 ```bash
     raise ServerSelectionTimeoutError(
@@ -591,4 +610,42 @@ getaddrinfo ENOTFOUND XXX
 
 # 报错情况 2
 Connection failed: XXXX: [Errno 111] Connection refused, Timeout: 30s, Topology Description:
+```
+
+- `atomate/vasp/workflows/base/elastic.py` 中的第 145 行代码内容出错
+
+```bash
+wf_elastic.append_wf(
+# 应为 Workflow.from_firework
+    Workflow.from_Firework(fw_analysis), wf_elastic.leaf_fw_ids
+)
+```
+
+- INCAR 参数设置 `MAGMOM=None` 出现报错
+
+```bash
+/XXX/atomate/vasp/firetasks/run_calc.py:150: FutureWarning: ScanMetalHandler is deprecated; use             KspacingMetalHandler in custodian.vasp.handlers instead.
+ScanMetalHandler was deprecated on 2023-11-03 and will be removed in a future release. Use KspacingMetalHandler instead.
+  ScanMetalHandler(),
+Error reading item
+/XXX/custodian/vasp/handlers.py:714: UserWarning: Looks like you made a typo in the INCAR. Please double-   check it.
+  warnings.warn("Looks like you made a typo in the INCAR. Please double-check it.", UserWarning)
+ERROR:custodian.custodian:VaspErrorHandler
+```
+
+- INCAR 参数设置 `LCHARG=False` 出现报错（`atomate/vasp/drones.py` 中的相关函数会使用 CHGCAR 文件获取相关信息，建议输出该文件）
+
+```bash
+2025-08-09 11:52:31,137 ERROR atomate.vasp.drones Traceback (most recent call last):
+  File "/XXX/atomate/vasp/drones.py", line 270, in generate_doc
+    d["calcs_reversed"] = [
+                          ^
+```
+
+- 部分 workflow 有 VASP 计算过程，但无法将计算数据保存到 MongoDB 中（个人理解）
+    - 参考：[Check returncode to raise CustodianError() leading some trouble · Issue #41 · materialsproject/custodian · GitHub](https://github.com/materialsproject/custodian/issues/41)
+    - 源代码修改：将 `custodian/custodian.py` 中 `Custodian` 类的 `__init__` 方法 `terminate_on_nonzero_returncode` 参数值改成 `False`
+
+```bash
+custodian.custodian.ReturnCodeError: Job return code is 174. Terminating…
 ```

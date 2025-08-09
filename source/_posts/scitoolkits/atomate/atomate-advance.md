@@ -186,8 +186,6 @@ get_fws_and_tasks           # 获取给定 workflow 的 fw_ids 和 task_ids
 
 - atomate fw 计算时长达到规定的 walltime 时限，该 fw 会视为 COMPLETED，还是 RUNNING（视为 RUNNING）
 
-- 在同一目录下第二次 运行 `qlaunch rapidfire` 提交任务，会在已有的 block 目录下生成计算任务的子目录
-
 - 一些参数含义
 
 ```python
@@ -290,39 +288,6 @@ if __name__ == '__main__':
 
 ---
 
-## 相关问题
-
-- 注：随着 atomate 及其依赖 package 版本的更新，以下问题可能会被解决
-
-- 部分 workflow 有 VASP 计算过程，但无法将计算数据保存到 MongoDB 中（个人理解）
-    - 参考：[Check returncode to raise CustodianError() leading some trouble · Issue #41 · materialsproject/custodian · GitHub](https://github.com/materialsproject/custodian/issues/41)
-    - 源代码修改：将 `custodian/custodian.py` 中 `Custodian` 类的 `__init__` 方法 `terminate_on_nonzero_returncode ` 参数值改成 `False`
-
-```bash
-custodian.custodian.ReturnCodeError: Job return code is 174. Terminating…
-```
-
-- 涉及到含元素 Si 的 atomate 计算（atomate 1.1.0 版本），会出现如下报错（2023.10.12）
-    - atomate 版本为 1.1.0，但在 MongoDB 的数据库中 documentation 中的 schema.version 版本仍显示是 1.0.3
-
-```bash
-Traceback (most recent call last):
-  File "/dssg/home/acct-mseklt/mseklt/yangsl/scripts/atomate-test/examples/atomate_test_NbSi.py", line 11, in <module>
-    lpad.add_wf(wf)
-    return _op_msg_uncompressed(flags, command, identifier, docs, opts)
-bson.errors.InvalidDocument: cannot encode object: True, of type: <class 'numpy.bool_'>
-```
-
-- 计算弹性常数，报错：实际计算用不到该模块，在 `atomate/vasp/firetasks/write_inputs.py"`，在第 637 行将其注释掉）
-    - [Fix \`ModuleNotFoundError\`: No module named 'pymatgen.transformations.defect\_transformations' by janosh · Pull Request #760 · hackingmaterials/atomate · GitHub](https://github.com/hackingmaterials/atomate/pull/760/commits/85786c33b2fade6a882f35b4221552529fb4fef4)
-
-```bash
-- `ModuleNotFoundError: No module named 'pymatgen.transformations.defect_transformations’`
-```
-
-
----
-
 ## 常用模块
 
 ### atomate.utilities.visualize
@@ -383,10 +348,11 @@ from atomate.vasp.fireworks.core import ...
 StaticFW                 # 静态计算
 OptimizeFW               # 结构优化
 ScanOptimizeFW           # 使用 SCAN metaGGA functional 结构优化
+TransmuterFW             # 弹性常数计算变形阶段用到
 
 
 # OptimizeFW 类参数
-job_type                 # 默认值为 "double_relaxation_run"，可选值 "normal"、"full_opt_run"、"neb"
+job_type                 # 默认值为 "double_relaxation_run"，可选值 "normal"、"full_opt_run"、"neb"；其他 FW 无该参数
 ```
 
 
@@ -513,7 +479,7 @@ wf = add_modify_incar(
             "EDIFFG": -0.05,
         },
     },
-    fw_name_constraint="optimization",    # 仅对特定的 firework 起作用
+    fw_name_constraint="optimization",    # 施加约束，使其只对特定的 firework 起作用
 )
 
 wf = add_modify_potcar(

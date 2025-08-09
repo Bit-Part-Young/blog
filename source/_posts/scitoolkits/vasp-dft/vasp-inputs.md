@@ -275,6 +275,8 @@ END of PSCTR-controll parameters
 
 - [如何获得第一布里渊区的高对称点的对称性？](https://zhuanlan.zhihu.com/p/690450851)
 
+- **INCAR 文件中的 KSPACING 和 KPOINTS 文件同时存在时，KSPACING 设置不生效**
+
 - 设置布里渊区 K 点网格采样大小或计算能带结构时沿高对称方向的 K 点
 
 - 对 K 点进行收敛性测试是许多电子最小化计算的基本任务之一
@@ -857,7 +859,7 @@ Tetrahedron method fails for NKPT<4. NKPT =       1
 
 - 默认值：.FALSE.
 
-- LAECHG=. TRUE. 时，VASP 会重建三个不同的 all-electron 电荷密度，分别写入 AECCAR0，AECCAR1 和 AECCAR2 文件
+- LAECHG=.TRUE. 时，VASP 会重建三个不同的 all-electron 电荷密度，分别写入 AECCAR0，AECCAR1 和 AECCAR2 文件
     - the core density
     - the proto-atomic valence density (overlapping atomic charge densities)
     - the self-consistent valence density

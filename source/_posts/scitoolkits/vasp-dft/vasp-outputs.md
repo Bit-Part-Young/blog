@@ -83,7 +83,7 @@ vol=$(grep 'volume of cell' OUTCAR | tail -n 1 | awk -v n=${natoms} '{print $5/n
 
 
 grep 'NSW' OUTCAR                     # 查看 INCAR 相关参数数值
-grep 'generate k-points' OUTCAR       # 查看由 KSAPCING 参数生成的 K 点数目
+grep 'generate k-points' OUTCAR       # 查看由 KSAPCING 参数生成的 K 点数目；由 KPOINTS 生成的 K 点不会出现该内容
 grep 'irreducible k-points' OUTCAR    # 查看不可约 K 点数目
 grep 'NKPTS' OUTCAR                   # 查看不可约 K 点数目、能带数
 grep 'distr' OUTCAR                   # 查看 KPAR、NPAR、NCORE 参数

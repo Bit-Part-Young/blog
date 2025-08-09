@@ -182,7 +182,7 @@ Immm       71       正交   无 SD
 Imma       74       正交   无 SD
 P4_2/n     86       四方   无 SD
 I4/m       87       四方   D1_a
-P4/mmm     123      四方   L1_0(FCC 结构的 tetragonal distortion)
+P4/mmm     123      四方   L1_0 (FCC 结构的 tetragonal distortion)
 I4/mmm     139      四方   有 SD
 I4/mcm     140      四方   有 SD
 I4_1/amd   141      四方
@@ -190,10 +190,10 @@ R3         146      三方
 R-3        148      三方
 P-3m1      164      三方   有 SD
 R-3m       166      三方   L1_1、A10
-P6/mmm     191      六方   C32(omega 相)、C_h
+P6/mmm     191      六方   C32 (omega 相)、C_h
 P6_3/mcm   193      立方   无 SD
 P6_3/mmc   194      六方   D0_19
-Pm-3m      221      立方   L1_2(原子位置同 FCC 点阵位点)、B2(CsCl)、D0_9(α-ReO3)
+Pm-3m      221      立方   L1_2 (原子位置同 FCC 点阵位点)、B2 (CsCl)、D0_9 (α-ReO3)
 Pm-3n      223      立方   A15
 Fm-3m      225      立方   A1(FCC)、B1(NaCl)、C1、D0_3、L2_1
 Fd-3m      227      立方   C15、A4(Diamond)

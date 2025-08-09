@@ -27,21 +27,10 @@ password:
 - atomsk 中的 cfg 格式文件可用 OVITO 打开，VESTA 无法打开
 
 - 暂时没有的功能：
-    - 单胞转换成原胞
-    - 无法直接构造八面体、四面体间隙的点缺陷
-    - 可否建立 layer / 界面模型？
+    - 无法直接构造八面体、四面体间隙的点缺陷（需自己手动将间隙原子插入到正确的位点中）
 
-- 只能构建 BCC、FCC、HCP 结构的特殊取向，其他结构不能（会报错）
+- 只能构建 BCC、FCC、HCP 结构的特殊取向，其他结构不能（如四方结构，会报错）
 
-- 参考资料
-    - atomsk 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
-    - [Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
-    - VESTA 中如何变换点阵（六方转正交）：[crystallography - How to transform lattice in VESTA - Matter Modeling Stack Exchange](https://mattermodeling.stackexchange.com/questions/7263/how-to-transform-lattice-in-vesta)
-    - 六方胞的正交化（里面的示意图可供参考）：[Orthogonalization of a hexagonal unit cell of AlN](https://er-c.org/barthel/drprobe/example-orthcel-aln.html)
-
-- FCC 孪晶：
-    - [Atomsk - Tutorial - Twin boundary](https://atomsk.univ-lille.fr/tutorial_twin.php)
-    - [ATOMSK建模 Stacking Fault](https://mp.weixin.qq.com/s/o0ldM-87tGulOEIBFXSsSw)
 
 
 ---
@@ -124,6 +113,23 @@ make -f Makefile.macos atomsk
 
 ## 使用
 
+### 基本
+
+- 官方教程：[Atomsk - Tutorials](https://atomsk.univ-lille.fr/tutorials.php)
+
+- 速查表：[Atomsk Cheat Sheet](https://atomsk.univ-lille.fr/data/Atomsk_Cheat-Sheet.pdf)
+
+- 变量可全小写/大写，如 box、z
+
+- 支持的构型文件格式
+
+```bash
+atsk abin bop bx cfg cel cif coo csv d12
+dat dd dlp fdf gin imd jems lmp mol
+pdb pos pw str vesta xmd xsf xv
+xyz exyz sxyz
+```
+
 - 配置文件（可选）：[Program behaviour: setting up a configuration file](https://atomsk.univ-lille.fr/doc/en/progbe_configfile.html)
 
 ```bash
@@ -135,18 +141,14 @@ colour yes
 colour_error red bold blink
 ```
 
-- atomsk 中的变量可全小写/大写，如 box、z
+- RDF 计算：[Tutorial: Radial Distribution Functions (RDF)](https://atomsk.univ-lille.fr/tutorial_rdf.php)
 
-- atomsk 支持的构型文件格式
 
-```bash
-atsk abin bop bx cfg cel cif coo csv d12
-dat dd dlp fdf gin imd jems lmp mol
-pdb pos pw str vesta xmd xsf xv
-xyz exyz sxyz
-```
+---
 
-- atomsk 支持的晶体结构构建类型：[Mode: create - Atomsk](https://atomsk.univ-lille.fr/doc/en/mode_create.html)
+### 结构建模
+
+- 支持的晶体结构类型：[Mode: create - Atomsk](https://atomsk.univ-lille.fr/doc/en/mode_create.html)
 
 ```bash
                <structure> | N.lattice cst. | N.at.sp.
@@ -172,15 +174,33 @@ LATTICES         wurtzite  |  2 (a and c)   |     2
                        BN  |  2 (a and c)   |     2
                       C14  |  2 (a and c)   |     2
                       C36  |  2 (a and c)   |     2
+
+
+st, simple tetragonal            # 简单四方
+bct, body-centered tetragonal    # 体心四方
+fct, face-centered tetragonal    # 面心四方（L1_0）
+BN, B12 phase
+A15, Cr3Si type
+C15, laves phase
+C14, laves phase
+C36, laves phase
 ```
 
-- 常见模型构建
+- 常见结构模型构建
     - 晶界构建（symmetric tilt、twist）：[Atomsk - Tutorial - Grain Boundaries](https://atomsk.univ-lille.fr/tutorial_grainboundaries.php)
     - 位错构建（刃、螺位错）：
         - [Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)
         - [Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
     - 层错构建：[Atomsk - Tutorial - Stacking fault](https://atomsk.univ-lille.fr/tutorial_stackingfault.php)
     - [atomsk多层碳纳米管建模示例](https://mp.weixin.qq.com/s/geQF9G9xC-f_90puwqI_tA)
+    - FCC 孪晶：
+        - [Atomsk - Tutorial - Twin boundary](https://atomsk.univ-lille.fr/tutorial_twin.php)
+        - [ATOMSK建模 Stacking Fault](https://mp.weixin.qq.com/s/o0ldM-87tGulOEIBFXSsSw)
+
+
+---
+
+### 常用 options、modes
 
 - 查看所有的 options 和 modes 及其用法：[Documentioin - Atomsk](https://atomsk.univ-lille.fr/doc/en/index.html)
 
@@ -234,11 +254,14 @@ X!X ERROR: only one mode can be used at a time.
 # N 可选值
 0              # 不会输出内容到屏幕/log 文件，Errors、warnings、questions 仍会输出到屏幕 
 1              # 只输出内容到屏幕
-0              # 只输出内容到 log 文件
-0              # 输出内容到屏幕、log 文件
+2              # 只输出内容到 log 文件
+3              # 输出内容到屏幕、log 文件
 ```
 
-- 常用命令实例
+
+---
+
+### 常用命令实例
 
 ```bash
 # 构建晶体结构
@@ -246,32 +269,26 @@ X!X ERROR: only one mode can be used at a time.
 --create hcp 2.92 4.61 Ti          # HCP，基矢: H1=[2-1-10], H2=[-12-10], H3=[0001]
 --create perovskite 3.905 Sr Ti O  # 钙钛矿结构
 
-# 支持的晶体结构类型
-bcc
-fcc
-hcp
-diamond
-perovskite
-rocksalt
-
-
 # 构建晶体特定取向的构型
---create fcc 3.53 Ni -orient "[1-10]" "[11-2]" "[111]"
+--create fcc 4.041 Al -orient "[1-10]" "[11-2]" "[111]"
 
 -reduce-cell p                     # 寻找原胞
 
--duplicate 1 1 4                   # 构建超胞
+-duplicate 1 1 4                   # 扩胞
 
 -sort species pack                 # 将相同的元素排在一起（写入 VASP POSCAR 有用）
+-sort z up                         # 按原子 z 坐标从小到大排序
 
 # 笛卡尔、分数坐标互相转换（用于 VASP）
 atomsk POSCAR vasp                 # 笛卡尔坐标
 atomsk POSCAR -fractional vasp     # 分数坐标
 
 # 添加真空层
--cell add 15 z                     # 在 z 轴上半部分添加真空层；x、y、z 可写成 H1-3
--shift 0 0 15 -cell add 30 z       # 在 z 轴两侧添加真空层
--shift 0 0 15 -cell add 15 z       # 在 z 轴下半部分添加真空层
+# 以下命令能正确地给非正交胞添加真空层，即晶格角度不发生变化
+# 但底部和两端时，原子顺序会发生改变，对表面能计算无影响
+-cell add 15.0 z                       # 在 z 轴顶部添加真空层；x、y、z 可写成 H1 H2 H3
+-cell add 15.0 z -shift 0 0 15.0 z     # 在 z 轴底部添加真空层
+-cell add 15.0 z -shift 0 0 7.5 z      # 在 z 轴两端添加真空层
 
 # 固定原子坐标轴
 -fix x -fix y                      # 固定原子的 x、y 轴
@@ -301,15 +318,14 @@ atomsk POSCAR -fractional vasp     # 分数坐标
 atomsk POSCAR xyz                  # 常用: xyz lammps/lmp vasp/pos cif
 ```
 
-- RDF 计算：[Tutorial: Radial Distribution Functions (RDF)](https://atomsk.univ-lille.fr/tutorial_rdf.php)
-
-- 多晶模型及界面模型（coating 模型，相对简单的）构建：[【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
 
 ---
 
 ### 多晶模型
 
 - [Atomsk - Tutorial - Polycrystals](https://atomsk.univ-lille.fr/tutorial_polycrystal.php)
+
+- 多晶模型及界面模型（coating 模型，相对简单的）构建：[【计算材料学-从算法原理到代码实现】视频教程 | 7.17\_多元合金的atomsk手把手建模\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV13s421A735)
 
 - [LAMMPS 笔记：Atomsk 生成多晶](https://zhuanlan.zhihu.com/p/617697569)
 

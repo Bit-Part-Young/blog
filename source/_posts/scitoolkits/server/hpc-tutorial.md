@@ -831,7 +831,7 @@ bash test.sh
 #SBATCH --ntasks-per-node=40
 
 #SBATCH -w node2               # 指定节点
-#SBATCH -x node1               # 排除指定节点；多个的写法 node1,master
+#SBATCH -x master              # 排除指定节点；多个的写法 master,node1
 
 #SBATCH --no-requeue           # 取消集群断电重启后作业自动提交
 ```
@@ -849,8 +849,7 @@ bash test.sh
 #SBATCH -o %j.out
 #SBATCH -e %j.err
 
-#SBATCH -w node2
-#SBATCH -x node1
+#SBATCH -x master
 
 #SBATCH --no-requeue
 
@@ -912,6 +911,54 @@ elif [[ "$SLURMD_NODENAME" == 'node2' ]]; then
   gpumd_node2
   # nep_node2
 fi
+```
+
+- Python（在 slurm 文件中直接添加 conda activate 命令无效，报 conda init 相关错误）
+
+```bash
+#!/bin/bash
+
+#SBATCH -J Python
+#SBATCH -p cpu
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=1
+#SBATCH -t 72:00:00
+#SBATCH -o %j.out
+#SBATCH -e %j.err
+
+#SBATCH --no-requeue
+
+
+# 添加在 ~/.{ba,z}shrc 中的 conda initialize 内容
+#---------------------    Conda    ----------------------------
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/path/to/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/path/to/miniconda3/latest/etc/profile.d/conda.sh" ]; then
+        . "/path/to/miniconda3/latest/etc/profile.d/conda.sh"
+    else
+        export PATH="/path/to/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# 添加 conda activate 设置
+conda () {
+    \local cmd="${1-__missing__}"
+    case "$cmd" in
+        (activate | deactivate) __conda_activate "$@" ;;
+        (install | update | upgrade | remove | uninstall) __conda_exe "$@" || \return
+            __conda_reactivate ;;
+        (*) __conda_exe "$@" ;;
+    esac
+}
+
+conda activate XXX
+python test.py
 ```
 
 
