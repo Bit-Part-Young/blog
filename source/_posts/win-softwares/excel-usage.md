@@ -2,7 +2,7 @@
 title: Excel 使用
 top: false
 pin: false
-cover: 
+cover:
 toc: true
 mathjax: true
 math: true
@@ -19,10 +19,18 @@ password:
 
 # Excel 使用
 
-参考资料：
+- 参考资料：
+    - [Excel 教程 Excel精选28个技巧\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Ea4y1v7eN/)
 
-- [Excel 教程 Excel精选28个技巧\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1Ea4y1v7eN/)
+- 快捷键（无上下标的快捷键）
 
+```bash
+ctrl + ;                 # 输入当前日期
+command + option + -     # 删除边框
+ctrl + enter             # 同时填充多个选定单元格
+ctrl + \                 # 快速找出 2 列数据中的不同
+ctrl + shift + ↑/↓/←/→   # 快速向上下左右选中单元格
+```
 
 
 ---
@@ -107,20 +115,9 @@ password:
 
 - 生成下拉列表：选中列 -- “数据” 菜单栏，数据验证，数据验证 -- 设置，允许选择 “序列”，“来源” 填写下拉列表内容（用英文逗号隔开）
 
-- 快速找不同：快捷键 `Ctrl + \`
-
-- 输入当前日期：快捷键 `Ctrl +;`
-
-- 输入当前时间：快捷键 `Ctrl + Shift +;`（Windows）
-
 - 制作斜线表头：选中单元格内容 -- 设置单元格格式 -- 字体，分别设置下、上标 -- 调整文字大小；选中单元格 -- 设置单元格格式 -- 边框，右斜线
-
-- 删除边框：`Command + Option + _`（macOS）
 
 - 调整整个工作簿的行高、列宽：全选工作簿（左上方的三角），调整其中的一行一列，其他自动匹配
 
 - 冻结首行：在 “视图” 菜单栏中，适合固定表头；冻结窗格：适合固定前 N 行查看；冻结首列：适合固定列
 
-- 快速向上下左右选中单元格：快捷键 `Ctrl + Shift + ↑/↓/←/→`；一直选择到数据区域的最后一个单元格，若有空行，则会选择到空行前的最后一个单元格
-
-- 同时填充多个选定单元格：快捷键 `Ctrl + Enter`

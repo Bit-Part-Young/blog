@@ -72,6 +72,9 @@ print(df)
 # 输出显示全部行和列数据
 pd.set_option("display.max_columns", None)
 pd.set_option("display.max_rows", None)
+
+# 设置浮点数精度
+pd.set_option("display.precision", 9)
 ```
 
 
@@ -90,23 +93,25 @@ astype()             # 设置数据类型
 
 
 # DataFrame 属性
-dtypes               # 数据类型
-shape                # m 行 n 列
-size                 # 
+values               # 数值；类型为 numpy.ndarray
 index                # 行索引
 columns              # 列名
-values               # 数值
+dtypes               # 数据类型
+shape                # m 行 n 列
+size                 # 值为 m, n 的乘积
 ndim                 # 维度
 
 # Series 属性
 is_unique
 name
 
+# Series 方法
+df.unique()
+df.nunique()
+
+
 
 df.corr()               # Pearson 相关系数矩阵
-
-# 设置浮点数精度
-pd.set_option("display.precision", 9)
 ```
 
 
@@ -194,16 +199,15 @@ index_col           # 用作行索引（标签）的列
 usecols             # 需要加载的列，可以使用序号或者列名
 
 
-# 可自动识别分隔符（逗号、单个空格、制表符，制表符+空格），速度会慢一些
-# 两个空格不行
+# 可自动识别分隔符（逗号、单个空格、制表符，制表符+空格），速度会慢一些；两个空格不行
 df = pd.read_csv(csv_fn, sep=None, engine="python")
 
 
 pd.read_excel()     # 从 Excel 文件读取数据
-# 参数
+# 参数（无 sep 参数）
 sheet_name          # 指定数据表的名称
-# header skiprows 等参数同上
-# 无 sep 参数
+header              # 同 read_csv()
+skiprows            # 同上
 
 
 df.to_csv()         # 保存成 csv 文件
@@ -311,9 +315,6 @@ df.round()                               # 四舍五入；当 df 既有数值和
 ```python
 df.diff()       # 同列相邻元素差值
 
-df.unique()
-df.nunique()
-
 df.nlargest()   # 查看排前 N 的数据
 df.nsmallest()  # 查看排后 N 的数据
 
@@ -328,8 +329,9 @@ df.drop()   # 去掉行/列数据
 # 统计该列出现的不同值及对应数目
 df.value_counts(sort=False)
 
-# 绘图
+# 绘图（功能较简单，不推荐使用）
 df.plot(kind="bar")
+
 
 df.duplicated()
 df.drop_duplicates(, keep=..., inplace=...)

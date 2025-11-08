@@ -290,6 +290,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 - 限制电池最大充电量
     - AlDente
+    - [battery](https://github.com/actuallymentor/battery)
     - [bclm](https://github.com/zackelia/bclm)
 
 - 电池电量

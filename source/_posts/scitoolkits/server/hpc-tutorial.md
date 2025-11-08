@@ -132,6 +132,11 @@ vmd....................To visualize md trajectories
 
 #### GPU 相关
 
+- 注意事项：
+    - 用 slurm 提交 GPU 任务，某一块 GPU 则会被该任务独占（不过不影响在终端 / tmux 中直接运行 GPU 任务）
+
+- GPU 任务也是要占用 CPU 的，需做好资源分配（不添加 -N、--ntasks-per-node 时，默认会使用 1 个 CPU 核）
+
 - [llm\_note/4-hpc\_basic/英伟达GPU架构总结.md at main · harleyszhang/llm\_note · GitHub](https://github.com/HarleysZhang/llm_note/blob/main/4-hpc_basic/%E8%8B%B1%E4%BC%9F%E8%BE%BEGPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93.md)（含 V100、A100、H100 GPU 介绍）
 
 - NVIDIA GPU 参数：

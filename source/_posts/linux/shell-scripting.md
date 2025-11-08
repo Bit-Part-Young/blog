@@ -517,6 +517,8 @@ if condtion1; then
     commands
 elif condition2; then
     commands
+else
+    commands
 fi
 
 # 写成一行
@@ -546,8 +548,11 @@ test expression      # 写法一
 
 # 整数条件
 [[ NUM1 -eq NUM2 ]]  # 等于
+[[ NUM1 -ne NUM2 ]]  # 不等于
 [[ NUM1 -lt NUM2 ]]  # 小于
 [[ NUM1 -gt NUM2 ]]  # 大于
+[[ NUM1 -le NUM2 ]]  # 小于等于
+[[ NUM1 -ge NUM2 ]]  # 大于等于
 ```
 
 

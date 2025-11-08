@@ -255,6 +255,8 @@ second_legend = ax.legend(
 ax.add_artist(second_legend)
 ```
 
+- matplotlib 中的 legend 填充是行优先填充，无列优先填充的参数值实现：[\[ENH\]: matplotlib legend fill columnswise · Issue #27067 · matplotlib/matplotlib](https://github.com/matplotlib/matplotlib/issues/27067)
+
 
 ---
 
@@ -796,6 +798,7 @@ markersize            # ms；marker 尺寸
 ax.scatter(x, y, s, c, cmap, ...)
 
 # 参数
+marker                # marker 样式
 s                     # marker size；float 或 array-like
 c                     # marker colors；array-like 或 color list；该参数可结合 colorbar 使用
 cmap                  # colormap

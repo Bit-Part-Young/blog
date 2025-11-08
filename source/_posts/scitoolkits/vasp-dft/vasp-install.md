@@ -579,7 +579,7 @@ make: *** [makefile:17: std] Error 2
 
 ---
 
-- 计算完成后，OUTCAR 尾部会多出以下内容
+- 计算过程中，OUTCAR 中的每个离子步输出信息会多出以下内容
 
 ```bash
 stress matrix after NEB project (eV)

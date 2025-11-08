@@ -212,11 +212,11 @@ C36, laves phase
 
 ```bash
 -orient                     # 晶体取向
--duplicate                  # 或 -dup；扩胞
+-duplicate                  # -dup；扩胞
 -rotate                     # 旋转轴
 -orthogonal-cell            # 转变为正交胞
 -reduce-cell                # 保持周期性的同时减小胞的大小；参数值 x/y/z/p
--fractional                 # 或 -frac；分数坐标（VASP 格式）
+-fractional                 # -frac；分数坐标（VASP 格式）
 -sort                       # 根据 properties 对原子进行排序
 -fix                        # 固定原子坐标轴
 -shift                      # 移动原子
@@ -228,10 +228,10 @@ C36, laves phase
 -wrap                       # 将胞外原子通过 PBC 到胞内
 -properties                 # 设置 properties
 -remove-doubles             # 删除重复的原子
--remove-atom                # 或 -rmatom；删除原子
+-remove-atom                # -rmatom；删除原子
 -mirror                     # 施加镜像操作（mirror transformation）
--deform                     # 或 -def；通过施加正应变或切应变使体系变形（box 和 原子一起）
--disturb                    # 随机移动原子位置
+-deform                     # -def；使体系变形：通过施加正/切应变（box 和 原子一起）
+-disturb                    # 随机移动原子位置（随机扰动）
 -select                     # 根据准则选择原子
 ```
 
@@ -311,6 +311,8 @@ atomsk POSCAR -fractional vasp     # 分数坐标
 # 线性插值；用于 NEB
 --interpolate initial.vasp final.vasp 7 vasp
 
+# 随机扰动（最大 0.1 Å）
+atomsk POSCAR -disturb 0.1 disturbed.cfg
 
 # 格式转换
 # 输出文件可为具体文件名，也可为文件格式；输出文件可以是多个

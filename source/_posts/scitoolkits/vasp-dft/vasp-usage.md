@@ -456,6 +456,8 @@ VACUUM VOLUME:              0.0000
 
 ### ELF
 
+- [【VASP基础06】解读VASP计算ELF(电子局域函数) - 知乎](https://zhuanlan.zhihu.com/p/660119374)
+
 - 参考：[VASP视频教程-电荷局域分析\_哔哩哔哩\_bilibili](https://www.bilibili.com/video/BV1HP4iecEjM)
 
 - 电子局域化函数 (electron localization function, ELF)
@@ -464,6 +466,7 @@ VACUUM VOLUME:              0.0000
 
 ```bash
 PREC     = Accurate
+
 LELF     = .TRUE.
 ```
 

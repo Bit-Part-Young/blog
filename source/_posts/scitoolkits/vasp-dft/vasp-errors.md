@@ -56,7 +56,7 @@ Sorry, number of cells and number of vectors did not agree.       3
 Error EDDDAV: Call to ZHEGV failed. Returncode =  11 2  16
 ```
 
-- EDDRMM 警告：可不用管
+- EDDRMM 警告：可不用管（有可能是 `ALGO=Fast` 引起的，应设置成 `ALGO=Normal`）
 
 ```bash
 # 在电子步中，有时会出现该 warning，code 对应的数字会有不同，影响是否大

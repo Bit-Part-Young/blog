@@ -917,20 +917,19 @@ git diff --cached --stat
 - 暂存项（stashes）遵循栈结构，即最近暂存的更改（编号为 `stash@{n}`）会被放置在栈的顶部（索引为 0）
 
 ```bash
-git stash                 # 将当前修改暂存到 stash 栈中
-git stash -u              # 包括新增 untracked 文件
-git stash push -- file    # 指定单个文件
-git stash save 'message'  # 添加备注
-
-git stash list     # 列出所有 stash
-git stash pop      # 恢复 stash 中的最近一次暂存，并从 stash 栈中删除
-git stash apply    # 恢复 stash 中的最近一次暂存，不从 stash 栈中删除
-git stash show -p  # 查看 stash 修改内容
-git stash show --name-only  # 查看 stash 文件名
-git stash apply stash@{n}   # 恢复特定 stash
-git stash drop stash@{n}    # 删除特定 stash
-git stash clear             # 清空 stash
-git stash branch <branch>   # 从 stash 中创建一个新的分支
+git stash                      # 将当前修改暂存到 stash 栈中
+git stash -u                   # 包括新增 untracked 文件
+git stash push -- file         # 指定单个文件
+git stash save 'message'       # 添加备注
+git stash list                 # 列出所有 stash
+git stash pop                  # 恢复 stash 中的最近一次暂存，并从 stash 栈中删除
+git stash apply                # 恢复 stash 中的最近一次暂存，不从 stash 栈中删除
+git stash show -p              # 查看 stash 修改内容
+git stash show --name-only     # 查看 stash 文件名
+git stash apply stash@{n}      # 恢复特定 stash
+git stash drop stash@{n}       # 删除特定 stash
+git stash clear                # 清空 stash
+git stash branch <branch>      # 从 stash 中创建一个新的分支
 ```
 
 
@@ -938,7 +937,7 @@ git stash branch <branch>   # 从 stash 中创建一个新的分支
 
 ### rm
 
->[从工作区批量去除已删除文件](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%8E%BB%E9%99%A4%E5%A4%A7%E9%87%8F%E5%B7%B2%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6)
+- [从工作区批量去除已删除文件](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E4%BB%8E%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%8E%BB%E9%99%A4%E5%A4%A7%E9%87%8F%E5%B7%B2%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6)
 
 ```bash
 git rm $(git ls-files -d)     # 从工作区批量去除已删除文件

@@ -139,6 +139,13 @@ plot 'data.txt' u 0:4 w l
 # 使用变量，且对列数据进行操作
 l0 = 132.622
 plot 'thermo.out' u (($10 - l0)/l0):(-($4)) w lp
+
+
+# 对数据进行平滑处理（实际数据用点表示，平滑数据用线表示）
+set samples 300     # 默认值为 100；值越高，约平滑
+
+# csplines 可改为 bezier acsplines
+plot ${gsfe.dat u 1:2 w p pt 7 ps 2, "" u 1:2 smooth csplines
 ```
 
 
@@ -155,9 +162,9 @@ title                     # 标题
 xrange                    # x 轴范围
 yrange                    # y 轴范围
 xlabel                    # x 轴标签
-ylabel                    # x 轴标签
+ylabel                    # y 轴标签
 xtics                     # x 轴刻度
-ytics                     # x 轴刻度
+ytics                     # y 轴刻度
 mxtics n                  # 在主刻度之间增加 n 个次刻度
 mytics n                  # 同上
 key                       # 图例
@@ -182,6 +189,17 @@ set arrow 1 nohead from 0.5, graph 0 to 0.5, graph 1 dashtype 4 lw 3
 
 # 设置 x 轴刻度标签
 set xtics ("{/Symbol G}" 0, "X" 0.1)
+
+
+# 设置 x 轴的刻度：主刻度、子刻度为 0.2 0.1，长度分别为 1 0.5
+set xtics 0.2
+set mxtics 2
+set tics scale 1,0.5
+
+
+# 只设置坐标轴标签的字体大小、与坐标轴的距离
+set xlabel "XXX" font ",25" offset 0,0.5
+set ylabel "XXX" font ",25" offset 1.5,0
 ```
 
 

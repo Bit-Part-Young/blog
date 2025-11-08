@@ -259,6 +259,8 @@ import ovito._extensions.pyscript
 - Pipeline 概念：[Pipeline concept — OVITO User Manual 3.11.3 documentation](https://www.ovito.org/docs/current/usage/pipeline.html#usage-modification-pipeline)
     - OVITO modifiers are analysis or property calculation/setting routines. For anything you want to do, in terms of analyzing your data from a atomistic simulation, you will use a modifier which is appended to the pipeline via `pipeline.modifiers.append(...)`.
 
+- 注意：CNA modifier 在 Python API 中默认采用的 Adaptive CNA mode（cutoff 为可变值），而 GUI 是 Conventional CNA mode（cutoff 为固定值），需注意区别
+
 
 ---
 
@@ -279,6 +281,9 @@ pipeline = import_file("dump_*.lammpstrj")
 # 参数
 sort_particles           # 是否对原子进行排序
 
+# 轨迹帧数
+nframes = pipeline.num_frames
+
 modifier = ...
 
 # 添加 modifier（可添加多个，也可不添加）
@@ -296,8 +301,8 @@ list(data.tables.keys())                   # Tabulated data/DataTable
 
 # 处理多帧构型数据
 # 方式 1
-for frame in range(pipeline.num_frames):
-    data = pipeline.compute(frame)
+for i in range(nframes):
+    data = pipeline.compute(i)
     ...
 
 # 方式 2；该迭代器可直接获取计算的 DataCollection
@@ -344,7 +349,7 @@ data.particles.positions           # 原子位置
 data.particles.count               # 原子数
 
 # 查看原子种类（元素）及其 ID 信息
-for type in data_init.particles.particle_types.types:
+for type in data.particles.particle_types.types:
     print(type.id, type.name)
 ```
 
@@ -384,33 +389,21 @@ key                   # 若为 "txt/table" 格式，可添加该参数导出对�
 
 # 导出示例
 # 导出 VASP 格式
-export_file(
-    pipeline,
-    "xxx.vasp",
-    "vasp",
-    reduced=True,           # 分数坐标
-)
+export_file(pipeline, "POSCAR", "vasp", reduced=True)
 
 # 导出 LAMMPS data 格式
-export_file(
-    pipeline,
-    "output.data",
-    "lammps/data",
-    atom_style="atomic",    # 默认值
-)
+export_file(pipeline, "output.data", "lammps/data", atom_style="atomic")
 
 # 导出 LAMMPS dump 格式
-export_file(
-    pipeline,
-    "output.*.dump",
-    "lammps/dump",
-    multiple_frames=True,
-)
+# 导出多帧方式 1
+export_file(pipeline, "output.*.dump", "lammps/dump", multiple_frames=True)
 
-for i in range(pipeline.num_frames):
+# 导出多帧方式 2
+for i in range(nframes):
     export_file(pipeline, f"output.{i}.dump", "lammps/dump", frame=i)
 
-# 对于 "lammps/dump" "xyz" "imd" "netcdf/amber" 格式，需通过 column 指定具体的原子属性
+
+# 对于 "txt" "lammps/dump" "xyz" 格式，需通过 columns 指定具体的原子属性
 export_file(
     pipeline,
     "output.xyz",
@@ -424,14 +417,13 @@ export_file(
     "data.txt",
     "txt/attr",
     columns=["Timestep", "CommonNeighborAnalysis.counts.FCC"],
-    multiple_frames=True,
 )
 
 # 导出 "txt/table"
 export_file(
-    data=pipeline,
-    file=output_fn,
-    format="txt/table",
+    pipeline,
+    "data.txt",
+    "txt/table",
     key="coordination-rdf[average]",
 )
 ```

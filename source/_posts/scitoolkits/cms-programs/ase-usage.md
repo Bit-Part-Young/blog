@@ -142,8 +142,6 @@ ase db test.db
 # 振动分析
 from ase.vibrations import Vibrations
 
-from ase.md.verlet import VelocityVerlet
-
 
 # 简易元素周期表绘制
 # reference: https://wiki.fysik.dtu.dk/ase/gallery/gallery.html
@@ -151,6 +149,10 @@ from ase.utils.ptable import ptable
 
 atoms = ptable()
 atoms.write("ptable.png")
+
+
+# 晶格标准化工具，可用于晶格正交化？
+from ase.build.tools import minimize_tilt, niggli_reduce
 ```
 
 
@@ -189,14 +191,13 @@ info                       # 给 Atoms 设置信息；dict；可用于写入 ext
 
 # （一般）方法
 todict()                   # 将原子信息写入 dict
-copy()                     # 拷贝
+copy()                     # 拷贝（只会拷贝 Atoms，其 calculator 不会被拷贝）
 wrap()                     # 已施加 PBC 时，可将胞外原子移至胞内；下面的 wrap 参数同
 rattle()                   # 随机移动原子（位置）
 write()                    # 写入构型格式文件
 edit()                     # 交互式修改（ASE GUI）
 pop()                      # 删除原子
 translate()                # 平移原子位置
-make_supercell()           # 构建超胞（可通过此将六方转正交胞）
 rotate()                   # 旋转（可绕轴旋转）
 
 center()                   # 在指定轴两端各添加真空层并移至该轴中心
@@ -263,8 +264,17 @@ natoms = len(atoms)
 nelements = len(set(atoms.get_chemical_symbols()))
 # 化学式
 formula = atoms.get_chemical_formula()
-# 成分 {'Al': 5, 'Ti': 1}
+
+# 成分 {'Al': 2, 'Ti': 3}
 composition = Formula(formula).count()
+# 原子数
+natoms = sum(composition.values())
+# 元素列表
+element_list = list(composition.keys())
+# 成分，分数形式 {'Al': 0.4, 'Ti': 0.6}
+composition_fractional = {
+    element: composition.get(element, 0) / natoms for element in element_list
+}
 
 # 构型中某一元素的浓度
 concentration = atoms.get_chemical_symbols().count("Pd") / natoms
@@ -283,6 +293,17 @@ print(np.unique(distances)[-1])      # 最大距离
 # 判断 cell 是否为正交胞
 angles = atoms.cell.angles()
 is_orthogonal = all(abs(a - 90) < 1e-5 for a in angles)
+
+
+# 绕 z 轴旋转 30°
+atoms.rotate(30, "z", rotate_cell=True)
+
+
+# 构建超胞（可通过此将六方转为正交胞）
+from ase.build import make_supercell
+
+matrix = [[1, 0, 0], [1, 2, 0], [0, 0, 1]]
+supercell = make_supercell(atoms, matrix)
 ```
 
 - 其他用法
@@ -1197,6 +1218,7 @@ from ase.md.langevin import Langevin
 from ase.md.nptberendsen import NPTBerendsen
 from ase.md.nvtberendsen import NVTBerendsen
 from ase.md.velocitydistribution import MaxwellBoltzmannDistribution, Stationary
+from ase.md.verlet import VelocityVerlet
 ```
 
 

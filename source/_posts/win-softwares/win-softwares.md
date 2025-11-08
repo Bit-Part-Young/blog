@@ -220,7 +220,7 @@ onlinelibrary.wiley.com
     - [Windows RIME输入法安装](https://www.cnblogs.com/deali/p/18022187)
     - [小狼毫&雾凇拼音安装及部署-Windows（图文）](https://www.cnblogs.com/HookDing/p/17949199)
 
-- 锁定键盘（**实用**）：[GitHub - Nigh/I-wanna-clean-keyboard](https://github.com/Nigh/I-wanna-clean-keyboard)
+- 锁定键盘（iwck；**实用**）：[GitHub - Nigh/I-wanna-clean-keyboard](https://github.com/Nigh/I-wanna-clean-keyboard)
 
 - 切换同一程序下的不同窗口（同 macOS 中的快捷键，**实用**）：[GitHub - sigoden/window-switcher](https://github.com/sigoden/window-switcher)
 

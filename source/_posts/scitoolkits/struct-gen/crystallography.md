@@ -21,20 +21,19 @@ password:
 
 ## 介绍
 
+- [晶体学名词中英对照表 - The Wandering Cat's Mind Palace](https://warmshawn.github.io/2019/01/20/Materials_%E6%99%B6%E4%BD%93%E5%AD%A6%E5%90%8D%E8%AF%8D%E4%B8%AD%E8%8B%B1%E5%AF%B9%E7%85%A7%E8%A1%A8/)（**实用**）
+
 - 晶体学课程内容：[GitHub - aronwalsh/Crystallography: Online resource for introduction to crystallography at Imperial College London (MATE40004)](https://github.com/aronwalsh/Crystallography)
 
 - [晶体化学](https://www.hxzxs.cn/shuju/newpage/jthx.htm)
 
 - 单胞、原胞：[晶格常数是原胞（Primitive Cell）边长还是单胞（Convention Unit Cell）边长？](https://www.zhihu.com/question/20083907)
 
-- 单胞：Convention Unit Cell；有时称为晶胞、惯用原胞（结晶学中惯用）；在能够保持晶格对称性的前提下，构成晶体的最小的周期性结构单元；单胞的边矢量称为单胞基矢，通常用 a 、b、c 表示
+- 单胞：Convention Unit Cell；有时称为晶胞、惯用原胞（结晶学中惯用）；在能够保持晶格对称性的前提下，构成晶体的最小的周期性结构单元；单胞的边矢量称为单胞基矢（6 个晶格参数：3 个轴长 a、b、c，3 个轴间角 α、β、γ）
 
 - 原胞：Primitive Cell；构成晶体的最小的周期性结构单元；不一定能反映晶格的对称性
 
-- 晶格常数：单胞边长
-
 - 晶体结构标注：空间群编号及符号、Pearson 符号、典型晶体结构类型（Strukturbericht Designation 或 Strukturbericht Type）
-
 
 - 晶体学相关实用链接
     - 晶体学 prototype 百科全书：[Encyclopedia of Crystallographic Prototypes - AFLOW](http://aflow.org/prototype-encyclopedia/)
@@ -203,8 +202,8 @@ Im-3m      229      立方   A2(BCC)
 # Strukturbericht Designation  空间群  晶系
 D0_19  194     六方
 B19    51      正交
-L1_0  123      四方 FCC 结构的 tetragonal distortion
-L1_2  221      立方 FCC
+L1_0   123     四方 FCC 结构的 tetragonal distortion
+L1_2   221     立方 FCC
 D0_22  139     四方
 A_h            简单立方
 A1             FCC

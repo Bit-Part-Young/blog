@@ -42,8 +42,8 @@ i, j = np.unravel_index(np.argmin(arr, axis=None), arr.shape)
 # 数值积分函数；通过梯形法则（trapezoidal rule）计算定积分
 np.trapz()
 
-# 按照第 2 列元素进行排序
-new_arr = arr[arr[:, 1].argsort()]
+# 二维数组，按照第 2 列元素进行排序
+array_sorted = array[array[:, 1].argsort()]
 ```
 
 
@@ -181,7 +181,9 @@ intersect1d(x, y)       # 交集
 
 ### 统计
 
-- `axis` 参数指定运算沿着哪一个轴来执行，不指定时为对整个数组
+- `np.sum()`、`np.mean()` 等函数中的 `axis` 参数指定运算沿着哪一个轴来操作，`axis=0` 为从上到下的方向进行，即对列进行操作，返回一维数组，尺寸为列数；`axis=1` 为从左到右的方向进行，即对行进行操作，返回一维数组，尺寸为行数；不显式指定时为对整个数组，返回标量值
+
+- `np.sort()`、`np.unique()` 等函数中不显式指定轴时，默认 `axis=-1`，沿最后一个轴进行排序，若为二维数组，即在 `axis=1` 上进行操作
 
 ```python
 np.sum()                # 加和
@@ -190,6 +192,7 @@ np.min()                # 最小值
 np.max()                # 最大值
 np.std()                # 标准差
 np.var()                # 方差
+np.cumsum()             # 累加和
 ```
 
 
@@ -222,7 +225,9 @@ np.insert()             # 插入元素
 np.where()              # 条件查询
 np.argwhere()           # 满足条件的元素索引
 
-np.where(array > 1.0)   # 返回满足条件的数组元素索引
+np.where(array > 0.0)   # 返回满足条件的数组元素索引
+# 大于 0.0 保留原值，否则替换为 0.0
+np.where(array > 0.0, array, 0.0)
 
 np.all()                # 判断数组是否所有元素都是 True
 np.any()                # 判断数组是否有为 True 的元素

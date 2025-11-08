@@ -44,7 +44,7 @@ Manager 服务器实拍图：
 
 - 一般电脑屏幕的信号线（VGA 线 1 根，现在连在 Master 上，因此 Manager 上无法用屏幕查看 node 节点状态，后侧）和鼠标线（1 根蜂窝口，后侧）插在 Manager 上，键盘线（2 根，一根 USB 口（前侧），一根蜂窝口（后侧））分别插在 Manager 和 node1-10 上。检查 Manager 相关节点状态时需将信号线、鼠标线和键盘线插在对应的节点接口上（node1-10 公用一个接口线）
 
-- 最下方的是硬盘，不用管
+- 最下方的是存储硬盘，不用管
 
 
 ---
@@ -65,10 +65,10 @@ sudo systemctl restart ssh
 - 出现 `/dev/null bad permissions` 报错
 
 ```bash
-su manager                 # 切换为 manager 用户，需输入 manager 用户密码
+su manager                   # 切换至 manager 用户，需输入 manager 用户密码
 
-ls -l /dev/null            # 查看 /dev/null 权限信息（此时大概率为 600）
-sudo chmod 666 /dev/null   # 修改 /dev/null 权限，需输入 manager 用户密码
+ls -l /dev/null              # 查看 /dev/null 权限信息（此时大概率为 600）
+sudo chmod 666 /dev/null     # 修改 /dev/null 权限，需输入 manager 用户密码
 ```
 
 
@@ -96,11 +96,58 @@ sudo chmod 666 /dev/null   # 修改 /dev/null 权限，需输入 manager 用户�
 
 ## Master
 
+- 管理节点 Master，计算节点 node1、node2
+
 - Master 在断电重新来电时，节点会自动重启
 
 - 在计算节点中进出不会导致服务器负载过高而崩溃
 
 - VSCode 远程连接 Manager（机子较老，10 余年历史），有时会导致其负载过高而崩溃，不建议长时间连接；VSCode 远程连接 Master（2023 年 5 月配置）暂无相关问题
+
+- 计算节点出现带 \* 状态的情况（node2 节点经常出现这种情况）：
+    - 检查 munge 服务是否是正常（ Slurm 节点间认证的核心服务；若它挂了或时间不同步，Slurm 就会出现一堆奇怪的 \* 状态）
+    - 查看计算节点的时间是否和管理节点一致，时间很容易不一样导致问题
+    - 检查计算节点的 slurmd 服务是否正常
+    - 执行 `sync_slurm` 重启队列服务（同步配置文件）
+
+- 运行 `nvidia-smi` 命令可解决没有正常识别到显卡的问题？（有时可以）
+
+```bash
+su -u                        # 切换至 root 用户
+
+sudo reboot                  # 管理节点重启
+sudo shutdown now            # 管理节点关机
+sudo ssh node1 reboot        # 计算节点重启
+sudo ssh node1 shutdown now  # 计算节点关机
+
+sudo sync_slurm              # 同步 slurm 配置
+
+# 检查 munge 服务是否是正常
+systemctl status munge
+systemctl is-active munge
+
+munge -n | unmunge
+munge -n | ssh node1 unmunge
+munge -n | ssh node2 unmunge
+
+# 查看节点的时间是否和管理节点一致，时间很容易不一样导致问题
+date
+ssh node2 date
+ssh node1 date
+
+# 检查计算节点的 slurmd 服务是否正常
+systemctl status slurmd
+systemctl restart slurmd
+
+slurmd -Dvvvv                # 前台启动 slurmd 并输出非常详细的调试日志
+
+
+# * 消失后，更新状态
+# down
+sudo scontrol update nodename=node2 state=resume
+# drain
+sudo scontrol update nodename=node2 state=idle
+```
 
 
 
@@ -111,3 +158,21 @@ sudo chmod 666 /dev/null   # 修改 /dev/null 权限，需输入 manager 用户�
 - 306 办公室 HP 打印机 WiFi：DIRECT-da-HP M232 LaserJet（不是 DIRECT-14-HP M232 LaserJet、DIRECT-8E-HP M429fdw LJ）
 
 - 新连接密码查看方式：按打印机旁边的 `i` 按钮（按 2 次），会打印其自身的一些信息，其中包括 'Wi-Fi Direct Password'，值为新的 WiFi 密码（**破折号也是密码的一部分**）
+
+
+
+---
+
+## 306 工位计算机资产编号
+
+```text
+程路遥  2020  3011099
+任欣    华为主机，无编号
+沈度    2019  313097（可以开机）; 2018  47087（已申请报废处理）
+徐志涵  2022  3011894
+李树彬  2022  3011895
+杨伸炉  2021  3004729
+王敏    2020  3015680（应该是李老师那边的资产）
+刘瑞    2020  3022792
+在墙边上有一台主机  2018  47086（已申请报废处理）
+```

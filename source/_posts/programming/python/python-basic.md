@@ -1247,6 +1247,8 @@ os.path.splitext()    # 分离文件名与后缀
 
 #### 命令行参数解析
 
+- 注意事项：默认当命令行不添加可选参数时，其对应的值为 `None`；若可选参数设置添加了 `action=store_true` 时，对应的值为 `False`
+
 - 命令行参数解析
 
 ```python
@@ -1269,7 +1271,7 @@ formatter_class   # 自定义帮助文档的输出格式
 description       # 程序描述
 epilog            # 在帮助信息结尾添加文本（如作者、版本、联系方式等）
 add_help          # 是否自动添加 -h/--help 选项
-allow_abbrev      # 是否允许长选项使用非歧义缩写
+allow_abbrev      # 是否允许长选项使用非歧义缩写（不支持位置参数，只支持可选参数）
 argument_default  # 所有参数的默认值
 conflict_handler  # 处理参数名冲突
 exit_on_error     # 遇到错误时是否应该退出程序
@@ -1461,12 +1463,12 @@ if hasattr(args, 'func'):
 
 ### sys
 
-- 可用于简易的命令行参数解析
+- 可用于简易的命令行参数解析、添加目录到 PATH 搜索路径
 
 ```python
 import sys
 
-sys.path.append()            # 添加目录到 PATH 搜索路径
+sys.path.append()            # 添加目录到 PATH 搜索路径（实用）
 sys.argv                     # 命令行参数解析
 sys.argv[0]                  # 文件名
 
@@ -1504,7 +1506,7 @@ shutil.copytree()    # 拷贝目录
 from pathlib import Path
 
 # 获取当前脚本文件所在的目录
-# __file__ 内置变量，当前脚本的路径
+# __file__ 内置变量，当前脚本路径
 THIS_DIR = Path(__file__).parent
 
 # 创建目录
@@ -1528,6 +1530,8 @@ subprocess.run(
     text=True,
     capture_output=True,
 )
+
+# 参数含义
 ```
 
 

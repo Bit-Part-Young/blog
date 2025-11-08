@@ -725,8 +725,10 @@ get_angle()                # 获取两个向量的夹角
 - 键
 
 ```python
-# 键长
 from pymatgen.core.bonds import get_bond_length
+
+# 其键长数据文件在 core 目录下，数据很少，基本不含金属的键长
+print(get_bond_length("H", "H"))
 ```
 
 
@@ -1591,7 +1593,9 @@ from_voigt()
 
 - 可绘制二、三、四元的相图
 
-- 无法直接使用 `pymatgen.entries` 中的 `Entry` 类初始化，会报错，`energy` 参数为 `ABC` 抽象类型（Doc 有提及），而是用 `pymatgen.analysis.phase_diagram` 中的 PDEntry 类初始化
+- 无法直接使用 `pymatgen.entries` 中的 `Entry` 类初始化，会报错，`energy` 参数为 `ABC` 抽象类型（Doc 有提及），而是用 `PDEntry` 或 `ComputedEntry` 类初始化
+
+- `Entry` 中的 composition 参数值尽量不用约化的化学式；energy 参数值为该成分体系对应的总能量 eV，非已计算的形成能 eV/atom
 
 - label 字体大小无法调节：[How control fontsize in PDPlotter? - pymatgen - Materials Science Community Discourse](https://matsci.org/t/how-control-fontsize-in-pdplotter/36715)
 
@@ -1603,6 +1607,7 @@ from pymatgen.entries.computed_entries import ComputedEntry
 from pymatgen.io.vasp.outputs import Vasprun
 
 # 方式 1
+composition = Composition("TiAl3")
 entry1 = PDEntry(composition=..., energy=...)
 # 方式 2
 entry2 = ComputedEntry(composition=..., energy=...)
@@ -1616,7 +1621,7 @@ entries = [entry1, entry2, ...]
 phasediagram = PhaseDiagram(entries)   # 稳定相
 
 # 属性
-stable_entries                         # 稳定相及其对应能量
+stable_entries                         # 稳定相及其对应能量；PDEntry 和 ComputedEntry 输出的信息详细程度有些区别
 
 # 方法
 get_decomposition()                    # 获取特定构型成分分解成哪些稳定相及其比例
@@ -1631,7 +1636,8 @@ ax = phasediagram.get_plot(
     # label_stable=False,              # 是否显示 label
     )
 
-ax.figure.savefig()
+# 保存绘图
+plt.savefig()
 ```
 
 

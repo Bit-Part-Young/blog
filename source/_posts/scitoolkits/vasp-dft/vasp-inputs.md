@@ -48,6 +48,8 @@ password:
 
 - [合集·老司机催化学习系列](https://space.bilibili.com/597052183/lists/211382)
 
+- [VASP 命令 - 仿真软件说明 - 邱新龙 simulation](http://www.qxl-simulation.cn/doc_28494478_6169016_6215253_1.html)（VASP 相关 tags 的总结很凝练）
+
 
 
 ---
@@ -935,6 +937,7 @@ WIP...
 - ELFCAR 文件含电子局域化函数（electron localization function, ELF）
 
 - 若设置了 LELF，则必须在 INCAR 文件中明确设置 NPAR=1
+
 
 ---
 

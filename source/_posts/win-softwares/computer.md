@@ -81,6 +81,7 @@ arp -a    # ARP（地址解析协议）；查看本地网络中的设备
 ## CMD
 
 - [CMD常用命令大全（值得收藏)\_cmd命令大全\_张时贰的博客-CSDN博客](https://blog.csdn.net/qq_49488584/article/details/122609779)
+
 - CMD 设置 alias 别名：[window中的cmd中设置别名(alias)及设置快捷键打开cmd\_cmd alias-CSDN博客](https://blog.csdn.net/YiRanZhiLiPoSui/article/details/83116819)
 
 ```bash
@@ -135,8 +136,6 @@ cd /d c:
     - 在当前路径中，在空白处按住 shift 键并点击鼠标右键，在菜单栏中选择 “在此处打开 Powershell 窗口”
 
 - Windows 版本还原程序：MediaCreationTool
-
-- Office 套件快捷键：`Alt + N`，上方菜单栏会出现每种操作选项的快捷键
 
 - Adobe Acrobat 快捷键：[Adobe Acrobat 中的键盘快捷键](https://helpx.adobe.com/cn/acrobat/using/keyboard-shortcuts.html)
     - 启用单键快捷方式：编辑，首选项 -- 一般，选择 “使用单键加速键访问工具” 选项
