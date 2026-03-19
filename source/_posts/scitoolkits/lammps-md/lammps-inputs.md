@@ -758,7 +758,9 @@ tpcpu                #
 v_name               # 变量
 
 # 示例
-thermo_style      custom step temp ke pe etotal
+thermo_style      custom step temp pe ke etotal
+# 推荐
+thermo_style      custom step temp pe ke etotal press pxx pyy pzz pxz pxy lx ly lz
 
 # 非全局量，会报错
 compute           1 all pe/atom
@@ -773,7 +775,7 @@ thermo_style      custom step temp pe etotal c_1
 ```bash
 thermo_style custom step vol temp etotal pe press
 
-# 格式化
+# 对数值输出进行格式化
 thermo_modify     format 1 %12d
 thermo_modify     format 2 %22.12f
 thermo_modify     format 3 %22.12f
@@ -946,12 +948,15 @@ dump ID group-ID style N file args
 
 ID                   # 为 dump 命令分配的 ID
 group-ID             # 被 dump 的原子所属 group ID
-style                # custom、one 等
+style                # atom custom 等
 N                    # 每 N 步输出一次构型
 file                 # dump 文件名
 args                 # style 参数
 
-# custom 参数：原子属性列表
+# atom style 默认输出的原子信息
+ITEM: ATOMS id type xs ys zs
+
+# custom style 参数：原子属性列表
 mass                 # 相对原子质量
 id                   # 原子 ID
 type                 # 原子类型
@@ -963,8 +968,11 @@ xsu, ysu, zsu        # 分数坐标（不做 PBC 处理）
 
 
 # 示例
-dump              1 all custom 500 dump.lammpstrj id type x y z
+dump              1 all atom 1000 dump.lammpstrj
+dump              1 all custom 1000 dump.lammpstrj id type x y z
 
+
+# global 量与 per-atom 量的区别
 compute           1 all pe/atom
 # 会报错
 thermo_style      custom step temp pe etotal c_1
@@ -1287,8 +1295,13 @@ volume               # 保持体积不变
 # 使 x=0 移至盒子中心
 variable          hx equal "(xhi - xlo)/2"
 change_box        all x final -${hx} ${hx} remap units box
-# z 方向添加 5Å 的真空层
-change_box        all z delta 0 5
+
+# z 方向添加真空层
+# 顶端
+change_box        all z delta 0.0 5.0
+# 顶端和底端
+change_box        all z delta -5.0 5.0
+
 # x 扩 1.1 倍，z 缩 1.1 倍
 change_box        all x scale 1.1 z volume
 # x 扩 1.1 倍，y、z 缩 √1.1 倍

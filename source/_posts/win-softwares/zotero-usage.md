@@ -53,7 +53,7 @@ password:
 
 ```bash
 toi.teracloud.jp/dav       # 可能会变
-dav.jianguoyun.com/dav
+dav.jianguoyun.com/dav     # 坚果云
 ```
 
 - 将 Zotero 中导入的文献按添加时间进行排序：文献库界面右上方，附件（“链接” 图标），添加 “添加时间”；或者添加导入文献具体日期的文献库分类
@@ -71,6 +71,8 @@ dav.jianguoyun.com/dav
 红色               # 结论
 绿色               # 论文方法描述
 ```
+
+- 可以对文件夹进行 'Add to Favorites'，其会被置顶（不知道是原生功能还是插件赋予的）
 
 
 ---
@@ -94,8 +96,8 @@ dav.jianguoyun.com/dav
 - Zotero IF Pro Max
 - Zotero Citation Counts Manager
 - Zotero Style：容易卡顿
-- [GitHub - northword/zotero-itemtree-expand: Zotero 插件，令文库条目列表换行以便阅读全部标题。](https://github.com/northword/zotero-itemtree-expand)
-
+- [GitHub - northword/zotero-itemtree-expand: Zotero 插件，令文库条目列表换行以便阅读全部标题。](https://github.com/northword/zotero-itemtree-expand)（还在开发中）
+- Awesome GPT（使用感觉一般）
 
 
 ---

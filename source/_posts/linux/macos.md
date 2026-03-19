@@ -423,7 +423,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
 
 **文档写作**
 
-- Markdown 笔记管理
+- Markdown 文档管理
     - Obsidian
     - Typora
     - MarkText
@@ -436,6 +436,7 @@ Gray              # 已完成/差不多完成/不会改动的 repo，供参考
     - [Omnivore](https://github.com/omnivore-app/omnivore)（和前者很类似；支持笔记功能）
 
 - 文本翻译
+    - MoePeek（开源免费）
     - Bob（社区版免费，翻译引擎需自己设置；Apple Store 版本需收费）
 
 - PDF 阅读器
@@ -740,7 +741,7 @@ precmd () { echo -n "\x1b]1337;CurrentDir=$(pwd)\x07" }
 
 #### Homebrew 使用
 
-- 大部分开源命令行工具、程序、库和 GUI 程序（cask，不太推荐用该方式，有时下载速度很慢，建议直接官网下载）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）
+- 大部分开源命令行工具、程序、库和 GUI 程序（GUI 程序和字体不太推荐用该方式，有时下载速度很慢，建议直接官网下载）都可以通过 Homebrew 安装（类似 Windows 上的 Scoop）
 
 - 安装 Homebrew：
     - [安装和使用 Homebrew - 韬秧道](https://blog.tauyoung.top/article/Homebrew/)

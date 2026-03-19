@@ -1019,7 +1019,7 @@ WIP...
 
 - LANGEVIN_GAMMA 默认是：0.0 x 元素种类数；LANGEVIN_GAMMA_L 默认值：0.0
 
-- LANGEVIN_GAMMA 建议设置值：10.0；LANGEVIN_GAMMA_L 建议设置值：1.0
+- LANGEVIN_GAMMA 建议设置值：10.0（与 POTIM 的乘积 = 10.0）；LANGEVIN_GAMMA_L 建议设置值：1.0
 
 
 ---
@@ -1104,6 +1104,7 @@ LDAUU
 LDAUJ
 
 IVDW             # 范德瓦尔斯相互作用
+                 # 20/21 Tkatchenko-Scheffler 方法；计算 Hirshfeld charge？
 
 LHFCALC          # 进行 Hatree-Fock 或杂化泛函计算
 
@@ -1120,4 +1121,9 @@ NSIM             # NSIM 设置由 RMM-DIIS 算法同时优化的 band 数；默�
 LPLANE           # 在实空间中打开 plane-wise 数据分布；默认值 .TRUE.
 
 LSCALU           # 在波函数的正交归一化中打开并行 LU 分解（使用scaLAPACK）；默认值 .FALSE.；大多数情况比串行 LU 分解慢
+
+NELECT           # 设置（价）电子数；除非进行 charged calculation，否则不应该设置；自动从 POTCAR 中的 ZVAL 参数获取数值
+
+
+LATTICE_CONSTRAINTS    # 对基矢施加限制
 ```

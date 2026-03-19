@@ -386,6 +386,17 @@ curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/instal
 curl parrot.live
 curl ascii.live/forrest
 curl ascii.live/parrot
+
+
+# 一些实用 API
+# 每天看世界
+curl "https://60s.viki.moe/v2/60s?encoding=text"
+# 每日金价
+curl --location --request GET 'https://60s.viki.moe/v2/gold-price?encoding=markdown' | glow -
+# 知乎热榜
+curl --location --request GET 'https://60s.viki.moe/v2/zhihu?encoding=text'
+# 懂车帝
+curl --location --request GET 'https://60s.viki.moe/v2/dongchedi?encoding=text'
 ```
 
 
@@ -839,6 +850,10 @@ comm           # 命令行
 
 # 统计每个用户的进程数
 ps hax -o user | sort | uniq -c | sort -r
+
+# 查看 PID 对应的目录（须有权限）
+ls -l /proc/PID/cwd
+pwdx PID
 ```
 
 - top：显示系统资源使用情况的实时工具；运行时是交互式的
@@ -879,8 +894,6 @@ wc file        # 基本使用
 ldd                    # 列出可执行文件在运行时所需要的共享库
 ldd --version          # 查看 GLIBC 版本
 
-echo -n 'XXX' | wc -c  # 统计字符串长度 c 可换成 m
-
 getconf NAME_MAX /     # 获取系统中文件名的最大长度
 
 # Win 行尾符通常是 \r\n（回车符+换行符），Unix/Linux 为 \n
@@ -915,6 +928,9 @@ sed -n '$=' file
 # 相同的关键词有多个时，grep 得到的内容会多出 --- 一行内容
 grep -A 1 'Size' filename | awk 'NR % 3 == 2 {print $1}'
 sed -n '/Size/{n;p}' filename
+
+pgrep -li "..."        # 搜索进程及对应的 PID
+pkill -i "..."         # 终止进程
 ```
 
 

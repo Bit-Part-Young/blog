@@ -87,7 +87,6 @@ velocity verlet 算法（含两原子及多原子）
 >[GitHub - nuwan-d/LAMMPS\_tutorials\_for\_short\_courses: Required LAMMPS and MATLAB files for several molecular dynamics simulations.](https://github.com/nuwan-d/LAMMPS_tutorials_for_short_courses)
 
 
->[LAMMPS tutorials - EVOCD](https://icme.hpc.msstate.edu/mediawiki/index.php/LAMMPS_tutorials.html)
 
 ---
 
@@ -581,7 +580,7 @@ DSC 速率：10K/min
 
 NPT 系综：
 
-$\mu VT$ ：化学势不变
+$\mu VT$：化学势不变
 
 
 ---

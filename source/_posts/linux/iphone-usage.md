@@ -36,14 +36,16 @@ password:
 
 - iPhone 实况照片转视频：[如何在 iPhone 上将实况照片转换为视频 - 官方 Apple 支持 (中国)](https://support.apple.com/zh-cn/105029)
 
+- iPhone 短信转发（到 macOS 设备）：设置 -- App -- 信息 -- 短信转发
+
 - iPhone 去除开屏广告：
-    - 方式 1: 添加 URL Scheme 的快捷指令
+    - 方式 1: 添加 URL Scheme 的快捷指令（效果一般）
         - [苹果手机跳过app开屏广告的方法](https://mp.weixin.qq.com/s/YD5hYErHy1OR6zCHvfJujg)
         - [分享神级去除 IOS 应用开屏广告的方法 - V2EX](https://www.v2ex.com/t/1018073)
         - [常用 URL Schemes 收集。 · GitHub](https://gist.github.com/zhuziyi1989/3f96a73c45a87778b560e44cb551ebd2)
         - [GitHub - WengYuehTing/iOS-app-info: iOS 应用程序的 Bundle ID, App Store App ID 和 URL Scheme 信息汇总](https://github.com/WengYuehTing/iOS-app-info)
 
-    - 方式 2：下载 Shadowrocket App，拷贝以下链接，进入 配置 - 右上角 “+” 号（比 URL Schemes 方便；不能关掉 Shadowrocket 后台，否则去广告效果会失效）
+    - 方式 2：下载 Shadowrocket App，拷贝以下链接，进入 配置 - 右上角 “+” 号（比 URL Schemes 方便；**不能关掉 Shadowrocket 后台，否则去广告效果会失效**）
         - [GitHub - Johnshall/Shadowrocket-ADBlock-Rules-Forever: 提供多款 Shadowrocket 规则，拥有强劲的广告过滤功能。每日8时重新构建规则。](https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever)
 
 ```text
@@ -79,5 +81,4 @@ https://whatshub.top/module/adultraplus.module
 
 - iOS 中的 Chrome 和 Safari 浏览器无法在 notes.sjtu.edu.cn 中粘贴文本
 
-- iOS、Windows 之间剪贴板同步：快贴（如何使用）
-    - 临时方法，拷贝至 Microsoft To Do 软件进行同步
+- Apple Watch 的室内步行热量消耗明显高于室外步行（接近的配速下），为什么？

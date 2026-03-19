@@ -23,17 +23,38 @@ password:
 
 - gnuplot 读取数据文件时，**会自动忽略中注释、非数值行**；有 print 命令
 
-- gnuplot 读取数据文件是，默认分隔符为空位或制表符，`set datafile separator ","` 使分隔符为逗号
+- gnuplot 读取数据文件，默认分隔符为空位或制表符，且**文件名不能含通配符**
 
 - gnuplot 字体设置不是很灵活
 
 - [gnuplot 科技绘图的调色板 - Jerkwin](https://jerkwin.github.io/2018/08/20/%E7%A7%91%E6%8A%80%E7%BB%98%E5%9B%BE%E7%9A%84%E8%B0%83%E8%89%B2%E6%9D%BF/)（有很多不错的预设颜色，推荐）
 
-- gnuplot 中线和点的编号及对应样式：[Gnuplot line types - stack overflow](https://stackoverflow.com/questions/19412382/gnuplot-line-types)
+- gnuplot 中点、线等的编号及对应样式：[Gnuplot line types - stack overflow](https://stackoverflow.com/questions/19412382/gnuplot-line-types)
 
 - [表面态颜色-gnuplot颜色设置](https://mp.weixin.qq.com/s/mIv6nqGjsPJCLP5so7qQ8w)
 
 - [gnuplot 绘图 demo](http://www.gnuplot.info/demo/index.html)
+
+插入内嵌放大图
+
+```bash
+# 主图
+set multiplot
+
+# 主图默认设置
+# set origin 0.0, 0.0
+# set size 1.0, 1.0
+
+...
+
+# 内嵌放大图位置和大小
+set origin 0.1, 0.1     # 内嵌图左下角的位置 (x, y)
+set size 0.4, 0.4       # 内嵌图的大小（宽，高）
+
+...
+
+unset multiplot
+```
 
 
 ---
@@ -45,6 +66,9 @@ password:
 ```bash
 gnuplot                   # 交互式绘图
 gnuplot script.gnu        # 脚本运行；脚本后缀名不限
+
+# 交互式输入
+test                      # 查看 gnuplot 程序点、线等的样式及对应编号
 ```
 
 
@@ -95,18 +119,23 @@ every ::0::10             # 使用前 10 行数据
 p                         # 点绘图
 l                         # 线绘图
 lp                        # 点线绘图
-impulses
+circles                   # 圆
+impulses                  # 竖线
 
 pt N                      # 点的样式；N 为编号
 lt N                      # 线的样式；N 为编号
 ps value                  # 点的大小
 lw value                  # 线的宽度；value 为数值
-lc                        # 指定颜色；rgb "red"
+lc                        # 颜色；rgb "red"
 
 xerr                      # x 误差棒
 yerr                      # y 误差棒
 xyerrorbars               # xy 误差棒 
 filledcurve
+
+
+# 半透明圆
+circles fillstyle solid 0.2 noborder
 ```
 
 - plot 命令示例
@@ -117,7 +146,7 @@ set xrange [-10:10]
 plot sin(x) w lp pt 7
 
 
-# 使用部分行数据绘制多个曲线
+# 使用部分行数据绘制多条曲线
 plot "thermo.out" every ::0::199 u 1:3 w p pt 7 ps 0.2 lc rgb "red" title "heat", \
      "thermo.out" every ::200::300 u 1:3 w p pt 7 ps 0.2 lc rgb "blue" title "cooling" \
 
@@ -126,13 +155,13 @@ plot "thermo.out" every ::0::199 u 1:3 w p pt 7 ps 0.2 lc rgb "red" title "heat"
 plot "<(awk 'NR % 2 == 1' data.txt)" ...
 
 
-# 使用循环绘制多个曲线
+# 使用循环绘制多条曲线
 legend_titles = "x y z"
 plot for [i=2:4] "mvac.out" u 1:i with l lw 7-i title word(legend_titles, i-1)
 
 
 # 自定义 x 数据
-set xrange [1:5067]
+set xrange [1:100]
 plot 'data.txt' u 0:4 w l
 
 
@@ -176,6 +205,8 @@ grid                      # 网格
 
 
 # 其他
+set datafile separator ","  # 设置文件分隔符为 ','
+
 set border lw 2.0         # 设置坐标轴线宽
 
 

@@ -586,6 +586,11 @@ as_dict()                 # 基本同上
 to_html_string()          # 将化学式生成 HTML 格式（htmlify()）
 to_latex_string()         # 将化学式生成 LaTeX 格式（latexify()）
 to_unicode_string()       # 将化学式生成 unicode 格式（unicodeify()）
+
+
+# 当 formula 为 Ti3AlNb0 时，不会考虑 Nb
+composition = Composition(formula).as_dict()
+composition_fractional = Composition(formula).fractional_composition.as_reduced_dict()
 ```
 
 
@@ -1156,13 +1161,13 @@ from pymatgen.io.vasp.ouputs import Outcar
 
 
 # 属性
-drift                      # 每个离子步的 Total drift
 run_stats                  # "Total CPU time used (sec)" 相关内容
 final_energy               # "energy(sigma->0)"
 final_energy_wo_entrp      # "energy without entropy"
 final_fr_energy            # "free energy TOTEN"
+drift                      # 每个离子步 forces 的 total drift
 
-# 方法
+# 方法（有很多特定的 read_xxx() 方法）
 read_pattern()             # 通用 pattern 解析
 read_table_pattern()       # 解析类列表数据；分成 header、main body 和 footer 三部分，返回 main body 中的内容
 read_neb()                 # 读取 VASP 中常规的 NEB 或 CINEB 数据
@@ -1726,7 +1731,7 @@ idpp_solver = IDPPSolver.from_endpoints()
 idpp_solver.run()
 
 
-# 概率密度
+# 概率密度分析（作用是什么？）
 from pymatgen.analysis.diffusion.aimd.pathway import ProbabilityDensityAnalysis
 from pymatgen.analysis.diffusion.analyzer import DiffusionAnalyzer
 

@@ -188,13 +188,9 @@ C36, laves phase
 
 - 常见结构模型构建
     - 晶界构建（symmetric tilt、twist）：[Atomsk - Tutorial - Grain Boundaries](https://atomsk.univ-lille.fr/tutorial_grainboundaries.php)
-    - 位错构建（刃、螺位错）：
-        - [Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)
-        - [Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
     - 层错构建：[Atomsk - Tutorial - Stacking fault](https://atomsk.univ-lille.fr/tutorial_stackingfault.php)
     - [atomsk多层碳纳米管建模示例](https://mp.weixin.qq.com/s/geQF9G9xC-f_90puwqI_tA)
     - FCC 孪晶：
-        - [Atomsk - Tutorial - Twin boundary](https://atomsk.univ-lille.fr/tutorial_twin.php)
         - [ATOMSK建模 Stacking Fault](https://mp.weixin.qq.com/s/o0ldM-87tGulOEIBFXSsSw)
 
 
@@ -233,6 +229,7 @@ C36, laves phase
 -deform                     # -def；使体系变形：通过施加正/切应变（box 和 原子一起）
 -disturb                    # 随机移动原子位置（随机扰动）
 -select                     # 根据准则选择原子
+-dislocation                # 插入位错（位错线、位错环）
 ```
 
 - 常用 modes
@@ -283,6 +280,9 @@ X!X ERROR: only one mode can be used at a time.
 atomsk POSCAR vasp                 # 笛卡尔坐标
 atomsk POSCAR -fractional vasp     # 分数坐标
 
+# CONTCAR 转 POSCAR
+atomsk CONTCAR -fractional -ow POSCAR
+
 # 添加真空层
 # 以下命令能正确地给非正交胞添加真空层，即晶格角度不发生变化
 # 但底部和两端时，原子顺序会发生改变，对表面能计算无影响
@@ -318,6 +318,96 @@ atomsk POSCAR -disturb 0.1 disturbed.cfg
 # 输出文件可为具体文件名，也可为文件格式；输出文件可以是多个
 # 写入 cif 文件时，总是假设空间群为 P1，写入所有原子位置
 atomsk POSCAR xyz                  # 常用: xyz lammps/lmp vasp/pos cif
+```
+
+
+---
+
+### 位错模型
+
+- 刃位错：[Atomsk - Tutorial - Edge Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_edge.php)
+
+- 螺位错：[Atomsk - Tutorial - Screw Dislocation in Aluminium](https://atomsk.univ-lille.fr/tutorial_Al_screw.php)
+
+- 相关论文推荐
+    - Chapter 88 Dislocation–Obstacle Interactions at the Atomic Level -- Dislocations in Solids（**推荐**；含刃位错、螺位错的 PAD 模型介绍）
+    - An atomic-level model for studying the dynamics of edge dislocations in metals
+    - On the significance of model design in atomistic calculations of the Peierls stress in Nb
+    - Dissociation of edge and screw pyramidal I and II dislocations in magnesium
+
+- 语法：[Atomsk - Option disloc - Pierre Hirel](https://atomsk.univ-lille.fr/doc/en/option_disloc.html)
+
+```bash
+# 螺位错
+-dislocation <p1> <p2> screw <ξ> <n> <b>
+
+# 刃位错
+-dislocation <p1> <p2> <edge|edge_add|edge_rm> <ξ> <n> <b> <ν>
+
+# 混合位错
+-dislocation <p1> <p2> mixed <ξ> <n> <b1> <b2> <b3>
+
+# 位错环
+-dislocation loop <x> <y> <z> <n> <radius> <bx> <by> <bz> <ν>
+
+# file 文件含位错线信息
+-dislocation file <file> <ν>
+
+
+# 参数
+p1 p2               # 垂直于位错线的 2 个方向的坐标值
+ξ                   # 位错线方向 x/y/z
+n                   # 滑移面法向 x/y/z
+b                   # 伯氏矢量模长
+ν                   # 材料的泊松比（screw mixed 位错类型，缺省）
+```
+
+- 注意事项
+    - atomsk 不会自动寻找/调整位错的伯氏矢量，因此须手动提供精确的 **b** 值；也不会寻找位错中心的最佳位置，与原子位置完全匹配的坐标可能会出现不合理的位移
+    - 一般让 x 为位错的滑移方向，y 方向为滑移面法向（**视觉上的 z 轴**），z 方向为位错线方向
+    - 一般在位错线方向具有周期性（模型沿该方向的长度可以很小），其余两个方向不具有周期性（模型沿该方向的长度需要足够大）
+    - 一般需要对滑移面法向的顶部和底部进行固定
+    - `-dislocation` 可给指定输入构型文件（原子位置不都在理想晶格位点上，如 300K 温度下弛豫后）添加位错
+    - 添加的位错位置不能是 `0.50*box 0.50*box`，会出现某个原子的坐标值为 `NAN` 的错误，而应写成 `0.501*box 0.501*box`
+    - 引入 dipole（位错偶）、quadrupole（4 个） 等多个螺位错，使伯氏矢量之和为 0，可实现 3 个方向都具有周期性
+
+- 刃位错
+
+```bash
+# FCC 滑移系 1/2<110>{111}；伯氏矢量 b=1/2[110]
+# 刃位错 位错线方向与伯氏矢量垂直
+atomsk --create fcc 4.041 Al orient "[110]" "[-111]" "[1-12]" -duplicate 60 20 4 Al_supercell.xsf
+
+atomsk Al_supercell.xsf -dislocation "0.51*box" "0.51*box" edge Z Y 2.860954 0.33 Al_edge.cfg
+```
+
+- 螺位错
+
+```bash
+# 螺位错 位错线方向与伯氏矢量平行
+atomsk --create fcc 4.046 Al orient "[1-12]" "[-111]" "[110]" -duplicate 40 20 1 Al_supercell.xsf
+
+atomsk Al_supercell.xsf -dislocation "0.51*box" "0.501*box" screw Z Y 2.860954 Al_screw.xsf
+```
+
+
+---
+
+### 孪晶模型
+
+- [Atomsk - Tutorial - Twin boundary](https://atomsk.univ-lille.fr/tutorial_twin.php)
+
+- FCC (111) 孪晶
+
+```bash
+# 通过调整孪晶面法向（沿 y 方向）扩胞的大小，可调整孪晶间距
+atomsk --create fcc 4.041 Al orient "[11-2]" "[111]" "[-110]" -duplicate 1 4 1 Al_cell.xsf
+
+# 只有原子位置会被镜像，box 不会，因此该操作后原子会到 box 外面，需使用 -wrap
+atomsk Al_cell.xsf -mirror 0 Y -wrap Al_mirror.xsf
+
+# 合并/堆叠至一起
+atomsk --merge Y 2 Al_cell.xsf Al_mirror.xsf Al_final.cfg
 ```
 
 
@@ -363,7 +453,7 @@ atomsk Al_polycrystal.lmp -remove-doubles 0.2 final.lmp
 
 ### 等原子比四元随机固溶体
 
-- 若将 tmp\*.cfg 换成 lmp 格式，无替换效果
+- 注意事项：若将 tmp\*.cfg 换成 lmp 格式，无替换效果
 
 ```bash
 a=3.254
@@ -380,4 +470,26 @@ atomsk tmp2.cfg -select random 33.33% Nb -sub Nb Al tmp3.cfg
 atomsk tmp3.cfg -select random 50% Nb -sub Nb Mo -sort species pack vasp
 
 rm -f *.cfg
+```
+
+
+---
+
+### 含孪晶界纳米晶
+
+- 步骤：构建单晶种子，引入孪晶界（通过 `-duplicate` 可调控多晶中的孪晶间距？）；生成多晶
+
+
+---
+
+### 计算 Nye tensor
+
+```bash
+atomsk --nye reference.xsf dislocation.cfg nye.cfg
+
+# 输出文件
+nye.cfg             # 一般选取 Nye_33 数据在 OVITO 中进行 Color Coding
+nye_G.cfg
+nye_rotate.cfg
+nye_strain.cfg
 ```

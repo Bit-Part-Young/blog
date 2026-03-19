@@ -128,7 +128,10 @@ awk '/TOTAL-FORCE/ {flag++} flag==N {print} /total drift/ {if (flag==N) {exit}}'
 # 每个离子步的原子受力
 n=48
 lines=$(awk '{i=0}/TOTAL-FORCE/{getline; while(i<n) {getline; print $4,$5,$6; i++} i=0}' n=$n < OUTCAR)
-echo $lines
+echo ${lines}
+
+# 查看每个离子步的 stress
+grep -A 20 'FORCE on cell =-STRESS' OUTCAR
 
 
 # total drift 不为 0 的一些示例

@@ -1355,17 +1355,16 @@ if __name__ == "__main__":
         nargs="?",
         const="vasp",
         default="vasp",
-        type=str,
         choices=["vasp", "pymatgen"],
-        help="Recommended pseudopotential source.",
+        help="recommended pseudopotential source.",
     )
 
     parser.add_argument(
-        "structure_file",
+        "structure_fn",
         nargs="?",
+        default="const",
         default="POSCAR",
-        type=str,
-        help="Structure file with POSCAR format, eg. POSCAR.",
+        help="structure filename with POSCAR format, eg. POSCAR.",
     )
 
     ...

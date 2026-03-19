@@ -128,12 +128,11 @@ findsym input1.cif > output.cif          # 寻找对称性并输出
 ## 构型文件格式
 
 - 注意事项：
-    - CIF 格式有含对称性、不含对称性两种格式（前者晶体学信息更全），大部分程序将构型格式转换成 CIF 都是不含对称性的（空间群为 P1，写入所有原子）
-    - xyz 格式构型文件通过 ase 读取，其 pbc 为 False（extxyz 格式的 pbc 为 True），保存成 xyz 格式时无晶格参数信息；**posconv 转换成 xyz 文件格式会在每行的原子位置后面附加晶格参数信息，第二行有注释信息**
-    - vaspkit 可将 xsd 文件转换成 POSCAR
-    - [ ] posconv 添加 xsd 转换成其他格式的代码（Fortran）
+    - cif 格式可含对称性、不含对称性两种（前者晶体学信息更全），大部分程序将构型格式转换成 cif 都是不含对称性的（空间群为 P1，即写入所有原子）
+    - 原子类型标记：xsf 使用原子序数，cfg 使用相对原子质量和元素符号（使用 atomsk 模型构建时，需要用到中间构型，建议避免用 lmp 以吞掉原子类型）
 
-- 常见构型文件格式文件名及其后缀：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+- 常见构型文件格式：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
+    - 原子坐标为分数坐标的格式：imd
 
 ```bash
 POSCAR            # VASP
@@ -141,15 +140,16 @@ CONTCAR           # VASP
 XDATCAR           # VASP 轨迹文件
 .vasp             # VASP
 .poscar           # VASP；Material Project 下载的构型格式
-dump.lammpstrj    # LAMMPS 轨迹文件
-.pdb              # Protein Data Bank，可用 VMD 软件（跨平台）打开
+.lammpstrj        # LAMMPS 轨迹文件
 .xsd              # Material Studio
-.cell             # CASTEP
 .cif              # Crystallographic Information File
 .xsf              # XCrySDen
+.cfg              # AtomEye；configuration 的缩写
+.imd              # IMD
+.cell             # CASTEP
 .stru             # ABACUS
 .cube             # Gaussian
-.cfg              # AtomEye；configuration 的缩写
+.pdb              # Protein Data Bank
 .car              # DMol3；Material Studio 可读
 .arc              # DMol3；类似轨迹文件；Material Studio 可读
 ```
@@ -162,20 +162,13 @@ dump.lammpstrj    # LAMMPS 轨迹文件
 
 Nb      0.000000000000000      0.000000000000000      0.000000000000000
 Nb      1.660000000000000      1.660000000000000      1.660000000000000
-
-
-# posconv xyz 格式内容示例（第二行内容不为空；会显示基矢数据）
-2
-# BCC(001) cell with dimension 1 x 1 x 1 and a = 3.32
-Nb    0.000000000000000    0.000000000000000    0.000000000000000 crystal_vector  1    3.320000000000000    0.000000000000000    0.000000000000000
-Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector  2    0.000000000000000    3.320000000000000    0.000000000000000
 ```
 
 - extxyz 格式内容示例（第二行有晶体学信息）
     - 第 1 行：原子数目
-    - 第 2 行：必须有 `Lattice`、`Properties` 参数；常见参数有 `pbc`
+    - 第 2 行：必须有 Lattice、Properties 参数；常见参数有 pbc、energy、stress、virial 等
         - `Properties=property_name:data_type:number_of_columns` 规定原子信息数组每一列的信息
-        - 常用 `property_name`：species、pos、Z、mass、charge；virial、stress（须为 3x3=9 个分量）
+        - 常用 `property_name`：species、pos、Z、mass、force、charge
         - `data_type`：分为 S、I、R、L 分别对应 string、integer、real、logical
     - 第 3+ 行：与 Properties 对应的列
 
@@ -185,8 +178,6 @@ Nb    1.660000000000000    1.660000000000000    1.660000000000000 crystal_vector
 Lattice="6.57 0.0 0.0 0.0 6.57 0.0 0.0 0.0 11.88" Properties=species:S:1:pos:R:3 pbc="T T T"
 Nb       1.09062000       4.37562000      10.09800000
 Nb       2.19438000       1.09062000      10.09800000
-
-# OUTCAR 转换成 extxyz
 ```
 
 - LAMMPS data 文件格式内容示例

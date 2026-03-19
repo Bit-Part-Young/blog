@@ -61,7 +61,7 @@ array_sorted = array[array[:, 1].argsort()]
 
 ### 数组创建
 
-初始化 numpy 数组时，可以进行预分配
+- 初始化 numpy 数组时，可以进行预分配
 
 ```python
 import numpy as np
@@ -286,7 +286,7 @@ np.tofile()             # 将数组写入文件中
 
 np.savetxt()
 
-np.loadtxt()
+np.loadtxt()            # 默认会把 # 开头的行作为注释
 # 参数
 skiprows
 use_cols                # 指定列数据
@@ -355,4 +355,22 @@ polyfit(x, y, deg)      # n 次多项式拟合；返回多项式的系数
 deg                     # 多项式阶数
 
 np.polyval()
+```
+
+---
+
+### 其他
+
+- RMSE MAE R2 计算
+
+```python
+# RMSE MAE R2 计算
+def statistics(data1, data2):
+    rmse = np.sqrt(np.mean((data1 - data2) ** 2))
+
+    mae = np.mean(np.abs(data1 - data2))
+
+    r2 = 1 - np.sum((data1 - data2) ** 2) / np.sum((data2 - np.mean(data2)) ** 2)
+
+    return rmse, mae, r2
 ```

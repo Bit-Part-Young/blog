@@ -891,7 +891,7 @@ mpirun lmp_cpu -i in.lmp
 mpirun lmp_gpu -i in.lmp -sf gpu -pk gpu 2
 ```
 
-- NEP & GPUMD
+- NEP & GPUMD（注：用 Slurm 调用 GPU 资源时，至少需要调用 1 个 CPU 核）
 
 ```bash
 #!/bin/bash

@@ -126,16 +126,7 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 
 - 整合 Obsidian 与 Zotero 的插件（可尝试）：[GitHub - PKM-er/obsidian-zotlit](https://github.com/PKM-er/obsidian-zotlit)
 
----
-
-- 外观：
-    - 推荐使用 Blut Topaz、Border、[AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin) 主题（后两者会出现卡顿情况）
-    - AnuPpuccin 使用 CSS：下载 `extended-colorschemes.css` 和 `custom-rainbow-colors.css` 文件，将其复制到 `vault/.obsidian/snippets` 中，进入 “设置 - 外观 - CSS 代码片段”，刷新，应用当前代码片段
-    - Blut Topaz 主题效果图：
-
-![vault-screenshot.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202312120853566.png)
-
----
+- 外观：推荐 Blut Topaz 主题
 
 - [Vimrc Support](https://github.com/esm7/obsidian-vimrc-support)：支持设置 `.vimrc` 配置文件（实用性很高；需在编辑器选项中打开 Vim 模式）
     - [08\_obsidian01.md](https://github.com/alexzhang1030/full-keyboard/blob/0cb16b4d9fbc2d8e589b38fad14308220d184d72/docs/08_obsidian01.md)
@@ -180,7 +171,7 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 
 - Exmemo Client：优化本地搜索插件
 
-- Advanced Tables：Markdown 表格增强；按 Tab 键自动补全 Markdown 表格所需格式
+- Advanced Tables：Markdown 表格增强；按 Tab 键自动补全 Markdown 表格所需格式（个人不太用 Markdown 表格）
 
 - Editing Toolbar：在文档编辑栏上方添加类似 Office 的工具栏
 
@@ -192,7 +183,7 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 
 - Obsidian Enhancing Export：将 Obsidian md 文档导出不同的文件格式（**通过 Pandoc 导出，需安装并配置；含中文的 md 导出成 pdf 格式一般都会报错，建议手动写命令，其他格式可以成功导出**）
 
-- floating toc：目录浮动体；[GitHub - PKM-er/obsidian-floating-toc-plugin](https://github.com/cumany/obsidian-floating-toc-plugin)
+- floating toc：目录浮动体（有时会导致卡顿）
 
 - Outliner：限制列表层级；`Ctrl + A` 只选中本行条目
 
@@ -201,6 +192,8 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 - Trim Whitespace：删除多余的空白字符
 
 - Editor Width Slider：调整编辑栏的宽度
+
+- Notebook Navigator：笔记导航
 
 - Tasks：丰富的 checkbox
 
@@ -222,10 +215,6 @@ Ctrl + Alt + S      # 切换实时阅览/源码模式
 > [!WARNING]
 > [!CAUTION]
 ```
-
-效果：
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202401081127325.png)
 
 
 ---

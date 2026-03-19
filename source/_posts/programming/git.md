@@ -226,7 +226,7 @@ git push -u origin main
 
 ---
 
-- 已有本地 Git repo
+- 已有本地 Git 仓库
 
 ```bash
 git remote add origin git@github.com:user/repo.git
@@ -618,11 +618,13 @@ git push -f origin main
 ### clone
 
 ```bash
-git clone  <url>           # 完整克隆（fresh/full clone）
-git clone --depth 1 <url>  # 浅克隆（shallow clone）；只 clone 最新提交
-git fetch --unshallow      # 更新本地仓库，使其包含完整的历史记录
+git clone <url>             # 完整克隆（fresh/full clone）
 
-git clone -b <branch1> -b <branch2> <url>  # clone 多个分支
+# 常用参数
+--depth 1                   # 浅克隆（shallow clone）；只 clone 最新提交
+-b <branch>                 # 克隆分支（可多个）
+
+git fetch --unshallow       # 更新本地仓库，使其包含完整的历史记录
 ```
 
 
@@ -631,21 +633,21 @@ git clone -b <branch1> -b <branch2> <url>  # clone 多个分支
 ### config
 
 ```bash
-git config --list           # 列出 repo 配置
-git config --global --list  # 列出全局配置
-git config --list --show-origin  # 列出配置即对应配置文件路径
+git config ...
 
-# 全局设置
-git config --global user.name "username"
-git config --global user.email "user@email.com"
-# 其他
+# 常用参数
+--list                      # 列出 repo 配置
+--global                    # 全局
+--unset                     # 取消
+
+# 具体配置
+user.name "..."             # 姓名
+user.email "..."            # 邮箱
 color.ui 1                  # git 命令输出里加上颜色
-core.editor "vim"           # 配置默认编辑器
+core.editor "..."           # 配置默认编辑器
 core.fileMode false         # 忽略文件的权限变化
 core.quotepath false        # 解决 git status 中文乱码 问题
 help.autocorrect 1          # 开启自动纠错功能
-
-# 取消全局配置 --global 后添加 --unset
 ```
 
 
@@ -656,9 +658,9 @@ help.autocorrect 1          # 开启自动纠错功能
 ```bash
 git add file
 
-git add --patch  # 或 -p；对于所有的修改依次进行添加确认
-
-git add -i  # 交互式
+# 常用参数
+-p                          # 或 --patch；对修改依次进行添加确认
+-i                          # 交互式
 ```
 
 
@@ -671,12 +673,9 @@ git add -i  # 交互式
 - [创建没有任何改动的提交](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%94%B9%E5%8A%A8%E7%9A%84%E6%8F%90%E4%BA%A4)
 
 ```bash
-# 根据当前时间进行 commit
-git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
-
 # 将改动添加进最近一次的 commit 中
 git commit --amend --no-edit  
-git push --force  # 不加 --force 会出现问题
+git push --force
 
 # 修改 commit 信息
 git commit --amend --no-edit -m 'xxx'
@@ -830,14 +829,8 @@ git push origin :refs/tags/v1.0.0  # 远程
 查看 commit 记录/日志
 
 ```bash
-git log           # 查看提交日志
-git reflog        # 查看所有分支的所有操作记录
-
-git shortlog -s -n             # 统计作者提交次数
-# 在作者后面添加邮箱
-git log --pretty=format:'%an <%ae>' | sort | uniq -c | sort -nr
-git rev-list --count --all     # 统计 repo 中的总提交次数
-git rev-list --count [branch]  # 统计 repo 中指定分支的提交总数
+git shortlog -s -n   # 统计作者提交次数
+git rev-list --count --all  # 统计 repo 中的总提交次数
 
 # 较为简洁美观的 git log 输出样式
 git log --oneline --graph --all
@@ -850,7 +843,8 @@ git log -1 --pretty="%ci" file
 # 获取文件第一次添加到 repo 的时间
 git log -1 --diff-filter=A --follow --pretty="%ci" file
 
-# git log 常用参数
+
+# 常用参数
 -p                   # --patch；显示详细修改内容
 --graph              # 显示分支结构
 --stat               # 统计
@@ -869,9 +863,10 @@ git log -1 --diff-filter=A --follow --pretty="%ci" file
 -n N / HEAD~N        # 显示最新的前 N 条提交记录
 --grep=pattern       # 筛选指定 pattern 的提交记录
 --date=short         # 日期格式
---since="midnight"   # 当天一天
---since="2024-09-17 00:00" --until="2024-09-18 00:00"  # 具体某一天
---since="1 day ago"  # 一天以前；week month year
+--since="1 day ago"  # 一天以前；week/month/year
+--until="..."        # 直到
+--grep="..."         # 筛选
+-- . ":^dir/"        # 忽略指定目录下的所有变化
 ```
 
 
@@ -1040,13 +1035,19 @@ wget https://gist.githubusercontent.com/user/GIST_ID/raw/filename -O filename
 
 ---
 
-- 规范式提交
+- 规范式/约定式提交
+    - gitmoji-cli：git commit 时使用 emoji
+    - [GitHub - carloscuesta/gitmoji-cli: A gitmoji interactive command line tool for using emojis on commits. 💻](https://github.com/carloscuesta/gitmoji-cli)
+    - [gitmoji 速查表 - Git 重学指南](https://git-remake.wybxc.cc/%E9%99%84%E5%BD%95/gitmoji-%E9%80%9F%E6%9F%A5%E8%A1%A8.html)
+    - 在冒号前面加上 `!` ，或者在脚注中表明 `BREAKING CHANGE`，就表示此次更改是破坏性更改
 
-gitmoji-cli：git commit 时使用 emoji
->[GitHub - carloscuesta/gitmoji-cli: A gitmoji interactive command line tool for using emojis on commits. 💻](https://github.com/carloscuesta/gitmoji-cli)
-
->[gitmoji 速查表 - Git 重学指南](https://git-remake.wybxc.cc/%E9%99%84%E5%BD%95/gitmoji-%E9%80%9F%E6%9F%A5%E8%A1%A8.html)
-
+```bash
+feat:              # 新增功能
+fix:               # 修复 bug
+docs:
+tag:
+refactor:          # 重构
+```
 
 ---
 

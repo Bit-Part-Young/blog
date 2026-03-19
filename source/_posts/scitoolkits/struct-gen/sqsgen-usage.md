@@ -320,8 +320,25 @@ if __name__ == "__main__":
 
 - 当需构建的 sqs 构型很大时（原子数 10000+），sqsgen 程序所需的内存也很大，超算的计算节点由于有内存配比限制，终端命令行运行时会被 kill
 
-```bash
-batch-fe.sh: line 29: 2976792 Killed                  sqsgen run iteration ${yaml_name} -di parameters -di objective --no-minimal -e -f lammps-data -c gz -w ase
-slurmstepd: error: *** JOB 25428400 ON node022 CANCELLED AT 2023-05-30T19:46:40 ***
-slurmstepd: error: Detected 1 oom-kill event(s) in StepId=25428400.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
+- 新版本的 sqsgenerator，配置文件由 yaml 变成 json
+
+```json
+// json 配置文件示例
+{
+    "structure": {
+      "file": "POSCAR"
+    },
+    "iterations": 10000000,
+    "shell_weights": {
+      "1": 1.0,
+      "2": 1.0
+    },
+    "composition": {
+      "Nb": 13,
+      "Mo": 13,
+      "Ta": 14,
+      "W": 14
+    },
+    "max_results_per_objective": 10
+}
 ```

@@ -23,21 +23,16 @@ password:
 
 - ASE 可支持的构型文件格式：[File input and output — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/io/io.html)
 
-- ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与**核心** `Atoms` object 和 ASE 中的许多可用算法一起使用；支持的 `Calculators`：
+- ASE 通过 `Calculators` 为不同的计算代码（DFT/MD）提供接口，`Calculators` 与核心 `Atoms` object 和 ASE 中的许多可用算法一起使用；支持的 `Calculators` 如下：
 
 ![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/mac-images/202406022047963.png)
 
 - [ASE 版本 Release notes](https://wiki.fysik.dtu.dk/ase/releasenotes.html)：查看版本更新细节
 
 - 注意事项：
-    - ASE 网站中的源代码参数及注释与安装的 Python package 源码会有不一致的地方，写脚本还是以 pacakge 的源码为准
+    - ASE 网站中的源代码参数及注释与安装的 package 源码会有不一致的地方，以 pacakge 源码为准
     - 无直接计算弹性常数的模块
-    - 很多变量的类型是 `np.ndarray`
-
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292017026.png)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202405292018624.png)
+    - 很多变量的类型是 `numpy.ndarray`
 
 
 
@@ -266,6 +261,7 @@ nelements = len(set(atoms.get_chemical_symbols()))
 formula = atoms.get_chemical_formula()
 
 # 成分 {'Al': 2, 'Ti': 3}
+# 当 formula 为 Ti3AlNb0 时，会考虑 Nb，比 pymatgen 的 composition 模块要好
 composition = Formula(formula).count()
 # 原子数
 natoms = sum(composition.values())
@@ -434,13 +430,13 @@ vacuum                 # z 方向两端添加真空层
 # FCC 结构常见的 (100)、(110)、(111) 面；正交胞情况下
 fcc100                 # 具体晶向（x、y 可交换） "[01-1]" "[011]" "[100]"
 fcc110                 # 具体晶向 "[001]" "[1-10]" "[110]"
-fcc111                 # 具体晶向 "[-110]" "[11-2]" "[111]"；非正交，γ 为 120
-fcc211                 # 
+fcc111                 # 具体晶向 "[-110]" "[11-2]" "[111]"；非正交，夹角 γ 为 120
+fcc211                 # 不支持特殊吸附位点
 
 # BCC 结构常见的 (100)、(110)、(111) 面；正交胞情况下
 bcc100                 # 具体晶向 "[010]" "[001]" "[100]"
-bcc110                 # 具体晶向 "[001]" "[1-10]" "[110]"；非正交，γ 为 109.47
-bcc111                 # 具体晶向 "[-110]" "[11-2]" "[111]"；非正交，γ 为 120
+bcc110                 # 具体晶向 "[001]" "[1-10]" "[110]"；非正交，夹角 γ 为 109.47
+bcc111                 # 具体晶向 "[-110]" "[11-2]" "[111]"；非正交，夹角 γ 为 120
 
 # Diamond 结构常见的 (100)、(111) 面
 diamond100
@@ -474,6 +470,14 @@ a                      # 晶格常数
 vacuum                 # z 轴两端添加真空层
 size                   # x y 轴对应的数值表示超胞，z 轴对应的数值表示具体的原子层数（不是最小一个完整单元的 slab）
 orthogonal             # 是否转换成正交胞
+
+
+# 用该方式构建的 BCC (112) 表面不正确
+from ase.build.general_surface import surface
+
+atoms = bulk("Mo", a=3.164, cubic=True)
+# 非正交或夹角 γ 为 120 的构型
+atoms_surface = surface(atoms, (1, 1, 2), 3, 10.0)
 ```
 
 - 其他
@@ -957,7 +961,7 @@ ground_state_magnetic_moments  # 基态磁矩
 ASE 中的物理单位，电子伏特 eV、埃 Å，开尔文 K 和原子质量单位定义为 1.0
 
 ```python
-from ase.units import Bohr, Hartree, eV, kJ, mol, GPa
+from ase.units import Bohr, Hartree, eV, kJ, mol, GPa, _Nav
 
 # 能量: 1 eV = ... kJ/mol = ... Hartree = ... Ry
 print(1 / (kJ / mol))
@@ -1117,6 +1121,12 @@ from ase.calculators.mixing import SumCalculator
 # dftd3
 from ase.calculators.dftd3 import DFTD3
 from dftd3.ase import DFTD3 as SimpleD3
+
+# QM/MM
+from ase.calculators.qmmm import ...
+
+# GROMACS
+from ase.calculators.gromacs import Gromacs
 ```
 
 
@@ -1180,22 +1190,48 @@ get_rdf()                    # 计算 RDF（可计算 partial rdf）
 
 ### ase.neb
 
+- NEB 计算、拟合、分析与绘制
+
 - [Nudged elastic band — ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/neb.html)
 
 - [使用ASE实现idpp方法插值NEB路径](https://mp.weixin.qq.com/s/En5MN5vhS-zXFoeoZ6kR1Q)
 
 ```python
-from ase.mep import NEB, idpp_interpolate
+from ase.mep import NEB, NEBTools
 from ase.optimize import BFGS
+from ase.utils.forcecurve import fit_images
 
-images = ...
+images = [...]
 
-neb = NEB(images, k=0.1)
+# NEB 初始化
+neb = NEB(images)
 
+# 线性插值
 neb.interpolate(method="linear")
 # IDPP 插值
 neb.interpolate(method="idpp")
-neb.idpp_interpolate(fmax=0.1, optimizer=BFGS, steps=1000)
+
+
+# images 需含 energy 和 force 信息
+nebtools = NEBTools(images)
+
+# 拟合；用到了 fit_images()
+nebtools.get_fit()
+# 有 fit 参数，参数值为 True/False
+E_barrier, dE = nebtools.get_barrier()
+# 获取最大力
+f_max = nebtools.get_fmax()
+# 绘制 NEB 曲线图（x 坐标未归一化；一般）
+nebtools.plot_neb()
+
+
+# 力拟合；含 'path', 'energies', 'fit_path', 'fit_energies' 信息
+force_fit = fit_images(images)
+
+path = force_fit.path
+# 归一化处理
+path = np.array(path) / path[-1]
+energies = force_fit.energies
 ```
 
 

@@ -30,9 +30,16 @@ Python 绘图包
 ### 参考资料
 
 - [官方 cheatsheet](https://matplotlib.org/cheatsheets/)
+
 - Matplotlib Tutorial：[GitHub - rougier/matplotlib-tutorial: Matplotlib tutorial for beginner](https://github.com/rougier/matplotlib-tutorial)
+
 - 精美科研绘图示例：[Veusz 2D Examples](https://veusz.github.io/examples/)
+
 - 在 Matplolib 中使用 LaTeX：[Use latex with matplotlib on HPCs where you can't sudo! · GitHub](https://gist.github.com/chiang-yuan/62fbcaae06bf77f793a8f9b5aed1ba70)
+
+- 在终端中绘图：[GitHub - piccolomo/plotext: plotting on terminal](https://github.com/piccolomo/plotext)
+
+- 自动调整文本位置（实际效果一般）：[GitHub - Phlya/adjustText: A small library for automatical adjustment of text position in matplotlib plots to minimize overlaps.](https://github.com/Phlya/adjustText)
 
 - mpltex 用于绘制论文级别的图
     - [GitHub - liuyxpp/mpltex: A python package for producing publication quality images using matplotlib.](https://github.com/liuyxpp/mpltex)
@@ -54,6 +61,12 @@ ax = plt.subplot()
 fig, ax = plt.subplots()
 
 ax = fig.add_subplot()  # 返回 Axes object
+
+
+fig, ax = plt.subplots()
+# 参数
+nrows, ncols            # m 行 n 列个子图
+sharex, sharey          # 共享 x/y 轴
 ```
 
 
@@ -63,51 +76,8 @@ Matplotlib 图中的所有元素
 
 
 
-```python
-# 新字体使用时，rebuild font cache list，防止没有检测到
-import matplotlib.font_manager
-
-matplotlib.font_manager._rebuild()
-```
-
-
-
-```python
-# 使用 TEX 引擎
-plt.rcParams["text.usetex"] = True
-```
-
-```python
-plt.rcParams["mathtext.fontset"]
-```
-
-数学字体（默认为 `dejavusans`）：[Writing mathematical expressions — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/users/explain/text/mathtext.html)
-
-![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404091028106.png)
-
-
 ---
 
->[matplotlib.style — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/api/style_api.html)
-
->[Style sheets reference — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html)
-
-```python
-plt.style.available
-
-plt.style.use()
-```
-
-```python
-# 自定义刻度标签 {x} 表示当前刻度值
-# 方式 1
-ax.yaxis.set_major_formatter("{x:.2f}")
-
-# 方式 2
-from matplotlib.ticker import StrMethodFormatter
-
-ax.yaxis.set_major_formatter(StrMethodFormatter("{x:.1f}"))
-```
 
 
 ---
@@ -138,7 +108,7 @@ plt.show()
 
 ---
 
-- 对象式绘图（显式）：通过显式创建 Figure 和 Axes 对象来创建绘图区域，然后在其上调用相应的方法绘制各种图形元素；绘制子图方便
+- 对象式绘图（显式，推荐）：通过显式创建 Figure 和 Axes 对象来创建绘图区域，然后在其上调用相应的方法绘制各种图形元素；绘制子图方便
 
 ```python
 import matplotlib.pyplot as plt
@@ -155,9 +125,9 @@ ax.set_xlabel("x")
 ax.set_ylabel("y")
 ax.legend()
 
-plt.show()
+# plt.show()
 
-# fig.savefig("sin.png")
+fig.savefig("sin.png")
 ```
 
 
@@ -183,11 +153,9 @@ facecolor                      # 轴背景颜色
 # 写法一
 ax.set_xlabel("x")
 ax.set_ylabel("y")
+
 # 写法二
-ax.set(
-    xlabel="x",
-    ylabel="y",
-)
+ax.set(xlabel="x", ylabel="y")
 ```
 
 
@@ -205,9 +173,10 @@ ax.legend(ncols, loc, bbox_to_anchor, ...)
 # 参数
 ncols               # 图例排布列数
 loc                 # 图例位置
-columnspacing       # 图例之间的列间距；个人设置为 0.5
-labelspacing        # 图例之间的行间距；个人设置为 0.3
-handletextpad       # 图例符号与文本间的间距；个人设置为 0.2
+title               # 图例 title
+columnspacing       # 图例之间的列间距
+labelspacing        # 图例之间的行间距
+handletextpad       # 图例符号与文本间的间距
 handlelength        # 图例符号长度
 frameon             # 是否开启图例边框
 framealpha          # 图例边框背景透明度
@@ -262,7 +231,7 @@ ax.add_artist(second_legend)
 
 ### 字体
 
-- Times New Roman 字体问题：Linux 默认没有该字体，可将该字体拷贝到 `~/.fonts` 或 `~/.local/share/fonts`
+- Linux 默认没有 Times New Roman 字体，可将该字体拷贝到 `~/.fonts` 或 `~/.local/share/fonts`
 
 - 临时使用中文字体：[Matplotlib学习笔记.md](https://github.com/LiuQixuan/PythonLearningNote/blob/master/Matplotlib%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md)
 
@@ -280,6 +249,30 @@ plt.legend(props={"family": "SimHei"})
 ```
 
 - 中文字体管理：[GitHub - Clarmy/mplfonts: Fonts manager for matplotlib](https://github.com/Clarmy/mplfonts)
+
+- 新字体使用时，rebuild font cache list，防止没有检测到
+
+```python
+import matplotlib.font_manager
+
+matplotlib.font_manager._rebuild()
+```
+
+
+---
+
+### 数学字体
+
+- 数学字体（默认为 `dejavusans`）：[Writing mathematical expressions — Matplotlib 3.10.7 documentation](https://matplotlib.org/stable/users/explain/text/mathtext.html)
+
+```python
+plt.rcParams["mathtext.fontset"]
+
+# 使用 LaTeX 渲染文本
+plt.rcParams["text.usetex"] = True
+```
+
+![image.png](https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202404091028106.png)
 
 
 ---
@@ -345,7 +338,7 @@ matplotlib.get_cachedir()
 
 ### rcParams
 
-[rcParams](https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.rcParams)
+- [rcParams](https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.rcParams)
 
 ```python
 # 方式 1
@@ -727,6 +720,13 @@ KeysView(RcParams({'_internal.classic_mode': False,
 
 ### 其他
 
+- 样式表：[Style sheets reference — Matplotlib](https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html)
+
+```python
+plt.style.available            # 可用的样式表
+plt.style.use("ggplot")        # 使用样式表 
+```
+
 ```python
 # x 轴 label 变成字符串
 ax.set_xticks()
@@ -787,10 +787,10 @@ color                 # c；颜色
 linestyle             # ls；线的样式
 linewidth             # lw；线宽
 marker                # marker 样式
+markersize            # ms；marker 尺寸
 markeredgecolor       # mec；marker 边缘颜色
 markeredgewidth       # mew；marker 边缘宽度
-markerfacecolor       # mfc；
-markersize            # ms；marker 尺寸
+markerfacecolor       # mfc；marker 中心内颜色
 
 
 
@@ -802,6 +802,9 @@ marker                # marker 样式
 s                     # marker size；float 或 array-like
 c                     # marker colors；array-like 或 color list；该参数可结合 colorbar 使用
 cmap                  # colormap
+linewidths            # 可调整 markder 的线宽
+facecolors            # marker 中心内颜色
+edgecolors            # marker 边缘颜色
 
 
 # 直方图
@@ -834,7 +837,6 @@ ax.plot(
     lw=1,
     markeredgecolor="black",
     markersize=8,
-    label="...",
 )
 ```
 
@@ -846,10 +848,22 @@ ax.plot(
 - 方式 1
 
 ```python
-fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(8, 6))
+fig, (ax0, ax1) = plt.subplots(nrows=1, ncols=2, figsize=(8, 6))
 ```
 
 - 方式 2
+
+```python
+fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(8, 6))
+
+ax0: Axes = axs[0]
+...
+
+ax1: Axes = axs[1]
+...
+```
+
+- 方式 3
 
 ```python
 fig, axs = plt.subplots(nrows=1, ncols=2)
@@ -883,7 +897,7 @@ fig.legend(handles, labels, bbox_to_anchor=(1.1, 0.1))
 ```python
 axin = ax.inset_axes() 
 # 参数
-bound:         # [x0, y0, width, height] 左下角的坐标及宽度高度；数值范围均为 0~1
+bound          # [x0, y0, width, height] 左下角的坐标及宽度高度；数值范围均为 0~1
 
 # 在主图上绘制放大区域的边框
 ax.indicate_inset_zoom(axins)
@@ -897,7 +911,7 @@ ax.indicate_inset_zoom(axins)
 ```python
 ax1.plot(...)
 
-ax2 = ax.twinx()
+ax2 = ax1.twinx()
 ax2.plot(...)
 
 # 解决双 Y 轴图列重叠问题
@@ -912,20 +926,12 @@ ax2.legend(lines + lines2, labels + labels2)
 ### 误差棒图
 
 ```python
-import matplotlib.pyplot as plt
-
-x = [1, 2, 3, 4, 5]
-y = [2, 3, 2, 4, 2]
-yerr = [[0.5, 1, 0.5, 1, 0.5], [1, 2, 1, 2, 1]]  # 下、上误差；需为正值
-yerr = [0.5, 1, 0.5, 1, 0.5]  # 上下误差一样
-
-fig, ax = plt.subplots()
+# 下、上误差；需为正值
+yerr = [[0.5, 1, 0.5, 1, 0.5], [1, 2, 1, 2, 1]]
+# 上下误差一样
+yerr = [0.5, 1, 0.5, 1, 0.5]
 
 ax.errorbar(x, y, yerr=yerr, fmt="o", linewidth=1, capsize=6)
-
-ax.set(xlabel="X", ylabel="Y", title="Error Bar Example")
-
-plt.show()
 ```
 
 
@@ -1104,7 +1110,7 @@ axes.labelsize : 24
 
 - 双 Y 轴 + brokenaxes 绘制（matplotlib 及 brokenaxes 实现效果一般，建议还是用 Origin）：[python - Matplotlib with brokenaxes package second Y-Axis - Stack Overflow](https://stackoverflow.com/questions/60026605/matplotlib-with-brokenaxes-package-second-y-axis)
 
-- 在 Jupyter Notebook 中使用 `%matplotlib inline`，从 matplotlib 3.2 版本开始，这个命令在大多数情况下已不再是必需的，因为 Jupyter 和 IPython 的默认行为已经是将图形内嵌显示
+- 不必在 Jupyter Notebook 中使用 `%matplotlib inline`（Jupyter 默认已将图形内嵌显示）
 
 - 给每张子图表 (a) (b) 序号标签（最后其实还是用 ax.text() 实现；效果一般）：[Labelling subplots — Matplotlib 3.8.4 documentation](https://matplotlib.org/stable/gallery/text_labels_and_annotations/label_subplots.html)
 

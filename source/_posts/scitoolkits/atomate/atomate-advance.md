@@ -197,10 +197,12 @@ vasp_input_set         # vis
 
 ---
 
-- 层错能计算：[https://github.com/willtu/gsfe_workflow](https://github.com/willtu/gsfe_workflow)
+- 层错能计算（使用 CINEB 方法）：[https://github.com/willtu/gsfe_workflow](https://github.com/willtu/gsfe_workflow)
 
 ```python
 from atomate.vasp.workflows.base.neb import get_wf_neb_from_endpoints
+
+- [ ] `get_wf_neb_from_endpoints()` 工作流函数源码理解
 ```
 
 ---
@@ -215,9 +217,14 @@ VaspDrone.schema
 
 ---
 
-- custodian 中已定义的 error 信息
+- custodian 中预 定义的 error 信息及对应的纠正措施
 
 ```python
+# 源码路径 vasp/handlers.py
+
+# error 纠正措施见 correct()
+
+# 预定义的 error 信息
 error_msgs = {
         'algo_tet': ['ALGO=A and IALGO=5X tend to fail'],
         'amin': ['One of the lattice vectors is very long (>50 A), but AMIN'],
@@ -442,6 +449,11 @@ wf_nudged_elastic_band(structures, parent, c=None)
 reciprocal_density: 64     # 弛豫
 reciprocal_density: 100    # 静态 
 grid_density: 7000         # 弹性常数计算；第一步弛豫、ISIF = 2 弛豫部分
+```
+
+```python
+# NEB 计算
+from atomate.vasp.workflows.base.neb import get_wf_neb_from_endpoints
 ```
 
 

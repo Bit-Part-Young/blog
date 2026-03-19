@@ -64,9 +64,11 @@ Elsevier 无 RSS、APS 有 RSS（效果一般）
 
 ### ElSEVIER 系列
 
-- Scipta Materialia 期刊没有 introduction method result and discussion 等一级标题
-
 - Elsevier 文献连续下载/爬文献（10 篇以上），会开始机器人验证
+
+- Scipta Materialia 期刊没有 Introduction Methodologies Result and Discussion 等一级标题
+
+- Computational Materials Today 期刊当前发文量很少
 
 |                    期刊                     |          缩写          | 期刊等级 |                                        链接                                         |
 |:---------------------------------------: |:------------------: |:--: |:-------------------------------------------------------------------------------: |
@@ -124,6 +126,10 @@ Elsevier 无 RSS、APS 有 RSS（效果一般）
 
 - 周末不更新
 
-|      期刊      | 缩写  | 期刊等级 |                       链接                        |
-|:----------: |:-: |:--: |:---------------------------------------------: |
-| 凝集态物理 · 材料科学 |  -  |  -   | https://arxiv.org/list/cond-mat.mtrl-sci/recent |
+- 凝聚态物理所有 arxiv 论文存档（该页面有获取指定日期和指定领域的投稿的论文的功能 Catch-up）：[Condensed Matter - arxiv](https://arxiv.org/archive/cond-mat)
+
+|        期刊        | 缩写  | 期刊等级 |                        链接                        |
+|:--------------: |:-: |:--: |:----------------------------------------------: |
+| 凝集态物理 · 材料科学（每周） |  -  |  -   | https://arxiv.org/list/cond-mat.mtrl-sci/recent  |
+| 凝集态物理 · 材料科学（每月） |  -  |  -   | https://arxiv.org/list/cond-mat.mtrl-sci/current |
+| 凝集态物理 · 材料科学（最新） |  -  |  -   |   https://arxiv.org/list/cond-mat.mtrl-sci/new   |

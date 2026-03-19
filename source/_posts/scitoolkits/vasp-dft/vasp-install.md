@@ -487,7 +487,7 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/lib
 
 ---
 
-## VASP + VTST
+### VASP + VTST
 
 - 在 VASP 添加过渡态计算功能
 

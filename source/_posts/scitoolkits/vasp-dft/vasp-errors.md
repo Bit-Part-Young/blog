@@ -22,6 +22,8 @@ password:
 
 - [【VASP报错集锦 1】](https://zhuanlan.zhihu.com/p/536705200)
 
+- 常见的 VASP error 及对应的纠正措施可见 custodian 包的 `vasp/handlers.py` 源代码
+
 - forrtl 报错：[forrtl: severe (174): SIGSEGV, segmentation fault occurred - My Community](https://www.vasp.at/forum/viewtopic.php?t=17257)
 
 ```bash
@@ -95,8 +97,9 @@ export I_MPI_ADJUST_REDUCE=3
 WARNING: Sub-Space-Matrix is not hermitian in DAV
 
 # 解决方法
-# 方式 1：在 INCAR 中添加
-KPAR = 2
+# 方式 1 ALGO 由 Normal -> Fast
+# 方式 2 添加 KPAR = 2
+# 方式 3 减小核数或适当增加 NCORE/NPAR
 ```
 
 - Reciprocal lattice and k-lattice 报错（可忽略）：[求助：静态/非自洽计算时出现VERY BAD NEWS - 第一性原理 (First Principle) - 计算化学公社](http://bbs.keinsci.com/thread-41732-1-1.html)

@@ -47,15 +47,13 @@ password:
 
 ## 命令行工具
 
-### 概览
+注：lsd、ripgrep、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo / bin / stew 工具进行安装
 
->lsd、ripgrep、sd、bat、git-delta、gitui 等由 Rust 编写的 CLI 均可通过 cargo / bin / stew 工具进行安装
-
-系统相关
+### 系统相关
 
 - Shell（个人感觉都没有 zsh 好用）
     - nushell
-    - fish（默认设置自带自动补全功能）
+    - fish（自带命令行自动补全功能）
 
 - 快速跳转目录：[z - jump around](https://github.com/rupa/z)（可用于 Bash 和 zsh）
 
@@ -124,10 +122,12 @@ password:
 
 - Linux 经典命令增强（命令 help 含义汉化）：[X-CMD - 开源轻量级 POSIX 脚本，用于管理工具 (500+) 和提供经典命令扩展](https://cn.x-cmd.com/)
 
+- IDE 风格的命令行自动补全（支持多种 shell）：[GitHub - microsoft/inshellisense](https://github.com/microsoft/inshellisense)
+
 
 ---
 
-Markdown 相关
+### Markdown 相关
 
 - 终端 Markdown 渲染
     - [frogmouth](https://github.com/Textualize/frogmouth)
@@ -140,7 +140,7 @@ Markdown 相关
 
 ---
 
-文件相关
+### 文件相关
 
 - 文件模糊查找：[fzf](https://github.com/junegunn/fzf)
 
@@ -187,7 +187,7 @@ Markdown 相关
 
 ---
 
-其他
+### 其他
 
 - [sshx](https://github.com/ekzhang/sshx)：通过链接共享终端（可创建多个终端画布）
 
@@ -199,7 +199,7 @@ Markdown 相关
 
 - 字符 logo 制作：figlet、toilet：[Linux 运维相关 — OnlineNote latest documentation](https://codenote.readthedocs.io/en/latest/linux.html#figlet)
 
-- 文本编辑器（类似 Vim）：[helix](https://github.com/helix-editor/helix)
+- 文本编辑器：[helix](https://github.com/helix-editor/helix)
 
 - 趣味小工具
     - cowsay（牛说）
@@ -393,4 +393,20 @@ desc = "easyjump"
 on   = [ "i" ]
 run  = "plugin searchjump"
 desc = "searchjump mode"
+```
+
+---
+
+- 命令行工具 Shell completion
+
+```bash
+# 方式 1
+# 在 ~/.{ba,z}shrc 中添加以下命令
+if output="$(xxx completion zsh 2>/dev/null)"; then eval "$output"; fi
+
+# 方式 2（用于 Homebrew 统一管理）
+# 在 ~/.{ba,z}shrc 中添加以下命令
+FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
+# 在终端输入以下命令
+xxx completion zsh > /opt/homebrew/share/zsh/site-functions/_xxx
 ```

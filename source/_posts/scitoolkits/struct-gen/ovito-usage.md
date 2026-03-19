@@ -67,6 +67,7 @@ Nb     1.47
 Mo     1.54
 Zr     1.6
 V      1.53
+Mg     1.6
 ```
 
 
@@ -345,6 +346,7 @@ list(data.particles.keys())        # 查看原子属性；不同输出文件格�
 # dump.lammpstrj / xyz
 ['Particle Identifier', 'Particle Type', 'Position']
 
+data.cell[...]                     # 晶格信息
 data.particles.positions           # 原子位置
 data.particles.count               # 原子数
 
@@ -358,7 +360,10 @@ for type in data.particles.particle_types.types:
 
 ### 构型/数据导出
 
-- 可导出的文件格式：[ovito.io.export_file — OVITO Python Reference 3.11.3 documentation](https://www.ovito.org/docs/current/python/modules/ovito_io.html#ovito.io.export_file)
+- 可导出的文件格式：
+    - [ovito.io — OVITO Python Reference 3.14.1 documentation](https://www.ovito.org/docs/current/python/modules/ovito_io.html#ovito.io.export_file)
+    - [Input file formats — OVITO User Manual 3.14.1 documentation](https://www.ovito.org/manual/reference/file_formats/file_formats_input.html)
+    - 支持 imd、cfg、xsf 格式
 
 ```python
 from ovito.io import export_file
@@ -370,7 +375,7 @@ file                  # 输出文件
 foramt                # 输出文件格式
 
 # **params 参数
-multiple_frames       # 是否导出多帧的数据，默认只会导出第一帧的数据
+multiple_frames       # 是否导出多帧数据，默认只会导出第一帧数据
 start_frame           # 起始帧
 end_frame             # 结束帧
 every_nth_frame       # 每第 n 帧数据导出
@@ -464,9 +469,13 @@ DeleteSelectedModifier               # 删除选择的
 ### particles、Global Attributes、Data Tables
 
 ```python
-data.particles[...]             # 获取 particle 中对应 keyword 的数据
-data.attributes[...]            # 获取 Global Attributes 中对应 keyword 的数据
-data.tables[...]                # 获取 Data Tables 中对应 keyword 的数据
+data.particles[...]                  # 获取 particle 中对应 keyword 的数据
+data.attributes[...]                 # 获取 Global Attributes 中对应 keyword 的数据
+data.tables[...]                     # 获取 Data Tables 中对应 keyword 的数据
+
+
+# attributes
+"Timestep"                           # 时间步
 
 
 # CNA attributes
@@ -480,8 +489,8 @@ data.tables[...]                # 获取 Data Tables 中对应 keyword 的数据
 
 
 # DXA attributes
-"DislocationAnalysis.cell_volume"          # 可用于计算位错密度
-"DislocationAnalysis.total_line_length"
+"DislocationAnalysis.total_line_length"    # total_line_length / cell_volume 位错密度
+"DislocationAnalysis.cell_volume"          
 "DislocationAnalysis.length.other"
 "DislocationAnalysis.length.1/2<110>"
 "DislocationAnalysis.length.1/3<100>"

@@ -64,9 +64,9 @@ password:
 
 - [GitHub Cards - Showcase Your GitHub Contributions in 2024 into Stunning Visual Cards](https://github.cards/)
 
-- 在仓库所在链接后添加 `stargazers`：[查看GitHub仓库被谁star · Issue #15 · oneone1995/blog · GitHub](https://github.com/oneone1995/blog/issues/15)
+- 在仓库所在链接后添加 `stargazers`（**实用**）：[查看GitHub仓库被谁star · Issue #15 · oneone1995/blog · GitHub](https://github.com/oneone1995/blog/issues/15)
 
-- 汉化插件：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
+- 汉化插件（无必要）：[GitHub - maboloshi/github-chinese: GitHub 汉化插件，GitHub 中文化界面。 (GitHub Translation To Chinese)](https://github.com/maboloshi/github-chinese)
 
 - 命令行版本的 GitHub Dashboard：[GitHub - dlvhdr/gh-dash: A beautiful CLI dashboard for GitHub 🚀](https://github.com/dlvhdr/gh-dash)
 
