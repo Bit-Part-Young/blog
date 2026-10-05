@@ -31,11 +31,8 @@ jobs:
         run: hexo clean
       - name: Build
         run: npm run build
-      - name: Algolia
-        run: hexo algolia
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-
