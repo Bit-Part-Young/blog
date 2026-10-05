@@ -37,7 +37,7 @@ social:
   fab fa-github: https://github.com/Bit-Part-Young || GitHub || '#24292e'
   fab fa-zhihu: https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li || 知乎 || '#0084ff'
   fas fa-envelope: mailto:3304839708@qq.com || Email || '#4a7dbe'
-  fas fa-rss: https://blog.seekanotherland.xyz/atom.xml || 订阅-ATOM
+  fas fa-rss: /atom.xml || 订阅-ATOM
   # fas fa-square-rss: /rss2.xml || 订阅-RSS2
 
 rss:
