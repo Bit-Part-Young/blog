@@ -42,7 +42,7 @@ password:
 
 ### 手动安装
 
-软件/程序及安装前后需注意事项介绍见：[Windows 常用软件 - Seek Another Land](https://bit-part-young.github.io/hexo-demo/posts/400627.html)。
+软件/程序及安装前后需注意事项介绍见：[Windows 常用软件 - Seek Another Land](https://bit-part-young.github.io/blog/posts/400627.html)。
 
 - 文件搜索、程序启动工具：Listary
 
@@ -95,7 +95,7 @@ password:
 
 ### Scoop 安装
 
-软件/程序及安装前后需注意事项介绍见：[Linux 命令行工具 - Seek Another Land](https://bit-part-young.github.io/hexo-demo/posts/168542.html)
+软件/程序及安装前后需注意事项介绍见：[Linux 命令行工具 - Seek Another Land](https://bit-part-young.github.io/blog/posts/168542.html)
 
 - 图片查看：jpegview
 
