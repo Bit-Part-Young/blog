@@ -15,14 +15,14 @@
     <atom:link href="https://bit-part-young.github.io/blog/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>A Land of Nobody</description>
-    <pubDate>Mon, 05 Oct 2026 19:18:30 GMT</pubDate>
+    <pubDate>Mon, 05 Oct 2026 20:37:51 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>VASP 报错</title>
       <link>https://bit-part-young.github.io/blog/posts/206050.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/206050.html</guid>
-      <pubDate>Sat, 07 Jun 2025 06:00:00 GMT</pubDate>
+      <pubDate>Sat, 07 Jun 2025 14:00:00 GMT</pubDate>
       
       <description>VASP 报错</description>
       
@@ -45,7 +45,7 @@
       <title>2024 记录</title>
       <link>https://bit-part-young.github.io/blog/posts/241231.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/241231.html</guid>
-      <pubDate>Tue, 31 Dec 2024 12:29:20 GMT</pubDate>
+      <pubDate>Tue, 31 Dec 2024 20:29:20 GMT</pubDate>
       
       <description>2024 记录</description>
       
@@ -64,7 +64,7 @@
       <title>TeX Live 安装</title>
       <link>https://bit-part-young.github.io/blog/posts/851955.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/851955.html</guid>
-      <pubDate>Sat, 23 Nov 2024 07:59:58 GMT</pubDate>
+      <pubDate>Sat, 23 Nov 2024 15:59:58 GMT</pubDate>
       
       <description>TeX Live 安装</description>
       
@@ -85,7 +85,7 @@
       <title>孔老师程序编译与使用</title>
       <link>https://bit-part-young.github.io/blog/posts/173511.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/173511.html</guid>
-      <pubDate>Mon, 18 Nov 2024 09:35:11 GMT</pubDate>
+      <pubDate>Mon, 18 Nov 2024 17:35:11 GMT</pubDate>
       
       <description>孔老师程序编译与使用</description>
       
@@ -110,7 +110,7 @@
       <title>gnuplot 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/195428.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/195428.html</guid>
-      <pubDate>Wed, 13 Nov 2024 11:54:28 GMT</pubDate>
+      <pubDate>Wed, 13 Nov 2024 19:54:28 GMT</pubDate>
       
       <description>gnuplot 使用</description>
       
@@ -127,7 +127,7 @@
       <title>Linux 常用程序、库安装</title>
       <link>https://bit-part-young.github.io/blog/posts/110912.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/110912.html</guid>
-      <pubDate>Wed, 13 Nov 2024 02:11:19 GMT</pubDate>
+      <pubDate>Wed, 13 Nov 2024 10:11:19 GMT</pubDate>
       
       <description>Linux 常用程序、库安装</description>
       
@@ -144,7 +144,7 @@
       <title>Intel oneAPI 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/172409.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/172409.html</guid>
-      <pubDate>Wed, 13 Nov 2024 01:17:24 GMT</pubDate>
+      <pubDate>Wed, 13 Nov 2024 09:17:24 GMT</pubDate>
       
       <description>Intel oneAPI 使用</description>
       
@@ -165,7 +165,7 @@
       <title>最新 atomate 安装</title>
       <link>https://bit-part-young.github.io/blog/posts/543717.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/543717.html</guid>
-      <pubDate>Tue, 12 Nov 2024 09:37:45 GMT</pubDate>
+      <pubDate>Tue, 12 Nov 2024 17:37:45 GMT</pubDate>
       
       <description>最新 atomate 安装</description>
       
@@ -190,7 +190,7 @@
       <title>晶体学相关</title>
       <link>https://bit-part-young.github.io/blog/posts/560015.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/560015.html</guid>
-      <pubDate>Sat, 09 Nov 2024 07:00:56 GMT</pubDate>
+      <pubDate>Sat, 09 Nov 2024 15:00:56 GMT</pubDate>
       
       <description>晶体学相关</description>
       
@@ -211,7 +211,7 @@
       <title>Typora 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/121857.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/121857.html</guid>
-      <pubDate>Thu, 07 Nov 2024 04:18:57 GMT</pubDate>
+      <pubDate>Thu, 07 Nov 2024 12:18:57 GMT</pubDate>
       
       <description>Typora 使用</description>
       
@@ -232,7 +232,7 @@
       <title>Notion 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/121830.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/121830.html</guid>
-      <pubDate>Thu, 07 Nov 2024 04:18:30 GMT</pubDate>
+      <pubDate>Thu, 07 Nov 2024 12:18:30 GMT</pubDate>
       
       <description>Notion 使用</description>
       
@@ -253,7 +253,7 @@
       <title>金属常见晶体结构的间隙原子位点</title>
       <link>https://bit-part-young.github.io/blog/posts/535416.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/535416.html</guid>
-      <pubDate>Tue, 05 Nov 2024 07:56:34 GMT</pubDate>
+      <pubDate>Tue, 05 Nov 2024 15:56:34 GMT</pubDate>
       
       <description>金属常见晶体结构的间隙原子位点</description>
       
@@ -276,7 +276,7 @@
       <title>LAMMPS 输入文件</title>
       <link>https://bit-part-young.github.io/blog/posts/360191.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/360191.html</guid>
-      <pubDate>Fri, 25 Oct 2024 11:36:01 GMT</pubDate>
+      <pubDate>Fri, 25 Oct 2024 19:36:01 GMT</pubDate>
       
       <description>LAMMPS 输入文件</description>
       
@@ -299,7 +299,7 @@
       <title>VESTA 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/450318.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/450318.html</guid>
-      <pubDate>Fri, 18 Oct 2024 01:30:45 GMT</pubDate>
+      <pubDate>Fri, 18 Oct 2024 09:30:45 GMT</pubDate>
       
       <description>VESTA 使用</description>
       
@@ -322,7 +322,7 @@
       <title>VASP 输出文件</title>
       <link>https://bit-part-young.github.io/blog/posts/410503.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/410503.html</guid>
-      <pubDate>Mon, 14 Oct 2024 03:04:30 GMT</pubDate>
+      <pubDate>Mon, 14 Oct 2024 11:04:30 GMT</pubDate>
       
       <description>VASP 输出文件</description>
       
@@ -345,7 +345,7 @@
       <title>VASP 输入文件</title>
       <link>https://bit-part-young.github.io/blog/posts/410103.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/410103.html</guid>
-      <pubDate>Mon, 14 Oct 2024 03:01:30 GMT</pubDate>
+      <pubDate>Mon, 14 Oct 2024 11:01:30 GMT</pubDate>
       
       <description>VASP 输入文件</description>
       
@@ -368,7 +368,7 @@
       <title>SciPy 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/501607.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/501607.html</guid>
-      <pubDate>Tue, 17 Sep 2024 08:50:00 GMT</pubDate>
+      <pubDate>Tue, 17 Sep 2024 16:50:00 GMT</pubDate>
       
       <description>SciPy 使用</description>
       
@@ -391,7 +391,7 @@
       <title>博客须知</title>
       <link>https://bit-part-young.github.io/blog/posts/140913.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/140913.html</guid>
-      <pubDate>Fri, 13 Sep 2024 17:04:13 GMT</pubDate>
+      <pubDate>Sat, 14 Sep 2024 01:04:13 GMT</pubDate>
       
       <description>博客须知</description>
       
@@ -412,7 +412,7 @@
       <title>Tmux 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/900924.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/900924.html</guid>
-      <pubDate>Mon, 09 Sep 2024 08:17:18 GMT</pubDate>
+      <pubDate>Mon, 09 Sep 2024 16:17:18 GMT</pubDate>
       
       <description>Tmux 使用</description>
       
@@ -433,7 +433,7 @@
       <title>Excel 使用</title>
       <link>https://bit-part-young.github.io/blog/posts/520861.html</link>
       <guid>https://bit-part-young.github.io/blog/posts/520861.html</guid>
-      <pubDate>Fri, 30 Aug 2024 00:25:06 GMT</pubDate>
+      <pubDate>Fri, 30 Aug 2024 08:25:06 GMT</pubDate>
       
       <description>Excel 使用</description>
       
