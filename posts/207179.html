@@ -1,0 +1,808 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>分子动力学原理 | Seek Another Land</title><meta name="author" content="Nobody"><meta name="copyright" content="Nobody"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="分子动力学原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分子动力学原理">
+<meta property="og:url" content="https://bit-part-young.github.io/blog/posts/207179.html">
+<meta property="og:site_name" content="Seek Another Land">
+<meta property="og:description" content="分子动力学原理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.pterclub.com/images/2022/08/26/spider10.png">
+<meta property="article:published_time" content="2023-09-27T11:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-05T19:18:30.712Z">
+<meta property="article:author" content="Nobody">
+<meta property="article:tag" content="分子动力学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.pterclub.com/images/2022/08/26/spider10.png"><link rel="shortcut icon" href="/blog/img/logo_rm.png"><link rel="canonical" href="https://bit-part-young.github.io/blog/posts/207179.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":2000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '分子动力学原理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-06 03:18:30'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Seek Another Land" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Seek Another Land" type="application/rss+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/blog/css/center-simple.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider10.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Seek Another Land"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo_rm.png"/><span class="site-name">Seek Another Land</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">分子动力学原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-27T11:00:00.000Z" title="发表于 2023-09-27 19:00:00">2023-09-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-05T19:18:30.712Z" title="更新于 2026-10-06 03:18:30">2026-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="分子动力学原理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="分子动力学原理"><a href="#分子动力学原理" class="headerlink" title="分子动力学原理"></a>分子动力学原理</h1><h2 id="多尺度介绍"><a href="#多尺度介绍" class="headerlink" title="多尺度介绍"></a>多尺度介绍</h2><p>多尺度课程分布：</p>
+<ul>
+<li>研究生新生开学第一周不上</li>
+<li>课程介绍 1 周</li>
+<li>国庆放假 1 周</li>
+<li>MD：4 次课<ul>
+<li>MD 核心原理</li>
+<li>势函数、力的演化</li>
+<li>分子静力学，控温、控压</li>
+</ul>
+</li>
+<li>DFT：4 次课</li>
+<li>PF：5 次课？</li>
+</ul>
+<hr>
+<p>模拟（simulation）和建模（modeling）的区别：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/9tnrxEhbFdTPhkWQLRsNmA">建模、模拟、数值研究之概念辨析</a></p>
+<p>多尺度方法：</p>
+<ul>
+<li>多层次：</li>
+<li>同时进行&#x2F;并行：物理机制上无法将其分开，强耦合；可以分成不同的区域</li>
+<li>时间多尺度</li>
+</ul>
+<hr>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>molecular dynamics 叫分子运动学更合适</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://notes.sjtu.edu.cn/s/ULArhqGqt">Notes on MD hands-on session of MSE6701H-CHN - CodiMD</a></p>
+</blockquote>
+<p>C++&#x2F;Python 实现 MD（待测试）<br><a target="_blank" rel="noopener" href="https://github.com/GiovanniBussi/simplemd">GitHub - GiovanniBussi&#x2F;simplemd: A simple Lennard-Jones molecular dynamics software</a></p>
+<p>参考资料：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/stanfordbshan/CompMatBook/">GitHub - stanfordbshan&#x2F;CompMatBook: Computational Materials Science(Book)</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://bohrium.dp.tech/user/stanfordbshan">单斌</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/brucefan1983/Molecular-Dynamics-Simulation">GitHub - brucefan1983&#x2F;Molecular-Dynamics-Simulation: Sample codes for my book on molecular dynamics simulation</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/zhaobo9337/posts">MD 笔记 - zhaobo9337 - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://pubs.aip.org/aapt/ajp/article/88/5/401/1056833/Introduction-to-molecular-dynamics-simulations">论文 - Introduction to molecular dynamics simulations</a></p>
+<p>MD 教程（含广义层错能计算）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/shuozhixu/LAMMPSatUCSB">GitHub - shuozhixu&#x2F;LAMMPSatUCSB</a></p>
+</blockquote>
+<p>含高熵合金模型生成及弹性常数计算相关脚本（从 LAMMPS 官方例子修改得到）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/jianhuizhai/LAMMPS">GitHub - jianhuizhai&#x2F;LAMMPS: This folder contains the examples of LAMMPS and some useful programming codes or results.</a></p>
+</blockquote>
+<p>velocity verlet 算法（含两原子及多原子）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Verlet_integration#Velocity_Verlet">Verlet integration - Wikipedia</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/antoineblosse/velocityVerlet">GitHub - antoineblosse&#x2F;velocityVerlet: Research Lab - Professor Paesani</a>（一个简单简谐振子的 velocity verlet 算法实现）</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/glennklockwood/md-intro/blob/master/md.py">md.py</a>（氩原子的 MD 实现：LJ 势 + velocity verlet + 能量、力演化）</p>
+</blockquote>
+<p>含 Al、石墨烯的拉伸测试</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/nuwan-d/LAMMPS_tutorials_for_short_courses">GitHub - nuwan-d&#x2F;LAMMPS_tutorials_for_short_courses: Required LAMMPS and MATLAB files for several molecular dynamics simulations.</a></p>
+</blockquote>
+<hr>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">螺旋上升：解耦</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">纳米线：用圆柱框住晶体，圆柱外的原子删除</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><ul>
+<li><p>牛顿第二定律</p>
+</li>
+<li><p>用时间平均（达到平衡）代替系综平均（两者等价）</p>
+</li>
+</ul>
+<p>系综涉及统计物理相关内容，计算复杂（相空间等知识点）</p>
+<p>补充（ChatGPT4 生成）</p>
+<ul>
+<li><strong>遍历性假设</strong>（Ergodic Hypothesis）：在分子动力学中，遍历性假设是一个核心概念，它表明系统在足够长的时间内，其通过时间演化能遍历其所有可能的微观状态。换句话说，系统的任何一个微观状态都能够在其时间演化的轨迹中出现。</li>
+<li><strong>时间平均与系综平均的等价性</strong>：在理想条件下，如果一个物理系统满足遍历性，那么对系统的某个物理量进行长时间的时间平均，得到的结果应该与通过统计系综中大量相同系统的平均（即系综平均）相同。这意味着单个系统的长时间行为可以代表整个系综的平均行为。</li>
+</ul>
+<hr>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ul>
+<li><p>初始条件&#x2F;化</p>
+</li>
+<li><p>演化（核心）</p>
+</li>
+<li><p>结果后处理</p>
+</li>
+</ul>
+<hr>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ul>
+<li><p>初始化原子构型</p>
+</li>
+<li><p>初始化速度&#x2F;温度</p>
+</li>
+</ul>
+<p>速度满足麦克斯韦玻尔兹曼分布（可用平均分布代替）</p>
+<p>速度修正，保证体系总动量为零</p>
+<ul>
+<li><p>边界条件</p>
+</li>
+<li><p>控制参数</p>
+</li>
+</ul>
+<hr>
+<h3 id="力计算"><a href="#力计算" class="headerlink" title="力计算"></a>力计算</h3><p>力：相互作用能 U（势能） 对原子坐标的偏导数</p>
+<hr>
+<h3 id="积分算法"><a href="#积分算法" class="headerlink" title="积分算法"></a>积分算法</h3><p>推进算法也称作积分算法</p>
+<hr>
+<ul>
+<li>verlet 算法</li>
+</ul>
+<p>$$r(t+\Delta t)&#x3D;2r(t)-r(t-\Delta t)+a\Delta t^2+O(\Delta t^4)$$</p>
+<p>$$v(t)&#x3D;\frac{r(t+\Delta t)-r(t-\Delta t)}{2\Delta t}+O(\Delta t^2)$$</p>
+<p>根据当前及上一时刻位置确定下一时刻的坐标位置及速度</p>
+<p>优点：位置确定的精度高 $O(\Delta t^4)$；</p>
+<p>缺点：确定当前速度需要下一刻的位置，速度确定的精度低，$O(\Delta t^2)$</p>
+<p>Verlet 不是一个自启动的算法，所以第一步的时候，我们需要根据初始的速度，反推前一步的位置。只有同时有当前步和前一步的位置信息，Verlet 算法才能够更新迭代获得下一步的位置信息</p>
+<p>代码示例：<a target="_blank" rel="noopener" href="https://github.com/stanfordbshan/CompMatBook/blob/main/Chapter06/%E4%B8%80%E7%BB%B4%E8%B0%90%E6%8C%AF%E5%AD%90%E7%9A%84Verlet%E7%AE%97%E6%B3%95.ipynb">一维谐振子的Verlet算法.ipynb</a></p>
+<hr>
+<ul>
+<li>velocity verlet 算法</li>
+</ul>
+<p>原理：首先根据当前位置和速度计算出下一时刻的位置，然后再根据新的位置计算出下一时刻的加速度，最后再用新的加速度和旧的加速度的平均值来更新速度。</p>
+<p>$$x(t + \Delta t) &#x3D; x(t) + v(t) \Delta t + 0.5 * a(t) * {\Delta t}^2$$</p>
+<p>$$a(t + \Delta t) &#x3D; f(x(t+\Delta t))$$</p>
+<p>$$ v(t + \Delta t) &#x3D; v(t) + 0.5 *(a(t) + a(t + \Delta t)) * \Delta t$$</p>
+<p>实际计算：推进半步（减少变量存储 4 个变量，位置 1 速度 1 加速度 2；减少为 3 个变量）</p>
+<p>$$step 1: v(t + \Delta t&#x2F;2) &#x3D; v(t) + 0.5 * a(t) * \Delta t$$</p>
+<p>$$step 2:x(t + \Delta t) &#x3D; x(t) + v(t + \Delta t&#x2F;2) * \Delta t$$</p>
+<p>$$step 3: a(t + \Delta t) &#x3D; f(x(t+\Delta t))$$</p>
+<p>$$step 4: v(t + \Delta t) &#x3D; v(t + \Delta t&#x2F;2) + 0.5 * a(t + \Delta t) * \Delta t$$</p>
+<hr>
+<ul>
+<li><p>leap frog 算法</p>
+</li>
+<li><p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/%E8%9B%99%E8%B7%B3%E7%A7%AF%E5%88%86%E6%B3%95">蛙跳积分法 - 维基百科，自由的百科全书</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Leapfrog_integration">Leapfrog integration - Wikipedia</a></li>
+</ul>
+</li>
+</ul>
+<p>原理：在相同的时间步，位置和速度的更新是分开的</p>
+<p>$$x(t + \Delta t) &#x3D; x(t) + v(t+\Delta t&#x2F;2)*\Delta t$$</p>
+<p>$$v(t + \Delta t&#x2F;2) &#x3D; v(t-\Delta t&#x2F;2) + a * \Delta t$$</p>
+<hr>
+<h3 id="时间步长"><a href="#时间步长" class="headerlink" title="时间步长"></a>时间步长</h3><p>步长太小：耗时</p>
+<p>步长太大：可能无法描述正确的运动轨迹</p>
+<p>合适的步长：能够正确描述运动轨迹（最快的运动 原子振动）；</p>
+<p>原子振动量级：THz（$10^{12}$ 量级），时间 $10^{-13}$ 量级</p>
+<p>原子振动周期的 50~100 分之一；$10^{-15}$ 量级（fs 飞秒量级）</p>
+<hr>
+<h3 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h3><p>simulation box&#x2F;cell&#x2F;domain：模拟盒子&#x2F;胞</p>
+<p>边界原子如何处理</p>
+<hr>
+<ul>
+<li><p>自由边界条件：分子、团簇、纳米颗粒</p>
+</li>
+<li><p>固定边界条件：压缩模型、表面模型中下表面一两个原子层进行固定</p>
+</li>
+<li><p>周期性边界条件</p>
+<ul>
+<li>可以消除自由表面的影响；模拟无穷大的体系</li>
+<li><strong>自己的原子之间引入了人为的相互作用</strong>；限制了声子波长；</li>
+</ul>
+</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li>最小影像准则：（计算胞不能任意小）</li>
+</ul>
+<p>$$<br>L &gt; 2*R_{cutoff}<br>$$</p>
+<p>计算位错相关性质，体系至少含几十万个原子才算比较准确</p>
+<hr>
+<h3 id="MD-能做-不能做"><a href="#MD-能做-不能做" class="headerlink" title="MD 能做&#x2F;不能做"></a>MD 能做&#x2F;不能做</h3><ul>
+<li>能做的：</li>
+</ul>
+<p>不能做的：涉及到电子（视原子为 particle）</p>
+<p>时间尺度：ns；长度尺度：nm</p>
+<hr>
+<h2 id="势函数"><a href="#势函数" class="headerlink" title="势函数"></a>势函数</h2><h3 id="势函数-1"><a href="#势函数-1" class="headerlink" title="势函数"></a>势函数</h3><ul>
+<li><p>总能、势能（总能 - 自能）</p>
+</li>
+<li><p>势函数（物理领域）、力场（化学领域）</p>
+</li>
+<li><p>材料中的键（键合特征）：金属、陶瓷、高分子、稀有气体</p>
+</li>
+<li><p>Lennard-Jones 势（6-12 势；一个人名）</p>
+<ul>
+<li>正项（12，数学意义）排斥，负项（6，有物理依据）吸引</li>
+<li>势能为 0；平衡距离</li>
+<li>描述惰性气体较适用（物理相互作用）</li>
+<li>截断问题：引入截断会导致相互作用力的不连续<ul>
+<li>Truncation 截断（LAMMPS：lj&#x2F;cut）</li>
+<li>Shift 平移（LAMMPS：pair modify shift yes）</li>
+<li>Tail 多项式拟合（有两个截断距离；LAMMPS：pair modify tail yes）</li>
+</ul>
+</li>
+<li>Mixing rules 混合法则（LAMMPS：pair modify mix …）：<ul>
+<li>几何平均</li>
+<li>算术平均（更常用）</li>
+<li>六阶近似</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其他势函数</p>
+<ul>
+<li>Mie</li>
+<li>Buckingham：吸引项与 LJ 类似；原子间距离很小时，会迅速吸引（缺点）；<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Buckingham_potential">Buckingham potential - Wikipedia</a></li>
+<li>Born-Mayer-Huggins</li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%8E%AB%E5%B0%94%E6%96%AF%E5%8A%BF">莫尔斯势 - 维基百科，自由的百科全书</a></li>
+<li><a target="_blank" rel="noopener" href="https://interatomic-potentials.readthedocs.io/en/latest/index.html">Welcome to potentials’s documentation! — potentials 0.1 documentation</a></li>
+</ul>
+</li>
+<li><p>离子体系的势函数</p>
+<ul>
+<li>对势 + 库伦相互作用（+ 三体角度项）</li>
+<li>极化问题：引入 core-shell 模型</li>
+</ul>
+</li>
+<li><p>中心力场（Central force potential）</p>
+<ul>
+<li>相互作用只与距离有关</li>
+<li>更倾向于简单构型，如 BCC FCC</li>
+<li>满足柯西关系（$C_{12}&#x3D;C_{44}$；某些体系会不满足）</li>
+</ul>
+</li>
+<li><p>金属体系势函数</p>
+<ul>
+<li>嵌入原子势 EAM：<ul>
+<li>二体单独考虑，其余 n 体考虑成一项（嵌入能）</li>
+<li>截断到第 3、4 近邻足够</li>
+<li>含共价键的体系和 HCP 结构，描述不够准确</li>
+</ul>
+</li>
+<li>MEAM：Modified EAM；电子密度贡献拆成两部分，引入了三体项之间的相互作用</li>
+</ul>
+</li>
+<li><p>高分子势函数</p>
+<ul>
+<li>势函数组成如下<ul>
+<li>键长</li>
+<li>键角（球谐函数 + 非球谐函数）</li>
+<li>二面角（前三个：成键相互作用）</li>
+<li>前三项可用简谐形式近似（键不会断掉，无法描述化学反应，非反应力场）</li>
+<li>物理相互作用</li>
+<li>库伦项 + …</li>
+</ul>
+</li>
+<li>Morse 势可描述有限距离下的键断</li>
+</ul>
+</li>
+<li><p>反应力场 Reactive Force Field</p>
+<ul>
+<li>键序 Bond Order（键长越短，键序越高）</li>
+<li>校正</li>
+<li>计算量很大</li>
+</ul>
+</li>
+<li><p>势函数拟合</p>
+<ul>
+<li>最小化：计算 cost function</li>
+<li>需要考虑相转变能量差计算性质</li>
+</ul>
+</li>
+<li><p>ML 势函数</p>
+</li>
+</ul>
+<hr>
+<h3 id="力的计算"><a href="#力的计算" class="headerlink" title="力的计算"></a>力的计算</h3><ul>
+<li><p>力演化 - 对势：需要原子之间的距离</p>
+</li>
+<li><p>Demo 程序的计算复杂度 $O(N^2)$</p>
+</li>
+<li><p>近邻列表 Neighbor list：将计算复杂度减小为 $O(N)$</p>
+<ul>
+<li>第一次 $O(N^2)$，后面 $O(N)$</li>
+<li>原子移动距离小于 $r_{skin}$，不更新；大于，更新（小，更新频率会频繁；更新的计算复杂度 $O(N^2)$）</li>
+</ul>
+</li>
+<li><p>力的计算 - 角度项</p>
+</li>
+<li><p>长程相互作用（库伦相互作用）</p>
+<ul>
+<li>直接计算库仑相互作用时遇到的问题，即直接求和收敛缓慢且计算成本高</li>
+<li>算法：<ul>
+<li>Ewald sum method：借助傅里叶变换</li>
+<li>PP&#x2F;PM 方法（Particle-Particle&#x2F;Particle-Mesh）</li>
+<li>Random Batch Ewald（交大团队开发）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>经验势函数总结</p>
+</li>
+<li><p>势函数选择：Bonding，Transferability，Accuracy，Efficiency</p>
+</li>
+</ul>
+<hr>
+<h2 id="分子静力学-控温-控压"><a href="#分子静力学-控温-控压" class="headerlink" title="分子静力学 &amp; 控温 &amp; 控压"></a>分子静力学 &amp; 控温 &amp; 控压</h2><h3 id="案例-1：表面能计算"><a href="#案例-1：表面能计算" class="headerlink" title="案例 1：表面能计算"></a>案例 1：表面能计算</h3><h4 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h4><ul>
+<li>表面能公式</li>
+</ul>
+<p>$$<br>\gamma &#x3D; \frac{G_{slab} - G_{bulk}}{A_{surface}} \approx \frac{E_{slab} - E_{bulk}}{A_{surface}}<br>$$</p>
+<ul>
+<li><p>总体步骤（方式 1）：</p>
+<ul>
+<li>计算 Bulk 的总能量（获取平衡常数及该平衡常数下的构型的 energy&#x2F;atom）</li>
+<li>计算 slab 的总能量<ul>
+<li>切表面</li>
+<li>弛豫表面</li>
+<li>计算弛豫表面的总能量</li>
+</ul>
+</li>
+<li>计算表面能</li>
+</ul>
+</li>
+<li><p>方式 2：</p>
+<ul>
+<li>先使用未弛豫的表面构型的能量采用上述公式获取表面能（$E_1$）</li>
+<li>对表面构型进行设置：固定下面的几个原子层，上面的原子层不变；进行弛豫，该部分的能量变化除以 $A_{surface}$（$E_2$）</li>
+<li>计算表面能：$E_1+E_2$</li>
+</ul>
+</li>
+<li><p>对于使用 LAMMPS 进行 MD 计算，方式 2 无必要；对于 DFT 计算，方式 2 一定程度上会减少工作量</p>
+</li>
+<li><p>其他</p>
+<ul>
+<li>熵的组成：构型熵、振动熵（声子谱计算可得到）、磁性熵，…</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Bulk-体系总能计算"><a href="#Bulk-体系总能计算" class="headerlink" title="Bulk 体系总能计算"></a>Bulk 体系总能计算</h4><ul>
+<li>LAMMPS 相关命令解释</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 势函数文件中约定了单位，含截断半径</span></span><br><span class="line"></span><br><span class="line">fix          <span class="comment"># 对体系做各种改变</span></span><br><span class="line">compute      <span class="comment"># </span></span><br><span class="line">dump         <span class="comment"># 构型输出</span></span><br><span class="line">thermo       <span class="comment"># 热力学信息输出</span></span><br><span class="line">run 0        <span class="comment"># 并非跑零步，只计算能量（单点能计算）</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Bulk 体系平衡总能计算 LAMMPS 脚本示例（取自课件）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># LAMMPS input script for total energy calculation</span></span><br><span class="line">units          metal</span><br><span class="line">boundary       p p p</span><br><span class="line">atom_style     atomic</span><br><span class="line"></span><br><span class="line">lattice        fcc 3.615</span><br><span class="line">region         box block 0 10 0 10 0 10</span><br><span class="line">create_box     1 box</span><br><span class="line">create_atoms   1 box</span><br><span class="line"></span><br><span class="line"><span class="comment"># Potential</span></span><br><span class="line">pair_style     eam</span><br><span class="line">pair_coeff     * * Cu_u6.eam</span><br><span class="line">neighbor       0.2 bin</span><br><span class="line">neigh_modify   delay 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># Time step</span></span><br><span class="line">timestep       0.001</span><br><span class="line"></span><br><span class="line"><span class="comment"># Variables to output</span></span><br><span class="line">variable       vpa equal <span class="string">&quot;vol / atoms&quot;</span></span><br><span class="line">variable       epa equal <span class="string">&quot;pe / atoms&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MD</span></span><br><span class="line">fix            1 all nve</span><br><span class="line">run            0</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output the energy</span></span><br><span class="line"><span class="built_in">print</span>          <span class="string">&quot;<span class="variable">$&#123;a&#125;</span> \$&#123;vpa&#125; \$&#123;epa&#125;&quot;</span> append ev.dat</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="表面构型构建、弛豫及表面能计算"><a href="#表面构型构建、弛豫及表面能计算" class="headerlink" title="表面构型构建、弛豫及表面能计算"></a>表面构型构建、弛豫及表面能计算</h4><ul>
+<li>Slab 表面构型构建、弛豫及表面能计算 LAMMPS 脚本示例（取自课件）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="能量最小化"><a href="#能量最小化" class="headerlink" title="能量最小化"></a>能量最小化</h3><ul>
+<li><p>平衡状态：能量最小</p>
+</li>
+<li><p>势能曲面</p>
+<ul>
+<li>局域最小值</li>
+<li>全局最小值</li>
+<li>鞍点：在某个路径下，能量对坐标的二阶导小于零，其他路径均大于 0</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="局域能量最小化"><a href="#局域能量最小化" class="headerlink" title="局域能量最小化"></a>局域能量最小化</h4><ul>
+<li><p>Hessian 矩阵（二阶导，模量）通常很难求</p>
+</li>
+<li><p>能量最小化相关算法</p>
+<ul>
+<li>基于一阶导<ul>
+<li>最速下降法</li>
+<li>共轭梯度法</li>
+<li>Damped MD（初始构型远离平衡态时，可能较为适合）</li>
+</ul>
+</li>
+<li>基于一阶和二阶导（LAMMPS 中没有实现？）<ul>
+<li>BFGS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>LAMMPS 中能量最小化算法对应命令</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">min_style      sd</span><br><span class="line">min_style      cg</span><br><span class="line">min_style      htfn</span><br><span class="line">min_style      quickmin      <span class="comment"># Damped MD</span></span><br><span class="line">min_style      fire</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="全局能量最小化"><a href="#全局能量最小化" class="headerlink" title="全局能量最小化"></a>全局能量最小化</h4><ul>
+<li>模拟退火</li>
+<li>遗传算法</li>
+<li>粒子群算法</li>
+</ul>
+<hr>
+<h4 id="过渡态"><a href="#过渡态" class="headerlink" title="过渡态"></a>过渡态</h4><ul>
+<li><p>公式</p>
+</li>
+<li><p>示例：表面模型中吸附原子的扩散</p>
+</li>
+<li><p>算法</p>
+<ul>
+<li>NEB（最常用算法；LAMMPS 和 VASP 中有）</li>
+<li>Dimer</li>
+<li>ART-n</li>
+</ul>
+</li>
+<li><p>NEB 算法简要介绍：在初始、终点连线，插值&#x2F;点，每个点的运动方向与连线垂直</p>
+</li>
+</ul>
+<p>mpirun lmp -in in.file -sf opt -sc none (-sf opt -sc none 表示导入优化的包)</p>
+<hr>
+<h3 id="案例-2：熔点计算"><a href="#案例-2：熔点计算" class="headerlink" title="案例 2：熔点计算"></a>案例 2：熔点计算</h3><ul>
+<li><p>熔点：固液相变点</p>
+</li>
+<li><p>熔化的相变是一级相变（状态函数的一阶导不连续）</p>
+</li>
+</ul>
+<p>熔化是晶核形成</p>
+<p>缺陷较容易形核</p>
+<p>过热现象</p>
+<p>LAMMPS 升降温速率：10^11K&#x2F;s</p>
+<p>DSC 速率：10K&#x2F;min</p>
+<p>升温、降温速率过快</p>
+<p>降温：均质形核，得到的构型最后可能有晶界，可能形成多晶</p>
+<ul>
+<li><p>加热 - 冷却法</p>
+<ul>
+<li>熔点近似公式：加热、冷却过程中的突变温度的平均值（非常不准确）</li>
+<li>MD 结果：升温（过热）与降温（过冷）得到的突变温度点不会重合</li>
+<li>原因：<ul>
+<li>构建的晶体完美，熔化凝固需要较大的过热和过冷</li>
+<li>MD 模拟的升&#x2F;降温速率比实验的升&#x2F;降温速率快很多；</li>
+<li>势函数不一定准确</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>固液共存法总体步骤</p>
+<ul>
+<li>第一步：构建固液界面</li>
+<li>第二步：在特定温度下进行平衡，观察界面迁移速率</li>
+<li>界面迁移速度为零时为熔点</li>
+<li>替代方案：<ul>
+<li>在第二步后面阶段切换到 NVE 系综（孤立体系），不控温（问题：一级相变会发生体积变化，有应力）</li>
+<li>在第二步后面阶段切换到 NPH 系综</li>
+<li>使用 2 种热浴</li>
+<li>设置低温（左）、高温区（右），中间区域有热流，靠近低高温的传热速率不一致，交点为固液共存点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="系综"><a href="#系综" class="headerlink" title="系综"></a>系综</h3><ul>
+<li><p>NVE 系综：孤立体系，少见</p>
+</li>
+<li><p>NVT 系综</p>
+<ul>
+<li>温度并非不变，而是有一定的起伏</li>
+<li>温度的波动满足的一定的规律：<ul>
+<li>温度方差</li>
+<li>能量方差</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>NPT 系综：</p>
+<p>$\mu VT$：化学势不变</p>
+<hr>
+<h3 id="控温"><a href="#控温" class="headerlink" title="控温"></a>控温</h3><ul>
+<li>控温：thermostat（热浴）；控温离不开控制速度</li>
+</ul>
+<p>$$<br>E_K &#x3D; \frac{3}{2}Nk_BT&#x3D;\frac{1}{2}\sum m_i v^2_i<br>$$</p>
+<ul>
+<li><p>Velocity scaling（对速度标度）</p>
+<ul>
+<li>isokinetics 算法：速度重置，较野蛮；实际体系的温度演化不符合热力学统计规律，不是很好的控温方法</li>
+<li>Berendsen 算法：比 isokinetics 好很多，能给出部分合理的热力学统计温度</li>
+</ul>
+</li>
+<li><p>Stochastic thermostat（引入一些随机过程）</p>
+<ul>
+<li>Andersen 算法</li>
+<li>Langevin 算法：LAMMPS 中有</li>
+</ul>
+</li>
+<li><p>Extended Langrangian（扩展拉格朗日）</p>
+<ul>
+<li>Nose-Hoover 算法</li>
+<li>Nose-Hoover chain 算法</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>isokinetics 算法<ul>
+<li>计算当前温度，标定；速度重置</li>
+<li>温度演化不满足正则系综下的要求，不合理</li>
+<li>有时候有用，初始模拟时，构建的体系通常远离平衡状态，通过这种方式，可以使体系快速达到想要的状态，基于该状态再进行实际的模拟</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>\lambda &#x3D; \sqrt{\frac{T_{target}}{T(t)}}<br>$$</p>
+<p>$$<br>v^{‘}_i &#x3D; \lambda v_i<br>$$</p>
+<ul>
+<li>Berendsen 算法<ul>
+<li>$\lambda$ 不是常数</li>
+<li>$\Delta t$ 为时间步长，引入 coupling constant $\tau$，使温度缓慢达到目标温度，使体系变化不那么剧烈，相对好一些，但也无法证明其能给出正确的正则分布</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>\lambda &#x3D; \sqrt{1+\frac{\Delta t}{\tau}\left[ \frac{T_{target}}{T(t)} -1 \right]}<br>$$</p>
+<ul>
+<li><p>Andersen 算法</p>
+<ul>
+<li>随机选取处于一定分布的原子进行速度重置</li>
+<li>能给出正则系综下的温度要求；会破坏原子轨迹的连续性；可能导致能量动量不守恒；用的也不是很广泛</li>
+</ul>
+</li>
+<li><p>Langevin 算法</p>
+<ul>
+<li>对原子的受力进行修改：粘滞力 + 随机力（只有粘滞力，会导致最终静止；随机力需满足一定的规则）</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>f_i &#x3D; -E - \frac{m}{\tau}v_i+w_i<br>$$</p>
+<ul>
+<li>Nose-Hoover 算法<ul>
+<li>粘滞力系数 $\gamma$ 不是常数</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>f_i &#x3D; -E - m \gamma v_i<br>$$</p>
+<hr>
+<h3 id="控压"><a href="#控压" class="headerlink" title="控压"></a>控压</h3><p>控压：通过控制体系的体积；体积通过控制速度</p>
+<p>Barostat：压浴</p>
+<p>压强计算：Virial theorem</p>
+<p>压强变化率 $\tau_P$</p>
+<p>$\alpha$</p>
+<p>$\alpha$ 和 $\tau_P$ 的关系</p>
+<p>$$<br>\alpha &#x3D; -\frac{\beta \left[ P_{target}-P(t)\right]}{3\tau_P}<br>$$</p>
+<p>$\beta$ 为体模量</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.lammps.org/fix_nh.html">https://docs.lammps.org/fix_nh.html</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.lammps.org/fix_press_berendsen.html">https://docs.lammps.org/fix_press_berendsen.html</a></p>
+</blockquote>
+<ul>
+<li>算法<ul>
+<li>Berendsen</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="性质分析"><a href="#性质分析" class="headerlink" title="性质分析"></a>性质分析</h2><h3 id="性能参数评估"><a href="#性能参数评估" class="headerlink" title="性能参数评估"></a>性能参数评估</h3><p>直接获取的物理量</p>
+<ul>
+<li>N V E_k E_p M \rho</li>
+<li>c_i</li>
+<li>U H</li>
+<li>T P</li>
+</ul>
+<p>T 的误差与 T&#x2F;\sqrt{N}成正比</p>
+<p>静水压力 P &#x3D; 1&#x2F;3 \sum P ii</p>
+<hr>
+<p>计算推导的物理量</p>
+<ul>
+<li>弹性常数</li>
+</ul>
+<blockquote>
+</blockquote>
+<ul>
+<li>等压热容 Cp</li>
+</ul>
+<p>有限差分法：需要选取适中的值；结果更稳定</p>
+<p>H 的方差：误差可能会大一些</p>
+<ul>
+<li><p>等温压缩系数（体模量 B 的倒数）</p>
+</li>
+<li><p>热膨胀系数</p>
+</li>
+</ul>
+<p>V、H 的协方差</p>
+<ul>
+<li>扩散系数</li>
+</ul>
+<p>浓度梯度</p>
+<p>均方位移 MSD &#x3D; 2Dt</p>
+<p>LAMMPS compute MSD</p>
+<p>时间短，观察到的是原子的振动</p>
+<ul>
+<li>剪切粘度</li>
+</ul>
+<p>P 的自相关函数</p>
+<p>NPT（更稳定）&#x2F;NVT</p>
+<p>上下薄层，找出上下层原子速度最大且方向相反的原子，对其速度进行交换</p>
+<p>\tau &#x3D; 粘度 · 速度&#x2F;h</p>
+<p>剪切率：v&#x2F;h</p>
+<ul>
+<li>热导<br>晶格热导，没有电子热导</li>
+</ul>
+<p>J 热流</p>
+<p>平衡 MD</p>
+<p>非平衡 MD</p>
+<p>交换动能</p>
+<ul>
+<li>声子</li>
+</ul>
+<p>力常数矩阵（0K 下）</p>
+<p>速度自关联函数</p>
+<p>Fluctuation dissipation</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.lammps.org/fix_phonon.html">fix phonon command — LAMMPS documentation</a></p>
+</blockquote>
+<hr>
+<h3 id="结构分析"><a href="#结构分析" class="headerlink" title="结构分析"></a>结构分析</h3><p>pair correlation function</p>
+<p>partial pair correlation function</p>
+<p>实际算法：以每个原子为中心计算，最后求平均</p>
+<p>宏观</p>
+<p>局域</p>
+<p>缺陷</p>
+<p>性能参数和结构表征</p>
+<p>热力学参数</p>
+<p>结构参数</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog">Nobody</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog/posts/207179.html">https://bit-part-young.github.io/blog/posts/207179.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bit-part-young.github.io/blog" target="_blank">Seek Another Land</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/%E5%88%86%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6/">分子动力学</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/407358.html" title="Windows 新机使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider16.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Windows 新机使用</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/502897.html" title="DFT 原理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider7.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">DFT 原理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/posts/581193.html" title="LAMMPS 安装"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-13</div><div class="title">LAMMPS 安装</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nobody</div><div class="author-info__description">A Land of Nobody</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bit-Part-Young"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Bit-Part-Young" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0084ff;"></i></a><a class="social-icon" href="mailto:3304839708@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="订阅-ATOM"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Nobody's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%AD%90%E5%8A%A8%E5%8A%9B%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">分子动力学原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">多尺度介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.4.</span> <span class="toc-text">基本步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.4.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E8%AE%A1%E7%AE%97"><span class="toc-number">1.4.2.</span> <span class="toc-text">力计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E5%88%86%E7%AE%97%E6%B3%95"><span class="toc-number">1.4.3.</span> <span class="toc-text">积分算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%AD%A5%E9%95%BF"><span class="toc-number">1.4.4.</span> <span class="toc-text">时间步长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.4.5.</span> <span class="toc-text">边界条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MD-%E8%83%BD%E5%81%9A-%E4%B8%8D%E8%83%BD%E5%81%9A"><span class="toc-number">1.4.6.</span> <span class="toc-text">MD 能做&#x2F;不能做</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%BF%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">势函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%BF%E5%87%BD%E6%95%B0-1"><span class="toc-number">1.5.1.</span> <span class="toc-text">势函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.5.2.</span> <span class="toc-text">力的计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%AD%90%E9%9D%99%E5%8A%9B%E5%AD%A6-%E6%8E%A7%E6%B8%A9-%E6%8E%A7%E5%8E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">分子静力学 &amp; 控温 &amp; 控压</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B-1%EF%BC%9A%E8%A1%A8%E9%9D%A2%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="toc-number">1.6.1.</span> <span class="toc-text">案例 1：表面能计算</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">总体介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bulk-%E4%BD%93%E7%B3%BB%E6%80%BB%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">Bulk 体系总能计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E9%9D%A2%E6%9E%84%E5%9E%8B%E6%9E%84%E5%BB%BA%E3%80%81%E5%BC%9B%E8%B1%AB%E5%8F%8A%E8%A1%A8%E9%9D%A2%E8%83%BD%E8%AE%A1%E7%AE%97"><span class="toc-number">1.6.1.3.</span> <span class="toc-text">表面构型构建、弛豫及表面能计算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%BD%E9%87%8F%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="toc-number">1.6.2.</span> <span class="toc-text">能量最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%80%E5%9F%9F%E8%83%BD%E9%87%8F%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">局域能量最小化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E8%83%BD%E9%87%8F%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">全局能量最小化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%87%E6%B8%A1%E6%80%81"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">过渡态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B-2%EF%BC%9A%E7%86%94%E7%82%B9%E8%AE%A1%E7%AE%97"><span class="toc-number">1.6.3.</span> <span class="toc-text">案例 2：熔点计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%BC"><span class="toc-number">1.6.4.</span> <span class="toc-text">系综</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E6%B8%A9"><span class="toc-number">1.6.5.</span> <span class="toc-text">控温</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%8E%8B"><span class="toc-number">1.6.6.</span> <span class="toc-text">控压</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.7.</span> <span class="toc-text">性质分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%8F%82%E6%95%B0%E8%AF%84%E4%BC%B0"><span class="toc-number">1.7.1.</span> <span class="toc-text">性能参数评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-number">1.7.2.</span> <span class="toc-text">结构分析</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/206050.html" title="VASP 报错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="VASP 报错"/></a><div class="content"><a class="title" href="/blog/posts/206050.html" title="VASP 报错">VASP 报错</a><time datetime="2025-06-07T06:00:00.000Z" title="发表于 2025-06-07 14:00:00">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/241231.html" title="2024 记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="2024 记录"/></a><div class="content"><a class="title" href="/blog/posts/241231.html" title="2024 记录">2024 记录</a><time datetime="2024-12-31T12:29:20.000Z" title="发表于 2024-12-31 20:29:20">2024-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/851955.html" title="TeX Live 安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="TeX Live 安装"/></a><div class="content"><a class="title" href="/blog/posts/851955.html" title="TeX Live 安装">TeX Live 安装</a><time datetime="2024-11-23T07:59:58.000Z" title="发表于 2024-11-23 15:59:58">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/173511.html" title="孔老师程序编译与使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="孔老师程序编译与使用"/></a><div class="content"><a class="title" href="/blog/posts/173511.html" title="孔老师程序编译与使用">孔老师程序编译与使用</a><time datetime="2024-11-18T09:35:11.000Z" title="发表于 2024-11-18 17:35:11">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/195428.html" title="gnuplot 使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider14.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="gnuplot 使用"/></a><div class="content"><a class="title" href="/blog/posts/195428.html" title="gnuplot 使用">gnuplot 使用</a><time datetime="2024-11-13T11:54:28.000Z" title="发表于 2024-11-13 19:54:28">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider10.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Nobody</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span> | 托管 </span><a target="_blank" rel="noopener" href="https://github.com">GitHub</a><span> | 部署 </span><a target="_blank" rel="noopener" href="https://vercel.com">Vercel</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=4.13.0"></script><script src="/blog/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

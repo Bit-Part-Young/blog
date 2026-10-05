@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Seek Another Land</title>
+    <link>https://bit-part-young.github.io/blog/</link>
+    
+    <image>
+      <url>https://bit-part-young.github.io/blog/icon.png</url>
+      <title>Seek Another Land</title>
+      <link>https://bit-part-young.github.io/blog/</link>
+    </image>
+    
+    <atom:link href="https://bit-part-young.github.io/blog/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>A Land of Nobody</description>
+    <pubDate>Mon, 05 Oct 2026 19:18:30 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>VASP 报错</title>
+      <link>https://bit-part-young.github.io/blog/posts/206050.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/206050.html</guid>
+      <pubDate>Sat, 07 Jun 2025 06:00:00 GMT</pubDate>
+      
+      <description>VASP 报错</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/VASP/">VASP</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/VASP/">VASP</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/206050.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>2024 记录</title>
+      <link>https://bit-part-young.github.io/blog/posts/241231.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/241231.html</guid>
+      <pubDate>Tue, 31 Dec 2024 12:29:20 GMT</pubDate>
+      
+      <description>2024 记录</description>
+      
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/2024/">2024</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/241231.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>TeX Live 安装</title>
+      <link>https://bit-part-young.github.io/blog/posts/851955.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/851955.html</guid>
+      <pubDate>Sat, 23 Nov 2024 07:59:58 GMT</pubDate>
+      
+      <description>TeX Live 安装</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E6%8E%92%E7%89%88%E8%AF%AD%E8%A8%80/">排版语言</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/LaTeX/">LaTeX</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/851955.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>孔老师程序编译与使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/173511.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/173511.html</guid>
+      <pubDate>Mon, 18 Nov 2024 09:35:11 GMT</pubDate>
+      
+      <description>孔老师程序编译与使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/latgen/">latgen</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/posconv/">posconv</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/dumpana/">dumpana</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/173511.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>gnuplot 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/195428.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/195428.html</guid>
+      <pubDate>Wed, 13 Nov 2024 11:54:28 GMT</pubDate>
+      
+      <description>gnuplot 使用</description>
+      
+      
+      
+      
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/195428.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Linux 常用程序、库安装</title>
+      <link>https://bit-part-young.github.io/blog/posts/110912.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/110912.html</guid>
+      <pubDate>Wed, 13 Nov 2024 02:11:19 GMT</pubDate>
+      
+      <description>Linux 常用程序、库安装</description>
+      
+      
+      
+      
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/110912.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Intel oneAPI 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/172409.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/172409.html</guid>
+      <pubDate>Wed, 13 Nov 2024 01:17:24 GMT</pubDate>
+      
+      <description>Intel oneAPI 使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/Intel-oneAPI/">Intel-oneAPI</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/172409.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>最新 atomate 安装</title>
+      <link>https://bit-part-young.github.io/blog/posts/543717.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/543717.html</guid>
+      <pubDate>Tue, 12 Nov 2024 09:37:45 GMT</pubDate>
+      
+      <description>最新 atomate 安装</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/atomate/">atomate</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/%E9%AB%98%E9%80%9A%E9%87%8F/">高通量</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/atomate/">atomate</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/543717.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>晶体学相关</title>
+      <link>https://bit-part-young.github.io/blog/posts/560015.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/560015.html</guid>
+      <pubDate>Sat, 09 Nov 2024 07:00:56 GMT</pubDate>
+      
+      <description>晶体学相关</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%BB%93%E6%9E%84%E5%BB%BA%E6%A8%A1/">结构建模</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/%E6%99%B6%E4%BD%93%E5%AD%A6/">晶体学</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/560015.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Typora 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/121857.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/121857.html</guid>
+      <pubDate>Thu, 07 Nov 2024 04:18:57 GMT</pubDate>
+      
+      <description>Typora 使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/Win-%E8%BD%AF%E4%BB%B6/">Win 软件</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/Typora/">Typora</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/121857.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Notion 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/121830.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/121830.html</guid>
+      <pubDate>Thu, 07 Nov 2024 04:18:30 GMT</pubDate>
+      
+      <description>Notion 使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/Win-%E8%BD%AF%E4%BB%B6/">Win 软件</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/Notion/">Notion</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/121830.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>金属常见晶体结构的间隙原子位点</title>
+      <link>https://bit-part-young.github.io/blog/posts/535416.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/535416.html</guid>
+      <pubDate>Tue, 05 Nov 2024 07:56:34 GMT</pubDate>
+      
+      <description>金属常见晶体结构的间隙原子位点</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/%E6%9D%90%E6%96%99%E7%A7%91%E5%AD%A6/">材料科学</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/%E7%82%B9%E7%BC%BA%E9%99%B7/">点缺陷</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/535416.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>LAMMPS 输入文件</title>
+      <link>https://bit-part-young.github.io/blog/posts/360191.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/360191.html</guid>
+      <pubDate>Fri, 25 Oct 2024 11:36:01 GMT</pubDate>
+      
+      <description>LAMMPS 输入文件</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/LAMMPS/">LAMMPS</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/LAMMPS/">LAMMPS</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/360191.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>VESTA 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/450318.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/450318.html</guid>
+      <pubDate>Fri, 18 Oct 2024 01:30:45 GMT</pubDate>
+      
+      <description>VESTA 使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E7%BB%93%E6%9E%84%E5%BB%BA%E6%A8%A1/">结构建模</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/VESTA/">VESTA</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/450318.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>VASP 输出文件</title>
+      <link>https://bit-part-young.github.io/blog/posts/410503.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/410503.html</guid>
+      <pubDate>Mon, 14 Oct 2024 03:04:30 GMT</pubDate>
+      
+      <description>VASP 输出文件</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/VASP/">VASP</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/VASP/">VASP</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/410503.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>VASP 输入文件</title>
+      <link>https://bit-part-young.github.io/blog/posts/410103.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/410103.html</guid>
+      <pubDate>Mon, 14 Oct 2024 03:01:30 GMT</pubDate>
+      
+      <description>VASP 输入文件</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/VASP/">VASP</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/VASP/">VASP</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/410103.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>SciPy 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/501607.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/501607.html</guid>
+      <pubDate>Tue, 17 Sep 2024 08:50:00 GMT</pubDate>
+      
+      <description>SciPy 使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%BC%96%E7%A8%8B/">编程</category>
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E7%BC%96%E7%A8%8B/Python/">Python</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/SciPy/">SciPy</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/501607.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>博客须知</title>
+      <link>https://bit-part-young.github.io/blog/posts/140913.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/140913.html</guid>
+      <pubDate>Fri, 13 Sep 2024 17:04:13 GMT</pubDate>
+      
+      <description>博客须知</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/%E5%8D%9A%E5%AE%A2/">博客</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/%E5%8D%9A%E5%AE%A2/">博客</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/140913.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Tmux 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/900924.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/900924.html</guid>
+      <pubDate>Mon, 09 Sep 2024 08:17:18 GMT</pubDate>
+      
+      <description>Tmux 使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/Linux/">Linux</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/Tmux/">Tmux</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/900924.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Excel 使用</title>
+      <link>https://bit-part-young.github.io/blog/posts/520861.html</link>
+      <guid>https://bit-part-young.github.io/blog/posts/520861.html</guid>
+      <pubDate>Fri, 30 Aug 2024 00:25:06 GMT</pubDate>
+      
+      <description>Excel 使用</description>
+      
+      
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/categories/Win-%E8%BD%AF%E4%BB%B6/">Win 软件</category>
+      
+      
+      <category domain="https://bit-part-young.github.io/blog/tags/Excel/">Excel</category>
+      
+      
+      <comments>https://bit-part-young.github.io/blog/posts/520861.html#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>

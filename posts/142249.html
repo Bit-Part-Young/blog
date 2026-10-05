@@ -1,0 +1,614 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ubuntu、Arch Linux 使用 | Seek Another Land</title><meta name="author" content="Nobody"><meta name="copyright" content="Nobody"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Ubuntu、Arch Linux 使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu、Arch Linux 使用">
+<meta property="og:url" content="https://bit-part-young.github.io/blog/posts/142249.html">
+<meta property="og:site_name" content="Seek Another Land">
+<meta property="og:description" content="Ubuntu、Arch Linux 使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.pterclub.com/images/2022/08/26/spider15.png">
+<meta property="article:published_time" content="2023-09-18T08:50:00.000Z">
+<meta property="article:modified_time" content="2024-11-13T03:02:19.068Z">
+<meta property="article:author" content="Nobody">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="ArchLinux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.pterclub.com/images/2022/08/26/spider15.png"><link rel="shortcut icon" href="/blog/img/logo_rm.png"><link rel="canonical" href="https://bit-part-young.github.io/blog/posts/142249.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":2000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ubuntu、Arch Linux 使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-13 11:02:19'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Seek Another Land" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Seek Another Land" type="application/rss+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/blog/css/center-simple.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider15.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Seek Another Land"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo_rm.png"/><span class="site-name">Seek Another Land</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Ubuntu、Arch Linux 使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-18T08:50:00.000Z" title="发表于 2023-09-18 16:50:00">2023-09-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-13T03:02:19.068Z" title="更新于 2024-11-13 11:02:19">2024-11-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Ubuntu、Arch Linux 使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Ubuntu、Arch-Linux-安装与使用"><a href="#Ubuntu、Arch-Linux-安装与使用" class="headerlink" title="Ubuntu、Arch Linux 安装与使用"></a>Ubuntu、Arch Linux 安装与使用</h1><h2 id="Ubuntu-使用"><a href="#Ubuntu-使用" class="headerlink" title="Ubuntu 使用"></a>Ubuntu 使用</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><p>磁盘分区，使部分磁盘空间处于未分配状态</p>
+</li>
+<li><p>通过镜像加速下载 Ubuntu ISO 文件</p>
+</li>
+<li><p>使用 U 盘 +Rufus 软件制作启动盘</p>
+</li>
+<li><p>关机，进入 BIOS（联想拯救者是按 F2 键），更改启动顺序，设置 U 盘为首选启动设备</p>
+</li>
+<li><p>安装 Ubuntu，过程中手动分配磁盘空间，将 free space 主要分成 4 部分</p>
+<ul>
+<li><code>/boot</code> - 引导分区，用于存储启动加载器和一些启动时需要的文件；一般 500MB 到 1GB 足够</li>
+<li><code>Swap</code> - 该分区用作内存不足时的虚拟内存；通常为物理内存（RAM）的大小的 1 至 2 倍</li>
+<li><code>/</code> - 根分区，包含大部分系统文件；建议 50GB 及以上</li>
+<li><code>/home</code> - 该分区用于存储用户文件和设置；建议 <code>/</code> 和 <code>/home</code> 比例为 1:2 或 1:3</li>
+<li><code>EFI</code> - UEFI 固件用来存储 EFI 应用程序和驱动程序；建议 100MB 到 500MB（一般该分区已设置）</li>
+</ul>
+</li>
+<li><p>安装完成后，系统会提示拔掉 U 盘</p>
+</li>
+<li><p>注意事项：</p>
+<ul>
+<li><strong>双系统没想象中的好用</strong></li>
+<li>Linux 中网卡、显卡驱动容易出问题</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="基础设置"><a href="#基础设置" class="headerlink" title="基础设置"></a>基础设置</h3><ul>
+<li><p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://yuhldr.github.io/posts/30877.html">ubuntu20.04全新配置 - 我是谁</a></li>
+</ul>
+</li>
+<li><p>Ubuntu 配置工具（感觉一般）：<a target="_blank" rel="noopener" href="https://omakub.org/">Omakub — An Omakase Developer Setup for Ubuntu 24.04 by DHH</a></p>
+</li>
+</ul>
+<hr>
+<h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><ul>
+<li>修改软件源以加速 package 下载</li>
+<li>镜像源文件:<ul>
+<li>Debian&#x2F;Ubuntu - <code>/etc/apt/sources.list</code>；Ubuntu 软件源镜像：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu - 清华大学镜像</a></li>
+<li>Fedora&#x2F;RHEL&#x2F;CentOS - <code>/etc/yum.repos.d/</code> 或 <code>/etc/dnf/dnf.conf</code></li>
+<li>Arch Linux - <code>/etc/pacman.d/mirrorlist</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 换源（Ubuntu 版本不同，源也不同）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新并升级</span></span><br><span class="line"><span class="built_in">sudo</span> apt update &amp;&amp; <span class="built_in">sudo</span> apt upgrade</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h4><ul>
+<li>Softwares &amp; Update - Additional Drivers - Additional Drivers - 选择其中一个 NVIDIA driver</li>
+</ul>
+<hr>
+<h4 id="中英文输入法"><a href="#中英文输入法" class="headerlink" title="中英文输入法"></a>中英文输入法</h4><ul>
+<li>添加中文语言支持：Settings - Region&amp;Language - Manage Install Languages - Install&#x2F;Remove Languages - Chinese(simplified) </li>
+<li>已集成 iBus：Settings - Keyboard - Input Sourses - 添加 Chinese(Intelligent Pinyin)</li>
+</ul>
+<hr>
+<h4 id="GRUB-设置"><a href="#GRUB-设置" class="headerlink" title="GRUB 设置"></a>GRUB 设置</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/zh-hans/GRUB">GRUB - Arch Linux 中文维基</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/vinceliuice/grub2-themes">GitHub - vinceliuice&#x2F;grub2-themes: Modern Design theme for Grub2</a></p>
+</blockquote>
+<p>GRUB：开机引导</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># grub theme 路径</span></span><br><span class="line">/usr/share/grub/themes/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 Windows 引导菜单名称（含单引号）</span></span><br><span class="line"><span class="built_in">cat</span> /boot/grub/grub.cfg | grep <span class="string">&#x27;windows&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 GRUB_DEFAULT 和 GRUB_TIMEOUT 选项</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/default/grub</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line"><span class="built_in">sudo</span> update-grub</span><br><span class="line"></span><br><span class="line"><span class="comment"># 美化 grub</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:vinceliuice/grub2-themes.git</span><br><span class="line"><span class="built_in">sudo</span> ./install.sh -t tela -s 2k</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h4><ul>
+<li><code>Crtl + Alt + T</code> - 打开终端</li>
+<li><code>Crtl + Shift + T</code> - 打开终端新标签页</li>
+<li><code>Crtl + Shift + C</code> - 复制</li>
+<li><code>Crtl + Shift + V</code> - 粘贴</li>
+<li><code>Ctrl + Alt + Del</code> - 打开睡眠、关机、重启、登出对话框</li>
+<li><code>Alt + F2</code> - 打开运行对话框</li>
+<li><code>Win</code> - 也称 Super 键，可进行程序搜索</li>
+</ul>
+<hr>
+<h4 id="网络代理"><a href="#网络代理" class="headerlink" title="网络代理"></a>网络代理</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/clash; <span class="built_in">cd</span> ~/clash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载适合的 Clash 二进制文件并重命名为 clash</span></span><br><span class="line"><span class="comment"># 一般 clashpremium-linux-amd64</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 Clash 配置文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x clash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Clash</span></span><br><span class="line"><span class="comment"># 同时启动 HTTP 代理和 Socks5 代理 </span></span><br><span class="line">./clash -d .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问 Clash Dashboard 可以进行切换节点、测延迟等操作</span></span><br><span class="line"><span class="comment"># https://clash.razord.top/</span></span><br><span class="line"><span class="comment"># 编辑外部控制设置：Host: 127.0.0.1，端口: 9090</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用系统代理</span></span><br><span class="line"><span class="comment"># Settings - Network，点击网络代理右边的 ⚙ 按钮，选择手动，</span></span><br><span class="line"><span class="comment"># 填写 HTTP 和 HTTPS 代理为 127.0.0.1:7890，填写 Socks 主机为 127.0.0.1:7891</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h5><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/Systemd">systemd -  Arch Linux 中文维基</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.linioi.com/posts/clash-on-arch/">Arch Linux Clash 安装配置记录</a></p>
+</blockquote>
+<p>创建 systemd 配置文件：<code>/etc/systemd/system/clash.service</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Clash daemon, A rule-based proxy <span class="keyword">in</span> Go.</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">Restart=always</span><br><span class="line">ExecStart=/usr/local/bin/clash -d /etc/clash <span class="comment"># /usr/local/bin/clash 为绝对路径，请根据你实际情况修改</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>systemd 相关命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启用 Clash 服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> clash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Clash</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start clash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 Clash 日志</span></span><br><span class="line">systemctl status clash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有正在运行的 systemd 服务</span></span><br><span class="line">systemctl list-units --<span class="built_in">type</span>=service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有已安装的 systemd 服务</span></span><br><span class="line">systemctl list-unit-files --<span class="built_in">type</span>=service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看代理</span></span><br><span class="line"><span class="built_in">env</span> | grep -i proxy</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="GNOME-桌面"><a href="#GNOME-桌面" class="headerlink" title="GNOME 桌面"></a>GNOME 桌面</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.gnome-look.org/">Gnome-look.org</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/vinceliuice/Colloid-gtk-theme">GitHub - vinceliuice&#x2F;Colloid-gtk-theme: Colloid gtk theme for linux</a></p>
+</blockquote>
+<p>tweak：设置 GNOME 主题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt -y install gnome-tweaks</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>安装 CNOME 桌面扩展：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36265103">如何安装GNOME插件 - 知乎</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install chrome-gnome-shell</span><br></pre></td></tr></table></figure>
+
+<p>GNOME 桌面扩展推荐：</p>
+<ul>
+<li>Dash to Dock</li>
+<li>Clipboard Indicator</li>
+<li>system-monitor</li>
+<li>User Themes</li>
+</ul>
+<hr>
+<h4 id="KDE-Plasma-桌面"><a href="#KDE-Plasma-桌面" class="headerlink" title="KDE Plasma 桌面"></a>KDE Plasma 桌面</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/judasn/Linux-Tutorial/blob/master/markdown-file/ubuntu-settings/Ubuntu-Create-Desktop.md">Ubuntu 给 Dash 添加程序图标</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://kde.org/zh-cn/">首页 - KDE 社区</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pipci/p/14862648.html">KDE美化及常用设置 - pipci - 博客园</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pipci/p/14861412.html">KDE常用桌面插件总结 - pipci - 博客园</a></p>
+</blockquote>
+<ul>
+<li>GNOME 与 KDE 的区别：<ul>
+<li>GNOME 使用 GDM3 显示管理器；KDE 使用 SDDM (Simple Desktop Display Manager) 显示管理器</li>
+<li>GNOME 主要使用 GTK 构建 GUI 工具，KDE 使用 Qt</li>
+<li>KDE 默认终端 Konsole，默认文本编辑器 Kate</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install kde-plasma-desktop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 完整 KDE</span></span><br><span class="line"><span class="built_in">sudo</span> apt install kubuntu-desktop</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>style 更换</li>
+</ul>
+<hr>
+<h4 id="SDDM-设置"><a href="#SDDM-设置" class="headerlink" title="SDDM 设置"></a>SDDM 设置</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/SDDM">SDDM -  Arch Linux 中文维基</a></p>
+</blockquote>
+<p>sddm theme：<a target="_blank" rel="noopener" href="https://github.com/aczw/sddm-theme-corners">corners</a></p>
+<p>sddm 相关命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sddm theme 路径</span></span><br><span class="line">/usr/share/sddm/themes/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成 sddm 示例配置文件</span></span><br><span class="line"><span class="built_in">sudo</span> sddm --example-config &gt; /etc/sddm.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试（预览）theme</span></span><br><span class="line">sddm-greeter --test-mode --theme &lt;path&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>编辑或创建 <code>/etc/sddm.conf</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sddm theme</span></span><br><span class="line">[Theme]</span><br><span class="line">Current=corners</span><br><span class="line"></span><br><span class="line"><span class="comment"># 虚拟键盘</span></span><br><span class="line">[General]</span><br><span class="line">InputMethod=</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="package-安装"><a href="#package-安装" class="headerlink" title="package 安装"></a>package 安装</h4><ul>
+<li>apt 方式</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install &lt;package&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载 libreoffice</span></span><br><span class="line"><span class="built_in">sudo</span> apt remove libreoffice-common</span><br><span class="line"><span class="comment"># 卸载 firefox Linux 中原生的 firefox 不完整</span></span><br><span class="line"><span class="built_in">sudo</span> apt remove firefox</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>snap 方式：<a target="_blank" rel="noopener" href="https://snapcraft.io/store">Install Linux apps using the Snap Store | Snapcraft</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> snap install &lt;package&gt;</span><br><span class="line"><span class="built_in">sudo</span> snap install --dangerous &lt;package&gt;.snap</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line"><span class="built_in">sudo</span> snap install mailspring</span><br><span class="line"><span class="built_in">sudo</span> snap install alacritty --classic</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 package</span></span><br><span class="line"><span class="built_in">sudo</span> snap remove &lt;package&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>deb 方式：<code>.deb</code> 是 Ubuntu 和 Debian 的程序包格式； <code>.rpm</code> 是 Red Hat 等的程序包格式</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install ./&lt;package&gt;.deb</span><br><span class="line"><span class="built_in">sudo</span> dpkg -i &lt;package&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 package</span></span><br><span class="line"><span class="built_in">sudo</span> apt remove &lt;package&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>AppImage 方式</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x &lt;package&gt;.AppImage</span><br><span class="line"></span><br><span class="line">./&lt;package&gt;.AppImage</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 package</span></span><br><span class="line"><span class="built_in">rm</span> &lt;package&gt;.AppImage</span><br></pre></td></tr></table></figure>
+
+<p>可能会出现以下报错内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dlopen(): error loading libfuse.so.2 </span><br><span class="line">AppImages require FUSE to run. </span><br><span class="line">You might still be able to extract the contents of this AppImage</span><br></pre></td></tr></table></figure>
+
+<p>解决方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install libfuse2</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="package-彻底卸载"><a href="#package-彻底卸载" class="headerlink" title="package 彻底卸载"></a>package 彻底卸载</h5><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/get_set/article/details/51276609">Ubuntu apt-get彻底卸载软件包_apt卸载包_享学IT的博客-CSDN博客</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">apt-cache  <span class="comment"># 搜索、查看和管理 package 缓存</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载 package 及删除其配置文件</span></span><br><span class="line"><span class="built_in">sudo</span> apt --purge remove &lt;package&gt;</span><br><span class="line"><span class="built_in">sudo</span> apt purge &lt;package&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动卸载被安装来满足其他软件包依赖关系但现在不再需要的 packages</span></span><br><span class="line"><span class="built_in">sudo</span> apt autoremove</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装 packages 及信息</span></span><br><span class="line">apt list --installed | less</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装 package 的文件列表（可查看头文件和库文件路径）</span></span><br><span class="line">dpkg -L &lt;package&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># packages 列表</span></span><br><span class="line"><span class="comment"># ii: 已正确安装使用的 packages</span></span><br><span class="line"><span class="comment"># rc: 已卸载但配置文件未删除的 packages</span></span><br><span class="line">dpkg -l | less</span><br><span class="line">dpkg-query -l | less</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除已卸载但配置文件仍留在系统中的 packages</span></span><br><span class="line">dpkg -l | grep <span class="string">&#x27;^rc&#x27;</span> | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> | <span class="built_in">sudo</span> xargs dpkg -P</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计已安装 packages 数量</span></span><br><span class="line">dpkg-query -f <span class="string">&#x27;$&#123;binary:Package&#125;\n&#x27;</span> -W | <span class="built_in">wc</span> -l</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h5><ul>
+<li>快速启动工具：Rofi（不是很好用）</li>
+<li>VPN 网络代理：ClashX</li>
+<li>代码编辑器：vscode-insiders</li>
+<li>Office 替代：WPS</li>
+<li>终端工具：Tabby、Alacritty</li>
+<li>远程服务器连接工具：Termius</li>
+<li>数据同步（交大服务）：交大云盘</li>
+<li>浏览器： Chrome</li>
+<li>媒体播放器：VLC</li>
+<li>笔记管理：Obsidian</li>
+<li>Markdown 编辑器：Typora（安装 0.11.18 版本）</li>
+<li>图床：PicGo</li>
+<li>文献管理：Zotero</li>
+<li>构型可视化：VESTA、OVITO</li>
+<li>邮件服务：Mailspring</li>
+<li>截图：Snipaste</li>
+<li>PT 下载工具：qBittorrent 或 Transmissioin</li>
+</ul>
+<hr>
+<h5 id="具体软件安装与设置"><a href="#具体软件安装与设置" class="headerlink" title="具体软件安装与设置"></a>具体软件安装与设置</h5><h6 id="Alacritty-设置"><a href="#Alacritty-设置" class="headerlink" title="Alacritty 设置"></a>Alacritty 设置</h6><ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/tmcdonell/config-alacritty">GitHub - tmcdonell&#x2F;config-alacritty: Alacrity configuration</a></p>
+</li>
+<li><p>创建配置文件</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/.config/alacritty</span><br><span class="line"><span class="built_in">touch</span> ~/.config/alacritty/alacritty.yml</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置内容</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 透明度</span></span><br><span class="line"><span class="attr">window:</span></span><br><span class="line"> <span class="attr">opacity:</span> <span class="number">0.7</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="VLC"><a href="#VLC" class="headerlink" title="VLC"></a>VLC</h6><ul>
+<li>VLC 打开时报错：<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1278422/vlc-doesnt-work-after-sudo-snap-install-vlc">vlc doesn’t work after `sudo snap install vlc` - Ask Ubuntu</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">rm</span> /var/cache/fontconfig/* </span><br><span class="line"><span class="built_in">rm</span> ~/.cache/fontconfig/* </span><br><span class="line">fc-cache -r</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="Transmission"><a href="#Transmission" class="headerlink" title="Transmission"></a>Transmission</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cmake 配置时，若出现 curl 或 openssl 相关报错</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libcurl4-openssl-dev</span><br><span class="line"><span class="built_in">sudo</span> apt install libssl-dev</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> --recurse-submodules https://github.com/transmission/transmission Transmission</span><br><span class="line"><span class="built_in">cd</span> Transmission</span><br><span class="line"><span class="comment"># Use -DCMAKE_BUILD_TYPE=RelWithDebInfo to build optimized binary with debug information. (preferred)</span></span><br><span class="line"><span class="comment"># Use -DCMAKE_BUILD_TYPE=Release to build full optimized binary.</span></span><br><span class="line">cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake --build .</span><br><span class="line"><span class="built_in">sudo</span> cmake --install .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled="" type="checkbox"> 源码编译没有 gui 程序？</li>
+</ul>
+<hr>
+<h6 id="PicGo-安装"><a href="#PicGo-安装" class="headerlink" title="PicGo 安装"></a>PicGo 安装</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://picgo-release.molunerfinn.com/2.4.0-beta.6/picgo_2.4.0-beta.6_amd64.snap</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> snap install --dangerous picgo_2.4.0-beta.6_amd64.snap</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或 snap 安装</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="deepin-版微信安装"><a href="#deepin-版微信安装" class="headerlink" title="deepin 版微信安装"></a>deepin 版微信安装</h6><p>打开微信：<a target="_blank" rel="noopener" href="https://github.com/zq1997/deepin-wine/issues/334">安装成功了，怎么打开？也没有说明 · Issue #334 · zq1997&#x2F;deepin-wine · GitHub</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget -O- https://deepin-wine.i-m.dev/setup.sh | sh</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt-get install com.qq.weixin.deepin</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="Linux-本地访问交大云盘"><a href="#Linux-本地访问交大云盘" class="headerlink" title="Linux 本地访问交大云盘"></a>Linux 本地访问交大云盘</h6><blockquote>
+<p><a target="_blank" rel="noopener" href="https://1357310795.github.io/JboxWebdav/start/">开始 | JboxWebdav 说明文档</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 .NET 6.0 Runtime</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get install -y dotnet-runtime-6.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建服务器配置</span></span><br><span class="line">rclone config create jbox webdav url=http://127.0.0.1:65472/ vendor=other --non-interactive</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Rclone 挂载 需要映射到一个空文件夹</span></span><br><span class="line">rclone mount jbox: /home/yangsl/jbox --vfs-cache-mode=minimal</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h6><ul>
+<li>Tabby 相关设置：设置 - 终端 - 鼠标，鼠标右键点击设置为 “粘贴”；剪贴板，勾选 “选中时复制”</li>
+<li>WPS 界面中文设置：<a target="_blank" rel="noopener" href="https://gist.github.com/YcSmile/039024e79b9d7dca38e80fdca7890620">Linux 英文系统下，切换wps界面语言为中文 · GitHub</a></li>
+</ul>
+<hr>
+<h5 id="Linux-端没有的一些软件"><a href="#Linux-端没有的一些软件" class="headerlink" title="Linux 端没有的一些软件"></a>Linux 端没有的一些软件</h5><ul>
+<li>官方微信</li>
+<li>交大云盘</li>
+<li>PotPlayer</li>
+<li>Notepad++</li>
+<li>MobaXterm</li>
+<li>WinSCP</li>
+</ul>
+<hr>
+<h4 id="字体安装"><a href="#字体安装" class="headerlink" title="字体安装"></a>字体安装</h4><ul>
+<li>中文字体：<a target="_blank" rel="noopener" href="https://github.com/atelier-anchor/smiley-sans">得意黑</a></li>
+<li>英文字体： <a target="_blank" rel="noopener" href="https://github.com/ryanoasis/nerd-fonts">Nerd Fonts</a>（主要下载 Meslo 或 Hack）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字体路径</span></span><br><span class="line">/usr/share/fonts      <span class="comment"># 系统</span></span><br><span class="line">~/.fonts              <span class="comment"># 个人用户</span></span><br><span class="line">~/.local/share/fonts  <span class="comment"># 较新 Ubuntu 版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝字体</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> &lt;font&gt;.ttf /usr/share/fonts/truetype  <span class="comment"># ttf 字体</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> &lt;font&gt;.otf /usr/share/fonts/opentype  <span class="comment"># otf 字体</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> *.ttf /usr/share/fonts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新字体缓存 或 重新登录 生效</span></span><br><span class="line"><span class="built_in">sudo</span> fc-cache -f -v</span><br><span class="line"></span><br><span class="line">fc-list  <span class="comment"># 查看字体</span></span><br><span class="line">fc-list :lang=zh  <span class="comment"># 查看中文字体</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>字体设置<ul>
+<li>系统设置： Settings – Appearance – Fonts</li>
+<li>Chrome 浏览器设置：Settings – Appearance – Customize font</li>
+<li>Obsidian 设置：设置 – 外观 – 字体 – 界面、正文、代码字体</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><ul>
+<li><p>Windows、Linux 双系统时，Windows 盘符及 U 盘的路径为 <code>/media/username/</code></p>
+</li>
+<li><p>KDE 任务栏应用程序图标大小设置：相应位置右键 – Enter Edit Mode – 调整 Panel height</p>
+</li>
+<li><p>KDE 任务栏系统托盘（System Tray）图标大小设置：相应位置右键 – Configure System Tray – General – Panal icon size</p>
+</li>
+<li><p>Linux 相关程序介绍：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/%E7%9B%AE%E5%BD%95">目录 -  Arch Linux 中文维基</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/StrongSwan">StrongSwan</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/OpenSSH">OpenSSH</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/zh/%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86%E5%99%A8">窗口管理器</a></li>
+</ul>
+</li>
+<li><p>apt 安装与源码编译安装之间的区别： <a target="_blank" rel="noopener" href="https://blog.csdn.net/angelazhao620/article/details/123914092">apt安装与源码编译安装_apt-get install 是源码编译吗-CSDN博客</a></p>
+<ul>
+<li>apt 安装的程序涉及到的路径：文档一般在 <code>/usr/share</code>，可执行文件 <code>/usr/bin</code>；配置文件 <code>/etc</code>；lib 文件 <code>/usr/lib</code></li>
+<li>源码编译安装：相关路径均可自定义</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zyrblog/p/11042015.html">Ubuntu上的apt&#x2F;apt-get等命令的实质意义和区别 - 精心出精品 - 博客园</a></p>
+</li>
+<li><p>相关命令</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">open file/URL             <span class="comment"># 在终端用默认程序打开文件或 URL</span></span><br><span class="line">lspci | grep -i nvidia    <span class="comment"># 查看 GPU 信息</span></span><br><span class="line">xrandr                    <span class="comment"># 查看显示器信息</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h3><ul>
+<li>用户无 sudo 权限：<code>xxx is not in the sudoers file</code><ul>
+<li>解决方法：切换到 root 用户，修改 <code>/etc/sudoers</code> 内容</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># User privilege specification</span></span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br><span class="line"><span class="comment"># add</span></span><br><span class="line">xxx    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Ubuntu KDE 关闭开机时的虚拟键盘：<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1445190/kde-plasma-virtual-keyboard-on-login">KDE Plasma, virtual keyboard on login - Ask Ubuntu</a></p>
+</li>
+<li><p>双系统 Win 比 Ubuntu 慢 8 小时：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/46525639">怎样解决Windows10时间快和Ubuntu时间差问题？ - 知乎</a></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-local-rtc 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>连接校园网：<a target="_blank" rel="noopener" href="https://net.sjtu.edu.cn/info/1215/2712.htm">Linux设备连接校园SJTU无线网络说明-上海交通大学网络信息中心</a></p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Nvidia 显卡驱动未识别&#x2F;没有了，无法进入 Ubuntu 双系统</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+如何删除 Ubuntu 双系统</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+Ubuntu23.04 设置交大 VPN 无作用</p>
+</li>
+<li><p><input disabled="" type="checkbox"> 
+触控板，如何右键？</p>
+</li>
+</ul>
+<hr>
+<h2 id="Arch-Linux-使用"><a href="#Arch-Linux-使用" class="headerlink" title="Arch Linux 使用"></a>Arch Linux 使用</h2><p>参考资料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://archlinuxstudio.github.io/ArchLinuxTutorial/#/">Arch Linux 安装使用教程 - ArchTutorial - Arch Linux Studio</a></li>
+<li><a target="_blank" rel="noopener" href="https://yuhldr.github.io/posts/3513d90f.html">archlinux安装回顾 - 我是谁</a></li>
+<li><a target="_blank" rel="noopener" href="https://arch.icekylin.online/">archlinux 简明指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ayaka-icu/mycfg">GitHub - ayaka-icu&#x2F;mycfg: 我的archlinux配置文件</a></li>
+</ul>
+<hr>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>archinstall：安装过程会有引导；已集成到安装镜像中，无需额外安装</p>
+<p>本人在安装过程中遇到的问题：</p>
+<ul>
+<li>使用 archinstall 安装 Arch Linux，办公室电脑，EFI 分区在固态硬盘上，<code>/</code> 等分区设置在机械硬盘区，最后安装会报错</li>
+<li>联想拯救者电脑，插入制作的 Arch Linux 启动器 U 盘时报错</li>
+</ul>
+<hr>
+<h3 id="基础设置-1"><a href="#基础设置-1" class="headerlink" title="基础设置"></a>基础设置</h3><h4 id="换源-1"><a href="#换源-1" class="headerlink" title="换源"></a>换源</h4><p>Arch Linux 软件源镜像：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/archlinux/">archlinux - 清华大学镜像</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件头部添加镜像源</span></span><br><span class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/<span class="variable">$repo</span>/os/<span class="variable">$arch</span></span><br><span class="line">Server = https://mirrors.ustc.edu.cn/archlinux/<span class="variable">$repo</span>/os/<span class="variable">$arch</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">pacman -Syy</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="Vim-相关设置"><a href="#Vim-相关设置" class="headerlink" title="Vim 相关设置"></a>Vim 相关设置</h4><p>Arch Linux 中的 Vim，鼠标右键进入插入的块模式，而不是复制文本</p>
+<p>解决方法：创建 <code>~/.vimrc</code> 文件即可恢复（insert 和 normal 模式均可右键实现复制文本）</p>
+<hr>
+<h4 id="安装中文字体"><a href="#安装中文字体" class="headerlink" title="安装中文字体"></a>安装中文字体</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文泉驿正黑字体</span></span><br><span class="line"><span class="built_in">sudo</span> pacman -S wqy-zenhei</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在~/.vimrc中添加</span></span><br><span class="line"><span class="built_in">set</span> encoding=utf-8</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="安装-yay"><a href="#安装-yay" class="headerlink" title="安装 yay"></a>安装 yay</h4><p>AUR 介绍： archlinux user repository。任何用户都可以上传自己制作的 AUR 包，这也是 Arch Linux 可用软件众多的原因。由于任何人都可上传，也存在对应的风险，一般选用大众认可的包即可。使用 <code>yay</code> 或 <code>paru</code> 可以安装 AUR 中的包。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/ArchLinuxStudio/ArchLinuxTutorial/master/docs/res/yay-bin-11.1.2-1-x86_64.pkg.tar.zst</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> pacman -U yay-bin-11.1.2-1-x86_64.pkg.tar.zst</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>yay</code> 安装的包通常位于 <code>~/.cache/yay</code> 目录中。每个包都会被下载和存储在以包名称命名的子目录中</p>
+</blockquote>
+<hr>
+<h4 id="pacman-常用命令"><a href="#pacman-常用命令" class="headerlink" title="pacman 常用命令"></a>pacman 常用命令</h4><blockquote>
+<p><code>yay</code> 命令与其类似</p>
+</blockquote>
+<ul>
+<li><code>pacman -Syu</code> - 系统更新，同步软件仓库并升级系统</li>
+<li><code>pacman -Syyu</code> - 强制刷新软件仓库数据库并系统完全升级</li>
+<li><code>pacman -S &lt;package&gt;</code> - 安装 package</li>
+<li><code>pacman -Rs &lt;package&gt;</code> - 删除 package，保留配置文件</li>
+<li><code>pacman -Rns &lt;package&gt;</code> - 删除 package 和配置文件</li>
+<li><code>pacman -Q &lt;package&gt;</code> - 查看 package 详情信息</li>
+<li><code>pacman -Qs &lt;string&gt;</code> - 搜索含有 string 的 package</li>
+<li><code>pacman -Qdt</code> - 列出系统中所有没用的依赖包</li>
+<li><code>pacman -Sc</code> - 清理 package 缓存</li>
+<li><code>pacman -Ss &lt;string&gt;</code> - 搜索含有 string 的已安装和可安装的 package</li>
+<li><code>pacman -Qi &lt;package&gt;</code> - 查看已安装 package 的详情</li>
+<li><code>pacman -Sw &lt;package&gt;</code> - 下载 package 而不安装</li>
+<li><code>pacman -U /path/to/package.tar.xz</code> - 安装本地 package</li>
+</ul>
+<p>查看可执行命令是通过安装哪个 package 得到的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -Qo $(<span class="built_in">which</span> gfortran)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="相关问题-1"><a href="#相关问题-1" class="headerlink" title="相关问题"></a>相关问题</h3><h4 id="plasma-组件相关"><a href="#plasma-组件相关" class="headerlink" title="plasma 组件相关"></a>plasma 组件相关</h4><p>完全卸载 plasma 组件：<a target="_blank" rel="noopener" href="https://bbs.archlinux.org/viewtopic.php?id=269353">[SOLVED] Help removing plasma and kde-applications &#x2F; Newbie Corner &#x2F; Arch Linux Forums</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看安装的 plasma 组件（desktop 等）</span></span><br><span class="line">pacman -Q | grep plasma</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载 plasma 组件</span></span><br><span class="line"><span class="built_in">sudo</span> pacman -Rcns plasma</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="Virtualbox-虚拟机使用"><a href="#Virtualbox-虚拟机使用" class="headerlink" title="Virtualbox 虚拟机使用"></a>Virtualbox 虚拟机使用</h2><h3 id="基础设置-2"><a href="#基础设置-2" class="headerlink" title="基础设置"></a>基础设置</h3><p>全局设定：</p>
+<ul>
+<li>修改默认虚拟电脑位置：<code>D:\Oracle\VirtualBox VMs</code></li>
+<li>取消自动独占键盘</li>
+</ul>
+<hr>
+<p>安装的虚拟机设置：</p>
+<ul>
+<li>常规 - 高级：共享粘贴板和拖放设置成“双向”</li>
+<li>网络 - 网卡 1：网络地址转换 (NAT)</li>
+</ul>
+<hr>
+<p>虚拟机安装增强功能：设备 - 安装增强功能；打开 iso 镜像文件，右键运行 <code>autorun.sh</code> 文件</p>
+<hr>
+<h3 id="相关问题-2"><a href="#相关问题-2" class="headerlink" title="相关问题"></a>相关问题</h3><p>Ubuntu2204 的 Terminal 无法打开：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43959807/article/details/128872860">VirtualBox_Ubuntu22.10_Terminal无法打开_虚拟机打不开终端_gt29的博客-CSDN博客</a></p>
+<p>虚拟机使用主机代理：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/veraland/p/13490217.html">Virtualbox+Uubntu16.04 NAT模式下使用宿主机代理上网 - 水中墨色 - 博客园</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog">Nobody</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog/posts/142249.html">https://bit-part-young.github.io/blog/posts/142249.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bit-part-young.github.io/blog" target="_blank">Seek Another Land</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Ubuntu/">Ubuntu</a><a class="post-meta__tags" href="/blog/tags/ArchLinux/">ArchLinux</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/908171.html" title="Docker 安装与使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider3.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Docker 安装与使用</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/113678.html" title="WSL 安装与使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">WSL 安装与使用</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nobody</div><div class="author-info__description">A Land of Nobody</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bit-Part-Young"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Bit-Part-Young" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0084ff;"></i></a><a class="social-icon" href="mailto:3304839708@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="订阅-ATOM"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Nobody's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu%E3%80%81Arch-Linux-%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu、Arch Linux 安装与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu-%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Ubuntu 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">基础设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">换源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">安装显卡驱动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">中英文输入法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GRUB-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">GRUB 设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86"><span class="toc-number">1.1.2.6.</span> <span class="toc-text">网络代理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="toc-number">1.1.2.6.1.</span> <span class="toc-text">开机自启动</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GNOME-%E6%A1%8C%E9%9D%A2"><span class="toc-number">1.1.2.7.</span> <span class="toc-text">GNOME 桌面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#KDE-Plasma-%E6%A1%8C%E9%9D%A2"><span class="toc-number">1.1.2.8.</span> <span class="toc-text">KDE Plasma 桌面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDDM-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.2.9.</span> <span class="toc-text">SDDM 设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#package-%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.10.</span> <span class="toc-text">package 安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#package-%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BD"><span class="toc-number">1.1.2.10.1.</span> <span class="toc-text">package 彻底卸载</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.1.2.10.2.</span> <span class="toc-text">常用软件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.2.10.3.</span> <span class="toc-text">具体软件安装与设置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Alacritty-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.2.10.3.1.</span> <span class="toc-text">Alacritty 设置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#VLC"><span class="toc-number">1.1.2.10.3.2.</span> <span class="toc-text">VLC</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Transmission"><span class="toc-number">1.1.2.10.3.3.</span> <span class="toc-text">Transmission</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#PicGo-%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.10.3.4.</span> <span class="toc-text">PicGo 安装</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#deepin-%E7%89%88%E5%BE%AE%E4%BF%A1%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.10.3.5.</span> <span class="toc-text">deepin 版微信安装</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Linux-%E6%9C%AC%E5%9C%B0%E8%AE%BF%E9%97%AE%E4%BA%A4%E5%A4%A7%E4%BA%91%E7%9B%98"><span class="toc-number">1.1.2.10.3.6.</span> <span class="toc-text">Linux 本地访问交大云盘</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.1.2.10.3.7.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Linux-%E7%AB%AF%E6%B2%A1%E6%9C%89%E7%9A%84%E4%B8%80%E4%BA%9B%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.1.2.10.4.</span> <span class="toc-text">Linux 端没有的一些软件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.11.</span> <span class="toc-text">字体安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-1"><span class="toc-number">1.1.2.12.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.3.</span> <span class="toc-text">相关问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Arch-Linux-%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">Arch Linux 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE-1"><span class="toc-number">1.2.2.</span> <span class="toc-text">基础设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90-1"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">换源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vim-%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">Vim 相关设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">安装中文字体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-yay"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">安装 yay</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pacman-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">pacman 常用命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">相关问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#plasma-%E7%BB%84%E4%BB%B6%E7%9B%B8%E5%85%B3"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">plasma 组件相关</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Virtualbox-%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">Virtualbox 虚拟机使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">基础设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">相关问题</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/206050.html" title="VASP 报错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="VASP 报错"/></a><div class="content"><a class="title" href="/blog/posts/206050.html" title="VASP 报错">VASP 报错</a><time datetime="2025-06-07T06:00:00.000Z" title="发表于 2025-06-07 14:00:00">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/241231.html" title="2024 记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="2024 记录"/></a><div class="content"><a class="title" href="/blog/posts/241231.html" title="2024 记录">2024 记录</a><time datetime="2024-12-31T12:29:20.000Z" title="发表于 2024-12-31 20:29:20">2024-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/851955.html" title="TeX Live 安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="TeX Live 安装"/></a><div class="content"><a class="title" href="/blog/posts/851955.html" title="TeX Live 安装">TeX Live 安装</a><time datetime="2024-11-23T07:59:58.000Z" title="发表于 2024-11-23 15:59:58">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/173511.html" title="孔老师程序编译与使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="孔老师程序编译与使用"/></a><div class="content"><a class="title" href="/blog/posts/173511.html" title="孔老师程序编译与使用">孔老师程序编译与使用</a><time datetime="2024-11-18T09:35:11.000Z" title="发表于 2024-11-18 17:35:11">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/195428.html" title="gnuplot 使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider14.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="gnuplot 使用"/></a><div class="content"><a class="title" href="/blog/posts/195428.html" title="gnuplot 使用">gnuplot 使用</a><time datetime="2024-11-13T11:54:28.000Z" title="发表于 2024-11-13 19:54:28">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider15.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Nobody</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span> | 托管 </span><a target="_blank" rel="noopener" href="https://github.com">GitHub</a><span> | 部署 </span><a target="_blank" rel="noopener" href="https://vercel.com">Vercel</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=4.13.0"></script><script src="/blog/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

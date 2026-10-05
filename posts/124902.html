@@ -1,0 +1,408 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OVITO 使用 | Seek Another Land</title><meta name="author" content="Nobody"><meta name="copyright" content="Nobody"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OVITO 使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OVITO 使用">
+<meta property="og:url" content="https://bit-part-young.github.io/blog/posts/124902.html">
+<meta property="og:site_name" content="Seek Another Land">
+<meta property="og:description" content="OVITO 使用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.pterclub.com/images/2022/08/26/spider14.png">
+<meta property="article:published_time" content="2023-10-18T12:49:23.000Z">
+<meta property="article:modified_time" content="2026-10-05T19:18:30.714Z">
+<meta property="article:author" content="Nobody">
+<meta property="article:tag" content="OVITO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.pterclub.com/images/2022/08/26/spider14.png"><link rel="shortcut icon" href="/blog/img/logo_rm.png"><link rel="canonical" href="https://bit-part-young.github.io/blog/posts/124902.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":2000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OVITO 使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-06 03:18:30'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Seek Another Land" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Seek Another Land" type="application/rss+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/blog/css/center-simple.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider14.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Seek Another Land"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo_rm.png"/><span class="site-name">Seek Another Land</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OVITO 使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-18T12:49:23.000Z" title="发表于 2023-10-18 20:49:23">2023-10-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-05T19:18:30.714Z" title="更新于 2026-10-06 03:18:30">2026-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E7%BB%93%E6%9E%84%E5%BB%BA%E6%A8%A1/">结构建模</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OVITO 使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="OVITO-使用"><a href="#OVITO-使用" class="headerlink" title="OVITO 使用"></a>OVITO 使用</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://www.ovito.org/">OVITO</a></p>
+</li>
+<li><p>OVITO 2.9 版本的 Python script 功能可免费使用，其他需要 Pro 版本</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Jh9lQKRbpFyhUnu8aHJSog">OVITO 识别结构的几种方法</a></p>
+</li>
+<li><p>支持 SFTP，可打开远程文件</p>
+</li>
+<li><p>OVITO 菜单栏：</p>
+<ul>
+<li>主菜单</li>
+<li>视图窗口</li>
+<li>动画工具条</li>
+<li>修正通道（Add Modification）及其属性栏</li>
+<li>渲染标签</li>
+<li>叠层标签（添加坐标轴、colorbar 等）</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1kryVYtEcT">14-5-Ovito可视化_哔哩哔哩_bilibili</a></p>
+<ul>
+<li>原子轨迹跟踪显示</li>
+<li>熔化过程中自由体积和中心对称参数的变化</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ieyqYnEiq/">Ovito可视化堆垛层错、缺陷和原子应力_哔哩哔哩_bilibili</a></p>
+</li>
+<li><p>球棍模型：添加 create bonds 的 modification</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/R3mmsvt25ZQLnv6X62xYkA">OVITO 批量导入数据</a>：先导入一个构型文件，在界面右中区域，Data source 选择文件名称，External file 中的 Search pattern 设置成 <code>*.xyz</code> 之类的，下方的 Options 可根据情况设置</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/4V4ePbP0DskpSRk1p1GEnA">OVITO 显示多晶不同颜色</a></p>
+<ul>
+<li>方式 1：添加 CNA Modification，晶粒和晶界显示不同的颜色</li>
+<li>方式 2：添加 ‘Color coding’ Modification（在右下方 ‘Input property’ 选择 ‘Particle Identifier’，在颜色条下方点击 ‘Adjust range’），不同的颜色对应不同的晶粒 ID</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/10934298169">OVITO 选择原子的几种方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/LtkGpzszEg-Xx9XBZ0Am8w">Ovito位错分析mesh透明度设置方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AC3ZABp4CyhJlHwfbdLWqw">OVITO 显示位错和缺陷的一个小技巧</a></p>
+</li>
+<li><p>OVITO 全局修改所有元素类型的 display radius：Application Settings – Particles – Particle types；<code>Restore built-in defaults</code> 按钮可恢复默认值；<a target="_blank" rel="noopener" href="https://www.ovito.org/manual/reference/app_settings/particle_settings.html">Particle-related settings — OVITO User Manual 3.12.4 documentation</a></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># display radius 统一修改成 0.7</span></span><br><span class="line"><span class="comment"># 元素  原始 display radius</span></span><br><span class="line">Ti     1.47</span><br><span class="line">Al     1.43</span><br><span class="line">Nb     1.47</span><br><span class="line">Mo     1.54</span><br><span class="line">Zr     1.6</span><br><span class="line">V      1.53</span><br><span class="line">Mg     1.6</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li><p>OVITO 无法计算单原子应力（是势函数的工作）</p>
+</li>
+<li><p>利用 OVITO 计算 RDF、键角分布、键长分布：<a target="_blank" rel="noopener" href="https://github.com/wangchr1617/NEP_GT/blob/main/NEP_RDF/NEP_RDF.ipynb">NEP_GT&#x2F;NEP_RDF&#x2F;NEP_RDF.ipynb at main · wangchr1617&#x2F;NEP_GT · GitHub</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5vPyhEsVaOVAQV6XMMEg8g">OVITO常用的无需Python代码的后处理技巧</a></p>
+<ul>
+<li>仅保留位错与缺陷原子</li>
+<li>输出各种位错线长度与位错密度的相关数据</li>
+<li>输出每一帧中的不同相原子的数量的相关数据</li>
+<li>统计每一帧中裂纹的表面积变化</li>
+<li>为模型添加基础的光影（OVITO 提供的基础光影效果 Ambient Occlusion）</li>
+<li>统计模型中的孔隙率（只适用 Pro 版）</li>
+<li><strong>绘制原子应力应变云图</strong></li>
+<li><strong>根据 dump 文件输出的原子属性数据计算新的原子属性数据（静水应力 (Hydrostatic stress) 与米塞斯应力 (Von mises stress) 的计算）</strong></li>
+<li><strong>对某一原子属性在空间上进行平均（处理原子应力云图）</strong></li>
+<li>对某一原子属性在一维和二维空间上绘制分布图（只适用 Pro 版）</li>
+<li>绘制原子模型的表面轮廓线</li>
+<li>切割展示模型的某一个晶面（通过 Slice）</li>
+<li>结合 DXA 与汤普森四面体判定位错滑移面</li>
+<li>选中特定原子修改颜色</li>
+<li>修改原子的透明度</li>
+<li>辅助建立含有非晶晶界的多晶原子模型</li>
+<li>特定 Voronoi 指数的多面体团簇绘制</li>
+<li>利用平移与周期性边界条件调整模型（通过 Affine transformation 和 wrap at period boundary）</li>
+<li>冻结之前选择的原子以观察原子的移动趋势（通过 Freeze property）</li>
+<li>在 OVITO 中绘制粒子属性的散点图与直方图</li>
+<li>绘制原子位移矢量图</li>
+<li>绘制特定原子的轨迹线</li>
+</ul>
+</li>
+<li><p>直接导入构型&#x2F;轨迹文件，下方默认有 Particles 信息；添加 Modification 后，会出现 Global Attributes、Data Tables 另外两种类型的数据（添加 DXA，会多出 Dislocation、Surfaces 数据）</p>
+</li>
+</ul>
+<hr>
+<h3 id="Add-Modification-选项"><a href="#Add-Modification-选项" class="headerlink" title="Add Modification 选项"></a>Add Modification 选项</h3><ul>
+<li>无直接计算原子层间距的 Modification</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Analysis</span></span><br><span class="line">Atomic strain                     <span class="comment"># 原子应变</span></span><br><span class="line">Bond analysis                     <span class="comment"># 键分析</span></span><br><span class="line">Cluster analysis                  <span class="comment"># 团簇分析</span></span><br><span class="line">Coordination analysis             <span class="comment"># 配位分析</span></span><br><span class="line">Dislocation analysis (DXA)        <span class="comment"># 位错分析</span></span><br><span class="line">Displacement vectors</span><br><span class="line">Elastic strain calculation</span><br><span class="line">Grain segmentation</span><br><span class="line">Histogram                         <span class="comment"># 直方图</span></span><br><span class="line">Scatter plot</span><br><span class="line">Spatial binning</span><br><span class="line">Spatial correlation <span class="keyword">function</span></span><br><span class="line">Time averaging                    <span class="comment"># 时间平均</span></span><br><span class="line">Time series                       <span class="comment"># 时间序列</span></span><br><span class="line">Voronoi analysis                  <span class="comment"># Voronoi 分析</span></span><br><span class="line">Wigner-Seitz defect analysis      <span class="comment"># WS 缺陷分析</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Coloring</span></span><br><span class="line">Ambient occlusion                 <span class="comment">#</span></span><br><span class="line">Assign color                      <span class="comment"># 分配颜色/着色</span></span><br><span class="line">Color by <span class="built_in">type</span>                     <span class="comment">#</span></span><br><span class="line">Color coding                      <span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Modification</span></span><br><span class="line">Affine transformation</span><br><span class="line">Combine datasets</span><br><span class="line">Compute property</span><br><span class="line">Delete selected</span><br><span class="line">Freeze property</span><br><span class="line">Load trajectory</span><br><span class="line">Python script</span><br><span class="line">Replicate                         <span class="comment"># 扩胞</span></span><br><span class="line">Slice                             <span class="comment"># 切片</span></span><br><span class="line">Smooth trajectory                 <span class="comment">#</span></span><br><span class="line">Unwrap trajectories               <span class="comment">#</span></span><br><span class="line">Wrap at periodic boundaries       <span class="comment"># 将 box 外原子移至 box 内</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Selection</span></span><br><span class="line">Clear selection                   <span class="comment"># 清除选择</span></span><br><span class="line">Expand selection</span><br><span class="line">Expression selection              <span class="comment"># 表达式选择</span></span><br><span class="line">Invert selection                  <span class="comment"># 反选</span></span><br><span class="line">Manual selection                  <span class="comment"># 手动选择</span></span><br><span class="line">Select <span class="built_in">type</span>                       <span class="comment"># 选择（原子）类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Python modifiers (pro)</span></span><br><span class="line">Calculate <span class="built_in">local</span> entropy           <span class="comment"># 计算局域熵</span></span><br><span class="line">Idendity fcc planar faults        <span class="comment">#</span></span><br><span class="line">Render LAMMPS regions             <span class="comment">#</span></span><br><span class="line">Shrink-wrap simulation box        <span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Structure identification</span></span><br><span class="line">Ackland-Jones analysis            <span class="comment">#</span></span><br><span class="line">Centrosymmetry parameter          <span class="comment"># 中心对称参数；CSP</span></span><br><span class="line">Chill+                            <span class="comment">#</span></span><br><span class="line">Common neighbor analysis          <span class="comment"># 共近邻原子分析；CNA</span></span><br><span class="line">Identify diamond structure        <span class="comment"># 识别金刚石结构</span></span><br><span class="line">Polyhedral template matching      <span class="comment"># 多面体模板匹配；PTM</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Visualization</span></span><br><span class="line">Construct surface mesh</span><br><span class="line">Coordination polyhedra            <span class="comment"># 配位多面体</span></span><br><span class="line">Create bonds</span><br><span class="line">Generate trajectory line          <span class="comment"># 生成轨迹线</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="常用-Expression-selection-值"><a href="#常用-Expression-selection-值" class="headerlink" title="常用 Expression selection 值"></a>常用 Expression selection 值</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ovito.org/manual/reference/pipelines/modifiers/expression_select.html">Expression selection - OVITO</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Position.X              <span class="comment"># x 方向笛卡尔坐标</span></span><br><span class="line">Position.Y              <span class="comment"># y 方向笛卡尔坐标</span></span><br><span class="line">Position.Z              <span class="comment"># z 方向笛卡尔坐标；可用于选中原子层</span></span><br><span class="line">ReducedPosition.Z       <span class="comment"># z 方向分数坐标</span></span><br><span class="line">StructureType           <span class="comment"># 晶体结构类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 WS 缺陷分析 Modification 后新增的 Attributes</span></span><br><span class="line">Occupancy               <span class="comment"># 原子占位</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>空位、间隙识别及数目统计步骤：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1v2yuYBEVg">Ovito可视化弗伦克尔缺陷_哔哩哔哩_bilibili</a></p>
+<ul>
+<li>Wigner-Seitz defect analysis：识别空位和间隙原子并统计对应数目</li>
+<li>Expression selection：<code>Occupancy==0</code> 空位，<code>Occupancy&gt;0</code> 间隙原子</li>
+<li>Assign color：给空位和间隙原子分别着色以进行区分</li>
+</ul>
+</li>
+<li><p>多面体模板匹配（PTM）：<a target="_blank" rel="noopener" href="https://www.ovito.org/docs/current/reference/pipelines/modifiers/polyhedral_template_matching.html">Polyhedral template matching — OVITO User Manual 3.12.4 documentation</a></p>
+<ul>
+<li>可识别的 Ordering types（L1_0、L1_2、B2、zincblende &#x2F; wurtzite）；<strong>实际效果不好</strong></li>
+</ul>
+</li>
+<li><p>LAMMPS 与 OVITO 自带的结构分析模块包括：共近邻原子分析（Common Neighbor Analysis）；中心对称参数分析 (Centrosymetric Patameter) 与多面体模板匹配法（Polyhedral Template Matching）等。在分析点缺陷、线缺陷以及各种不同晶体结构时，这些方法是很有力、很方便的。需要指出的是，以上几种方法仅适用于已有良好定义的晶体，如 BCC、FCC、HCP、SC 等。对于不那么规则的晶体，例如单斜、三斜晶系等，可能会被错误的归入其它类别，或是归入 Others 中。</p>
+</li>
+<li><p>局域有序参数法（Local Ordering Parameter）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/0BM2SlTMsjhzH3df0UzcXw">OVITO作图系列（小结）</a></p>
+</li>
+<li><p>OVITO 中的渲染器：OpenGL renderer, Tachyon renderer, OSPRay renderer（后两者收费，其 Python API 可免费使用）</p>
+</li>
+</ul>
+<p>DXA 算法只能单线程运行；CNA，Voronoi analysis，PTM 算法可并行</p>
+<hr>
+<h2 id="OVITO-Python"><a href="#OVITO-Python" class="headerlink" title="OVITO Python"></a>OVITO Python</h2><ul>
+<li><p>官方教程：<a target="_blank" rel="noopener" href="https://www.ovito.org/docs/current/python/index.html">OVITO Python</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/niqe0NKM6rUYzoZTjsMYpA">ovito的python模块的工作流程</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/zZ5DTw59W72xkn0WP1D3FA">OVITO2.9后处理python脚本和一些python后处理代码</a>（前 6 个官网有示例代码）</p>
+<ul>
+<li>计算 MSD</li>
+<li>自定义序参数（order parameter）</li>
+<li>根据粒子的晶向对粒子进行着色</li>
+<li>找到模型中所有重叠的原子</li>
+<li>将模拟盒子的 6 个方向分别收缩到所有粒子的 6 个方向的坐标极限的</li>
+<li>计算局域熵（local entropy）</li>
+<li>统计 Voronoi 分析中出现频率最高的前 10 个 Voronoi 指数并将其输出</li>
+<li>识别 FCC 晶体中的 ISF、ESF、TB 等面缺陷</li>
+<li>识别 BCC 中的点缺陷和面缺陷</li>
+</ul>
+</li>
+<li><p>主要用于可视化：<a target="_blank" rel="noopener" href="https://stefanbringuier.github.io/HowToSOVITO">How to Script with OVITO</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://eastsheng.github.io/MyWiki/wiki/2023/04/13/softwares/lammps/ovito_plot_rendering/">Ovito高质量图片渲染Python模块 - Eastsheng’s Wiki</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/D_eXDAn9n96YKfS65tpMzQ">Voronoi 多面体指数计算方法</a></p>
+</li>
+<li><p>Voronoi 多面体指数常用 <code>&lt;n1, n2, n3, ..., ni, ...&gt;</code> 形式表示，其中 <code>ni</code> 表示 Voronoi 多面体具有的 i 边形数；一般 n1 和 n2 都是 0，可不用写出来；二十面体的多面体指数为 <code>&lt;0, 0, 12, 0&gt;</code>，十二面体的多面体指数为 <code>&lt;20, 0, 0, 0&gt;</code></p>
+</li>
+<li><p>支持的输入文件格式：<a target="_blank" rel="noopener" href="https://www.ovito.org/docs/current/reference/file_formats/file_formats_input.html#file-formats-input">Input file formats — OVITO User Manual 3.11.3 documentation</a></p>
+</li>
+<li><p>取消 OVITO Python 相关 warning 的输出</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line"></span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>, message=<span class="string">&quot;.*OVITO.*PyPI&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择性添加</span></span><br><span class="line"><span class="keyword">import</span> ovito._extensions.pyscript</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Pipeline 概念：<a target="_blank" rel="noopener" href="https://www.ovito.org/docs/current/usage/pipeline.html#usage-modification-pipeline">Pipeline concept — OVITO User Manual 3.11.3 documentation</a></p>
+<ul>
+<li>OVITO modifiers are analysis or property calculation&#x2F;setting routines. For anything you want to do, in terms of analyzing your data from a atomistic simulation, you will use a modifier which is appended to the pipeline via <code>pipeline.modifiers.append(...)</code>.</li>
+</ul>
+</li>
+<li><p>注意：CNA modifier 在 Python API 中默认采用的 Adaptive CNA mode（cutoff 为可变值），而 GUI 是 Conventional CNA mode（cutoff 为固定值），需注意区别</p>
+</li>
+</ul>
+<hr>
+<h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><ul>
+<li>导入构型数据，添加 modifier 进行处理，导出计算数据（<strong>使用多个 modifier 时，需注意其顺序</strong>）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ovito.data <span class="keyword">import</span> DataCollection, Particles, CutoffNeighborFinder, NearestNeighborFinder</span><br><span class="line"><span class="keyword">from</span> ovito.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> ovito.modifiers <span class="keyword">import</span> ...</span><br><span class="line"><span class="keyword">from</span> ovito.io <span class="keyword">import</span> import_file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入构型/轨迹文件</span></span><br><span class="line">pipeline = import_file(<span class="string">&quot;dump.lammpstrj&quot;</span>)</span><br><span class="line"><span class="comment"># 可使用通配符</span></span><br><span class="line">pipeline = import_file(<span class="string">&quot;dump_*.lammpstrj&quot;</span>)</span><br><span class="line"><span class="comment"># 参数</span></span><br><span class="line">sort_particles           <span class="comment"># 是否对原子进行排序</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 轨迹帧数</span></span><br><span class="line">nframes = pipeline.num_frames</span><br><span class="line"></span><br><span class="line">modifier = ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 modifier（可添加多个，也可不添加）</span></span><br><span class="line">pipeline.modifiers.append(modifier)</span><br><span class="line"></span><br><span class="line"><span class="comment"># data 类型 DataCollection（只代表一帧的数据）</span></span><br><span class="line">data = pipeline.compute()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 data 相关属性</span></span><br><span class="line"><span class="comment"># 不同 modifier 处理后，particles、attributes、table 会有不同</span></span><br><span class="line"><span class="built_in">list</span>(data.particles.keys())                <span class="comment"># 原子属性</span></span><br><span class="line"><span class="built_in">list</span>(data.attributes.keys()                <span class="comment"># 全局属性</span></span><br><span class="line"><span class="built_in">list</span>(data.tables.keys())                   <span class="comment"># Tabulated data/DataTable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理多帧构型数据</span></span><br><span class="line"><span class="comment"># 方式 1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nframes):</span><br><span class="line">    data = pipeline.compute(i)</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式 2；该迭代器可直接获取计算的 DataCollection</span></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> pipeline.frames:</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="Pipeline-类"><a href="#Pipeline-类" class="headerlink" title="Pipeline 类"></a>Pipeline 类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Pipeline 类</span></span><br><span class="line"><span class="comment"># 属性</span></span><br><span class="line">num_frames                    <span class="comment"># 构型帧数；或 source.num_frames</span></span><br><span class="line">frames                        <span class="comment"># 所有构型（的数据）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法</span></span><br><span class="line">add_to_scene()                <span class="comment"># 用于可视化</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="DataCollection-类"><a href="#DataCollection-类" class="headerlink" title="DataCollection 类"></a>DataCollection 类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 属性</span></span><br><span class="line">particles</span><br><span class="line">cell</span><br><span class="line">attributes</span><br><span class="line">tables</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># particles 属性</span></span><br><span class="line"><span class="built_in">list</span>(data.particles.keys())        <span class="comment"># 查看原子属性；不同输出文件格式，可能会有不同</span></span><br><span class="line"><span class="comment"># POSCAR</span></span><br><span class="line">[<span class="string">&#x27;Position&#x27;</span>, <span class="string">&#x27;Particle Type&#x27;</span>]</span><br><span class="line"><span class="comment"># dump.lammpstrj / xyz</span></span><br><span class="line">[<span class="string">&#x27;Particle Identifier&#x27;</span>, <span class="string">&#x27;Particle Type&#x27;</span>, <span class="string">&#x27;Position&#x27;</span>]</span><br><span class="line"></span><br><span class="line">data.cell[...]                     <span class="comment"># 晶格信息</span></span><br><span class="line">data.particles.positions           <span class="comment"># 原子位置</span></span><br><span class="line">data.particles.count               <span class="comment"># 原子数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看原子种类（元素）及其 ID 信息</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">type</span> <span class="keyword">in</span> data.particles.particle_types.types:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>.<span class="built_in">id</span>, <span class="built_in">type</span>.name)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="构型-数据导出"><a href="#构型-数据导出" class="headerlink" title="构型&#x2F;数据导出"></a>构型&#x2F;数据导出</h3><ul>
+<li>可导出的文件格式：<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ovito.org/docs/current/python/modules/ovito_io.html#ovito.io.export_file">ovito.io — OVITO Python Reference 3.14.1 documentation</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ovito.org/manual/reference/file_formats/file_formats_input.html">Input file formats — OVITO User Manual 3.14.1 documentation</a></li>
+<li>支持 imd、cfg、xsf 格式</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ovito.io <span class="keyword">import</span> export_file</span><br><span class="line"></span><br><span class="line">export_file(data, file, <span class="built_in">format</span>, **params)</span><br><span class="line"><span class="comment"># 参数</span></span><br><span class="line">data                  <span class="comment"># 可以是 Pipeline、DataCollection、DataObject、None 类型</span></span><br><span class="line">file                  <span class="comment"># 输出文件</span></span><br><span class="line">foramt                <span class="comment"># 输出文件格式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># **params 参数</span></span><br><span class="line">multiple_frames       <span class="comment"># 是否导出多帧数据，默认只会导出第一帧数据</span></span><br><span class="line">start_frame           <span class="comment"># 起始帧</span></span><br><span class="line">end_frame             <span class="comment"># 结束帧</span></span><br><span class="line">every_nth_frame       <span class="comment"># 每第 n 帧数据导出</span></span><br><span class="line">key                   <span class="comment"># 若为 &quot;txt/table&quot; 格式，可添加该参数导出对应 key 的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 支持的 format</span></span><br><span class="line"><span class="string">&quot;txt/attr&quot;</span>            <span class="comment"># 导出 global attributes</span></span><br><span class="line"><span class="string">&quot;txt/table&quot;</span>           <span class="comment"># 导出 DataTable</span></span><br><span class="line"><span class="string">&quot;xyz&quot;</span></span><br><span class="line"><span class="string">&quot;vasp&quot;</span></span><br><span class="line"><span class="string">&quot;lammps/data&quot;</span>         <span class="comment"># 和 LAMMPS data 文件格式内容有些许差异</span></span><br><span class="line"><span class="string">&quot;lammps/dump&quot;</span></span><br><span class="line"><span class="string">&quot;imd&quot;</span></span><br><span class="line"><span class="string">&quot;netcdf/amber&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出示例</span></span><br><span class="line"><span class="comment"># 导出 VASP 格式</span></span><br><span class="line">export_file(pipeline, <span class="string">&quot;POSCAR&quot;</span>, <span class="string">&quot;vasp&quot;</span>, reduced=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出 LAMMPS data 格式</span></span><br><span class="line">export_file(pipeline, <span class="string">&quot;output.data&quot;</span>, <span class="string">&quot;lammps/data&quot;</span>, atom_style=<span class="string">&quot;atomic&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出 LAMMPS dump 格式</span></span><br><span class="line"><span class="comment"># 导出多帧方式 1</span></span><br><span class="line">export_file(pipeline, <span class="string">&quot;output.*.dump&quot;</span>, <span class="string">&quot;lammps/dump&quot;</span>, multiple_frames=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出多帧方式 2</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nframes):</span><br><span class="line">    export_file(pipeline, <span class="string">f&quot;output.<span class="subst">&#123;i&#125;</span>.dump&quot;</span>, <span class="string">&quot;lammps/dump&quot;</span>, frame=i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于 &quot;txt&quot; &quot;lammps/dump&quot; &quot;xyz&quot; 格式，需通过 columns 指定具体的原子属性</span></span><br><span class="line">export_file(</span><br><span class="line">    pipeline,</span><br><span class="line">    <span class="string">&quot;output.xyz&quot;</span>,</span><br><span class="line">    <span class="string">&quot;xyz&quot;</span>,</span><br><span class="line">    columns=[<span class="string">&quot;Particle Identifier&quot;</span>, <span class="string">&quot;Particle Type&quot;</span>, <span class="string">&quot;Position.X&quot;</span>, <span class="string">&quot;Position.Y&quot;</span>, <span class="string">&quot;Position.Z&quot;</span>],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出 &quot;txt/attr&quot;</span></span><br><span class="line">export_file(</span><br><span class="line">    pipeline,</span><br><span class="line">    <span class="string">&quot;data.txt&quot;</span>,</span><br><span class="line">    <span class="string">&quot;txt/attr&quot;</span>,</span><br><span class="line">    columns=[<span class="string">&quot;Timestep&quot;</span>, <span class="string">&quot;CommonNeighborAnalysis.counts.FCC&quot;</span>],</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出 &quot;txt/table&quot;</span></span><br><span class="line">export_file(</span><br><span class="line">    pipeline,</span><br><span class="line">    <span class="string">&quot;data.txt&quot;</span>,</span><br><span class="line">    <span class="string">&quot;txt/table&quot;</span>,</span><br><span class="line">    key=<span class="string">&quot;coordination-rdf[average]&quot;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="modifiers"><a href="#modifiers" class="headerlink" title="modifiers"></a>modifiers</h3><ul>
+<li>modifiers Python API 及对应的 GUI 名称：<a target="_blank" rel="noopener" href="https://www.ovito.org/docs/current/python/modules/ovito_modifiers.html">ovito.modifiers — OVITO Python Reference 3.12.4 documentation</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ovito.modifiers <span class="keyword">import</span> ...</span><br><span class="line"><span class="keyword">from</span> ovito.data <span class="keyword">import</span> CutoffNeighborFinder, DataCollection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># modifier，对应于 OVITO 软件中的 Modification</span></span><br><span class="line">VoronoiAnalysisModifier              <span class="comment"># Voronoi 分析</span></span><br><span class="line">ComputePropertyModifier</span><br><span class="line">CoordinationAnalysisModifier         <span class="comment"># 配位分析</span></span><br><span class="line">TimeAveragingModifier                <span class="comment"># 时间平均</span></span><br><span class="line">BondAnalysisModifier                 <span class="comment"># 键分析</span></span><br><span class="line">CreateBondsModifier</span><br><span class="line">CommonNeighborAnalysisModifier       <span class="comment"># CNA</span></span><br><span class="line">AffineTransformationModifier</span><br><span class="line">ExpressionSelectionModifier          <span class="comment"># 表达式选择</span></span><br><span class="line">AssignColorModifier                  <span class="comment"># 分配颜色/着色</span></span><br><span class="line">CalculateDisplacementsModifier       <span class="comment"># 计算原子的位移矢量；可用于计算 MSD</span></span><br><span class="line">DislocationAnalysisModifier          <span class="comment"># 位错分析；DXA；需给定晶体结构</span></span><br><span class="line">InvertSelectionModifier              <span class="comment"># 反选</span></span><br><span class="line">SelectTypeModifier                   <span class="comment"># 选择类型（结构类型等）</span></span><br><span class="line">DeleteSelectedModifier               <span class="comment"># 删除选择的</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="particles、Global-Attributes、Data-Tables"><a href="#particles、Global-Attributes、Data-Tables" class="headerlink" title="particles、Global Attributes、Data Tables"></a>particles、Global Attributes、Data Tables</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">data.particles[...]                  <span class="comment"># 获取 particle 中对应 keyword 的数据</span></span><br><span class="line">data.attributes[...]                 <span class="comment"># 获取 Global Attributes 中对应 keyword 的数据</span></span><br><span class="line">data.tables[...]                     <span class="comment"># 获取 Data Tables 中对应 keyword 的数据</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># attributes</span></span><br><span class="line"><span class="string">&quot;Timestep&quot;</span>                           <span class="comment"># 时间步</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># CNA attributes</span></span><br><span class="line"><span class="string">&quot;CommonNeighborAnalysis.counts.BCC&quot;</span></span><br><span class="line"><span class="string">&quot;CommonNeighborAnalysis.counts.FCC&quot;</span></span><br><span class="line"><span class="string">&quot;CommonNeighborAnalysis.counts.HCP&quot;</span></span><br><span class="line"><span class="string">&quot;CommonNeighborAnalysis.counts.ICO&quot;</span></span><br><span class="line"><span class="string">&quot;CommonNeighborAnalysis.counts.OTHER&quot;</span></span><br><span class="line"><span class="comment"># CNA tables</span></span><br><span class="line"><span class="string">&quot;structures&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># DXA attributes</span></span><br><span class="line"><span class="string">&quot;DislocationAnalysis.total_line_length&quot;</span>    <span class="comment"># total_line_length / cell_volume 位错密度</span></span><br><span class="line"><span class="string">&quot;DislocationAnalysis.cell_volume&quot;</span>          </span><br><span class="line"><span class="string">&quot;DislocationAnalysis.length.other&quot;</span></span><br><span class="line"><span class="string">&quot;DislocationAnalysis.length.1/2&lt;110&gt;&quot;</span></span><br><span class="line"><span class="string">&quot;DislocationAnalysis.length.1/3&lt;100&gt;&quot;</span></span><br><span class="line"><span class="string">&quot;DislocationAnalysis.length.1/3&lt;111&gt;&quot;</span></span><br><span class="line"><span class="string">&quot;DislocationAnalysis.length.1/6&lt;110&gt;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># SelectTypeModifier attributes</span></span><br><span class="line"><span class="string">&quot;SelectType.num_selected&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># CalculateDisplacementsModifier particles</span></span><br><span class="line"><span class="string">&quot;Displacement Magnitude&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="格式转换"><a href="#格式转换" class="headerlink" title="格式转换"></a>格式转换</h3><ul>
+<li>OVITO Python 中的 DataCollection 可转换成 ASE、pymatgen 的格式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ovito.io.ase <span class="keyword">import</span> ase_to_ovito, ovito_to_ase</span><br><span class="line"><span class="keyword">from</span> ovito.io.pymatgen <span class="keyword">import</span> pymatgen_to_ovito, ovito_to_pymatgen</span><br><span class="line"></span><br><span class="line">pipeline = import_file()</span><br><span class="line">data = pipeline.compute()</span><br><span class="line"></span><br><span class="line">atoms = ovito_to_ase(data)</span><br><span class="line">structure = ovito_to_pymatgen(data)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="计算-RDF"><a href="#计算-RDF" class="headerlink" title="计算 RDF"></a>计算 RDF</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">pipeline.modifiers.append(</span><br><span class="line">    CoordinationAnalysisModifier(</span><br><span class="line">        cutoff=<span class="number">5.0</span>,</span><br><span class="line">        number_of_bins=<span class="number">100</span>,</span><br><span class="line">        partial=<span class="literal">False</span>,</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只输出第一帧的数据</span></span><br><span class="line"><span class="built_in">print</span>(pipeline.compute().tables[<span class="string">&quot;coordination-rdf&quot;</span>].xy())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出每帧的数据</span></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> pipeline.frames:</span><br><span class="line">    <span class="built_in">print</span>(data.tables[<span class="string">&quot;coordination-rdf&quot;</span>].xy())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对所有帧的数据做平均</span></span><br><span class="line">pipeline.modifiers.append(TimeAveragingModifier(operate_on=<span class="string">&quot;table:coordination-rdf&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(pipeline.compute().tables[<span class="string">&quot;coordination-rdf[average]&quot;</span>].xy())</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="统计多晶模型中晶界和-Bulk-区域的元素分布及占比"><a href="#统计多晶模型中晶界和-Bulk-区域的元素分布及占比" class="headerlink" title="统计多晶模型中晶界和 Bulk 区域的元素分布及占比"></a>统计多晶模型中晶界和 Bulk 区域的元素分布及占比</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">cna_modifier = CommonNeighborAnalysisModifier()</span><br><span class="line">pipeline.modifiers.append(cna_modifier)</span><br><span class="line"></span><br><span class="line">select_type_modifier = SelectTypeModifier(</span><br><span class="line">    operate_on=<span class="string">&quot;particles&quot;</span>,</span><br><span class="line">    <span class="built_in">property</span>=<span class="string">&quot;Structure Type&quot;</span>,</span><br><span class="line">    types=&#123;</span><br><span class="line">        <span class="comment"># Bulk 区域</span></span><br><span class="line">        <span class="comment"># CommonNeighborAnalysisModifier.Type.OTHER,</span></span><br><span class="line">        <span class="comment"># 晶界区域</span></span><br><span class="line">        <span class="comment"># CommonNeighborAnalysisModifier.Type.BCC,</span></span><br><span class="line">        CommonNeighborAnalysisModifier.<span class="type">Type</span>.FCC,</span><br><span class="line">        CommonNeighborAnalysisModifier.<span class="type">Type</span>.HCP,</span><br><span class="line">        CommonNeighborAnalysisModifier.<span class="type">Type</span>.ICO,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line">pipeline.modifiers.append(select_type_modifier)</span><br><span class="line"></span><br><span class="line">pipeline.modifiers.append(DeleteSelectedModifier())</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(pipeline.modifiers)</span><br><span class="line"></span><br><span class="line">element_info_list = []</span><br><span class="line"><span class="keyword">for</span> frame <span class="keyword">in</span> <span class="built_in">range</span>(pipeline.num_frames):</span><br><span class="line">    data = pipeline.compute(frame)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;No. <span class="subst">&#123;frame&#125;</span> frame processed.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    partcle_type_array = data.particles[<span class="string">&quot;Particle Type&quot;</span>]</span><br><span class="line">    type_count_tuple = np.unique(partcle_type_array, return_counts=<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># &#123;1: 100, ...&#125;</span></span><br><span class="line">    type_count_dict = <span class="built_in">dict</span>(<span class="built_in">zip</span>(type_count_tuple[<span class="number">0</span>], type_count_tuple[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#123;&quot;frame&quot;: 1, &quot;Ti&quot;: 100, ...&#125;</span></span><br><span class="line">    element_count_dict = &#123;<span class="string">&quot;frame&quot;</span>: frame&#125;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">type</span> <span class="keyword">in</span> data.particles.particle_types.types:</span><br><span class="line">        element_count_dict[<span class="built_in">type</span>.name] = type_count_dict[<span class="built_in">type</span>.<span class="built_in">id</span>]</span><br><span class="line"></span><br><span class="line">    element_info_list.append(element_count_dict)</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(element_info_list)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="位错分析"><a href="#位错分析" class="headerlink" title="位错分析"></a>位错分析</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="计算-MSD"><a href="#计算-MSD" class="headerlink" title="计算 MSD"></a>计算 MSD</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/wangchr1617/NEP_GT/blob/main/NEP_MSD/NEP_MSD.ipynb">NEP_GT&#x2F;NEP_MSD&#x2F;NEP_MSD.ipynb at main · wangchr1617&#x2F;NEP_GT · GitHub</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog">Nobody</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog/posts/124902.html">https://bit-part-young.github.io/blog/posts/124902.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bit-part-young.github.io/blog" target="_blank">Seek Another Land</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/OVITO/">OVITO</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/102123.html" title="Vuepress、Vitepress 框架"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider8.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vuepress、Vitepress 框架</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/124968.html" title="pymatgen 使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider16.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">pymatgen 使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/posts/381006.html" title="结构建模"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider18.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-15</div><div class="title">结构建模</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nobody</div><div class="author-info__description">A Land of Nobody</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bit-Part-Young"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Bit-Part-Young" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0084ff;"></i></a><a class="social-icon" href="mailto:3304839708@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="订阅-ATOM"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Nobody's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OVITO-%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">OVITO 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Modification-%E9%80%89%E9%A1%B9"><span class="toc-number">1.2.1.</span> <span class="toc-text">Add Modification 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8-Expression-selection-%E5%80%BC"><span class="toc-number">1.2.2.</span> <span class="toc-text">常用 Expression selection 值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OVITO-Python"><span class="toc-number">1.3.</span> <span class="toc-text">OVITO Python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">整体流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pipeline-%E7%B1%BB"><span class="toc-number">1.3.2.</span> <span class="toc-text">Pipeline 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DataCollection-%E7%B1%BB"><span class="toc-number">1.3.3.</span> <span class="toc-text">DataCollection 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%9E%8B-%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA"><span class="toc-number">1.3.4.</span> <span class="toc-text">构型&#x2F;数据导出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modifiers"><span class="toc-number">1.3.5.</span> <span class="toc-text">modifiers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#particles%E3%80%81Global-Attributes%E3%80%81Data-Tables"><span class="toc-number">1.3.6.</span> <span class="toc-text">particles、Global Attributes、Data Tables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.3.7.</span> <span class="toc-text">格式转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-RDF"><span class="toc-number">1.3.8.</span> <span class="toc-text">计算 RDF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E5%A4%9A%E6%99%B6%E6%A8%A1%E5%9E%8B%E4%B8%AD%E6%99%B6%E7%95%8C%E5%92%8C-Bulk-%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%85%83%E7%B4%A0%E5%88%86%E5%B8%83%E5%8F%8A%E5%8D%A0%E6%AF%94"><span class="toc-number">1.3.9.</span> <span class="toc-text">统计多晶模型中晶界和 Bulk 区域的元素分布及占比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E9%94%99%E5%88%86%E6%9E%90"><span class="toc-number">1.3.10.</span> <span class="toc-text">位错分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-MSD"><span class="toc-number">1.3.11.</span> <span class="toc-text">计算 MSD</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/206050.html" title="VASP 报错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="VASP 报错"/></a><div class="content"><a class="title" href="/blog/posts/206050.html" title="VASP 报错">VASP 报错</a><time datetime="2025-06-07T06:00:00.000Z" title="发表于 2025-06-07 14:00:00">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/241231.html" title="2024 记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="2024 记录"/></a><div class="content"><a class="title" href="/blog/posts/241231.html" title="2024 记录">2024 记录</a><time datetime="2024-12-31T12:29:20.000Z" title="发表于 2024-12-31 20:29:20">2024-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/851955.html" title="TeX Live 安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="TeX Live 安装"/></a><div class="content"><a class="title" href="/blog/posts/851955.html" title="TeX Live 安装">TeX Live 安装</a><time datetime="2024-11-23T07:59:58.000Z" title="发表于 2024-11-23 15:59:58">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/173511.html" title="孔老师程序编译与使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="孔老师程序编译与使用"/></a><div class="content"><a class="title" href="/blog/posts/173511.html" title="孔老师程序编译与使用">孔老师程序编译与使用</a><time datetime="2024-11-18T09:35:11.000Z" title="发表于 2024-11-18 17:35:11">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/195428.html" title="gnuplot 使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider14.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="gnuplot 使用"/></a><div class="content"><a class="title" href="/blog/posts/195428.html" title="gnuplot 使用">gnuplot 使用</a><time datetime="2024-11-13T11:54:28.000Z" title="发表于 2024-11-13 19:54:28">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider14.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Nobody</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span> | 托管 </span><a target="_blank" rel="noopener" href="https://github.com">GitHub</a><span> | 部署 </span><a target="_blank" rel="noopener" href="https://vercel.com">Vercel</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=4.13.0"></script><script src="/blog/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

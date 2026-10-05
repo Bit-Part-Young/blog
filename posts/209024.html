@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Rust 学习 | Seek Another Land</title><meta name="author" content="Nobody"><meta name="copyright" content="Nobody"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Rust 学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust 学习">
+<meta property="og:url" content="https://bit-part-young.github.io/blog/posts/209024.html">
+<meta property="og:site_name" content="Seek Another Land">
+<meta property="og:description" content="Rust 学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.pterclub.com/images/2022/08/26/spider9.png">
+<meta property="article:published_time" content="2024-02-01T01:00:00.000Z">
+<meta property="article:modified_time" content="2025-06-23T08:48:03.992Z">
+<meta property="article:author" content="Nobody">
+<meta property="article:tag" content="Rust">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.pterclub.com/images/2022/08/26/spider9.png"><link rel="shortcut icon" href="/blog/img/logo_rm.png"><link rel="canonical" href="https://bit-part-young.github.io/blog/posts/209024.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":2000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Rust 学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-06-23 16:48:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Seek Another Land" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Seek Another Land" type="application/rss+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/blog/css/center-simple.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider9.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Seek Another Land"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo_rm.png"/><span class="site-name">Seek Another Land</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Rust 学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-01T01:00:00.000Z" title="发表于 2024-02-01 09:00:00">2024-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-06-23T08:48:03.992Z" title="更新于 2025-06-23 16:48:03">2025-06-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E7%BC%96%E7%A8%8B/">编程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Rust 学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Rust-学习"><a href="#Rust-学习" class="headerlink" title="Rust 学习"></a>Rust 学习</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>WIP…</p>
+<p>Rust、Julia、Fortran 没有类的概念</p>
+<hr>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://course.rs/">关于本书 - Rust语言圣经(Rust Course)</a>；<a target="_blank" rel="noopener" href="https://github.com/sunface/rust-course">GitHub - sunface&#x2F;rust-course</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rusty.course.rs/about.html">Rusty Book - Rusty Book(锈书)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/pl/rust/">Rust - 鹤翔万里的笔记本</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/rust-lang-cn/book-cn">GitHub - rust-lang-cn&#x2F;book-cn: Rust 程序设计语言 中文版</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/book/">Rust 程序设计语言 - Rust 程序设计语言 中文版</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://pyo3.rs/">Introduction - PyO3 user guide</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/mainmatter/100-exercises-to-learn-rust">GitHub - mainmatter&#x2F;100-exercises-to-learn-rust: A self-paced course to learn Rust, one exercise at a time.</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/rust-lang/rustlings">GitHub - rust-lang&#x2F;rustlings: :crab: Small exercises to get you used to reading and writing Rust code!</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/guofei9987/rs_lib">GitHub - guofei9987&#x2F;rs_lib: Rust调用C的例子（混合编程）</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bg411W757/">萌的 4 分钟！Rust 光速入门！_哔哩哔哩_bilibili</a></p>
+</li>
+</ul>
+<hr>
+<p>Rust 练习：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/feint123/code-search">GitHub - feint123&#x2F;code-search: a command code tools of search</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV196WNeWEJE">【编程】用rust写了一个超好用的命令行代码搜索工具！_哔哩哔哩_bilibili</a></p>
+</li>
+</ul>
+<hr>
+<p>库</p>
+<ul>
+<li><p>类似 Python Pandas：<a target="_blank" rel="noopener" href="https://github.com/pola-rs/polars">GitHub - pola-rs&#x2F;polars: Dataframes powered by a multithreaded, vectorized query engine, written in Rust</a></p>
+</li>
+<li><p>命令行参数解析：<a target="_blank" rel="noopener" href="https://github.com/google/argh">GitHub - google&#x2F;argh: Rust derive-based argument parsing optimized for code size</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="Rust-环境安装"><a href="#Rust-环境安装" class="headerlink" title="Rust 环境安装"></a>Rust 环境安装</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/rustup/">rustup | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/help/rust-static.html">Rust Toolchain 反向代理使用帮助 — USTC Mirror Help  文档</a></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式 1</span></span><br><span class="line">brew install rust       <span class="comment"># macOS</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式 2</span></span><br><span class="line">curl --proto <span class="string">&#x27;=https&#x27;</span> --tlsv1.2 https://sh.rustup.rs -sSf | sh</span><br><span class="line"></span><br><span class="line">rustup self uninstall   <span class="comment"># 卸载</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加速安装：将 Rust 安装源设置国内源</span></span><br><span class="line"><span class="built_in">export</span> RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式 3</span></span><br><span class="line">curl -sS https://webi.sh/rustlang | sh</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运行简单脚本</span></span><br><span class="line">rustc *.rs</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="Cargo"><a href="#Cargo" class="headerlink" title="Cargo"></a>Cargo</h3><p>cargo 相关命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cargo --list   <span class="comment"># 查看所有安装的命令</span></span><br><span class="line"><span class="comment"># 安装 package （指 Rust binary）</span></span><br><span class="line">cargo install &lt;package&gt;</span><br><span class="line"><span class="comment"># 若有新版本，覆盖旧版本</span></span><br><span class="line">cargo install &lt;package&gt; --force</span><br><span class="line"><span class="comment"># --locked 确保安装时依赖项的版本与在 Cargo.lock 文件中的版本完全一致</span></span><br><span class="line">cargo install --locked &lt;package&gt;</span><br><span class="line"><span class="comment"># 列出所有安装的 packages 及对应的版本</span></span><br><span class="line">cargo install --list</span><br><span class="line"><span class="comment"># 查找 package</span></span><br><span class="line">cargo search &lt;package&gt;</span><br><span class="line"></span><br><span class="line">cargo add &lt;lib&gt;</span><br><span class="line"></span><br><span class="line">rustup update  <span class="comment"># 更新 Rust 工具链</span></span><br><span class="line"></span><br><span class="line">cargo clean    <span class="comment"># 删除当前目录下的 target/ 文件夹</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>修改 Rust 的下载镜像为国内的镜像地址：创建或编辑 <code>$HOME/.cargo/config.toml</code></p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[source.crates-io]</span></span><br><span class="line"><span class="attr">replace-with</span> = <span class="string">&#x27;mirror&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[source.mirror]</span></span><br><span class="line"><span class="comment"># 清华源</span></span><br><span class="line"><span class="attr">registry</span> = <span class="string">&quot;sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/&quot;</span></span><br><span class="line"><span class="comment"># 科大源</span></span><br><span class="line"><span class="comment"># registry = &quot;sparse+https://mirrors.ustc.edu.cn/crates.io-index/&quot;</span></span><br><span class="line"><span class="comment"># git 写法</span></span><br><span class="line"><span class="comment"># registry = &quot;sparse+git://mirrors.ustc.edu.cn/crates.io-index/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/crates.io-index.git/">清华大学镜像 - crates.io-index.git</a>、<a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/help/crates.io-index.html">Rust Crates 源使用帮助 — USTC Mirror Help  文档</a></li>
+<li>cargo 1.68 版本开始支持稀疏索引：不再需要完整克隆 crates.io-index 仓库，可以加快获取包的速度</li>
+<li>注：添加镜像后，会无法使用 <code>cargo search</code> 民令</li>
+</ul>
+<hr>
+<p>项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建项目</span></span><br><span class="line">cargo new &lt;project&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行项目</span></span><br><span class="line">cargo run                  <span class="comment"># cargo r；默认使用调试模式编译</span></span><br><span class="line">cargo run -- arg1 arg2     <span class="comment"># 将参数参数传递给程序，用 -- 隔开</span></span><br><span class="line">cargo run --release        <span class="comment"># 使用发布模式编译（优化更好，但编译速度较慢）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 代码验证</span></span><br><span class="line">cargo check</span><br></pre></td></tr></table></figure>
+
+<p><code>cargo run</code> 相当于运行了编译 <code>cargo build</code> 和运行 <code>./target/debug/XXX</code> 两个步骤</p>
+<p>默认是 <code>debug</code> 模式，代码编译速度快，运行速度慢；提高代码性能：添加 <code>--release</code> 编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cargo run --release</span><br><span class="line">cargo build --release</span><br></pre></td></tr></table></figure>
+
+
+
+<p>项目结构</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">├── .git</span><br><span class="line">├── .gitignore</span><br><span class="line">├── Cargo.lock    <span class="comment"># 项目依赖详细清单</span></span><br><span class="line">├── Cargo.toml    <span class="comment"># 项目数据描述文件</span></span><br><span class="line">└── src</span><br><span class="line">    └── main.rs</span><br></pre></td></tr></table></figure>
+
+
+<p>若项目是一个可运行的程序时，可上传 <code>Cargo.lock</code>；若是一个依赖库项目，建议将其添加到 <code>.gitignore</code> 中</p>
+<p><code>Cargo.toml</code> 设置</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># package 配置</span></span><br><span class="line"><span class="section">[package]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;world_hello&quot;</span></span><br><span class="line"><span class="attr">version</span> = <span class="string">&quot;0.1.0&quot;</span></span><br><span class="line"><span class="attr">edition</span> = <span class="string">&quot;2021&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 项目依赖</span></span><br><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">rand</span> = <span class="string">&quot;0.3&quot;</span></span><br><span class="line"><span class="attr">hammer</span> = &#123; version = <span class="string">&quot;0.5.0&quot;</span>&#125;</span><br><span class="line"><span class="attr">color</span> = &#123; git = <span class="string">&quot;https://github.com/bjz/color-rs&quot;</span> &#125;</span><br><span class="line"><span class="attr">geometry</span> = &#123; path = <span class="string">&quot;crates/geometry&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>项目依赖</p>
+<hr>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li><p>Rust 相关 VSCode 插件：rust-analyzer</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/nabijaczleweli/cargo-update">cargo-update</a>：检查和更新 package 的 cargo 子命令</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">cargo install cargo-update  <span class="comment"># 安装</span></span><br><span class="line"></span><br><span class="line">cargo install-update -l     <span class="comment"># 列出所有安装的 packages </span></span><br><span class="line">cargo install-update -a     <span class="comment"># 检查并更新所有安装的 packages </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可能会遇到 pkg-config、openssl 未安装的问题</span></span><br><span class="line"><span class="built_in">sudo</span> apt install pkg-config  <span class="comment"># Ubuntu</span></span><br><span class="line"><span class="built_in">sudo</span> apt install libssl-dev</span><br><span class="line"></span><br><span class="line">./configure --prefix=<span class="variable">$HOME</span>/local/pkg-config --with-internal-glib</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HOME</span>/local/pkg-config/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line">./config --prefix=<span class="variable">$HOME</span>/local/openssl --openssldir=<span class="variable">$HOME</span>/local/openssl no-zlib</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> OPENSSL_DIR=<span class="variable">$HOME</span>/local/openssl</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;OPENSSL_DIR&#125;</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$HOME</span>/local/openssl/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cargo-cache：cargo 缓存管理工具</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cargo install cargo-cache  <span class="comment"># 安装</span></span><br><span class="line"></span><br><span class="line">cargo cache                <span class="comment"># 清理缓存</span></span><br><span class="line">cargo cache -n             <span class="comment"># 不实际运行</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>rust-binstall</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">curl -L --proto <span class="string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash</span><br><span class="line"></span><br><span class="line">cargo binstall ripgrep</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一次性更新所有软件包（跨平台）：<a target="_blank" rel="noopener" href="https://github.com/topgrade-rs/topgrade">GitHub - topgrade-rs&#x2F;topgrade: Upgrade all the things</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install topgrade  <span class="comment"># 安装</span></span><br><span class="line">topgrade               <span class="comment"># 使用</span></span><br><span class="line">topgrade -n            <span class="comment"># 不实际运行</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在 Rust 中使用 REPL 和 Jupyter 内核：<a target="_blank" rel="noopener" href="https://github.com/evcxr/evcxr">GitHub - evcxr&#x2F;evcxr</a></li>
+</ul>
+<hr>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ul>
+<li>若创建了一个变量却不在任何地方使用它，Rust 通常会给你一个警告，因为这可能会是个 BUG</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 变量可变</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">x</span> = <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 使用下划线开头忽略未使用的变量</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">_x</span> = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量</span></span><br><span class="line"><span class="keyword">const</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><p>Rust 编译器可以根据变量的值和上下文中的使用方式来自动推导出变量的类型</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202402011629402.png" alt="image.png"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202402011631440.png" alt="image.png"></p>
+<p>浮点类型：<code>f32</code> 和 <code>f64</code>，默认浮点类型是 <code>f64</code></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/lenovo-images/202402011634539.png" alt="image.png"></p>
+<p>NaN 类型</p>
+<p>序列：<code>1..5</code>，生成从 1 到 4 的连续数字，不包含 5；<code>1..=5</code>，生成从 1 到 5 的连续数字，包含 5</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="variable">i</span> <span class="keyword">in</span> <span class="number">1</span>..=<span class="number">5</span> &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>,i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>字符 <code>&#39;&#39;</code>，字符串 <code>&quot;&quot;</code></p>
+<p>单元类型：<code>()</code></p>
+<p><code>main</code> 函数就返回单元类型</p>
+<p>没有返回值的函数在 Rust 中有单独定义</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类型注释</span></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">add</span>(i: <span class="type">i32</span>, j: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">i32</span> &#123;</span><br><span class="line">   i + j</span><br><span class="line"> &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>语句：加分号 <code>;</code>，表达式：不加分号 <code>;</code></p>
+<p>Rust 是强类型语言，每个函数参数都需要标注类型，函数的位置可以随便放</p>
+<hr>
+<ul>
+<li>**垃圾回收机制 (GC)**，在程序运行时不断寻找不再使用的内存，典型代表：Java、Go</li>
+<li><strong>手动管理内存的分配和释放</strong>, 在程序中，通过函数调用的方式来申请和释放内存，典型代表：C++</li>
+<li><strong>通过所有权来管理内存</strong>，编译器在编译时会根据一系列规则进行检查</li>
+</ul>
+<hr>
+<p>Rust 中的字符是 Unicode 类型，每个字符占据 4 个字节内存空间；在字符串中不一样，字符串是 UTF-8 编码，字符串中的字符所占的字节数是变化的 (1 - 4)，如中文在 UTF-8 中占用三个字节</p>
+<p><code>str</code> 类型是硬编码进可执行文件，也无法被修改，但是 <code>String</code> 则是一个可增长、可改变且具有所有权的 UTF-8 编码字符串。当 Rust 用户提到字符串时，往往指的就是 String 类型和 &amp;str 字符串切片类型，这两个类型都是 UTF-8 编码</p>
+<p>元组</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">tup</span>: (<span class="type">i32</span>, <span class="type">f64</span>, <span class="type">u8</span>) = (<span class="number">500</span>, <span class="number">6.4</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用 <code>.</code> 获取元组中的值</p>
+<hr>
+<p>结构体</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: <span class="type">String</span>,</span><br><span class="line">    email: <span class="type">String</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> <span class="variable">user1</span> = User &#123;</span><br><span class="line">      email: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;someone@example.com&quot;</span>),</span><br><span class="line">      username: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;someusername123&quot;</span>),</span><br><span class="line">      active: <span class="literal">true</span>,</span><br><span class="line">      sign_in_count: <span class="number">1</span>,</span><br><span class="line">  &#125;;</span><br><span class="line"><span class="comment">// 结构体更新</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">user2</span> = User &#123;</span><br><span class="line">      email: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;another@example.com&quot;</span>),</span><br><span class="line">      ..user1</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>初始化实例时，<strong>每个字段</strong>都需要进行初始化</li>
+<li>初始化时的字段顺序<strong>不需要</strong>和结构体定义时的顺序一致</li>
+</ul>
+<p>用 <code>.</code> 访问结构体实例内部的字段值</p>
+<p>使用 <code>#[derive(Debug)]</code> 来打印结构体的信息</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    width: <span class="type">u32</span>,</span><br><span class="line">    height: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect1</span> = Rectangle &#123;</span><br><span class="line">        width: <span class="number">30</span>,</span><br><span class="line">        height: <span class="number">50</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect1 is &#123;:?&#125;&quot;</span>, rect1);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect1 is &#123;:#?&#125;&quot;</span>, rect1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组 <code>array</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition == <span class="literal">true</span> &#123;</span><br><span class="line">    <span class="comment">// A...</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// B...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14t4y1u7TW">【rust】Option_哔哩哔哩_bilibili</a></p>
+<p>模式匹配： <code>match</code> 和 <code>if let</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">match</span> target &#123;</span><br><span class="line">    模式<span class="number">1</span> =&gt; 表达式<span class="number">1</span>,</span><br><span class="line">    模式<span class="number">2</span> =&gt; &#123;</span><br><span class="line">        语句<span class="number">1</span>;</span><br><span class="line">        语句<span class="number">2</span>;</span><br><span class="line">        表达式<span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    _ =&gt; 表达式<span class="number">3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>代码注释</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">    块注释</span></span><br><span class="line"><span class="comment">*/</span> </span><br></pre></td></tr></table></figure>
+
+<p>文档注释</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 文档行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">文档块注释</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><code>!</code>：宏操作符</p>
+<p>Rust 的集合类型不能直接进行循环，需要变成迭代器（可用 <code>.iter()</code> 方法），才能用于迭代循环</p>
+<p>随机数：rand</p>
+<hr>
+<h3 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h3><p><code>clap</code> 库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cargo add clap --features derive</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog">Nobody</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog/posts/209024.html">https://bit-part-young.github.io/blog/posts/209024.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bit-part-young.github.io/blog" target="_blank">Seek Another Land</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Rust/">Rust</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/320153.html" title="ATAT 安装与使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider3.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ATAT 安装与使用</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/131401.html" title="Windows 计算机相关"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider11.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Windows 计算机相关</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nobody</div><div class="author-info__description">A Land of Nobody</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bit-Part-Young"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Bit-Part-Young" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0084ff;"></i></a><a class="social-icon" href="mailto:3304839708@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="订阅-ATOM"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Nobody's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Rust-%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">Rust 学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rust-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">Rust 环境安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cargo"><span class="toc-number">1.2.2.</span> <span class="toc-text">Cargo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">1.2.3.</span> <span class="toc-text">工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">基本类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.3.</span> <span class="toc-text">参数解析</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/206050.html" title="VASP 报错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="VASP 报错"/></a><div class="content"><a class="title" href="/blog/posts/206050.html" title="VASP 报错">VASP 报错</a><time datetime="2025-06-07T06:00:00.000Z" title="发表于 2025-06-07 14:00:00">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/241231.html" title="2024 记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="2024 记录"/></a><div class="content"><a class="title" href="/blog/posts/241231.html" title="2024 记录">2024 记录</a><time datetime="2024-12-31T12:29:20.000Z" title="发表于 2024-12-31 20:29:20">2024-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/851955.html" title="TeX Live 安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="TeX Live 安装"/></a><div class="content"><a class="title" href="/blog/posts/851955.html" title="TeX Live 安装">TeX Live 安装</a><time datetime="2024-11-23T07:59:58.000Z" title="发表于 2024-11-23 15:59:58">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/173511.html" title="孔老师程序编译与使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="孔老师程序编译与使用"/></a><div class="content"><a class="title" href="/blog/posts/173511.html" title="孔老师程序编译与使用">孔老师程序编译与使用</a><time datetime="2024-11-18T09:35:11.000Z" title="发表于 2024-11-18 17:35:11">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/195428.html" title="gnuplot 使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider14.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="gnuplot 使用"/></a><div class="content"><a class="title" href="/blog/posts/195428.html" title="gnuplot 使用">gnuplot 使用</a><time datetime="2024-11-13T11:54:28.000Z" title="发表于 2024-11-13 19:54:28">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider9.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Nobody</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span> | 托管 </span><a target="_blank" rel="noopener" href="https://github.com">GitHub</a><span> | 部署 </span><a target="_blank" rel="noopener" href="https://vercel.com">Vercel</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=4.13.0"></script><script src="/blog/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

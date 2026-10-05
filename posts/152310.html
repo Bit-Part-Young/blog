@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Docusaurus 框架 | Seek Another Land</title><meta name="author" content="Nobody"><meta name="copyright" content="Nobody"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Docusaurus 框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docusaurus 框架">
+<meta property="og:url" content="https://bit-part-young.github.io/blog/posts/152310.html">
+<meta property="og:site_name" content="Seek Another Land">
+<meta property="og:description" content="Docusaurus 框架">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.pterclub.com/images/2022/08/26/spider4.png">
+<meta property="article:published_time" content="2023-10-21T02:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-18T03:02:40.052Z">
+<meta property="article:author" content="Nobody">
+<meta property="article:tag" content="Docusaurus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.pterclub.com/images/2022/08/26/spider4.png"><link rel="shortcut icon" href="/blog/img/logo_rm.png"><link rel="canonical" href="https://bit-part-young.github.io/blog/posts/152310.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":2000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docusaurus 框架',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-18 11:02:40'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Seek Another Land" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Seek Another Land" type="application/rss+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/blog/css/center-simple.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider4.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Seek Another Land"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo_rm.png"/><span class="site-name">Seek Another Land</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Docusaurus 框架</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-21T02:00:00.000Z" title="发表于 2023-10-21 10:00:00">2023-10-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-18T03:02:40.052Z" title="更新于 2024-12-18 11:02:40">2024-12-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E5%8D%9A%E5%AE%A2/">博客</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Docusaurus 框架"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Docusaurus-框架"><a href="#Docusaurus-框架" class="headerlink" title="Docusaurus 框架"></a>Docusaurus 框架</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Docusaurus：文档龙&#x2F;多库龙。</p>
+<hr>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://docusaurus.io/">Build optimized websites quickly, focus on your content - Docusaurus</a></p>
+</li>
+<li><p>Docusaurus 与其他框架的对比：<a target="_blank" rel="noopener" href="https://docusaurus.io/docs#comparison-with-other-tools">Comparison with other tools - Docusaurus</a></p>
+</li>
+<li><p>主题：<a target="_blank" rel="noopener" href="https://github.com/wrm244/docusaurus-theme-zen">GitHub - wrm244&#x2F;docusaurus-theme-zen: 这是使用docusaurus搭建的主题，结合了docusaurus简单易用与其他开源页面设计方案</a></p>
+</li>
+<li><p>示例站点</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/MADICES/MADICES.github.io">GitHub - MADICES&#x2F;MADICES.github.io</a></li>
+<li><a target="_blank" rel="noopener" href="https://pranabdas.github.io/fortran/">Setting up Fortran • Fortran Tutorial</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.404lab.top/">互联网冲浪指南 - 数字生活 DigitalLife</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="快速搭建"><a href="#快速搭建" class="headerlink" title="快速搭建"></a>快速搭建</h3><ul>
+<li>快速搭建</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">npx create-docusaurus@latest docusaurus-demo classic</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> docusaurus-demo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">yarn        <span class="comment"># npm i </span></span><br><span class="line"><span class="comment"># 本地预览</span></span><br><span class="line">yarn start  <span class="comment"># npm run start</span></span><br><span class="line"><span class="comment"># 构建</span></span><br><span class="line">yarn build  <span class="comment"># npm run build </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 部署 若使用 GitHub 托管，会推送到 gh-pages 分支</span></span><br><span class="line"><span class="comment"># 使用 SSH</span></span><br><span class="line">USE_SSH=<span class="literal">true</span> yarn deploy</span><br><span class="line"><span class="comment"># 不使用 SSH</span></span><br><span class="line">GIT_USER=&lt;Your GitHub username&gt; yarn deploy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">npx docusaurus --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若已绑定域名，可将 CNAME 放入 static 目录</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>目录结构</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">├── README.md</span><br><span class="line">├── babel.config.js</span><br><span class="line">├── blog/  # 可删除</span><br><span class="line">├── docs/</span><br><span class="line">├── docusaurus.config.js</span><br><span class="line">├── package.json</span><br><span class="line">├── sidebars.js</span><br><span class="line">├── src/</span><br><span class="line">└── static/</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://docusaurus.io/docs/deployment#deploying-to-github-pages">Deploying to GitHub Pages - Docusaurus</a></p>
+</blockquote>
+<ul>
+<li><p>手动：<code>USE_SSH=true npm run deploy</code></p>
+</li>
+<li><p>GitHub Actions：</p>
+<ul>
+<li>用哪个包管理工具（npm、yarn、pnpm）安装依赖、构建，需在 Github Actions 修改为对应的命令</li>
+<li>部署及站点 URL 设置：在 <code>docusaurus.config.js</code> 中添加、修改如下设置：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Set the production url of your site here</span></span><br><span class="line"><span class="attr">url</span>: <span class="string">&#x27;https://username.github.io/&#x27;</span>,</span><br><span class="line"><span class="attr">baseUrl</span>: <span class="string">&#x27;/docusaurus-demo/&#x27;</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment">// GitHub pages deployment config.</span></span><br><span class="line"><span class="attr">organizationName</span>: <span class="string">&#x27;username&#x27;</span>,</span><br><span class="line"><span class="attr">projectName</span>: <span class="string">&#x27;docusaurus-demo&#x27;</span>,</span><br><span class="line"><span class="attr">deploymentBranch</span>: <span class="string">&#x27;gh-pages&#x27;</span>,</span><br><span class="line"><span class="attr">trailingSlash</span>: <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>示例：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Docusaurus</span> <span class="string">Deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branche:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span></span><br><span class="line"></span><br><span class="line"><span class="attr">permissions:</span></span><br><span class="line">  <span class="attr">contents:</span> <span class="string">write</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v4</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/setup-node@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">latest</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">website</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span> <span class="string">to</span> <span class="string">GitHub</span> <span class="string">Pages</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v4</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./build</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置文件参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/HiChen404/MyWikiSite/blob/master/docusaurus.config.js">docusaurus.config.js - MyWikiSite</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/pranabdas/fortran/blob/main/docusaurus.config.js">docusaurus.config.js - fortran</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/YOURLS/website/blob/main/sidebars.js">sidebars.js - website</a></li>
+</ul>
+<hr>
+<h4 id="常用参数设置"><a href="#常用参数设置" class="headerlink" title="常用参数设置"></a>常用参数设置</h4><p>配置文件 <code>docusaurus.config.js</code> 常用参数：</p>
+<ul>
+<li><p><code>presets</code> - 预定义配置，如 <code>docs</code>、<code>blog</code> 和 <code>theme</code> 参数灯</p>
+<ul>
+<li><code>docs</code> - 配置文档，如文件夹路径 <code>path</code>、侧边栏 <code>sidebarPath</code> 等</li>
+<li><code>blog</code> - 配置博客，如文件夹的路径等</li>
+</ul>
+</li>
+<li><p><code>themeConfig</code> - 主题配置，如 <code>navbar</code>、<code>footer</code>、浅&#x2F;深色模式等</p>
+<ul>
+<li><code>navbar</code> - 配置顶部导航栏，如导航栏条目对应的侧边栏</li>
+<li><code>footer</code> - 配置页脚，如链接、copyright</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="侧边栏生成"><a href="#侧边栏生成" class="headerlink" title="侧边栏生成"></a>侧边栏生成</h4><ul>
+<li>自动生成侧边栏默认是按 md 文档标题的字母顺序排列的<ul>
+<li>可在 md 文档中添加 <code>sidebar_position</code> front matter 自定义调整标题的前后位置</li>
+<li>可在 <code>_category_.json</code> 文件中添加 <code>position</code> 参数自定义调整子目录文档在整个标题的前后位置</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式 1 自动生成</span></span><br><span class="line"><span class="comment">// 单个导航栏</span></span><br><span class="line"><span class="attr">tutorialSidebar</span>: [&#123;<span class="attr">type</span>: <span class="string">&#x27;autogenerated&#x27;</span>, <span class="attr">dirName</span>: <span class="string">&#x27;.&#x27;</span>&#125;],</span><br><span class="line"><span class="comment">// 多个导航栏</span></span><br><span class="line"><span class="attr">softwareSidebar</span>: [&#123;<span class="attr">type</span>: <span class="string">&#x27;autogenerated&#x27;</span>, <span class="attr">dirName</span>: <span class="string">&#x27;softwares&#x27;</span>&#125;],</span><br><span class="line"><span class="attr">scitoolSidebar</span>: [&#123;<span class="attr">type</span>: <span class="string">&#x27;autogenerated&#x27;</span>, <span class="attr">dirName</span>: <span class="string">&#x27;scitoolkits&#x27;</span>&#125;],</span><br><span class="line"></span><br><span class="line"><span class="comment">// 手动生成</span></span><br><span class="line"><span class="attr">scitoolSidebar</span>: [</span><br><span class="line">  <span class="string">&#x27;scitoolkits/index&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;scitoolkits/glossary&#x27;</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">label</span>: <span class="string">&#x27;atomate&#x27;</span>,</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;category&#x27;</span>,</span><br><span class="line">    <span class="attr">link</span>: &#123; <span class="comment">// 自动生成子目录文件索引</span></span><br><span class="line">      <span class="attr">type</span>: <span class="string">&#x27;generated-index&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">items</span>: [</span><br><span class="line">      <span class="string">&#x27;scitoolkits/atomate/atomate-usage&#x27;</span>,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="子目录文件索引"><a href="#子目录文件索引" class="headerlink" title="子目录文件索引"></a>子目录文件索引</h4><ul>
+<li><code>docs/</code> 目录下的子目录生成文件索引，需添加 <code>_category_.json</code> 文件</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;XXX&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;link&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;generated-index&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;XXX&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>手动生成 sidebar 时，可在 <code>sidebar.js</code> 文件中添加 <code>link</code> 参数，自动生成子目录文件索引</li>
+</ul>
+<hr>
+<h4 id="首页内容修改"><a href="#首页内容修改" class="headerlink" title="首页内容修改"></a>首页内容修改</h4><ul>
+<li><p>去掉首页中间的下半部分，自定义上半部分</p>
+<ul>
+<li>参考：<a target="_blank" rel="noopener" href="https://github.com/anitabi/navi.anitabi.cn">GitHub - anitabi&#x2F;navi.anitabi.cn: 动画巡礼帮助文档</a></li>
+<li>下半部分：<code>src/components/HomepageFeatures/index.js</code>，注释 FeatureList 相关内容</li>
+<li>上半部分：<code>src/pages/index.js</code>，修改 button 属性的文字内容</li>
+</ul>
+</li>
+<li><p>首页内容使用 md 文档（本地预览不会报错、build 会报错）</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docusaurus.io/docs/next/docs-introduction#home-page-docs">Docs Introduction | Docusaurus</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/61999271/how-to-set-docs-as-the-main-page">docusaurus - How to set “Docs” as the main page - Stack Overflow</a></li>
+<li>先在 <code>docusaurus.config.js</code> 中的 <code>docs</code> 选项中添加 <code>routeBasePath: &#39;/&#39;</code> 参数，之后在 docs 目录下的任意 md 文件中添加 <code>slug: /</code> front matter，之后再删掉 <code>src/pages/index.js</code> 文件</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><ul>
+<li><p>搜索功能：<a target="_blank" rel="noopener" href="https://docusaurus.io/docs/2.x/search">search - Docusaurus</a></p>
+</li>
+<li><p>使用 Algolia DocSearch：Docusaurus 自带的 <code>@docusaurus/preset-classic</code> 支持 Algolia DocSearch 集成，无需安装依赖；添加以下 Algolia 设置</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">themeConfig</span>: &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">algolia</span>: &#123;</span><br><span class="line">    <span class="comment">// The application ID provided by Algolia</span></span><br><span class="line">    <span class="attr">appId</span>: <span class="string">&#x27;XXX&#x27;</span>,</span><br><span class="line">    <span class="comment">// Public API key: it is safe to commit it</span></span><br><span class="line">    <span class="attr">apiKey</span>: <span class="string">&#x27;XXX&#x27;</span>,</span><br><span class="line">    <span class="attr">indexName</span>: <span class="string">&#x27;docusaurus-demo&#x27;</span>,</span><br><span class="line">    <span class="comment">// 其余参数均为可选</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog">Nobody</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog/posts/152310.html">https://bit-part-young.github.io/blog/posts/152310.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bit-part-young.github.io/blog" target="_blank">Seek Another Land</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Docusaurus/">Docusaurus</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/182123.html" title="MkDocs 框架"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MkDocs 框架</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/403157.html" title="Hexo 框架"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hexo 框架</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nobody</div><div class="author-info__description">A Land of Nobody</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bit-Part-Young"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Bit-Part-Young" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0084ff;"></i></a><a class="social-icon" href="mailto:3304839708@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="订阅-ATOM"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Nobody's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docusaurus-%E6%A1%86%E6%9E%B6"><span class="toc-number">1.</span> <span class="toc-text">Docusaurus 框架</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA"><span class="toc-number">1.2.1.</span> <span class="toc-text">快速搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">1.2.2.</span> <span class="toc-text">部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">常用参数设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E7%94%9F%E6%88%90"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">侧边栏生成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E7%B4%A2%E5%BC%95"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">子目录文件索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A6%96%E9%A1%B5%E5%86%85%E5%AE%B9%E4%BF%AE%E6%94%B9"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">首页内容修改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">搜索</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/206050.html" title="VASP 报错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="VASP 报错"/></a><div class="content"><a class="title" href="/blog/posts/206050.html" title="VASP 报错">VASP 报错</a><time datetime="2025-06-07T06:00:00.000Z" title="发表于 2025-06-07 14:00:00">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/241231.html" title="2024 记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="2024 记录"/></a><div class="content"><a class="title" href="/blog/posts/241231.html" title="2024 记录">2024 记录</a><time datetime="2024-12-31T12:29:20.000Z" title="发表于 2024-12-31 20:29:20">2024-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/851955.html" title="TeX Live 安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="TeX Live 安装"/></a><div class="content"><a class="title" href="/blog/posts/851955.html" title="TeX Live 安装">TeX Live 安装</a><time datetime="2024-11-23T07:59:58.000Z" title="发表于 2024-11-23 15:59:58">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/173511.html" title="孔老师程序编译与使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="孔老师程序编译与使用"/></a><div class="content"><a class="title" href="/blog/posts/173511.html" title="孔老师程序编译与使用">孔老师程序编译与使用</a><time datetime="2024-11-18T09:35:11.000Z" title="发表于 2024-11-18 17:35:11">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/195428.html" title="gnuplot 使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider14.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="gnuplot 使用"/></a><div class="content"><a class="title" href="/blog/posts/195428.html" title="gnuplot 使用">gnuplot 使用</a><time datetime="2024-11-13T11:54:28.000Z" title="发表于 2024-11-13 19:54:28">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider4.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Nobody</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span> | 托管 </span><a target="_blank" rel="noopener" href="https://github.com">GitHub</a><span> | 部署 </span><a target="_blank" rel="noopener" href="https://vercel.com">Vercel</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=4.13.0"></script><script src="/blog/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

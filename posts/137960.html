@@ -1,0 +1,660 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>服务器、超算使用教程 | Seek Another Land</title><meta name="author" content="Nobody"><meta name="copyright" content="Nobody"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="服务器、超算使用教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器、超算使用教程">
+<meta property="og:url" content="https://bit-part-young.github.io/blog/posts/137960.html">
+<meta property="og:site_name" content="Seek Another Land">
+<meta property="og:description" content="服务器、超算使用教程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.pterclub.com/images/2022/08/26/spider10.png">
+<meta property="article:published_time" content="2023-06-04T10:30:30.000Z">
+<meta property="article:modified_time" content="2026-10-05T19:18:30.713Z">
+<meta property="article:author" content="Nobody">
+<meta property="article:tag" content="服务器">
+<meta property="article:tag" content="课题组">
+<meta property="article:tag" content="HPC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.pterclub.com/images/2022/08/26/spider10.png"><link rel="shortcut icon" href="/blog/img/logo_rm.png"><link rel="canonical" href="https://bit-part-young.github.io/blog/posts/137960.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":2000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '服务器、超算使用教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-10-06 03:18:30'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Seek Another Land" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Seek Another Land" type="application/rss+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/blog/css/center-simple.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider10.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Seek Another Land"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo_rm.png"/><span class="site-name">Seek Another Land</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">服务器、超算使用教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-04T10:30:30.000Z" title="发表于 2023-06-04 18:30:30">2023-06-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-10-05T19:18:30.713Z" title="更新于 2026-10-06 03:18:30">2026-10-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/">科研工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>32分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="服务器、超算使用教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="服务器、超算使用教程"><a href="#服务器、超算使用教程" class="headerlink" title="服务器、超算使用教程"></a>服务器、超算使用教程</h1><h2 id="服务器、超算介绍"><a href="#服务器、超算介绍" class="headerlink" title="服务器、超算介绍"></a>服务器、超算介绍</h2><h3 id="Master"><a href="#Master" class="headerlink" title="Master"></a>Master</h3><ul>
+<li>Linux 系统：Ubuntu 22.04，内核：5.19.0-43-generic</li>
+<li>root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序</li>
+<li>作业调度系统：Slurm</li>
+<li>CPU：2 $\times$ 32 核 Intel Xeon Platinum 8369B，共 64 核</li>
+<li>GPU：2 $\times$ 24G RTX 3090；调用 GPU 时只能一整块调用，显存自动分配</li>
+<li>Intel 套件：Intel-oneAPI 2022.1.0</li>
+<li>内存：共 512G</li>
+<li>数据存储：较大体积的数据（Master 本地或超算上的）可以放到 <code>$&#123;HOME&#125;/storage</code></li>
+<li><code>/home/share</code> 目录，不同用户可将临时共享文件放此，所有用户可删除文件，但文件夹需其所有者才能删除，因此建议将文件夹进行打包压缩再放到 share 目录中</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /proc/cpuinfo     <span class="comment"># CPU 信息查看；或 lscpu</span></span><br><span class="line"><span class="built_in">cat</span> /proc/meminfo     <span class="comment"># 内存信息查看；lsmem</span></span><br><span class="line">free -gh              <span class="comment"># 内存使用情况查看（以 GB 为单位）</span></span><br><span class="line">nvidia-smi            <span class="comment"># GPU 信息、使用情况查看</span></span><br><span class="line">nvidia-smi -L         <span class="comment"># 显示连接的 GPU 信息</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看物理 CPU 数目（几块 CPU）</span></span><br><span class="line">lscpu | grep Sock</span><br><span class="line"><span class="built_in">cat</span> /proc/cpuinfo | grep <span class="string">&quot;physical id&quot;</span> | <span class="built_in">sort</span> | <span class="built_in">uniq</span> | <span class="built_in">wc</span> -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看逻辑 CPU 数目（CPU 有几个核）</span></span><br><span class="line">lscpu | grep sock</span><br><span class="line">lscpu | grep -E <span class="string">&#x27;^CPU\(s\):&#x27;</span></span><br><span class="line"><span class="built_in">cat</span> /proc/cpuinfo | grep <span class="string">&quot;processor&quot;</span> | <span class="built_in">wc</span> -l</span><br><span class="line"><span class="built_in">nproc</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看系统负载</span></span><br><span class="line">top</span><br><span class="line">htop</span><br><span class="line"><span class="built_in">uptime</span></span><br><span class="line">vmstat</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 赝势路径</span></span><br><span class="line">/work/backup/.vasp_pot  <span class="comment"># Master</span></span><br><span class="line">/opt/.vasp_pot          <span class="comment"># Manager</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>Master 上已安装的孔老师的程序&#x2F;软件：<code>cat /opt/bin/README</code> 查看</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Code                 Function</span></span><br><span class="line">ave....................Get the averages of data columns <span class="keyword">in</span> a file</span><br><span class="line">bave...................Get the block averages of data columns <span class="keyword">in</span> a file</span><br><span class="line">binave.................Get the bin averages of data columns <span class="keyword">in</span> a file</span><br><span class="line">crysinfo...............Get the crystalline symmetry info <span class="keyword">for</span> an xyz file</span><br><span class="line">cumsum.................Get the cummulative <span class="built_in">sum</span> of data columns <span class="keyword">in</span> a file</span><br><span class="line">d2p....................Dump2phonon, get dynamical matrix from a lammps trajectory file</span><br><span class="line">dos2th.................Get thermal info from phonon DOSes.</span><br><span class="line">dumpana................Analyze the lammps dump file</span><br><span class="line">find-min-pos...........Find the location (line <span class="comment">#) of a minimum value within a column data</span></span><br><span class="line">find-val-pos...........Find the location of a given value within a column data</span><br><span class="line">get-col-num............Get the column number of a word <span class="keyword">in</span> the first line of the file.</span><br><span class="line">getpot.................Get vasp potential <span class="keyword">for</span> desired elements.</span><br><span class="line">gsub...................Submit GPU <span class="built_in">jobs</span>.</span><br><span class="line">hist...................Get the histogram of a data file.</span><br><span class="line">histjoin...............To <span class="built_in">join</span> multiple files from hist.</span><br><span class="line">latgen.................To generate the position file <span class="keyword">for</span> selected crystals.</span><br><span class="line">lmp....................LAMMPS</span><br><span class="line">mathfun................To perform simple math calculations.</span><br><span class="line">ovito..................To visualize atomic configurations.</span><br><span class="line">phana..................To analyze binary file from fix-phonon.</span><br><span class="line">posconv................To convert formats of pos files</span><br><span class="line">run....................To find the locations of running <span class="built_in">jobs</span>.</span><br><span class="line">spave..................To get the spatial average from data columns <span class="keyword">in</span> a file</span><br><span class="line">submit.................To submit CPU <span class="built_in">jobs</span>.</span><br><span class="line">v6.gam.................vasp.6.3.0.gam</span><br><span class="line">v6.ncl.................vasp.6.3.0.ncl</span><br><span class="line">v6.std.................vasp.6.3.0.std</span><br><span class="line">vacf...................To measure phonon DOS based on velocity-velocity autocorrelation <span class="keyword">function</span> method</span><br><span class="line">vasp...................vasp.5.4.4.std</span><br><span class="line">vasp.5.gam.............vasp.5.4.4.gam</span><br><span class="line">vasp.5.std.............vasp.5.4.4.std</span><br><span class="line">vasp.6.gpu.............vasp.6.3.0.std.gpu (OpenACC)</span><br><span class="line">vasp.6.gpu.gam.........vasp.6.3.0.gam.gpu</span><br><span class="line">vasp_gam...............vasp.5.4.4.gam</span><br><span class="line">vaspkit................Toolkit <span class="keyword">for</span> vasp calculations.</span><br><span class="line">vasp_std...............vasp.5.4.4.std</span><br><span class="line">viscal.................To calculate shear viscosity based on Green-Kubo method</span><br><span class="line">vmd....................To visualize md trajectories</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="Intel-Xeon-CPU-相关"><a href="#Intel-Xeon-CPU-相关" class="headerlink" title="Intel Xeon CPU 相关"></a>Intel Xeon CPU 相关</h4><ul>
+<li><p>Intel 至强处理器的数字和后缀可以表示性能、功能和代次 <a target="_blank" rel="noopener" href="https://www.intel.cn/content/www/cn/zh/support/articles/000059657/processors/intel-xeon-processors.html">英特尔® 至强® 可扩展处理器编号和后缀</a></p>
+<ul>
+<li>四位数字序列的第一个数字表示处理器级别：8、9 铂；</li>
+<li>第二个数字表示处理器代次：1-6</li>
+<li>第三位和第四位数字表示 SKU 编号：这些数字不代表任何特定功能。通常，性能越好的处理器具有较大的 SKU 编号</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.intel.cn/content/www/cn/zh/ark.html#@PanelLabel595">至强处理器 - 英特尔® 产品规范</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/List_of_Intel_Xeon_processors_(Ice_Lake-based)">List of Intel Xeon processors (Ice Lake-based) - Wikipedia</a></p>
+</li>
+</ul>
+<hr>
+<h4 id="GPU-相关"><a href="#GPU-相关" class="headerlink" title="GPU 相关"></a>GPU 相关</h4><ul>
+<li><p>注意事项：</p>
+<ul>
+<li>用 slurm 提交 GPU 任务，某一块 GPU 则会被该任务独占（不过不影响在终端 &#x2F; tmux 中直接运行 GPU 任务）</li>
+</ul>
+</li>
+<li><p>GPU 任务也是要占用 CPU 的，需做好资源分配（不添加 -N、–ntasks-per-node 时，默认会使用 1 个 CPU 核）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/HarleysZhang/llm_note/blob/main/4-hpc_basic/%E8%8B%B1%E4%BC%9F%E8%BE%BEGPU%E6%9E%B6%E6%9E%84%E6%80%BB%E7%BB%93.md">llm_note&#x2F;4-hpc_basic&#x2F;英伟达GPU架构总结.md at main · harleyszhang&#x2F;llm_note · GitHub</a>（含 V100、A100、H100 GPU 介绍）</p>
+</li>
+<li><p>NVIDIA GPU 参数：</p>
+<ul>
+<li>CUDA Core（NVIDIA GPU 的计算核心单元）</li>
+<li>Tensor Core（专门用于深度学习作业中的张量计算）</li>
+<li>RT Core（加速光线追踪计算）</li>
+</ul>
+</li>
+<li><p>NVIDIA GPU 架构：Volta（伏特，第 6 代）、Turing（图灵，第 7 代）、Ampere（安培、第 8 代）、Hopper（霍珀，第 9 代）</p>
+</li>
+<li><p>V100、A800（A100 中国特供版）、H800（H100 中国特供版）</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads">CUDA Toolkit 下载</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/hpc-sdk-downloads">NVIDIA HPC SDK 下载</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">PyTorch 下载</a></p>
+</li>
+<li><p>查看 CUDA 是否安装（分为两种，驱动 driver 和运行 runtime）</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi            <span class="comment"># 查看 NVIDIA 驱动及其支持的 CUDA 驱动最高版本</span></span><br><span class="line">nvidia-smi -L         <span class="comment"># GPU 数量和型号</span></span><br><span class="line">nvcc --version        <span class="comment"># 查看 CUDA 运行版本（Master 上显示的路径在 hpc_sdk中）</span></span><br><span class="line">/usr/local/cuda       <span class="comment"># CUDA 安装路径</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/622711856/answer/3218272497">NVIDIA-SMI 显示的cuda version 是指当前版本还是最大可以支持的 cuda 版本？ - 知乎</a></p>
+</li>
+<li><p>GPU 信息及使用情况查看：<code>nvidia-smi</code>、<a target="_blank" rel="noopener" href="https://github.com/wookayin/gpustat">gpustat - Python</a></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">watch -d2 nvidia-smi      <span class="comment"># 持续查看 GPU 使用情况</span></span><br><span class="line">nvidia-smi -l             <span class="comment"># 持续查看 GPU 使用情况（每秒刷新一次）</span></span><br><span class="line"></span><br><span class="line">gpustat -i 2</span><br></pre></td></tr></table></figure>
+
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/202402291942207.png" alt="GPU 信息及资源占用率"></p>
+<ul>
+<li>输出信息解读：两个 GPU 都在高负载运行（GPU 利用率 100%，温度分别为 77 摄氏度和 72 摄氏度），并且接近其功率上限。GPU 上的内存几乎被完全利用，表明运行的进程正在积极使用 GPU 资源</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GPU 列表</span></span><br><span class="line">GPU 0 / GPU 1         <span class="comment"># 系统中有两个 NVIDIA GeForce 系列的 GPU</span></span><br><span class="line">Persistence-M         <span class="comment"># 显示 GPU 的持久模式是否开启</span></span><br><span class="line">Bus-Id                <span class="comment"># 显示 GPU 在系统总线上的唯一标识符，可以用于特定应用配置</span></span><br><span class="line">Disp.A                <span class="comment"># 显示是否用作显示输出</span></span><br><span class="line">Volatile Uncorr. ECC  <span class="comment"># 显示易失性未校正的 ECC（错误校正码）错误</span></span><br><span class="line">Fan                   <span class="comment"># GPU 风扇速度</span></span><br><span class="line">Temp                  <span class="comment"># GPU 温度</span></span><br><span class="line">Perf                  <span class="comment"># 性能状态，P2 表示当前在一种性能状态</span></span><br><span class="line">Pwr:Usage/Cap         <span class="comment"># 当前功率使用量和功率上限</span></span><br><span class="line">Memory-Usage          <span class="comment"># GPU 内存使用情况</span></span><br><span class="line">GPU-Util              <span class="comment"># GPU 使用率</span></span><br><span class="line">Compute M.            <span class="comment"># 计算模式，默认是 Default</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进程：列出了在每个 GPU 上运行的进程</span></span><br><span class="line">PID                   <span class="comment"># 进程 ID</span></span><br><span class="line">Type                  <span class="comment"># 进程类型，G 表示图形，C 表示计算</span></span><br><span class="line">Process name          <span class="comment"># 进程名称</span></span><br><span class="line">GPU Memory Usage      <span class="comment"># 进程使用的 GPU 内存量</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>指定使用哪块 GPU（适用于 TensorFlow 和 PyTorch 等任何使用 CUDA 的程序）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定使用第一块 GPU</span></span><br><span class="line">CUDA_VISIBLE_DEVICES=1 python script.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定使用两块 GPU</span></span><br><span class="line">CUDA_VISIBLE_DEVICES=0,1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定使用第二块 GPU</span></span><br><span class="line">device = torch.device(<span class="string">&quot;cuda:1&quot;</span>)</span><br><span class="line"><span class="comment"># 将模型和数据移至此</span></span><br><span class="line">model.to(device)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="Manager"><a href="#Manager" class="headerlink" title="Manager"></a>Manager</h3><ul>
+<li>Linux 系统：Ubuntu 16.04；内核：4.15.0-120-generic</li>
+<li>root 权限：无；无法使用 apt、apt-get、dpkg、snap 命令安装程序</li>
+<li>作业调度系统：PBS</li>
+<li>CPU：Intel Xeon E5520、Intel Xeon E5630（node 9）、Intel Xeon E5-2620（node 11）；共 100 核，共 12 个节点（node1~11 + manager；其中 node2，6，7，8 经常 down）</li>
+<li>GPU：Matrox Electronics Systems Ltd. MGA G200eW WPCM450、XGI Technology Inc. XG20 core（前两者主要用于服务器的视频输出和基本图形处理作业）、2 $\times$ 4.6G NVIDIA Tesla K20m（node 11）</li>
+<li>内存：登录、Manager 节点约 4G；node 11 约 16G；node 1, 3-5 约 24G；node 9-10 约 16G</li>
+<li>Intel 套件：Composer XE 2015</li>
+<li>glibc 版本过低（编译安装新版本较为复杂）</li>
+</ul>
+<hr>
+<h3 id="超算"><a href="#超算" class="headerlink" title="超算"></a>超算</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/system/computesystem.html">计算系统 - 上海交大超算平台用户手册</a></li>
+<li>Linux 系统：Rocky Linux（基于 Centos）</li>
+<li>root 权限：无；无法使用 yum 命令安装软件程序</li>
+<li>作业调度系统：Slurm；Pi、ARM、思源一号提交的作业在任一平台都可以看到</li>
+<li>CPU、内存：超算中的 CPU 核有内存配比限制</li>
+<li>GPU：超算的 GPU 队列很难排到</li>
+<li>程序&#x2F;软件：Pi 的一些基础程序的版本比思源一号旧许多；查看：<code>module av</code></li>
+<li>Pi 和 ARM 用户目录相同</li>
+<li>sylogin1 登录节点占用率较高，比其他（2-5）卡，是超算断开连接，vim 使用卡顿的可能原因之一；超算的登录节点为随机分配，应尽量避免登录到 sylogin1</li>
+</ul>
+<hr>
+<h2 id="服务器、超算登录"><a href="#服务器、超算登录" class="headerlink" title="服务器、超算登录"></a>服务器、超算登录</h2><h3 id="SSH-登录"><a href="#SSH-登录" class="headerlink" title="SSH 登录"></a>SSH 登录</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/login/sshlogin.html">通过 SSH 登录集群 - 上海交大超算平台用户手册 Documentation</a></p>
+</li>
+<li><p>超算平台的 SSH 端口均为默认值 22，<code>-p 22</code> 可省略</p>
+</li>
+<li><p>登录密码输错 5 词，需等待一段时候才能再次登录</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># manager</span></span><br><span class="line">ssh username@202.120.55.11 -p 312</span><br><span class="line"></span><br><span class="line"><span class="comment"># master</span></span><br><span class="line">ssh username@202.120.55.11 -p 313</span><br><span class="line"></span><br><span class="line"><span class="comment"># 思源一号</span></span><br><span class="line">ssh username@sylogin.hpc.sjtu.edu.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># Pi（cpu 队列）</span></span><br><span class="line">ssh username@pilogin.hpc.sjtu.edu.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># Pi（centos 队列）</span></span><br><span class="line">ssh username@oldlogin.hpc.sjtu.edu.cn</span><br><span class="line"></span><br><span class="line"><span class="comment"># ARM</span></span><br><span class="line">ssh username@armlogin.hpc.sjtu.edu.cn</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="终端-SSH-免密登录"><a href="#终端-SSH-免密登录" class="headerlink" title="终端 SSH 免密登录"></a>终端 SSH 免密登录</h3><ul>
+<li><p>上海交通大学超算管理系统：<a target="_blank" rel="noopener" href="https://my.hpc.sjtu.edu.cn/login">HAM</a></p>
+</li>
+<li><p>交大超算登录现需要与 jAccount 绑定：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/accounts/security.html">账号安全信息管理 - 上海交大超算平台用户手册 Documentation</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://201.ustclug.org/dev/ssh/">SSH 使用技巧 - Linux 201</a></p>
+</li>
+<li><p>无需输入用户名和密码即可登录，还可以作为服务器的别名来简化使用。免密登录需建立从远程主机（集群的登录节点）到本地主机的 SSH 信任关系。建立信任关系后，双方将通过 SSH 密钥对进行身份验证。</p>
+</li>
+<li><p>在本地主机上生成的 SSH 密钥对，输入以下命令，<strong>持续 Enter 即可</strong>；将在 <code>~/.ssh</code>（或 <code>C:\User\username\.ssh</code>） 路径下生成密钥对文件 <code>id_rsa</code> 和 <code>id_rsa.pub</code>；将 <code>id_rsa.pub</code> 的内容（注意字符之间只有一个空格，复制后需注意）添加到远程主机的 <code>~/.ssh/authorized_keys</code> 文件中。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>密钥对生成方式有 ssh-keygen 和 putty（ppk 格式，WinSCP 软件密钥验证需该格式），其中后者可通过 Mobaxterm 软件中 tool 工具中的 MobaKeyGen 来生成（在空白处乱按加快生成速度；将生成的公钥保存成 file.pub，私钥保存成 file.ppk）。</p>
+</li>
+<li><p><code>~/.ssh/authorized_keys</code> 文件是 SSH 服务端用于验证客户端公钥的文件，每行一个公钥</p>
+</li>
+<li><p>设置服务器别名：编辑或创建 <code>~/.ssh/config</code>（或 <code>C:\User\XXX\.ssh\config</code>）</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host <span class="built_in">alias</span></span><br><span class="line">    HostName</span><br><span class="line">    User</span><br><span class="line">    Port</span><br><span class="line">    IdentityFile</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>具体示例：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Host Manager</span><br><span class="line">    HostName 202.120.55.11</span><br><span class="line">    User username</span><br><span class="line">    Port 312</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">Host Master</span><br><span class="line">    HostName 202.120.55.11</span><br><span class="line">    User username</span><br><span class="line">    Port 313</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">Host Pi</span><br><span class="line">    HostName pilogin.hpc.sjtu.edu.cn</span><br><span class="line">    User username</span><br><span class="line">    Port 22</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">Host SiYuan</span><br><span class="line">    HostName sylogin.hpc.sjtu.edu.cn</span><br><span class="line">    User username</span><br><span class="line">    Port 22</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>设置完成后，只需输入以下内容即可实现服务器、超算 SSH 登录：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ssh Master</span><br><span class="line"></span><br><span class="line">ssh Manager</span><br><span class="line"></span><br><span class="line">ssh Pi</span><br><span class="line"></span><br><span class="line">ssh SiYuan</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可能会出现的问题<ul>
+<li>SSH 私钥的权限过于开放：SSH 私钥文件应该只能被文件的拥有者读取和写入，而不能被其他用户访问</li>
+<li>解决方法：<code>chmod 600 id_rsa</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Permissions 0444 <span class="keyword">for</span> <span class="string">&#x27;id_rsa&#x27;</span> are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key <span class="string">&quot;id_rsa&quot;</span>: bad permissions</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="客户端免密登录"><a href="#客户端免密登录" class="headerlink" title="客户端免密登录"></a>客户端免密登录</h3><ul>
+<li><p>常用软件：MobaXterm、Tabby（有 <a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/login/tabby.html">交我算定制版客户端</a>） 等。</p>
+</li>
+<li><p>免密登录操作：将 <code>id_rsa</code> 私钥文件所在路径添加到 Use private key 选项中（Bookmark settings 选项可以将默认的 Session name 改成自己想要的别名）。</p>
+</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/test-2023-06-04-17-43-41.png" alt="MobaXterm 免密登录"></p>
+<hr>
+<h3 id="VSCode-免密登录"><a href="#VSCode-免密登录" class="headerlink" title="VSCode 免密登录"></a>VSCode 免密登录</h3><ul>
+<li><p>安装 <strong>Remote Development</strong> 扩展，如上面的 <code>~/.ssh/config</code> 内容已设置好，会自动识别设置好的主机名（<strong>config 文件所在路径可自定义</strong>）</p>
+</li>
+<li><p>VSCode 远程连接 Manager（机子较老，10 余年历史），有时会导致其负载过高而崩溃，不建议长时间连接；VSCode 远程连接 Master（2023 年 5 月配置）暂无相关问题</p>
+</li>
+<li><p>在超算上使用 Python 插件中的 Pylance 语言服务器（LSP）以及 Jupyter 插件，常会出现 Pylance 崩溃的问题（Pi 稍微稳定些），因为超算的登录节点资源有限，建议将 Pylance 换成 Jedi（功能不及 Pylance），会稍微稳定些；建议不在超算平台上使用 Jupyter Notebook；Master 暂无相关问题</p>
+</li>
+</ul>
+<hr>
+<h3 id="跳板"><a href="#跳板" class="headerlink" title="跳板"></a>跳板</h3><ul>
+<li><p>SSH 通过跳板机（登录节点）直接访问内网机器（计算节点）</p>
+</li>
+<li><p>SSH config 中的 RemoteCommand 命令实际作用不大，不建议使用</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看（内网）IP 地址</span></span><br><span class="line">hostname -I</span><br><span class="line">ip a | grep inet</span><br><span class="line"></span><br><span class="line">ss -tuln      <span class="comment"># 查看有哪些端口正在监听</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Host login</span><br><span class="line">    HostName login_ip</span><br><span class="line">    User username</span><br><span class="line">    Port ...</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">Host target</span><br><span class="line">    HostName ip_target</span><br><span class="line">    User username_target</span><br><span class="line">    Port ...</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line">    ProxyJump login  <span class="comment"># 关键参数</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="作业准备、提交、检查"><a href="#作业准备、提交、检查" class="headerlink" title="作业准备、提交、检查"></a>作业准备、提交、检查</h2><ul>
+<li>参考：<a target="_blank" rel="noopener" href="https://www.guanjihuan.com/archives/42460">超算中作业管理系统PBS&#x2F;LSF&#x2F;Slurm的常用命令 - Ji-Huan Guan</a></li>
+</ul>
+<hr>
+<h3 id="Slurm-作业调度系统"><a href="#Slurm-作业调度系统" class="headerlink" title="Slurm 作业调度系统"></a>Slurm 作业调度系统</h3><ul>
+<li><p>Slurm 无法指定 CPU 核由具体单独的一颗 CPU 全部提供；<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/77990469/how-to-ask-slurm-scheduler-for-cpus-on-the-same-socket-numa-node">How to ask SLURM scheduler for CPUs on the same socket&#x2F;NUMA node? - Stack Overflow</a>（该 URL 并未提供解决方案）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/job/slurm.html">Slurm 作业调度系统 - 上海交大超算平台用户手册 Documentation</a></p>
+</li>
+<li><p>介绍很详细：<a target="_blank" rel="noopener" href="https://scc.ustc.edu.cn/zlsc/user_doc/html/slurm/slurm.html">简介 — 中国科大超级计算中心用户使用手册 ：2024-05-18 版文档</a></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本术语</span></span><br><span class="line">socket                       <span class="comment"># CPU 插槽，可简单理解为 CPU</span></span><br><span class="line">core                         <span class="comment"># CPU 核，单颗 CPU 可以具有多颗 CPU 核</span></span><br><span class="line">job                          <span class="comment"># 作业</span></span><br><span class="line">job step                     <span class="comment"># 作业步，单个作业（job）可以有个多作业步</span></span><br><span class="line">tasks                        <span class="comment"># 作业数，单个作业或作业步可有多个作业，一般一个作业需一个 CPU 核，可理解为所需的 CPU 核数</span></span><br><span class="line">rank                         <span class="comment"># 秩，如 MPI 进程号</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 常用命令</span></span><br><span class="line">sbatch job.slurm             <span class="comment"># 提交作业</span></span><br><span class="line">squeue                       <span class="comment"># 查看作业状态</span></span><br><span class="line">scancel                      <span class="comment"># 删除作业</span></span><br><span class="line">scontrol                     <span class="comment"># 查看作业详细状态</span></span><br><span class="line">sinfo                        <span class="comment"># 查看集群状态（显示队列、节点信息）</span></span><br><span class="line"></span><br><span class="line">scontrol show job            <span class="comment"># 所有作业详细状态</span></span><br><span class="line">scontrol show job JobId      <span class="comment"># 指定作业详细状态</span></span><br><span class="line">scontrol show node NodeName  <span class="comment"># 节点详细状态</span></span><br><span class="line">sinfo --partition=64c512g    <span class="comment"># 查看特定队列</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要 root 用户进行操作</span></span><br><span class="line">scontrol <span class="built_in">suspend</span> JobId       <span class="comment"># 挂起作业（释放资源）</span></span><br><span class="line">scontrol resume JobId        <span class="comment"># 恢复作业</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改排队作业的所需 CPU 核数、指定节点、排除节点、优先级（也可修改其他作业参数）</span></span><br><span class="line">scontrol update JobId=... NumTasks=...</span><br><span class="line">scontrol update JobId=... NumCPUs=...</span><br><span class="line"><span class="comment"># 指定 2 个节点时会出现问题，建议只指定 1 个节点</span></span><br><span class="line">scontrol update JobId=... NodeList=... ExcNodeList=...</span><br><span class="line"><span class="comment"># 默认 SLURM 的优先级值范围是 0 到 4294967295（即 2³²−1），值越大，优先级越高</span></span><br><span class="line"><span class="comment"># 需管理员权限</span></span><br><span class="line">scontrol update JobId=... Priority=...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化输出队列、节点信息</span></span><br><span class="line">sinfo -o <span class="string">&quot;%.15P %.6D %.7G %.7t %.14C %.10e %.9O&quot;</span></span><br><span class="line"></span><br><span class="line">%c                           <span class="comment"># 每个节点的 CPU 数目</span></span><br><span class="line">%C                           <span class="comment"># 每个节点的 CPU 数目，以 &quot;allocated/idle/other/total&quot; 格式</span></span><br><span class="line">%D                           <span class="comment"># 节点数</span></span><br><span class="line">%e                           <span class="comment"># 总内存，单位 MB</span></span><br><span class="line">%G                           <span class="comment"># 与节点关联的 GPU 资源</span></span><br><span class="line">%N                           <span class="comment"># 节点名称</span></span><br><span class="line">%O                           <span class="comment"># CPU 负载</span></span><br><span class="line">%P                           <span class="comment"># 队列名称</span></span><br><span class="line">%t                           <span class="comment"># 节点状态，紧凑形式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例 Master</span></span><br><span class="line">PARTITION  NODES    GRES   STATE  CPUS(A/I/O/T)   FREE_MEM  CPU_LOAD</span><br><span class="line">  CLUSTER      1   gpu:2     mix     16/48/0/64     475653     43.01</span><br><span class="line">      cpu      1  (null)   alloc    120/0/0/120     241975    120.00</span><br><span class="line">      cpu      1   gpu:1   alloc    120/0/0/120     159938    120.00</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># sinfo 节点状态</span></span><br><span class="line">idle                         <span class="comment"># 节点处于空闲状态</span></span><br><span class="line">mix                          <span class="comment"># 节点部分 CPU 资源被占用</span></span><br><span class="line">alloc                        <span class="comment"># 节点所有 CPU 资源都被占用</span></span><br><span class="line">down                         <span class="comment"># 节点故障暂不可用</span></span><br><span class="line">drain                        <span class="comment"># 节点故障，但不影响已运行的作业</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># squeue 作业状态</span></span><br><span class="line">R                            <span class="comment"># RUNNING；正在运行</span></span><br><span class="line">PD                           <span class="comment"># PENDING；正在排队</span></span><br><span class="line">CG                           <span class="comment"># 即将完成</span></span><br><span class="line">CD                           <span class="comment"># COMPLETED；已完成</span></span><br><span class="line">F                            <span class="comment"># FAILED；运行失败</span></span><br><span class="line">S                            <span class="comment"># SUSPENDED；挂起</span></span><br><span class="line">CA                           <span class="comment"># CANCELED；作业被取消</span></span><br><span class="line">TO                           <span class="comment"># TIMEOUT；超时</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示正在运行的作业信息（JobId STATE WORK_DIR）</span></span><br><span class="line">squeue -t RUNNING --format <span class="string">&quot;%.9i %.8T   %Z&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看一周内提交至 Slurm 队列系统的已完成作业信息（完善该 Shell 脚本，参数设为天数）</span></span><br><span class="line">sacct --starttime=2025-04-05 --endtime=2025-04-12 --state=COMPLETED --format=JobID,JobName,State,Start,End,Elapsed,Workdir</span><br><span class="line"></span><br><span class="line">JobID                        <span class="comment"># 作业 ID</span></span><br><span class="line">JobName                      <span class="comment"># 作业名称</span></span><br><span class="line">State                        <span class="comment"># 状态</span></span><br><span class="line">Start                        <span class="comment"># 开始时间</span></span><br><span class="line">End                          <span class="comment"># 结束时间</span></span><br><span class="line">Elapsed                      <span class="comment"># 耗时</span></span><br><span class="line">Workdir                      <span class="comment"># 工作目录</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="PBS-作业调度系统"><a href="#PBS-作业调度系统" class="headerlink" title="PBS 作业调度系统"></a>PBS 作业调度系统</h3><ul>
+<li><p>Manager 中的 <code>submit</code> 命令是孔老师写的一个 PBS 作业提交脚本</p>
+</li>
+<li><p><code>-nc</code> 参数含义：不将文件复制到计算节点中；<strong>推荐用带 <code>-nc</code> 参数的命令</strong></p>
+</li>
+<li><p>提交作业命令会自动生成对应的 <code>PBS.batch</code> 脚本；当提交的作业出错时，修改 <code>PBS.batch</code> 脚本内容，之后可使用 <code>qsub PBS.batch</code> 命令提交作业</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  常用命令</span></span><br><span class="line">pbsnodes               <span class="comment"># 查看所有节点</span></span><br><span class="line">pbsnodes -l free       <span class="comment"># 查看空闲节点</span></span><br><span class="line">pbsnodes XXX           <span class="comment"># 查看某节点状态</span></span><br><span class="line">ssh XXX                <span class="comment"># 转到某节点</span></span><br><span class="line">qsub script.pbs        <span class="comment"># 提交作业</span></span><br><span class="line">qdel JOBID             <span class="comment"># 删除作业</span></span><br><span class="line">qstat                  <span class="comment"># 显示所有作业的状态</span></span><br><span class="line">      -u XXX           <span class="comment"># 指定用户</span></span><br><span class="line">      -f JOBID         <span class="comment"># 指定作业的详细状态</span></span><br><span class="line">      -a               <span class="comment"># 所有作业的详细状态</span></span><br><span class="line">      -n               <span class="comment"># 节点状态</span></span><br><span class="line">      -q / -Q          <span class="comment"># 队列状态</span></span><br><span class="line">      -B               <span class="comment"># 服务器状态</span></span><br><span class="line">      -r               <span class="comment"># 正在运行的作业</span></span><br><span class="line">      -i               <span class="comment"># 正在等待的作业</span></span><br><span class="line">      -x               <span class="comment"># 已完成的作业</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># VASP 作业提交命令</span></span><br><span class="line">submit -nc -n 8 vasp</span><br><span class="line">submit -n 8 vasp</span><br><span class="line"></span><br><span class="line"><span class="comment"># LAMMPS 作业提交命令</span></span><br><span class="line">submit -nc -n 8 lmp -<span class="keyword">in</span> in.file</span><br><span class="line">submit -n 8 lmp -<span class="keyword">in</span> in.file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或进入到计算节点本地运行</span></span><br><span class="line">ssh manager</span><br><span class="line">mpirun -n 1 lmp -<span class="keyword">in</span> in.file</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># pbs 提交脚本内容</span></span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"><span class="comment">#PBS -N task</span></span><br><span class="line"><span class="comment">#PBS -l nodes=1:ppn=1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Manager 中与 PBS 相关的一些 alias 设置</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看 q 相关命令 alias</span></span><br><span class="line"><span class="built_in">alias</span> | grep ^q</span><br><span class="line"></span><br><span class="line"><span class="comment"># q 相关命令均由 qstat 延伸</span></span><br><span class="line"><span class="built_in">alias</span> q=<span class="string">&#x27;qstat -u xxx&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> qq=<span class="string">&#x27;pestat&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> qa=<span class="string">&#x27;qstat -a&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> qn=<span class="string">&#x27;qstat -u xxx|wc -l|awk &#x27;</span>\\&#x27;<span class="string">&#x27;&#123;if ($1&gt;0) print &quot;Number of jobs by xxx: &quot; $1-5; else print &quot;Number of jobs by xxx: 0&quot;&#125;&#x27;</span>\\&#x27;<span class="string">&#x27;;qstat -a|wc -l|awk &#x27;</span>\\&#x27;<span class="string">&#x27;&#123;print &quot;Number of jobs by all: &quot; $1-5&#125;&#x27;</span>\\&#x27;<span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># q 相关命令</span></span><br><span class="line">qstat       <span class="comment"># 查看所有作业的状态</span></span><br><span class="line">qa          <span class="comment"># 查看所有作业的状态（信息比 qstat 详细）</span></span><br><span class="line">q           <span class="comment"># 查看自己作业的状态</span></span><br><span class="line">qq          <span class="comment"># 查看计算节点的状态（excl 正在运行；free 空闲；down 出现故障）</span></span><br><span class="line">run         <span class="comment"># 查看自己作业的结果输出路径和信息</span></span><br><span class="line">qn          <span class="comment"># 查看自己提交作业的数量和 manager 目前已提交的作业总数</span></span><br><span class="line">ssh node02  <span class="comment"># 连接计算节点；作业到了截止时间后程序会终止，只会输出 error 和 out 文件，可通过 ssh node 节点到计算该作业的节点中去，在 scratch 目录中可以找到该作业计算的结果</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算时间</span></span><br><span class="line">Elap Time   <span class="comment"># 实际时间（小时: 分）</span></span><br><span class="line">Req<span class="string">&#x27;d Time  # 截止计算时间（240 小时）</span></span><br><span class="line"><span class="string">Time Use    # 实际时间 * 节点数</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="超算队列介绍"><a href="#超算队列介绍" class="headerlink" title="超算队列介绍"></a>超算队列介绍</h3><ul>
+<li><p>参考：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/quickstart/index.html">快速上手 - 上海交大超算平台用户手册 Documentation</a></p>
+</li>
+<li><p>超算队列内存情况</p>
+<ul>
+<li>arm128c256g 每核 2G 内存 arm</li>
+<li>64c512g 每核 8G 内存 siyuan</li>
+<li>cpu 每核 4G 内存 pi</li>
+<li>small 每核 4G 内存 pi</li>
+<li>dgx2 每核 6G 内存 pi</li>
+<li>huge 每核 35G 内存 pi</li>
+<li>192c6t 每核 31G 内存 pi</li>
+<li>cpu，small 和 dgx2 队列作业运行时间最长 7 天，huge 和 192c6t 最长 2 天。作业延长需发邮件申请，附上用户名和作业 ID，延长后的作业最长运行时间不超过 14 天</li>
+</ul>
+</li>
+<li><p>队列资源选择</p>
+<ul>
+<li>若是大规模的 CPU 作业，可选择 CPU 队列或思源一号 64c512g 队列，支持万核规模的并行</li>
+<li>若是小规模测试，可选 small 队列或思源一号 64c512g 队列</li>
+<li>GPU 作业请至 dgx2 队列或思源一号 a100 队列</li>
+<li>大内存作业可选择 huge 或 192c6t 两种队列</li>
+</ul>
+</li>
+<li><p><strong>192c6t 和 huge 大内存队列，核数有一定要求，且排队时间较长</strong></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 192c6t 队列</span></span><br><span class="line">sbatch: error: The cpu demand is lower than 48. Please submit to huge or cpu partition.</span><br><span class="line">sbatch: error: Batch job submission failed: Unspecified error</span><br><span class="line"></span><br><span class="line"><span class="comment"># huge 队列</span></span><br><span class="line">sbatch: error: The cpu demand is lower than 6. Please submit to small partition.</span><br><span class="line">sbatch: error: Batch job submission failed: Unspecified error</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>超算收费情况（2023.05.30）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">交我算平台集群总费用为CPU，GPU和存储费用之和。费率标准如下：</span><br><span class="line"></span><br><span class="line">CPU 价格：0.04元/核/小时（Pi 2.0集群 cpu/small/huge/192c6t/debug 队列） <span class="comment"># 0.02 2025.03.30</span></span><br><span class="line"></span><br><span class="line">                   0.05 元/核/小时（思源一号集群 64c512g 队列） <span class="comment"># 0.03 2025.03.30</span></span><br><span class="line"></span><br><span class="line">                   0.01元/核小时（arm128c256g队列）</span><br><span class="line">GPU 价格：2 元/卡/小时（dgx2队列 V100 GPU）</span><br><span class="line"></span><br><span class="line">                   2.5 元/卡/小时（思源一号 a100队列 A100 GPU）</span><br><span class="line"></span><br><span class="line">免费存储 3 TB，超出部分 200 元/TB/年（存储按天扣费）</span><br><span class="line"></span><br><span class="line">每个新账户赠送价值 300 元的积分，供免费试用</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>超算软件模块使用：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/app/module.html">软件模块使用方法 - 上海交大超算平台用户手册 Documentation</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module avail/av            <span class="comment"># 查看超算预部署软件模块</span></span><br><span class="line">module av [MODULE]         <span class="comment"># 查看具体模块</span></span><br><span class="line">module load [MODULE]       <span class="comment"># 加载相应软件模块</span></span><br><span class="line">module unload [MODULE]     <span class="comment"># 卸载相应软件模块</span></span><br><span class="line">module list                <span class="comment"># 列出已加载模块</span></span><br><span class="line">module purge               <span class="comment"># 清除所有已加载软件模块</span></span><br><span class="line">module show [MODULE]       <span class="comment"># 列出该模块的信息，如路径（lib include 等）、环境变量等</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="作业提交示例"><a href="#作业提交示例" class="headerlink" title="作业提交示例"></a>作业提交示例</h3><ul>
+<li>SBATCH 参数</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">--job-name=[name]          <span class="comment"># 或 -J；作业名称</span></span><br><span class="line">--nodes=[count]            <span class="comment"># 或 -N；节点数</span></span><br><span class="line">--ntasks=[count]           <span class="comment"># 或 -n；该作业使用的 CPU 核数</span></span><br><span class="line">--ntasks-per-node=[count]  <span class="comment"># 每个节点使用的 CPU 核数；--ntasks 参数的优先级高于该参数</span></span><br><span class="line">--partition [partition]    <span class="comment"># 或 -p；指定队列</span></span><br><span class="line">--output=[file_name]       <span class="comment"># 或 -o；标准输出文件</span></span><br><span class="line">--error=[file_name]        <span class="comment"># 或 -e；标准错误文件  </span></span><br><span class="line">--time=[dd-hh:mm:ss]       <span class="comment"># 或 -t；允许作业运行的最大时间</span></span><br><span class="line">--exclusive                <span class="comment"># 独占节点（应尽可能避免）</span></span><br><span class="line">--nodelist=[nodes]         <span class="comment"># 或 -w；指定节点</span></span><br><span class="line">--exclude=[nodes]          <span class="comment"># 或 -x；排除指定节点</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="VASP"><a href="#VASP" class="headerlink" title="VASP"></a>VASP</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J VASP</span></span><br><span class="line"><span class="comment">#SBATCH -p 64c512g</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=1</span></span><br><span class="line"><span class="comment">#SBATCH -o %j.out</span></span><br><span class="line"><span class="comment">#SBATCH -e %j.err</span></span><br><span class="line"></span><br><span class="line">module purge</span><br><span class="line"></span><br><span class="line"><span class="built_in">ulimit</span> -s unlimited</span><br><span class="line"></span><br><span class="line"><span class="comment"># 思源</span></span><br><span class="line">module load vasp/5.4.4-intel-2021.4.0</span><br><span class="line"><span class="comment"># module load vasp/6.2.1-intel-2021.4.0-cuda-11.5.0</span></span><br><span class="line"></span><br><span class="line">mpirun vasp_std</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自行编译的 VASP</span></span><br><span class="line">module load intel-oneapi-compilers/2021.4.0</span><br><span class="line">module load intel-oneapi-mpi/2021.4.0</span><br><span class="line">module load intel-oneapi-mkl/2021.4.0</span><br><span class="line"></span><br><span class="line">mpirun <span class="variable">$&#123;HOME&#125;</span>/bin/vasp_std</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="LAMMPS"><a href="#LAMMPS" class="headerlink" title="LAMMPS"></a>LAMMPS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J LAMMPS</span></span><br><span class="line"><span class="comment">#SBATCH -P 64c512g</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=1</span></span><br><span class="line"><span class="comment">#SBATCH --output=%j.out</span></span><br><span class="line"><span class="comment">#SBATCH --error=%j.err</span></span><br><span class="line"></span><br><span class="line">module purge</span><br><span class="line"></span><br><span class="line"><span class="comment"># 思源</span></span><br><span class="line">module load lammps/20220324-intel-2021.4.0-omp</span><br><span class="line"><span class="comment"># Pi</span></span><br><span class="line">module load lammps/20230802-oneapi-2021.4.0</span><br><span class="line"></span><br><span class="line">mpirun lmp -i in.lmp</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J Python</span></span><br><span class="line"><span class="comment">#SBATCH -p 64c512g</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=1</span></span><br><span class="line"><span class="comment">#SBATCH -o %j.out</span></span><br><span class="line"><span class="comment">#SBATCH -e %j.err</span></span><br><span class="line"></span><br><span class="line">module purge</span><br><span class="line"></span><br><span class="line">conda activate &lt;ENV_NAME&gt;</span><br><span class="line"><span class="comment"># source path/activate &lt;ENV_NAME&gt;</span></span><br><span class="line"></span><br><span class="line">python test.py</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J Bash</span></span><br><span class="line"><span class="comment">#SBATCH -p 64c512g</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=1</span></span><br><span class="line"><span class="comment">#SBATCH -o %j.out</span></span><br><span class="line"><span class="comment">#SBATCH -e %j.err</span></span><br><span class="line"></span><br><span class="line">module purge</span><br><span class="line"></span><br><span class="line">bash test.sh</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="Master-作业提交脚本示例"><a href="#Master-作业提交脚本示例" class="headerlink" title="Master 作业提交脚本示例"></a>Master 作业提交脚本示例</h3><ul>
+<li><p>课题组服务器，提交的作业使用的 CPU 核数由 2 颗 CPU（Socket）分别部分提供时，计算速度会很慢（16 原子扰动胞 20 核计算，由原本的 5min 变成 60min，慢了 20 倍），终端使用 mpirun 运行作业的速度则是正常的（但只能在终端中运行 1 个命令，超过 1 个速度就会非常慢，大概率也会影响到队列中正在运行的作业）</p>
+</li>
+<li><p>不建议跨 node[1-2] 与 master 节点（这 2 种节点的 CPU 世代不同），也不建议跨 node[1-2] 节点，也不建议跨物理 CPU</p>
+</li>
+<li><p>使用 node[1-2] 中的 2 个节点</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#SBATCH -p cpu</span></span><br><span class="line"><span class="comment">#SBATCH -N 2</span></span><br><span class="line"><span class="comment">#SBATCH -n 40</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -x master</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --no-requeue           # 取消集群断电重启后作业自动提交</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 node[1-2] 中的 1 个节点（不指定节点）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#SBATCH -p cpu</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH -n 40                  # 或 #SBATCH --ntasks-per-node=40</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -x master</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --no-requeue           # 取消集群断电重启后作业自动提交</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 node[1-2] 中的 1 个节点（指定节点）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#SBATCH -p cpu</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=40</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -w node2               # 指定节点</span></span><br><span class="line"><span class="comment">#SBATCH -x master              # 排除指定节点；多个的写法 master,node1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --no-requeue           # 取消集群断电重启后作业自动提交</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>VASP</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J VASP</span></span><br><span class="line"><span class="comment">#SBATCH -p cpu</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=16</span></span><br><span class="line"><span class="comment">#SBATCH -t 72:00:00</span></span><br><span class="line"><span class="comment">#SBATCH -o %j.out</span></span><br><span class="line"><span class="comment">#SBATCH -e %j.err</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -x master</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --no-requeue</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">ulimit</span> -s unlimited</span><br><span class="line"><span class="built_in">ulimit</span> -l unlimited</span><br><span class="line"></span><br><span class="line">mpirun vasp.5.std</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>LAMMPS</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J LAMMPS</span></span><br><span class="line"><span class="comment">#SBATCH -p cpu</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=16</span></span><br><span class="line"><span class="comment">#SBATCH -t 72:00:00</span></span><br><span class="line"><span class="comment">#SBATCH -o %j.out</span></span><br><span class="line"><span class="comment">#SBATCH -e %j.err</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --gres=gpu:2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --no-requeue</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">ulimit</span> -s unlimited</span><br><span class="line"><span class="built_in">ulimit</span> -l unlimited</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># CPU 计算</span></span><br><span class="line">mpirun lmp_cpu -i in.lmp</span><br><span class="line"><span class="comment"># GPU 加速</span></span><br><span class="line">mpirun lmp_gpu -i in.lmp -sf gpu -pk gpu 2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>NEP &amp; GPUMD（注：用 Slurm 调用 GPU 资源时，至少需要调用 1 个 CPU 核）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J GPU</span></span><br><span class="line"><span class="comment">#SBATCH -p gpu</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=1</span></span><br><span class="line"><span class="comment">#SBATCH -t 72:00:00</span></span><br><span class="line"><span class="comment">#SBATCH -o %j.out</span></span><br><span class="line"><span class="comment">#SBATCH -e %j.err</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --gres=gpu:1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --no-requeue</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$SLURMD_NODENAME</span>&quot;</span> == <span class="string">&#x27;master&#x27;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  gpumd</span><br><span class="line">  <span class="comment"># nep</span></span><br><span class="line"><span class="keyword">elif</span> [[ <span class="string">&quot;<span class="variable">$SLURMD_NODENAME</span>&quot;</span> == <span class="string">&#x27;node2&#x27;</span> ]]; <span class="keyword">then</span></span><br><span class="line">  gpumd_node2</span><br><span class="line">  <span class="comment"># nep_node2</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Python（在 slurm 文件中直接添加 conda activate 命令无效，报 conda init 相关错误）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH -J Python</span></span><br><span class="line"><span class="comment">#SBATCH -p cpu</span></span><br><span class="line"><span class="comment">#SBATCH -N 1</span></span><br><span class="line"><span class="comment">#SBATCH --ntasks-per-node=1</span></span><br><span class="line"><span class="comment">#SBATCH -t 72:00:00</span></span><br><span class="line"><span class="comment">#SBATCH -o %j.out</span></span><br><span class="line"><span class="comment">#SBATCH -e %j.err</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#SBATCH --no-requeue</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加在 ~/.&#123;ba,z&#125;shrc 中的 conda initialize 内容</span></span><br><span class="line"><span class="comment">#---------------------    Conda    ----------------------------</span></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span></span><br><span class="line"><span class="comment"># !! Contents within this block are managed by &#x27;conda init&#x27; !!</span></span><br><span class="line">__conda_setup=<span class="string">&quot;<span class="subst">$(&#x27;/path/to/miniconda3/bin/conda&#x27; &#x27;shell.bash&#x27; &#x27;hook&#x27; 2&gt; /dev/null)</span>&quot;</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">eval</span> <span class="string">&quot;<span class="variable">$__conda_setup</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> [ -f <span class="string">&quot;/path/to/miniconda3/latest/etc/profile.d/conda.sh&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        . <span class="string">&quot;/path/to/miniconda3/latest/etc/profile.d/conda.sh&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">export</span> PATH=<span class="string">&quot;/path/to/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">unset</span> __conda_setup</span><br><span class="line"><span class="comment"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加 conda activate 设置</span></span><br><span class="line"><span class="function"><span class="title">conda</span></span> () &#123;</span><br><span class="line">    \<span class="built_in">local</span> cmd=<span class="string">&quot;<span class="variable">$&#123;1-__missing__&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;<span class="variable">$cmd</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">        (activate | deactivate) __conda_activate <span class="string">&quot;<span class="variable">$@</span>&quot;</span> ;;</span><br><span class="line">        (install | update | upgrade | remove | uninstall) __conda_exe <span class="string">&quot;<span class="variable">$@</span>&quot;</span> || \<span class="built_in">return</span></span><br><span class="line">            __conda_reactivate ;;</span><br><span class="line">        (*) __conda_exe <span class="string">&quot;<span class="variable">$@</span>&quot;</span> ;;</span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">conda activate XXX</span><br><span class="line">python test.py</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="作业状态检查"><a href="#作业状态检查" class="headerlink" title="作业状态检查"></a>作业状态检查</h3><ul>
+<li>作业提交后，会生成 <code>jobid.err</code> 和 <code>jobid.out</code> 文件<ul>
+<li><code>err</code> 文件为空（大部分情况下），表示提交的作业未出错</li>
+<li><code>err</code> 文件不为空，表示提交的作业出错；需查看 <code>err</code> 文件中的出错提示，进行修改</li>
+<li>若 <code>err</code>、<code>out</code> 文件出现以下内容，大概率为超算平台出现故障，请与相关负责人联系</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># err 文件内容</span></span><br><span class="line">/tmp/slurmd/jobid/slurm_script: line 24: mpirun: <span class="built_in">command</span> not found</span><br><span class="line"></span><br><span class="line"><span class="comment"># out 文件内容</span></span><br><span class="line">could not <span class="built_in">read</span> file <span class="string">&quot;/usr/share/Modules/libexec/modulecmd.tcl&quot;</span>: no such file or directory</span><br><span class="line"></span><br><span class="line"><span class="comment"># Slurm 故障</span></span><br><span class="line">slurm_load_jobs error: Socket timed out on send/recv operation</span><br><span class="line">slurm_load_jobs error: Slurm backup controller <span class="keyword">in</span> standby mode</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/job/resource.html">查看作业资源信息 - 上海交大超算平台用户手册 Documentation</a></li>
+</ul>
+<hr>
+<h2 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h2><ul>
+<li><p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/transport/index.html">数据共享与传输 - 上海交大超算平台用户手册 Documentation</a></li>
+<li>提高数据传输速度（利用外部指令并发多个 scp&#x2F;rsync 进程）：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/transport/transportskills.html">数据传输技巧 - 上海交大超算平台用户手册 Documentation</a></li>
+</ul>
+</li>
+<li><p>超算进行数据传输一般在 data 节点上进行。超算传输节点</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data.hpc.sjtu.edu.cn    <span class="comment"># Pi</span></span><br><span class="line">sydata.hpc.sjtu.edu.cn  <span class="comment"># 思源</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><ul>
+<li><p>scp：Secure Copy，基于 SSH 协议进行文件传输，不支持增量传输</p>
+</li>
+<li><p>rsync：支持 SSH 协议或 rsync 协议、<strong>增量传输</strong>、支持本地和远程同步、支持断点续传</p>
+</li>
+<li><p>因安全策略升级，在集群的终端上不支持 scp&#x2F;rsync 的远程传输功能，所以需要从用户本地终端使用 scp&#x2F;rsync 命令：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/transport/transportsolution.html">数据传输方案和传输节点 - 上海交大超算平台用户手册 Documentation</a></p>
+</li>
+<li><p>rsync 显示整体进度（不太好用）：<a target="_blank" rel="noopener" href="https://www.dribin.org/dave/blog/archives/2024/01/21/rsync-overall-progress/">Overall Progress with rsync - Dave Dribin’s Blog</a></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scp 语法</span></span><br><span class="line">scp [OPTION]... SRC DEST</span><br><span class="line">scp [OPTION]... SRC [USER@]host:DEST</span><br><span class="line">scp [OPTION]... [USER@]HOST:SRC DEST</span><br><span class="line"></span><br><span class="line"><span class="comment"># scp 参数</span></span><br><span class="line">-p                   <span class="comment"># 保留文件属性</span></span><br><span class="line">-v                   <span class="comment"># 详细输出</span></span><br><span class="line">-r                   <span class="comment"># 以递归方式复制</span></span><br><span class="line">-q                   <span class="comment"># 安静模式；不显示进度或错误消息</span></span><br><span class="line">-P                   <span class="comment"># 指定远程主机的端口号</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line"><span class="comment"># 在超算传输节点终端，传输数据给 Master</span></span><br><span class="line">scp -v -P 313 SRC user@202.120.55.11:DEST</span><br><span class="line"><span class="comment"># 在 Master 终端，传输数据给 Master</span></span><br><span class="line">scp -v user@sydata.hpc.sjtu.edu.cn:SRC DEST</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># rsync 安装</span></span><br><span class="line">brew install rsync   <span class="comment"># macOS 安装 3.X.X 新版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rsync 语法</span></span><br><span class="line">rsync [OPTION]... SRC DEST</span><br><span class="line"><span class="comment"># 单个冒号：通过 ssh 或 rsh 协议连接远程主机</span></span><br><span class="line"><span class="comment"># 若 ~/.ssh/config 中已为 [USER@]HOST 设置了别名和配置，则其可用别名简化</span></span><br><span class="line">rsync [OPTION]... SRC [USER@]host:DEST     <span class="comment"># 等效于上传文件到远程服务器</span></span><br><span class="line">rsync [OPTION]... [USER@]HOST:SRC DEST     <span class="comment"># 等效于从远程服务器下载文件</span></span><br><span class="line"><span class="comment"># 两个冒号：通过 rsync 协议连接远程主机的 rsync 守护进程</span></span><br><span class="line">rsync [OPTION]... [USER@]HOST::SRC DEST</span><br><span class="line">rsync [OPTION]... SRC [USER@]HOST::DEST</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line"><span class="comment"># 在超算传输节点终端（Pi 可以，思源不可以），传输数据给 Master</span></span><br><span class="line">rsync -avuP --human-readable -e <span class="string">&quot;ssh -p 313&quot;</span> SRC user@202.120.55.11:DEST</span><br><span class="line"><span class="comment"># 在 Master 终端，传输数据给 Master（Pi、思源都可以）</span></span><br><span class="line">rsync -auvP --human-readable user@sydata.hpc.sjtu.edu.cn:SRC DEST</span><br><span class="line"></span><br><span class="line"><span class="comment"># rsync 参数</span></span><br><span class="line">-v, --verbose       <span class="comment"># 详细输出</span></span><br><span class="line">-q, --quiet         <span class="comment"># 安静模式</span></span><br><span class="line">-a, --archive       <span class="comment"># 归档模式，表示以递归方式传输文件，并保持所有文件属性，相当于 -rlptgoD</span></span><br><span class="line">-r, --recursive     <span class="comment"># 递归模式</span></span><br><span class="line">-l, --links         <span class="comment"># 保持符号链接的属性</span></span><br><span class="line">-L, --copy-links    <span class="comment"># 复制符号链接指向的实际文件/目录，而非符号链接</span></span><br><span class="line">-p, --perms         <span class="comment"># 保持文件权限</span></span><br><span class="line">-t, --<span class="built_in">times</span>         <span class="comment"># 保持文件时间戳</span></span><br><span class="line">-g, --group         <span class="comment"># 保持文件所属组</span></span><br><span class="line">-o, --owner         <span class="comment"># 保持文件所有者</span></span><br><span class="line">-D, --devices       <span class="comment"># 保持设备文件（块设备和字符设备）</span></span><br><span class="line">-z, --compress      <span class="comment"># 传输时进行压缩处理</span></span><br><span class="line">-n, --dry-run       <span class="comment"># 不实际运行，显示哪些文件将被传输</span></span><br><span class="line">-delete             <span class="comment"># 删除那些 DST 中 SRC 没有的文件</span></span><br><span class="line">-exclude            <span class="comment"># 排除指定的文件或目录</span></span><br><span class="line">-include            <span class="comment"># 只包括指定的文件或目录</span></span><br><span class="line">--existing          <span class="comment"># 只更新目标路径中已存在的文件</span></span><br><span class="line">-e, --rsh=COMMAND   <span class="comment"># 指定使用 rsh、ssh 方式进行同步</span></span><br><span class="line">-u, --update        <span class="comment"># 仅进行更新</span></span><br><span class="line">--human-readable    <span class="comment"># 显示输出文件大小以 KB、MB、GB 等表示</span></span><br><span class="line">--progress          <span class="comment"># 显示传输进度</span></span><br><span class="line">-P                  <span class="comment"># --partial --progress 的简写，不仅显示传输进度（单个文件），还会在传输中断时保存部分传输的数据，方便下次继续传输</span></span><br><span class="line">-e <span class="string">&quot;ssh -p 313&quot;</span>     <span class="comment"># 指定 SSH 连接的端口号</span></span><br><span class="line">--info=progress2    <span class="comment"># 显示整体的传输进度，避免与 -v --progress 参数一起使用</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>软件主要使用 WinSCP；免密登录操作见下图：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/Bit-Part-Young/BTY-imgs/images/test-2023-06-04-17-42-44.png" alt="WinSCP 免密登录"></p>
+<hr>
+<h3 id="Manager-与超算间的数据传输"><a href="#Manager-与超算间的数据传输" class="headerlink" title="Manager 与超算间的数据传输"></a>Manager 与超算间的数据传输</h3><ul>
+<li>上传与下载：孔老师写的 upload 与 download 脚本<ul>
+<li>Manager 与 Pi：<code>upload -s P</code> 或将 <code>P</code> 改成 <code>H</code> 或 <code>h</code></li>
+<li>Manager 与思源一号：将 <code>P</code> 改成 <code>s</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上传</span></span><br><span class="line">upload -s P manager/path pi/path</span><br><span class="line">upload -s s manager/path siyuan/path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载</span></span><br><span class="line">download -s P pi/path manager/path</span><br><span class="line">download -s s siyuan/path manager/path</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="程序编译-安装"><a href="#程序编译-安装" class="headerlink" title="程序编译&#x2F;安装"></a>程序编译&#x2F;安装</h2><ul>
+<li>在超算上编译程序，由于登录节点资源有限，需在计算节点上进行，需申请临时计算节点（一个核即可）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Pi</span></span><br><span class="line">srun -p cpu -n 1 --pty /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 思源一号</span></span><br><span class="line">srun -p 64c512g -n 1 --pty /bin/bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>posconv、NumNei、latgen、dumpana、atomsk</p>
+</li>
+<li><p>VASP.5.4.4、VASP.6.3.0、HDF5、VTST：<a target="_blank" rel="noopener" href="https://nesmm-wiki.seekanotherland.xyz/scitoolkits/vasp-dft/vasp-install/">VASP 编译 - Wiki of NES Lab</a></p>
+</li>
+<li><p>超算高版本 glibc 编译：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/glibc.html">glibc - 上海交大超算平台用户手册 Documentation</a></p>
+</li>
+<li><p>超算上没有 mpi4py（需自己安装）：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/app/compilers_and_languages/mpi4py.html">Mpi4py - 上海交大超算平台用户手册 Documentation</a></p>
+</li>
+<li><p>源码编译一般步骤（编译前，需理解 Makefile 文件中的命令含义！）</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./configure        <span class="comment"># 配置、生成 Makefile 文件</span></span><br><span class="line"><span class="comment"># 常见参数</span></span><br><span class="line">--prefix           <span class="comment"># 自定义安装路径</span></span><br><span class="line"></span><br><span class="line">make               <span class="comment"># 编译</span></span><br><span class="line">make install       <span class="comment"># 安装</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="交我算常见问题总结"><a href="#交我算常见问题总结" class="headerlink" title="交我算常见问题总结"></a>交我算常见问题总结</h2><p>以下是使用 “交我算” 过程中可能遇到的常见问题总结：</p>
+<hr>
+<p><strong>充值&#x2F;费率</strong></p>
+<ul>
+<li>计费系统 (HPC 账号和密码登陆)：<a target="_blank" rel="noopener" href="https://account.hpc.sjtu.edu.cn/">https://account.hpc.sjtu.edu.cn</a></li>
+<li>充值方法：<a target="_blank" rel="noopener" href="https://net.sjtu.edu.cn/info/1244/2392.htm">https://net.sjtu.edu.cn/info/1244/2392.htm</a></li>
+<li>费率问题：请用交大邮箱发送至 <a href="mailto:&#104;&#x70;&#x63;&#x40;&#115;&#116;&#106;&#x75;&#x2e;&#101;&#x64;&#117;&#x2e;&#x63;&#110;">&#104;&#x70;&#x63;&#x40;&#115;&#116;&#106;&#x75;&#x2e;&#101;&#x64;&#117;&#x2e;&#x63;&#110;</a> 咨询</li>
+</ul>
+<hr>
+<p><strong>致谢模版</strong></p>
+<ul>
+<li>“交我算” 用户在发布科研成果或论文时，应标注 “本论文的计算结果得到了上海交通大学交我算平台的支持和帮助”（The computations in this paper were run on the π 2.0 (or Siyuan Mark-I) cluster supported by the Center for High Performance Computing at Shanghai Jiao Tong University）. 论文发表后，欢迎将见刊论文通过邮件发送到 <a href="mailto:&#x68;&#x70;&#99;&#x40;&#x73;&#x6a;&#116;&#117;&#x2e;&#101;&#x64;&#117;&#46;&#99;&#x6e;">&#x68;&#x70;&#99;&#x40;&#x73;&#x6a;&#116;&#117;&#x2e;&#101;&#x64;&#117;&#46;&#99;&#x6e;</a>。</li>
+</ul>
+<hr>
+<p><strong>登录问题</strong></p>
+<ul>
+<li>连不上集群： <a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/faq/index.html#id6">https://docs.hpc.sjtu.edu.cn/faq/index.html#id6</a></li>
+<li>登录常掉线：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/login/index.html#id10">https://docs.hpc.sjtu.edu.cn/login/index.html#id10</a></li>
+<li>HPC studio 登录问题：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error">https://docs.hpc.sjtu.edu.cn/studio/faq.html#hpc-studio-proxy-error</a></li>
+<li>Jupyter、Rstudio 连接提示需要输入密码：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio">https://docs.hpc.sjtu.edu.cn/studio/faq.html#jupyterrstudio</a></li>
+</ul>
+<hr>
+<p><strong>排队问题</strong></p>
+<ul>
+<li>status 监控系统：<a target="_blank" rel="noopener" href="https://status.hpc.sjtu.edu.cn/">https://status.hpc.sjtu.edu.cn</a>，该系统包含各队列上线节点数、排队数、作业数等信息</li>
+<li>π集群排队问题：思源一号可用 CPU&#x2F;GPU 资源更多，欢迎使用思源一号。</li>
+<li>通过 squeue 查看作业，NODELIST(REASON) 为 resources&#x2F;priority 表示正常排队，AssocGrpNodeLimit 表示欠费。</li>
+</ul>
+<hr>
+<p><strong>作业问题</strong></p>
+<ul>
+<li>报错作业咨询，请将用户名、作业 ID、路径、作业脚本名邮件发至 <a href="mailto:hpc@sjtu.edu.cn">hpc@sjtu.edu.cn</a>。</li>
+<li>NodeFail：计算节点故障导致作业运行失败，重新提交作业即可，失败作业的机时系统会自动返还。</li>
+<li>运行程序时提示缺少 xxx.so 文件或者显示作业被 kill：如果是在登录节点出现该报错，请申请计算节点再做尝试。</li>
+</ul>
+<hr>
+<p><strong>软件安装问题</strong></p>
+<ul>
+<li>如何在集群上安装软件：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/faq/index.html#id16">https://docs.hpc.sjtu.edu.cn/faq/index.html#id16</a></li>
+<li>商业软件问题：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/faq/index.html#id17">https://docs.hpc.sjtu.edu.cn/faq/index.html#id17</a></li>
+</ul>
+<hr>
+<p><strong>数据传输问题</strong></p>
+<ul>
+<li>$\pi$ 集群传输至思源一号：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/transport/index.html#id4">https://docs.hpc.sjtu.edu.cn/transport/index.html#id4</a></li>
+</ul>
+<hr>
+<p><strong>常用链接</strong></p>
+<ul>
+<li>HPC 网站：<a target="_blank" rel="noopener" href="https://hpc.sjtu.edu.cn/">https://hpc.sjtu.edu.cn</a></li>
+<li>用户文档：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/">https://docs.hpc.sjtu.edu.cn</a></li>
+<li>超算用户简明手册：<a target="_blank" rel="noopener" href="https://docs.hpc.sjtu.edu.cn/_static/hpcbriefmanual.pdf">https://docs.hpc.sjtu.edu.cn/_static&#x2F;hpcbriefmanual.pdf</a></li>
+<li>集群实时利用率：<a target="_blank" rel="noopener" href="https://account.hpc.sjtu.edu.cn/top">https://account.hpc.sjtu.edu.cn/top</a></li>
+<li>公众号&#x2F;视频号：交我算</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog">Nobody</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog/posts/137960.html">https://bit-part-young.github.io/blog/posts/137960.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bit-part-young.github.io/blog" target="_blank">Seek Another Land</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><a class="post-meta__tags" href="/blog/tags/%E8%AF%BE%E9%A2%98%E7%BB%84/">课题组</a><a class="post-meta__tags" href="/blog/tags/HPC/">HPC</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/531256.html" title="sqsgen 安装与使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider21.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">sqsgen 安装与使用</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/312685.html" title="浏览器常用插件"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider3.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">浏览器常用插件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/posts/36420.html" title="课题组服务器修理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-04</div><div class="title">课题组服务器修理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nobody</div><div class="author-info__description">A Land of Nobody</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bit-Part-Young"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Bit-Part-Young" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0084ff;"></i></a><a class="social-icon" href="mailto:3304839708@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="订阅-ATOM"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Nobody's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%81%E8%B6%85%E7%AE%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">服务器、超算使用教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%81%E8%B6%85%E7%AE%97%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">服务器、超算介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Master"><span class="toc-number">1.1.1.</span> <span class="toc-text">Master</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Intel-Xeon-CPU-%E7%9B%B8%E5%85%B3"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Intel Xeon CPU 相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GPU-%E7%9B%B8%E5%85%B3"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">GPU 相关</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Manager"><span class="toc-number">1.1.2.</span> <span class="toc-text">Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E7%AE%97"><span class="toc-number">1.1.3.</span> <span class="toc-text">超算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%81%E8%B6%85%E7%AE%97%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.</span> <span class="toc-text">服务器、超算登录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">SSH 登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%88%E7%AB%AF-SSH-%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">终端 SSH 免密登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">客户端免密登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VSCode-%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">VSCode 免密登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%B3%E6%9D%BF"><span class="toc-number">1.2.5.</span> <span class="toc-text">跳板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%87%86%E5%A4%87%E3%80%81%E6%8F%90%E4%BA%A4%E3%80%81%E6%A3%80%E6%9F%A5"><span class="toc-number">1.3.</span> <span class="toc-text">作业准备、提交、检查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Slurm-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">Slurm 作业调度系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PBS-%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.2.</span> <span class="toc-text">PBS 作业调度系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E7%AE%97%E9%98%9F%E5%88%97%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.3.3.</span> <span class="toc-text">超算队列介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%8F%90%E4%BA%A4%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.4.</span> <span class="toc-text">作业提交示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#VASP"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">VASP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LAMMPS"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">LAMMPS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Python"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Shell"><span class="toc-number">1.3.4.4.</span> <span class="toc-text">Shell</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Master-%E4%BD%9C%E4%B8%9A%E6%8F%90%E4%BA%A4%E8%84%9A%E6%9C%AC%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.5.</span> <span class="toc-text">Master 作业提交脚本示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E7%8A%B6%E6%80%81%E6%A3%80%E6%9F%A5"><span class="toc-number">1.3.6.</span> <span class="toc-text">作业状态检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.7.</span> <span class="toc-text">相关问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-number">1.4.</span> <span class="toc-text">数据传输</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">1.4.1.</span> <span class="toc-text">命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.4.2.</span> <span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Manager-%E4%B8%8E%E8%B6%85%E7%AE%97%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-number">1.4.3.</span> <span class="toc-text">Manager 与超算间的数据传输</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%BC%96%E8%AF%91-%E5%AE%89%E8%A3%85"><span class="toc-number">1.5.</span> <span class="toc-text">程序编译&#x2F;安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%A4%E6%88%91%E7%AE%97%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">交我算常见问题总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/206050.html" title="VASP 报错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="VASP 报错"/></a><div class="content"><a class="title" href="/blog/posts/206050.html" title="VASP 报错">VASP 报错</a><time datetime="2025-06-07T06:00:00.000Z" title="发表于 2025-06-07 14:00:00">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/241231.html" title="2024 记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="2024 记录"/></a><div class="content"><a class="title" href="/blog/posts/241231.html" title="2024 记录">2024 记录</a><time datetime="2024-12-31T12:29:20.000Z" title="发表于 2024-12-31 20:29:20">2024-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/851955.html" title="TeX Live 安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="TeX Live 安装"/></a><div class="content"><a class="title" href="/blog/posts/851955.html" title="TeX Live 安装">TeX Live 安装</a><time datetime="2024-11-23T07:59:58.000Z" title="发表于 2024-11-23 15:59:58">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/173511.html" title="孔老师程序编译与使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="孔老师程序编译与使用"/></a><div class="content"><a class="title" href="/blog/posts/173511.html" title="孔老师程序编译与使用">孔老师程序编译与使用</a><time datetime="2024-11-18T09:35:11.000Z" title="发表于 2024-11-18 17:35:11">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/195428.html" title="gnuplot 使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider14.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="gnuplot 使用"/></a><div class="content"><a class="title" href="/blog/posts/195428.html" title="gnuplot 使用">gnuplot 使用</a><time datetime="2024-11-13T11:54:28.000Z" title="发表于 2024-11-13 19:54:28">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider10.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Nobody</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span> | 托管 </span><a target="_blank" rel="noopener" href="https://github.com">GitHub</a><span> | 部署 </span><a target="_blank" rel="noopener" href="https://vercel.com">Vercel</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=4.13.0"></script><script src="/blog/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

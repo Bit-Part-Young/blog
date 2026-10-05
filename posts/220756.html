@@ -1,0 +1,492 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Julia 基础 | Seek Another Land</title><meta name="author" content="Nobody"><meta name="copyright" content="Nobody"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Julia 基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Julia 基础">
+<meta property="og:url" content="https://bit-part-young.github.io/blog/posts/220756.html">
+<meta property="og:site_name" content="Seek Another Land">
+<meta property="og:description" content="Julia 基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.pterclub.com/images/2022/08/26/spider11.png">
+<meta property="article:published_time" content="2023-07-22T07:56:30.000Z">
+<meta property="article:modified_time" content="2024-11-28T15:50:52.991Z">
+<meta property="article:author" content="Nobody">
+<meta property="article:tag" content="Julia">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.pterclub.com/images/2022/08/26/spider11.png"><link rel="shortcut icon" href="/blog/img/logo_rm.png"><link rel="canonical" href="https://bit-part-young.github.io/blog/posts/220756.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":2000},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Julia 基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-28 23:50:52'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/blog/atom.xml" title="Seek Another Land" type="application/atom+xml">
+<link rel="alternate" href="/blog/rss2.xml" title="Seek Another Land" type="application/rss+xml">
+</head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+document.addEventListener('pjax:send', () => {
+  Pace.restart()
+})
+</script><link rel="stylesheet" href="/blog/css/center-simple.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider11.png')"><nav id="nav"><span id="blog-info"><a href="/blog/" title="Seek Another Land"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo_rm.png"/><span class="site-name">Seek Another Land</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Julia 基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-22T07:56:30.000Z" title="发表于 2023-07-22 15:56:30">2023-07-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-28T15:50:52.991Z" title="更新于 2024-11-28 23:50:52">2024-11-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/%E7%BC%96%E7%A8%8B/Julia/">Julia</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Julia 基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Julia-基础"><a href="#Julia-基础" class="headerlink" title="Julia 基础"></a>Julia 基础</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
+<li>科学计算编程语言</li>
+<li>非常灵活</li>
+</ul>
+<p>默认环境：<code>~/.julia/environments/v1.9/</code></p>
+<p><code>===</code>：完全相等性比较，还需要具有相同的内存地址</p>
+<p><code>ByRow(f)</code>：以 f 函数进行变换</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建未初始化的 Matrix</span></span><br><span class="line"><span class="built_in">Matrix</span>&#123;T&#125;(<span class="literal">undef</span>, m, n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取文本所有行，可以不用 open()</span></span><br><span class="line">readlines()</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.misaraty.com/2021-12-16_julia%E5%B9%B6%E8%A1%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/">Julia并行：多线程与多进程 - Misaraty</a></p>
+<hr>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><p>教程：<a target="_blank" rel="noopener" href="https://www.math.pku.edu.cn/teachers/lidf/docs/Julia/html/_book/index.html">Julia语言入门</a></p>
+</li>
+<li><p>Julia 与其他语言的差异：<a target="_blank" rel="noopener" href="https://cn.julialang.org/JuliaZH.jl/latest/manual/noteworthy-differences/#Noteworthy-differences-from-Python">与其他语言的显著差异 · Julia中文文档</a></p>
+</li>
+<li><p>Julia 速查表：<a target="_blank" rel="noopener" href="https://wangchujiang.com/reference/docs/julia.html">Julia 备忘清单 &amp; julia cheatsheet &amp; Quick Reference</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/m3g/JuliaNotes.jl">GitHub - m3g&#x2F;JuliaNotes.jl: A collection of examples and explanations about Julia</a></p>
+</li>
+<li><p>Julia 微积分笔记：<a target="_blank" rel="noopener" href="https://jverzani.github.io/CalculusWithJuliaNotes.jl/">Calculus with Julia</a></p>
+</li>
+<li><p>[GitHub - RoyiAvital&#x2F;Julia100Exercises: A set of introductory exercises for Julia. Based on \ <a target="_blank" rel="noopener" href="https://github.com/RoyiAvital/Julia100Exercises">100 NumPy Exercises](https://github.com/rougier/numpy-100).</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/Leticia-maria/Introduction.jl">GitHub - Leticia-maria&#x2F;Introduction.jl</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://sosiristseng.github.io/julia/">Julia Tips - My digital garden</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://modernjuliaworkflows.github.io/">Modern Julia Workflows</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li>二进制版本下载：<ul>
+<li><a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/julia-releases/bin/">julia-releases - 清华大学镜像站</a></li>
+<li><a target="_blank" rel="noopener" href="https://julialang.org/downloads/">Download Julia</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install Julia  <span class="comment"># macOS</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>官方包注册表：<a target="_blank" rel="noopener" href="https://github.com/JuliaRegistries/General">GitHub - JuliaRegistries&#x2F;General: The official registry of general Julia packages</a></p>
+</li>
+<li><p>Julia 包镜像：<a target="_blank" rel="noopener" href="https://mirror.sjtu.edu.cn/docs/julia">交大镜像</a></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">export</span> JULIA_PKG_SERVER=https://mirrors.sjtug.sjtu.edu.cn/julia</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若成功切换镜像，可查询到相关信息 </span></span><br><span class="line">versioninfo()</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><ul>
+<li><p>代码格式化：JuliaFormatter</p>
+</li>
+<li><p>Julia VSCode 插件：需设置 Julia 二进制文件路径，才能使用查看 API、在 REPL 中执行代码等功能</p>
+<ul>
+<li>激活 Julia 环境：输入 “Julia: Activate This Environment”</li>
+<li>更换 Julia 环境：输入 “Julia: Change Current Environment”</li>
+<li>在 VSCode 中的 Jupyter Notebook 中运行 Julia 代码（只能是默认的 Julia 环境）</li>
+<li><input disabled="" type="checkbox"> 如何在 Jupyter Notebook 中的使用其他的 Julia 环境</li>
+<li><input disabled="" type="checkbox"> VSCode Julia 插件经常 crash</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;julia.executablePath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;~/bin/julia&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>IJulia：Julia 的 Jupyter Notebook</li>
+</ul>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> IJulia</span><br><span class="line"></span><br><span class="line">notebook()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接 Jupyter 需输入 token，查看 token</span></span><br><span class="line">~/.julia/conda/3/x86_64/bin/jupyter server list</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="REPL"><a href="#REPL" class="headerlink" title="REPL"></a>REPL</h3><ul>
+<li>REPL：交互式会话（read-eval-print loop）</li>
+<li>按 <code>Tab</code> 键可以自动补全</li>
+<li>Julia 的 REPL 有四种 mode</li>
+<li>退出 Juila mode：<code>Ctrl + D</code> 键或输入 <code>exit()</code></li>
+<li>退出 Help、Shell、Search 到 Julia mode：<code>Backspace</code> 或 <code>Crtl + C</code> 键</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 四种 mode 的 prompt</span></span><br><span class="line">julia&gt;                  <span class="comment"># Julia</span></span><br><span class="line"><span class="built_in">help</span>?&gt;                  <span class="comment"># Help；按 ? 键进入；可查看函数等文档帮助</span></span><br><span class="line">shell&gt;                  <span class="comment"># Shell；按 ; 键进入</span></span><br><span class="line">(reverse-i-search)`<span class="string">&#x27;:   # Search；按 Ctrl + R 键进入</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">julia script.jl              <span class="comment"># 基本</span></span><br><span class="line">julia --project=. script.jl  <span class="comment"># 指定环境</span></span><br><span class="line">julia&gt; include(<span class="string">&quot;script.jl&quot;</span>)  <span class="comment"># REPL 下</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="使用环境"><a href="#使用环境" class="headerlink" title="使用环境"></a>使用环境</h3><ul>
+<li><p>参考：<a target="_blank" rel="noopener" href="https://cn.julialang.org/Pkg.jl/dev/environments/">4. 使用”环境” · Pkg.jl</a></p>
+</li>
+<li><p>进入 pkg，执行 <code>activate .</code>，激活该目录使其成为 “活动项目”；添加 package（会生成 <code>Project.toml</code> 项目文件及 <code>Manifest.toml</code> 清单文件）</p>
+</li>
+<li><p>使用他人的项目</p>
+<ul>
+<li>注：若项目包含 manifest，则以该 manifest 给出的相同状态安装包；否则，将解析与项目兼容的最新版本的依赖项</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/JuliaLang/Example.jl.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 激活环境</span></span><br><span class="line">(@v1.8) pkg&gt; activate Example.jl</span><br><span class="line">Activating project at `~/Example.jl`</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖/解析</span></span><br><span class="line">(Example) pkg&gt; instantiate</span><br><span class="line">  No Changes to `~/Example.jl/Project.toml`</span><br><span class="line">  No Changes to `~/Example.jl/Manifest.toml`</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><ul>
+<li><p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juliapackages.com/">Julia Packages</a></li>
+<li><a target="_blank" rel="noopener" href="https://cn.julialang.org/Pkg.jl/dev/getting-started/">2. 入门 · Pkg.jl</a></li>
+</ul>
+</li>
+<li><p>键入 <code>]</code> 进入 pkg（交互式包管理模式； <code>BACKSPACE</code> 或 <code>Crtl + C</code> 键退出）</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 package</span></span><br><span class="line"><span class="comment"># 方式 1：不进入 pkg</span></span><br><span class="line">julia&gt; using Pkg</span><br><span class="line"><span class="comment"># import Pkg</span></span><br><span class="line">julia&gt; Pkg.add(<span class="string">&quot;Example&quot;</span>)</span><br><span class="line"><span class="comment"># Pkg.add([&quot;AtomsIO&quot;, &quot;AtomsIOPython&quot;, &quot;ASEconvert&quot;])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式 2：进入 pkg</span></span><br><span class="line">(@v1.9) pkg&gt; add Example</span><br><span class="line"><span class="comment"># 安装多个 package</span></span><br><span class="line">(@v1.9) pkg&gt; add JSON StaticArrays</span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">(@v1.9) pkg&gt; <span class="built_in">rm</span> JSON StaticArrays</span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">(@v1.9) pkg&gt; up</span><br><span class="line"><span class="comment"># 查看已安装的包</span></span><br><span class="line">(@v1.9) pkg&gt; st</span><br><span class="line"><span class="comment"># 包括递归依赖包</span></span><br><span class="line">(@v1.9) pkg&gt; st -m</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="创建包"><a href="#创建包" class="headerlink" title="创建包"></a>创建包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(@v1.9) pkg&gt; generate HelloWorld</span><br></pre></td></tr></table></figure>
+
+<p>目录结构</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">. </span><br><span class="line">├── Project.toml </span><br><span class="line">└── src </span><br><span class="line">    └── HelloWorld.jl</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="注册包"><a href="#注册包" class="headerlink" title="注册包"></a>注册包</h4><p>注册包，类似 Python 的 package 打包发布到 PyPI</p>
+<hr>
+<h3 id="注册表"><a href="#注册表" class="headerlink" title="注册表"></a>注册表</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://cn.julialang.org/Pkg.jl/dev/registries/">7. 注册表 · Pkg.jl</a></p>
+</blockquote>
+<ul>
+<li>默认自动安装 <a target="_blank" rel="noopener" href="https://github.com/JuliaRegistries/General">General</a> 注册表</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入 pkg</span></span><br><span class="line"><span class="comment"># 添加注册表</span></span><br><span class="line">registry add General</span><br><span class="line">registry add https://github.com/JuliaRegistries/General </span><br><span class="line">registry add https://github.com/ACEsuit/ACEregistry</span><br><span class="line"></span><br><span class="line">registry st          <span class="comment"># 查看已安装的注册表</span></span><br><span class="line">registry <span class="built_in">rm</span> General  <span class="comment"># 移除注册表</span></span><br><span class="line">registry up          <span class="comment"># 更新注册表</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#= 多行注释</span></span><br><span class="line"><span class="comment">function f(x)</span></span><br><span class="line"><span class="comment">    return x^2 + 1</span></span><br><span class="line"><span class="comment">end</span></span><br><span class="line"><span class="comment">=#</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p><code>println</code> 会自动添加换行符，<code>print</code> 不会</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">println()</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>Unicode 字符可以作为变量名（不建议）</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">❄ = -<span class="number">12</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 环境变量</span></span><br><span class="line">JULIA_CPU_THREADS   <span class="comment"># 逻辑 CPU 核心数</span></span><br><span class="line">JULIA_NUM_THREADS   <span class="comment"># 设置 Julia 可用线程的最大数</span></span><br></pre></td></tr></table></figure>
+
+
+<p>复合表达式</p>
+<ul>
+<li><code>begin ... end</code></li>
+<li><code>(..., ..., ...)</code></li>
+<li><code>...;...</code></li>
+</ul>
+<hr>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>字符串属于不可修改类型 (immutable)， 即不能直接修改字符串的内容， 但可以给保存了字符串的变量赋值为一个新的字符串。</p>
+<p>字符串连接 - <code>*</code><br>字符串重复 - <code>^</code><br>字符串插值 - <code>$var</code>，<code>$(expression)</code></p>
+<p>Julia 可识别 Unicode math（输入 LaTeX 符号，按 Tab 键，可补全成 Unicode symbols，部分可用作运算符）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.julialang.org/en/v1/manual/unicode-input/">Unicode Input · The Julia Language</a></p>
+</blockquote>
+<ul>
+<li>π <code>\pi</code>+TAB</li>
+<li>÷ <code>\div</code>+TAB</li>
+<li>≥ <code>\ge</code>+TAB</li>
+<li>≤ <code>\le</code>+TAB</li>
+<li>≠ <code>\ne</code>+TAB</li>
+<li>∈ <code>\in</code>+TAB</li>
+<li>⊂ <code>\subset</code>+TAB</li>
+<li>⊃ <code>\supset</code>+TAB</li>
+<li>🐢– <code>\:turtle:</code>+TAB</li>
+<li>√ <code>\sqrt</code>+TAB</li>
+</ul>
+<p>字符串处理相关函数</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parse()</span><br><span class="line">strip()</span><br><span class="line">split()</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h4><p>符号是一种特殊的数据类型，用于表示固定且不可变的标识符。它们在代码中以冒号 <code>:</code> 开头</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">elements = [:Si,]</span><br><span class="line"><span class="comment"># elements = [:Si]</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f(x) = x^<span class="number">2</span> + <span class="number">3</span>*x + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">f(<span class="number">2</span>)</span><br><span class="line">f(<span class="number">1.1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> func(x, y, z)</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> foo(x, y)</span><br><span class="line">x = <span class="built_in">Int</span>(x); y = <span class="built_in">Int</span>(y)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">foo(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加类型注释</span></span><br><span class="line"><span class="keyword">function</span> foo(x::<span class="built_in">Int</span>, y::<span class="built_in">Int</span>)::<span class="built_in">Int</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">foo(<span class="built_in">Int</span>(x), <span class="built_in">Int</span>(y))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysd: Input numeric vector x, output its sample standard deviation.</span></span><br><span class="line"><span class="keyword">function</span> mysd(x)</span><br><span class="line">    n = length(x)</span><br><span class="line">    mx = sum(x) / n</span><br><span class="line">    s = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> z <span class="keyword">in</span> x</span><br><span class="line">        s += (z - mx)^<span class="number">2</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    sqrt(s / (n-<span class="number">1</span>))</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用</span></span><br><span class="line">mysd([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><input disabled="" type="checkbox"> 添加!，含义是什么</li>
+</ul>
+<p>用于表示该函数会对其参数进行原地修改（in-place modification）。换句话说，带有 <code>!</code> 的函数会改变至少一个传入参数的内容或状态，而不是创建一个新的副本并返回。</p>
+<p><code>;</code> 前是位置参数，后是关键字参数</p>
+<p>可变参数：参数名添加 <code>...</code></p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 位置参数的示例</span></span><br><span class="line"><span class="keyword">function</span> add(x, y)</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关键字参数的示例</span></span><br><span class="line"><span class="keyword">function</span> greet(name; title=<span class="string">&quot;Mr.&quot;</span>)</span><br><span class="line">    println(<span class="string">&quot;Hello, <span class="variable">$title</span> <span class="variable">$name</span>&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认参数的示例</span></span><br><span class="line"><span class="keyword">function</span> pow(base, exponent=<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> base ^ exponent</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可变参数的示例</span></span><br><span class="line"><span class="keyword">function</span> sum_all(...args)</span><br><span class="line">    <span class="keyword">return</span> sum(args)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 类型注解的示例</span></span><br><span class="line"><span class="keyword">function</span> divide(x::<span class="built_in">Float64</span>, y::<span class="built_in">Float64</span>)</span><br><span class="line">    <span class="keyword">return</span> x / y</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匿名函数的示例</span></span><br><span class="line">map(x -&gt; x^<span class="number">2</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 高阶函数的示例</span></span><br><span class="line"><span class="keyword">function</span> apply_function(f, values)</span><br><span class="line">    <span class="keyword">return</span> f(values)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">apply_function(sum, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>if-elseif-else-end 结构</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">35</span></span><br><span class="line"><span class="keyword">if</span> age &lt; <span class="number">18</span></span><br><span class="line">  println(<span class="string">&quot;未成年&quot;</span>)</span><br><span class="line"><span class="keyword">elseif</span> age &lt; <span class="number">60</span></span><br><span class="line">  println(<span class="string">&quot;中青年&quot;</span>)</span><br><span class="line"><span class="keyword">elseif</span> age &lt; <span class="number">100</span></span><br><span class="line">  println(<span class="string">&quot;老年&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  println(<span class="string">&quot;老寿星！&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">## 中青年</span></span><br></pre></td></tr></table></figure>
+
+
+<p>循环</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> loopvar = a:b</span><br><span class="line">  expr1</span><br><span class="line">  expr2</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span></span><br><span class="line">    println(i)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span></span><br><span class="line">    println(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>枚举</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">arr=collect(<span class="number">1</span>:<span class="number">5</span>)</span><br><span class="line"><span class="keyword">for</span> (idx, val) <span class="keyword">in</span> enumerate(arr) </span><br><span class="line">    println(<span class="string">&quot;the <span class="variable">$idx</span>-th element is <span class="variable">$val</span>&quot;</span>) </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+<p>嵌套循环</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 9x9乘法表</span></span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span>:<span class="number">9</span></span><br><span class="line">    <span class="keyword">for</span> j=<span class="number">1</span>:i</span><br><span class="line">        print(j, <span class="string">&quot;×&quot;</span>, i, <span class="string">&quot;=&quot;</span>, i*j, <span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    println()</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>missing 对象表示缺失值， 缺失值不区分具体类型， 属于 Missing 数据类型</p>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><blockquote>
+<p>索引起始为 1，与 Fortran 相同，与 Python、C++ 不同；end 表示最后一个元素的位置</p>
+</blockquote>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">v1 = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>]</span><br><span class="line">v2 = [<span class="number">1.5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">9.12</span>]</span><br><span class="line">v3 = [<span class="string">&quot;苹果&quot;</span>, <span class="string">&quot;桔子&quot;</span>, <span class="string">&quot;香蕉&quot;</span>]</span><br><span class="line">v4 = [<span class="number">123</span>, <span class="number">3.14</span>, <span class="string">&quot;数学&quot;</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]]</span><br><span class="line"></span><br><span class="line">length(v1)</span><br><span class="line"></span><br><span class="line"><span class="meta">@show</span> v1</span><br></pre></td></tr></table></figure>
+
+
+<p>数组的类型标注为 <code>Array&#123;Type, N&#125;</code>，其中 <code>Type</code> 是元素类型，<code>N</code> 是数组的维度。例如，<code>Array&#123;Int, 1&#125;</code> 表示一个整数类型的一维数组。</p>
+<p><code>@show expr</code> 可以用比较简洁的带有提示的方式</p>
+<p>范围：范围不是向量， 而是一种 “可遍历数据结构 “。 用 <code>collect()</code> 函数可以将范围转换成向量</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>:<span class="number">5</span></span><br><span class="line"><span class="comment">## 1:5</span></span><br><span class="line"><span class="number">1</span>:<span class="number">2</span>:<span class="number">7</span></span><br><span class="line"><span class="comment">## 1:2:7</span></span><br><span class="line"><span class="number">5</span>:-<span class="number">1</span>:<span class="number">1</span></span><br><span class="line"><span class="comment">## 5:-1:1</span></span><br><span class="line"></span><br><span class="line">collect(<span class="number">5</span>:-<span class="number">1</span>:<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v1 = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>]</span><br><span class="line">v1[:] .= <span class="number">0</span>; </span><br><span class="line"><span class="meta">@show</span> v1;</span><br><span class="line"><span class="comment">## v1 = [0, 0, 0, 0, 0, 0, 0]</span></span><br></pre></td></tr></table></figure>
+
+
+<p>数组类型：<code>Array&#123;Int64&#125;</code>、<code>Array&#123;Float64&#125;</code>、<code>Array&#123;String&#125;</code>、<code>Array&#123;Any&#125;</code>（可容纳任何 Julia 对象作为元素）等；<code>eltype()</code> 查看类型</p>
+<p>相关函数</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># v为向量，x为元素，u为向量</span></span><br><span class="line"><span class="comment"># 将x添加到向量v的末尾</span></span><br><span class="line">push!(v, x)</span><br><span class="line"><span class="comment"># 将u的所有元素添加到向量v的末尾</span></span><br><span class="line">append!(v, u)</span><br><span class="line"><span class="comment"># 返回v的最后一个元素并从v中删除此元素</span></span><br><span class="line">pop!(v)</span><br></pre></td></tr></table></figure>
+
+
+<p>Julia 中的函数， 包括自定义函数， 如果可以对单个标量执行， 将函数名加后缀句点后， 就可以变成向量化版本， 对向量和矩阵执行。 这称为<strong>广播</strong>。 运算也是如此，运算符前面加点后就可以将标量运算应用到元素之间的运算。</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqrt.([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+<p>列表推导</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcube = [i^<span class="number">3</span> <span class="keyword">for</span> i=<span class="number">1</span>:<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h4><p>同 python</p>
+<p>命名元组</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data_keys = (energy_key = <span class="string">&quot;energy&quot;</span>, force_key = <span class="string">&quot;forces&quot;</span>)</span><br><span class="line"></span><br><span class="line">data_keys.energy_key</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><ul>
+<li>Python 中的 <code>:</code> 变成 <code>=&gt;</code>；元素访问相同</li>
+<li><code>keys()</code> - 遍历字典键；<code>values()</code> - 遍历字典值</li>
+</ul>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">d = <span class="built_in">Dict</span>(<span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;Li Ming&quot;</span>, <span class="string">&quot;age&quot;</span> =&gt; <span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定键和值的数据类型</span></span><br><span class="line"><span class="built_in">Dict</span>&#123;<span class="built_in">String</span>,<span class="built_in">Int64</span>&#125;(<span class="string">&quot;apple&quot;</span> =&gt; <span class="number">1</span>, <span class="string">&quot;pear&quot;</span> =&gt; <span class="number">2</span>, <span class="string">&quot;orange&quot;</span> =&gt; <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用二元组的数组作为初值定义字典</span></span><br><span class="line">d2orig = [(<span class="string">&quot;a&quot;</span>, <span class="number">1</span>), (<span class="string">&quot;b&quot;</span>, <span class="number">2</span>), (<span class="string">&quot;c&quot;</span>, <span class="number">3</span>), (<span class="string">&quot;d&quot;</span>, <span class="number">4</span>)]</span><br><span class="line">d2 = <span class="built_in">Dict</span>(d2orig)</span><br><span class="line"></span><br><span class="line"><span class="comment"># zip() 函数</span></span><br><span class="line">x = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>]</span><br><span class="line">y = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">d2 = <span class="built_in">Dict</span>(zip(x, y))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>字典推导</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Dict</span>(x =&gt; x * x <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>])</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><p>同 python</p>
+<hr>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p><code>using ModuleName</code> 使得模块中的所有导出（exported）函数直接可用，不允许重定义或扩展原有函数</p>
+<p><code>import</code> 不行（和 Python 一样）</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> JuLIP</span><br><span class="line"></span><br><span class="line">read_extxyz()</span><br></pre></td></tr></table></figure>
+
+<p><code>using</code> 和 <code>import</code> 的区别</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> ModuleName</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> ModuleName: x, y</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h3><p>宏：在程序中自动生成代码（表达式）</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># assert (单元测试) </span></span><br><span class="line"><span class="meta">@assert</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看对特定参数使用的方法/查找函数所在的模块 </span></span><br><span class="line"><span class="meta">@which</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行时间与内存分配统计 </span></span><br><span class="line"><span class="meta">@time</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回执行用时 </span></span><br><span class="line"><span class="meta">@elapsed</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看内存分配 </span></span><br><span class="line"><span class="meta">@allocated</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 异步任务</span></span><br><span class="line"><span class="meta">@async</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示表达式和表达式的值</span></span><br><span class="line"><span class="meta">@show</span> </span><br></pre></td></tr></table></figure>
+
+<p>宏定义</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">macro</span> sayhello()</span><br><span class="line">    <span class="keyword">return</span> :( println(<span class="string">&quot;Hello, World!&quot;</span>) )</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@sayhello</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h3><p>Base</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Dates  <span class="comment"># DateTime, Date</span></span><br><span class="line"></span><br><span class="line">SparseArrays  <span class="comment"># sparse, SparseVector, SparseMatrixCSC</span></span><br><span class="line"></span><br><span class="line">Random  <span class="comment"># rand, randn, randsubseq</span></span><br><span class="line"></span><br><span class="line">Statistics  <span class="comment"># mean, std, cor, median, quantile</span></span><br><span class="line"></span><br><span class="line">LinearAlgebra  <span class="comment"># I, eigvals, eigvecs, det, cholesky</span></span><br><span class="line"></span><br><span class="line">Distributed  <span class="comment"># @distributed, pmap, addprocs</span></span><br></pre></td></tr></table></figure>
+
+<p>并行计算</p>
+<figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Distributed</span><br><span class="line">addprocs(<span class="number">4</span>)  <span class="comment"># 添加4个进程</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@distributed</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100000</span></span><br><span class="line">    <span class="comment"># 一些并行计算</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog">Nobody</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://bit-part-young.github.io/blog/posts/220756.html">https://bit-part-young.github.io/blog/posts/220756.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://bit-part-young.github.io/blog" target="_blank">Seek Another Land</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Julia/">Julia</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/187835.html" title="Linux 使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider4.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux 使用</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/701251.html" title="Zotero 使用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider1.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Zotero 使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/posts/281223.html" title="Julia 常用 packages"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider4.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-28</div><div class="title">Julia 常用 packages</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/face.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nobody</div><div class="author-info__description">A Land of Nobody</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">92</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Bit-Part-Young"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Bit-Part-Young" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.zhihu.com/people/ni-you-wei-ren-cheng-dao-de-mei-li" target="_blank" title="知乎"><i class="fab fa-zhihu" style="color: #0084ff;"></i></a><a class="social-icon" href="mailto:3304839708@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/blog/atom.xml" target="_blank" title="订阅-ATOM"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to Nobody's Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Julia-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">Julia 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">参考资料</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7"><span class="toc-number">1.3.1.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REPL"><span class="toc-number">1.3.2.</span> <span class="toc-text">REPL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-number">1.3.3.</span> <span class="toc-text">运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.4.</span> <span class="toc-text">使用环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">1.3.5.</span> <span class="toc-text">包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%8C%85"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">创建包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E5%8C%85"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">注册包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8"><span class="toc-number">1.3.6.</span> <span class="toc-text">注册表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.4.1.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA"><span class="toc-number">1.4.2.</span> <span class="toc-text">输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.4.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Symbol"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">Symbol</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.5.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.6.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-number">1.4.6.2.</span> <span class="toc-text">元组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E5%85%B8"><span class="toc-number">1.4.6.3.</span> <span class="toc-text">字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-number">1.4.6.4.</span> <span class="toc-text">集合</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-number">1.4.7.</span> <span class="toc-text">模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-number">1.4.8.</span> <span class="toc-text">宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E5%BA%93"><span class="toc-number">1.4.9.</span> <span class="toc-text">标准库</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/206050.html" title="VASP 报错"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="VASP 报错"/></a><div class="content"><a class="title" href="/blog/posts/206050.html" title="VASP 报错">VASP 报错</a><time datetime="2025-06-07T06:00:00.000Z" title="发表于 2025-06-07 14:00:00">2025-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/241231.html" title="2024 记录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider9.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="2024 记录"/></a><div class="content"><a class="title" href="/blog/posts/241231.html" title="2024 记录">2024 记录</a><time datetime="2024-12-31T12:29:20.000Z" title="发表于 2024-12-31 20:29:20">2024-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/851955.html" title="TeX Live 安装"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider20.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="TeX Live 安装"/></a><div class="content"><a class="title" href="/blog/posts/851955.html" title="TeX Live 安装">TeX Live 安装</a><time datetime="2024-11-23T07:59:58.000Z" title="发表于 2024-11-23 15:59:58">2024-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/173511.html" title="孔老师程序编译与使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider12.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="孔老师程序编译与使用"/></a><div class="content"><a class="title" href="/blog/posts/173511.html" title="孔老师程序编译与使用">孔老师程序编译与使用</a><time datetime="2024-11-18T09:35:11.000Z" title="发表于 2024-11-18 17:35:11">2024-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/195428.html" title="gnuplot 使用"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.pterclub.com/images/2022/08/26/spider14.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="gnuplot 使用"/></a><div class="content"><a class="title" href="/blog/posts/195428.html" title="gnuplot 使用">gnuplot 使用</a><time datetime="2024-11-13T11:54:28.000Z" title="发表于 2024-11-13 19:54:28">2024-11-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.pterclub.com/images/2022/08/26/spider11.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2026 By Nobody</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span> | 托管 </span><a target="_blank" rel="noopener" href="https://github.com">GitHub</a><span> | 部署 </span><a target="_blank" rel="noopener" href="https://vercel.com">Vercel</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=4.13.0"></script><script src="/blog/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/blog/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
